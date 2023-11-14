@@ -28,8 +28,9 @@ func main() {
 	log.Printf("%+v", car2)
 }
 
+// Car length = 8 + 8 + 1 + len.Car + 1 + 1 + len.CC + 1 + len.Timing + len.Gearbox
 type Car struct {
-	ID     uint64 `vl:"id" j:""` // 8 + 8 + 1 + len.Car + 1 + 1 + len.CC + 1 + len.Timing + len.Gearbox
+	ID     uint64 `vl:"id" j:""`
 	Row    uint   `vl:"id" j:"max:677"`
 	Name   string `vl:"name,omitempty" json:"-"`
 	Auto   bool
@@ -38,7 +39,7 @@ type Car struct {
 	Gearbox
 }
 
-// Gearbox len = 4 + 1 + 1+ 1+ 1+ len.Model + 1 + len.Make
+// Gearbox length = 4 + 1 + 1+ 1+ 1+ len.Model + 1 + len.Make
 type Gearbox struct {
 	Gears        int
 	Reverse      uint8
