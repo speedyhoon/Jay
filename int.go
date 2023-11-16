@@ -19,33 +19,33 @@ const (
 
 // ReadInt64 ...
 func ReadInt64(b []byte) int64 {
-	return int64(b[0]) | int64(b[1])<<8 | int64(b[2])<<16 | int64(b[3])<<24 |
-		int64(b[4])<<32 | int64(b[5])<<40 | int64(b[6])<<48 | int64(b[7])<<56
+	return int64(b[0]) | int64(b[1])<<_8 | int64(b[2])<<_16 | int64(b[3])<<_24 |
+		int64(b[4])<<_32 | int64(b[5])<<_40 | int64(b[6])<<_48 | int64(b[7])<<_56
 }
 
 // ReadInt32 ...
 func ReadInt32(b []byte) int32 {
-	return int32(b[0]) | int32(b[1])<<8 | int32(b[2])<<16 | int32(b[3])<<24
+	return int32(b[0]) | int32(b[1])<<_8 | int32(b[2])<<_16 | int32(b[3])<<_24
 }
 
 // ReadInt16 ...
 func ReadInt16(b []byte) int16 {
-	return int16(b[0]) | int16(b[1])<<8
+	return int16(b[0]) | int16(b[1])<<_8
 }
 
 // WriteInt64 ...
 func WriteInt64(b []byte, i int64) {
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(i), byte(i>>8), byte(i>>16), byte(i>>24), byte(i>>32), byte(i>>40), byte(i>>48), byte(i>>56)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(i), byte(i>>_8), byte(i>>_16), byte(i>>_24), byte(i>>_32), byte(i>>_40), byte(i>>_48), byte(i>>_56)
 }
 
 // WriteInt32 ...
 func WriteInt32(b []byte, i int32) {
-	b[0], b[1], b[2], b[3] = byte(i), byte(i>>8), byte(i>>16), byte(i>>24)
+	b[0], b[1], b[2], b[3] = byte(i), byte(i>>_8), byte(i>>_16), byte(i>>_24)
 }
 
 // WriteInt16 ...
 func WriteInt16(b []byte, i int16) {
-	b[0], b[1] = byte(i), byte(i>>8)
+	b[0], b[1] = byte(i), byte(i>>_8)
 }
 
 // LenInt ...
@@ -93,46 +93,46 @@ func WriteInt(b []byte, i int, length int) {
 		b[1] = byte(i)
 	case 2:
 		b[1] = byte(i)
-		b[2] = byte(i >> 8)
+		b[2] = byte(i >> _8)
 	case 3:
 		b[1] = byte(i)
-		b[2] = byte(i >> 8)
-		b[3] = byte(i >> 16)
+		b[2] = byte(i >> _8)
+		b[3] = byte(i >> _16)
 	case 4:
 		b[1] = byte(i)
-		b[2] = byte(i >> 8)
-		b[3] = byte(i >> 16)
-		b[4] = byte(i >> 24)
+		b[2] = byte(i >> _8)
+		b[3] = byte(i >> _16)
+		b[4] = byte(i >> _24)
 	case 5:
 		b[1] = byte(i)
-		b[2] = byte(i >> 8)
-		b[3] = byte(i >> 16)
-		b[4] = byte(i >> 24)
-		b[5] = byte(i >> 32)
+		b[2] = byte(i >> _8)
+		b[3] = byte(i >> _16)
+		b[4] = byte(i >> _24)
+		b[5] = byte(i >> _32)
 	case 6:
 		b[1] = byte(i)
-		b[2] = byte(i >> 8)
-		b[3] = byte(i >> 16)
-		b[4] = byte(i >> 24)
-		b[5] = byte(i >> 32)
-		b[6] = byte(i >> 40)
+		b[2] = byte(i >> _8)
+		b[3] = byte(i >> _16)
+		b[4] = byte(i >> _24)
+		b[5] = byte(i >> _32)
+		b[6] = byte(i >> _40)
 	case 7:
 		b[1] = byte(i)
-		b[2] = byte(i >> 8)
-		b[3] = byte(i >> 16)
-		b[4] = byte(i >> 24)
-		b[5] = byte(i >> 32)
-		b[6] = byte(i >> 40)
-		b[7] = byte(i >> 48)
+		b[2] = byte(i >> _8)
+		b[3] = byte(i >> _16)
+		b[4] = byte(i >> _24)
+		b[5] = byte(i >> _32)
+		b[6] = byte(i >> _40)
+		b[7] = byte(i >> _48)
 	case 8:
 		b[1] = byte(i)
-		b[2] = byte(i >> 8)
-		b[3] = byte(i >> 16)
-		b[4] = byte(i >> 24)
-		b[5] = byte(i >> 32)
-		b[6] = byte(i >> 40)
-		b[7] = byte(i >> 48)
-		b[8] = byte(i >> 56)
+		b[2] = byte(i >> _8)
+		b[3] = byte(i >> _16)
+		b[4] = byte(i >> _24)
+		b[5] = byte(i >> _32)
+		b[6] = byte(i >> _40)
+		b[7] = byte(i >> _48)
+		b[8] = byte(i >> _56)
 	}
 }
 

@@ -44,46 +44,46 @@ func WriteUint(b []byte, u uint, length uint8) {
 		b[1] = byte(u)
 	case 3:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
+		b[2] = byte(u >> _8)
 	case 4:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
 	case 5:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
 	case 6:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
-		b[5] = byte(u >> 32)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
+		b[5] = byte(u >> _32)
 	case 7:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
-		b[5] = byte(u >> 32)
-		b[6] = byte(u >> 40)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
+		b[5] = byte(u >> _32)
+		b[6] = byte(u >> _40)
 	case 8:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
-		b[5] = byte(u >> 32)
-		b[6] = byte(u >> 40)
-		b[7] = byte(u >> 48)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
+		b[5] = byte(u >> _32)
+		b[6] = byte(u >> _40)
+		b[7] = byte(u >> _48)
 	case 9:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
-		b[5] = byte(u >> 32)
-		b[6] = byte(u >> 40)
-		b[7] = byte(u >> 48)
-		b[8] = byte(u >> 56)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
+		b[5] = byte(u >> _32)
+		b[6] = byte(u >> _40)
+		b[7] = byte(u >> _48)
+		b[8] = byte(u >> _56)
 	}
 }
 
@@ -99,104 +99,104 @@ func WriteUintDEPRECATED(b []byte, u uint) int {
 		return 2
 	case 2:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
+		b[2] = byte(u >> _8)
 		return 3
 	case 3:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
 		return 4
 	case 4:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
 		return 5
 	case 5:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
-		b[5] = byte(u >> 32)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
+		b[5] = byte(u >> _32)
 		return 6
 	case 6:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
-		b[5] = byte(u >> 32)
-		b[6] = byte(u >> 40)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
+		b[5] = byte(u >> _32)
+		b[6] = byte(u >> _40)
 		return 7
 	case 7:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
-		b[5] = byte(u >> 32)
-		b[6] = byte(u >> 40)
-		b[7] = byte(u >> 48)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
+		b[5] = byte(u >> _32)
+		b[6] = byte(u >> _40)
+		b[7] = byte(u >> _48)
 		return 8
 	case 8:
 		b[1] = byte(u)
-		b[2] = byte(u >> 8)
-		b[3] = byte(u >> 16)
-		b[4] = byte(u >> 24)
-		b[5] = byte(u >> 32)
-		b[6] = byte(u >> 40)
-		b[7] = byte(u >> 48)
-		b[8] = byte(u >> 56)
+		b[2] = byte(u >> _8)
+		b[3] = byte(u >> _16)
+		b[4] = byte(u >> _24)
+		b[5] = byte(u >> _32)
+		b[6] = byte(u >> _40)
+		b[7] = byte(u >> _48)
+		b[8] = byte(u >> _56)
 		return 9
 	}
 }
 
 // WriteUint64 ...
 func WriteUint64(b []byte, u uint64) {
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(u), byte(u>>8), byte(u>>16), byte(u>>24), byte(u>>32), byte(u>>40), byte(u>>48), byte(u>>56)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40), byte(u>>_48), byte(u>>_56)
 }
 
 // WriteUint56 ...
 func WriteUint56(b []byte, u uint64) {
 	b[0] = byte(u)
-	b[1] = byte(u >> 8)
-	b[2] = byte(u >> 16)
-	b[3] = byte(u >> 24)
-	b[4] = byte(u >> 32)
-	b[5] = byte(u >> 40)
-	b[6] = byte(u >> 48)
+	b[1] = byte(u >> _8)
+	b[2] = byte(u >> _16)
+	b[3] = byte(u >> _24)
+	b[4] = byte(u >> _32)
+	b[5] = byte(u >> _40)
+	b[6] = byte(u >> _48)
 }
 
 // WriteUint48 ...
 func WriteUint48(b []byte, u uint64) {
 	b[0] = byte(u)
-	b[1] = byte(u >> 8)
-	b[2] = byte(u >> 16)
-	b[3] = byte(u >> 24)
-	b[4] = byte(u >> 32)
-	b[5] = byte(u >> 40)
+	b[1] = byte(u >> _8)
+	b[2] = byte(u >> _16)
+	b[3] = byte(u >> _24)
+	b[4] = byte(u >> _32)
+	b[5] = byte(u >> _40)
 }
 
 // WriteUint40 ...
 func WriteUint40(b []byte, u uint64) {
 	b[0] = byte(u)
-	b[1] = byte(u >> 8)
-	b[2] = byte(u >> 16)
-	b[3] = byte(u >> 24)
-	b[4] = byte(u >> 32)
+	b[1] = byte(u >> _8)
+	b[2] = byte(u >> _16)
+	b[3] = byte(u >> _24)
+	b[4] = byte(u >> _32)
 }
 
 // WriteUint32 ...
 func WriteUint32(b []byte, u uint32) {
-	b[0], b[1], b[2], b[3] = byte(u), byte(u>>8), byte(u>>16), byte(u>>24)
+	b[0], b[1], b[2], b[3] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24)
 }
 
 // WriteUint24 ...
 func WriteUint24(b []byte, u uint64) {
 	b[0] = byte(u)
-	b[1] = byte(u >> 8)
-	b[2] = byte(u >> 16)
+	b[1] = byte(u >> _8)
+	b[2] = byte(u >> _16)
 }
 
 // WriteUint16 ...
 func WriteUint16(b []byte, u uint16) {
-	b[0], b[1] = byte(u), byte(u>>8)
+	b[0], b[1] = byte(u), byte(u>>_8)
 }
