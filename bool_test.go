@@ -3,47 +3,46 @@ package jay_test
 import (
 	"github.com/speedyhoon/jay"
 	"github.com/stretchr/testify/assert"
-	"math"
 	"testing"
 )
 
 func TestReadBool1(t *testing.T) {
-	for i := 0; i <= math.MaxUint8; i += 128 {
+	for i := 0; i <= jay.MaxUint8; i += 128 {
 		assert.Equal(t, byte(i), jay.Bool1(jay.ReadBool1(byte(i))))
 	}
 }
 func TestReadBool2(t *testing.T) {
-	for i := 0; i <= math.MaxUint8; i += 64 {
+	for i := 0; i <= jay.MaxUint8; i += 64 {
 		assert.Equal(t, byte(i), jay.Bool2(jay.ReadBool2(byte(i))))
 	}
 }
 func TestReadBool3(t *testing.T) {
-	for i := 0; i <= math.MaxUint8; i += 32 {
+	for i := 0; i <= jay.MaxUint8; i += 32 {
 		assert.Equal(t, byte(i), jay.Bool3(jay.ReadBool3(byte(i))))
 	}
 }
 func TestReadBool4(t *testing.T) {
-	for i := 0; i <= math.MaxUint8; i += 16 {
+	for i := 0; i <= jay.MaxUint8; i += 16 {
 		assert.Equal(t, byte(i), jay.Bool4(jay.ReadBool4(byte(i))))
 	}
 }
 func TestReadBool5(t *testing.T) {
-	for i := 0; i <= math.MaxUint8; i += 8 {
+	for i := 0; i <= jay.MaxUint8; i += 8 {
 		assert.Equal(t, byte(i), jay.Bool5(jay.ReadBool5(byte(i))))
 	}
 }
 func TestReadBool6(t *testing.T) {
-	for i := 0; i <= math.MaxUint8; i += 4 {
+	for i := 0; i <= jay.MaxUint8; i += 4 {
 		assert.Equal(t, byte(i), jay.Bool6(jay.ReadBool6(byte(i))))
 	}
 }
 func TestReadBool7(t *testing.T) {
-	for i := 0; i <= math.MaxUint8; i += 2 {
+	for i := 0; i <= jay.MaxUint8; i += 2 {
 		assert.Equal(t, byte(i), jay.Bool7(jay.ReadBool7(byte(i))))
 	}
 }
 func TestReadBool8(t *testing.T) {
-	for i := 0; i <= math.MaxUint8; i++ {
+	for i := 0; i <= jay.MaxUint8; i++ {
 		assert.Equal(t, byte(i), jay.Bool8(jay.ReadBool8(byte(i))))
 	}
 }

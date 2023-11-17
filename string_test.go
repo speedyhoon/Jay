@@ -28,8 +28,8 @@ func TestStringPtr(t *testing.T) {
 	jay.String(y, str, length)
 	assert.Equal(t, []byte("\022octopus camouflage"), y)
 
-	l, ok := jay.ReadStringPtr(z, &s)
-	assert.Equal(t, str, s)
+	l, ok := jay.ReadStringPtr(z, &str1)
+	assert.Equal(t, str, str1)
 	assert.Equal(t, length+1, l)
 	assert.True(t, ok)
 }

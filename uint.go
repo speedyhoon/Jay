@@ -9,6 +9,11 @@ const (
 	MaxUint48 = 1<<48 - 1 // 281474976710655
 	MaxUint56 = 1<<56 - 1 // 72057594037927935
 	//MaxUint64 = 1<<64 - 1 // 18446744073709551615
+
+	Neg24Mask = ^MaxUint24 // Negative integer masks.
+	Neg40Mask = ^MaxUint40
+	Neg48Mask = ^MaxUint48
+	Neg56Mask = ^MaxUint56
 )
 
 // LenUint ...

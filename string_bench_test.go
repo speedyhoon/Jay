@@ -5,19 +5,19 @@ import (
 	"testing"
 )
 
-var s string
+var str1 string
 var y = make([]byte, 19)
 var z = []byte("\022octopus camouflage")
 
 func BenchmarkReadString(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		jay.ReadString(z)
+		str1, integer, bool1 = jay.ReadString(z)
 	}
 }
 
 func BenchmarkReadStringPtr(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		jay.ReadStringPtr(z, &s)
+		integer, bool1 = jay.ReadStringPtr(z, &str1)
 	}
 }
 

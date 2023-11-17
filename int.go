@@ -40,9 +40,29 @@ func WriteInt64(b []byte, i int64) {
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(i), byte(i>>_8), byte(i>>_16), byte(i>>_24), byte(i>>_32), byte(i>>_40), byte(i>>_48), byte(i>>_56)
 }
 
+// WriteInt56 ...
+func WriteInt56(b []byte, i int) {
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6] = byte(i), byte(i>>_8), byte(i>>_16), byte(i>>_24), byte(i>>_32), byte(i>>_40), byte(i>>_48)
+}
+
+// WriteInt48 ...
+func WriteInt48(b []byte, i int) {
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(i), byte(i>>_8), byte(i>>_16), byte(i>>_24), byte(i>>_32), byte(i>>_40)
+}
+
+// WriteInt40 ...
+func WriteInt40(b []byte, i int) {
+	b[0], b[1], b[2], b[3], b[4] = byte(i), byte(i>>_8), byte(i>>_16), byte(i>>_24), byte(i>>_32)
+}
+
 // WriteInt32 ...
 func WriteInt32(b []byte, i int32) {
 	b[0], b[1], b[2], b[3] = byte(i), byte(i>>_8), byte(i>>_16), byte(i>>_24)
+}
+
+// WriteInt24 ...
+func WriteInt24(b []byte, i int) {
+	b[0], b[1], b[2] = byte(i), byte(i>>_8), byte(i>>_16)
 }
 
 // WriteInt16 ...
@@ -144,22 +164,60 @@ func ReadInt(b []byte) (i int, length int) {
 	case 1:
 		return int(int8(b[1])), 2
 	case 2:
-		return int(ReadInt16(b)), 3
+		return int(ReadInt16(b[1:])), 3
 	case 3:
-		return int(b[0]) | int(b[1])<<8 | int(b[2])<<16 | int(b[3])<<24, 4
+		return ReadInt24(b[1:]), 4
 	case 4:
-		return int(ReadInt32(b)), 5
+		return int(ReadInt32(b[1:])), 5
 	case 5:
-		return int(b[0]) | int(b[1])<<8 | int(b[2])<<16 | int(b[3])<<24 | int(b[4])<<32, 6
+		return ReadInt40(b[1:]), 6
 	case 6:
-		return int(b[0]) | int(b[1])<<8 | int(b[2])<<16 | int(b[3])<<24 |
-			int(b[4])<<32 | int(b[5])<<40, 7
+		return ReadInt48(b[1:]), 7
 	case 7:
-		return int(b[0]) | int(b[1])<<8 | int(b[2])<<16 | int(b[3])<<24 |
-			int(b[4])<<32 | int(b[5])<<40 | int(b[6])<<48, 8
+		return ReadInt56(b[1:]), 8
 	case 8:
-		return int(b[0]) | int(b[1])<<8 | int(b[2])<<16 | int(b[3])<<24 |
-			int(b[4])<<32 | int(b[5])<<40 | int(b[6])<<48 | int(b[7])<<56, 9
+		return int(ReadInt64(b[1:])), 9
 	}
 	return
+}
+
+// ReadInt24 ...
+func ReadInt24(b []byte) int {
+	// Check if the negative bit is on.
+	if b[2]&_128 == _128 {
+		return Neg24Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16
+	}
+	return int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16
+}
+
+// ReadInt40 ...
+func ReadInt40(b []byte) int {
+	// Check if the negative bit is on.
+	if b[4]&_128 == _128 {
+		return Neg40Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 | int(b[4])<<_32
+	}
+	return int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 | int(b[4])<<_32
+}
+
+// ReadInt48 ...
+func ReadInt48(b []byte) int {
+	// Check if the negative bit is on.
+	if b[5]&_128 == _128 {
+		return Neg48Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 |
+			int(b[4])<<_32 | int(b[5])<<_40
+	}
+	return int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 |
+		int(b[4])<<_32 | int(b[5])<<_40
+}
+
+// ReadInt56 ...
+func ReadInt56(b []byte) int {
+	// Check if the negative bit is on.
+	if b[6]&_128 == _128 {
+		return Neg56Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 |
+			int(b[4])<<_32 | int(b[5])<<_40 | int(b[6])<<_48
+	}
+
+	return int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 |
+		int(b[4])<<_32 | int(b[5])<<_40 | int(b[6])<<_48
 }
