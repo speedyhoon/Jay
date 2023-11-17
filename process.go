@@ -13,7 +13,7 @@ import (
 	"strings"
 )
 
-func ProcessFile(filename string, source interface{}) (src []byte, err error) {
+func ProcessFile(filename string, source interface{}, opts ...Option) (src []byte, err error) {
 	if filename == "" && source == nil {
 		return nil, errors.New("no filename or source provided")
 	}
@@ -38,15 +38,21 @@ func ProcessFile(filename string, source interface{}) (src []byte, err error) {
 		return nil, io.ErrUnexpectedEOF
 	}
 
+	//var opt Options
+	//if len(options)>=1{
+	//	opt=options[0]
+	//	opt.Load()
+	//}
+
 	var list []Struct
 	ast.Walk(visitor{structs: &list}, f)
 
-	return GenerateFile(f.Name.Name, list)
+	return GenerateFile(f.Name.Name, list, LoadOptions(opts...))
 }
 
-func ProcessWrite(filename string, source interface{}) (err error) {
+func ProcessWrite(filename string, source interface{}, opts ...Option) (err error) {
 	// TODO support processing a whole directory
-	src, err := ProcessFile(filename, source)
+	src, err := ProcessFile(filename, source, opts...)
 	if err != nil {
 		return err
 	}

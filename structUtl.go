@@ -138,20 +138,20 @@ func (s *Struct) addExportedFields(names []*ast.Ident, tag, typeOf, typeName str
 func isLen(typ string) uint {
 	switch typ {
 	// TODO "float32","float64",
-	case "bool", "byte", "int8", "uint8", "string":
+	case "bool", "byte", "int8", "uint8", "string", "int", "uint":
 		return 1
 	case "int16", "uint16":
 		return 2
 	case "int32", "rune", "uint32":
 		return 4
-	case "int", "int64", "uint", "uint64":
+	case "int64", "uint64":
 		return 8
 	}
 	return 0
 }
 func isLenVariable(typ string) bool {
 	switch typ {
-	case "string":
+	case "int", "string", "uint":
 		return true
 		// TODO case "[]byte", "[]bool", "[]int",
 		// TODO case "map[x]x",

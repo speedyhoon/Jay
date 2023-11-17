@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"fmt"
 	"log"
+	"reflect"
+	"runtime"
 	"strconv"
 	"strings"
 )
@@ -85,20 +87,22 @@ func generateLine(f field, index *uint, receiver, at string /*, isLast bool*/) s
 	switch f.typ {
 	case "bool", "byte", "int8", "uint8":
 		return fmt.Sprintf("b[%d]=%s", start, marshalFunc(f.typ, thisField))
+		/*case "int8":
+		return fmt.Sprintf("b[%d]=byte(%s)", start, marshalFunc(f.typ, thisField))*/
 	case "uint64":
 		return marshalFunc(f.typ, thisField, buffer)
 	case "string":
 		//if !isLast {
 		// TODO thisField should == b[1:]
-		return fmt.Sprintf("%sWriteString(b, %s, &%s)", packageName, at, thisField)
+		return fmt.Sprintf("%s.WriteString(b, %s, %s)", pkgName, at, thisField)
 	//} else {
-	//	return fmt.Sprintf("%sWriteString(b, %s, &%s.%s)", packageName, at, receiver, f.name)
+	//	return fmt.Sprintf("%sWriteString(b, %s, &%s.%s)", pkgName, at, receiver, f.name)
 	//}
 
 	case "struct":
 		return fmt.Sprintf("%s.MarshalJTo(%s)", thisField, buffer)
 
-	case "int":
+	case "int", "uint":
 		return marshalFunc(f.typ, thisField, buffer)
 	default:
 		log.Printf("no generateLine for type `%s` yet", f.typ)
@@ -184,43 +188,61 @@ func Utoa(u uint) string {
 	return strconv.FormatUint(uint64(u), 10)
 }
 
-const packageName = "jay."
-
 func marshalFunc(typ, field string, params ...string) string {
 	switch typ {
-	case "byte", "int8", "uint8":
+	case "byte", "uint8":
 		return field
+	case "int8":
+		return fmt.Sprintf("int8(%s)", field)
 	default:
 		if len(params) >= 1 {
 			field = strings.Join(append(params, field), ", ")
 		}
 
-		return fmt.Sprintf("%s%s(%s)", packageName, typeFuncs(typ), field)
+		return fmt.Sprintf("%s(%s)", getFuncName(typeFuncs2(typ)), field)
 	}
 }
-func typeFuncs(typ string) string {
-	switch typ {
-	// TODO "float32","float64",
-	//case "byte", "int8", "uint8", "string", "bool":
-	//	return 1
-	//case "int16", "uint16":
-	//	return 2
-	//case "int32", "rune", "uint32":
-	//	return 4
-	//case "int", "int64", "uint", "uint64":
-	//	return 8
-	case "bool":
-		return "Bool1"
-	case "string":
-		return "WriteString"
-	case "uint64":
-		return "WriteUint64"
-	case "int":
-		return "WriteInt"
-	default:
-		log.Printf("not func set for type %s yet", typ)
+
+func getFuncName(f interface{}) string {
+	if f == nil {
+		return ""
 	}
-	return ""
+	t := runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name()
+	return strings.TrimPrefix(
+		t,
+		importPrefix,
+	)
+}
+
+func typeFuncs2(typ string) interface{} {
+	switch typ {
+	// TODO "byte", "int8", "uint8", "float32","float64",
+	case "bool":
+		return Bool1
+	case "string":
+		return WriteStringDeprecated
+	case "uint":
+		return WriteUint
+	case "uint16":
+		return WriteUint16
+	case "uint32":
+		return WriteUint32
+	case "uint64":
+		return WriteUint64
+	case "int":
+		return WriteInt
+	case "int16":
+		return WriteInt16
+	case "int32", "rune":
+		return WriteInt32
+	case "int64":
+		return WriteInt64
+	case "byte", "int8", "uint8":
+		// None needed.
+	default:
+		log.Printf("not function set for type %s yet", typ)
+	}
+	return nil
 }
 
 /*

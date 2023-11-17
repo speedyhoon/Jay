@@ -23,6 +23,6 @@ func BenchmarkReadStringPtr(b *testing.B) {
 
 func BenchmarkString(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		jay.String(y, "octopus camouflage", 18)
+		jay.WriteString(y, "octopus camouflage", 18)
 	}
 }

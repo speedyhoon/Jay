@@ -2,7 +2,7 @@ package jay
 
 const strSizeOf = 1
 
-func String(y []byte, s string, length int) {
+func WriteString(y []byte, s string, length int) {
 	y[0] = byte(length) // Set how long the string is.
 	if length != 0 {
 		copy(y[strSizeOf:length+strSizeOf], s)
@@ -23,7 +23,7 @@ func ReadStringX(b []byte, x int) (h string, size int, ok bool) {
 	return h, x + size, ok
 }
 
-func Strings(y []byte, s []string) {
+func WriteStrings(y []byte, s []string) {
 	y[0] = byte(len(s)) // Set slice qty.
 	if y[0] == 0 {
 		return
@@ -31,7 +31,7 @@ func Strings(y []byte, s []string) {
 
 	index := 1
 	for i := range s {
-		String(y[index:], s[i], len(s[i]))
+		WriteString(y[index:], s[i], len(s[i]))
 		index += len(s[i]) + strSizeOf
 	}
 }
@@ -86,10 +86,10 @@ func WriteStringOld(b []byte, index int, s *string) int {
 }*/
 
 // Deprecated
-// WriteString expects b to be the start of a byte slice.
+// WriteStringDeprecated expects b to be the start of a byte slice.
 // TODO check if this will break when writing to byte slices that are too short!
 // TODO check which function is faster - WriteString or WriteString2
-func WriteString(b []byte, s string) (l int) {
+func WriteStringDeprecated(b []byte, s string) (l int) {
 	l = len(s)
 	b[0] = byte(l) // Set how long the string is
 	//index++
