@@ -116,8 +116,8 @@ func generateLine(f field, index *uint, receiver, at string /*, isLast bool*/) s
 }*/
 
 /*func marshalU64(f *field) (fun string, sizeOf uint, ok bool) {
-	if f.Options.maxBytes != 0 {
-		return fmt.Sprintf("WriteUint%dBytes", f.Options.maxBytes*8), f.Options.maxBytes, true
+	if f.tagOptions.maxBytes != 0 {
+		return fmt.Sprintf("WriteUint%dBytes", f.tagOptions.maxBytes*8), f.tagOptions.maxBytes, true
 	}
 	return "", 0, false
 }*/
@@ -131,10 +131,10 @@ func (f *field) LoadTagOptions() {
 		d := strings.Split(c, ":")
 		switch g := d[0]; g {
 		case max:
-			loadUint(d[1], &f.Options.Max)
-			f.Options.maxBytes = byteSize(f.Options.Max)
+			loadUint(d[1], &f.tagOptions.Max)
+			f.tagOptions.maxBytes = byteSize(f.tagOptions.Max)
 		case min:
-			loadUint(g, &f.Options.Min)
+			loadUint(g, &f.tagOptions.Min)
 		}
 	}
 }
@@ -178,12 +178,6 @@ func loadUint(g string, f *uint) {
 		log.Println(err)
 	}
 	*f = uint(uu)
-}
-
-type Options struct {
-	Max      uint
-	maxBytes uint
-	Min      uint
 }
 
 func Utoa(u uint) string {

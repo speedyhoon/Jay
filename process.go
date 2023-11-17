@@ -1,7 +1,6 @@
 package jay
 
 import (
-	"bytes"
 	"errors"
 	"fmt"
 	"go/ast"
@@ -42,7 +41,7 @@ func ProcessFile(filename string, source interface{}) (src []byte, err error) {
 	var list []Struct
 	ast.Walk(visitor{structs: &list}, f)
 
-	return GenerateFile(f.Name.Name, Process(list))
+	return GenerateFile(f.Name.Name, list)
 }
 
 func ProcessWrite(filename string, source interface{}) (err error) {
@@ -60,68 +59,78 @@ func ProcessWrite(filename string, source interface{}) (err error) {
 	return
 }
 
-func Process(s []Struct) (src []byte) {
-	buf := bytes.NewBuffer(nil)
-	for i := 0; i < len(s); i++ {
-		if !ast.IsExported(s[i].name) || len(s[i].fields) == 0 {
-			s = Remove(s, i)
+func (s *Struct) Process(fields []*ast.Field) (hasExportedFields bool) {
+	for i := 0; i < len(fields); i++ {
+		t := fields[i]
+
+		tag := getTag(t.Tag)
+		if tag == IgnoreFlag {
+			fields = Remove(fields, i)
 			continue
 		}
 
-		for j := 0; j < len(s[i].fields); j++ {
-			t := s[i].fields[j]
-
-			tag := getTag(t.Tag)
-			if tag == "-" {
-				// Tag has the ignore flag set.
-				s[i].fields = Remove(s[i].fields, j)
-				continue
-			}
-
-			typeOf, typeName, isVarLen, ok := isSupportedType(t)
-			if typeOf == "struct" {
-				log.Println()
-			}
-			if !ok {
-				s[i].fields = Remove(s[i].fields, i)
-				continue
-			}
-
-			name := t.Names
-			if t.Names == nil {
-				tt, ok := t.Type.(*ast.Ident)
-				if !ok || tt == nil {
-					s[i].fields = Remove(s[i].fields, i)
-					continue
-				}
-
-				name = []*ast.Ident{tt}
-			}
-
-			s[i].addExportedFields(name, tag, typeOf, typeName, isVarLen)
+		typeOf, typeName, isVarLen, ok := isSupportedType(t)
+		if !ok {
+			fields = Remove(fields, i)
+			continue
 		}
-		s[i].GenerateFuncs(buf)
+
+		names := getNames(t)
+		if len(names) == 0 {
+			fields = Remove(fields, i)
+			continue
+		}
+
+		s.addExportedFields(names, tag, typeOf, typeName, isVarLen)
 	}
 
-	return buf.Bytes()
+	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1
 }
 
-func Remove[T any](s []T, index int) []T {
-	if index <= -1 {
-		return s
+func Remove[T any](t []T, index int) []T {
+	if index < 0 {
+		return t
 	}
 
-	l := len(s)
-	if l <= 0 || index < 0 || index >= l {
-		return s
+	l := len(t)
+	if l == 0 || index >= l {
+		return t
 	}
 
 	switch index {
 	case 0:
-		return s[1:]
+		return t[1:]
 	case l - 1:
-		return s[:index]
+		return t[:index]
 	default:
-		return append(s[:index], s[index+1:]...)
+		return append(t[:index], t[index+1:]...)
 	}
+}
+
+func getNames(f *ast.Field) (names []*ast.Ident) {
+	if len(f.Names) == 0 {
+		idt, ok := f.Type.(*ast.Ident)
+		if !ok || idt == nil {
+			if !ok {
+				log.Printf("unexpected type %T\n", f.Type)
+			}
+			return nil
+		}
+
+		return onlyExportedNames(idt)
+	}
+
+	return onlyExportedNames(f.Names...)
+}
+
+func onlyExportedNames(names ...*ast.Ident) []*ast.Ident {
+	for i := 0; i < len(names); {
+		if !ast.IsExported(names[i].Name) {
+			names = Remove(names, i)
+			continue
+		}
+		i++
+	}
+
+	return names
 }

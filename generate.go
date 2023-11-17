@@ -24,9 +24,19 @@ func (s *Struct) GenerateFuncs(b *bytes.Buffer) {
 	s.MakeUnmarshal(b)
 }
 
-func GenerateFile(pkgName string, src []byte) ([]byte, error) {
+func GenerateFile(pkgName string, s []Struct) ([]byte, error) {
+	buf := bytes.NewBuffer(nil)
+	for i := range s {
+		s[i].GenerateFuncs(buf)
+	}
+
+	src := buf.Bytes()
 	if len(src) == 0 {
 		return nil, ErrNoneExported
+	}
+
+	if pkgName == "" {
+		pkgName = "main"
 	}
 
 	src = []byte(fmt.Sprintf(`%s
@@ -34,6 +44,7 @@ package %s
 import "github.com/speedyhoon/jay"
 %s`, DontEditComment, pkgName, src))
 
+	// Nicely format the generated Go code.
 	return format.Source(src, format.Options{
 		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
 		ExtraRules:  true,

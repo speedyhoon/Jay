@@ -5,7 +5,13 @@ import (
 	"go/token"
 	"log"
 	"reflect"
+	"strings"
 	"unicode"
+)
+
+const (
+	StructTagName = "j"
+	IgnoreFlag    = "-"
 )
 
 // getTag returns the value associated with key "j" in the tag string.
@@ -18,7 +24,7 @@ func getTag(b *ast.BasicLit) string {
 		return ""
 	}
 
-	return reflect.StructTag(unwrapTagValue(b.Value)).Get("j")
+	return strings.TrimSpace(reflect.StructTag(unwrapTagValue(b.Value)).Get(StructTagName))
 }
 
 // unwrapTagValue removes the leading and trailing grave (`) if present.
@@ -109,20 +115,14 @@ func hasExported(idents []*ast.Ident) bool {
 	return false
 }
 
-func (s *Struct) addExportedFields(t []*ast.Ident, tag, typeOf, typeName string, isVarLen bool) {
-	//isVariableLen := isLenVariable(typeOf)
-	for m := range t {
-		if !ast.IsExported(t[m].Name) {
-			continue
-		}
-
-		gg := field{name: t[m].Name, tag: tag, typ: typeOf, typName: typeName}
-		gg.LoadTagOptions()
-		//if isVariableLen {
+func (s *Struct) addExportedFields(names []*ast.Ident, tag, typeOf, typeName string, isVarLen bool) {
+	for m := range names {
+		f := field{name: names[m].Name, tag: tag, typ: typeOf, typName: typeName}
+		f.LoadTagOptions()
 		if isVarLen {
-			s.variableLen = append(s.variableLen, gg)
+			s.variableLen = append(s.variableLen, f)
 		} else {
-			s.fixedLen = append(s.fixedLen, gg)
+			s.fixedLen = append(s.fixedLen, f)
 		}
 	}
 }

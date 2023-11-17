@@ -2,8 +2,6 @@ package jay
 
 import (
 	"go/ast"
-	//"github.com/dave/ast"
-	//"github.com/dave/ast/decorator"
 )
 
 type visitor struct {
@@ -13,13 +11,23 @@ type visitor struct {
 
 type Struct struct {
 	name                  string
-	fields                []*ast.Field
 	fixedLen, variableLen []field // Exported fields.
 }
 
 type field struct {
-	name, tag, typ, typName string
-	Options
+	name       string // The string used as the variable name.
+	typ        string // The type of the variable (uint, byte, bool, etc).
+	typName    string // Alias name assigned to the type, for example, `var Toggle bool`.
+	tag        string // The tag value within `j:""`
+	tagOptions        // Valid tag options that have been successfully parsed and loaded from the `tag` string.
+}
+
+type tagOptions struct {
+	// The maximum and minimum value expected in the variable.
+	// Any value out of this range isn't guaranteed to be marshaled or unmarshaled correctly.
+	Max, Min uint
+
+	maxBytes uint
 }
 
 // Visit traverses the AST File.
@@ -30,9 +38,15 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 			v.enclosing = n.Name.Name
 		}
 	case *ast.StructType:
-		if n.Fields != nil && len(n.Fields.List) != 0 && ast.IsExported(v.enclosing) {
-			*v.structs = append(*v.structs, Struct{name: v.enclosing, fields: n.Fields.List})
+		if n.Fields == nil || len(n.Fields.List) == 0 || !ast.IsExported(v.enclosing) {
+			return v
+		}
+
+		s := Struct{name: v.enclosing}
+		if s.Process(n.Fields.List) {
+			*v.structs = append(*v.structs, s)
 		}
 	}
+
 	return v
 }
