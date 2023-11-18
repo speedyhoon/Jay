@@ -34,43 +34,33 @@ func (s *Struct) MakeMarshalJTo(b *bytes.Buffer) {
 	))
 
 	var byteIndex uint
-	//hasVariable := len(s.variableLen) != 0
-	//var isLast bool
 	for _, f := range s.fixedLen {
-		//if !hasVariable {
-		//	isLast = i >= len(s.fixedLen)-1
-		//}
-
-		//if lookupMarshaller(&f) {
-		//	continue
-		//}
-
-		b.WriteString(generateLine(f, &byteIndex, receiver, "" /*, isLast*/))
+		b.WriteString(generateLine(f, &byteIndex, receiver, ""))
 		b.WriteString("\n")
 	}
 
 	at := Utoa(byteIndex)
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		switch i {
-		case 0:
-			b.WriteString("at:=")
-		case 1:
+		if i == 1 {
 			at = "at"
-			b.WriteString("at=")
-		case vLen:
-		default:
-			b.WriteString("at=")
+		}
+		if i != vLen {
+			switch i {
+			case 0:
+				b.WriteString("at:=")
+			default:
+				b.WriteString("at=")
+			}
 		}
 
-		//isLast = i >= vLen
-		b.WriteString(generateLine(f, &byteIndex, receiver, at /*, isLast*/))
+		b.WriteString(generateLine(f, &byteIndex, receiver, at))
 		b.WriteString("\n")
 	}
 
 	b.WriteString("}\n")
 }
-func generateLine(f field, index *uint, receiver, at string /*, isLast bool*/) string {
+func generateLine(f field, index *uint, receiver, at string) string {
 	start := *index
 	*index += isLen(f.typ)
 	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
@@ -92,12 +82,11 @@ func generateLine(f field, index *uint, receiver, at string /*, isLast bool*/) s
 	case "uint64":
 		return marshalFunc(f.typ, thisField, buffer)
 	case "string":
-		//if !isLast {
-		// TODO thisField should == b[1:]
-		return fmt.Sprintf("%s.WriteString(b, %s, %s)", pkgName, at, thisField)
-	//} else {
-	//	return fmt.Sprintf("%sWriteString(b, %s, &%s.%s)", pkgName, at, receiver, f.name)
-	//}
+		var slice string
+		if at != "0" {
+			slice = fmt.Sprintf("[%v:]", at)
+		}
+		return fmt.Sprintf("%s.WriteString(b%s, %s)", pkgName, slice, thisField)
 
 	case "struct":
 		return fmt.Sprintf("%s.MarshalJTo(%s)", thisField, buffer)
@@ -126,64 +115,6 @@ func generateLine(f field, index *uint, receiver, at string /*, isLast bool*/) s
 	return "", 0, false
 }*/
 
-func (f *field) LoadTagOptions() {
-	f.tag = strings.TrimSpace(f.tag)
-	if f.tag == "" {
-		return
-	}
-	for _, c := range strings.Split(f.tag, ",") {
-		d := strings.Split(c, ":")
-		switch g := d[0]; g {
-		case max:
-			loadUint(d[1], &f.tagOptions.Max)
-			f.tagOptions.maxBytes = byteSize(f.tagOptions.Max)
-		case min:
-			loadUint(g, &f.tagOptions.Min)
-		}
-	}
-}
-
-func byteSize(v uint) uint {
-	if v == 0 {
-		return 0
-	}
-	if v <= MaxUint8 {
-		return 1
-	}
-	if v <= MaxUint16 {
-		return 2
-	}
-	if v <= MaxUint24 {
-		return 3
-	}
-	if v <= MaxUint32 {
-		return 4
-	}
-	if v <= MaxUint40 {
-		return 5
-	}
-	if v <= MaxUint48 {
-		return 6
-	}
-	if v <= MaxUint56 {
-		return 7
-	}
-	return 8
-}
-
-const (
-	max = "max"
-	min = "min"
-)
-
-func loadUint(g string, f *uint) {
-	uu, err := strconv.ParseUint(g, 10, 64)
-	if err != nil {
-		log.Println(err)
-	}
-	*f = uint(uu)
-}
-
 func Utoa(u uint) string {
 	return strconv.FormatUint(uint64(u), 10)
 }
@@ -199,7 +130,7 @@ func marshalFunc(typ, field string, params ...string) string {
 			field = strings.Join(append(params, field), ", ")
 		}
 
-		return fmt.Sprintf("%s(%s)", getFuncName(typeFuncs2(typ)), field)
+		return fmt.Sprintf("%s(%s)", getFuncName(typeFuncs(typ)), field)
 	}
 }
 
@@ -214,13 +145,13 @@ func getFuncName(f interface{}) string {
 	)
 }
 
-func typeFuncs2(typ string) interface{} {
+func typeFuncs(typ string) interface{} {
 	switch typ {
 	// TODO "byte", "int8", "uint8", "float32","float64",
 	case "bool":
 		return Bool1
 	case "string":
-		return WriteStringDeprecated
+		return WriteString
 	case "uint":
 		return WriteUint
 	case "uint16":
