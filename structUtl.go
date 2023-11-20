@@ -48,15 +48,15 @@ func supportedType(typ string) bool {
 	return false
 }
 
-func isSupportedType(t *ast.Field) (typeOf, typeName string, isVarLen, ok bool) {
+func (o Option) isSupportedType(t *ast.Field) (typeOf, aliasTypeName string, isVarLen, ok bool) {
 	switch d := t.Type.(type) {
 	case *ast.Ident:
 		if supportedType(d.Name) {
-			return d.Name, d.Name, isLenVariable(d.Name), true
+			return d.Name, d.Name, o.isLenVariable(d.Name), true
 		}
 
 		// Type has an alias name.
-		typeOf, isVarLen = determineType(d.Obj)
+		typeOf, isVarLen = o.determineType(d.Obj)
 		return typeOf, d.Name, isVarLen, typeOf != ""
 		//log.Printf("names: %s, type: %s, tag: %s\n", strings.Join(names, ","), d.Name, tag)
 	case nil:
@@ -67,18 +67,18 @@ func isSupportedType(t *ast.Field) (typeOf, typeName string, isVarLen, ok bool) 
 	return "", "", false, false
 }
 
-func determineType(t interface{}) (s string, isVarLen bool) {
+func (o Option) determineType(t interface{}) (s string, isVarLen bool) {
 	switch x := t.(type) {
 	case *ast.Object:
 		if x.Name == "" || x.Kind != ast.Typ {
 			return "", false
 		}
-		return determineType(x.Decl)
+		return o.determineType(x.Decl)
 	case *ast.TypeSpec:
-		return determineType(x.Type)
+		return o.determineType(x.Type)
 	case *ast.StructType:
 		if x.Fields != nil && len(x.Fields.List) != 0 {
-			return "struct", hasVariableLen(x.Fields.List)
+			return "struct", o.hasVariableLen(x.Fields.List)
 		}
 	case nil:
 		// Ignore.
@@ -88,13 +88,13 @@ func determineType(t interface{}) (s string, isVarLen bool) {
 	return "", false
 }
 
-func hasVariableLen(fields []*ast.Field) bool {
+func (o Option) hasVariableLen(fields []*ast.Field) bool {
 	for _, f := range fields {
 		if !hasExported(f.Names) {
 			continue
 		}
 
-		_, _, isVarLen, ok := isSupportedType(f)
+		_, _, isVarLen, ok := o.isSupportedType(f)
 		if !ok {
 			continue
 		}
@@ -115,10 +115,16 @@ func hasExported(idents []*ast.Ident) bool {
 	return false
 }
 
-func (s *Struct) addExportedFields(names []*ast.Ident, tag, typeOf, typeName string, isVarLen bool) {
+func (s *Struct) addExportedFields(names []*ast.Ident, tag, typeOf, aliasType string, isVarLen bool) {
 	for m := range names {
-		f := field{name: names[m].Name, tag: tag, typ: typeOf, typName: typeName}
+		f := field{name: names[m].Name, tag: tag, typ: typeOf, aliasType: aliasType}
 		f.LoadTagOptions()
+		if f.typ == "bool" {
+			s.bool = append(s.bool, f)
+			continue
+		}
+		// TODO add support for adding tiny enums using <= 7 bits
+
 		if isVarLen {
 			s.variableLen = append(s.variableLen, f)
 		} else {
@@ -149,12 +155,16 @@ func isLen(typ string) uint {
 	}
 	return 0
 }
-func isLenVariable(typ string) bool {
+
+func (o Option) isLenVariable(typ string) bool {
 	switch typ {
-	case "int", "string", "uint":
+	// TODO case "[]byte", "[]bool", "[]int", "map[x]x",
+	case "int":
+		return !o.FixedIntSize
+	case "string":
 		return true
-		// TODO case "[]byte", "[]bool", "[]int",
-		// TODO case "map[x]x",
+	case "uint":
+		return !o.FixedUintSize
 	}
 	return false
 }

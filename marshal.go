@@ -24,8 +24,31 @@ func (s *Struct) MakeMarshalJ(b *bytes.Buffer) {
 	))
 }
 
+func (s *Struct) generateBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
+	//*byteIndex = uint(s.BoolsBytesUsed())
+	for i := 0; i <= len(s.bool)/8; i++ {
+		WriteBools(bools[s.BoolsSliceIndex(i):], b, byteIndex, receiver)
+	}
+}
+func WriteBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
+	if len(bools) > 8 {
+		bools = bools[:8]
+	}
+
+	b.WriteString(fmt.Sprintf("b[%d] = %s.Bool%d(%s)\n", *byteIndex, pkgName, len(bools), fieldNames(bools, receiver)))
+
+	*byteIndex++
+}
+func fieldNames(fields []field, receiver string) string {
+	var s []string
+	for i := range fields {
+		s = append(s, fmt.Sprintf("%s.%s", receiver, fields[i].name))
+	}
+	return strings.Join(s, ", ")
+}
+
 // MakeMarshalJTo ...
-func (s *Struct) MakeMarshalJTo(b *bytes.Buffer) {
+func (s *Struct) MakeMarshalJTo(o Option, b *bytes.Buffer) {
 	receiver := s.ReceiverName()
 	b.WriteString(fmt.Sprintf(
 		"func (%s *%s) MarshalJTo(b []byte) {\n",
@@ -34,8 +57,12 @@ func (s *Struct) MakeMarshalJTo(b *bytes.Buffer) {
 	))
 
 	var byteIndex uint
+	if len(s.bool) != 0 {
+		s.generateBools(s.bool, b, &byteIndex, receiver)
+	}
+
 	for _, f := range s.fixedLen {
-		b.WriteString(generateLine(f, &byteIndex, receiver, ""))
+		b.WriteString(o.generateLine(f, &byteIndex, receiver, ""))
 		b.WriteString("\n")
 	}
 
@@ -54,49 +81,92 @@ func (s *Struct) MakeMarshalJTo(b *bytes.Buffer) {
 			}
 		}
 
-		b.WriteString(generateLine(f, &byteIndex, receiver, at))
+		b.WriteString(o.generateLine(f, &byteIndex, receiver, at))
 		b.WriteString("\n")
 	}
 
 	b.WriteString("}\n")
 }
-func generateLine(f field, index *uint, receiver, at string) string {
+
+func (o Option) generateLine(f field, index *uint, receiver, at string) string {
 	start := *index
 	*index += isLen(f.typ)
 	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
 
-	buffer := "b"
-	if start >= 1 {
-		if at == "" {
-			buffer = fmt.Sprintf("b[%d:]", start)
-		} else {
-			buffer = fmt.Sprintf("b[%s:]", at)
-		}
+	//buffer := "b"
+	//if start >= 1 {
+	//	if at == "" {
+	//		buffer = fmt.Sprintf("b[%d:]", start)
+	//	} else {
+	//		buffer = fmt.Sprintf("b[%s:]", at)
+	//	}
+	//}
+
+	fun, size := o.typeFuncs(f.typ)
+	if fun == "" && size == 0 {
+		// Unknown type, not supported yet.
+		log.Printf("no generateLine for type `%s` yet", f.typ)
+		return ""
 	}
 
-	switch f.typ {
-	case "bool", "byte", "int8", "uint8":
-		return fmt.Sprintf("b[%d]=%s", start, marshalFunc(f.typ, thisField))
-		/*case "int8":
-		return fmt.Sprintf("b[%d]=byte(%s)", start, marshalFunc(f.typ, thisField))*/
-	case "uint64":
-		return marshalFunc(f.typ, thisField, buffer)
-	case "string":
-		var slice string
-		if at != "0" {
-			slice = fmt.Sprintf("[%v:]", at)
+	switch size {
+	case 1:
+		return fmt.Sprintf("b[%d]=%s", start, printFunc(fun, thisField))
+	default:
+		return printFunc(fun, fmt.Sprintf("b[%d:%d]", start, start+size), thisField)
+	case 0:
+		// Variable length size.
+		slice := "b"
+		//if at != "0" {
+		//slice = fmt.Sprintf("b[%v:]", at)
+		if start >= 1 {
+			if at == "" {
+				slice = fmt.Sprintf("b[%d:]", start)
+			} else if at != "0" {
+				slice = fmt.Sprintf("b[%s:]", at)
+			}
 		}
-		return fmt.Sprintf("%s.WriteString(b%s, %s)", pkgName, slice, thisField)
+
+		switch f.typ {
+		case "struct":
+			//return fmt.Sprintf("%s.%s(%s)", thisField, fun, slice)
+			return fmt.Sprintf("%s.%s", thisField, printFunc(fun, slice))
+		}
+
+		//}
+		return printFunc(fun, slice, thisField, "l1")
+		//return fmt.Sprintf("%s.MarshalJTo(%s)", thisField, buffer)
+
+		//fmt.Sprintf("%s%s", slice,
+		//return o.marshalFunc(f.typ, slice, thisField, "l1")
+	}
+
+	/*switch f.typ {
+	case /*"bool",* / "byte", "uint8":
+		return fmt.Sprintf("b[%d]=%s", start, thisField)
+	case "int8":
+		return fmt.Sprintf("b[%d]=%s", start, o.marshalFunc(f.typ, thisField))
+		/*case "int8":
+		return fmt.Sprintf("b[%d]=byte(%s)", start, o.marshalFunc(f.typ, thisField))* /
+	case "int", "int16", "int32", "int64", "float32", "float64", "uint", "uint16", "uint32", "uint64":
+		return o.marshalFunc(f.typ, buffer, thisField)
+	case "string":
+		slice := "b"
+		if at != "0" {
+			slice = fmt.Sprintf("b[%v:]", at)
+		}
+		//return fmt.Sprintf("%s.WriteString(b%s, %s)", pkgName, slice, thisField)
+		//return fmt.Sprintf("%s(b%s, %s)", o.marshalFunc(f.typ, thisField), slice, thisField)
+		//return fmt.Sprintf("%s", o.marshalFunc(f.typ, slice, thisField, "l1"))
+		return o.marshalFunc(f.typ, slice, thisField, "l1")
 
 	case "struct":
 		return fmt.Sprintf("%s.MarshalJTo(%s)", thisField, buffer)
 
-	case "int", "uint":
-		return marshalFunc(f.typ, thisField, buffer)
 	default:
 		log.Printf("no generateLine for type `%s` yet", f.typ)
 	}
-	return ""
+	return ""*/
 }
 
 /*func lookupMarshaller(f *field) bool {
@@ -119,61 +189,92 @@ func Utoa(u uint) string {
 	return strconv.FormatUint(uint64(u), 10)
 }
 
-func marshalFunc(typ, field string, params ...string) string {
+func printFunc(fun string, params ...string) string {
+	if fun == "" {
+		return strings.Join(params, ", ")
+	}
+	b := fmt.Sprintf("%s(%s)" /*getFuncName(*/, fun /*)*/, strings.Join(params, ", "))
+	return b
+}
+
+/*func (o Option) marshalFunc(typ string, params ...string) string {
+	//switch typ {
+	//case "byte", "uint8":
+	//	return strings.Join(params, ", ")
+	//default:
+	return fmt.Sprintf("%s(%s)", getFuncName(o.typeFuncs(typ)), strings.Join(params, ", "))
+	//}
+}*/
+
+/*func getFuncName(f interface{}) string {
+	switch s := f.(type) {
+	case string:
+		return s
+	case nil:
+		return ""
+	default:
+		return strings.TrimPrefix(
+			runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
+			importPrefix, // TODO replace with: filepath.Dir(get package path during run time)
+		)
+	}
+}*/
+
+func (o Option) typeFuncs(typ string) (_ string, size uint) {
+	var f interface{}
 	switch typ {
 	case "byte", "uint8":
-		return field
+		return "", 1
 	case "int8":
-		return fmt.Sprintf("int8(%s)", field)
-	default:
-		if len(params) >= 1 {
-			field = strings.Join(append(params, field), ", ")
-		}
-
-		return fmt.Sprintf("%s(%s)", getFuncName(typeFuncs(typ)), field)
-	}
-}
-
-func getFuncName(f interface{}) string {
-	if f == nil {
-		return ""
-	}
-	t := runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name()
-	return strings.TrimPrefix(
-		t,
-		importPrefix,
-	)
-}
-
-func typeFuncs(typ string) interface{} {
-	switch typ {
-	// TODO "byte", "int8", "uint8", "float32","float64",
+		return "byte", 1
 	case "bool":
-		return Bool1
+		f, size = Bool1, 1
 	case "string":
-		return WriteString
-	case "uint":
-		return WriteUint
-	case "uint16":
-		return WriteUint16
-	case "uint32":
-		return WriteUint32
-	case "uint64":
-		return WriteUint64
+		f, size = WriteString, 0
 	case "int":
-		return WriteInt
+		if o.FixedIntSize {
+			if o.Is32bit {
+				f, size = WriteIntArch32, 4
+			}
+			f, size = WriteIntArch64, 8
+		}
+		f, size = WriteIntVariable, 0
 	case "int16":
-		return WriteInt16
+		f, size = WriteInt16, 2
 	case "int32", "rune":
-		return WriteInt32
+		f, size = WriteInt32, 4
+	case "float32":
+		f, size = WriteFloat32, 4
+	case "float64":
+		f, size = WriteFloat64, 8
 	case "int64":
-		return WriteInt64
-	case "byte", "int8", "uint8":
-		// None needed.
+		f, size = WriteInt64, 8
+	case "uint":
+		if o.FixedUintSize {
+			if o.Is32bit {
+				f, size = WriteUintArch32, 4
+			}
+			f, size = WriteUintArch64, 8
+		}
+		f, size = WriteUintVariable, 0
+	case "uint16":
+		f, size = WriteUint16, 2
+	case "uint32":
+		f, size = WriteUint32, 4
+	case "uint64":
+		f, size = WriteUint64, 8
+	case "struct":
+		return "MarshalJTo", 0
+
 	default:
 		log.Printf("not function set for type %s yet", typ)
+		return "", 0
 	}
-	return nil
+
+	return strings.TrimPrefix(
+		runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
+		importPrefix, // TODO replace with: filepath.Dir(get package path during run time)
+	), size
 }
 
 /*

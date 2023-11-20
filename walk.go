@@ -7,17 +7,28 @@ import (
 type visitor struct {
 	enclosing string
 	structs   *[]Struct
+	option    Option
 }
 
 type Struct struct {
-	name                  string
-	fixedLen, variableLen []field // Exported fields.
+	name                        string
+	fixedLen, variableLen, bool []field // Exported fields.
+}
+
+func (s *Struct) BoolsBytesUsed() int {
+	return (len(s.bool)-1)/8 + 1
+}
+
+func (s *Struct) BoolsSliceIndex(input int) int {
+	return ((input-1)/8+1)*8 - 8
 }
 
 type field struct {
-	name       string // The string used as the variable name.
-	typ        string // The type of the variable (uint, byte, bool, etc).
-	typName    string // Alias name assigned to the type, for example, `var Toggle bool`.
+	name string // The string used as the variable name.
+	typ  string // The underlying type of the variable (uint, byte, bool, map, etc).
+
+	// Alias name assigned to the type, for example, `type Toggle bool`, typ = "bool", aliasType = "Toggle".
+	aliasType  string
 	tag        string // The tag value within `j:""`
 	tagOptions        // Valid tag options that have been successfully parsed and loaded from the `tag` string.
 }
@@ -43,7 +54,7 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 		}
 
 		s := Struct{name: v.enclosing}
-		if s.Process(n.Fields.List) {
+		if s.Process(v.option, n.Fields.List) {
 			*v.structs = append(*v.structs, s)
 		}
 	}

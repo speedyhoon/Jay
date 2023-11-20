@@ -8,8 +8,10 @@ import (
 	"go/token"
 	"io"
 	"log"
+	"mvdan.cc/gofumpt/format"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 )
 
@@ -44,10 +46,22 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 	//	opt.Load()
 	//}
 
-	var list []Struct
-	ast.Walk(visitor{structs: &list}, f)
+	opt := LoadOptions(opts...)
 
-	return GenerateFile(f.Name.Name, list, LoadOptions(opts...))
+	var list []Struct
+	ast.Walk(visitor{structs: &list, option: opt}, f)
+
+	src, err = GenerateFile(f.Name.Name, list, opt)
+
+	// Nicely format the generated Go code.
+	src, err = format.Source(src, format.Options{
+		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
+		ExtraRules:  true,
+	})
+	if err != nil {
+		return
+	}
+	return
 }
 
 func ProcessWrite(filename string, source interface{}, opts ...Option) (err error) {
@@ -65,7 +79,7 @@ func ProcessWrite(filename string, source interface{}, opts ...Option) (err erro
 	return
 }
 
-func (s *Struct) Process(fields []*ast.Field) (hasExportedFields bool) {
+func (s *Struct) Process(o Option, fields []*ast.Field) (hasExportedFields bool) {
 	for i := 0; i < len(fields); i++ {
 		t := fields[i]
 
@@ -75,7 +89,7 @@ func (s *Struct) Process(fields []*ast.Field) (hasExportedFields bool) {
 			continue
 		}
 
-		typeOf, typeName, isVarLen, ok := isSupportedType(t)
+		typeOf, aliasType, isVarLen, ok := o.isSupportedType(t)
 		if !ok {
 			fields = Remove(fields, i)
 			continue
@@ -87,10 +101,14 @@ func (s *Struct) Process(fields []*ast.Field) (hasExportedFields bool) {
 			continue
 		}
 
-		s.addExportedFields(names, tag, typeOf, typeName, isVarLen)
+		s.addExportedFields(names, tag, typeOf, aliasType, isVarLen)
 	}
 
-	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1
+	return s.hasExportedFields()
+}
+
+func (s *Struct) hasExportedFields() bool {
+	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1
 }
 
 func Remove[T any](t []T, index int) []T {

@@ -7,7 +7,7 @@ import (
 )
 
 // MakeSize ...
-func (s *Struct) MakeSize(b *bytes.Buffer) {
+func (s *Struct) MakeSize(o Option, b *bytes.Buffer) {
 	//b.WriteString(fmt.Sprintf(
 	//	"func (%s *%s) SizeJ() int {\n// fields: %d\n}\n",
 	//	s.ReceiverName(),

@@ -15,7 +15,10 @@ func main() {
 	//src, err := jay.ProcessFile("cmd/main.go", nil)
 	//log.Printf("src output:\n%s", src)
 	// TODO add filename as cmdline flag
-	err := jay.ProcessWrite("example/main.go", nil)
+	err := jay.ProcessWrite("example/main.go", nil, jay.Option{
+		FixedIntSize:  true,
+		FixedUintSize: true,
+	})
 	if err != nil {
 		log.Println(err)
 	}

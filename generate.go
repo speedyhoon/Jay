@@ -4,9 +4,6 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"mvdan.cc/gofumpt/format"
-	"runtime"
-	"strings"
 )
 
 const (
@@ -17,21 +14,17 @@ const (
 
 var ErrNoneExported = errors.New("no exported struct fields found")
 
-func (s *Struct) GenerateFuncs(b *bytes.Buffer) {
-	if len(s.fixedLen) == 0 {
-		return
-	}
-
+func (s *Struct) GenerateFuncs(b *bytes.Buffer, o Option) {
 	s.MakeMarshalJ(b)
-	s.MakeMarshalJTo(b)
-	s.MakeSize(b)
-	s.MakeUnmarshal(b)
+	s.MakeMarshalJTo(o, b)
+	s.MakeSize(o, b)
+	s.MakeUnmarshal(o, b)
 }
 
-func GenerateFile(pkg string, s []Struct, options Option) ([]byte, error) {
+func GenerateFile(pkg string, s []Struct, option Option) ([]byte, error) {
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
-		s[i].GenerateFuncs(buf)
+		s[i].GenerateFuncs(buf, option)
 	}
 
 	src := buf.Bytes()
@@ -48,9 +41,5 @@ package %s
 import "%s%s"
 %s`, DontEditComment, pkg, importPrefix, pkgName, src))
 
-	// Nicely format the generated Go code.
-	return format.Source(src, format.Options{
-		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
-		ExtraRules:  true,
-	})
+	return src, nil
 }

@@ -9,6 +9,8 @@ const (
 type Option struct {
 	MaxIntegerSize uint8
 
+	Is32bit bool
+
 	// Should integers be fixed to 4 or 8 bytes or vary in length depending on the value provided.
 	FixedIntSize bool
 
