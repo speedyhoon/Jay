@@ -25,11 +25,19 @@ func (s *Struct) MakeMarshalJ(b *bytes.Buffer) {
 }
 
 func (s *Struct) generateBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
-	//*byteIndex = uint(s.BoolsBytesUsed())
-	for i := 0; i <= len(s.bool)/8; i++ {
-		WriteBools(bools[s.BoolsSliceIndex(i):], b, byteIndex, receiver)
+	var i, l uint = 0, uint(len(s.bool) / 8)
+	for ; i <= l; i++ {
+		WriteBools(bools[BoolsSliceIndex(i):], b, byteIndex, receiver)
 	}
 }
+
+func BoolsSliceIndex(input uint) uint {
+	if input == 0 {
+		return 0
+	}
+	return ((input-1)/8+1)*8 - 8
+}
+
 func WriteBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
 	if len(bools) > 8 {
 		bools = bools[:8]

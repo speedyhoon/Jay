@@ -15,14 +15,6 @@ type Struct struct {
 	fixedLen, variableLen, bool []field // Exported fields.
 }
 
-func (s *Struct) BoolsBytesUsed() int {
-	return (len(s.bool)-1)/8 + 1
-}
-
-func (s *Struct) BoolsSliceIndex(input int) int {
-	return ((input-1)/8+1)*8 - 8
-}
-
 type field struct {
 	name string // The string used as the variable name.
 	typ  string // The underlying type of the variable (uint, byte, bool, map, etc).
