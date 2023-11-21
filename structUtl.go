@@ -143,14 +143,13 @@ func (s *Struct) addExportedFields(names []*ast.Ident, tag, typeOf, aliasType st
 
 func isLen(typ string) uint {
 	switch typ {
-	// TODO "float32","float64",
 	case "bool", "byte", "int8", "uint8", "string", "int", "uint":
 		return 1
 	case "int16", "uint16":
 		return 2
-	case "int32", "rune", "uint32":
+	case "int32", "rune", "uint32", "float32":
 		return 4
-	case "int64", "uint64":
+	case "int64", "uint64", "float64":
 		return 8
 	}
 	return 0
