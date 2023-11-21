@@ -70,7 +70,7 @@ func (s *Struct) MakeMarshalJTo(o Option, b *bytes.Buffer) {
 	}
 
 	for _, f := range s.fixedLen {
-		b.WriteString(o.generateLine(f, &byteIndex, receiver, ""))
+		b.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0))
 		b.WriteString("\n")
 	}
 
@@ -89,14 +89,14 @@ func (s *Struct) MakeMarshalJTo(o Option, b *bytes.Buffer) {
 			}
 		}
 
-		b.WriteString(o.generateLine(f, &byteIndex, receiver, at))
+		b.WriteString(o.generateLine(f, &byteIndex, receiver, at, uint(i)))
 		b.WriteString("\n")
 	}
 
 	b.WriteString("}\n")
 }
 
-func (o Option) generateLine(f field, index *uint, receiver, at string) string {
+func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, index uint) string {
 	fun, size := o.typeFuncs(f.typ)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
@@ -104,15 +104,15 @@ func (o Option) generateLine(f field, index *uint, receiver, at string) string {
 		return ""
 	}
 
-	start := *index
-	*index += size
+	start := *byteIndex
+	*byteIndex += size
 	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
 
 	switch size {
 	case 1:
 		return fmt.Sprintf("b[%d]=%s", start, printFunc(fun, thisField))
 	default:
-		return printFunc(fun, fmt.Sprintf("b[%d:%d]", start, *index), thisField)
+		return printFunc(fun, fmt.Sprintf("b[%d:%d]", start, *byteIndex), thisField)
 	case 0:
 		// Variable length size.
 		slice := "b"
@@ -132,7 +132,7 @@ func (o Option) generateLine(f field, index *uint, receiver, at string) string {
 		//at := 12
 		//	at = jay.WriteStringN(b[at:at+l1+1], c.Name, l1, at)
 
-		return printFunc(fun, slice, thisField, "l1")
+		return printFunc(fun, slice, thisField, "l"+Utoa(index))
 	}
 
 	/*switch f.typ {
