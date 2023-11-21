@@ -24,10 +24,10 @@ func (s *Struct) MakeMarshalJ(b *bytes.Buffer) {
 	))
 }
 
-func (s *Struct) generateBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
+func (s *Struct) generateBools(bools []field, b *bytes.Buffer, o Option, byteIndex *uint, receiver string) {
 	var i, l uint = 0, uint(len(s.bool) / 8)
 	for ; i <= l; i++ {
-		WriteBools(bools[BoolsSliceIndex(i):], b, byteIndex, receiver)
+		WriteBools(bools[BoolsSliceIndex(i):], b, o, byteIndex, receiver)
 	}
 }
 
@@ -38,12 +38,12 @@ func BoolsSliceIndex(input uint) uint {
 	return ((input-1)/8+1)*8 - 8
 }
 
-func WriteBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
+func WriteBools(bools []field, b *bytes.Buffer, o Option, byteIndex *uint, receiver string) {
 	if len(bools) > 8 {
 		bools = bools[:8]
 	}
 
-	b.WriteString(fmt.Sprintf("b[%d] = %s.Bool%d(%s)\n", *byteIndex, pkgName, len(bools), fieldNames(bools, receiver)))
+	b.WriteString(fmt.Sprintf("b[%d] = %s.Bool%d(%s)\n", *byteIndex, o.pkgName, len(bools), fieldNames(bools, receiver)))
 
 	*byteIndex++
 }
@@ -66,7 +66,7 @@ func (s *Struct) MakeMarshalJTo(o Option, b *bytes.Buffer) {
 
 	var byteIndex uint
 	if len(s.bool) != 0 {
-		s.generateBools(s.bool, b, &byteIndex, receiver)
+		s.generateBools(s.bool, b, o, &byteIndex, receiver)
 	}
 
 	for _, f := range s.fixedLen {
@@ -97,19 +97,6 @@ func (s *Struct) MakeMarshalJTo(o Option, b *bytes.Buffer) {
 }
 
 func (o Option) generateLine(f field, index *uint, receiver, at string) string {
-	start := *index
-	*index += isLen(f.typ)
-	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
-
-	//buffer := "b"
-	//if start >= 1 {
-	//	if at == "" {
-	//		buffer = fmt.Sprintf("b[%d:]", start)
-	//	} else {
-	//		buffer = fmt.Sprintf("b[%s:]", at)
-	//	}
-	//}
-
 	fun, size := o.typeFuncs(f.typ)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
@@ -117,16 +104,18 @@ func (o Option) generateLine(f field, index *uint, receiver, at string) string {
 		return ""
 	}
 
+	start := *index
+	*index += size
+	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
+
 	switch size {
 	case 1:
 		return fmt.Sprintf("b[%d]=%s", start, printFunc(fun, thisField))
 	default:
-		return printFunc(fun, fmt.Sprintf("b[%d:%d]", start, start+size), thisField)
+		return printFunc(fun, fmt.Sprintf("b[%d:%d]", start, *index), thisField)
 	case 0:
 		// Variable length size.
 		slice := "b"
-		//if at != "0" {
-		//slice = fmt.Sprintf("b[%v:]", at)
 		if start >= 1 {
 			if at == "" {
 				slice = fmt.Sprintf("b[%d:]", start)
@@ -137,16 +126,13 @@ func (o Option) generateLine(f field, index *uint, receiver, at string) string {
 
 		switch f.typ {
 		case "struct":
-			//return fmt.Sprintf("%s.%s(%s)", thisField, fun, slice)
 			return fmt.Sprintf("%s.%s", thisField, printFunc(fun, slice))
 		}
 
-		//}
-		return printFunc(fun, slice, thisField, "l1")
-		//return fmt.Sprintf("%s.MarshalJTo(%s)", thisField, buffer)
+		//at := 12
+		//	at = jay.WriteStringN(b[at:at+l1+1], c.Name, l1, at)
 
-		//fmt.Sprintf("%s%s", slice,
-		//return o.marshalFunc(f.typ, slice, thisField, "l1")
+		return printFunc(fun, slice, thisField, "l1")
 	}
 
 	/*switch f.typ {
@@ -170,9 +156,6 @@ func (o Option) generateLine(f field, index *uint, receiver, at string) string {
 
 	case "struct":
 		return fmt.Sprintf("%s.MarshalJTo(%s)", thisField, buffer)
-
-	default:
-		log.Printf("no generateLine for type `%s` yet", f.typ)
 	}
 	return ""*/
 }
@@ -238,13 +221,14 @@ func (o Option) typeFuncs(typ string) (_ string, size uint) {
 	case "bool":
 		f, size = Bool1, 1
 	case "string":
-		f, size = WriteString, 0
+		f, size = WriteStringN, 0
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
 				f, size = WriteIntArch32, 4
 			}
 			f, size = WriteIntArch64, 8
+			break
 		}
 		f, size = WriteIntVariable, 0
 	case "int16":
@@ -263,6 +247,7 @@ func (o Option) typeFuncs(typ string) (_ string, size uint) {
 				f, size = WriteUintArch32, 4
 			}
 			f, size = WriteUintArch64, 8
+			break
 		}
 		f, size = WriteUintVariable, 0
 	case "uint16":
@@ -281,7 +266,7 @@ func (o Option) typeFuncs(typ string) (_ string, size uint) {
 
 	return strings.TrimPrefix(
 		runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
-		importPrefix, // TODO replace with: filepath.Dir(get package path during run time)
+		o.importPrefix,
 	), size
 }
 

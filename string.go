@@ -9,6 +9,14 @@ func WriteString(y []byte, s string, length int) {
 	}
 }
 
+func WriteStringN(y []byte, s string, length, at int) int {
+	y[0] = byte(length) // Set how long the string is.
+	if length != 0 {
+		copy(y[strSizeOf:length+strSizeOf], s)
+	}
+	return at + length + strSizeOf
+}
+
 func ReadString(b []byte) (h string, size int, _ bool) {
 	size = int(b[0]) + strSizeOf
 	if size == strSizeOf || len(b) < size {
