@@ -33,12 +33,12 @@ func (s *Struct) MakeMarshalJX(b *bytes.Buffer, o Option) {
 		receiver,
 		s.name,
 		lengths2(s.varLenFieldNames(), receiver),
-		joinSizes(s.calcSize(o), s.variableLen, s.ReceiverName()),
+		joinSizes(s.calcSize(o), s.variableLen),
 	))
 
 	var byteIndex uint
 	if len(s.bool) != 0 {
-		s.generateBools(s.bool, b, o, &byteIndex, receiver)
+		s.generateBools(s.bool, b, &byteIndex, receiver)
 	}
 
 	for _, f := range s.fixedLen {
@@ -68,10 +68,10 @@ func (s *Struct) MakeMarshalJX(b *bytes.Buffer, o Option) {
 	b.WriteString("}\n")
 }
 
-func (s *Struct) generateBools(bools []field, b *bytes.Buffer, o Option, byteIndex *uint, receiver string) {
+func (s *Struct) generateBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
 	var i, l uint = 0, uint(len(s.bool) / 8)
 	for ; i <= l; i++ {
-		WriteBools(bools[BoolsSliceIndex(i):], b, o, byteIndex, receiver)
+		WriteBools(bools[BoolsSliceIndex(i):], b, byteIndex, receiver)
 	}
 }
 
@@ -82,7 +82,7 @@ func BoolsSliceIndex(input uint) uint {
 	return ((input-1)/8+1)*8 - 8
 }
 
-func WriteBools(bools []field, b *bytes.Buffer, o Option, byteIndex *uint, receiver string) {
+func WriteBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
 	if len(bools) > 8 {
 		bools = bools[:8]
 	}
@@ -111,7 +111,7 @@ func (s *Struct) MakeMarshalJTo(o Option, b *bytes.Buffer) {
 
 	var byteIndex uint
 	if len(s.bool) != 0 {
-		s.generateBools(s.bool, b, o, &byteIndex, receiver)
+		s.generateBools(s.bool, b, &byteIndex, receiver)
 	}
 
 	for _, f := range s.fixedLen {

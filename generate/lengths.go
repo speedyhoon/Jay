@@ -8,7 +8,7 @@ import (
 )
 
 // LenDecl ...
-func (s *Struct) LenDecl(o Option, b *bytes.Buffer) {
+func (s *Struct) LenDecl(b *bytes.Buffer) {
 	var qty uint
 	// TODO add bool sizes
 	var variableStructs []string
@@ -37,7 +37,7 @@ func (s *Struct) LenDecl(o Option, b *bytes.Buffer) {
 	))
 }
 
-func joinSizes(qty uint, variableLen []field, receiverName string) string {
+func joinSizes(qty uint, variableLen []field) string {
 	var s []string
 	if qty != 0 {
 		s = []string{Utoa(qty)}
