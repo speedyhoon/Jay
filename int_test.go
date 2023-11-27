@@ -273,3 +273,16 @@ func TestReadInt56(t *testing.T) {
 		require.Equal(t, i, jay.ReadInt56(b), b)
 	}
 }
+
+func TestReadInt64(t *testing.T) {
+	assert.Equal(t, int64(0), jay.ReadInt64([]byte{0, 0, 0, 0, 0, 0, 0, 0}))
+	assert.Equal(t, int64(247), jay.ReadInt64([]byte{247, 0, 0, 0, 0, 0, 0, 0}))
+	assert.Equal(t, int64(MaxInt64), jay.ReadInt64([]byte{255, 255, 255, 255, 255, 255, 255, 127}))
+}
+
+func TestReadInt32(t *testing.T) {
+	assert.Equal(t, int32(0), jay.ReadInt32([]byte{0, 0, 0, 0, 0, 0, 0, 0}))
+	assert.Equal(t, int32(247), jay.ReadInt32([]byte{247, 0, 0, 0, 0, 0, 0, 0}))
+	assert.Equal(t, int32(-1), jay.ReadInt32([]byte{255, 255, 255, 255, 255, 255, 255, 127}))
+	assert.Equal(t, int32(jay.MaxInt32), jay.ReadInt32([]byte{255, 255, 255, 127, 255, 255, 255, 127}))
+}
