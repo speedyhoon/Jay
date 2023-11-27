@@ -3,6 +3,7 @@ package jay
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"strings"
 )
 
@@ -16,6 +17,7 @@ func (s *Struct) MakeSize(o Option, b *bytes.Buffer) {
 	//))
 
 	var qty uint
+	// TODO add bool sizes
 	var variableStructs []string
 	for _, x := range s.fixedLen {
 		qty += isLen(x.typ)
@@ -41,7 +43,16 @@ func (s *Struct) MakeSize(o Option, b *bytes.Buffer) {
 		structs(variableStructs, s.ReceiverName()),
 	))
 }
-
+func (s *Struct) calcSize(o Option) (qty uint) {
+	// TODO add bool sizes
+	for _, x := range s.fixedLen {
+		qty += o.typeFuncSize(x.typ)
+	}
+	for _, v := range s.variableLen {
+		qty += o.typeFuncSize(v.typ)
+	}
+	return qty
+}
 func lengths(names []string, receiver string) string {
 	if len(names) == 0 {
 		return ""
@@ -58,4 +69,37 @@ func structs(names []string, receiver string) string {
 	//receiver = fmt.Sprintf(".SizeJ()+%s.", receiver)
 	return "+" + receiver + "." + strings.Join(names, ".SizeJ()+"+receiver+".") + ".SizeJ()"
 	//+c.Wheels.SizeJ()+c.Gearbox.SizeJ()+c.Roof.SizeJ()
+}
+
+func (o Option) typeFuncSize(typ string) (size uint) {
+	switch typ {
+	case "string", "bool", "byte", "uint8", "int8":
+		return 1
+	case "int16", "uint16":
+		return 2
+	case "int32", "rune", "float32", "uint32":
+		return 4
+	case "float64", "int64", "uint64":
+		return 8
+	case "int":
+		if o.FixedIntSize {
+			if o.Is32bit {
+				return 4
+			}
+			return 8
+		}
+		return 1
+	case "uint":
+		if o.FixedUintSize {
+			if o.Is32bit {
+				return 4
+			}
+			return 8
+		}
+		return 1
+
+	default:
+		log.Printf("not function set for type %s yet", typ)
+		return 0
+	}
 }

@@ -24,6 +24,49 @@ func (s *Struct) MakeMarshalJ(b *bytes.Buffer) {
 	))
 }
 
+// MakeMarshalJX ...
+func (s *Struct) MakeMarshalJX(b *bytes.Buffer, o Option) {
+	receiver := s.ReceiverName()
+	b.WriteString(fmt.Sprintf(
+		"func (%s *%s) MarshalJX() {\n%s\nb := make([]byte, %s)\n",
+		receiver,
+		s.name,
+		lengths2(s.varLenFieldNames(), receiver),
+		joinSizes(s.calcSize(o), s.variableLen, s.ReceiverName()),
+	))
+
+	var byteIndex uint
+	if len(s.bool) != 0 {
+		s.generateBools(s.bool, b, o, &byteIndex, receiver)
+	}
+
+	for _, f := range s.fixedLen {
+		b.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0))
+		b.WriteString("\n")
+	}
+
+	at := Utoa(byteIndex)
+	vLen := len(s.variableLen) - 1
+	for i, f := range s.variableLen {
+		if i == 1 {
+			at = "at"
+		}
+		if i != vLen {
+			switch i {
+			case 0:
+				b.WriteString("at:=")
+			default:
+				b.WriteString("at=")
+			}
+		}
+
+		b.WriteString(o.generateLine(f, &byteIndex, receiver, at, uint(i)))
+		b.WriteString("\n")
+	}
+
+	b.WriteString("}\n")
+}
+
 func (s *Struct) generateBools(bools []field, b *bytes.Buffer, o Option, byteIndex *uint, receiver string) {
 	var i, l uint = 0, uint(len(s.bool) / 8)
 	for ; i <= l; i++ {
@@ -59,9 +102,10 @@ func fieldNames(fields []field, receiver string) string {
 func (s *Struct) MakeMarshalJTo(o Option, b *bytes.Buffer) {
 	receiver := s.ReceiverName()
 	b.WriteString(fmt.Sprintf(
-		"func (%s *%s) MarshalJTo(b []byte) {\n",
+		"func (%s *%s) MarshalJTo(b []byte) {\n%s",
 		receiver,
 		s.name,
+		lengths2(s.varLenFieldNames(), receiver),
 	))
 
 	var byteIndex uint
@@ -116,9 +160,11 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 	case 0:
 		// Variable length size.
 		slice := "b"
+		idx := at
 		if start >= 1 {
 			if at == "" {
 				slice = fmt.Sprintf("b[%d:]", start)
+				idx = "0"
 			} else if at != "0" {
 				slice = fmt.Sprintf("b[%s:]", at)
 			}
@@ -132,7 +178,7 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 		//at := 12
 		//	at = jay.WriteStringN(b[at:at+l1+1], c.Name, l1, at)
 
-		return printFunc(fun, slice, thisField, "l"+Utoa(index))
+		return printFunc(fun, slice, thisField, "l"+Utoa(index), idx)
 	}
 
 	/*switch f.typ {

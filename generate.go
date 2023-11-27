@@ -11,6 +11,7 @@ var ErrNoneExported = errors.New("no exported struct fields found")
 
 func (s *Struct) GenerateFuncs(b *bytes.Buffer, o Option) {
 	s.MakeMarshalJ(b)
+	s.MakeMarshalJX(b, o)
 	s.MakeMarshalJTo(o, b)
 	s.MakeSize(o, b)
 	s.MakeUnmarshal(o, b)

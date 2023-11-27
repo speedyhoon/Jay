@@ -54,14 +54,15 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 	src, err = GenerateFile(f.Name.Name, list, opt)
 
 	// Nicely format the generated Go code.
-	src, err = format.Source(src, format.Options{
+	var bb []byte
+	bb, err = format.Source(src, format.Options{
 		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
 		ExtraRules:  true,
 	})
 	if err != nil {
-		return
+		return bb, err
 	}
-	return
+	return bb, err
 }
 
 func ProcessWrite(filename string, source interface{}, opts ...Option) (err error) {

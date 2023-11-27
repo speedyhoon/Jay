@@ -17,13 +17,34 @@ type Option struct {
 
 	Is32bit bool
 
+	// MaxDefaultStrSize limits all strings to be within this length if a field tag is NOT present.
+	// Minimum:	1 (1 byte),
+	// Default: MaxUint8 (255 bytes),
+	// Maximum: MaxUint24 (16 Megabytes).
+	// To override the default for a field use: `j:"max:4030"` for 4,030 bytes.
+	// The smallest value is the most optimal for performance.
+	MaxDefaultStrSize uint32
+
+	// MaxUint16 = 64 kilobytes,
+	// MaxUint24 = 16 Megabytes,
+	//4 Gigabytes
+	//	// MaxUint8 = 255 bytes (default),
+	//	// MaxUint32 = 4 Gigabytes (maximum).
+
 	// Should integers be fixed to 4 or 8 bytes or vary in length depending on the value provided.
 	FixedIntSize bool
 
-	// Should unsigned integers be fixed to 4 or 8 bytes or vary in length depending on the value provided.
+	// Whether unsigned integers be a fixed length (4 bytes 32-bit, or 8 bytes 64-bit) or vary in length depending on the value provided.
+	// true = Highest CPU serialization/deserialization throughput,
+	// false = Least bandwidth used.
 	FixedUintSize bool
-	importPrefix  string
-	pkgName       string
+
+	importPrefix string
+	pkgName      string
+
+	// TODO add option to check if a struct or map is nil/empty by appending an extra null byte \0x0 ?
+	// If the null byte wasn't there - how would the Read functions know if there was an unexpected
+	// end of buffer vs the struct/map was empty?
 }
 
 func LoadOptions(opts ...Option) (o Option) {
@@ -34,6 +55,10 @@ func LoadOptions(opts ...Option) (o Option) {
 	pkgPath := reflect.TypeOf(o).PkgPath()
 	o.pkgName = filepath.Base(pkgPath)
 	o.importPrefix = strings.TrimSuffix(pkgPath, o.pkgName)
+
+	if o.MaxDefaultStrSize == 0 {
+		o.MaxDefaultStrSize = MaxUint24
+	}
 
 	if o.MaxIntegerSize == Auto || o.MaxIntegerSize > Bit32 && o.MaxIntegerSize < Bit64 {
 		o.MaxIntegerSize = 32 << (^uint(0) >> 63) // 32 or 64

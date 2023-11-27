@@ -2,7 +2,6 @@
 package main
 
 import (
-	"bytes"
 	"github.com/speedyhoon/jay"
 )
 
@@ -15,7 +14,8 @@ func (c *Car) MarshalK() (b []byte) {
 	b[0] = jay.Bool1(c.Auto)
 	jay.WriteUint64(b[1:9], c.ID)
 	at := int(9 + l4)
-	jay.WriteUint(b[9:at], c.Row, l4)
+	//jay.WriteUint(b[9:at], c.Row, l4)
+	jay.WriteUintArch64(b[9:17], c.Row)
 
 	///*at +=*/ jay.WriteStringX(b[at:at+l1], c.Name, l1)
 	//at += l1
@@ -118,60 +118,60 @@ func (c *Car) MarshalJ() (b []byte) {
 	return b
 }
 
-func (c *Car) MarshalJ2() (b []byte) {
-	//buf := bytes.NewBuffer(nil)
-	buf := &bytes.Buffer{}
-	jay.WriteBufUint64(buf, c.ID)
-	jay.WriteBufUint(buf, c.Row)
-	jay.WriteBufString(buf, c.Name)
-	jay.WriteBufBool(buf, c.Auto)
-	jay.WriteBufString(buf, c.CC)
-	jay.WriteBufString(buf, c.Timing)
+func (c *Car) MarshalJX() []byte {
+	l0, l1, l2 := len(c.Name), len(c.CC), len(c.Timing)
 
-	//b = make([]byte, c.SizeJ())
-	//c.MarshalJTo(b)
-	return buf.Bytes()
+	b := make([]byte, 22+l0+l1+l2+c.Gearbox.SizeJ())
+	b[0] = jay.Bool1(c.Auto)
+	jay.WriteUint64(b[1:9], c.ID)
+	jay.WriteUintArch64(b[9:17], c.Row)
+	jay.WriteUint16(b[17:19], c.RedLine)
+	at := jay.WriteStringN(b[19:], c.Name, l0, 19)
+	at = jay.WriteStringN(b[at:], c.CC, l1, at)
+	at = jay.WriteStringN(b[at:], c.Timing, l2, at)
+	c.Gearbox.MarshalJTo(b[at:])
+	return b
+}
+
+func (c *Car) MarshalJY() []byte {
+	l0, l1, l2, l3, l4 := len(c.Name), len(c.CC), len(c.Timing), len(c.Gearbox.Model), len(c.Gearbox.Manufacturer)
+
+	b := make([]byte, 24+l0+l1+l2+l3+l4+c.Gearbox.SizeJ())
+	b[0] = jay.Bool3(c.Auto, c.Gearbox.Sequential, c.Gearbox.Automatic)
+	b[1] = c.Gearbox.Reverse
+	b[2] = byte(c.Gearbox.LinkageDelta)
+
+	jay.WriteUint64(b[3:11], c.ID)
+	jay.WriteUintArch64(b[11:19], c.Row)
+	jay.WriteIntArch64(b[19:27], c.Gearbox.Gears)
+	jay.WriteUint16(b[27:29], c.RedLine)
+
+	at := jay.WriteStringN(b[29:], c.Name, l0, 19)
+	at = jay.WriteStringN(b[at:], c.CC, l1, at)
+	at = jay.WriteStringN(b[at:], c.Timing, l2, at)
+	at = jay.WriteStringN(b[at:], c.Gearbox.Model, l3, at)
+	jay.WriteStringN(b[at:], c.Gearbox.Manufacturer, l4, at)
+	return b
 }
 
 func (c *Car) MarshalJTo(b []byte) {
-	jay.WriteUint64(b[:8], c.ID)
-	b[8] = jay.Bool1(c.Auto)
-	at := 9 + jay.WriteUintDEPRECATED(b[9:18], c.Row)
-	at += jay.WriteString(b[17:], c.Name)
-	at += jay.WriteString(b[at:], c.CC)
-	at += jay.WriteString(b[at:], c.Timing)
+	l0, l1, l2 := len(c.Name), len(c.CC), len(c.Timing)
+	b[0] = jay.Bool1(c.Auto)
+	jay.WriteUint64(b[1:9], c.ID)
+	jay.WriteUintArch64(b[9:17], c.Row)
+	jay.WriteUint16(b[17:19], c.RedLine)
+	at := jay.WriteStringN(b[19:], c.Name, l0, 19)
+	at = jay.WriteStringN(b[at:], c.CC, l1, at)
+	at = jay.WriteStringN(b[at:], c.Timing, l2, at)
 	c.Gearbox.MarshalJTo(b[at:])
 }
 
 func (c *Car) SizeJ() int {
-	return 21 + len(c.Name) + len(c.CC) + len(c.Timing) + c.Gearbox.SizeJ()
+	return 22 + len(c.Name) + len(c.CC) + len(c.Timing) + c.Gearbox.SizeJ()
 }
 
-func (c *Car) UnmarshalJ(b []byte) error {
-	// TODO Check fixed size length SizeJ
-	if len(b) <= 34 {
-		return jay.ErrUnexpectedEOB
-	}
-	c.ID = jay.ReadUint64(b[:8])
-	c.Auto = jay.ByteToBool(b[8])
-	var at int
-	c.Row, at = jay.ReadUint(b[9:19])
-	at += 17
-	var ok bool
-	c.Name, at, ok = jay.ReadString(b[at:])
-	if !ok {
-		return jay.ErrUnexpectedEOB
-	}
-	c.CC, at, ok = jay.ReadString(b[at:])
-	if !ok {
-		return jay.ErrUnexpectedEOB
-	}
-	c.Timing, at, ok = jay.ReadString(b[at:])
-	if !ok {
-		return jay.ErrUnexpectedEOB
-	}
-
-	return c.Gearbox.UnmarshalJ(b[at:])
+func (c *Car) UnmarshalJ(b []byte) (err error) {
+	return nil
 }
 
 func (g *Gearbox) MarshalJ() (b []byte) {
@@ -180,41 +180,32 @@ func (g *Gearbox) MarshalJ() (b []byte) {
 	return b
 }
 
-func (g *Gearbox) MarshalJTo(b []byte) {
+func (g *Gearbox) MarshalJX() {
+	l0, l1 := len(g.Model), len(g.Manufacturer)
+
+	b := make([]byte, 12+l0+l1)
 	b[0] = jay.Bool2(g.Sequential, g.Automatic)
-	b[1] = g.Reverse
-	at := jay.LenInt(g.Gears)
-	jay.WriteInt(b[2:], g.Gears, at)
-	at += 2
-	at += jay.WriteString(b[at:], g.Model)
-	jay.WriteString(b[at:], g.Manufacturer)
+	jay.WriteIntArch64(b[1:9], g.Gears)
+	b[9] = g.Reverse
+	b[10] = byte(g.LinkageDelta)
+	at := jay.WriteStringN(b[11:], g.Model, l0, 11)
+	jay.WriteStringN(b[at:], g.Manufacturer, l1, at)
+}
+
+func (g *Gearbox) MarshalJTo(b []byte) {
+	l0, l1 := len(g.Model), len(g.Manufacturer)
+	b[0] = jay.Bool2(g.Sequential, g.Automatic)
+	jay.WriteIntArch64(b[1:9], g.Gears)
+	b[9] = g.Reverse
+	b[10] = byte(g.LinkageDelta)
+	at := jay.WriteStringN(b[11:], g.Model, l0, 11)
+	jay.WriteStringN(b[at:], g.Manufacturer, l1, at)
 }
 
 func (g *Gearbox) SizeJ() int {
 	return 13 + len(g.Model) + len(g.Manufacturer)
 }
 
-func (g *Gearbox) UnmarshalJ(b []byte) error {
-	if len(b) <= 13 { // TODO Hardcode fixed size length + SizeJ of children structs.
-		return jay.ErrUnexpectedEOB
-	}
-
-	g.Sequential, g.Automatic = jay.ReadBool2(b[0])
-	g.Reverse = b[1]
-	var at int
-
-	g.Gears, at = jay.ReadInt(b[2:])
-	at += 2
-
-	var ok bool
-	g.Model, at, ok = jay.ReadStringX(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
-	}
-
-	g.Manufacturer, at, ok = jay.ReadString(b[at:])
-	if !ok {
-		return jay.ErrUnexpectedEOB
-	}
+func (g *Gearbox) UnmarshalJ(b []byte) (err error) {
 	return nil
 }
