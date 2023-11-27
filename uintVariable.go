@@ -79,7 +79,7 @@ func WriteUintVariable(b []byte, u uint, length uint8) {
 	}
 }
 
-// DEPRECATED
+// WriteUintDEPRECATED ...
 func WriteUintDEPRECATED(b []byte, u uint) int {
 	b[0] = LenUint(u) - 1
 	switch b[0] {

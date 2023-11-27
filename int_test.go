@@ -238,7 +238,7 @@ func ReadInt24(b []byte) int {
 	//if b[0]&_128 == 0 {
 
 	value := int(b[0]) | int(b[1])<<8 | int(b[2])<<16
-	return value | -(value & 0x00800000) // Apply sign extension if the highest bit is set
+	return value | -(value & 0x00800000) // Apply a sign extension if the highest bit is set
 	//}
 
 	//return | Neg24Mask int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16
