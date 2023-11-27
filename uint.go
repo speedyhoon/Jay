@@ -1,23 +1,28 @@
 package jay
 
+// ReadUint64 ...
 func ReadUint64(buf []byte) uint64 {
 	return uint64(buf[0]) | uint64(buf[1])<<8 | uint64(buf[2])<<16 | uint64(buf[3])<<24 |
 		uint64(buf[4])<<32 | uint64(buf[5])<<40 | uint64(buf[6])<<48 | uint64(buf[7])<<56
 }
 
+// ReadUintArch64 ...
 func ReadUintArch64(buf []byte) uint {
 	return uint(buf[0]) | uint(buf[1])<<8 | uint(buf[2])<<16 | uint(buf[3])<<24 |
 		uint(buf[4])<<32 | uint(buf[5])<<40 | uint(buf[6])<<48 | uint(buf[7])<<56
 }
 
+// ReadUintArch32 ...
 func ReadUintArch32(buf []byte) uint {
 	return uint(buf[0]) | uint(buf[1])<<8 | uint(buf[2])<<16 | uint(buf[3])<<24
 }
 
+// ReadUint32 ...
 func ReadUint32(buf []byte) uint32 {
 	return uint32(buf[0]) | uint32(buf[1])<<8 | uint32(buf[2])<<16 | uint32(buf[3])<<24
 }
 
+// ReadUint16 ...
 func ReadUint16(buf []byte) uint16 {
 	return uint16(buf[0]) | uint16(buf[1])<<8
 }
