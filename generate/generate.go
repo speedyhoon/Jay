@@ -17,7 +17,7 @@ func (s *Struct) generateFuncs(b *bytes.Buffer, o Option) {
 	s.MakeMarshalJ(b)
 	s.MakeMarshalJX(b, o)
 	s.MakeMarshalJTo(o, b)
-	s.MakeSize(o, b)
+	s.MakeSize(b)
 	s.MakeUnmarshal(o, b)
 }
 
