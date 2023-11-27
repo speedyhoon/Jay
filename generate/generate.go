@@ -15,7 +15,7 @@ var ErrNoneExported = errors.New("no exported struct fields found")
 
 // ErrUnexpectedEOB indicates the end of the byte slice was unexpectedly encountered
 // while deserialising a fixed-size block, resulting in an incomplete result.
-var ErrUnexpectedEOB = errors.New("unexpected EOB")
+// var ErrUnexpectedEOB = errors.New("unexpected EOB")
 
 func generateFile(pkg string, s []Struct, option Option) ([]byte, error) {
 	buf := bytes.NewBuffer(nil)

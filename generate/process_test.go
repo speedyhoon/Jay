@@ -8,7 +8,7 @@ import (
 )
 
 func TestRemove(t *testing.T) {
-	zero := []Struct{}
+	zero := make([]Struct, 0)
 	one := []Struct{{name: "one"}}
 	two := []Struct{{name: "one"}, {name: "two"}}
 
