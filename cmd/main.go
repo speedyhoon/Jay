@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/jay/generate"
 	"log"
 )
 
@@ -12,10 +12,10 @@ func main() {
 	//byt, _ := json.Marshal(instance)
 	//log.Printf("%s\n", byt)
 
-	//src, err := jay.ProcessFile("cmd/main.go", nil)
+	//src, err := generate.ProcessFile("cmd/main.go", nil)
 	//log.Printf("src output:\n%s", src)
 	// TODO add filename as cmdline flag
-	err := jay.ProcessWrite("example/main.go", nil, jay.Option{
+	err := generate.ProcessWrite("example/main.go", nil, generate.Option{
 		FixedIntSize:  true,
 		FixedUintSize: true,
 	})

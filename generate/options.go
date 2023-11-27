@@ -1,9 +1,7 @@
-package jay
+package generate
 
 import (
-	"path/filepath"
-	"reflect"
-	"strings"
+	"github.com/speedyhoon/jay"
 )
 
 const (
@@ -39,9 +37,6 @@ type Option struct {
 	// false = Least bandwidth used.
 	FixedUintSize bool
 
-	importPrefix string
-	pkgName      string
-
 	// TODO add option to check if a struct or map is nil/empty by appending an extra null byte \0x0 ?
 	// If the null byte wasn't there - how would the Read functions know if there was an unexpected
 	// end of buffer vs the struct/map was empty?
@@ -52,12 +47,8 @@ func LoadOptions(opts ...Option) (o Option) {
 		o = opts[0]
 	}
 
-	pkgPath := reflect.TypeOf(o).PkgPath()
-	o.pkgName = filepath.Base(pkgPath)
-	o.importPrefix = strings.TrimSuffix(pkgPath, o.pkgName)
-
 	if o.MaxDefaultStrSize == 0 {
-		o.MaxDefaultStrSize = MaxUint24
+		o.MaxDefaultStrSize = jay.MaxUint24
 	}
 
 	if o.MaxIntegerSize == Auto || o.MaxIntegerSize > Bit32 && o.MaxIntegerSize < Bit64 {

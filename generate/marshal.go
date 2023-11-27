@@ -1,8 +1,9 @@
-package jay
+package generate
 
 import (
 	"bytes"
 	"fmt"
+	"github.com/speedyhoon/jay"
 	"log"
 	"reflect"
 	"runtime"
@@ -86,7 +87,7 @@ func WriteBools(bools []field, b *bytes.Buffer, o Option, byteIndex *uint, recei
 		bools = bools[:8]
 	}
 
-	b.WriteString(fmt.Sprintf("b[%d] = %s.Bool%d(%s)\n", *byteIndex, o.pkgName, len(bools), fieldNames(bools, receiver)))
+	b.WriteString(fmt.Sprintf("b[%d] = %s.Bool%d(%s)\n", *byteIndex, pkgName, len(bools), fieldNames(bools, receiver)))
 
 	*byteIndex++
 }
@@ -252,7 +253,7 @@ func printFunc(fun string, params ...string) string {
 	default:
 		return strings.TrimPrefix(
 			runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
-			importPrefix, // TODO replace with: filepath.Dir(get package path during run time)
+			pkgPrefix,
 		)
 	}
 }*/
@@ -265,43 +266,43 @@ func (o Option) typeFuncs(typ string) (_ string, size uint) {
 	case "int8":
 		return "byte", 1
 	case "bool":
-		f, size = Bool1, 1
+		f, size = jay.Bool1, 1
 	case "string":
-		f, size = WriteStringN, 0
+		f, size = jay.WriteStringN, 0
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
-				f, size = WriteIntArch32, 4
+				f, size = jay.WriteIntArch32, 4
 			}
-			f, size = WriteIntArch64, 8
+			f, size = jay.WriteIntArch64, 8
 			break
 		}
-		f, size = WriteIntVariable, 0
+		f, size = jay.WriteIntVariable, 0
 	case "int16":
-		f, size = WriteInt16, 2
+		f, size = jay.WriteInt16, 2
 	case "int32", "rune":
-		f, size = WriteInt32, 4
+		f, size = jay.WriteInt32, 4
 	case "float32":
-		f, size = WriteFloat32, 4
+		f, size = jay.WriteFloat32, 4
 	case "float64":
-		f, size = WriteFloat64, 8
+		f, size = jay.WriteFloat64, 8
 	case "int64":
-		f, size = WriteInt64, 8
+		f, size = jay.WriteInt64, 8
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {
-				f, size = WriteUintArch32, 4
+				f, size = jay.WriteUintArch32, 4
 			}
-			f, size = WriteUintArch64, 8
+			f, size = jay.WriteUintArch64, 8
 			break
 		}
-		f, size = WriteUintVariable, 0
+		f, size = jay.WriteUintVariable, 0
 	case "uint16":
-		f, size = WriteUint16, 2
+		f, size = jay.WriteUint16, 2
 	case "uint32":
-		f, size = WriteUint32, 4
+		f, size = jay.WriteUint32, 4
 	case "uint64":
-		f, size = WriteUint64, 8
+		f, size = jay.WriteUint64, 8
 	case "struct":
 		return "MarshalJTo", 0
 
@@ -312,7 +313,7 @@ func (o Option) typeFuncs(typ string) (_ string, size uint) {
 
 	return strings.TrimPrefix(
 		runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
-		o.importPrefix,
+		pkgPrefix,
 	), size
 }
 

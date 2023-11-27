@@ -1,7 +1,7 @@
-package jay_test
+package generate_test
 
 import (
-	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/jay/generate"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -20,6 +20,6 @@ func TestBoolsSliceIndex(t *testing.T) {
 		65: 64, 66: 64, 67: 64, 68: 64, 69: 64, 70: 64, 71: 64, 72: 64,
 	}
 	for input, expected := range tests {
-		assert.Equal(t, expected, jay.BoolsSliceIndex(input), "input: %d", input)
+		assert.Equal(t, expected, generate.BoolsSliceIndex(input), "input: %d", input)
 	}
 }

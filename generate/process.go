@@ -1,4 +1,4 @@
-package jay
+package generate
 
 import (
 	"errors"
@@ -51,7 +51,7 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 	var list []Struct
 	ast.Walk(visitor{structs: &list, option: opt}, f)
 
-	src, err = GenerateFile(f.Name.Name, list, opt)
+	src, err = generateFile(f.Name.Name, list, opt)
 
 	// Nicely format the generated Go code.
 	var bb []byte

@@ -1,6 +1,7 @@
-package jay
+package generate
 
 import (
+	"github.com/speedyhoon/jay"
 	"log"
 	"strconv"
 	"strings"
@@ -27,25 +28,25 @@ func byteSize(v uint) uint {
 	if v == 0 {
 		return 0
 	}
-	if v <= MaxUint8 {
+	if v <= jay.MaxUint8 {
 		return 1
 	}
-	if v <= MaxUint16 {
+	if v <= jay.MaxUint16 {
 		return 2
 	}
-	if v <= MaxUint24 {
+	if v <= jay.MaxUint24 {
 		return 3
 	}
-	if v <= MaxUint32 {
+	if v <= jay.MaxUint32 {
 		return 4
 	}
-	if v <= MaxUint40 {
+	if v <= jay.MaxUint40 {
 		return 5
 	}
-	if v <= MaxUint48 {
+	if v <= jay.MaxUint48 {
 		return 6
 	}
-	if v <= MaxUint56 {
+	if v <= jay.MaxUint56 {
 		return 7
 	}
 	return 8

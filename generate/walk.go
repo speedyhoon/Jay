@@ -1,4 +1,4 @@
-package jay
+package generate
 
 import (
 	"go/ast"
@@ -27,7 +27,7 @@ type field struct {
 
 type tagOptions struct {
 	// The maximum and minimum value expected in the variable.
-	// Any value out of this range isn't guaranteed to be marshaled or unmarshaled correctly.
+	// Any value out of this range isn't guaranteed to be marshalled or unmarshaled correctly.
 	Max, Min uint
 
 	maxBytes uint

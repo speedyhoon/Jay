@@ -1,4 +1,4 @@
-package jay
+package generate
 
 import (
 	"go/ast"
