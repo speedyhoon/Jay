@@ -13,13 +13,9 @@ var (
 
 var ErrNoneExported = errors.New("no exported struct fields found")
 
-func (s *Struct) generateFuncs(b *bytes.Buffer, o Option) {
-	s.MakeMarshalJ(b)
-	s.MakeMarshalJX(b, o)
-	s.MakeMarshalJTo(o, b)
-	s.MakeSize(b)
-	s.MakeUnmarshal(o, b)
-}
+// ErrUnexpectedEOB indicates the end of the byte slice was unexpectedly encountered
+// while deserialising a fixed-size block, resulting in an incomplete result.
+var ErrUnexpectedEOB = errors.New("unexpected EOB")
 
 func generateFile(pkg string, s []Struct, option Option) ([]byte, error) {
 	buf := bytes.NewBuffer(nil)
@@ -42,4 +38,12 @@ import "%s"
 	%s`, pkg, pkgPrefix+pkgName, src))
 
 	return src, nil
+}
+
+func (s *Struct) generateFuncs(b *bytes.Buffer, o Option) {
+	s.MakeMarshalJ(b)
+	s.MakeMarshalJX(b, o)
+	s.MakeMarshalJTo(o, b)
+	s.MakeSize(b)
+	s.MakeUnmarshal(o, b)
 }
