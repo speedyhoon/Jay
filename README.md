@@ -7,11 +7,11 @@ is an alternative to [JSON](), [Protocol Buffers](), [MessagePack]() and [Bebop]
 
 ##### Pros:
 
-* Fastest Go serialization and deserialization binary format.
+* Fastest Go serialisation and deserialization binary format.
 * No custom language to learn. Jay uses Go's built in [`ast`](https://pkg.go.dev) to find the exported structs you want
   in your existing codebase.
 * No hassles between client and server. Generate the code once and share _(via a Go module or copy-paste)_.
-* Options to generate code optimized for:
+* Options to generate code optimised for:
 	* Least network bandwidth used _(10/100 networks)_ **OR**
 	* Processing more requests per second _(higher CPU throughput)_.
 * Doesn't introduce extra dependencies.
@@ -33,14 +33,11 @@ GM45 GPU)_.
 
 1. Execute the command line tool and specify which `.go` file contains the exported structs.
 	For example, `type Car struct` is located within `main.go`.
-
-```shell
-cd <<my_project>>
-jay main.go
-```
-
+	```shell
+	cd <<my_project>>
+	jay main.go
+	```
 2. Jay will then generate methods `MarshalJ` and `UnmarshalJ` in `jay.go` (the default output file).
-
 3. The new methods can then be used. For example:
 
 ```go
