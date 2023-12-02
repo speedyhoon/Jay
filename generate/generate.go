@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-var (
+const (
 	pkgName   = "jay"
 	pkgPrefix = "github.com/speedyhoon/"
 )
