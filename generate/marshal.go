@@ -37,9 +37,7 @@ func (s *Struct) MakeMarshalJX(b *bytes.Buffer, o Option) {
 	))
 
 	var byteIndex uint
-	if len(s.bool) != 0 {
-		s.generateBools(s.bool, b, &byteIndex, receiver)
-	}
+	s.generateBools(b, &byteIndex, receiver)
 
 	for _, f := range s.fixedLen {
 		b.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0))
@@ -68,29 +66,6 @@ func (s *Struct) MakeMarshalJX(b *bytes.Buffer, o Option) {
 	b.WriteString("}\n")
 }
 
-func (s *Struct) generateBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
-	var i, l uint = 0, uint(len(s.bool) / 8)
-	for ; i <= l; i++ {
-		WriteBools(bools[BoolsSliceIndex(i):], b, byteIndex, receiver)
-	}
-}
-
-func BoolsSliceIndex(input uint) uint {
-	if input == 0 {
-		return 0
-	}
-	return ((input-1)/8+1)*8 - 8
-}
-
-func WriteBools(bools []field, b *bytes.Buffer, byteIndex *uint, receiver string) {
-	if len(bools) > 8 {
-		bools = bools[:8]
-	}
-
-	b.WriteString(fmt.Sprintf("b[%d] = %s.Bool%d(%s)\n", *byteIndex, pkgName, len(bools), fieldNames(bools, receiver)))
-
-	*byteIndex++
-}
 func fieldNames(fields []field, receiver string) string {
 	var s []string
 	for i := range fields {
@@ -110,9 +85,7 @@ func (s *Struct) MakeMarshalJTo(o Option, b *bytes.Buffer) {
 	))
 
 	var byteIndex uint
-	if len(s.bool) != 0 {
-		s.generateBools(s.bool, b, &byteIndex, receiver)
-	}
+	s.generateBools(b, &byteIndex, receiver)
 
 	for _, f := range s.fixedLen {
 		b.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0))
@@ -265,8 +238,6 @@ func (o Option) typeFuncs(typ string) (_ string, size uint) {
 		return "", 1
 	case "int8":
 		return "byte", 1
-	case "bool":
-		f, size = jay.Bool1, 1
 	case "string":
 		f, size = jay.WriteStringN, 0
 	case "int":
