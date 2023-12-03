@@ -11,25 +11,14 @@ import (
 	"strings"
 )
 
-// MakeMarshalJ ...
-func (s *Struct) MakeMarshalJ(b *bytes.Buffer) {
-	b.WriteString(fmt.Sprintf(
-		`func (%s *%s) MarshalJ() (b []byte) {
-	b = make([]byte, %[1]s.SizeJ())
-	%[1]s.MarshalJTo(b)
-	return b
-}
-`,
-		s.ReceiverName(),
-		s.name,
-	))
-}
+// TODO add support for pointers with all types.
+// TODO add support for enums with restricted sizes like: buf[1] = WriteEnum44(e.Enum1, e.Enum2)
 
-// MakeMarshalJX ...
-func (s *Struct) MakeMarshalJX(b *bytes.Buffer, o Option) {
+// MakeMarshalJ ...
+func (s *Struct) MakeMarshalJ(b *bytes.Buffer, o Option) {
 	receiver := s.ReceiverName()
 	b.WriteString(fmt.Sprintf(
-		"func (%s *%s) MarshalJX() {\n%s\nb := make([]byte, %s)\n",
+		"func (%s *%s) MarshalJ() (b []byte) {\n%s\nb = make([]byte, %s)\n",
 		receiver,
 		s.name,
 		lengths2(s.varLenFieldNames(), receiver),
@@ -39,8 +28,8 @@ func (s *Struct) MakeMarshalJX(b *bytes.Buffer, o Option) {
 	var byteIndex uint
 	s.generateBools(b, &byteIndex, receiver)
 
-	for _, f := range s.fixedLen {
-		b.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0))
+	for i, f := range s.fixedLen {
+		b.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0))
 		b.WriteString("\n")
 	}
 
@@ -59,11 +48,11 @@ func (s *Struct) MakeMarshalJX(b *bytes.Buffer, o Option) {
 			}
 		}
 
-		b.WriteString(o.generateLine(f, &byteIndex, receiver, at, uint(i)))
+		b.WriteString(o.generateLine(f, &byteIndex, receiver, at, uint(i), i == vLen))
 		b.WriteString("\n")
 	}
 
-	b.WriteString("}\n")
+	b.WriteString("return\n}\n")
 }
 
 func fieldNames(fields []field, receiver string) string {
@@ -74,48 +63,8 @@ func fieldNames(fields []field, receiver string) string {
 	return strings.Join(s, ", ")
 }
 
-// MakeMarshalJTo ...
-func (s *Struct) MakeMarshalJTo(o Option, b *bytes.Buffer) {
-	receiver := s.ReceiverName()
-	b.WriteString(fmt.Sprintf(
-		"func (%s *%s) MarshalJTo(b []byte) {\n%s",
-		receiver,
-		s.name,
-		lengths2(s.varLenFieldNames(), receiver),
-	))
-
-	var byteIndex uint
-	s.generateBools(b, &byteIndex, receiver)
-
-	for _, f := range s.fixedLen {
-		b.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0))
-		b.WriteString("\n")
-	}
-
-	at := Utoa(byteIndex)
-	vLen := len(s.variableLen) - 1
-	for i, f := range s.variableLen {
-		if i == 1 {
-			at = "at"
-		}
-		if i != vLen {
-			switch i {
-			case 0:
-				b.WriteString("at:=")
-			default:
-				b.WriteString("at=")
-			}
-		}
-
-		b.WriteString(o.generateLine(f, &byteIndex, receiver, at, uint(i)))
-		b.WriteString("\n")
-	}
-
-	b.WriteString("}\n")
-}
-
-func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, index uint) string {
-	fun, size := o.typeFuncs(f.typ)
+func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, index uint, isLast bool) string {
+	fun, size := o.typeFuncs(f.typ, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
 		log.Printf("no generateLine for type `%s` yet", f.typ)
@@ -149,10 +98,11 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 			return fmt.Sprintf("%s.%s", thisField, printFunc(fun, slice))
 		}
 
-		//at := 12
-		//	at = jay.WriteStringN(b[at:at+l1+1], c.Name, l1, at)
-
-		return printFunc(fun, slice, thisField, "l"+Utoa(index), idx)
+		if !isLast {
+			return printFunc(fun, slice, thisField, "l"+Utoa(index), idx)
+		} else {
+			return printFunc(fun, slice, thisField, "l"+Utoa(index))
+		}
 	}
 
 	/*switch f.typ {
@@ -173,21 +123,9 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 		//return fmt.Sprintf("%s(b%s, %s)", o.marshalFunc(f.typ, thisField), slice, thisField)
 		//return fmt.Sprintf("%s", o.marshalFunc(f.typ, slice, thisField, "l1"))
 		return o.marshalFunc(f.typ, slice, thisField, "l1")
-
-	case "struct":
-		return fmt.Sprintf("%s.MarshalJTo(%s)", thisField, buffer)
 	}
 	return ""*/
 }
-
-/*func lookupMarshaller(f *field) bool {
-	switch f.typ {
-	case "uint64":
-		marshalU64(f)
-		return true
-	}
-	return false
-}*/
 
 /*func marshalU64(f *field) (fun string, sizeOf uint, ok bool) {
 	if f.tagOptions.maxBytes != 0 {
@@ -204,34 +142,11 @@ func printFunc(fun string, params ...string) string {
 	if fun == "" {
 		return strings.Join(params, ", ")
 	}
-	b := fmt.Sprintf("%s(%s)" /*getFuncName(*/, fun /*)*/, strings.Join(params, ", "))
+	b := fmt.Sprintf("%s(%s)", fun, strings.Join(params, ", "))
 	return b
 }
 
-/*func (o Option) marshalFunc(typ string, params ...string) string {
-	//switch typ {
-	//case "byte", "uint8":
-	//	return strings.Join(params, ", ")
-	//default:
-	return fmt.Sprintf("%s(%s)", getFuncName(o.typeFuncs(typ)), strings.Join(params, ", "))
-	//}
-}*/
-
-/*func getFuncName(f interface{}) string {
-	switch s := f.(type) {
-	case string:
-		return s
-	case nil:
-		return ""
-	default:
-		return strings.TrimPrefix(
-			runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
-			pkgPrefix,
-		)
-	}
-}*/
-
-func (o Option) typeFuncs(typ string) (_ string, size uint) {
+func (o Option) typeFuncs(typ string, isLast bool) (_ string, size uint) {
 	var f interface{}
 	switch typ {
 	case "byte", "uint8":
@@ -239,7 +154,11 @@ func (o Option) typeFuncs(typ string) (_ string, size uint) {
 	case "int8":
 		return "byte", 1
 	case "string":
-		f, size = jay.WriteStringN, 0
+		if isLast {
+			f, size = jay.WriteString, 0
+		} else {
+			f, size = jay.WriteStringAt, 0
+		}
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
@@ -274,8 +193,6 @@ func (o Option) typeFuncs(typ string) (_ string, size uint) {
 		f, size = jay.WriteUint32, 4
 	case "uint64":
 		f, size = jay.WriteUint64, 8
-	case "struct":
-		return "MarshalJTo", 0
 
 	default:
 		log.Printf("not function set for type %s yet", typ)
@@ -287,23 +204,3 @@ func (o Option) typeFuncs(typ string) (_ string, size uint) {
 		pkgPrefix,
 	), size
 }
-
-/*
-func (e *Event) MarshalZTo(buf []byte) {
-	//Bool1(buf[:1], e.Auto)
-	//Bool1(buf[1:2], e.MOT)
-	//WriteBoo2(buf[0], e.Auto)
-	//WriteBoo2(buf[1], e.MOT)
-	//buf[0] = WriteBoo3(e.Auto)
-	//buf[1] = WriteBoo3(e.MOT)
-
-	buf[0] = WriteBoo5(e.Auto, e.MOT, e.ABS, e.TCS)
-	buf[1] = WriteEnum44(e.Enum1, e.Enum2)
-
-	at := 10
-	WriteUint64(buf[1:at], e.ID) // 0-7
-	at = WriteString(buf, at, &e.Name)
-	at = WriteString(buf, at, &e.CC)
-	WriteString(buf, at, &e.Timing)
-}
-*/

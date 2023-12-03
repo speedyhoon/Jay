@@ -82,7 +82,7 @@ func lengths2(names []string, receiver string) string {
 
 	receiver = fmt.Sprintf("len(%s.", receiver)
 	declarations := strings.Join(decls(len(names)), ", ")
-	return fmt.Sprintf("%s := %s%s)\n",
+	return fmt.Sprintf("%s := %s%s)",
 		declarations,
 		receiver,
 		strings.Join(names, "),"+receiver),

@@ -9,7 +9,7 @@ func WriteString(y []byte, s string, length int) {
 	}
 }
 
-func WriteStringN(y []byte, s string, length, at int) int {
+func WriteStringAt(y []byte, s string, length, at int) int {
 	y[0] = byte(length) // Set how long the string is.
 	if length != 0 {
 		copy(y[strSizeOf:length+strSizeOf], s)

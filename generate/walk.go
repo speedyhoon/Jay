@@ -33,15 +33,17 @@ type tagOptions struct {
 	maxBytes uint
 }
 
-// Visit traverses the AST File.
+// Visit traverses the AST File and finds all structs even if they are unexported.
+// Unexported structs can be exported if they are referenced in exported structs with exported field names.
+// For example, type Cow struct { Id id }
 func (v visitor) Visit(node ast.Node) ast.Visitor {
 	switch n := node.(type) {
 	case *ast.TypeSpec:
-		if n.Name != nil && ast.IsExported(n.Name.Name) {
+		if n.Name != nil {
 			v.enclosing = n.Name.Name
 		}
 	case *ast.StructType:
-		if n.Fields == nil || len(n.Fields.List) == 0 || !ast.IsExported(v.enclosing) {
+		if n.Fields == nil || len(n.Fields.List) == 0 {
 			return v
 		}
 
