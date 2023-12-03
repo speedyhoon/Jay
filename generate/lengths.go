@@ -82,7 +82,11 @@ func lengths2(names []string, receiver string) string {
 
 	receiver = fmt.Sprintf("len(%s.", receiver)
 	declarations := strings.Join(decls(len(names)), ", ")
-	return declarations + ":=" + receiver + strings.Join(names, "),"+receiver) + ")\n"
+	return fmt.Sprintf("%s := %s%s)\n",
+		declarations,
+		receiver,
+		strings.Join(names, "),"+receiver),
+	)
 }
 
 func decls(u int) (s []string) {
@@ -93,11 +97,6 @@ func decls(u int) (s []string) {
 }
 
 func addDecls(u int) string {
-	//var s []string
-	//for i := 0; i < u; i++ {
-	//	s = append(s, "l"+strconv.Itoa(i))
-	//}
-
 	return strings.Join(decls(u), "+")
 }
 
@@ -106,7 +105,9 @@ func structs2(names []string, receiver string) string {
 		return ""
 	}
 
-	//receiver = fmt.Sprintf(".SizeJ()+%s.", receiver)
-	return "+" + receiver + "." + strings.Join(names, ".SizeJ()+"+receiver+".") + ".SizeJ()"
-	//+c.Wheels.SizeJ()+c.Gearbox.SizeJ()+c.Roof.SizeJ()
+	return fmt.Sprintf(
+		"+ %s.%s.SizeJ()",
+		receiver,
+		strings.Join(names, ".SizeJ()+"+receiver+"."),
+	)
 }
