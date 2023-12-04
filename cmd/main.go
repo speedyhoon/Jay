@@ -1,49 +1,72 @@
 package main
 
 import (
+	"flag"
 	"github.com/speedyhoon/jay/generate"
 	"log"
+	"os"
+	"path/filepath"
 )
-
-// TODO support processing a whole directory
 
 func main() {
 	log.SetFlags(log.Lshortfile)
+	var opt generate.Option
+	var outputFile string
 
-	//instance := Car{ID: 42, Name: "Hello"}
-	//byt, _ := json.Marshal(instance)
-	//log.Printf("%s\n", byt)
+	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints.")
+	flag.BoolVar(&opt.FixedIntSize, "fi", true, "Fixed int size.")
+	flag.BoolVar(&opt.FixedUintSize, "fu", true, "Fixed uint size.")
+	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
+	flag.Parse()
+	paths := flag.Args()
 
-	//src, err := generate.ProcessFile("cmd/main.go", nil)
-	//log.Printf("src output:\n%s", src)
-	// TODO add filename as cmdline flag
-	err := generate.ProcessWrite("example/main.go", nil, generate.Option{
-		FixedIntSize:  true,
-		FixedUintSize: true,
+	if len(paths) == 0 {
+		paths = []string{"."}
+	}
+
+	for _, path := range paths {
+		path = filepath.Clean(path)
+		if path == "" {
+			path = "."
+		}
+
+		if isDir(path) {
+			walkDir(path, outputFile, opt)
+		} else {
+			process(path, outputFile, opt)
+		}
+	}
+}
+
+func isDir(path string) bool {
+	f, err := os.Open(path)
+	if err != nil {
+		return false
+	}
+
+	fs, err := f.Stat()
+	if err != nil {
+		return false
+	}
+
+	return fs.IsDir()
+}
+
+func walkDir(path, out string, opt generate.Option) {
+	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
+		if info != nil && !info.IsDir() {
+			process(path, out, opt)
+		}
+		return nil
 	})
 	if err != nil {
 		log.Println(err)
 	}
 }
 
-//func main() {
-/*instance := Car{ID: 42, Name: "Hello"}
-
-// Get the type of the struct
-structType := reflect.TypeOf(instance)
-
-
-println(gg)
-// Loop through the fields of the struct
-for i := 0; i < structType.NumField(); i++ {
-	field := structType.Field(i)
-
-	// Get the tags for the field
-	jsonTag := field.Tag.Get("json")
-	customTag := field.Tag.Get("customTag")
-
-	// Print the tags
-	fmt.Printf("Field %s: json=%s, customTag=%s\n", field.Name, jsonTag, customTag)
-}*/
-
-//return
+func process(path, out string, opt generate.Option) {
+	err := generate.ProcessWrite(path, nil, out, opt)
+	if err != nil {
+		log.Println(err)
+	}
+}

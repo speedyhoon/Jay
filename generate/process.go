@@ -20,10 +20,8 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 		return nil, errors.New("no filename or source provided")
 	}
 
-	if filename != "" {
-		if !strings.HasSuffix(filename, ".go") /*|| strings.HasPrefix(filename, ".")*/ {
-			return nil, fmt.Errorf("`%s` does not contain a Go file extension", filename)
-		}
+	if filename != "" && !isGoFileName(filename) {
+		return nil, fmt.Errorf("`%s` does not contain a Go file extension", filename)
 	}
 
 	//f, err := decorator.NewDecorator(token.NewFileSet()).ParseFile(filename, source, parser.ParseComments)
@@ -52,6 +50,9 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 	ast.Walk(visitor{structs: &list, option: opt}, f)
 
 	src, err = generateFile(f.Name.Name, list, opt)
+	if len(src) == 0 {
+		return
+	}
 
 	// Nicely format the generated Go code.
 	var bb []byte
@@ -65,13 +66,18 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 	return bb, err
 }
 
-func ProcessWrite(filename string, source interface{}, opts ...Option) (err error) {
+// ProcessWrite processes a file and writes to outputFile.
+func ProcessWrite(filename string, source interface{}, outputFile string, opts ...Option) (err error) {
 	src, err := ProcessFile(filename, source, opts...)
 	if err != nil {
 		return err
 	}
 
-	err = os.WriteFile(filepath.Join(filepath.Dir(filename), "jay.go"), src, 0666)
+	if outputFile == "" {
+		outputFile = DefaultOutputFileName
+	}
+
+	err = os.WriteFile(filepath.Join(filepath.Dir(filename), outputFile), src, 0666)
 	if err != nil {
 		return err
 	}
@@ -157,4 +163,8 @@ func onlyExportedNames(names ...*ast.Ident) []*ast.Ident {
 	}
 
 	return names
+}
+
+func isGoFileName(path string) bool {
+	return strings.HasSuffix(strings.ToLower(path), goExt)
 }

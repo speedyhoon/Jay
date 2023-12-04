@@ -9,8 +9,11 @@ import (
 )
 
 const (
-	pkgName   = "jay"
-	pkgPrefix = "github.com/speedyhoon/"
+	pkgName               = "jay"
+	pkgPrefix             = "github.com/speedyhoon/"
+	goExt                 = ".go"
+	DefaultOutputFileName = pkgName + goExt
+	IntSize               = 32 << (^uint(0) >> 63) // 32 or 64
 )
 
 var ErrNoneExported = errors.New("no exported struct fields found")

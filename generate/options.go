@@ -1,17 +1,21 @@
 package generate
 
 import (
+	"fmt"
 	"github.com/speedyhoon/jay"
 )
 
 const (
-	Auto uint8 = iota * 32
+	Auto = MaxSize(iota * 32)
 	Bit32
 	Bit64
 )
 
+type MaxSize uint8
+
 type Option struct {
-	MaxIntegerSize uint8
+	MaxIntSize  MaxSize
+	MaxUintSize MaxSize
 
 	Is32bit bool
 
@@ -21,7 +25,7 @@ type Option struct {
 	// Maximum: MaxUint24 (16 Megabytes).
 	// To override the default for a field use: `j:"max:4030"` for 4,030 bytes.
 	// The smallest value is the most optimal for performance.
-	MaxDefaultStrSize uint32
+	MaxDefaultStrSize uint
 
 	// MaxUint16 = 64 kilobytes,
 	// MaxUint24 = 16 Megabytes,
@@ -33,13 +37,22 @@ type Option struct {
 	FixedIntSize bool
 
 	// Whether unsigned integers be a fixed length (4 bytes 32-bit, or 8 bytes 64-bit) or vary in length depending on the value provided.
-	// true = Highest CPU serialization/deserialization throughput,
+	// True = Highest CPU serialization/deserialization throughput,
 	// false = Least bandwidth used.
 	FixedUintSize bool
 
 	// TODO add option to check if a struct or map is nil/empty by appending an extra null byte \0x0 ?
 	// If the null byte wasn't there - how would the Read functions know if there was an unexpected
 	// end of buffer vs the struct/map was empty?
+}
+
+func (m *MaxSize) Set(value *uint) error {
+	if *value > 8 {
+		return fmt.Errorf("value is greater than 8. Expected 1 - 8, got %d", *value)
+	}
+
+	*m = MaxSize(*value)
+	return nil
 }
 
 func LoadOptions(opts ...Option) (o Option) {
@@ -51,18 +64,18 @@ func LoadOptions(opts ...Option) (o Option) {
 		o.MaxDefaultStrSize = jay.MaxUint24
 	}
 
-	if o.MaxIntegerSize == Auto || o.MaxIntegerSize > Bit32 && o.MaxIntegerSize < Bit64 {
-		o.MaxIntegerSize = 32 << (^uint(0) >> 63) // 32 or 64
+	if o.MaxIntSize == Auto || o.MaxIntSize > Bit32 && o.MaxIntSize < Bit64 {
+		o.MaxIntSize = 32 << (^uint(0) >> 63) // 32 or 64
 		return
 	}
 
-	if o.MaxIntegerSize > Bit64 {
-		o.MaxIntegerSize = Bit64
+	if o.MaxIntSize > Bit64 {
+		o.MaxIntSize = Bit64
 		return
 	}
 
-	if o.MaxIntegerSize < Bit32 {
-		o.MaxIntegerSize = Bit32
+	if o.MaxIntSize < Bit32 {
+		o.MaxIntSize = Bit32
 	}
 	return
 }
