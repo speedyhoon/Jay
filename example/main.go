@@ -6,8 +6,7 @@ import (
 
 func main() {
 	log.SetFlags(log.Lshortfile)
-
-	car := Car{ID: 42, Auto: true, RedLine: 10530, Name: "Hello", Gearbox: Gearbox{
+	car := Car{ID: 42, Auto: true, RedLine: 10530, Name: "Hello", Gearbox: gearbox{
 		Gears:        4,
 		Reverse:      1,
 		Sequential:   true,
@@ -38,11 +37,11 @@ type Car struct {
 	CC      string `z:",omitempty"`
 	Timing  string `z:",omitempty" j:"max:24"`
 	RedLine uint16
-	Gearbox
+	Gearbox gearbox
 }
 
-// Gearbox length = 4 + 1 + 1+ 1+ 1+ len.Model + 1 + len.Make
-type Gearbox struct {
+// gearbox length = 4 + 1 + 1+ 1+ 1+ len.Model + 1 + len.Make
+type gearbox struct {
 	Gears        int
 	Reverse      uint8
 	Sequential   bool

@@ -17,20 +17,19 @@ import (
 // MakeMarshalJ ...
 func (s *Struct) MakeMarshalJ(b *bytes.Buffer, o Option) {
 	receiver := s.ReceiverName()
-	b.WriteString(fmt.Sprintf(
-		"func (%s *%s) MarshalJ() (b []byte) {\n%s\nb = make([]byte, %s)\n",
-		receiver,
-		s.name,
-		lengths2(s.varLenFieldNames(), receiver),
-		joinSizes(s.calcSize(o), s.variableLen),
-	))
+
+	varLengths := lengths2(s.varLenFieldNames(), receiver)
+	if varLengths == "" {
+		return
+	}
 
 	var byteIndex uint
-	s.generateBools(b, &byteIndex, receiver)
+	buf := bytes.NewBuffer(nil)
+	s.generateBools(buf, &byteIndex, receiver)
 
 	for i, f := range s.fixedLen {
-		b.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0))
-		b.WriteString("\n")
+		buf.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0))
+		buf.WriteString("\n")
 	}
 
 	at := Utoa(byteIndex)
@@ -42,17 +41,29 @@ func (s *Struct) MakeMarshalJ(b *bytes.Buffer, o Option) {
 		if i != vLen {
 			switch i {
 			case 0:
-				b.WriteString("at:=")
+				buf.WriteString("at:=")
 			default:
-				b.WriteString("at=")
+				buf.WriteString("at=")
 			}
 		}
 
-		b.WriteString(o.generateLine(f, &byteIndex, receiver, at, uint(i), i == vLen))
-		b.WriteString("\n")
+		buf.WriteString(o.generateLine(f, &byteIndex, receiver, at, uint(i), i == vLen))
+		buf.WriteString("\n")
 	}
 
-	b.WriteString("return\n}\n")
+	code := buf.Bytes()
+	if len(code) == 0 {
+		return
+	}
+
+	b.WriteString(fmt.Sprintf(
+		"func (%s *%s) MarshalJ() (b []byte) {\n%s\nb = make([]byte, %s)\n%s\nreturn\n}\n",
+		receiver,
+		s.name,
+		varLengths,
+		joinSizes(s.calcSize(o), s.variableLen),
+		code,
+	))
 }
 
 func fieldNames(fields []field, receiver string) string {
