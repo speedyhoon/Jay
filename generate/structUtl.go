@@ -12,6 +12,7 @@ import (
 const (
 	StructTagName = "j"
 	IgnoreFlag    = "-"
+	tagSymbol     = '`'
 )
 
 // getTag returns the value associated with key "j" in the tag string.
@@ -29,7 +30,6 @@ func getTag(b *ast.BasicLit) string {
 
 // unwrapTagValue removes the leading and trailing grave (`) if present.
 func unwrapTagValue(str string) string {
-	const tagSymbol = '`'
 	if len(str) >= 2 && str[0] == tagSymbol && str[len(str)-1] == tagSymbol {
 		return str[1 : len(str)-1]
 	}
@@ -42,7 +42,7 @@ func (s *Struct) ReceiverName() string {
 
 func supportedType(typ string) bool {
 	switch typ {
-	case "bool", "byte" /*"float32","float64",*/, "int", "int8", "int16", "int32", "int64", "rune", "string", "uint", "uint8", "uint16", "uint32", "uint64":
+	case "bool", "byte", "float32", "float64", "int", "int8", "int16", "int32", "int64", "rune", "string", "uint", "uint8", "uint16", "uint32", "uint64":
 		return true
 	}
 	return false
