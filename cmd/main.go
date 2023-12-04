@@ -5,6 +5,8 @@ import (
 	"log"
 )
 
+// TODO support processing a whole directory
+
 func main() {
 	log.SetFlags(log.Lshortfile)
 

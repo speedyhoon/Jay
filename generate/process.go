@@ -66,7 +66,6 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 }
 
 func ProcessWrite(filename string, source interface{}, opts ...Option) (err error) {
-	// TODO support processing a whole directory
 	src, err := ProcessFile(filename, source, opts...)
 	if err != nil {
 		return err
