@@ -8,17 +8,19 @@ import (
 	"go/token"
 	"io"
 	"log"
-	"mvdan.cc/gofumpt/format"
 	"os"
 	"path/filepath"
-	"runtime"
 	"strings"
 )
+
+var list []Struct
 
 func ProcessFile(filename string, source interface{}, opts ...Option) (src []byte, err error) {
 	if filename == "" && source == nil {
 		return nil, errors.New("no filename or source provided")
 	}
+
+	opt := LoadOptions(opts...)
 
 	if filename != "" && !isGoFileName(filename) {
 		return nil, fmt.Errorf("`%s` does not contain a Go file extension", filename)
@@ -44,26 +46,12 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 	//	opt.Load()
 	//}
 
-	opt := LoadOptions(opts...)
-
-	var list []Struct
 	ast.Walk(visitor{structs: &list, option: opt}, f)
 
 	src, err = generateFile(f.Name.Name, list, opt)
-	if len(src) == 0 {
-		return
-	}
-
-	// Nicely format the generated Go code.
-	var bb []byte
-	bb, err = format.Source(src, format.Options{
-		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
-		ExtraRules:  true,
-	})
-	if err != nil {
-		return bb, err
-	}
-	return bb, err
+	//if len(src) == 0 {
+	return
+	//}
 }
 
 // ProcessWrite processes a file and writes to outputFile.

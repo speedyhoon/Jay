@@ -44,6 +44,9 @@ type Option struct {
 	// TODO add option to check if a struct or map is nil/empty by appending an extra null byte \0x0 ?
 	// If the null byte wasn't there - how would the Read functions know if there was an unexpected
 	// end of buffer vs the struct/map was empty?
+
+	Verbose  bool
+	IncTests bool
 }
 
 func (m *MaxSize) Set(value *uint) error {

@@ -3,10 +3,16 @@ package main
 import (
 	"flag"
 	"github.com/speedyhoon/jay/generate"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
+
+const testSuffix = "_test.go"
+
+var verbose = log.New(io.Discard, "", log.Lshortfile)
 
 func main() {
 	log.SetFlags(log.Lshortfile)
@@ -17,8 +23,14 @@ func main() {
 	flag.BoolVar(&opt.FixedIntSize, "fi", true, "Fixed int size.")
 	flag.BoolVar(&opt.FixedUintSize, "fu", true, "Fixed uint size.")
 	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
+	flag.BoolVar(&opt.Verbose, "v", false, "Verbose output.")
+	flag.BoolVar(&opt.IncTests, "t", false, "Include Go test files.")
 	flag.Parse()
 	paths := flag.Args()
+
+	if opt.Verbose {
+		verbose.SetOutput(os.Stdout)
+	}
 
 	if len(paths) == 0 {
 		paths = []string{"."}
@@ -38,23 +50,15 @@ func main() {
 	}
 }
 
-func isDir(path string) bool {
-	f, err := os.Open(path)
-	if err != nil {
-		return false
-	}
-
-	fs, err := f.Stat()
-	if err != nil {
-		return false
-	}
-
-	return fs.IsDir()
-}
-
 func walkDir(path, out string, opt generate.Option) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if info != nil && !info.IsDir() {
+			if !opt.IncTests && strings.HasSuffix(path, testSuffix) {
+				verbose.Println("ignoring test file", path)
+				return nil
+			}
+
+			verbose.Println("processing", path)
 			process(path, out, opt)
 		}
 		return nil
@@ -69,4 +73,18 @@ func process(path, out string, opt generate.Option) {
 	if err != nil {
 		log.Println(err)
 	}
+}
+
+func isDir(path string) bool {
+	f, err := os.Open(path)
+	if err != nil {
+		return false
+	}
+
+	fs, err := f.Stat()
+	if err != nil {
+		return false
+	}
+
+	return fs.IsDir()
 }

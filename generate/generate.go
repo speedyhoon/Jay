@@ -6,6 +6,9 @@ import (
 	"fmt"
 	"go/ast"
 	"log"
+	"mvdan.cc/gofumpt/format"
+	"runtime"
+	"strings"
 )
 
 const (
@@ -46,7 +49,17 @@ package %s
 import "%[1]s%[2]s"
 %[4]s`, pkgPrefix, pkgName, pkg, src))
 
-	return src, nil
+	// Nicely format the generated Go code.
+	var bb []byte
+	bb, err := format.Source(src, format.Options{
+		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
+		ExtraRules:  true,
+	})
+	if err != nil {
+		//log.Printf("errornous output:\n%s\n", src)
+		return src, err
+	}
+	return bb, nil
 }
 
 func (s *Struct) shouldMergeEmbeddedStructs(list []Struct) {
