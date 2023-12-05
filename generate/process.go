@@ -69,7 +69,7 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 // ProcessWrite processes a file and writes to outputFile.
 func ProcessWrite(filename string, source interface{}, outputFile string, opts ...Option) (err error) {
 	src, err := ProcessFile(filename, source, opts...)
-	if err != nil {
+	if err != nil || len(src) == 0 {
 		return err
 	}
 
