@@ -13,7 +13,50 @@ import (
 	"strings"
 )
 
-var list []Struct
+// ProcessFiles ...
+func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []byte, err error) {
+	if source == nil && len(filenames) == 0 {
+		return nil, errors.New("no filename or source provided")
+	}
+
+	*o = LoadOptions(*o)
+	var files []*ast.File
+	var f *ast.File
+
+	if source != nil {
+		f, err = ParseFile("", source)
+		if err != nil {
+			log.Println("source error:", err)
+		} else {
+			files = append(files, f)
+		}
+	}
+
+	for i := range filenames {
+		if !isGoFileName(filenames[i]) {
+			log.Printf("`%s` does not contain a Go file extension", filenames[i])
+			continue
+		}
+
+		f, err = ParseFile(filenames[i], nil)
+		if err != nil {
+			return
+		}
+		files = append(files, f)
+	}
+
+	var list []Struct
+	if len(files) == 0 {
+		return
+	}
+
+	for i := range files {
+		ast.Walk(visitor{structs: &list, option: *o}, files[i])
+	}
+
+	src, err = generateFile(files[0].Name.Name, list, *o)
+	return
+}
 
 func ProcessFile(filename string, source interface{}, opts ...Option) (src []byte, err error) {
 	if filename == "" && source == nil {
@@ -26,12 +69,6 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 		return nil, fmt.Errorf("`%s` does not contain a Go file extension", filename)
 	}
 
-	//f, err := decorator.NewDecorator(token.NewFileSet()).ParseFile(filename, source, parser.ParseComments)
-	//if err != nil {
-	//	return
-	//}
-
-	//fSet := token.NewFileSet()
 	f, err := parser.ParseFile(token.NewFileSet(), filename, source, parser.ParseComments|parser.AllErrors)
 	if err != nil {
 		return
@@ -46,34 +83,44 @@ func ProcessFile(filename string, source interface{}, opts ...Option) (src []byt
 	//	opt.Load()
 	//}
 
+	var list []Struct
 	ast.Walk(visitor{structs: &list, option: opt}, f)
 
 	src, err = generateFile(f.Name.Name, list, opt)
-	//if len(src) == 0 {
 	return
-	//}
+}
+
+func ParseFile(filename string, src interface{}) (f *ast.File, err error) {
+	f, err = parser.ParseFile(token.NewFileSet(), filename, src, parser.ParseComments|parser.AllErrors)
+	if err != nil {
+		return
+	}
+	if f == nil {
+		return nil, io.ErrUnexpectedEOF
+	}
+	return
 }
 
 // ProcessWrite processes a file and writes to outputFile.
-func ProcessWrite(filename string, source interface{}, outputFile string, opts ...Option) (err error) {
-	src, err := ProcessFile(filename, source, opts...)
+func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames ...string) (err error) {
+	src, err := o.ProcessFiles(source, filenames...)
 	if err != nil || len(src) == 0 {
 		return err
 	}
 
 	if outputFile == "" {
 		outputFile = DefaultOutputFileName
+
+		if len(filenames) != 0 {
+			outputFile = filepath.Join(filepath.Dir(filenames[0]), outputFile)
+		}
 	}
 
-	err = os.WriteFile(filepath.Join(filepath.Dir(filename), outputFile), src, 0666)
-	if err != nil {
-		return err
-	}
-
+	err = os.WriteFile(outputFile, src, 0666)
 	return
 }
 
-func (s *Struct) Process(o Option, fields []*ast.Field) (hasExportedFields bool) {
+func (s *Struct) process(o Option, fields []*ast.Field) (hasExportedFields bool) {
 	for i := 0; i < len(fields); i++ {
 		t := fields[i]
 

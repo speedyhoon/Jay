@@ -26,9 +26,9 @@ func ReadString(b []byte) (h string, size int, _ bool) {
 	return string(b[strSizeOf:size]), size, true
 }
 
-func ReadStringX(b []byte, x int) (h string, size int, ok bool) {
+func ReadStringAt(b []byte, at int) (h string, size int, ok bool) {
 	h, size, ok = ReadString(b)
-	return h, x + size, ok
+	return h, at + size, ok
 }
 
 func WriteStrings(y []byte, s []string) {

@@ -24,7 +24,7 @@ func main() {
 	flag.BoolVar(&opt.FixedUintSize, "fu", true, "Fixed uint size.")
 	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
 	flag.BoolVar(&opt.Verbose, "v", false, "Verbose output.")
-	flag.BoolVar(&opt.IncTests, "t", false, "Include Go test files.")
+	flag.BoolVar(&opt.IncludeTests, "t", false, "Include Go test files.")
 	flag.Parse()
 	paths := flag.Args()
 
@@ -36,6 +36,8 @@ func main() {
 		paths = []string{"."}
 	}
 
+	var filePaths []string
+
 	for _, path := range paths {
 		path = filepath.Clean(path)
 		if path == "" {
@@ -43,37 +45,46 @@ func main() {
 		}
 
 		if isDir(path) {
-			walkDir(path, outputFile, opt)
+			filePaths = append(filePaths, walkDir(path, outputFile, opt)...)
 		} else {
-			process(path, outputFile, opt)
+			filePaths = append(filePaths, path)
+			//process(path, outputFile, opt)
 		}
+	}
+
+	err := opt.ProcessWrite(nil, outputFile, filePaths...)
+	if err != nil {
+		log.Println(err)
 	}
 }
 
-func walkDir(path, out string, opt generate.Option) {
+func walkDir(path, out string, opt generate.Option) (filenames []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if info != nil && !info.IsDir() {
-			if !opt.IncTests && strings.HasSuffix(path, testSuffix) {
+			if !opt.IncludeTests && strings.HasSuffix(path, testSuffix) {
 				verbose.Println("ignoring test file", path)
 				return nil
 			}
 
-			verbose.Println("processing", path)
-			process(path, out, opt)
+			//verbose.Println("processing", path)
+			//process(path, out, opt)
+			filenames = append(filenames, path)
 		}
 		return nil
 	})
 	if err != nil {
 		log.Println(err)
 	}
+
+	return
 }
 
-func process(path, out string, opt generate.Option) {
-	err := generate.ProcessWrite(path, nil, out, opt)
-	if err != nil {
-		log.Println(err)
-	}
-}
+//func process(path, out string, opt generate.Option) {
+//	err := opt.ProcessWrite(nil, out, path)
+//	if err != nil {
+//		log.Println(err)
+//	}
+//}
 
 func isDir(path string) bool {
 	f, err := os.Open(path)

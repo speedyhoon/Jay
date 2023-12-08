@@ -45,8 +45,8 @@ type Option struct {
 	// If the null byte wasn't there - how would the Read functions know if there was an unexpected
 	// end of buffer vs the struct/map was empty?
 
-	Verbose  bool
-	IncTests bool
+	Verbose      bool
+	IncludeTests bool
 }
 
 func (m *MaxSize) Set(value *uint) error {
