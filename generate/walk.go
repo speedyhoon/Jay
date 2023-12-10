@@ -25,14 +25,6 @@ type field struct {
 	tagOptions        // Valid tag options that have been successfully parsed and loaded from the `tag` string.
 }
 
-type tagOptions struct {
-	// The maximum and minimum value expected in the variable.
-	// Any value out of this range isn't guaranteed to be marshalled or unmarshaled correctly.
-	Max, Min uint
-
-	maxBytes uint
-}
-
 // Visit traverses the AST File and finds all structs even if they are unexported.
 // Unexported structs can be exported if they are referenced in exported structs with exported field names.
 // For example, type Cow struct { Id id }

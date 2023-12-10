@@ -7,6 +7,16 @@ import (
 	"strings"
 )
 
+type tagOptions struct {
+	// The maximum and minimum value expected in the variable.
+	// Any value out of this range isn't guaranteed to be marshalled or unmarshaled correctly.
+	Max, Min tagSize
+
+	maxBytes uint
+}
+
+type tagSize uint
+
 func (f *field) LoadTagOptions() {
 	const (
 		tagMax = "max"
@@ -21,46 +31,40 @@ func (f *field) LoadTagOptions() {
 		d := strings.Split(c, ":")
 		switch g := d[0]; g {
 		case tagMax:
-			loadUint(d[1], &f.tagOptions.Max)
+			f.tagOptions.Max.set(d[1])
 			f.tagOptions.maxBytes = byteSize(f.tagOptions.Max)
 		case tagMin:
-			loadUint(g, &f.tagOptions.Min)
+			f.tagOptions.Min.set(g)
 		}
 	}
 }
 
-func byteSize(v uint) uint {
-	if v == 0 {
+func byteSize(v tagSize) uint {
+	switch {
+	case v == 0:
 		return 0
-	}
-	if v <= jay.MaxUint8 {
+	case v <= jay.MaxUint8:
 		return 1
-	}
-	if v <= jay.MaxUint16 {
+	case v <= jay.MaxUint16:
 		return 2
-	}
-	if v <= jay.MaxUint24 {
+	case v <= jay.MaxUint24:
 		return 3
-	}
-	if v <= jay.MaxUint32 {
+	case v <= jay.MaxUint32:
 		return 4
-	}
-	if v <= jay.MaxUint40 {
+	case v <= jay.MaxUint40:
 		return 5
-	}
-	if v <= jay.MaxUint48 {
+	case v <= jay.MaxUint48:
 		return 6
-	}
-	if v <= jay.MaxUint56 {
+	case v <= jay.MaxUint56:
 		return 7
 	}
 	return 8
 }
 
-func loadUint(g string, f *uint) {
-	uu, err := strconv.ParseUint(g, 10, 64)
+func (f *tagSize) set(s string) {
+	uu, err := strconv.ParseUint(s, 10, 64)
 	if err != nil {
 		log.Println(err)
 	}
-	*f = uint(uu)
+	*f = tagSize(uu)
 }

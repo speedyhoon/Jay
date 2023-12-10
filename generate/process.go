@@ -2,7 +2,6 @@ package generate
 
 import (
 	"errors"
-	"fmt"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -55,38 +54,6 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []by
 	}
 
 	src, err = generateFile(files[0].Name.Name, list, *o)
-	return
-}
-
-func ProcessFile(filename string, source interface{}, opts ...Option) (src []byte, err error) {
-	if filename == "" && source == nil {
-		return nil, errors.New("no filename or source provided")
-	}
-
-	opt := LoadOptions(opts...)
-
-	if filename != "" && !isGoFileName(filename) {
-		return nil, fmt.Errorf("`%s` does not contain a Go file extension", filename)
-	}
-
-	f, err := parser.ParseFile(token.NewFileSet(), filename, source, parser.ParseComments|parser.AllErrors)
-	if err != nil {
-		return
-	}
-	if f == nil {
-		return nil, io.ErrUnexpectedEOF
-	}
-
-	//var opt Options
-	//if len(options)>=1{
-	//	opt=options[0]
-	//	opt.Load()
-	//}
-
-	var list []Struct
-	ast.Walk(visitor{structs: &list, option: opt}, f)
-
-	src, err = generateFile(f.Name.Name, list, opt)
 	return
 }
 
@@ -146,10 +113,6 @@ func (s *Struct) process(o Option, fields []*ast.Field) (hasExportedFields bool)
 	}
 
 	return s.hasExportedFields()
-}
-
-func (s *Struct) hasExportedFields() bool {
-	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1
 }
 
 func Remove[T any](t []T, index int) []T {

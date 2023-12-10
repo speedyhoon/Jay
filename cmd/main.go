@@ -48,7 +48,6 @@ func main() {
 			filePaths = append(filePaths, walkDir(path, outputFile, opt)...)
 		} else {
 			filePaths = append(filePaths, path)
-			//process(path, outputFile, opt)
 		}
 	}
 
@@ -66,8 +65,6 @@ func walkDir(path, out string, opt generate.Option) (filenames []string) {
 				return nil
 			}
 
-			//verbose.Println("processing", path)
-			//process(path, out, opt)
 			filenames = append(filenames, path)
 		}
 		return nil
@@ -78,13 +75,6 @@ func walkDir(path, out string, opt generate.Option) (filenames []string) {
 
 	return
 }
-
-//func process(path, out string, opt generate.Option) {
-//	err := opt.ProcessWrite(nil, out, path)
-//	if err != nil {
-//		log.Println(err)
-//	}
-//}
 
 func isDir(path string) bool {
 	f, err := os.Open(path)

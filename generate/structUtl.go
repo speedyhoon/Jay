@@ -106,6 +106,10 @@ func (o Option) hasVariableLen(fields []*ast.Field) bool {
 	return false
 }
 
+func (s *Struct) hasExportedFields() bool {
+	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1
+}
+
 func hasExported(idents []*ast.Ident) bool {
 	for _, ident := range idents {
 		if ident.IsExported() {
