@@ -165,5 +165,5 @@ func (s *Struct) generateFuncs(b *bytes.Buffer, o Option) {
 	s.MakeMarshalJ(b, o)
 	//s.MakeMarshalJTo(o, b)
 	//s.MakeSize(b)
-	s.MakeUnmarshal(b)
+	s.MakeUnmarshal(b, o)
 }
