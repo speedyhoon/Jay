@@ -39,7 +39,7 @@ func (s *structTyp) MakeUnmarshal(b *bytes.Buffer, o Option) {
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, at, uint(i), i == vLen))
-		buf.WriteString("\nif !ok {\nreturn io.ErrUnexpectedEOF\n}\n")
+		buf.WriteString(fmt.Sprintf("\nif !ok {\nreturn %s.ErrUnexpectedEOB\n}\n", pkgName))
 	}
 
 	code := buf.Bytes()
