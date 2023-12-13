@@ -45,7 +45,7 @@ func main() {
 		}
 
 		if isDir(path) {
-			filePaths = append(filePaths, walkDir(path, outputFile, opt)...)
+			filePaths = append(filePaths, walkDir(path, opt)...)
 		} else {
 			filePaths = append(filePaths, path)
 		}
@@ -57,7 +57,7 @@ func main() {
 	}
 }
 
-func walkDir(path, out string, opt generate.Option) (filenames []string) {
+func walkDir(path string, opt generate.Option) (filenames []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if info != nil && !info.IsDir() {
 			if !opt.IncludeTests && strings.HasSuffix(path, testSuffix) {
