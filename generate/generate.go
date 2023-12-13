@@ -21,10 +21,6 @@ const (
 
 var ErrNoneExported = errors.New("no exported struct fields found")
 
-// ErrUnexpectedEOB indicates the end of the byte slice was unexpectedly encountered
-// while deserialising a fixed-size block, resulting in an incomplete result.
-var ErrUnexpectedEOB = errors.New("unexpected EOB")
-
 func makeFile(pkg string, s []structTyp, option Option) ([]byte, error) {
 	for i := range s {
 		s[i].mergeEmbeddedStructs(s)
