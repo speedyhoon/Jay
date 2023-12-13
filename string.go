@@ -83,36 +83,3 @@ func ReadStringPtr(b []byte, h *string) (size int, _ bool) {
 	*h = string(b[strSizeOf:size])
 	return size, true
 }
-
-/*// Deprecated
-func WriteStringOld(b []byte, index int, s *string) int {
-	l := len(*s)
-	b[index] = byte(l) // Set how long the string is
-	index++
-	copy(b[index:], *s)
-	return index + l
-}*/
-
-// Deprecated
-// WriteStringDeprecated expects b to be the start of a byte slice.
-// TODO check if this will break when writing to byte slices that are too short!
-// TODO check which function is faster - WriteString or WriteString2
-func WriteStringDeprecated(b []byte, s string) (l int) {
-	l = len(s)
-	b[0] = byte(l) // Set how long the string is
-	//index++
-	if l != 0 {
-		copy(b[1:l], s)
-	}
-	return l + 1
-}
-
-/*// Deprecated
-func WriteStringX(b []byte, s string, l int) {
-	b[0] = byte(l) // Set how long the string is
-	//index++
-	if l != 0 {
-		copy(b[1:], s)
-	}
-	//return l + 1
-}*/
