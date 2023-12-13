@@ -25,7 +25,7 @@ var ErrNoneExported = errors.New("no exported struct fields found")
 // while deserialising a fixed-size block, resulting in an incomplete result.
 // var ErrUnexpectedEOB = errors.New("unexpected EOB")
 
-func generateFile(pkg string, s []Struct, option Option) ([]byte, error) {
+func generateFile(pkg string, s []structTyp, option Option) ([]byte, error) {
 	for i := range s {
 		s[i].shouldMergeEmbeddedStructs(s)
 	}
@@ -62,7 +62,7 @@ import "%[1]s%[2]s"
 	return bb, nil
 }
 
-func (s *Struct) shouldMergeEmbeddedStructs(list []Struct) {
+func (s *structTyp) shouldMergeEmbeddedStructs(list []structTyp) {
 	var mergeStructs []string
 	for i := 0; i < len(s.fixedLen); i++ {
 		if s.fixedLen[i].typ == "struct" {
@@ -123,7 +123,7 @@ func isNew(a *[]string, s string) bool {
 	return true
 }
 
-func findStruct(s []Struct, name string) *Struct {
+func findStruct(s []structTyp, name string) *structTyp {
 	for i := range s {
 		if s[i].name == name {
 			return &s[i]
@@ -132,7 +132,7 @@ func findStruct(s []Struct, name string) *Struct {
 	return nil
 }
 
-func (s *Struct) join(embedded *Struct, name string) {
+func (s *structTyp) join(embedded *structTyp, name string) {
 	s.bool = appendEmbed(s.bool, name, embedded.bool)
 	s.fixedLen = appendEmbed(s.fixedLen, name, embedded.fixedLen)
 	s.variableLen = appendEmbed(s.variableLen, name, embedded.variableLen)
@@ -156,7 +156,7 @@ func appendEmbed(fields []field, embedName string, embedded []field) []field {
 	return fields
 }
 
-func (s *Struct) generateFuncs(b *bytes.Buffer, o Option) {
+func (s *structTyp) generateFuncs(b *bytes.Buffer, o Option) {
 	if !ast.IsExported(s.name) || len(s.bool) == 0 && len(s.variableLen) == 0 && len(s.fixedLen) == 0 {
 		return
 	}

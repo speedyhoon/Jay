@@ -15,7 +15,7 @@ import (
 // TODO add support for enums with restricted sizes like: buf[1] = WriteEnum44(e.Enum1, e.Enum2)
 
 // MakeMarshalJ ...
-func (s *Struct) MakeMarshalJ(b *bytes.Buffer, o Option) {
+func (s *structTyp) MakeMarshalJ(b *bytes.Buffer, o Option) {
 	receiver := s.ReceiverName()
 
 	varLengths := lengths2(s.varLenFieldNames(), receiver)

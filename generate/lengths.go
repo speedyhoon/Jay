@@ -8,7 +8,7 @@ import (
 )
 
 // LenDecl ...
-func (s *Struct) LenDecl(b *bytes.Buffer) {
+func (s *structTyp) LenDecl(b *bytes.Buffer) {
 	var qty uint
 	// TODO add bool sizes
 	var variableStructs []string
@@ -63,7 +63,7 @@ func joinSizes(qty uint, variableLen []field) string {
 	return strings.Join(s, "+")
 }
 
-func (s *Struct) varLenFieldNames() (names []string) {
+func (s *structTyp) varLenFieldNames() (names []string) {
 	for _, v := range s.variableLen {
 		//qty += isLen(v.typ)
 		if v.typ == "string" { //} isLenVariable(v.typ) {

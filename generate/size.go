@@ -8,7 +8,7 @@ import (
 )
 
 // MakeSize ...
-func (s *Struct) MakeSize(b *bytes.Buffer) {
+func (s *structTyp) MakeSize(b *bytes.Buffer) {
 	var qty uint
 	// TODO add bool sizes
 	var variableStructs []string
@@ -36,7 +36,7 @@ func (s *Struct) MakeSize(b *bytes.Buffer) {
 		structs(variableStructs, s.ReceiverName()),
 	))
 }
-func (s *Struct) calcSize(o Option) (qty uint) {
+func (s *structTyp) calcSize(o Option) (qty uint) {
 	// TODO add bool sizes
 	for _, x := range s.fixedLen {
 		qty += o.typeFuncSize(x.typ)

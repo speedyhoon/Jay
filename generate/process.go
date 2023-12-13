@@ -44,7 +44,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []by
 		files = append(files, f)
 	}
 
-	var list []Struct
+	var list []structTyp
 	if len(files) == 0 {
 		return
 	}
@@ -87,7 +87,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 	return
 }
 
-func (s *Struct) process(o Option, fields []*ast.Field) (hasExportedFields bool) {
+func (s *structTyp) process(o Option, fields []*ast.Field) (hasExportedFields bool) {
 	for i := 0; i < len(fields); i++ {
 		t := fields[i]
 

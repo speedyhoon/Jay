@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func (s *Struct) generateBools(b *bytes.Buffer, byteIndex *uint, receiver string) {
+func (s *structTyp) generateBools(b *bytes.Buffer, byteIndex *uint, receiver string) {
 	if len(s.bool) == 0 {
 		return
 	}

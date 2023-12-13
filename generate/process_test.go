@@ -8,14 +8,14 @@ import (
 )
 
 func TestRemove(t *testing.T) {
-	zero := make([]Struct, 0)
-	one := []Struct{{name: "one"}}
-	two := []Struct{{name: "one"}, {name: "two"}}
+	zero := make([]structTyp, 0)
+	one := []structTyp{{name: "one"}}
+	two := []structTyp{{name: "one"}, {name: "two"}}
 
 	tests := []struct {
-		s     []Struct
+		s     []structTyp
 		index int
-		want  []Struct
+		want  []structTyp
 	}{
 		{s: nil, index: -1, want: nil},
 		{s: nil, index: 0, want: nil},
@@ -30,7 +30,7 @@ func TestRemove(t *testing.T) {
 		{s: one, index: 1, want: one},
 
 		{s: two, index: -1, want: two},
-		{s: two, index: 0, want: []Struct{{name: "two"}}},
+		{s: two, index: 0, want: []structTyp{{name: "two"}}},
 		{s: two, index: 1, want: one},
 		{s: two, index: 2, want: two},
 	}

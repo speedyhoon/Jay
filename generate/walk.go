@@ -6,11 +6,11 @@ import (
 
 type visitor struct {
 	enclosing string
-	structs   *[]Struct
+	structs   *[]structTyp
 	option    Option
 }
 
-type Struct struct {
+type structTyp struct {
 	name                        string
 	fixedLen, variableLen, bool []field // Exported fields.
 }
@@ -39,7 +39,7 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 			return v
 		}
 
-		s := Struct{name: v.enclosing}
+		s := structTyp{name: v.enclosing}
 		if s.process(v.option, n.Fields.List) {
 			*v.structs = append(*v.structs, s)
 		}

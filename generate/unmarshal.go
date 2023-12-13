@@ -12,7 +12,7 @@ import (
 )
 
 // MakeUnmarshal ...
-func (s *Struct) MakeUnmarshal(b *bytes.Buffer, o Option) {
+func (s *structTyp) MakeUnmarshal(b *bytes.Buffer, o Option) {
 	receiver := s.ReceiverName()
 	var byteIndex uint
 	buf := bytes.NewBuffer(nil)

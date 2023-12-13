@@ -36,7 +36,7 @@ func unwrapTagValue(str string) string {
 	return str
 }
 
-func (s *Struct) ReceiverName() string {
+func (s *structTyp) ReceiverName() string {
 	return string(unicode.ToLower([]rune(s.name)[0]))
 }
 
@@ -106,7 +106,7 @@ func (o Option) hasVariableLen(fields []*ast.Field) bool {
 	return false
 }
 
-func (s *Struct) hasExportedFields() bool {
+func (s *structTyp) hasExportedFields() bool {
 	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1
 }
 
@@ -119,7 +119,7 @@ func hasExported(idents []*ast.Ident) bool {
 	return false
 }
 
-func (s *Struct) addExportedFields(names []*ast.Ident, tag, typeOf, aliasType string, isVarLen bool) {
+func (s *structTyp) addExportedFields(names []*ast.Ident, tag, typeOf, aliasType string, isVarLen bool) {
 	for m := range names {
 		f := field{name: names[m].Name, tag: tag, typ: typeOf, aliasType: aliasType}
 		f.LoadTagOptions()
