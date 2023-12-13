@@ -58,13 +58,25 @@ func (m *MaxSize) Set(value *uint) error {
 	return nil
 }
 
+var strSizeOf uint
+
 func LoadOptions(opts ...Option) (o Option) {
 	if len(opts) >= 1 {
 		o = opts[0]
 	}
 
 	if o.MaxDefaultStrSize == 0 {
+		o.MaxDefaultStrSize = jay.MaxUint8
+	} else if o.MaxDefaultStrSize > jay.MaxUint24 {
 		o.MaxDefaultStrSize = jay.MaxUint24
+	}
+	switch {
+	case o.MaxDefaultStrSize <= jay.MaxUint8:
+		strSizeOf = 1
+	case o.MaxDefaultStrSize <= jay.MaxUint16:
+		strSizeOf = 2
+	case o.MaxDefaultStrSize <= jay.MaxUint24:
+		strSizeOf = 3
 	}
 
 	if o.MaxIntSize == Auto || o.MaxIntSize > Bit32 && o.MaxIntSize < Bit64 {
