@@ -1,13 +1,10 @@
 package generate
 
 import (
-	"bytes"
-	"fmt"
 	"log"
-	"strings"
 )
 
-// MakeSize ...
+/*// MakeSize ...
 func (s *structTyp) MakeSize(b *bytes.Buffer) {
 	var qty uint
 	// TODO add bool sizes
@@ -27,15 +24,16 @@ func (s *structTyp) MakeSize(b *bytes.Buffer) {
 			variableStructs = append(variableStructs, v.name)
 		}
 	}
-	b.WriteString(fmt.Sprintf(
+	bufWriteF(b,
 		"func (%s *%s) SizeJ() int {\nreturn %d%s%s\n}\n",
-		s.ReceiverName(),
+		s.receiverName(),
 		s.name,
 		qty,
-		lengths(variableFields, s.ReceiverName()),
-		structs(variableStructs, s.ReceiverName()),
+		lengths(variableFields, s.receiverName()),
+		structs(variableStructs, s.receiverName()),
 	))
-}
+}*/
+
 func (s *structTyp) calcSize(o Option) (qty uint) {
 	// TODO add bool sizes
 	for _, x := range s.fixedLen {
@@ -46,7 +44,8 @@ func (s *structTyp) calcSize(o Option) (qty uint) {
 	}
 	return qty
 }
-func lengths(names []string, receiver string) string {
+
+/*func lengths(names []string, receiver string) string {
 	if len(names) == 0 {
 		return ""
 	}
@@ -62,7 +61,7 @@ func structs(names []string, receiver string) string {
 	//receiver = fmt.Sprintf(".SizeJ()+%s.", receiver)
 	return "+" + receiver + "." + strings.Join(names, ".SizeJ()+"+receiver+".") + ".SizeJ()"
 	//+c.Wheels.SizeJ()+c.Gearbox.SizeJ()+c.Roof.SizeJ()
-}
+}*/
 
 func (o Option) typeFuncSize(typ string) (size uint) {
 	switch typ {

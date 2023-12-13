@@ -14,9 +14,9 @@ import (
 // TODO add support for pointers with all types.
 // TODO add support for enums with restricted sizes like: buf[1] = WriteEnum44(e.Enum1, e.Enum2)
 
-// MakeMarshalJ ...
-func (s *structTyp) MakeMarshalJ(b *bytes.Buffer, o Option) {
-	receiver := s.ReceiverName()
+// makeMarshal ...
+func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
+	receiver := s.receiverName()
 
 	varLengths := lengths2(s.varLenFieldNames(), receiver)
 	if varLengths == "" {
@@ -25,7 +25,7 @@ func (s *structTyp) MakeMarshalJ(b *bytes.Buffer, o Option) {
 
 	var byteIndex uint
 	buf := bytes.NewBuffer(nil)
-	s.generateBools(buf, &byteIndex, receiver)
+	s.makeWriteBools(buf, &byteIndex, receiver)
 
 	for i, f := range s.fixedLen {
 		buf.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0))
@@ -56,14 +56,14 @@ func (s *structTyp) MakeMarshalJ(b *bytes.Buffer, o Option) {
 		return
 	}
 
-	b.WriteString(fmt.Sprintf(
+	bufWriteF(b,
 		"func (%s *%s) MarshalJ() (b []byte) {\n%s\nb = make([]byte, %s)\n%s\nreturn\n}\n",
 		receiver,
 		s.name,
 		varLengths,
 		joinSizes(s.calcSize(o), s.variableLen),
 		code,
-	))
+	)
 }
 
 func fieldNames(fields []field, receiver string) string {

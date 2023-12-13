@@ -10,7 +10,7 @@ func ReadTime(b []byte) (t time.Time) {
 }
 
 // WriteTime writes 8 bytes to b with year, month, date, hour, minute & seconds precision in UTC location.
-// All millisecond, microsecond, nanosecond and location is lost.
+// All millisecond, microsecond, nanosecond and location are lost.
 func WriteTime(b []byte, t time.Time) {
 	WriteInt64(b, t.Unix())
 }

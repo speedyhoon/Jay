@@ -1,13 +1,12 @@
 package generate
 
 import (
-	"bytes"
 	"fmt"
 	"strconv"
 	"strings"
 )
 
-// LenDecl ...
+/*// LenDecl ...
 func (s *structTyp) LenDecl(b *bytes.Buffer) {
 	var qty uint
 	// TODO add bool sizes
@@ -27,15 +26,15 @@ func (s *structTyp) LenDecl(b *bytes.Buffer) {
 			variableStructs = append(variableStructs, v.name)
 		}
 	}
-	b.WriteString(fmt.Sprintf(
+	bufWriteF(b,
 		"func (%s *%s) SizeJ() int {\nreturn %d%s%s\n}\n",
-		s.ReceiverName(),
+		s.receiverName(),
 		s.name,
 		qty,
-		lengths2(variableFields, s.ReceiverName()),
-		structs2(variableStructs, s.ReceiverName()),
+		lengths2(variableFields, s.receiverName()),
+		structs2(variableStructs, s.receiverName()),
 	))
-}
+}*/
 
 func joinSizes(qty uint, variableLen []field) string {
 	var s []string
@@ -100,7 +99,7 @@ func addDecls(u int) string {
 	return strings.Join(decls(u), "+")
 }
 
-func structs2(names []string, receiver string) string {
+/*func structs2(names []string, receiver string) string {
 	if len(names) == 0 {
 		return ""
 	}
@@ -110,4 +109,4 @@ func structs2(names []string, receiver string) string {
 		receiver,
 		strings.Join(names, ".SizeJ()+"+receiver+"."),
 	)
-}
+}*/

@@ -1,6 +1,8 @@
 package generate
 
 import (
+	"bytes"
+	"fmt"
 	"go/ast"
 	"go/token"
 	"log"
@@ -36,7 +38,7 @@ func unwrapTagValue(str string) string {
 	return str
 }
 
-func (s *structTyp) ReceiverName() string {
+func (s *structTyp) receiverName() string {
 	return string(unicode.ToLower([]rune(s.name)[0]))
 }
 
@@ -56,7 +58,7 @@ func (o Option) isSupportedType(t *ast.Field) (typeOf, aliasTypeName string, isV
 		}
 
 		// Type has an alias name.
-		typeOf, isVarLen = o.determineType(d.Obj)
+		typeOf, isVarLen = o.typeOf(d.Obj)
 		return typeOf, d.Name, isVarLen, typeOf != ""
 		//log.Printf("names: %s, type: %s, tag: %s\n", strings.Join(names, ","), d.Name, tag)
 	case nil:
@@ -67,28 +69,28 @@ func (o Option) isSupportedType(t *ast.Field) (typeOf, aliasTypeName string, isV
 	return "", "", false, false
 }
 
-func (o Option) determineType(t interface{}) (s string, isVarLen bool) {
+func (o Option) typeOf(t interface{}) (s string, isVarLen bool) {
 	switch x := t.(type) {
 	case *ast.Object:
 		if x.Name == "" || x.Kind != ast.Typ {
 			return "", false
 		}
-		return o.determineType(x.Decl)
+		return o.typeOf(x.Decl)
 	case *ast.TypeSpec:
-		return o.determineType(x.Type)
+		return o.typeOf(x.Type)
 	case *ast.StructType:
 		if x.Fields != nil && len(x.Fields.List) != 0 {
-			return "struct", o.hasVariableLen(x.Fields.List)
+			return "struct", o.isVariableLen(x.Fields.List)
 		}
 	case nil:
 		// Ignore.
 	default:
-		log.Printf("type %T not expected in determineType", x)
+		log.Printf("type %T not expected in typeOf", x)
 	}
 	return "", false
 }
 
-func (o Option) hasVariableLen(fields []*ast.Field) bool {
+func (o Option) isVariableLen(fields []*ast.Field) bool {
 	for _, f := range fields {
 		if !hasExported(f.Names) {
 			continue
@@ -189,3 +191,7 @@ func (o Option) isLenVariable(typ string) bool {
 	}
 	return false
 }*/
+
+func bufWriteF(b *bytes.Buffer, format string, a ...any) {
+	b.WriteString(fmt.Sprintf(format, a...))
+}

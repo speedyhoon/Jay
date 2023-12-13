@@ -11,16 +11,16 @@ import (
 	"strings"
 )
 
-// MakeUnmarshal ...
-func (s *structTyp) MakeUnmarshal(b *bytes.Buffer, o Option) {
-	receiver := s.ReceiverName()
+// makeUnmarshal ...
+func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
+	receiver := s.receiverName()
 	var byteIndex uint
 	buf := bytes.NewBuffer(nil)
 
-	s.generateReadBools(buf, &byteIndex, receiver)
+	s.makeReadBools(buf, &byteIndex, receiver)
 
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, "", i == len(s.fixedLen)-1 && len(s.variableLen) == 0))
 		buf.WriteString("\n")
 	}
 
@@ -32,14 +32,14 @@ func (s *structTyp) MakeUnmarshal(b *bytes.Buffer, o Option) {
 	if len(s.variableLen) == 1 {
 		at = strconv.Itoa(len(s.variableLen))
 	} else if len(s.variableLen) >= 2 {
-		buf.WriteString(fmt.Sprintf("at:=%d\n", byteIndex))
+		bufWriteF(buf, "at:=%d\n", byteIndex)
 		at = "at"
 	}
 
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, at, uint(i), i == vLen))
-		buf.WriteString(fmt.Sprintf("\nif !ok {\nreturn %s.ErrUnexpectedEOB\n}\n", pkgName))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, at, i == vLen))
+		bufWriteF(buf, "\nif !ok {\nreturn %s.ErrUnexpectedEOB\n}\n", pkgName)
 	}
 
 	code := buf.Bytes()
@@ -47,15 +47,15 @@ func (s *structTyp) MakeUnmarshal(b *bytes.Buffer, o Option) {
 		return
 	}
 
-	b.WriteString(fmt.Sprintf(
+	bufWriteF(b,
 		"func (%s *%s) UnmarshalJ(b []byte) (err error) {\n%s\nreturn nil\n}\n",
 		receiver,
 		s.name,
 		code,
-	))
+	)
 }
 
-func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, index uint, isLast bool) string {
+func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isLast bool) string {
 	fun, size := o.unmarshalFuncs(f.typ, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.

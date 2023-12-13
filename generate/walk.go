@@ -40,7 +40,7 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 		}
 
 		s := structTyp{name: v.enclosing}
-		if s.process(v.option, n.Fields.List) {
+		if s.process(n.Fields.List, v.option) {
 			*v.structs = append(*v.structs, s)
 		}
 	}
