@@ -10,7 +10,10 @@ import (
 	"strings"
 )
 
-const testSuffix = "_test.go"
+const (
+	goExt      = ".go"
+	testSuffix = "_test" + goExt
+)
 
 var verbose = log.New(io.Discard, "", log.Lshortfile)
 
@@ -59,7 +62,7 @@ func main() {
 
 func walkDir(path string, opt generate.Option) (filenames []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-		if info != nil && !info.IsDir() {
+		if info != nil && !info.IsDir() && strings.HasSuffix(info.Name(), goExt) {
 			if !opt.IncludeTests && strings.HasSuffix(path, testSuffix) {
 				verbose.Println("ignoring test file", path)
 				return nil
