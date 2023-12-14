@@ -72,7 +72,7 @@ func (o Option) isSupportedType(t *ast.Field) (typeOf, aliasTypeName string, isV
 func (o Option) typeOf(t interface{}) (s string, isVarLen bool) {
 	switch x := t.(type) {
 	case *ast.Object:
-		if x.Name == "" || x.Kind != ast.Typ {
+		if x == nil || x.Name == "" || x.Kind != ast.Typ {
 			return "", false
 		}
 		return o.typeOf(x.Decl)
