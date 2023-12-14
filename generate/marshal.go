@@ -19,9 +19,6 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	receiver := s.receiverName()
 
 	varLengths := lengths2(s.varLenFieldNames(), receiver)
-	if varLengths == "" {
-		return
-	}
 
 	var byteIndex uint
 	buf := bytes.NewBuffer(nil)
