@@ -28,7 +28,7 @@ func WriteStringAtPtr(y []byte, s *string, length, at int) int {
 func ReadString(b []byte) (h string, size int, _ bool) {
 	size = int(b[0]) + strSizeOf
 	if size == strSizeOf || len(b) < size {
-		return
+		return "", size, size == strSizeOf
 	}
 
 	return string(b[strSizeOf:size]), size, true
