@@ -88,7 +88,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 }
 
 func (s *structTyp) process(fields []*ast.Field, o Option) (hasExportedFields bool) {
-	for i := 0; i < len(fields); i++ {
+	for i := 0; i < len(fields); {
 		t := fields[i]
 
 		tag := getTag(t.Tag)
@@ -110,6 +110,7 @@ func (s *structTyp) process(fields []*ast.Field, o Option) (hasExportedFields bo
 		}
 
 		s.addExportedFields(names, tag, typeOf, aliasType, isVarLen)
+		i++
 	}
 
 	return s.hasExportedFields()
