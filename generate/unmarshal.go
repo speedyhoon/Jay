@@ -48,7 +48,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	}
 
 	bufWriteF(b,
-		"func (%s *%s) UnmarshalJ(b []byte) (err error) {\n%s\nreturn nil\n}\n",
+		"func (%s *%s) UnmarshalJ(b []byte) error {\n%s\nreturn nil\n}\n",
 		receiver,
 		s.name,
 		code,
