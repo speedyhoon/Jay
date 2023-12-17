@@ -34,8 +34,8 @@ type Car struct {
 	Row     uint   `vl:"id" j:"max:677"`
 	Name    string `vl:"name,omitempty" json:"-"`
 	Auto    bool
-	CC      string `z:",omitempty"`
-	Timing  string `z:",omitempty" j:"max:24"`
+	CC      string  `z:",omitempty"`
+	Timing  *string `z:",omitempty" j:"max:24"`
 	RedLine uint16
 	Gearbox gearbox
 }

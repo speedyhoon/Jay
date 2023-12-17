@@ -8,7 +8,7 @@ var car = Car{
 	Name:    "Hello",
 	Auto:    true,
 	RedLine: 65535,
-	Gearbox: Gearbox{
+	Gearbox: gearbox{
 		Gears:        4,
 		Reverse:      1,
 		Sequential:   true,
@@ -31,7 +31,7 @@ func BenchmarkMarshalJ(b *testing.B) {
 //			src = car.MarshalJ2()
 //		}
 //	}
-func BenchmarkMarshalJX(b *testing.B) {
+/*func BenchmarkMarshalJX(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		src = car.MarshalJX()
 	}
@@ -51,7 +51,7 @@ func BenchmarkMarshalL(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		src = car.MarshalL()
 	}
-}
+}*/
 
 func BenchmarkLen(b *testing.B) {
 	for i := 0; i < b.N; i++ {
