@@ -54,7 +54,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	}
 
 	bufWriteF(b,
-		"func (%s *%s) MarshalJ() (b []byte) {\n%s\nb = make([]byte, %s)\n%s\nreturn\n}\n",
+		"func (%s *%s) MarshalJ() (b []byte) {\n%s\nb = make([]byte, %s)\n%sreturn\n}\n",
 		receiver,
 		s.name,
 		varLengths,
