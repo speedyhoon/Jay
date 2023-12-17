@@ -35,7 +35,10 @@ func (s *structTyp) MakeSize(b *bytes.Buffer) {
 }*/
 
 func (s *structTyp) calcSize(o Option) (qty uint) {
-	// TODO add bool sizes
+	if l := len(s.bool); l >= 1 {
+		qty = boolsSliceIndex(uint(l)) + 1
+	}
+
 	for _, x := range s.fixedLen {
 		qty += o.typeFuncSize(x.typ)
 	}
