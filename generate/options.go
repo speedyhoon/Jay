@@ -3,6 +3,7 @@ package generate
 import (
 	"fmt"
 	"github.com/speedyhoon/jay"
+	"math"
 )
 
 const (
@@ -26,6 +27,7 @@ type Option struct {
 	// To override the default for a field use: `j:"max:4030"` for 4,030 bytes.
 	// The smallest value is the most optimal for performance.
 	MaxDefaultStrSize uint
+	strSizeOfDefault  uint8
 
 	// MaxUint16 = 64 kilobytes,
 	// MaxUint24 = 16 Megabytes,
@@ -58,8 +60,6 @@ func (m *MaxSize) Set(value *uint) error {
 	return nil
 }
 
-var strSizeOf uint
-
 func LoadOptions(opts ...Option) (o Option) {
 	if len(opts) >= 1 {
 		o = opts[0]
@@ -70,14 +70,7 @@ func LoadOptions(opts ...Option) (o Option) {
 	} else if o.MaxDefaultStrSize > jay.MaxUint24 {
 		o.MaxDefaultStrSize = jay.MaxUint24
 	}
-	switch {
-	case o.MaxDefaultStrSize <= jay.MaxUint8:
-		strSizeOf = 1
-	case o.MaxDefaultStrSize <= jay.MaxUint16:
-		strSizeOf = 2
-	case o.MaxDefaultStrSize <= jay.MaxUint24:
-		strSizeOf = 3
-	}
+	o.strSizeOfDefault = bytesRequired(o.MaxDefaultStrSize)
 
 	if o.MaxIntSize == Auto || o.MaxIntSize > Bit32 && o.MaxIntSize < Bit64 {
 		o.MaxIntSize = 32 << (^uint(0) >> 63) // 32 or 64
@@ -93,4 +86,9 @@ func LoadOptions(opts ...Option) (o Option) {
 		o.MaxIntSize = Bit32
 	}
 	return
+}
+
+// bytesRequired returns how many bytes are required to represent an unsigned integer.
+func bytesRequired(input uint) uint8 {
+	return uint8(math.Ceil(math.Log(float64(input+1)) / math.Log(256)))
 }
