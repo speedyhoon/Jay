@@ -80,7 +80,12 @@ func (s *structTyp) mergeEmbeddedStructs(list []structTyp) {
 			s.fixedLen = Remove(s.fixedLen, i)
 			i--
 
-			s.join(embedded, fieldName)
+			// Deep copy embedded structType.
+			st := structTyp{name: embedded.name}
+			st.fixedLen = append(st.fixedLen, embedded.fixedLen...)
+			st.variableLen = append(st.variableLen, embedded.variableLen...)
+			st.bool = append(st.bool, embedded.bool...)
+			s.join(st, fieldName)
 		}
 	}
 
@@ -103,7 +108,12 @@ func (s *structTyp) mergeEmbeddedStructs(list []structTyp) {
 			s.variableLen = Remove(s.variableLen, i)
 			i--
 
-			s.join(embedded, fieldName)
+			// Deep copy embedded structType.
+			st := structTyp{name: embedded.name}
+			st.fixedLen = append(st.fixedLen, embedded.fixedLen...)
+			st.variableLen = append(st.variableLen, embedded.variableLen...)
+			st.bool = append(st.bool, embedded.bool...)
+			s.join(st, fieldName)
 		}
 	}
 
@@ -129,7 +139,7 @@ func findStruct(s []structTyp, name string) *structTyp {
 	return nil
 }
 
-func (s *structTyp) join(embedded *structTyp, name string) {
+func (s *structTyp) join(embedded structTyp, name string) {
 	s.bool = appendEmbed(s.bool, name, embedded.bool)
 	s.fixedLen = appendEmbed(s.fixedLen, name, embedded.fixedLen)
 	s.variableLen = appendEmbed(s.variableLen, name, embedded.variableLen)
