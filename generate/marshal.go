@@ -72,7 +72,7 @@ func fieldNames(fields []field, receiver string) string {
 }
 
 func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, index uint, isLast bool) string {
-	fun, size := o.typeFuncs(f.typ, isLast)
+	fun, size := o.typeFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
 		log.Printf("no generateLine for type `%s` yet", f.typ)
@@ -154,9 +154,9 @@ func printFunc(fun string, params ...string) string {
 	return b
 }
 
-func (o Option) typeFuncs(typ string, isLast bool) (_ string, size uint) {
+func (o Option) typeFuncs(fe field, isLast bool) (_ string, size uint) {
 	var f interface{}
-	switch typ {
+	switch fe.typ {
 	case "byte", "uint8":
 		return "", 1
 	case "int8":
@@ -201,9 +201,15 @@ func (o Option) typeFuncs(typ string, isLast bool) (_ string, size uint) {
 		f, size = jay.WriteUint32, 4
 	case "uint64":
 		f, size = jay.WriteUint64, 8
+	case "time.Time":
+		if fe.tagOptions.TimeNano {
+			f, size = jay.WriteTimeNano3, 8
+		} else {
+			f, size = jay.WriteTime, 8
+		}
 
 	default:
-		log.Printf("not function set for type %s yet", typ)
+		log.Printf("no function set for type %s yet", fe.typ)
 		return "", 0
 	}
 
