@@ -59,39 +59,33 @@ import "%[1]s%[2]s"
 	return bb, nil
 }
 
-func (s *structTyp) mergeEmbeddedStructs(list []structTyp) {
+func (s *structTyp) mergeEmbeddedStructs(structs []structTyp) {
 	var structsToMerge []string
-	for i := 0; i < len(s.fixedLen); i++ {
-		s.mergeFields(&s.fixedLen, &i, list, structsToMerge)
+	for _, fields := range []*[]field{&s.fixedLen, &s.variableLen} {
+		for i := 0; i < len(*fields); i++ {
+			if (*fields)[i].typ != "struct" || !isNew(&structsToMerge, (*fields)[i].name) {
+				continue
+			}
+
+			aliasType := (*fields)[i].aliasType
+			embedded := findStruct(structs, aliasType)
+			if embedded == nil {
+				log.Fatalf("can't find %s %s used as name %s", (*fields)[i].typ, aliasType, (*fields)[i].name)
+			}
+
+			// Remove the struct so its contents are not referenced twice.
+			*fields = Remove(*fields, i)
+			i--
+
+			// Deep copy embedded structType.
+			st := structTyp{name: embedded.name}
+			st.fixedLen = append(st.fixedLen, embedded.fixedLen...)
+			st.variableLen = append(st.variableLen, embedded.variableLen...)
+			st.bool = append(st.bool, embedded.bool...)
+
+			s.join(st, aliasType)
+		}
 	}
-
-	for i := 0; i < len(s.variableLen); i++ {
-		s.mergeFields(&s.variableLen, &i, list, structsToMerge)
-	}
-}
-
-func (s *structTyp) mergeFields(fields *[]field, index *int, structs []structTyp, structsToMerge []string) {
-	if (*fields)[*index].typ != "struct" || !isNew(&structsToMerge, (*fields)[*index].name) {
-		return
-	}
-
-	aliasType := (*fields)[*index].aliasType
-	embedded := findStruct(structs, aliasType)
-	if embedded == nil {
-		log.Fatalf("can't find %s %s used as name %s", (*fields)[*index].typ, aliasType, (*fields)[*index].name)
-	}
-
-	// Remove the struct so its contents are not referenced twice.
-	*fields = Remove(*fields, *index)
-	*index--
-
-	// Deep copy embedded structType.
-	st := structTyp{name: embedded.name}
-	st.fixedLen = append(st.fixedLen, embedded.fixedLen...)
-	st.variableLen = append(st.variableLen, embedded.variableLen...)
-	st.bool = append(st.bool, embedded.bool...)
-
-	s.join(st, aliasType)
 }
 
 func isNew(a *[]string, s string) bool {
