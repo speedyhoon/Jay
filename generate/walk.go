@@ -12,7 +12,7 @@ type visitor struct {
 
 type structTyp struct {
 	name                        string
-	fixedLen, variableLen, bool []field // Exported fields.
+	fixedLen, variableLen, bool fieldList // Exported fields.
 }
 
 type field struct {
@@ -24,6 +24,7 @@ type field struct {
 	tag        string // The tag value within `j:""`
 	tagOptions        // Valid tag options that have been successfully parsed and loaded from the `tag` string.
 }
+type fieldList []field
 
 // Visit traverses the AST File and finds all structs even if they are unexported.
 // Unexported structs can be exported if they are referenced in exported structs with exported field names.

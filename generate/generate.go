@@ -22,9 +22,7 @@ const (
 var ErrNoneExported = errors.New("no exported struct fields found")
 
 func makeFile(pkg string, s []structTyp, option Option) ([]byte, error) {
-	for i := range s {
-		s[i].mergeEmbeddedStructs(s)
-	}
+	mergeEmbeddedStructs(s)
 
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
@@ -59,32 +57,37 @@ import "%[1]s%[2]s"
 	return bb, nil
 }
 
-func (s *structTyp) mergeEmbeddedStructs(structs []structTyp) {
-	var structsToMerge []string
-	for _, fields := range []*[]field{&s.fixedLen, &s.variableLen} {
-		for i := 0; i < len(*fields); i++ {
-			if (*fields)[i].typ != "struct" || !isNew(&structsToMerge, (*fields)[i].name) {
-				continue
-			}
+func mergeEmbeddedStructs(structs []structTyp) {
+	for i := range structs {
+		var structNames []string
+		structs[i].fixedLen.mergeFields(structs, structNames, i)
+		structs[i].variableLen.mergeFields(structs, structNames, i)
+	}
+}
 
-			aliasType := (*fields)[i].aliasType
-			embedded := findStruct(structs, aliasType)
-			if embedded == nil {
-				log.Fatalf("can't find %s %s used as name %s", (*fields)[i].typ, aliasType, (*fields)[i].name)
-			}
-
-			// Remove the struct so its contents are not referenced twice.
-			*fields = Remove(*fields, i)
-			i--
-
-			// Deep copy embedded structType.
-			st := structTyp{name: embedded.name}
-			st.fixedLen = append(st.fixedLen, embedded.fixedLen...)
-			st.variableLen = append(st.variableLen, embedded.variableLen...)
-			st.bool = append(st.bool, embedded.bool...)
-
-			s.join(st, aliasType)
+func (f *fieldList) mergeFields(structs []structTyp, structNames []string, structIndex int) {
+	for i := 0; i < len(*f); i++ {
+		if (*f)[i].typ != "struct" || !isNew(&structNames, (*f)[i].name) {
+			continue
 		}
+
+		aliasType := (*f)[i].aliasType
+		embedded := findStruct(structs, aliasType)
+		if embedded == nil {
+			log.Fatalf("can't find %s %s used as name %s", (*f)[i].typ, aliasType, (*f)[i].name)
+		}
+
+		// Remove the struct field so its contents are not referenced twice.
+		*f = Remove(*f, i)
+		i--
+
+		// Deep copy embedded structType.
+		dc := structTyp{name: embedded.name}
+		dc.fixedLen = append(dc.fixedLen, embedded.fixedLen...)
+		dc.variableLen = append(dc.variableLen, embedded.variableLen...)
+		dc.bool = append(dc.bool, embedded.bool...)
+
+		structs[structIndex].join(dc, aliasType)
 	}
 }
 
