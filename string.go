@@ -34,6 +34,19 @@ func ReadString(b []byte) (h string, size int, _ bool) {
 	return string(b[strSizeOf:size]), size, true
 }
 
+func ReadStringPtrErr(b []byte, h *string) error {
+	size := int(b[0]) + strSizeOf
+	if size == strSizeOf {
+		return nil
+	}
+	if len(b) < size {
+		return ErrUnexpectedEOB
+	}
+
+	*h = string(b[strSizeOf:size])
+	return nil
+}
+
 func ReadStringAt(b []byte, at int) (h string, size int, ok bool) {
 	h, size, ok = ReadString(b)
 	return h, at + size, ok

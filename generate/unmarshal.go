@@ -19,13 +19,14 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 
 	s.makeReadBools(buf, &byteIndex, receiver)
 
+	var returnInlined bool
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, "", i == len(s.fixedLen)-1 && len(s.variableLen) == 0))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, "", len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined))
 		buf.WriteString("\n")
 	}
 
 	var at string
-	if len(s.variableLen) >= 1 {
+	if len(s.variableLen) >= 2 {
 		buf.WriteString("var ok bool\n")
 	}
 
@@ -38,8 +39,11 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, at, i == vLen))
-		bufWriteF(buf, "\nif !ok {\nreturn %s.ErrUnexpectedEOB\n}\n", pkgName)
+		isLast := i == vLen
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, at, isLast, &returnInlined))
+		if !isLast {
+			bufWriteF(buf, "\nif !ok {\nreturn %s.ErrUnexpectedEOB\n}\n", pkgName)
+		}
 	}
 
 	code := buf.Bytes()
@@ -47,15 +51,21 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 		return
 	}
 
+	var returnCode string
+	if !returnInlined {
+		returnCode = "return nil\n"
+	}
+
 	bufWriteF(b,
-		"func (%s *%s) UnmarshalJ(b []byte) error {\n%s\nreturn nil\n}\n",
+		"func (%s *%s) UnmarshalJ(b []byte) error {\n%s\n%s}\n",
 		receiver,
 		s.name,
 		code,
+		returnCode,
 	)
 }
 
-func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isLast bool) string {
+func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isLast bool, returnInlined *bool) string {
 	fun, size := o.unmarshalFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
@@ -90,10 +100,14 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 			return fmt.Sprintf("%s.%s", thisField, printFunc(fun, slice))
 		}
 
-		if !isLast {
-			return fmt.Sprintf("%s, at, ok = %s", thisField, printFunc(fun, slice, idx))
-		} else {
+		if isLast {
+			if f.typ == "string" {
+				*returnInlined = true
+				return fmt.Sprintf("return %s", printFunc(fun, slice, "&"+thisField))
+			}
 			return fmt.Sprintf("%s, at, ok = %s", thisField, printFunc(fun, slice))
+		} else {
+			return fmt.Sprintf("%s, at, ok = %s", thisField, printFunc(fun, slice, idx))
 		}
 	}
 }
@@ -109,7 +123,7 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size uint
 		return "int8", 1
 	case "string":
 		if isLast {
-			c, size = jay.ReadString, 0
+			c, size = jay.ReadStringPtrErr, 0
 		} else {
 			c, size = jay.ReadStringAt, 0
 		}
