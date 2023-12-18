@@ -60,35 +60,21 @@ import "%[1]s%[2]s"
 }
 
 func (s *structTyp) mergeEmbeddedStructs(list []structTyp) {
-	var mergeStructs []string
+	var structsToMerge []string
 	for i := 0; i < len(s.fixedLen); i++ {
-		if s.fixedLen[i].typ != "struct" {
-			continue
-		}
-
-		if !isNew(&mergeStructs, s.fixedLen[i].name) {
-			continue
-		}
-
-		s.mergeFields(&s.fixedLen, &i, list)
+		s.mergeFields(&s.fixedLen, &i, list, structsToMerge)
 	}
 
 	for i := 0; i < len(s.variableLen); i++ {
-		if s.variableLen[i].typ != "struct" {
-			continue
-		}
-
-		if !isNew(&mergeStructs, s.variableLen[i].aliasType) {
-			continue
-		}
-
-		s.mergeFields(&s.variableLen, &i, list)
+		s.mergeFields(&s.variableLen, &i, list, structsToMerge)
 	}
-
-	return
 }
 
-func (s *structTyp) mergeFields(fields *[]field, index *int, structs []structTyp) {
+func (s *structTyp) mergeFields(fields *[]field, index *int, structs []structTyp, structsToMerge []string) {
+	if (*fields)[*index].typ != "struct" || !isNew(&structsToMerge, (*fields)[*index].name) {
+		return
+	}
+
 	aliasType := (*fields)[*index].aliasType
 	embedded := findStruct(structs, aliasType)
 	if embedded == nil {
