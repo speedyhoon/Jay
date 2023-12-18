@@ -71,23 +71,17 @@ func (f *fieldList) mergeFields(structs []structTyp, structNames []string, struc
 			continue
 		}
 
-		aliasType := (*f)[i].aliasType
+		aliasType, fieldName := (*f)[i].aliasType, (*f)[i].name
 		embedded := findStruct(structs, aliasType)
 		if embedded == nil {
-			log.Fatalf("can't find %s %s used as name %s", (*f)[i].typ, aliasType, (*f)[i].name)
+			log.Fatalf("can't find %s %s used as name %s", (*f)[i].typ, aliasType, fieldName)
 		}
 
 		// Remove the struct field so its contents are not referenced twice.
 		*f = Remove(*f, i)
 		i--
 
-		// Deep copy embedded structType.
-		dc := structTyp{name: embedded.name}
-		dc.fixedLen = append(dc.fixedLen, embedded.fixedLen...)
-		dc.variableLen = append(dc.variableLen, embedded.variableLen...)
-		dc.bool = append(dc.bool, embedded.bool...)
-
-		structs[structIndex].join(dc, aliasType)
+		structs[structIndex].join(*embedded, fieldName)
 	}
 }
 
@@ -111,20 +105,17 @@ func findStruct(s []structTyp, name string) *structTyp {
 }
 
 func (s *structTyp) join(embedded structTyp, name string) {
-	s.bool = appendEmbed(s.bool, name, embedded.bool)
-	s.fixedLen = appendEmbed(s.fixedLen, name, embedded.fixedLen)
-	s.variableLen = appendEmbed(s.variableLen, name, embedded.variableLen)
+	appendEmbed(&s.bool, name, embedded.bool)
+	appendEmbed(&s.fixedLen, name, embedded.fixedLen)
+	appendEmbed(&s.variableLen, name, embedded.variableLen)
 }
 
-func appendEmbed(fields []field, embedName string, embedded []field) []field {
-	if len(embedded) >= 1 {
-		for i := range embedded {
-			// Change the embedded name, so it is correctly referenced in the code generated.
-			embedded[i].name = fmt.Sprintf("%s.%s", embedName, embedded[i].name)
-		}
-		fields = append(fields, embedded...)
+func appendEmbed(fields *fieldList, embedName string, embedded fieldList) {
+	for _, e := range embedded {
+		// Change the embedded name, so it is correctly referenced in the code generated.
+		e.name = fmt.Sprintf("%s.%s", embedName, e.name)
+		*fields = append(*fields, e)
 	}
-	return fields
 }
 
 func (s *structTyp) makeFuncs(b *bytes.Buffer, o Option) {
