@@ -203,7 +203,7 @@ func (o Option) typeFuncs(fe field, isLast bool) (_ string, size uint) {
 		f, size = jay.WriteUint64, 8
 	case "time.Time":
 		if fe.tagOptions.TimeNano {
-			f, size = jay.WriteTimeNano3, 8
+			f, size = jay.WriteTimeNano, 8
 		} else {
 			f, size = jay.WriteTime, 8
 		}

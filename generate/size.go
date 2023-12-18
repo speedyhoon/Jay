@@ -74,7 +74,7 @@ func (o Option) typeFuncSize(typ string) (size uint) {
 		return 2
 	case "int32", "rune", "float32", "uint32":
 		return 4
-	case "float64", "int64", "uint64":
+	case "float64", "int64", "uint64", "time.Time":
 		return 8
 	case "int":
 		if o.FixedIntSize {

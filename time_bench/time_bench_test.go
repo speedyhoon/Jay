@@ -1,4 +1,4 @@
-package jay_test
+package time_bench
 
 import (
 	"github.com/speedyhoon/jay"
@@ -10,21 +10,21 @@ var timeTime time.Time
 
 func BenchmarkReadTimeDate(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		timeTime = jay.ReadTimeDate([]byte{240, 48, 77})
+		timeTime = ReadTimeDate([]byte{240, 48, 77})
 	}
 }
 
 func BenchmarkWriteTimeDate(b *testing.B) {
 	src := []byte{0, 0, 0}
 	for i := 0; i < b.N; i++ {
-		jay.WriteTimeDate(src, timeTime)
+		WriteTimeDate(src, timeTime)
 	}
 }
 
 func BenchmarkWriteTimeDate2(b *testing.B) {
 	src := []byte{0, 0, 0}
 	for i := 0; i < b.N; i++ {
-		jay.WriteTimeDate2(src, timeTime)
+		WriteTimeDate2(src, timeTime)
 	}
 }
 
@@ -43,7 +43,7 @@ func BenchmarkWriteTime(b *testing.B) {
 
 func BenchmarkReadTimeNano(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		timeTime, _ = jay.ReadTimeNano([]byte{240, 48, 77, 101, 225, 65, 87, 6})
+		timeTime /*, _*/ = ReadTimeNano([]byte{240, 48, 77, 101, 225, 65, 87, 6})
 	}
 }
 

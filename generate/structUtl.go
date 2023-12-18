@@ -62,7 +62,12 @@ func (o Option) isSupportedType(t *ast.Field) (typeOf, aliasTypeName string, isV
 		return typeOf, d.Name, isVarLen, typeOf != ""
 		//log.Printf("names: %s, type: %s, tag: %s\n", strings.Join(names, ","), d.Name, tag)
 	case nil:
-		// Ignore.
+	// Ignore.
+	case *ast.SelectorExpr:
+		x, ok := d.X.(*ast.Ident)
+		if ok && x.Name == "time" && d.Sel.Name == "Time" {
+			return "time.Time", "time.Time", false, true
+		}
 	default:
 		log.Printf("type %T not expected here", d)
 	}

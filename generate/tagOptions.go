@@ -13,14 +13,16 @@ type tagOptions struct {
 	Max, Min tagSize
 
 	maxBytes uint
+	TimeNano bool
 }
 
 type tagSize uint
 
 func (f *field) LoadTagOptions() {
 	const (
-		tagMax = "max"
-		tagMin = "min"
+		tagMax  = "max"
+		tagMin  = "min"
+		tagTime = "nano"
 	)
 
 	f.tag = strings.TrimSpace(f.tag)
@@ -29,12 +31,14 @@ func (f *field) LoadTagOptions() {
 	}
 	for _, c := range strings.Split(f.tag, ",") {
 		d := strings.Split(c, ":")
-		switch g := d[0]; g {
+		switch g := strings.ToLower(d[0]); g {
 		case tagMax:
 			f.tagOptions.Max.set(d[1])
 			f.tagOptions.maxBytes = byteSize(f.tagOptions.Max)
 		case tagMin:
 			f.tagOptions.Min.set(g)
+		case tagTime:
+			f.tagOptions.TimeNano = true
 		}
 	}
 }

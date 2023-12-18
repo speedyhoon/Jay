@@ -56,7 +56,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 }
 
 func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isLast bool) string {
-	fun, size := o.unmarshalFuncs(f.typ, isLast)
+	fun, size := o.unmarshalFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
 		log.Printf("no generateLine for type `%s` yet", f.typ)
@@ -98,62 +98,70 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 	}
 }
 
-func (o Option) unmarshalFuncs(typ string, isLast bool) (_ string, size uint) {
-	var f interface{}
-	switch typ {
+// unmarshalFuncs returns the function name to handle unmarshalling.
+// `size` is the quantity of bytes required to represent the type.
+func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size uint) {
+	var c interface{}
+	switch f.typ {
 	case "byte", "uint8":
 		return "", 1
 	case "int8":
 		return "int8", 1
 	case "string":
 		if isLast {
-			f, size = jay.ReadString, 0
+			c, size = jay.ReadString, 0
 		} else {
-			f, size = jay.ReadStringAt, 0
+			c, size = jay.ReadStringAt, 0
 		}
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
-				f, size = jay.ReadIntArch32, 4
+				c, size = jay.ReadIntArch32, 4
 			}
-			f, size = jay.ReadIntArch64, 8
+			c, size = jay.ReadIntArch64, 8
 			break
 		}
-		//f, size = jay.ReadIntVariable, 0
-		f, size = jay.ReadInt, 0
+		//c, size = jay.ReadIntVariable, 0
+		c, size = jay.ReadInt, 0
 	case "int16":
-		f, size = jay.ReadInt16, 2
+		c, size = jay.ReadInt16, 2
 	case "int32", "rune":
-		f, size = jay.ReadInt32, 4
+		c, size = jay.ReadInt32, 4
 	case "float32":
-		f, size = jay.ReadFloat32, 4
+		c, size = jay.ReadFloat32, 4
 	case "float64":
-		f, size = jay.ReadFloat64, 8
+		c, size = jay.ReadFloat64, 8
 	case "int64":
-		f, size = jay.ReadInt64, 8
+		c, size = jay.ReadInt64, 8
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {
-				f, size = jay.ReadUintArch32, 4
+				c, size = jay.ReadUintArch32, 4
 			}
-			f, size = jay.ReadUintArch64, 8
+			c, size = jay.ReadUintArch64, 8
 			break
 		}
-		f, size = jay.ReadUintVariable, 0
+		c, size = jay.ReadUintVariable, 0
 	case "uint16":
-		f, size = jay.ReadUint16, 2
+		c, size = jay.ReadUint16, 2
 	case "uint32":
-		f, size = jay.ReadUint32, 4
+		c, size = jay.ReadUint32, 4
 	case "uint64":
-		f, size = jay.ReadUint64, 8
+		c, size = jay.ReadUint64, 8
+	case "time.Time":
+		if f.tagOptions.TimeNano {
+			c, size = jay.ReadTimeNano, 8
+		} else {
+			c, size = jay.ReadTime, 8
+		}
 
 	default:
-		log.Printf("not function set for type %s yet", typ)
+		log.Printf("no function set for type %s yet", f.typ)
 		return "", 0
 	}
 
 	return strings.TrimPrefix(
-		runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
+		runtime.FuncForPC(reflect.ValueOf(c).Pointer()).Name(),
 		pkgPrefix,
 	), size
 }

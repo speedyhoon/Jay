@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"time"
 )
 
 func main() {
@@ -37,6 +38,7 @@ type Car struct {
 	CC      string  `z:",omitempty"`
 	Timing  *string `z:",omitempty" j:"max:24"`
 	RedLine uint16
+	Expiry  time.Time
 	Gearbox gearbox
 }
 
