@@ -62,62 +62,50 @@ import "%[1]s%[2]s"
 func (s *structTyp) mergeEmbeddedStructs(list []structTyp) {
 	var mergeStructs []string
 	for i := 0; i < len(s.fixedLen); i++ {
-		if s.fixedLen[i].typ == "struct" {
-			var ok bool
-			ok = isNew(&mergeStructs, s.fixedLen[i].name)
-			if !ok {
-				continue
-			}
-
-			embedded := findStruct(list, s.fixedLen[i].name)
-			if embedded == nil {
-				log.Fatalf("can't find %s with name %s", s.fixedLen[i].typ, s.fixedLen[i].name)
-			}
-
-			fieldName := s.fixedLen[i].name
-
-			// Remove the struct so its contents are not referenced twice.
-			s.fixedLen = Remove(s.fixedLen, i)
-			i--
-
-			// Deep copy embedded structType.
-			st := structTyp{name: embedded.name}
-			st.fixedLen = append(st.fixedLen, embedded.fixedLen...)
-			st.variableLen = append(st.variableLen, embedded.variableLen...)
-			st.bool = append(st.bool, embedded.bool...)
-			s.join(st, fieldName)
+		if s.fixedLen[i].typ != "struct" {
+			continue
 		}
+
+		if !isNew(&mergeStructs, s.fixedLen[i].name) {
+			continue
+		}
+
+		s.mergeFields(&s.fixedLen, &i, list)
 	}
 
 	for i := 0; i < len(s.variableLen); i++ {
-		if s.variableLen[i].typ == "struct" {
-			var ok bool
-			ok = isNew(&mergeStructs, s.variableLen[i].aliasType)
-			if !ok {
-				continue
-			}
-
-			embedded := findStruct(list, s.variableLen[i].aliasType)
-			if embedded == nil {
-				log.Fatalf("can't find %s %s used as name %s", s.variableLen[i].typ, s.variableLen[i].aliasType, s.variableLen[i].name)
-			}
-
-			fieldName := s.variableLen[i].name
-
-			// Remove the struct so its contents are not referenced twice.
-			s.variableLen = Remove(s.variableLen, i)
-			i--
-
-			// Deep copy embedded structType.
-			st := structTyp{name: embedded.name}
-			st.fixedLen = append(st.fixedLen, embedded.fixedLen...)
-			st.variableLen = append(st.variableLen, embedded.variableLen...)
-			st.bool = append(st.bool, embedded.bool...)
-			s.join(st, fieldName)
+		if s.variableLen[i].typ != "struct" {
+			continue
 		}
+
+		if !isNew(&mergeStructs, s.variableLen[i].aliasType) {
+			continue
+		}
+
+		s.mergeFields(&s.variableLen, &i, list)
 	}
 
 	return
+}
+
+func (s *structTyp) mergeFields(fields *[]field, index *int, structs []structTyp) {
+	aliasType := (*fields)[*index].aliasType
+	embedded := findStruct(structs, aliasType)
+	if embedded == nil {
+		log.Fatalf("can't find %s %s used as name %s", (*fields)[*index].typ, aliasType, (*fields)[*index].name)
+	}
+
+	// Remove the struct so its contents are not referenced twice.
+	*fields = Remove(*fields, *index)
+	*index--
+
+	// Deep copy embedded structType.
+	st := structTyp{name: embedded.name}
+	st.fixedLen = append(st.fixedLen, embedded.fixedLen...)
+	st.variableLen = append(st.variableLen, embedded.variableLen...)
+	st.bool = append(st.bool, embedded.bool...)
+
+	s.join(st, aliasType)
 }
 
 func isNew(a *[]string, s string) bool {
@@ -143,13 +131,6 @@ func (s *structTyp) join(embedded structTyp, name string) {
 	s.bool = appendEmbed(s.bool, name, embedded.bool)
 	s.fixedLen = appendEmbed(s.fixedLen, name, embedded.fixedLen)
 	s.variableLen = appendEmbed(s.variableLen, name, embedded.variableLen)
-	//
-	//if len(embedded.bool) >= 1 {
-	//	for i := range embedded.bool {
-	//		embedded.bool[i].name = fmt.Sprintf("%s.%s", embedded.name, embedded.bool[i].name)
-	//	}
-	//	s.bool = append(s.bool, embedded.bool...)
-	//}
 }
 
 func appendEmbed(fields []field, embedName string, embedded []field) []field {
