@@ -47,9 +47,12 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	}
 
 	code := buf.Bytes()
-	if len(code) == 0 {
+	if len(code) == 0 || byteIndex == 0 {
 		return
 	}
+
+	// Prevent panic: runtime error: index out of range
+	lengthCheck := fmt.Sprintf("if len(b) < %d {\nreturn jay.ErrUnexpectedEOB\n}", byteIndex)
 
 	var returnCode string
 	if !returnInlined {
@@ -57,9 +60,10 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	}
 
 	bufWriteF(b,
-		"func (%s *%s) UnmarshalJ(b []byte) error {\n%s\n%s}\n",
+		"func (%s *%s) UnmarshalJ(b []byte) error {\n%s\n%s%s}\n",
 		receiver,
 		s.name,
+		lengthCheck,
 		code,
 		returnCode,
 	)

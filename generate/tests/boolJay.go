@@ -11,7 +11,9 @@ func (o *OnlyBools) MarshalJ() (b []byte) {
 }
 
 func (o *OnlyBools) UnmarshalJ(b []byte) error {
+	if len(b) < 1 {
+		return jay.ErrUnexpectedEOB
+	}
 	o.Hidden, o.Deactivated, o.Selected, o.Modified, o.Updated = jay.ReadBool5(b[0])
-
 	return nil
 }

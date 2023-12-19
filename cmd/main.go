@@ -10,6 +10,12 @@ import (
 	"strings"
 )
 
+// TODO fix error:
+// go run ./cmd/main.go -o generate/tests/boolJay.go generate/tests/
+//	main.go:73: open generate/tests/generate/tests/boolJay.go: no such file or directory
+// but this works:
+// go run ./cmd/main.go -o boolJay.go generate/tests/
+
 const (
 	goExt      = ".go"
 	testSuffix = "_test" + goExt

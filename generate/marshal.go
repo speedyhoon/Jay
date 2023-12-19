@@ -213,8 +213,12 @@ func (o Option) typeFuncs(fe field, isLast bool) (_ string, size uint) {
 		return "", 0
 	}
 
+	return nameOf(f), size
+}
+
+func nameOf(f any) string {
 	return strings.TrimPrefix(
 		runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
 		pkgPrefix,
-	), size
+	)
 }
