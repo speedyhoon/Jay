@@ -2,7 +2,6 @@ package generate
 
 import (
 	"fmt"
-	"github.com/speedyhoon/jay"
 	"math"
 )
 
@@ -66,9 +65,9 @@ func LoadOptions(opts ...Option) (o Option) {
 	}
 
 	if o.MaxDefaultStrSize == 0 {
-		o.MaxDefaultStrSize = jay.MaxUint8
-	} else if o.MaxDefaultStrSize > jay.MaxUint24 {
-		o.MaxDefaultStrSize = jay.MaxUint24
+		o.MaxDefaultStrSize = MaxUint8
+	} else if o.MaxDefaultStrSize > MaxUint24 {
+		o.MaxDefaultStrSize = MaxUint24
 	}
 	o.strSizeOfDefault = bytesRequired(o.MaxDefaultStrSize)
 

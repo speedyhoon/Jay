@@ -79,7 +79,7 @@ func WriteUintVariable(b []byte, u uint, length uint8) {
 	}
 }
 
-// Deprecated
+/*// Deprecated
 // WriteUintDeprecated ...
 func WriteUintDeprecated(b []byte, u uint) int {
 	b[0] = lenUintDeprecated(u) - 1
@@ -165,7 +165,7 @@ func lenUintDeprecated(u uint) uint8 {
 	default:
 		return 9
 	}
-}
+}*/
 
 // WriteUint24 ...
 func WriteUint24(b []byte, u uint64) {

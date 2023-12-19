@@ -1,7 +1,6 @@
 package generate
 
 import (
-	"github.com/speedyhoon/jay"
 	"log"
 	"strconv"
 	"strings"
@@ -43,23 +42,33 @@ func (f *field) LoadTagOptions() {
 	}
 }
 
+const (
+	MaxUint8  = 1<<8 - 1  // 255
+	MaxUint16 = 1<<16 - 1 // 65535
+	MaxUint24 = 1<<24 - 1 // 16777215
+	MaxUint32 = 1<<32 - 1 // 4294967295
+	MaxUint40 = 1<<40 - 1 // 1099511627775
+	MaxUint48 = 1<<48 - 1 // 281474976710655
+	MaxUint56 = 1<<56 - 1 // 72057594037927935
+)
+
 func byteSize(v tagSize) uint {
 	switch {
 	case v == 0:
 		return 0
-	case v <= jay.MaxUint8:
+	case v <= MaxUint8:
 		return 1
-	case v <= jay.MaxUint16:
+	case v <= MaxUint16:
 		return 2
-	case v <= jay.MaxUint24:
+	case v <= MaxUint24:
 		return 3
-	case v <= jay.MaxUint32:
+	case v <= MaxUint32:
 		return 4
-	case v <= jay.MaxUint40:
+	case v <= MaxUint40:
 		return 5
-	case v <= jay.MaxUint48:
+	case v <= MaxUint48:
 		return 6
-	case v <= jay.MaxUint56:
+	case v <= MaxUint56:
 		return 7
 	}
 	return 8

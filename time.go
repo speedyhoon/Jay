@@ -12,7 +12,7 @@ func WriteTime(b []byte, t time.Time) {
 	WriteInt64(b, t.Unix())
 }
 
-const timeZero = MaxInt64 - 7 // 9223372036854775800
+const timeZero = 1<<63 - 8 // 9223372036854775800
 
 func ReadTimeNano(b []byte) (t time.Time) {
 	if i := ReadInt64(b); i != timeZero {

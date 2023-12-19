@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/speedyhoon/jay"
 	"github.com/stretchr/testify/assert"
 	"math"
 	"math/rand"
@@ -45,7 +44,7 @@ func TestCar_MarshalUnmarshal_large(t *testing.T) {
 	c := Car{
 		ID:   math.MaxUint64,
 		Row:  uint(math.MaxUint64),
-		Name: string(make([]byte, jay.MaxUint8)),
+		Name: string(make([]byte, math.MaxUint8)),
 		Auto: true,
 		CC:   string(make([]byte, jay.MaxUint8)),
 		//Timing:  ptrStr(string(make([]byte,jay.MaxUint24))),

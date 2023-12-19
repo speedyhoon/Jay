@@ -1,27 +1,17 @@
 package jay
 
 const (
-	MaxUint8  = 1<<8 - 1  // 255
-	MaxUint16 = 1<<16 - 1 // 65535
-	MaxUint24 = 1<<24 - 1 // 16777215
-	MaxUint32 = 1<<32 - 1 // 4294967295
-	MaxUint40 = 1<<40 - 1 // 1099511627775
-	MaxUint48 = 1<<48 - 1 // 281474976710655
-	MaxUint56 = 1<<56 - 1 // 72057594037927935
-)
-
-const (
-	Neg24Mask = ^MaxUint24 // Negative integer masks.
-	Neg40Mask = ^MaxUint40
-	Neg48Mask = ^MaxUint48
-	Neg56Mask = ^MaxUint56
+	neg24Mask = ^(1<<24 - 1) // Negative integer masks.
+	neg40Mask = ^(1<<40 - 1)
+	neg48Mask = ^(1<<48 - 1)
+	neg56Mask = ^(1<<56 - 1)
 )
 
 // ReadInt24 ...
 func ReadInt24(b []byte) int {
 	// Check if the negative bit is on.
 	if b[2]&_128 == _128 {
-		return Neg24Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16
+		return neg24Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16
 	}
 	return int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16
 }
@@ -30,7 +20,7 @@ func ReadInt24(b []byte) int {
 func ReadInt40(b []byte) int {
 	// Check if the negative bit is on.
 	if b[4]&_128 == _128 {
-		return Neg40Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 | int(b[4])<<_32
+		return neg40Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 | int(b[4])<<_32
 	}
 	return int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 | int(b[4])<<_32
 }
@@ -39,7 +29,7 @@ func ReadInt40(b []byte) int {
 func ReadInt48(b []byte) int {
 	// Check if the negative bit is on.
 	if b[5]&_128 == _128 {
-		return Neg48Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 |
+		return neg48Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 |
 			int(b[4])<<_32 | int(b[5])<<_40
 	}
 	return int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 |
@@ -50,7 +40,7 @@ func ReadInt48(b []byte) int {
 func ReadInt56(b []byte) int {
 	// Check if the negative bit is on.
 	if b[6]&_128 == _128 {
-		return Neg56Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 |
+		return neg56Mask | int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24 |
 			int(b[4])<<_32 | int(b[5])<<_40 | int(b[6])<<_48
 	}
 
