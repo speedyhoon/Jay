@@ -1,4 +1,4 @@
-package jay_test
+package int_test
 
 import (
 	"github.com/speedyhoon/jay"

@@ -1,4 +1,4 @@
-package jay_test
+package string_test
 
 import (
 	"github.com/speedyhoon/jay"
@@ -9,18 +9,6 @@ var str1 string
 var y = make([]byte, 19)
 var z = []byte("\022octopus camouflage")
 var bool1 bool
-
-func BenchmarkReadString(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		str1, integer, bool1 = jay.ReadString(z)
-	}
-}
-
-func BenchmarkReadStringPtr(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		integer, bool1 = jay.ReadStringPtr(z, &str1)
-	}
-}
 
 func BenchmarkWriteString(b *testing.B) {
 	for i := 0; i < b.N; i++ {
