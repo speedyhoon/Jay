@@ -14,6 +14,7 @@ func TestString(t *testing.T) {
 	jay.WriteString(y, str, length)
 	assert.Equal(t, []byte("\022octopus camouflage"), y)
 
+	z := []byte("\022octopus camouflage")
 	s, l, ok := jay.ReadString(z)
 	assert.Equal(t, str, s)
 	assert.Equal(t, length+1, l)
@@ -28,6 +29,8 @@ func TestStringPtr(t *testing.T) {
 	jay.WriteString(y, str, length)
 	assert.Equal(t, []byte("\022octopus camouflage"), y)
 
+	z := []byte("\022octopus camouflage")
+	var str1 string
 	l, ok := jay.ReadStringPtr(z, &str1)
 	assert.Equal(t, str, str1)
 	assert.Equal(t, length+1, l)

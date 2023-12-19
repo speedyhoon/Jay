@@ -14,6 +14,7 @@ func TestBytes(t *testing.T) {
 	jay.WriteBytes(y, src)
 	assert.Equal(t, []byte("\022octopus camouflage"), y)
 
+	z := []byte("\022octopus camouflage")
 	s, ok := jay.ReadBytes(z)
 	assert.Equal(t, src, s)
 	assert.True(t, ok)
