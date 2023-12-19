@@ -4,10 +4,8 @@ package tests
 
 import "github.com/speedyhoon/jay"
 
-func (o *OnlyBools) MarshalJ() (b []byte) {
-	b = make([]byte, 1)
-	b[0] = jay.Bool5(o.Hidden, o.Deactivated, o.Selected, o.Modified, o.Updated)
-	return
+func (o *OnlyBools) MarshalJ() []byte {
+	return []byte{jay.Bool5(o.Hidden, o.Deactivated, o.Selected, o.Modified, o.Updated)}
 }
 
 func (o *OnlyBools) UnmarshalJ(b []byte) error {

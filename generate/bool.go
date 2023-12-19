@@ -4,16 +4,20 @@ import (
 	"bytes"
 )
 
-func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, receiver string) {
+func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, receiver string, onlyOneByteUsed bool) (isReturnInlined bool) {
 	if len(s.bool) == 0 {
-		return
+		return false
 	}
+
+	isReturnInlined = onlyOneByteUsed && len(s.bool) <= 8
 
 	var i, mx uint = 0, uint(len(s.bool) / 8)
 	for ; i <= mx; i++ {
-		writeBools(s.bool[boolsSliceIndex(i):], b, *byteIndex, receiver)
+		writeBools(s.bool[boolsSliceIndex(i):], b, *byteIndex, receiver, isReturnInlined)
 		*byteIndex++
 	}
+
+	return isReturnInlined
 }
 
 func boolsSliceIndex(input uint) uint {
@@ -23,14 +27,18 @@ func boolsSliceIndex(input uint) uint {
 	return ((input-1)/8+1)*8 - 8
 }
 
-func writeBools(bools []field, b *bytes.Buffer, byteIndex uint, receiver string) {
+func writeBools(bools []field, b *bytes.Buffer, byteIndex uint, receiver string, onlyOneByteUsed bool) {
 	const marshalBoolsFuncPrefix = "Bool"
 
 	if len(bools) > 8 {
 		bools = bools[:8]
 	}
 
-	bufWriteF(b, "b[%d] = %s.%s%d(%s)\n", byteIndex, pkgName, marshalBoolsFuncPrefix, len(bools), fieldNames(bools, receiver))
+	if onlyOneByteUsed {
+		bufWriteF(b, "return []byte{%s.%s%d(%s)}\n", pkgName, marshalBoolsFuncPrefix, len(bools), fieldNames(bools, receiver))
+	} else {
+		bufWriteF(b, "b[%d] = %s.%s%d(%s)\n", byteIndex, pkgName, marshalBoolsFuncPrefix, len(bools), fieldNames(bools, receiver))
+	}
 }
 
 func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint, receiver string) {

@@ -19,10 +19,11 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	receiver := s.receiverName()
 
 	varLengths := lengths2(s.varLenFieldNames(), receiver)
+	makeSize := joinSizes(s.calcSize(o), s.variableLen)
 
 	var byteIndex uint
 	buf := bytes.NewBuffer(nil)
-	s.makeWriteBools(buf, &byteIndex, receiver)
+	isReturnInlined := s.makeWriteBools(buf, &byteIndex, receiver, makeSize == "1" && varLengths == "")
 
 	for i, f := range s.fixedLen {
 		buf.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0))
@@ -53,12 +54,22 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 		return
 	}
 
+	if isReturnInlined {
+		bufWriteF(b,
+			"func (%s *%s) MarshalJ() []byte {\n%s}\n",
+			receiver,
+			s.name,
+			code,
+		)
+		return
+	}
+
 	bufWriteF(b,
 		"func (%s *%s) MarshalJ() (b []byte) {\n%s\nb = make([]byte, %s)\n%sreturn\n}\n",
 		receiver,
 		s.name,
 		varLengths,
-		joinSizes(s.calcSize(o), s.variableLen),
+		makeSize,
 		code,
 	)
 }
