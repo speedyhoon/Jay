@@ -1,6 +1,7 @@
 package jay
 
 const (
+	// Bit shift masks.
 	_24, _40, _48, _56 = 24, 40, 48, 56
 
 	MaxInt8  = 1<<7 - 1  // 127

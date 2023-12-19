@@ -1,5 +1,6 @@
 package jay
 
+// Bit masks.
 const _128, _64, _32, _16, _8, _4, _2, _1 = 128, 64, 32, 16, 8, 4, 2, 1
 
 func Bool1(a bool) (y byte) {
