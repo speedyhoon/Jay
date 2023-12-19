@@ -1,8 +1,6 @@
 package jay
 
-import (
-	"time"
-)
+import "time"
 
 func ReadTime(b []byte) (t time.Time) {
 	return time.Unix(ReadInt64(b), 0).UTC()
