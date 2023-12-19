@@ -1,4 +1,4 @@
-package time_bench
+package time_test
 
 import (
 	"github.com/speedyhoon/jay"
@@ -8,25 +8,25 @@ import (
 
 var timeTime time.Time
 
-func BenchmarkReadTimeDate(b *testing.B) {
+/*func BenchmarkReadTimeDate(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		timeTime = ReadTimeDate([]byte{240, 48, 77})
 	}
-}
+}*/
 
-func BenchmarkWriteTimeDate(b *testing.B) {
+/*func BenchmarkWriteTimeDate(b *testing.B) {
 	src := []byte{0, 0, 0}
 	for i := 0; i < b.N; i++ {
 		WriteTimeDate(src, timeTime)
 	}
-}
+}*/
 
-func BenchmarkWriteTimeDate2(b *testing.B) {
+/*func BenchmarkWriteTimeDate2(b *testing.B) {
 	src := []byte{0, 0, 0}
 	for i := 0; i < b.N; i++ {
 		WriteTimeDate2(src, timeTime)
 	}
-}
+}*/
 
 func BenchmarkReadTime(b *testing.B) {
 	for i := 0; i < b.N; i++ {
@@ -43,13 +43,13 @@ func BenchmarkWriteTime(b *testing.B) {
 
 func BenchmarkReadTimeNano(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		timeTime /*, _*/ = ReadTimeNano([]byte{240, 48, 77, 101, 225, 65, 87, 6})
+		timeTime = jay.ReadTimeNano([]byte{240, 48, 77, 101, 225, 65, 87, 6})
 	}
 }
 
 func BenchmarkWriteTimeNano(b *testing.B) {
 	src := []byte{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 	for i := 0; i < b.N; i++ {
-		_ = jay.WriteTimeNano(src, timeTime)
+		jay.WriteTimeNano(src, timeTime)
 	}
 }

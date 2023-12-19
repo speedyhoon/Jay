@@ -1,6 +1,17 @@
-package jay
+package buffer
 
 import "bytes"
+
+const (
+	MaxUint8  = 1<<8 - 1  // 255
+	MaxUint16 = 1<<16 - 1 // 65535
+	MaxUint24 = 1<<24 - 1 // 16777215
+	MaxUint32 = 1<<32 - 1 // 4294967295
+	MaxUint40 = 1<<40 - 1 // 1099511627775
+	MaxUint48 = 1<<48 - 1 // 281474976710655
+	MaxUint56 = 1<<56 - 1 // 72057594037927935
+	//MaxUint64 = 1<<64 - 1 // 18446744073709551615
+)
 
 func WriteBufBool(b *bytes.Buffer, t bool) error {
 	if t {

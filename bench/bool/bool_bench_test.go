@@ -1,4 +1,4 @@
-package jay_test
+package bool_test
 
 import (
 	"github.com/speedyhoon/jay"
