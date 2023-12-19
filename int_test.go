@@ -112,7 +112,7 @@ func TestWriteInt64(t *testing.T) {
 func TestWriteIntNew(t *testing.T) {
 	b := make([]byte, 8)
 	for i := jay.MinInt8 - 1; i <= jay.MaxInt8+1; i++ {
-		j := jay.LenInt(i)
+		j := lenInt(i)
 		jay.WriteIntVariable(b, i, j)
 		if i == 128 {
 			println("")
@@ -138,7 +138,7 @@ func TestInt(t *testing.T) {
 		jay.MaxInt40, jay.MaxInt48, jay.MaxInt56, MaxInt64,
 	}
 	for n := range maxList {
-		j := jay.LenInt(maxList[n])
+		j := lenInt(maxList[n])
 		if maxList[n] == jay.MaxInt40 {
 			println("")
 		}
@@ -156,69 +156,69 @@ func TestInt(t *testing.T) {
 
 func TestWriteInt(t *testing.T) {
 	b := make([]byte, 9)
-	jay.WriteIntVariable(b, MinInt64, jay.LenInt(MinInt64))
+	jay.WriteIntVariable(b, MinInt64, lenInt(MinInt64))
 	assert.Equal(t, []byte{8, 0, 0, 0, 0, 0, 0, 0, 128}, b)
 	b = make([]byte, 8)
-	jay.WriteIntVariable(b, jay.MinInt56, jay.LenInt(jay.MinInt56))
+	jay.WriteIntVariable(b, jay.MinInt56, lenInt(jay.MinInt56))
 	assert.Equal(t, []byte{7, 0, 0, 0, 0, 0, 0, 128}, b)
 	b = make([]byte, 7)
-	jay.WriteIntVariable(b, jay.MinInt48, jay.LenInt(jay.MinInt48))
+	jay.WriteIntVariable(b, jay.MinInt48, lenInt(jay.MinInt48))
 	assert.Equal(t, []byte{6, 0, 0, 0, 0, 0, 128}, b)
 	b = make([]byte, 6)
-	jay.WriteIntVariable(b, jay.MinInt40, jay.LenInt(jay.MinInt40))
+	jay.WriteIntVariable(b, jay.MinInt40, lenInt(jay.MinInt40))
 	assert.Equal(t, []byte{5, 0, 0, 0, 0, 128}, b)
 	b = make([]byte, 5)
-	jay.WriteIntVariable(b, jay.MinInt32, jay.LenInt(jay.MinInt32))
+	jay.WriteIntVariable(b, jay.MinInt32, lenInt(jay.MinInt32))
 	assert.Equal(t, []byte{4, 0, 0, 0, 128}, b)
 	b = make([]byte, 4)
-	jay.WriteIntVariable(b, jay.MinInt24, jay.LenInt(jay.MinInt24))
+	jay.WriteIntVariable(b, jay.MinInt24, lenInt(jay.MinInt24))
 	assert.Equal(t, []byte{3, 0, 0, 128}, b)
 	b = make([]byte, 3)
-	jay.WriteIntVariable(b, jay.MinInt16, jay.LenInt(jay.MinInt16))
+	jay.WriteIntVariable(b, jay.MinInt16, lenInt(jay.MinInt16))
 	assert.Equal(t, []byte{2, 0, 128}, b)
 	b = make([]byte, 2)
-	jay.WriteIntVariable(b, jay.MinInt8, jay.LenInt(jay.MinInt8))
+	jay.WriteIntVariable(b, jay.MinInt8, lenInt(jay.MinInt8))
 	assert.Equal(t, []byte{1, 128}, b)
 	b = make([]byte, 1)
-	jay.WriteIntVariable(b, 0, jay.LenInt(0))
+	jay.WriteIntVariable(b, 0, lenInt(0))
 	assert.Equal(t, []byte{0}, b)
 	b = make([]byte, 2)
-	jay.WriteIntVariable(b, jay.MaxInt8, jay.LenInt(jay.MaxInt8))
+	jay.WriteIntVariable(b, jay.MaxInt8, lenInt(jay.MaxInt8))
 	assert.Equal(t, []byte{1, 127}, b)
 	b = make([]byte, 3)
-	jay.WriteIntVariable(b, jay.MaxUint8, jay.LenInt(jay.MaxUint8))
+	jay.WriteIntVariable(b, jay.MaxUint8, lenInt(jay.MaxUint8))
 	assert.Equal(t, []byte{2, 255, 0}, b)
-	jay.WriteIntVariable(b, jay.MaxInt16, jay.LenInt(jay.MaxInt16))
+	jay.WriteIntVariable(b, jay.MaxInt16, lenInt(jay.MaxInt16))
 	assert.Equal(t, []byte{2, 255, 127}, b)
 	b = make([]byte, 4)
-	jay.WriteIntVariable(b, jay.MaxUint16, jay.LenInt(jay.MaxUint16))
+	jay.WriteIntVariable(b, jay.MaxUint16, lenInt(jay.MaxUint16))
 	assert.Equal(t, []byte{3, 255, 255, 0}, b)
-	jay.WriteIntVariable(b, jay.MaxInt24, jay.LenInt(jay.MaxInt24))
+	jay.WriteIntVariable(b, jay.MaxInt24, lenInt(jay.MaxInt24))
 	assert.Equal(t, []byte{3, 255, 255, 127}, b)
 	b = make([]byte, 5)
-	jay.WriteIntVariable(b, jay.MaxUint24, jay.LenInt(jay.MaxUint24))
+	jay.WriteIntVariable(b, jay.MaxUint24, lenInt(jay.MaxUint24))
 	assert.Equal(t, []byte{4, 255, 255, 255, 0}, b)
-	jay.WriteIntVariable(b, jay.MaxInt32, jay.LenInt(jay.MaxInt32))
+	jay.WriteIntVariable(b, jay.MaxInt32, lenInt(jay.MaxInt32))
 	assert.Equal(t, []byte{4, 255, 255, 255, 127}, b)
 	b = make([]byte, 6)
-	jay.WriteIntVariable(b, jay.MaxUint32, jay.LenInt(jay.MaxUint32))
+	jay.WriteIntVariable(b, jay.MaxUint32, lenInt(jay.MaxUint32))
 	assert.Equal(t, []byte{5, 255, 255, 255, 255, 0}, b)
-	jay.WriteIntVariable(b, jay.MaxInt40, jay.LenInt(jay.MaxInt40))
+	jay.WriteIntVariable(b, jay.MaxInt40, lenInt(jay.MaxInt40))
 	assert.Equal(t, []byte{5, 255, 255, 255, 255, 127}, b)
 	b = make([]byte, 7)
-	jay.WriteIntVariable(b, jay.MaxUint40, jay.LenInt(jay.MaxUint40))
+	jay.WriteIntVariable(b, jay.MaxUint40, lenInt(jay.MaxUint40))
 	assert.Equal(t, []byte{6, 255, 255, 255, 255, 255, 0}, b)
-	jay.WriteIntVariable(b, jay.MaxInt48, jay.LenInt(jay.MaxInt48))
+	jay.WriteIntVariable(b, jay.MaxInt48, lenInt(jay.MaxInt48))
 	assert.Equal(t, []byte{6, 255, 255, 255, 255, 255, 127}, b)
 	b = make([]byte, 8)
-	jay.WriteIntVariable(b, jay.MaxUint48, jay.LenInt(jay.MaxUint48))
+	jay.WriteIntVariable(b, jay.MaxUint48, lenInt(jay.MaxUint48))
 	assert.Equal(t, []byte{7, 255, 255, 255, 255, 255, 255, 0}, b)
-	jay.WriteIntVariable(b, jay.MaxInt56, jay.LenInt(jay.MaxInt56))
+	jay.WriteIntVariable(b, jay.MaxInt56, lenInt(jay.MaxInt56))
 	assert.Equal(t, []byte{7, 255, 255, 255, 255, 255, 255, 127}, b)
 	b = make([]byte, 9)
-	jay.WriteIntVariable(b, jay.MaxUint56, jay.LenInt(jay.MaxUint56))
+	jay.WriteIntVariable(b, jay.MaxUint56, lenInt(jay.MaxUint56))
 	assert.Equal(t, []byte{8, 255, 255, 255, 255, 255, 255, 255, 0}, b)
-	jay.WriteIntVariable(b, MaxInt64, jay.LenInt(MaxInt64))
+	jay.WriteIntVariable(b, MaxInt64, lenInt(MaxInt64))
 	assert.Equal(t, []byte{8, 255, 255, 255, 255, 255, 255, 255, 127}, b)
 }
 
@@ -285,4 +285,40 @@ func TestReadInt32(t *testing.T) {
 	assert.Equal(t, int32(247), jay.ReadInt32([]byte{247, 0, 0, 0, 0, 0, 0, 0}))
 	assert.Equal(t, int32(-1), jay.ReadInt32([]byte{255, 255, 255, 255, 255, 255, 255, 127}))
 	assert.Equal(t, int32(jay.MaxInt32), jay.ReadInt32([]byte{255, 255, 255, 127, 255, 255, 255, 127}))
+}
+
+func lenInt(i int) int {
+	if i == 0 {
+		return 0
+	}
+
+	if i > jay.MaxInt56 || i < jay.MinInt56 {
+		return 8
+	}
+
+	if i > jay.MaxInt48 || i < jay.MinInt48 {
+		return 7
+	}
+
+	if i > jay.MaxInt40 || i < jay.MinInt40 {
+		return 6
+	}
+
+	if i > jay.MaxInt32 || i < jay.MinInt32 {
+		return 5
+	}
+
+	if i > jay.MaxInt24 || i < jay.MinInt24 {
+		return 4
+	}
+
+	if i > jay.MaxInt16 || i < jay.MinInt16 {
+		return 3
+	}
+
+	if i > jay.MaxInt8 || i < jay.MinInt8 {
+		return 2
+	}
+
+	return 1
 }

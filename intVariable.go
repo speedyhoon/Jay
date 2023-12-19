@@ -58,43 +58,6 @@ func ReadInt56(b []byte) int {
 		int(b[4])<<_32 | int(b[5])<<_40 | int(b[6])<<_48
 }
 
-// LenInt ...
-func LenInt(i int) int {
-	if i == 0 {
-		return 0
-	}
-
-	if i > MaxInt56 || i < MinInt56 {
-		return 8
-	}
-
-	if i > MaxInt48 || i < MinInt48 {
-		return 7
-	}
-
-	if i > MaxInt40 || i < MinInt40 {
-		return 6
-	}
-
-	if i > MaxInt32 || i < MinInt32 {
-		return 5
-	}
-
-	if i > MaxInt24 || i < MinInt24 {
-		return 4
-	}
-
-	if i > MaxInt16 || i < MinInt16 {
-		return 3
-	}
-
-	if i > MaxInt8 || i < MinInt8 {
-		return 2
-	}
-
-	return 1
-}
-
 // WriteIntVariable ...
 func WriteIntVariable(b []byte, i int, length int) {
 	b[0] = byte(length)
