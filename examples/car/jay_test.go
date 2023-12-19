@@ -27,7 +27,7 @@ func TestCar_MarshalUnmarshal_small(t *testing.T) {
 		Auto: true,
 		CC:   fmt.Sprint(rand.Uint64()),
 		//Timing:  ptrStr(fmt.Sprint(rand.Uint64())),
-		RedLine: uint16(rand.Intn(jay.MaxUint16)),
+		RedLine: uint16(rand.Intn(math.MaxUint16)),
 		Gearbox: gearbox{},
 	}
 	src := c.MarshalJ()
@@ -46,13 +46,13 @@ func TestCar_MarshalUnmarshal_large(t *testing.T) {
 		Row:  uint(math.MaxUint64),
 		Name: string(make([]byte, math.MaxUint8)),
 		Auto: true,
-		CC:   string(make([]byte, jay.MaxUint8)),
+		CC:   string(make([]byte, math.MaxUint8)),
 		//Timing:  ptrStr(string(make([]byte,jay.MaxUint24))),
-		RedLine: jay.MaxUint16,
+		RedLine: math.MaxUint16,
 		Gearbox: gearbox{},
 	}
 	src := c.MarshalJ()
-	assert.NotEqual(t, make([]byte, 33+2*jay.MaxUint8), src)
+	assert.NotEqual(t, make([]byte, 33+2*math.MaxUint8), src)
 	assert.NotEqual(t, Car{}, c)
 
 	d := Car{}
