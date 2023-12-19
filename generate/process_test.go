@@ -1,42 +1,51 @@
-package generate
+package generate_test
 
 import (
-	"strconv"
-	"testing"
-
+	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/jay/generate"
+	"github.com/speedyhoon/jay/generate/tests"
 	"github.com/stretchr/testify/assert"
+	"math/rand"
+	"testing"
 )
 
-func TestRemove(t *testing.T) {
-	zero := make([]structTyp, 0)
-	one := []structTyp{{name: "one"}}
-	two := []structTyp{{name: "one"}, {name: "two"}}
+var _ generate.Option
 
-	tests := []struct {
-		s     []structTyp
-		index int
-		want  []structTyp
-	}{
-		{s: nil, index: -1, want: nil},
-		{s: nil, index: 0, want: nil},
-		{s: nil, index: 1, want: nil},
+func TestBytes(t *testing.T) {
+	//var opt generate.Option
+	//assert.NoError(t, opt.ProcessWrite(nil, "./tests/boolJay.go", "./tests/bools.go"))
 
-		{s: zero, index: -1, want: zero},
-		{s: zero, index: 0, want: zero},
-		{s: zero, index: 1, want: zero},
+	var cpy tests.OnlyBools
 
-		{s: one, index: -1, want: one},
-		{s: one, index: 0, want: zero},
-		{s: one, index: 1, want: one},
+	t.Run("empty struct", func(t *testing.T) {
+		ob := tests.OnlyBools{}
+		src := ob.MarshalJ()
+		assert.Equal(t, []byte{0}, src)
 
-		{s: two, index: -1, want: two},
-		{s: two, index: 0, want: []structTyp{{name: "two"}}},
-		{s: two, index: 1, want: one},
-		{s: two, index: 2, want: two},
-	}
-	for i, tt := range tests {
-		t.Run(strconv.Itoa(i), func(t *testing.T) {
-			assert.Equal(t, tt.want, Remove(tt.s, tt.index))
-		})
-	}
+		assert.Equal(t, jay.ErrUnexpectedEOB, cpy.UnmarshalJ(nil))
+		assert.Equal(t, jay.ErrUnexpectedEOB, cpy.UnmarshalJ([]byte{}))
+		assert.NoError(t, cpy.UnmarshalJ(src))
+	})
+
+	t.Run("random values", func(t *testing.T) {
+		ob := tests.OnlyBools{
+			Hidden:      randBool(),
+			Deactivated: randBool(),
+			Selected:    randBool(),
+			Modified:    randBool(),
+			Updated:     randBool(),
+		}
+		src := ob.MarshalJ()
+		assert.NoError(t, cpy.UnmarshalJ(src))
+		assert.Equal(t, ob.Hidden, cpy.Hidden)
+		assert.Equal(t, ob.Deactivated, cpy.Deactivated)
+		assert.Equal(t, ob.Selected, cpy.Selected)
+		assert.Equal(t, ob.Modified, cpy.Modified)
+		assert.Equal(t, ob.Updated, cpy.Updated)
+	})
+
+}
+
+func randBool() bool {
+	return rand.Intn(1) == 1
 }
