@@ -11,9 +11,8 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, receiver st
 
 	isReturnInlined = onlyOneByteUsed && len(s.bool) <= 8
 
-	var i, mx uint = 0, uint(len(s.bool) / 8)
-	for ; i <= mx; i++ {
-		writeBools(s.bool[boolsSliceIndex(i):], b, *byteIndex, receiver, isReturnInlined)
+	for i := 0; i <= len(s.bool); i += 8 {
+		writeBools(s.bool[i:], b, *byteIndex, receiver, isReturnInlined)
 		*byteIndex++
 	}
 
@@ -46,9 +45,8 @@ func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint, receiver str
 		return
 	}
 
-	var i, mx uint = 0, uint(len(s.bool) / 8)
-	for ; i <= mx; i++ {
-		readBools(s.bool[boolsSliceIndex(i):], b, *byteIndex, receiver)
+	for i := 0; i <= len(s.bool); i += 8 {
+		readBools(s.bool[i:], b, *byteIndex, receiver)
 		*byteIndex++
 	}
 }
