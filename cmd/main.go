@@ -16,6 +16,12 @@ import (
 // but this works:
 // go run ./cmd/main.go -o boolJay.go generate/tests/
 
+// TODO fix error
+// output file is not created in same directory as filepaths
+// cd jay
+// go run cmd/main.go -o jay.go bench/byte/make.go
+// jay.go should be created in bench/byte/jay.go instead.
+
 const (
 	goExt      = ".go"
 	testSuffix = "_test" + goExt
