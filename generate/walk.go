@@ -11,8 +11,13 @@ type visitor struct {
 }
 
 type structTyp struct {
-	name                        string
-	fixedLen, variableLen, bool fieldList // Exported fields.
+	name string
+
+	// Exported fields.
+	fixedLen, // Fixed length types like int16, uint64 and some arrays etc.
+	single, // Fields represented in one byte like int8 & uint8. These have additional optimisations.
+	variableLen, // Variable length fields like string and all slice types. These are generated last & have the most processing overhead.
+	bool fieldList // Boolean fields are joined together and represented as binary.
 }
 
 type field struct {

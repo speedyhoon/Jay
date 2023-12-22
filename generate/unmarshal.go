@@ -18,6 +18,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	buf := bytes.NewBuffer(nil)
 
 	s.makeReadBools(buf, &byteIndex, receiver)
+	s.readSingles(buf, &byteIndex, receiver, o)
 
 	var returnInlined bool
 	for i, f := range s.fixedLen {

@@ -114,7 +114,7 @@ func (o Option) isVariableLen(fields []*ast.Field) bool {
 }
 
 func (s *structTyp) hasExportedFields() bool {
-	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1
+	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1 || len(s.single) >= 1
 }
 
 func hasExported(idents []*ast.Ident) bool {
@@ -130,8 +130,12 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, tag, typeOf, aliasType
 	for m := range names {
 		f := field{name: names[m].Name, tag: tag, typ: typeOf, aliasType: aliasType}
 		f.LoadTagOptions()
-		if f.typ == "bool" {
+		switch f.typ {
+		case "bool":
 			s.bool = append(s.bool, f)
+			continue
+		case "byte", "int8", "uint8":
+			s.single = append(s.single, f)
 			continue
 		}
 		// TODO add support for adding tiny enums using <= 7 bits

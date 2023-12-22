@@ -39,6 +39,8 @@ func (s *structTyp) calcSize(o Option) (qty uint) {
 		qty = boolsSliceIndex(uint(l)) + 1
 	}
 
+	qty += uint(len(s.single))
+
 	for _, x := range s.fixedLen {
 		qty += o.typeFuncSize(x.typ)
 	}

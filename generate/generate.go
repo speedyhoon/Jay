@@ -119,7 +119,7 @@ func appendEmbed(fields *fieldList, embedName string, embedded fieldList) {
 }
 
 func (s *structTyp) makeFuncs(b *bytes.Buffer, o Option) {
-	if !ast.IsExported(s.name) || len(s.bool) == 0 && len(s.variableLen) == 0 && len(s.fixedLen) == 0 {
+	if !ast.IsExported(s.name) || !s.hasExportedFields() {
 		return
 	}
 
