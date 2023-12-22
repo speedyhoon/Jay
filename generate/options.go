@@ -89,9 +89,12 @@ func LoadOptions(opts ...Option) (o Option) {
 
 // bytesRequired returns how many bytes are required to represent an unsigned integer.
 func bytesRequired(input uint) uint8 {
-	return uint8(math.Ceil(LogBaseX(float64(input+1), 256)))
+	if input <= 1 {
+		return uint8(input)
+	}
+	return uint8(math.Ceil(LogBaseX(256, float64(input))))
 }
 
 func LogBaseX(base, x float64) float64 {
-	return math.Log(x) / math.Log1p(base)
+	return math.Log(x+1) / math.Log(base)
 }

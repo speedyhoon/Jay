@@ -28,6 +28,7 @@ func Test_bytesRequired(t *testing.T) {
 			expected = 8
 		}
 
-		require.Equalf(t, expected, bytesRequired(i), "input: %d, expected: %d", i, expected)
+		output := bytesRequired(i)
+		require.Equalf(t, expected, bytesRequired(i), "input: %d, expected: %d, output: %d", i, expected, output)
 	}
 }
