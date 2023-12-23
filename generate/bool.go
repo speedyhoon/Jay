@@ -52,7 +52,7 @@ func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint, receiver str
 		return
 	}
 
-	for i := 0; i <= len(s.bool); i += 8 {
+	for i := 0; i < len(s.bool); i += 8 {
 		readBools(s.bool[i:], b, *byteIndex, receiver)
 		*byteIndex++
 	}
