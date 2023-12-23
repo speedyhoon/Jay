@@ -13,16 +13,15 @@ import (
 
 // makeUnmarshal ...
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
-	receiver := s.receiverName()
 	var byteIndex uint
 	buf := bytes.NewBuffer(nil)
 
-	s.makeReadBools(buf, &byteIndex, receiver)
-	s.readSingles(buf, &byteIndex, receiver, o)
+	s.makeReadBools(buf, &byteIndex, s.receiver)
+	s.readSingles(buf, &byteIndex, s.receiver, o)
 
 	var returnInlined bool
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, "", len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, "", len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined))
 		buf.WriteString("\n")
 	}
 
@@ -41,7 +40,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		isLast := i == vLen
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, receiver, at, isLast, &returnInlined))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, isLast, &returnInlined))
 		if !isLast {
 			bufWriteF(buf, "\nif !ok {\nreturn %s.ErrUnexpectedEOB\n}\n", pkgName)
 		}
@@ -62,7 +61,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 
 	bufWriteF(b,
 		"func (%s *%s) UnmarshalJ(b []byte) error {\n%s\n%s%s}\n",
-		receiver,
+		s.receiver,
 		s.name,
 		lengthCheck,
 		code,
@@ -84,6 +83,7 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 
 	switch size {
 	case 1:
+		//TODO  remove -- singles no longer needed!
 		return fmt.Sprintf("%s=%s", thisField, printFunc(fun, fmt.Sprintf("b[%d]", start)))
 	default:
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, fmt.Sprintf("b[%d:%d]", start, *byteIndex)))

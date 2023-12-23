@@ -3,12 +3,11 @@
 package byte
 
 import (
-	"math"
-	"math/rand"
+	"github.com/speedyhoon/jay/rando"
 	"testing"
 )
 
-var mk = MakeVsReturn{Bool: true, Uint8: uint8(rand.Intn(255)), Int8: int8(rand.Intn(math.MaxInt8))}
+var mk = MakeVsReturn{Bool: true, Uint8: rando.Uint8(), Int8: rando.Int8()}
 
 func BenchmarkMVR_Return1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
@@ -44,38 +43,38 @@ func BenchmarkMVR_Make3(b *testing.B) {
 }
 
 var mk2 = MakeVsReturnLarge{
-	Bool:       randBool(),
-	Hidden:     randBool(),
-	Selected:   randBool(),
-	Deselected: randBool(),
-	Activated:  randBool(),
-	Modified:   randBool(),
-	Serviced:   randBool(),
-	Performed:  randBool(),
-	Accessed:   randBool(),
-	Updated:    randBool(),
-	Uint80:     randUint8(),
-	Uint81:     randUint8(),
-	Uint82:     randUint8(),
-	Uint83:     randUint8(),
-	Uint84:     randUint8(),
-	Uint85:     randUint8(),
-	Uint86:     randUint8(),
-	Uint87:     randUint8(),
-	Uint88:     randUint8(),
-	Uint89:     randUint8(),
-	Uint90:     randUint8(),
-	Int80:      randInt8(),
-	Int81:      randInt8(),
-	Int82:      randInt8(),
-	Int83:      randInt8(),
-	Int84:      randInt8(),
-	Int85:      randInt8(),
-	Int86:      randInt8(),
-	Int87:      randInt8(),
-	Int88:      randInt8(),
-	Int89:      randInt8(),
-	Int90:      randInt8(),
+	Bool:       rando.Bool(),
+	Hidden:     rando.Bool(),
+	Selected:   rando.Bool(),
+	Deselected: rando.Bool(),
+	Activated:  rando.Bool(),
+	Modified:   rando.Bool(),
+	Serviced:   rando.Bool(),
+	Performed:  rando.Bool(),
+	Accessed:   rando.Bool(),
+	Updated:    rando.Bool(),
+	Uint80:     rando.Uint8(),
+	Uint81:     rando.Uint8(),
+	Uint82:     rando.Uint8(),
+	Uint83:     rando.Uint8(),
+	Uint84:     rando.Uint8(),
+	Uint85:     rando.Uint8(),
+	Uint86:     rando.Uint8(),
+	Uint87:     rando.Uint8(),
+	Uint88:     rando.Uint8(),
+	Uint89:     rando.Uint8(),
+	Uint90:     rando.Uint8(),
+	Int80:      rando.Int8(),
+	Int81:      rando.Int8(),
+	Int82:      rando.Int8(),
+	Int83:      rando.Int8(),
+	Int84:      rando.Int8(),
+	Int85:      rando.Int8(),
+	Int86:      rando.Int8(),
+	Int87:      rando.Int8(),
+	Int88:      rando.Int8(),
+	Int89:      rando.Int8(),
+	Int90:      rando.Int8(),
 }
 
 func BenchmarkMVRLarge_Make1(b *testing.B) {
@@ -87,20 +86,4 @@ func BenchmarkMVRLarge_Return1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		y = mk2.Return1()
 	}
-}
-
-func randByte() byte {
-	return randUint8()
-}
-
-func randUint8() uint8 {
-	return uint8(rand.Intn(math.MaxUint8))
-}
-
-func randInt8() int8 {
-	return int8(rand.Intn(math.MaxInt8))
-}
-
-func randBool() bool {
-	return rand.Intn(1) == 1
 }

@@ -2,9 +2,9 @@ package jay_test
 
 import (
 	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/jay/rando"
 	"github.com/stretchr/testify/assert"
 	"math"
-	"math/rand"
 	"strconv"
 	"testing"
 )
@@ -12,7 +12,7 @@ import (
 func TestFloat32(t *testing.T) {
 	b := make([]byte, 4)
 	for i := 0; i < 1000; i++ {
-		f := randFloat32()
+		f := rando.Float32()
 		t.Run(fmtFloat32(f), func(t *testing.T) {
 			jay.WriteFloat32(b, f)
 			assert.Equal(t, f, jay.ReadFloat32(b))
@@ -35,7 +35,7 @@ func TestFloat32MaxSmallest(t *testing.T) {
 func TestFloat64(t *testing.T) {
 	b := make([]byte, 8)
 	for i := 0; i < 1000; i++ {
-		f := randFloat64()
+		f := rando.Float64()
 		t.Run(fmtFloat64(f), func(t *testing.T) {
 			jay.WriteFloat64(b, f)
 			assert.Equal(t, f, jay.ReadFloat64(b))
@@ -53,14 +53,6 @@ func TestFloat64MaxSmallest(t *testing.T) {
 		jay.WriteFloat64(b, math.SmallestNonzeroFloat64)
 		assert.Equal(t, math.SmallestNonzeroFloat64, jay.ReadFloat64(b))
 	})
-}
-
-func randFloat32() float32 {
-	return rand.Float32() * float32(math.Pow(10, float64(rand.Intn(9)+1)))
-}
-
-func randFloat64() float64 {
-	return rand.Float64() * math.Pow(10, float64(rand.Intn(9)+1))
 }
 
 func fmtFloat32(f float32) string {

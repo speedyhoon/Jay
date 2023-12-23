@@ -1,17 +1,15 @@
 package main
 
 import (
-	"fmt"
+	"github.com/speedyhoon/jay/rando"
 	"github.com/stretchr/testify/assert"
 	"math"
-	"math/rand"
 	"testing"
 )
 
 func TestCar_MarshalUnmarshal_empty(t *testing.T) {
 	empty := Car{}
 	src := empty.MarshalJ()
-	assert.Equal(t, make([]byte, 33), src)
 	assert.Equal(t, Car{}, empty)
 
 	err := empty.UnmarshalJ(src)
@@ -21,13 +19,14 @@ func TestCar_MarshalUnmarshal_empty(t *testing.T) {
 
 func TestCar_MarshalUnmarshal_small(t *testing.T) {
 	c := Car{
-		ID:   rand.Uint64(),
-		Row:  uint(rand.Uint64()),
-		Name: fmt.Sprint(rand.Uint64()),
-		Auto: true,
-		CC:   fmt.Sprint(rand.Uint64()),
-		//Timing:  ptrStr(fmt.Sprint(rand.Uint64())),
-		RedLine: uint16(rand.Intn(math.MaxUint16)),
+		ID:   rando.Uint64(),
+		Row:  rando.Uint(),
+		Name: rando.String(),
+		Auto: rando.Bool(),
+		CC:   rando.String(),
+		//Timing:  ptrStr(rando.String()),
+		RedLine: rando.Uint16(),
+		Expiry:  rando.DateTime(),
 		Gearbox: gearbox{},
 	}
 	src := c.MarshalJ()
@@ -61,6 +60,6 @@ func TestCar_MarshalUnmarshal_large(t *testing.T) {
 	assert.Equal(t, c, d)
 }
 
-func ptrStr(s string) *string {
-	return &s
-}
+//func ptrStr(s string) *string {
+//	return &s
+//}

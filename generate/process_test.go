@@ -4,8 +4,8 @@ import (
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/jay/generate"
 	"github.com/speedyhoon/jay/generate/tests"
+	"github.com/speedyhoon/jay/rando"
 	"github.com/stretchr/testify/assert"
-	"math/rand"
 	"testing"
 )
 
@@ -29,11 +29,11 @@ func TestBytes(t *testing.T) {
 
 	t.Run("random values", func(t *testing.T) {
 		ob := tests.OnlyBools{
-			Hidden:      randBool(),
-			Deactivated: randBool(),
-			Selected:    randBool(),
-			Modified:    randBool(),
-			Updated:     randBool(),
+			Hidden:      rando.Bool(),
+			Deactivated: rando.Bool(),
+			Selected:    rando.Bool(),
+			Modified:    rando.Bool(),
+			Updated:     rando.Bool(),
 		}
 		src := ob.MarshalJ()
 		assert.NoError(t, cpy.UnmarshalJ(src))
@@ -44,8 +44,4 @@ func TestBytes(t *testing.T) {
 		assert.Equal(t, ob.Updated, cpy.Updated)
 	})
 
-}
-
-func randBool() bool {
-	return rand.Intn(1) == 1
 }
