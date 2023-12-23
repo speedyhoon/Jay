@@ -1,7 +1,6 @@
 package generate
 
 import (
-	"errors"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -15,7 +14,7 @@ import (
 // ProcessFiles ...
 func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []byte, err error) {
 	if source == nil && len(filenames) == 0 {
-		return nil, errors.New("no filename or source provided")
+		return nil, ErrNoSource
 	}
 
 	*o = LoadOptions(*o)

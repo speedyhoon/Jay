@@ -19,7 +19,10 @@ const (
 	IntSize               = 32 << (^uint(0) >> 63) // 32 or 64
 )
 
-var ErrNoneExported = errors.New("no exported struct fields found")
+var (
+	ErrNoSource     = errors.New("no filename or source provided")
+	ErrNoneExported = errors.New("no exported struct fields found")
+)
 
 func makeFile(pkg string, s []structTyp, option Option) ([]byte, error) {
 	mergeEmbeddedStructs(s)
