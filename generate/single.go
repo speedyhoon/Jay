@@ -15,7 +15,7 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver stri
 	for i, l := 0, len(s.single); i < l; i++ {
 		isLast := i+1 == l
 		fun, _ := opt.typeFuncs(s.single[i], isLast)
-		writeSingle(s.single[i], b, *byteIndex, receiver, fun, isMake, isLast)
+		writeSingle(s.single[i], b, *byteIndex, receiver, fun, s.bufferName, isMake, isLast)
 		*byteIndex++
 	}
 
@@ -26,11 +26,11 @@ func (s *structTyp) useMakeFunc() bool {
 	return len(s.variableLen) >= 1 || len(s.fixedLen) >= 1
 }
 
-func writeSingle(single field, b *bytes.Buffer, byteIndex uint, receiver, fun string, isMake, isLast bool) {
+func writeSingle(single field, b *bytes.Buffer, byteIndex uint, receiver, fun, bufferName string, isMake, isLast bool) {
 	thisField := fmt.Sprintf("%s.%s", receiver, single.name)
 
 	if isMake {
-		bufWriteF(b, "b[%d]=%s\n", byteIndex, printFunc(fun, thisField))
+		bufWriteF(b, "%s[%d]=%s\n", bufferName, byteIndex, printFunc(fun, thisField))
 		return
 	}
 
@@ -44,11 +44,11 @@ func (s *structTyp) readSingles(b *bytes.Buffer, byteIndex *uint, receiver strin
 	for i, l := 0, len(s.single); i < l; i++ {
 		isLast := i+1 == l
 		fun, _ := opt.unmarshalFuncs(s.single[i], isLast)
-		readSingle(s.single[i], b, *byteIndex, receiver, fun)
+		readSingle(s.single[i], b, *byteIndex, receiver, fun, s.bufferName)
 		*byteIndex++
 	}
 }
 
-func readSingle(single field, b *bytes.Buffer, byteIndex uint, receiver, fun string) {
-	bufWriteF(b, "%s.%s=%s\n", receiver, single.name, printFunc(fun, fmt.Sprintf("b[%d]", byteIndex)))
+func readSingle(single field, b *bytes.Buffer, byteIndex uint, receiver, fun, bufferName string) {
+	bufWriteF(b, "%s.%s=%s\n", receiver, single.name, printFunc(fun, fmt.Sprintf("%s[%d]", bufferName, byteIndex)))
 }

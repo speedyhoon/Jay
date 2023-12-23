@@ -11,7 +11,9 @@ type visitor struct {
 }
 
 type structTyp struct {
-	name string
+	name       string
+	receiver   string
+	bufferName string
 
 	// Exported fields.
 	fixedLen, // Fixed length types like int16, uint64 and some arrays etc.
@@ -45,7 +47,12 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 			return v
 		}
 
-		s := structTyp{name: v.enclosing}
+		s := structTyp{
+			name:     v.enclosing,
+			receiver: receiverName(v.enclosing),
+		}
+		s.bufferName = bufferName(s.receiver)
+
 		if s.process(n.Fields.List, v.option) {
 			*v.structs = append(*v.structs, s)
 		}

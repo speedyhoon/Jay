@@ -16,18 +16,16 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
-	receiver := s.receiverName()
-
-	varLengths := lengths2(s.varLenFieldNames(), receiver)
+	varLengths := lengths2(s.varLenFieldNames(), s.receiver)
 	makeSize := joinSizes(s.calcSize(o), s.variableLen)
 
 	var byteIndex uint
 	buf := bytes.NewBuffer(nil)
-	isReturnInlined := s.makeWriteBools(buf, &byteIndex, receiver)
-	isReturnInlined = s.writeSingles(buf, &byteIndex, receiver, o) || isReturnInlined
+	isReturnInlined := s.makeWriteBools(buf, &byteIndex)
+	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o) || isReturnInlined
 
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.generateLine(f, &byteIndex, receiver, "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, s.bufferName))
 		buf.WriteString("\n")
 	}
 
@@ -46,7 +44,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 			}
 		}
 
-		buf.WriteString(o.generateLine(f, &byteIndex, receiver, at, uint(i), i == vLen))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, uint(i), i == vLen, s.bufferName))
 		buf.WriteString("\n")
 	}
 
@@ -58,21 +56,22 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	if isReturnInlined {
 		bufWriteF(b,
 			"func (%s *%s) MarshalJ() []byte {\nreturn []byte{%s}\n}\n",
-			receiver,
+			s.receiver,
 			s.name,
 			code,
 		)
 		return
 	}
 
-	bufWriteF(b,
-		"func (%s *%s) MarshalJ() (b []byte) {\n%s\nb = make([]byte, %s)\n%sreturn\n}\n",
-		receiver,
+	b.WriteString(fmt.Sprintf(
+		"func (%[1]s *%[2]s) MarshalJ() (%[3]s []byte) {\n%[4]s\n%[3]s = make([]byte, %[5]s)\n%[6]s\nreturn\n}\n",
+		s.receiver,
 		s.name,
+		s.bufferName,
 		varLengths,
 		makeSize,
 		code,
-	)
+	))
 }
 
 func fieldNames(fields []field, receiver string) string {
@@ -83,7 +82,7 @@ func fieldNames(fields []field, receiver string) string {
 	return strings.Join(s, ", ")
 }
 
-func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, index uint, isLast bool) string {
+func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, index uint, isLast bool, bufferName string) string {
 	fun, size := o.typeFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
@@ -97,19 +96,19 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 
 	switch size {
 	case 1:
-		return fmt.Sprintf("b[%d]=%s", start, printFunc(fun, thisField))
+		return fmt.Sprintf("%s[%d]=%s", bufferName, start, printFunc(fun, thisField))
 	default:
-		return printFunc(fun, fmt.Sprintf("b[%d:%d]", start, *byteIndex), thisField)
+		return printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex), thisField)
 	case 0:
 		// Variable length size.
-		slice := "b"
+		slice := bufferName
 		idx := at
 		if start >= 1 {
 			if at == "" {
-				slice = fmt.Sprintf("b[%d:]", start)
+				slice = fmt.Sprintf("%s[%d:]", bufferName, start)
 				idx = "0"
 			} else if at != "0" {
-				slice = fmt.Sprintf("b[%s:]", at)
+				slice = fmt.Sprintf("%s[%s:]", bufferName, at)
 			}
 		}
 
@@ -118,10 +117,10 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 			return fmt.Sprintf("%s.%s", thisField, printFunc(fun, slice))
 		}
 
-		if !isLast {
-			return printFunc(fun, slice, thisField, "l"+Utoa(index), idx)
-		} else {
+		if isLast {
 			return printFunc(fun, slice, thisField, "l"+Utoa(index))
+		} else {
+			return printFunc(fun, slice, thisField, "l"+Utoa(index), idx)
 		}
 	}
 

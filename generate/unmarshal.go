@@ -7,7 +7,6 @@ import (
 	"log"
 	"reflect"
 	"runtime"
-	"strconv"
 	"strings"
 )
 
@@ -21,7 +20,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 
 	var returnInlined bool
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, "", len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, "", len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined, s.bufferName))
 		buf.WriteString("\n")
 	}
 
@@ -40,7 +39,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		isLast := i == vLen
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, isLast, &returnInlined))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, isLast, &returnInlined, s.bufferName))
 		if !isLast {
 			bufWriteF(buf, "\nif !ok {\nreturn %s.ErrUnexpectedEOB\n}\n", pkgName)
 		}
@@ -52,7 +51,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	}
 
 	// Prevent panic: runtime error: index out of range
-	lengthCheck := fmt.Sprintf("if len(b) < %d {\nreturn jay.ErrUnexpectedEOB\n}", byteIndex)
+	lengthCheck := fmt.Sprintf("if len(%s) < %d {\nreturn jay.ErrUnexpectedEOB\n}", s.bufferName, byteIndex)
 
 	var returnCode string
 	if !returnInlined {
@@ -60,16 +59,17 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	}
 
 	bufWriteF(b,
-		"func (%s *%s) UnmarshalJ(b []byte) error {\n%s\n%s%s}\n",
+		"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%s}\n",
 		s.receiver,
 		s.name,
+		s.bufferName,
 		lengthCheck,
 		code,
 		returnCode,
 	)
 }
 
-func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isLast bool, returnInlined *bool) string {
+func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isLast bool, returnInlined *bool, bufferName string) string {
 	fun, size := o.unmarshalFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
@@ -84,19 +84,19 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 	switch size {
 	case 1:
 		//TODO  remove -- singles no longer needed!
-		return fmt.Sprintf("%s=%s", thisField, printFunc(fun, fmt.Sprintf("b[%d]", start)))
+		return fmt.Sprintf("%s=%s", thisField, printFunc(fun, fmt.Sprintf("%s[%d]", bufferName, start)))
 	default:
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, fmt.Sprintf("b[%d:%d]", start, *byteIndex)))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex)))
 	case 0:
 		// Variable length size.
-		slice := "b"
+		slice := bufferName
 		idx := at
 		if start >= 1 {
 			if at == "" {
-				slice = fmt.Sprintf("b[%d:]", start)
+				slice = fmt.Sprintf("%s[%d:]", bufferName, start)
 				idx = "0"
 			} else if at != "0" {
-				slice = fmt.Sprintf("b[%s:]", at)
+				slice = fmt.Sprintf("%s[%s:]", bufferName, at)
 			}
 		}
 

@@ -38,8 +38,14 @@ func unwrapTagValue(str string) string {
 	return str
 }
 
-func (s *structTyp) receiverName() string {
-	return string(unicode.ToLower([]rune(s.name)[0]))
+func receiverName(typeName string) string {
+	return string(unicode.ToLower([]rune(typeName)[0]))
+}
+func bufferName(receiverName string) string {
+	if receiverName == "b" {
+		return "y"
+	}
+	return "b"
 }
 
 func supportedType(typ string) bool {
