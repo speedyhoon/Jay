@@ -2,50 +2,70 @@ package rando
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
-	"log"
 	"math/rand"
 	"mvdan.cc/gofumpt/format"
 	"runtime"
 	"strings"
 )
 
-// PackageMain generates a Go main package with 1 to 6 randomly generated structs.
-func PackageMain() []byte {
-	b := bytes.NewBufferString("package main\n\n")
-	mainFunc := bytes.NewBufferString("func main() {\n")
+// Package generates a Go main package with 1 to 6 randomly generated structs.
+func Package(name string) (pkg, test []byte, _ error) {
+	b := bytes.NewBufferString(fmt.Sprintf("package %s\n\n", name))
 	structNames := make(uniqueNames)
 
-	define := ":"
+	tests := bytes.NewBuffer(b.Bytes())
+	tests.WriteString(`
+
+import (
+	"github.com/speedyhoon/jay/rando"
+	"github.com/stretchr/testify/require"
+	"testing"
+)
+
+`)
 	mx := rand.Intn(5) + 1
 	for i := 0; i < mx; i++ {
 		typeName := structNames.add(StringExported)
-		b.Write(Struct(typeName, 4000))
+		structLines, testLines := Struct(typeName, 4000)
+		b.Write(structLines)
 
-		varName := i + 'a'
-		mainFunc.WriteString(fmt.Sprintf(`var %[1]c %[2]s
-	err %[3]s= %[1]c.UnmarshalJ(%[1]c.MarshalJ())
-	if err != nil {
-		panic(err)
+		tests.WriteString(fmt.Sprintf(`
+func TestFuzz_%d(t *testing.T) {
+	var expected, actual %s
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, %[2]s{}, expected)
+	require.Equal(t, %[2]s{}, actual)
+
+	actual = %[2]s{
+		%[3]s
 	}
-`, varName, typeName, define))
-		define = ""
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.NotEqual(t, %[2]s{}, expected)
+	require.NotEqual(t, %[2]s{}, actual)
+	require.Equal(t, expected, actual)
+}
+`, i, typeName, testLines))
 	}
 
-	mainFunc.WriteString("}")
+	pkg, err1 := goFormat(b.Bytes())
+	test, err2 := goFormat(tests.Bytes())
 
-	code := append(b.Bytes(), mainFunc.Bytes()...)
+	return pkg, test, errors.Join(err1, err2)
+}
 
-	// Pretty format generated package code.
-	src, err := format.Source(code, format.Options{
+func goFormat(src []byte) (code []byte, err error) {
+	code, err = format.Source(src, format.Options{
 		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
 		ExtraRules:  true,
 	})
 	if err != nil {
-		log.Panicf("rando.Package generated errornous code:\n%s\n", code)
+		return src, err
 	}
-
-	return src
+	return
 }
 
 type uniqueNames map[string]struct{}
@@ -64,24 +84,34 @@ func (u uniqueNames) add(f func() string) string {
 }
 
 // Struct generates a random struct with a random number of fields.
-func Struct(name string, fieldsQty uint) []byte {
+func Struct(name string, fieldsQty uint) (fields, testLines []byte) {
 	b := bytes.NewBufferString(fmt.Sprintf("type %s struct{\n", name))
+	tl := bytes.NewBuffer(nil)
 
 	fieldNames := make(uniqueNames)
 
 	mx := rand.Intn(int(fieldsQty)) + 1
 	for i := 0; i < mx; i++ {
 		//b.WriteString(ExportedNames())
-		b.WriteString(fieldNames.add(FieldName))
+		n := fieldNames.add(FieldName)
+		typ := Type()
+		b.WriteString(n)
 		b.WriteString("\t")
-		b.WriteString(TypeOf())
+		b.WriteString(typ)
 		b.WriteString("\n")
+
+		// Test lines.
+		tl.WriteString(n)
+		tl.WriteString(":\trando.")
+		tl.WriteString(strings.ToUpper(string(typ[0])))
+		tl.WriteString(typ[1:])
+		tl.WriteString("(),\n")
 	}
 	b.WriteString("}\n")
-	return b.Bytes()
+	return b.Bytes(), tl.Bytes()
 }
 
-func TypeOf() string {
+func Type() string {
 	supportedTypes := []string{
 		"bool",
 		"byte",

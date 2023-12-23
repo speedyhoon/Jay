@@ -1,8 +1,10 @@
 package fuzz_test
 
 import (
+	"errors"
 	"github.com/speedyhoon/jay/generate"
 	"github.com/speedyhoon/jay/rando"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"log"
 	"os"
@@ -22,23 +24,30 @@ func init() {
 }
 
 func TestFuzz(t *testing.T) {
-	//for i := 0; i < 10000; i++ {
-	pkg := rando.PackageMain()
+	const perm = 0666
+
+	pathPkg := filepath.Join(tempPath, "pkg.go")
+	pathTest := filepath.Join(tempPath, "jay_test.go")
+	pathJay := filepath.Join(tempPath, "jay.go")
+
 	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
-	src, err := opt.ProcessFiles(pkg)
-	require.NoErrorf(t, err, "src: %s", src)
 
-	pathPkg, pathJay := filepath.Join(tempPath, "pkg.go"), filepath.Join(tempPath, "jay.go")
+	for i := 0; i < 35; i++ {
+		pkg, tests, err := rando.Package(tempPath)
+		// Ensure both files are saved before processing. But if pathPkg fails to save, at least try to save pathTest too.
+		err1 := os.WriteFile(pathPkg, pkg, perm)
+		err2 := os.WriteFile(pathTest, tests, perm)
+		require.NoError(t, errors.Join(err, err1, err2))
 
-	// Create a temporary file.
-	err = os.WriteFile(pathPkg, pkg, 0666)
-	require.NoError(t, err)
-	err = os.WriteFile(pathJay, src, 0666)
-	require.NoError(t, err)
+		src, err := opt.ProcessFiles(pkg)
+		assert.NoErrorf(t, err, "src: %s", src)
+		require.NoError(t, os.WriteFile(pathJay, src, perm))
 
-	cmd := exec.Command("go", "run", pathPkg, pathJay)
-	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
+		cmd := exec.Command("go", "test")
+		cmd.Dir = tempPath
+		cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 
-	err = cmd.Run()
-	require.NoError(t, err)
+		err = cmd.Run()
+		require.NoError(t, err)
+	}
 }
