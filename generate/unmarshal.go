@@ -30,7 +30,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	}
 
 	if len(s.variableLen) == 1 {
-		at = strconv.Itoa(len(s.variableLen))
+		at = Utoa(byteIndex)
 	} else if len(s.variableLen) >= 2 {
 		bufWriteF(buf, "at:=%d\n", byteIndex)
 		at = "at"
