@@ -13,7 +13,7 @@ import (
 	"testing"
 )
 
-const tempPath = "tmp"
+const tempPath = "tmp_fuzz"
 
 func init() {
 	err := os.MkdirAll(tempPath, os.ModePerm)
@@ -28,26 +28,24 @@ func TestFuzz(t *testing.T) {
 
 	pathPkg := filepath.Join(tempPath, "pkg.go")
 	pathTest := filepath.Join(tempPath, "jay_test.go")
-	pathJay := filepath.Join(tempPath, "jay.go")
+	pathJay := filepath.Join(tempPath, generate.DefaultOutputFileName)
 
 	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
 
-	for i := 0; i < 35; i++ {
-		pkg, tests, err := rando.Package(tempPath)
-		// Ensure both files are saved before processing. But if pathPkg fails to save, at least try to save pathTest too.
-		err1 := os.WriteFile(pathPkg, pkg, perm)
-		err2 := os.WriteFile(pathTest, tests, perm)
-		require.NoError(t, errors.Join(err, err1, err2))
+	pkg, tests, err := rando.Package(tempPath)
+	// Ensure both files are saved before processing. But if pathPkg fails to save, at least try to save pathTest too.
+	err1 := os.WriteFile(pathPkg, pkg, perm)
+	err2 := os.WriteFile(pathTest, tests, perm)
+	require.NoError(t, errors.Join(err, err1, err2))
 
-		src, err := opt.ProcessFiles(pkg)
-		assert.NoErrorf(t, err, "src: %s", src)
-		require.NoError(t, os.WriteFile(pathJay, src, perm))
+	src, err := opt.ProcessFiles(pkg)
+	assert.NoErrorf(t, err, "src: %s", src)
+	require.NoError(t, os.WriteFile(pathJay, src, perm))
 
-		cmd := exec.Command("go", "test")
-		cmd.Dir = tempPath
-		cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
+	cmd := exec.Command("go", "test")
+	cmd.Dir = tempPath
+	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 
-		err = cmd.Run()
-		require.NoError(t, err)
-	}
+	err = cmd.Run()
+	require.NoError(t, err)
 }

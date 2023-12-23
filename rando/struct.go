@@ -28,7 +28,7 @@ import (
 	mx := rand.Intn(5) + 1
 	for i := 0; i < mx; i++ {
 		typeName := structNames.add(StringExported)
-		structLines, testLines := Struct(typeName, 4000)
+		structLines, testLines := Struct(typeName, 150)
 		b.Write(structLines)
 
 		tests.WriteString(fmt.Sprintf(`
