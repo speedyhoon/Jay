@@ -3,35 +3,36 @@ package generate
 import (
 	"fmt"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"testing"
 )
 
 func Test_bytesRequired(t *testing.T) {
-	var i, mx uint = 0, MaxUint24 + 16
-	var expected uint8
-	for ; i < mx; i++ {
-		switch i {
-		case 1:
-			expected = 1
-		case MaxUint8 + 1:
-			expected = 2
-		case MaxUint16 + 1:
-			expected = 3
-		case MaxUint24 + 1:
-			expected = 4
-		case MaxUint32 + 1:
-			expected = 5
-		case MaxUint40 + 1:
-			expected = 6
-		case MaxUint48 + 1:
-			expected = 7
-		case MaxUint56 + 1:
-			expected = 8
-		}
-
-		output := bytesRequired(i)
-		require.Equalf(t, expected, bytesRequired(i), "input: %d, expected: %d, output: %d", i, expected, output)
+	for input, expected := range map[uint]uint8{
+		0:             0,
+		1:             1,
+		MaxUint8 - 1:  1,
+		MaxUint8:      1,
+		MaxUint8 + 1:  2,
+		MaxUint16 - 1: 2,
+		MaxUint16:     2,
+		MaxUint16 + 1: 3,
+		MaxUint24 - 1: 3,
+		MaxUint24:     3,
+		MaxUint24 + 1: 4,
+		MaxUint32 - 1: 4,
+		MaxUint32:     4,
+		MaxUint32 + 1: 5,
+		MaxUint40 - 1: 5,
+		MaxUint40:     5,
+		MaxUint40 + 1: 6,
+		MaxUint48 - 1: 6,
+		MaxUint48:     6,
+		MaxUint48 + 1: 7,
+		MaxUint56 - 1: 7,
+		MaxUint56:     7,
+	} {
+		output := bytesRequired(input)
+		assert.Equalf(t, expected, output, "input: %d, expected: %d, output: %d", input, expected, output)
 	}
 }
 
