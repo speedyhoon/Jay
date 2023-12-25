@@ -64,7 +64,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	}
 
 	b.WriteString(fmt.Sprintf(
-		"func (%[1]s *%[2]s) MarshalJ() (%[3]s []byte) {\n%[4]s\n%[3]s = make([]byte, %[5]s)\n%[6]s\nreturn\n}\n",
+		"func (%[1]s *%[2]s) MarshalJ() (%[3]s []byte) {\n%[4]s\n%[3]s = make([]byte, %[5]s)\n%[6]sreturn\n}\n",
 		s.receiver,
 		s.name,
 		s.bufferName,
@@ -98,7 +98,11 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 	case 1:
 		return fmt.Sprintf("%s[%d]=%s", bufferName, start, printFunc(fun, thisField))
 	default:
-		return printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex), thisField)
+		if start == 0 {
+			return printFunc(fun, fmt.Sprintf("%s[:%d]", bufferName, *byteIndex), thisField)
+		} else {
+			return printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex), thisField)
+		}
 	case 0:
 		// Variable length size.
 		slice := bufferName

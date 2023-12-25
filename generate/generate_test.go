@@ -57,7 +57,7 @@ import "github.com/speedyhoon/jay"
 
 func (c *Cow) MarshalJ() (b []byte) {
 	b = make([]byte, 4)
-	jay.WriteFloat32(b[0:4], c.Height)
+	jay.WriteFloat32(b[:4], c.Height)
 	return
 }
 
@@ -65,7 +65,7 @@ func (c *Cow) UnmarshalJ(b []byte) error {
 	if len(b) < 4 {
 		return jay.ErrUnexpectedEOB
 	}
-	c.Height = jay.ReadFloat32(b[0:4])
+	c.Height = jay.ReadFloat32(b[:4])
 	return nil
 }
 `

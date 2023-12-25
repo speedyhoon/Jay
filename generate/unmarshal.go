@@ -88,7 +88,11 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 		//TODO  remove -- singles no longer needed!
 		return fmt.Sprintf("%s=%s", thisField, printFunc(fun, fmt.Sprintf("%s[%d]", bufferName, start)))
 	default:
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex)))
+		if start == 0 {
+			return fmt.Sprintf("%s = %s", thisField, printFunc(fun, fmt.Sprintf("%s[:%d]", bufferName, *byteIndex)))
+		} else {
+			return fmt.Sprintf("%s = %s", thisField, printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex)))
+		}
 	case 0:
 		// Variable length size.
 		slice := bufferName

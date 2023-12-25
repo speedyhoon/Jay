@@ -22,9 +22,8 @@ import "github.com/speedyhoon/jay"
 
 func (b *Boat) MarshalJ() (y []byte) {
 	y = make([]byte, 12)
-	jay.WriteFloat32(y[0:4], b.Price)
+	jay.WriteFloat32(y[:4], b.Price)
 	jay.WriteIntArch64(y[4:12], b.Discount)
-
 	return
 }
 
@@ -32,7 +31,7 @@ func (b *Boat) UnmarshalJ(y []byte) error {
 	if len(y) < 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	b.Price = jay.ReadFloat32(y[0:4])
+	b.Price = jay.ReadFloat32(y[:4])
 	b.Discount = jay.ReadIntArch64(y[4:12])
 	return nil
 }
@@ -62,9 +61,8 @@ import "github.com/speedyhoon/jay"
 
 func (c *Car) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
-	jay.WriteFloat32(b[0:4], c.Price)
+	jay.WriteFloat32(b[:4], c.Price)
 	jay.WriteIntArch64(b[4:12], c.Discount)
-
 	return
 }
 
@@ -72,7 +70,7 @@ func (c *Car) UnmarshalJ(b []byte) error {
 	if len(b) < 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	c.Price = jay.ReadFloat32(b[0:4])
+	c.Price = jay.ReadFloat32(b[:4])
 	c.Discount = jay.ReadIntArch64(b[4:12])
 	return nil
 }
@@ -102,9 +100,8 @@ import "github.com/speedyhoon/jay"
 
 func (y *Yacht) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
-	jay.WriteFloat32(b[0:4], y.Price)
+	jay.WriteFloat32(b[:4], y.Price)
 	jay.WriteIntArch64(b[4:12], y.Discount)
-
 	return
 }
 
@@ -112,7 +109,7 @@ func (y *Yacht) UnmarshalJ(b []byte) error {
 	if len(b) < 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	y.Price = jay.ReadFloat32(b[0:4])
+	y.Price = jay.ReadFloat32(b[:4])
 	y.Discount = jay.ReadIntArch64(b[4:12])
 	return nil
 }
