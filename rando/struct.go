@@ -11,6 +11,7 @@ import (
 )
 
 // Package generates a Go main package with 1 to 6 randomly generated structs.
+// It returns the package and test code required to test MarshalJ() & UnmarshalJ().
 func Package(name string) (pkg, test []byte, _ error) {
 	b := bytes.NewBufferString(fmt.Sprintf("package %s\n\n", name))
 	structNames := make(uniqueNames)
@@ -25,11 +26,12 @@ import (
 )
 
 `)
+	structs := bytes.NewBuffer(nil)
 	mx := rand.Intn(5) + 1
 	for i := 0; i < mx; i++ {
 		typeName := structNames.add(StringExported)
 		structLines, testLines := Struct(typeName, 150)
-		b.Write(structLines)
+		structs.Write(structLines)
 
 		tests.WriteString(fmt.Sprintf(`
 func TestFuzz_%d(t *testing.T) {
@@ -50,6 +52,10 @@ func TestFuzz_%d(t *testing.T) {
 }
 `, i, typeName, testLines))
 	}
+	if bytes.Contains(structs.Bytes(), []byte("time.Time")) {
+		b.WriteString("import \"time\"\n\n")
+	}
+	b.Write(structs.Bytes())
 
 	pkg, err1 := goFormat(b.Bytes())
 	test, err2 := goFormat(tests.Bytes())
@@ -102,13 +108,20 @@ func Struct(name string, fieldsQty uint) (fields, testLines []byte) {
 
 		// Test lines.
 		tl.WriteString(n)
-		tl.WriteString(":\trando.")
-		tl.WriteString(strings.ToUpper(string(typ[0])))
-		tl.WriteString(typ[1:])
-		tl.WriteString("(),\n")
+		tl.WriteString(":\t")
+		tl.WriteString(TypeRandomFunc(typ))
+		tl.WriteString(",\n")
 	}
 	b.WriteString("}\n")
 	return b.Bytes(), tl.Bytes()
+}
+
+func TypeRandomFunc(t string) string {
+	switch t {
+	case "time.Time":
+		return "rando.DateTime()"
+	}
+	return "rando." + strings.ToUpper(string(t[0])) + t[1:] + "()"
 }
 
 func Type() string {
@@ -125,7 +138,7 @@ func Type() string {
 		"rune",
 		"string",
 		//"struct",
-		//"time.Time",
+		"time.Time",
 		"uint",
 		"uint8",
 		"uint16",
