@@ -72,7 +72,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 }
 
 func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isLast bool, returnInlined *bool, bufferName string) string {
-	fun, size := o.unmarshalFuncs(f, isLast)
+	fun, size, totalSize := o.unmarshalFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
 		log.Printf("no generateLine for type `%s` yet in unmarshalLine()", f.typ)
@@ -80,7 +80,7 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 	}
 
 	start := *byteIndex
-	*byteIndex += size
+	*byteIndex += totalSize
 	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
 
 	switch size {
@@ -125,74 +125,74 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 
 // unmarshalFuncs returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
-func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size uint) {
+func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, totalSize uint) {
 	var c interface{}
 	switch f.typ {
 	case "byte", "uint8":
-		return "", 1
+		return "", 1, 1
 	case "int8":
-		return "int8", 1
+		return "int8", 1, 1
 	case "string":
 		if isLast {
-			c, size = jay.ReadStringPtrErr, 0
+			c, size, totalSize = jay.ReadStringPtrErr, 0, 1
 		} else {
-			c, size = jay.ReadStringAt, 0
+			c, size, totalSize = jay.ReadStringAt, 0, 1
 		}
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
-				c, size = jay.ReadIntArch32, 4
+				c, size, totalSize = jay.ReadIntArch32, 4, 4
 			}
-			c, size = jay.ReadIntArch64, 8
+			c, size, totalSize = jay.ReadIntArch64, 8, 8
 			break
 		}
-		//c, size = jay.ReadIntVariable, 0
-		c, size = jay.ReadInt, 0
+		//c, size, totalSize = jay.ReadIntVariable, 0,1
+		c, size, totalSize = jay.ReadInt, 0, 1
 	case "int16":
-		c, size = jay.ReadInt16, 2
+		c, size, totalSize = jay.ReadInt16, 2, 2
 	case "int32", "rune":
-		c, size = jay.ReadInt32, 4
+		c, size, totalSize = jay.ReadInt32, 4, 4
 	case "float32":
-		c, size = jay.ReadFloat32, 4
+		c, size, totalSize = jay.ReadFloat32, 4, 4
 	case "float64":
-		c, size = jay.ReadFloat64, 8
+		c, size, totalSize = jay.ReadFloat64, 8, 8
 	case "int64":
-		c, size = jay.ReadInt64, 8
+		c, size, totalSize = jay.ReadInt64, 8, 8
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {
-				c, size = jay.ReadUintArch32, 4
+				c, size, totalSize = jay.ReadUintArch32, 4, 4
 			}
-			c, size = jay.ReadUintArch64, 8
+			c, size, totalSize = jay.ReadUintArch64, 8, 8
 			break
 		}
-		c, size = jay.ReadUintVariable, 0
+		c, size, totalSize = jay.ReadUintVariable, 0, 1
 	case "uint16":
-		c, size = jay.ReadUint16, 2
+		c, size, totalSize = jay.ReadUint16, 2, 2
 	case "uint32":
-		c, size = jay.ReadUint32, 4
+		c, size, totalSize = jay.ReadUint32, 4, 4
 	case "uint64":
-		c, size = jay.ReadUint64, 8
+		c, size, totalSize = jay.ReadUint64, 8, 8
 	case "time.Time":
 		if f.tagOptions.TimeNano {
-			c, size = jay.ReadTimeNano, 8
+			c, size, totalSize = jay.ReadTimeNano, 8, 8
 		} else {
-			c, size = jay.ReadTime, 8
+			c, size, totalSize = jay.ReadTime, 8, 8
 		}
 	case "[]byte":
 		if isLast {
-			c, size = jay.ReadBytesPtrErr, 0
+			c, size, totalSize = jay.ReadBytesPtrErr, 0, 1
 		} else {
-			c, size = jay.ReadBytesAt, 0
+			c, size, totalSize = jay.ReadBytesAt, 0, 1
 		}
 
 	default:
 		log.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
-		return "", 0
+		return "", 0, 0
 	}
 
 	return strings.TrimPrefix(
 		runtime.FuncForPC(reflect.ValueOf(c).Pointer()).Name(),
 		pkgPrefix,
-	), size
+	), size, totalSize
 }
