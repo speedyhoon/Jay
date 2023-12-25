@@ -210,11 +210,11 @@ func AlphaChar() string {
 	return LowercaseChar()
 }
 func UppercaseChar() string {
-	return string(rand.Intn('Z'-'A') + 'A')
+	return fmt.Sprintf("%c", rand.Intn('Z'-'A')+'A')
 }
 func LowercaseChar() string {
-	return string(rand.Intn('z'-'a') + 'a')
+	return fmt.Sprintf("%c", rand.Intn('z'-'a')+'a')
 }
 func Number() string {
-	return string(rand.Intn('9'-'0') + '0')
+	return fmt.Sprintf("%c", rand.Intn('9'-'0')+'0')
 }
