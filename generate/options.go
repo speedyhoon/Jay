@@ -92,9 +92,9 @@ func bytesRequired(input uint) uint8 {
 	if input <= 1 {
 		return uint8(input)
 	}
-	return uint8(math.Ceil(LogBaseX(256, float64(input))))
+	return uint8(math.Ceil(LogBaseX(256, float64(input+1))))
 }
 
 func LogBaseX(base, x float64) float64 {
-	return math.Log(x+1) / math.Log(base)
+	return math.Log(x) / math.Log(base)
 }
