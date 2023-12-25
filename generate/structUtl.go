@@ -74,8 +74,10 @@ func (o Option) isSupportedType(t *ast.Field) (typeOf, aliasTypeName string, isV
 		if ok && x.Name == "time" && d.Sel.Name == "Time" {
 			return "time.Time", "time.Time", false, true
 		}
+	case *ast.StructType:
+	// TODO not yet implemented.
 	default:
-		log.Printf("type %T not expected here", d)
+		log.Printf("type %T not expected in Option.isSupportedType()", d)
 	}
 	return "", "", false, false
 }

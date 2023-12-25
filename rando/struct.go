@@ -120,6 +120,8 @@ func TypeRandomFunc(t string) string {
 	switch t {
 	case "time.Time":
 		return "rando.DateTime()"
+	case "struct{}":
+		return "struct{}{}"
 	}
 	return "rando." + strings.ToUpper(string(t[0])) + t[1:] + "()"
 }
@@ -137,7 +139,7 @@ func Type() string {
 		"int64",
 		"rune",
 		"string",
-		//"struct",
+		"struct{}",
 		"time.Time",
 		"uint",
 		"uint8",
