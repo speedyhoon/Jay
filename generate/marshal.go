@@ -83,7 +83,7 @@ func fieldNames(fields []field, receiver string) string {
 }
 
 func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, index uint, isLast bool, bufferName string) string {
-	fun, size := o.typeFuncs(f, isLast)
+	fun, size, totalSize := o.typeFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
 		log.Printf("no generateLine for type `%s` yet", f.typ)
@@ -91,7 +91,7 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 	}
 
 	start := *byteIndex
-	*byteIndex += size
+	*byteIndex += totalSize
 	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
 
 	switch size {
@@ -169,72 +169,72 @@ func printFunc(fun string, params ...string) string {
 	return b
 }
 
-func (o Option) typeFuncs(fe field, isLast bool) (_ string, size uint) {
+func (o Option) typeFuncs(fe field, isLast bool) (_ string, size, totalSize uint) {
 	var f interface{}
 	switch fe.typ {
 	case "byte", "uint8":
-		return "", 1
+		return "", 1, 1
 	case "int8":
-		return "byte", 1
+		return "byte", 1, 1
 	case "string":
 		if isLast {
-			f, size = jay.WriteString, 0
+			f, size, totalSize = jay.WriteString, 0, 1
 		} else {
-			f, size = jay.WriteStringAt, 0
+			f, size, totalSize = jay.WriteStringAt, 0, 1
 		}
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
-				f, size = jay.WriteIntArch32, 4
+				f, size, totalSize = jay.WriteIntArch32, 4, 4
 			}
-			f, size = jay.WriteIntArch64, 8
+			f, size, totalSize = jay.WriteIntArch64, 8, 8
 			break
 		}
-		f, size = jay.WriteIntVariable, 0
+		f, size, totalSize = jay.WriteIntVariable, 0, 1
 	case "int16":
-		f, size = jay.WriteInt16, 2
+		f, size, totalSize = jay.WriteInt16, 2, 2
 	case "int32", "rune":
-		f, size = jay.WriteInt32, 4
+		f, size, totalSize = jay.WriteInt32, 4, 4
 	case "float32":
-		f, size = jay.WriteFloat32, 4
+		f, size, totalSize = jay.WriteFloat32, 4, 4
 	case "float64":
-		f, size = jay.WriteFloat64, 8
+		f, size, totalSize = jay.WriteFloat64, 8, 8
 	case "int64":
-		f, size = jay.WriteInt64, 8
+		f, size, totalSize = jay.WriteInt64, 8, 8
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {
-				f, size = jay.WriteUintArch32, 4
+				f, size, totalSize = jay.WriteUintArch32, 4, 4
 			}
-			f, size = jay.WriteUintArch64, 8
+			f, size, totalSize = jay.WriteUintArch64, 8, 8
 			break
 		}
-		f, size = jay.WriteUintVariable, 0
+		f, size, totalSize = jay.WriteUintVariable, 0, 1
 	case "uint16":
-		f, size = jay.WriteUint16, 2
+		f, size, totalSize = jay.WriteUint16, 2, 2
 	case "uint32":
-		f, size = jay.WriteUint32, 4
+		f, size, totalSize = jay.WriteUint32, 4, 4
 	case "uint64":
-		f, size = jay.WriteUint64, 8
+		f, size, totalSize = jay.WriteUint64, 8, 8
 	case "time.Time":
 		if fe.tagOptions.TimeNano {
-			f, size = jay.WriteTimeNano, 8
+			f, size, totalSize = jay.WriteTimeNano, 8, 8
 		} else {
-			f, size = jay.WriteTime, 8
+			f, size, totalSize = jay.WriteTime, 8, 8
 		}
 	case "[]byte":
 		if isLast {
-			f, size = jay.WriteBytes, 0
+			f, size, totalSize = jay.WriteBytes, 0, 1
 		} else {
-			f, size = jay.WriteBytesAt, 0
+			f, size, totalSize = jay.WriteBytesAt, 0, 1
 		}
 
 	default:
 		log.Printf("no function set for type %s yet in typeFuncs()", fe.typ)
-		return "", 0
+		return "", 0, 0
 	}
 
-	return nameOf(f), size
+	return nameOf(f), size, totalSize
 }
 
 func nameOf(f any) string {
