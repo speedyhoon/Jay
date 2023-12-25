@@ -36,7 +36,7 @@ func (s *structTyp) LenDecl(b *bytes.Buffer) {
 	))
 }*/
 
-func joinSizes(qty uint, variableLen []field) string {
+func joinSizes(qty uint, variableLen []field, o Option) string {
 	var s []string
 	if qty != 0 {
 		s = []string{Utoa(qty)}
@@ -45,7 +45,7 @@ func joinSizes(qty uint, variableLen []field) string {
 	var variableFields, variableStructs []string
 	for _, v := range variableLen {
 		qty += isLen(v.typ)
-		if v.typ == "string" { //} isLenVariable(v.typ) {
+		if o.isLenVariable(v.typ) {
 			variableFields = append(variableFields, v.name)
 		} else if v.typ == "struct" {
 			variableStructs = append(variableStructs, v.name)
@@ -62,10 +62,9 @@ func joinSizes(qty uint, variableLen []field) string {
 	return strings.Join(s, "+")
 }
 
-func (s *structTyp) varLenFieldNames() (names []string) {
+func (s *structTyp) varLenFieldNames(o Option) (names []string) {
 	for _, v := range s.variableLen {
-		//qty += isLen(v.typ)
-		if v.typ == "string" { //} isLenVariable(v.typ) {
+		if o.isLenVariable(v.typ) {
 			names = append(names, v.name)
 			//} else if v.typ == "struct" {
 			//variableStructs = append(variableStructs, v.name)

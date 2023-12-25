@@ -1,16 +1,43 @@
 package jay
 
-func WriteBytes(b []byte, y []byte) {
-	b[0] = byte(len(y))
-	if b[0] >= 1 {
-		copy(b[1:], y)
+func WriteBytes(y []byte, s []byte, length int) {
+	y[0] = byte(length) // Set how long the []byte is.
+	if length != 0 {
+		copy(y[strSizeOf:length+strSizeOf], s)
 	}
 }
 
-func ReadBytes(b []byte) ([]byte, bool) {
-	if len(b) < int(b[0]+1) {
-		return nil, false
+func WriteBytesAt(y []byte, s []byte, length, at int) int {
+	y[0] = byte(length) // Set how long the []byte is.
+	if length != 0 {
+		copy(y[strSizeOf:], s)
+	}
+	return at + length + strSizeOf
+}
+
+func ReadBytes(b []byte) (h []byte, size int, _ bool) {
+	size = int(b[0]) + strSizeOf
+	if size == strSizeOf || len(b) < size {
+		return nil, size, size == strSizeOf
 	}
 
-	return b[1 : b[0]+1], true
+	return b[strSizeOf:size], size, true
+}
+
+func ReadBytesPtrErr(b []byte, h *[]byte) error {
+	size := int(b[0]) + strSizeOf
+	if size == strSizeOf {
+		return nil
+	}
+	if len(b) < size {
+		return ErrUnexpectedEOB
+	}
+
+	*h = b[strSizeOf:size]
+	return nil
+}
+
+func ReadBytesAt(b []byte, at int) (h []byte, size int, ok bool) {
+	h, size, ok = ReadBytes(b)
+	return h, at + size, ok
 }

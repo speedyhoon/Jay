@@ -30,6 +30,7 @@ type Supported struct {
 	Embed
 	subStruct
 	SubStruct subStruct
+	ByteSlice []byte
 }
 
 type Embed struct {
@@ -48,11 +49,12 @@ type Embed struct {
 	Uint32  uint32
 	Uint64  uint64
 	Rune    rune
-	//String  string
+	String  string
 	//Guid [16]byte
 	Time time.Time
 	Nano time.Time `j:"nano"`
 	//Embedded Supported
+	ByteSlice []byte
 }
 
 type subStruct struct {
@@ -71,11 +73,12 @@ type subStruct struct {
 	Uint32  uint32
 	Uint64  uint64
 	Rune    rune
-	//String  string
+	String  string
 	//Guid [16]byte
 	Time time.Time
 	Nano time.Time `j:"nano"`
 	//Embedded Supported
+	ByteSlice []byte
 }
 
 func main() {

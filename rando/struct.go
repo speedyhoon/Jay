@@ -122,6 +122,8 @@ func TypeRandomFunc(t string) string {
 		return "rando.DateTime()"
 	case "struct{}":
 		return "struct{}{}"
+	case "[]byte":
+		return "rando.Bytes()"
 	}
 	return "rando." + strings.ToUpper(string(t[0])) + t[1:] + "()"
 }
@@ -146,6 +148,7 @@ func Type() string {
 		"uint16",
 		"uint32",
 		"uint64",
+		"[]byte",
 	}
 	return supportedTypes[rand.Intn(len(supportedTypes))]
 }

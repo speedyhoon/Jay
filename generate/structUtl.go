@@ -50,7 +50,7 @@ func bufferName(receiverName string) string {
 
 func supportedType(typ string) bool {
 	switch typ {
-	case "bool", "byte", "float32", "float64", "int", "int8", "int16", "int32", "int64", "rune", "string", "uint", "uint8", "uint16", "uint32", "uint64":
+	case "bool", "byte", "float32", "float64", "int", "int8", "int16", "int32", "int64", "rune", "string", "uint", "uint8", "uint16", "uint32", "uint64", "[]byte":
 		return true
 	}
 	return false
@@ -76,6 +76,40 @@ func (o Option) isSupportedType(t *ast.Field) (typeOf, aliasTypeName string, isV
 		}
 	case *ast.StructType:
 	// TODO not yet implemented.
+	case *ast.ArrayType:
+		return o.calcType(d, "")
+	default:
+		log.Printf("type %T not expected in Option.isSupportedType()", d)
+	}
+	return "", "", false, false
+}
+
+func (o Option) calcType(t interface{}, typePrefix string) (typeOf, aliasTypeName string, isVarLen, ok bool) {
+	switch d := t.(type) {
+	case *ast.Field:
+		return o.calcType(d.Type, typePrefix)
+	case *ast.Ident:
+		name := typePrefix + d.Name
+		if supportedType(name) {
+			return name, name, o.isLenVariable(name), true
+		}
+
+		// Type has an alias name.
+		typeOf, isVarLen = o.typeOf(d.Obj)
+		return typeOf, name, isVarLen, typeOf != ""
+	case nil:
+	// Ignore.
+	case *ast.SelectorExpr:
+		x, ok := d.X.(*ast.Ident)
+		if ok && x.Name == "time" && d.Sel.Name == "Time" {
+			return "time.Time", "time.Time", false, true
+		}
+	case *ast.StructType:
+	// TODO not yet implemented.
+	case *ast.ArrayType:
+		if d.Len == nil {
+			return o.calcType(d.Elt, "[]")
+		}
 	default:
 		log.Printf("type %T not expected in Option.isSupportedType()", d)
 	}
@@ -180,10 +214,10 @@ func isLen(typ string) uint {
 
 func (o Option) isLenVariable(typ string) bool {
 	switch typ {
-	// TODO case "[]byte", "[]bool", "[]int", "map[x]x",
+	// TODO case "[]bool", "[]int", "map[x]x",
 	case "int":
 		return !o.FixedIntSize
-	case "string":
+	case "string", "[]byte":
 		return true
 	case "uint":
 		return !o.FixedUintSize

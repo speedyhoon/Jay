@@ -16,8 +16,8 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
-	varLengths := lengths2(s.varLenFieldNames(), s.receiver)
-	makeSize := joinSizes(s.calcSize(o), s.variableLen)
+	varLengths := lengths2(s.varLenFieldNames(o), s.receiver)
+	makeSize := joinSizes(s.calcSize(o), s.variableLen, o)
 
 	var byteIndex uint
 	buf := bytes.NewBuffer(nil)
@@ -218,9 +218,15 @@ func (o Option) typeFuncs(fe field, isLast bool) (_ string, size uint) {
 		} else {
 			f, size = jay.WriteTime, 8
 		}
+	case "[]byte":
+		if isLast {
+			f, size = jay.WriteBytes, 0
+		} else {
+			f, size = jay.WriteBytesAt, 0
+		}
 
 	default:
-		log.Printf("no function set for type %s yet", fe.typ)
+		log.Printf("no function set for type %s yet in typeFuncs()", fe.typ)
 		return "", 0
 	}
 

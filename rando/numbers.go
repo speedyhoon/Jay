@@ -25,8 +25,17 @@ func Int32() int32 {
 func Rune() rune {
 	return Int32()
 }
+
 func Byte() byte {
 	return Uint8()
+}
+
+func Bytes() (b []byte) {
+	length := rand.Intn(100)
+	for i := 0; i < length; i++ {
+		b = append(b, Uint8())
+	}
+	return
 }
 
 func Int64() int64 {

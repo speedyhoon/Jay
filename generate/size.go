@@ -68,9 +68,10 @@ func structs(names []string, receiver string) string {
 	//+c.Wheels.SizeJ()+c.Gearbox.SizeJ()+c.Roof.SizeJ()
 }*/
 
+// typeFuncSize returns the minimum quantity of bytes required to represent an empty or undefined value.
 func (o Option) typeFuncSize(typ string) (size uint) {
 	switch typ {
-	case "string", "bool", "byte", "uint8", "int8":
+	case "string", "bool", "byte", "uint8", "int8", "[]byte":
 		return 1
 	case "int16", "uint16":
 		return 2
@@ -96,7 +97,7 @@ func (o Option) typeFuncSize(typ string) (size uint) {
 		return 1
 
 	default:
-		log.Printf("not function set for type %s yet", typ)
+		log.Printf("not function set for type %s yet in typeFuncSize()", typ)
 		return 0
 	}
 }

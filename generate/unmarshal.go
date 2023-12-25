@@ -42,6 +42,8 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, isLast, &returnInlined, s.bufferName))
 		if !isLast {
 			bufWriteF(buf, "\nif !ok {\nreturn %s.ErrUnexpectedEOB\n}\n", pkgName)
+		} else {
+			buf.WriteString("\n")
 		}
 	}
 
@@ -73,7 +75,7 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 	fun, size := o.unmarshalFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
-		log.Printf("no generateLine for type `%s` yet", f.typ)
+		log.Printf("no generateLine for type `%s` yet in unmarshalLine()", f.typ)
 		return ""
 	}
 
@@ -106,7 +108,7 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 		}
 
 		if isLast {
-			if f.typ == "string" {
+			if f.typ == "string" || f.typ == "[]byte" {
 				*returnInlined = true
 				return fmt.Sprintf("return %s", printFunc(fun, slice, "&"+thisField))
 			}
@@ -173,9 +175,15 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size uint
 		} else {
 			c, size = jay.ReadTime, 8
 		}
+	case "[]byte":
+		if isLast {
+			c, size = jay.ReadBytesPtrErr, 0
+		} else {
+			c, size = jay.ReadBytesAt, 0
+		}
 
 	default:
-		log.Printf("no function set for type %s yet", f.typ)
+		log.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
 		return "", 0
 	}
 
