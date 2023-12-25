@@ -27,6 +27,12 @@ func ReadUintVariable(b []byte) (uint, int) {
 	}
 }
 
+// WriteUintVariableAt ...
+func WriteUintVariableAt(b []byte, u uint, length uint8, at int) int {
+	WriteUintVariable(b, u, length)
+	return at + int(length)
+}
+
 // WriteUintVariable ...
 func WriteUintVariable(b []byte, u uint, length uint8) {
 	b[0] = length
