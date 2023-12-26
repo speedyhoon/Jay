@@ -12,7 +12,7 @@ import (
 
 // Package generates a Go main package with 1 to 6 randomly generated structs.
 // It returns the package and test code required to test MarshalJ() & UnmarshalJ().
-func Package(name string) (pkg, test []byte, _ error) {
+func Package(name string) (pkg, test []byte, err error) {
 	b := bytes.NewBufferString(fmt.Sprintf("package %s\n\n", name))
 	structNames := make(uniqueNames)
 
