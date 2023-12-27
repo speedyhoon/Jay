@@ -81,20 +81,6 @@ func Float64() float64 {
 	return rand.Float64() * math.Pow(10, float64(rand.Intn(9)+1))
 }
 
-func StringN(length int) (s string) {
-	if length < 0 {
-		length = rand.Intn(100)
-	}
-	for i := 0; i < length; i++ {
-		s += string(Uint8())
-	}
-	return
-}
-
-func String() (s string) {
-	return StringN(-1)
-}
-
 func DateTime() time.Time {
 	return time.Unix(Int64(), 0).UTC()
 }
