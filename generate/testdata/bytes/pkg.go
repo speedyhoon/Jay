@@ -203,6 +203,7 @@ type Seventeen struct {
 	Sixteen   []byte
 	Seventeen []byte
 }
+
 type Eighteen struct {
 	One       []byte
 	Two       []byte
