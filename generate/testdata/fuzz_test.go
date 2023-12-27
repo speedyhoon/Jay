@@ -16,35 +16,35 @@ import (
 
 func TestFuzz(t *testing.T) {
 	for _, typ := range []string{
-		//"bool",
-		//"byte",
-		//"float32",
-		//"float64",
-		//"int",
-		//"int8",
-		//"int16",
-		//"int32",
-		//"int64",
-		//"rune",
-		//"string",
+		"bool",
+		"byte",
+		"float32",
+		"float64",
+		"int",
+		"int8",
+		"int16",
+		"int32",
+		"int64",
+		"rune",
+		"string",
 		//"struct{}",
-		//"time.Time",
-		//"uint",
-		//"uint8",
-		//"uint16",
-		//"uint32",
-		//"uint64",
+		"time.Time",
+		"uint",
+		"uint8",
+		"uint16",
+		"uint32",
+		"uint64",
 		"[]byte",
 	} {
-		tempPath := strings.Trim(typ, "[].{}")
+		tempPath := strings.ReplaceAll(strings.Trim(typ, "[].{}"), ".", "")
 		if strings.HasPrefix(typ, "[]") {
 			tempPath += "s"
 		}
-		Genny(t, tempPath, []string{typ})
+		Genny(t, tempPath, typ)
 	}
 }
 
-func Genny(t *testing.T, tempPath string, types []string) {
+func Genny(t *testing.T, tempPath string, typ string) {
 	err := os.MkdirAll(tempPath, os.ModePerm)
 	if err != nil {
 		log.Panicln("Error creating directory:", err)
@@ -59,8 +59,7 @@ func Genny(t *testing.T, tempPath string, types []string) {
 
 	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
 
-	typeList := types
-	pkg, tests, err := rando.PackageSequence("main", typeList)
+	pkg, tests, err := rando.PackageSequence("main", typ /*eList*/)
 	// Ensure both files are saved before processing. But if pathPkg fails to save, at least try to save pathTest too.
 	err1 := os.WriteFile(pathPkg, pkg, perm)
 	err2 := os.WriteFile(pathTest, tests, perm)
@@ -76,6 +75,4 @@ func Genny(t *testing.T, tempPath string, types []string) {
 
 	err = cmd.Run()
 	require.NoError(t, err)
-
-	typeList = append(typeList, types...)
 }
