@@ -4,9 +4,8 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"github.com/speedyhoon/jay/generate"
 	"math/rand"
-	"mvdan.cc/gofumpt/format"
-	"runtime"
 	"strings"
 )
 
@@ -57,21 +56,10 @@ func TestFuzz_%d(t *testing.T) {
 	}
 	b.Write(structs.Bytes())
 
-	pkg, err1 := goFormat(b.Bytes())
-	test, err2 := goFormat(tests.Bytes())
+	pkg, err1 := generate.GoFormat(b.Bytes())
+	test, err2 := generate.GoFormat(tests.Bytes())
 
 	return pkg, test, errors.Join(err1, err2)
-}
-
-func goFormat(src []byte) (code []byte, err error) {
-	code, err = format.Source(src, format.Options{
-		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
-		ExtraRules:  true,
-	})
-	if err != nil {
-		return src, err
-	}
-	return
 }
 
 type uniqueNames map[string]struct{}

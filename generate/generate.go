@@ -47,17 +47,7 @@ package %s
 import "%[1]s%[2]s"
 %[4]s`, pkgPrefix, pkgName, pkg, src))
 
-	// Nicely format the generated Go code.
-	var bb []byte
-	bb, err := format.Source(src, format.Options{
-		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
-		ExtraRules:  true,
-	})
-	if err != nil {
-		//log.Printf("errornous output:\n%s\n", src)
-		return src, err
-	}
-	return bb, nil
+	return GoFormat(src)
 }
 
 func mergeEmbeddedStructs(structs []structTyp) {
@@ -128,4 +118,16 @@ func (s *structTyp) makeFuncs(b *bytes.Buffer, o Option) {
 
 	s.makeMarshal(b, o)
 	s.makeUnmarshal(b, o)
+}
+
+// GoFormat nicely formats the generated Go code.
+func GoFormat(src []byte) (code []byte, err error) {
+	code, err = format.Source(src, format.Options{
+		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
+		ExtraRules:  true,
+	})
+	if err != nil {
+		return src, err
+	}
+	return
 }
