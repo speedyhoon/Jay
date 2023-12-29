@@ -1,8 +1,6 @@
 module github.com/speedyhoon/jay
 
-go 1.21
-
-toolchain go1.21.4
+go 1.21.4
 
 require (
 	github.com/speedyhoon/rando v0.0.0-20231229044048-d78cd6910e8e

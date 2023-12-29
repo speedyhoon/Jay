@@ -3,7 +3,7 @@ module github.com/speedyhoon/jay/generate
 go 1.21.4
 
 require (
-	github.com/speedyhoon/jay v0.0.0-20231228082442-353feca3d109
+	github.com/speedyhoon/jay v0.0.0-20231229054736-bbe678b07979
 	github.com/speedyhoon/rando v0.0.0-20231229044048-d78cd6910e8e
 	github.com/stretchr/testify v1.8.4
 	mvdan.cc/gofumpt v0.5.0
