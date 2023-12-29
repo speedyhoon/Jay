@@ -3,7 +3,7 @@
 package byte
 
 import (
-	"github.com/speedyhoon/jay/rando"
+	"github.com/speedyhoon/rando"
 	"testing"
 )
 

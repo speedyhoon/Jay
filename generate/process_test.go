@@ -4,7 +4,7 @@ import (
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/jay/generate"
 	"github.com/speedyhoon/jay/generate/tests"
-	"github.com/speedyhoon/jay/rando"
+	"github.com/speedyhoon/rando"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

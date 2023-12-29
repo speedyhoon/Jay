@@ -3,7 +3,7 @@ package fuzz_test
 import (
 	"errors"
 	"github.com/speedyhoon/jay/generate"
-	"github.com/speedyhoon/jay/rando"
+	"github.com/speedyhoon/rando"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"log"

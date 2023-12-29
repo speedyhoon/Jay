@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/speedyhoon/jay/rando"
+	"github.com/speedyhoon/rando"
 	"github.com/stretchr/testify/assert"
 	"math"
 	"testing"

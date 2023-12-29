@@ -5,7 +5,7 @@ package main
 import (
 	"testing"
 
-	"github.com/speedyhoon/jay/rando"
+	"github.com/speedyhoon/rando"
 	"github.com/stretchr/testify/require"
 )
 
