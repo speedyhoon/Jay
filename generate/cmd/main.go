@@ -34,14 +34,21 @@ func main() {
 	var opt generate.Option
 	var outputFile string
 
-	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints.")
+	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.")
 	flag.BoolVar(&opt.FixedIntSize, "fi", true, "Fixed int size.")
 	flag.BoolVar(&opt.FixedUintSize, "fu", true, "Fixed uint size.")
 	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
 	flag.BoolVar(&opt.Verbose, "v", false, "Verbose output.")
-	flag.BoolVar(&opt.IncludeTests, "t", false, "Include Go test files.")
+	flag.BoolVar(&opt.SearchTests, "s", false, "Search Go test files for exported structs too.")
+	flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
+	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
+	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
 	flag.Parse()
 	paths := flag.Args()
+
+	if opt.SkipMarshal && opt.SkipUnmarshal {
+		log.Println("Nothing to do. Both -m and -u flags are set.")
+	}
 
 	if opt.Verbose {
 		verbose.SetOutput(os.Stdout)
@@ -89,7 +96,7 @@ func process(opt generate.Option, outputFile string, filePaths ...string) {
 func walkDir(path string, opt generate.Option) (filenames []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if info != nil && !info.IsDir() && strings.HasSuffix(info.Name(), goExt) {
-			if !opt.IncludeTests && strings.HasSuffix(path, testSuffix) {
+			if !opt.SearchTests && strings.HasSuffix(path, testSuffix) {
 				verbose.Println("ignoring test file", path)
 				return nil
 			}

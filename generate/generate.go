@@ -116,8 +116,12 @@ func (s *structTyp) makeFuncs(b *bytes.Buffer, o Option) {
 		return
 	}
 
-	s.makeMarshal(b, o)
-	s.makeUnmarshal(b, o)
+	if !o.SkipMarshal {
+		s.makeMarshal(b, o)
+	}
+	if !o.SkipUnmarshal {
+		s.makeUnmarshal(b, o)
+	}
 }
 
 // GoFormat nicely formats the generated Go code.
