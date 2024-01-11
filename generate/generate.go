@@ -55,6 +55,8 @@ func mergeEmbeddedStructs(structs []structTyp) {
 		var structNames []string
 		structs[i].fixedLen.mergeFields(structs, structNames, i)
 		structs[i].variableLen.mergeFields(structs, structNames, i)
+		structs[i].single.mergeFields(structs, structNames, i)
+		structs[i].bool.mergeFields(structs, structNames, i)
 	}
 }
 
@@ -99,6 +101,7 @@ func findStruct(s []structTyp, name string) *structTyp {
 
 func (s *structTyp) join(embedded structTyp, name string) {
 	appendEmbed(&s.bool, name, embedded.bool)
+	appendEmbed(&s.single, name, embedded.single)
 	appendEmbed(&s.fixedLen, name, embedded.fixedLen)
 	appendEmbed(&s.variableLen, name, embedded.variableLen)
 }
