@@ -25,26 +25,27 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o) || isReturnInlined
 
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, s.bufferName))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, "", "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, s.bufferName))
 		buf.WriteString("\n")
 	}
 
-	at := Utoa(byteIndex)
+	var at, end string
+	if len(s.variableLen) == 1 {
+		at = Utoa(byteIndex)
+	} else if len(s.variableLen) >= 2 {
+		bufWriteF(buf, "at, end := %d, %[1]d+l0\n", byteIndex)
+		at, end = "at", "end"
+	}
+
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		if i == 1 {
-			at = "at"
-		}
-		if i != vLen {
-			switch i {
-			case 0:
-				buf.WriteString("at:=")
-			default:
-				buf.WriteString("at=")
-			}
+		if i == vLen {
+			at, end = "end", ""
+		} else if i >= 1 {
+			bufWriteF(buf, "at, end = end, end+l%d\n", i)
 		}
 
-		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, uint(i), i == vLen, s.bufferName))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == vLen, s.bufferName))
 		buf.WriteString("\n")
 	}
 
@@ -96,7 +97,7 @@ func (s *structTyp) generateSizeLine() string {
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
-func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, index uint, isLast bool, bufferName string) string {
+func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string, index uint, isLast bool, bufferName string) string {
 	fun, size, totalSize := o.typeFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
@@ -107,6 +108,14 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 	start := *byteIndex
 	*byteIndex += totalSize
 	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
+
+	switch f.typ {
+	case "string":
+		//if f.typ != f.aliasType {
+		//	fun = f.aliasType
+		//}
+		return fmt.Sprintf("%s(b[%s:%s], %s.%s)", fun, at, end, receiver, f.name)
+	}
 
 	switch size {
 	case 1:
@@ -205,11 +214,7 @@ func (o Option) typeFuncs(fe field, isLast bool) (_ string, size, totalSize uint
 	case "int8":
 		return "byte", 1, 1
 	case "string":
-		if isLast {
-			f, size, totalSize = jay.WriteString, 0, 1
-		} else {
-			f, size, totalSize = jay.WriteStringAt, 0, 1
-		}
+		return "copy", 0, 1
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {

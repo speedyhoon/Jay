@@ -12,7 +12,7 @@ import (
 
 // makeUnmarshal ...
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
-	var byteIndex uint
+	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
 
 	s.makeReadBools(buf, &byteIndex, s.receiver)
@@ -20,31 +20,30 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 
 	var returnInlined bool
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, "", len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined, s.bufferName))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, "", "", len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined, s.bufferName))
 		buf.WriteString("\n")
 	}
 
-	var at string
-	if len(s.variableLen) >= 2 {
-		buf.WriteString("var ok bool\n")
-	}
-
+	var at, end string
 	if len(s.variableLen) == 1 {
 		at = Utoa(byteIndex)
 	} else if len(s.variableLen) >= 2 {
-		bufWriteF(buf, "at:=%d\n", byteIndex)
-		at = "at"
+		bufWriteF(buf, "at, end := %d, %[1]d+l0\n", byteIndex)
+		at, end = "at", "end"
 	}
 
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		isLast := i == vLen
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, isLast, &returnInlined, s.bufferName))
-		if !isLast {
-			bufWriteF(buf, "\nif !ok {\nreturn %s.ErrUnexpectedEOB\n}\n", pkgName)
-		} else {
-			buf.WriteString("\n")
+		isFirst := i == 0
+		if isLast {
+			at, end = "end", ""
 		}
+		if !isFirst && !isLast {
+			bufWriteF(buf, "at, end = end, end+l%d\n", i)
+		}
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, isLast, &returnInlined, s.bufferName))
+		buf.WriteString("\n")
 	}
 
 	code := buf.Bytes()
@@ -94,7 +93,7 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	)
 }
 
-func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isLast bool, returnInlined *bool, bufferName string) string {
+func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string, isLast bool, returnInlined *bool, bufferName string) string {
 	fun, size, totalSize := o.unmarshalFuncs(f, isLast)
 	if fun == "" && size == 0 {
 		// Unknown type, not supported yet.
@@ -105,6 +104,14 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 	start := *byteIndex
 	*byteIndex += totalSize
 	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
+
+	switch f.typ {
+	case "string":
+		if f.typ != f.aliasType {
+			fun = f.aliasType
+		}
+		return fmt.Sprintf("%s.%s = %s(b[%s:%s])", receiver, f.name, fun, at, end)
+	}
 
 	if f.isArray() && f.arrayType == "int8" {
 		values := make([]string, f.arraySize)
@@ -164,11 +171,7 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 	case "int8":
 		return "int8", 1, 1
 	case "string":
-		if isLast {
-			c, size, totalSize = jay.ReadStringPtrErr, 0, 1
-		} else {
-			c, size, totalSize = jay.ReadStringAt, 0, 1
-		}
+		return "string", 0, 1
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
