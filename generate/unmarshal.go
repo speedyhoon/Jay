@@ -52,8 +52,10 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 		return
 	}
 
+	const exportedErr = "jay.ErrUnexpectedEOB"
 	// Prevent panic: runtime error: index out of range
-	lengthCheck := fmt.Sprintf("if len(%s) < %d {\nreturn jay.ErrUnexpectedEOB\n}", s.bufferName, byteIndex)
+	lengthCheck := fmt.Sprintf("l := len(%s)\nif l < %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
+	variableLengthCheck := s.generateCheckSizes(exportedErr, byteIndex)
 
 	var returnCode string
 	if !returnInlined {
@@ -61,13 +63,34 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	}
 
 	bufWriteF(b,
-		"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%s}\n",
+		"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%s%s}\n",
 		s.receiver,
 		s.name,
 		s.bufferName,
 		lengthCheck,
+		variableLengthCheck,
 		code,
 		returnCode,
+	)
+}
+
+func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) string {
+	qty := len(s.variableLen)
+	if qty == 0 {
+		return ""
+	}
+	assignments, values := make([]string, qty), make([]string, qty)
+	for i := 0; i < qty; i++ {
+		assignments[i] = fmt.Sprintf("l%d", i)
+		values[i] = fmt.Sprintf("int(%s[%d])", s.bufferName, i)
+	}
+	return fmt.Sprintf(
+		"%s := %s\nif l < %d+%s {\nreturn %s\n}\n",
+		strings.Join(assignments, ", "),
+		strings.Join(values, ", "),
+		totalSize,
+		strings.Join(assignments, "+"),
+		exportedErr,
 	)
 }
 
