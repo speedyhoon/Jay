@@ -19,7 +19,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	varLengths := lengths2(s.varLenFieldNames(o), s.receiver)
 	makeSize := joinSizes(s.calcSize(o), s.variableLen, o)
 
-	var byteIndex uint
+	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
 	isReturnInlined := s.makeWriteBools(buf, &byteIndex)
 	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o) || isReturnInlined
@@ -64,12 +64,13 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	}
 
 	b.WriteString(fmt.Sprintf(
-		"func (%[1]s *%[2]s) MarshalJ() (%[3]s []byte) {\n%[4]s\n%[3]s = make([]byte, %[5]s)\n%[6]sreturn\n}\n",
+		"func (%[1]s *%[2]s) MarshalJ() (%[3]s []byte) {\n%[4]s\n%[3]s = make([]byte, %[5]s)\n%[6]s%[7]sreturn\n}\n",
 		s.receiver,
 		s.name,
 		s.bufferName,
 		varLengths,
 		makeSize,
+		s.generateSizeLine(),
 		code,
 	))
 }
@@ -80,6 +81,19 @@ func fieldNames(fields []field, receiver string) string {
 		s = append(s, fmt.Sprintf("%s.%s", receiver, fields[i].name))
 	}
 	return strings.Join(s, ", ")
+}
+
+func (s *structTyp) generateSizeLine() string {
+	qty := len(s.variableLen)
+	if qty == 0 {
+		return ""
+	}
+	assignments, values := make([]string, qty), make([]string, qty)
+	for i := 0; i < qty; i++ {
+		assignments[i] = fmt.Sprintf("%s[%d]", s.bufferName, i)
+		values[i] = fmt.Sprintf("byte(l%d)", i)
+	}
+	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
 func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, index uint, isLast bool, bufferName string) string {
