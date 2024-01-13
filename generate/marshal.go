@@ -29,21 +29,10 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 		buf.WriteString("\n")
 	}
 
-	var at, end string
-	if len(s.variableLen) == 1 {
-		at = Utoa(byteIndex)
-	} else if len(s.variableLen) >= 2 {
-		bufWriteF(buf, "at, end := %d, %[1]d+l0\n", byteIndex)
-		at, end = "at", "end"
-	}
-
+	at, end := s.defineTrackingVars(buf, byteIndex)
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		if i == vLen {
-			at, end = "end", ""
-		} else if i >= 1 {
-			bufWriteF(buf, "at, end = end, end+l%d\n", i)
-		}
+		at, end = s.tracking(buf, i)
 
 		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == vLen, s.bufferName))
 		buf.WriteString("\n")

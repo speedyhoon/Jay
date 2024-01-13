@@ -352,3 +352,26 @@ func (o Option) isLenVariable(typ string) bool {
 func bufWriteF(b *bytes.Buffer, format string, a ...any) {
 	b.WriteString(fmt.Sprintf(format, a...))
 }
+
+func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, end string) {
+	switch len(s.variableLen) {
+	case 0:
+		return
+	case 1:
+		at = Utoa(byteIndex)
+	default:
+		bufWriteF(buf, "at, end := %d, %[1]d+l0\n", byteIndex)
+		at, end = "at", "end"
+	}
+	return
+}
+
+func (s *structTyp) tracking(buf *bytes.Buffer, i int) (at, end string) {
+	if i == len(s.variableLen)-1 {
+		return "end", ""
+	}
+	if i >= 1 {
+		bufWriteF(buf, "at, end = end, end+l%d\n", i)
+	}
+	return "at", "end"
+}
