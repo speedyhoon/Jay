@@ -101,7 +101,11 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 		if start == 0 {
 			return printFunc(fun, fmt.Sprintf("%s[:%d]", bufferName, *byteIndex), thisField)
 		} else {
-			return printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex), thisField)
+			if f.isArray() && fun == "copy" {
+				return printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex), thisField+"[:]")
+			} else {
+				return printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex), thisField)
+			}
 		}
 	case 0:
 		// Variable length size.
@@ -148,6 +152,16 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at string, inde
 		return o.marshalFunc(f.typ, slice, thisField, "l1")
 	}
 	return ""*/
+}
+
+func (f *field) isArrayOrSlice() bool {
+	return f.arraySize != 0
+}
+func (f *field) isArray() bool {
+	return f.arraySize >= 1
+}
+func (f *field) isSlice() bool {
+	return f.arraySize <= -1
 }
 
 /*func marshalU64(f *field) (fun string, sizeOf uint, ok bool) {
@@ -228,6 +242,9 @@ func (o Option) typeFuncs(fe field, isLast bool) (_ string, size, totalSize uint
 		} else {
 			f, size, totalSize = jay.WriteBytesAt, 0, 1
 		}
+
+	case "[15]byte", "[15]uint8":
+		return "copy", uint(fe.arraySize), uint(fe.arraySize)
 
 	default:
 		log.Printf("no function set for type %s yet in typeFuncs()", fe.typ)

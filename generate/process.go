@@ -53,6 +53,9 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []by
 	}
 
 	src, err = makeFile(files[0].Name.Name, list, *o)
+	if err != nil {
+		log.Println("err", err.Error())
+	}
 	return
 }
 
@@ -96,7 +99,7 @@ func (s *structTyp) process(fields []*ast.Field, o Option) (hasExportedFields bo
 			continue
 		}
 
-		typeOf, aliasType, isVarLen, ok := o.isSupportedType(t)
+		fe, ok := o.isSupportedType(t)
 		if !ok {
 			fields = Remove(fields, i)
 			continue
@@ -108,7 +111,10 @@ func (s *structTyp) process(fields []*ast.Field, o Option) (hasExportedFields bo
 			continue
 		}
 
-		s.addExportedFields(names, tag, typeOf, aliasType, isVarLen)
+		fe.tag = tag
+		fe.LoadTagOptions()
+
+		s.addExportedFields(names, fe)
 		i++
 	}
 

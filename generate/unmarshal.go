@@ -83,6 +83,14 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at string, isL
 	*byteIndex += totalSize
 	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
 
+	if f.isArray() && f.arrayType == "int8" {
+		values := make([]string, f.arraySize)
+		for i := 0; i < f.arraySize; i++ {
+			values[i] = fmt.Sprintf("%s(%s[%d])", f.arrayType, bufferName, i)
+		}
+		return fmt.Sprintf("%s = %s{%s}", thisField, f.typ, strings.Join(values, ", "))
+	}
+
 	switch size {
 	case 1:
 		//TODO  remove -- singles no longer needed!
@@ -185,6 +193,12 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 		} else {
 			c, size, totalSize = jay.ReadBytesAt, 0, 1
 		}
+
+	case "[15]byte":
+		return "[15]byte", uint(f.arraySize), uint(f.arraySize)
+
+	case "[15]uint8":
+		return "[15]uint8", uint(f.arraySize), uint(f.arraySize)
 
 	default:
 		log.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)

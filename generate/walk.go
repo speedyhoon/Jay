@@ -28,8 +28,11 @@ type field struct {
 
 	// Alias name assigned to the type, for example, `type Toggle bool`, typ = "bool", aliasType = "Toggle".
 	aliasType  string
+	arraySize  int    // 0 = not an array or slice, -1 = slice, >=1 = array size
+	arrayType  string // The type without the size in brackets. An empty string is not an array.
 	tag        string // The tag value within `j:""`
 	tagOptions        // Valid tag options that have been successfully parsed and loaded from the `tag` string.
+	isFixedLen bool   // Is represented by a fixed quantity of bytes (like int64) or a variable quantity of bytes (like string & slices).
 }
 type fieldList []field
 

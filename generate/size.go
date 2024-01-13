@@ -2,6 +2,7 @@ package generate
 
 import (
 	"log"
+	"strconv"
 )
 
 /*// MakeSize ...
@@ -97,6 +98,19 @@ func (o Option) typeFuncSize(typ string) (size uint) {
 		return 1
 
 	default:
+		if typeArray.MatchString(typ) {
+			underlyingType := typeArrayBrackets.ReplaceAllString(typ, "")
+
+			itemSize := o.typeFuncSize(underlyingType)
+			sizeStr := typ[1 : len(typ)-1-len(underlyingType)]
+			siz, err := strconv.ParseUint(sizeStr, 10, 0)
+			if err != nil {
+				log.Printf("array %s size `%s` is invalid", typ, sizeStr)
+				return 0
+			}
+			return uint(siz) * itemSize
+		}
+
 		log.Printf("not function set for type %s yet in typeFuncSize()", typ)
 		return 0
 	}
