@@ -40,7 +40,12 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 
 	const exportedErr = "jay.ErrUnexpectedEOB"
 	// Prevent panic: runtime error: index out of range
-	lengthCheck := fmt.Sprintf("l := len(%s)\nif l < %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
+	var lengthCheck string
+	if len(s.variableLen) == 0 {
+		lengthCheck = fmt.Sprintf("if len(%s) < %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
+	} else {
+		lengthCheck = fmt.Sprintf("l := len(%s)\nif l < %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
+	}
 	variableLengthCheck := s.generateCheckSizes(exportedErr, byteIndex)
 
 	var returnCode string
