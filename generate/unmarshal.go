@@ -20,21 +20,20 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 
 	var returnInlined bool
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, "", "", len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined, s.bufferName))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, "", "", i == 0, len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined, s.bufferName))
 		buf.WriteString("\n")
 	}
 
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		isLast := i == vLen
 		at, end = s.tracking(buf, i)
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, isLast, &returnInlined, s.bufferName))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, i == 0, i == vLen, &returnInlined, s.bufferName))
 		buf.WriteString("\n")
 	}
 
 	code := buf.Bytes()
-	if len(code) == 0 || byteIndex == 0 {
+	if len(code) == 0 {
 		return
 	}
 
@@ -85,9 +84,9 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	)
 }
 
-func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string, isLast bool, returnInlined *bool, bufferName string) string {
+func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string, isFirst, isLast bool, returnInlined *bool, bufferName string) string {
 	fun, size, totalSize := o.unmarshalFuncs(f, isLast)
-	if fun == "" && size == 0 {
+	if fun == "" {
 		// Unknown type, not supported yet.
 		log.Printf("no generateLine for type `%s` yet in unmarshalLine()", f.typ)
 		return ""
@@ -102,7 +101,11 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 		if f.typ != f.aliasType {
 			fun = f.aliasType
 		}
-		return fmt.Sprintf("%s.%s = %s(b[%s:%s])", receiver, f.name, fun, at, end)
+		if isFirst && isLast {
+			return fmt.Sprintf("%s.%s = %s(b[%d:])", receiver, f.name, fun, *byteIndex)
+		} else {
+			return fmt.Sprintf("%s.%s = %s(b[%s:%s])", receiver, f.name, fun, at, end)
+		}
 	}
 
 	if f.isArray() && f.arrayType == "int8" {
@@ -163,7 +166,7 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 	case "int8":
 		return "int8", 1, 1
 	case "string":
-		return "string", 0, 1
+		return "string", 0, 0
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {

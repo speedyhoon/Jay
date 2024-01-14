@@ -111,7 +111,7 @@ func (o Option) typeFuncSize(typ string) (size uint) {
 			return uint(siz) * itemSize
 		}
 
-		log.Printf("not function set for type %s yet in typeFuncSize()", typ)
+		log.Printf("no function set yet for type %s in typeFuncSize()", typ)
 		return 0
 	}
 }

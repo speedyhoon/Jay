@@ -25,7 +25,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o) || isReturnInlined
 
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, "", "", 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, s.bufferName))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, "", "", 0, i == 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, s.bufferName))
 		buf.WriteString("\n")
 	}
 
@@ -33,8 +33,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i)
-
-		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == vLen, s.bufferName))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == 0, i == vLen, s.bufferName))
 		buf.WriteString("\n")
 	}
 
@@ -86,9 +85,9 @@ func (s *structTyp) generateSizeLine() string {
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
-func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string, index uint, isLast bool, bufferName string) string {
+func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string, index uint, isFirst, isLast bool, bufferName string) string {
 	fun, size, totalSize := o.typeFuncs(f, isLast)
-	if fun == "" && size == 0 {
+	if fun == "" {
 		// Unknown type, not supported yet.
 		log.Printf("no generateLine for type `%s` yet", f.typ)
 		return ""
@@ -103,7 +102,11 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string,
 		//if f.typ != f.aliasType {
 		//	fun = f.aliasType
 		//}
-		return fmt.Sprintf("%s(b[%s:%s], %s.%s)", fun, at, end, receiver, f.name)
+		if isFirst && isLast {
+			return fmt.Sprintf("%s(b[%d:], %s.%s)", fun, start, receiver, f.name)
+		} else {
+			return fmt.Sprintf("%s(b[%s:%s], %s.%s)", fun, at, end, receiver, f.name)
+		}
 	}
 
 	switch size {
@@ -203,7 +206,7 @@ func (o Option) typeFuncs(fe field, isLast bool) (_ string, size, totalSize uint
 	case "int8":
 		return "byte", 1, 1
 	case "string":
-		return "copy", 0, 1
+		return "copy", 0, 0
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
