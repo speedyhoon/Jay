@@ -7,43 +7,48 @@ import "github.com/speedyhoon/jay"
 func (c *Car) MarshalJ() (b []byte) {
 	l0, l1, l2, l3 := len(c.Name), len(c.CC), len(c.Gearbox.Model), len(c.Gearbox.Manufacturer)
 	b = make([]byte, 41+l0+l1+l2+l3)
-	b[0] = jay.Bool3(c.Auto, c.Gearbox.Sequential, c.Gearbox.Automatic)
-	jay.WriteUint64(b[1:9], c.ID)
-	jay.WriteUintArch64(b[9:17], c.Row)
-	jay.WriteUint16(b[17:19], c.RedLine)
-	jay.WriteTime(b[19:27], c.Expiry)
-	jay.WriteIntArch64(b[27:35], c.Gearbox.Gears)
-	b[35] = c.Gearbox.Reverse
-	b[36] = byte(c.Gearbox.LinkageDelta)
-	at := jay.WriteStringAt(b[37:], c.Name, l0, 37)
-	at = jay.WriteStringAt(b[at:], c.CC, l1, at)
-	at = jay.WriteStringAt(b[at:], c.Gearbox.Model, l2, at)
-	jay.WriteString(b[at:], c.Gearbox.Manufacturer, l3)
+	b[0], b[1], b[2], b[3] = byte(l0), byte(l1), byte(l2), byte(l3)
+	b[4] = jay.Bool3(c.Auto, c.Gearbox.Sequential, c.Gearbox.Automatic)
+	b[5] = c.Gearbox.Reverse
+	b[6] = byte(c.Gearbox.LinkageDelta)
+	jay.WriteUint64(b[7:15], c.ID)
+	jay.WriteUintArch64(b[15:23], c.Row)
+	jay.WriteUint16(b[23:25], c.RedLine)
+	jay.WriteTime(b[25:33], c.Expiry)
+	jay.WriteIntArch64(b[33:41], c.Gearbox.Gears)
+	at, end := 41, 41+l0
+	copy(b[at:end], c.Name)
+	at, end = end, end+l1
+	copy(b[at:end], c.CC)
+	at, end = end, end+l2
+	copy(b[at:end], c.Gearbox.Model)
+	copy(b[end:], c.Gearbox.Manufacturer)
 	return
 }
 
 func (c *Car) UnmarshalJ(b []byte) error {
-	c.Auto, c.Gearbox.Sequential, c.Gearbox.Automatic = jay.ReadBool3(b[0])
-	c.ID = jay.ReadUint64(b[1:9])
-	c.Row = jay.ReadUintArch64(b[9:17])
-	c.RedLine = jay.ReadUint16(b[17:19])
-	c.Expiry = jay.ReadTime(b[19:27])
-	c.Gearbox.Gears = jay.ReadIntArch64(b[27:35])
-	c.Gearbox.Reverse = b[35]
-	c.Gearbox.LinkageDelta = int8(b[36])
-	var ok bool
-	at := 37
-	c.Name, at, ok = jay.ReadStringAt(b[at:], at)
-	if !ok {
+	l := len(b)
+	if l < 41 {
 		return jay.ErrUnexpectedEOB
 	}
-	c.CC, at, ok = jay.ReadStringAt(b[at:], at)
-	if !ok {
+	l0, l1, l2, l3 := int(b[0]), int(b[1]), int(b[2]), int(b[3])
+	if l < 41+l0+l1+l2+l3 {
 		return jay.ErrUnexpectedEOB
 	}
-	c.Gearbox.Model, at, ok = jay.ReadStringAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
-	}
-	return jay.ReadStringPtrErr(b[at:], &c.Gearbox.Manufacturer)
+	c.Auto, c.Gearbox.Sequential, c.Gearbox.Automatic = jay.ReadBool3(b[4])
+	c.Gearbox.Reverse = b[5]
+	c.Gearbox.LinkageDelta = int8(b[6])
+	c.ID = jay.ReadUint64(b[7:15])
+	c.Row = jay.ReadUintArch64(b[15:23])
+	c.RedLine = jay.ReadUint16(b[23:25])
+	c.Expiry = jay.ReadTime(b[25:33])
+	c.Gearbox.Gears = jay.ReadIntArch64(b[33:41])
+	at, end := 41, 41+l0
+	c.Name = string(b[at:end])
+	at, end = end, end+l1
+	c.CC = string(b[at:end])
+	at, end = end, end+l2
+	c.Gearbox.Model = string(b[at:end])
+	c.Gearbox.Manufacturer = string(b[end:])
+	return nil
 }
