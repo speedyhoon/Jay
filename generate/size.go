@@ -72,7 +72,7 @@ func structs(names []string, receiver string) string {
 // typeFuncSize returns the minimum quantity of bytes required to represent an empty or undefined value.
 func (o Option) typeFuncSize(typ string) (size uint) {
 	switch typ {
-	case "string", "bool", "byte", "uint8", "int8", "[]byte":
+	case "string", "bool", "byte", "uint8", "int8", "[]byte", "[]uint8", "[]int8":
 		return 1
 	case "int16", "uint16":
 		return 2
