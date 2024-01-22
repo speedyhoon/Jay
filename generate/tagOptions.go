@@ -13,15 +13,17 @@ type tagOptions struct {
 
 	maxBytes uint
 	TimeNano bool
+	Required bool // If "required" appears in the tag, then additional checks are omitted from the generated code.
 }
 
 type tagSize uint
 
 func (f *field) LoadTagOptions() {
 	const (
-		tagMax  = "max"
-		tagMin  = "min"
-		tagTime = "nano"
+		tagMax      = "max"
+		tagMin      = "min"
+		tagTime     = "nano"
+		tagRequired = "required"
 	)
 
 	f.tag = strings.TrimSpace(f.tag)
@@ -38,6 +40,8 @@ func (f *field) LoadTagOptions() {
 			f.tagOptions.Min.set(g)
 		case tagTime:
 			f.tagOptions.TimeNano = true
+		case tagRequired:
+			f.tagOptions.Required = true
 		}
 	}
 }
