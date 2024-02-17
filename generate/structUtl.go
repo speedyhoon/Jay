@@ -138,7 +138,17 @@ func (o Option) calcType(t interface{}, typePrefix string) (f field, ok bool) {
 	//case *ast.StructType:
 	// TODO not yet implemented.
 	case *ast.ArrayType:
-		f = o.newFieldArray(calcArraySize(d.Len), o.calcArrayType(d.Elt))
+		var typ string
+		typ, ok = o.calcArrayType(d.Elt)
+		if !ok {
+			return f, false
+		}
+		var size int
+		size, ok = calcArraySize(d.Len)
+		if !ok {
+			return f, false
+		}
+		f = o.newFieldArray(size, typ)
 		return f, true
 
 	case *ast.BasicLit:
@@ -171,15 +181,15 @@ func genType(arraySize int, arrayType string) string {
 	}
 }
 
-func (o *Option) calcArrayType(x interface{}) string {
+func (o *Option) calcArrayType(x interface{}) (typeOf string, ok bool) {
 	switch d := x.(type) {
 	case *ast.Ident:
 		if supportedArrayType(d.Name) {
-			return d.Name
+			return d.Name, true
 		}
 	}
 	log.Println("array type not supported yet")
-	return ""
+	return "", false
 }
 func supportedArrayType(s string) bool {
 	switch s {
@@ -191,20 +201,24 @@ func supportedArrayType(s string) bool {
 	return false
 }
 
-func calcArraySize(x interface{}) int {
+// calcArraySize returns -1 for a slice, 0 as invalid & >= 1 for array size.
+func calcArraySize(x interface{}) (size int, ok bool) {
 	switch d := x.(type) {
 	case nil:
-		return -1
+		return -1, true
 	case *ast.BasicLit:
-		if d.Kind == token.INT {
-			u, err := strconv.ParseUint(d.Value, 10, 24)
-			if err != nil {
-				log.Println("invalid array size", d.Value)
-			}
-			return int(u)
-		} else {
+		if d.Kind != token.INT {
 			log.Println("unhandled token type", d.Kind, d.Value)
+			return 0, false
 		}
+
+		u, err := strconv.ParseUint(d.Value, 10, 24)
+		if err != nil {
+			log.Println("invalid array size", d.Value)
+			return 0, false
+		}
+		return int(u), true
+
 	case *ast.ValueSpec:
 		if len(d.Values) == 1 {
 			return calcArraySize(d.Values[0])
@@ -216,7 +230,7 @@ func calcArraySize(x interface{}) int {
 	default:
 		log.Printf("unhandled case %t in calcArraySize", d)
 	}
-	return 0
+	return 0, false
 }
 
 func (o Option) typeOf(t interface{}) (s string, isVarLen bool) {
