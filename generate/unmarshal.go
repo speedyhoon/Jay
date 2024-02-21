@@ -208,28 +208,51 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 		} else {
 			c, size, totalSize = jay.ReadTime, 8, 8
 		}
-	case "[]byte":
-		if isLast {
-			c, size, totalSize = jay.ReadBytesPtrErr, 0, 1
-		} else {
-			c, size, totalSize = jay.ReadBytesAt, 0, 1
-		}
-	case "[]uint8":
-		return "copy", 0, 1
-
-	case "[15]byte":
-		return "[15]byte", uint(f.arraySize), uint(f.arraySize)
-
-	case "[15]uint8":
-		return "[15]uint8", uint(f.arraySize), uint(f.arraySize)
 
 	default:
-		log.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
-		return "", 0, 0
+		var ok bool
+		c, size, totalSize, ok = unmarshalArrayFuncs(f, isLast)
+		if !ok {
+			log.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
+			return "", 0, 0
+		}
 	}
 
 	return strings.TrimPrefix(
 		runtime.FuncForPC(reflect.ValueOf(c).Pointer()).Name(),
 		pkgPrefix,
 	), size, totalSize
+}
+
+// unmarshalArrayFuncs returns the unmarshalling functions for slices and arrays.
+// `size` is the quantity of bytes required to represent the type.
+func unmarshalArrayFuncs(f field, isLast bool) (fun interface{}, size, totalSize uint, ok bool) {
+	if f.arraySize == 0 {
+		return nil, 0, 0, false
+	}
+
+	switch f.arrayType {
+	case "uint8":
+		if f.arraySize == -1 {
+			return "copy", 0, 1, true // Type []uint8.
+		} else {
+			// TODO flexible array sizes
+			return "[15]uint8", uint(f.arraySize), uint(f.arraySize), true
+		}
+
+	case "byte":
+		if f.arraySize == -1 {
+			// Type []byte.
+			if isLast {
+				return jay.ReadBytesPtrErr, 0, 1, true
+			} else {
+				return jay.ReadBytesAt, 0, 1, true
+			}
+		} else {
+			// TODO flexible array sizes
+			return "[15]byte", uint(f.arraySize), uint(f.arraySize), true
+		}
+	}
+
+	return
 }
