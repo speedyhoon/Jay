@@ -214,6 +214,8 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 		} else {
 			c, size, totalSize = jay.ReadBytesAt, 0, 1
 		}
+	case "[]uint8":
+		return "copy", 0, 1
 
 	case "[15]byte":
 		return "[15]byte", uint(f.arraySize), uint(f.arraySize)
