@@ -1,15 +1,15 @@
 package jay
 
 func WriteBytes(y []byte, s []byte, length int) {
-	y[0] = byte(length) // Set how long the []byte is.
 	if length != 0 {
+		y[0] = byte(length) // Set how long the []byte is.
 		copy(y[strSizeOf:length+strSizeOf], s)
 	}
 }
 
 func WriteBytesAt(y []byte, s []byte, length, at int) int {
-	y[0] = byte(length) // Set how long the []byte is.
 	if length != 0 {
+		y[0] = byte(length) // Set how long the []byte is.
 		copy(y[strSizeOf:], s)
 	}
 	return at + length + strSizeOf
