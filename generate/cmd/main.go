@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"github.com/speedyhoon/jay/generate"
-	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -27,8 +26,6 @@ const (
 	testSuffix = "_test" + goExt
 )
 
-var verbose = log.New(io.Discard, "", log.Lshortfile)
-
 func main() {
 	log.SetFlags(log.Lshortfile)
 	var opt generate.Option
@@ -51,7 +48,7 @@ func main() {
 	}
 
 	if opt.Verbose {
-		verbose.SetOutput(os.Stdout)
+		generate.Verbose.SetOutput(os.Stdout)
 	}
 
 	if len(paths) == 0 {
@@ -97,7 +94,7 @@ func walkDir(path string, opt generate.Option) (filenames []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if info != nil && !info.IsDir() && strings.HasSuffix(info.Name(), goExt) {
 			if !opt.SearchTests && strings.HasSuffix(path, testSuffix) {
-				verbose.Println("ignoring test file", path)
+				generate.Verbose.Println("ignoring test file", path)
 				return nil
 			}
 

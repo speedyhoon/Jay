@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"go/ast"
-	"log"
 	"mvdan.cc/gofumpt/format"
 	"runtime"
 	"strings"
@@ -92,8 +91,7 @@ func findStruct(s []structTyp, f field) *structTyp {
 		}
 	}
 
-	// TODO change this log message to verbose only mode.
-	log.Printf("can't find %s %s used as name %s", f.typ, f.aliasType, f.name)
+	Verbose.Printf("can't find %s %s used as name %s", f.typ, f.aliasType, f.name)
 	return nil
 }
 

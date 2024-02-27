@@ -11,6 +11,8 @@ import (
 	"strings"
 )
 
+var Verbose = log.New(io.Discard, "", log.Lshortfile)
+
 // ProcessFiles ...
 func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []byte, err error) {
 	if source == nil && len(filenames) == 0 {
