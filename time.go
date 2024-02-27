@@ -37,3 +37,14 @@ func WriteTimeNano(b []byte, t time.Time) {
 
 	WriteInt64(b, t.UnixNano())
 }
+
+// ReadDuration ...
+func ReadDuration(b []byte) time.Duration {
+	return time.Duration(b[0]) | time.Duration(b[1])<<_8 | time.Duration(b[2])<<_16 | time.Duration(b[3])<<_24 |
+		time.Duration(b[4])<<_32 | time.Duration(b[5])<<_40 | time.Duration(b[6])<<_48 | time.Duration(b[7])<<_56
+}
+
+// WriteDuration ...
+func WriteDuration(b []byte, t time.Duration) {
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(t), byte(t>>_8), byte(t>>_16), byte(t>>_24), byte(t>>_32), byte(t>>_40), byte(t>>_48), byte(t>>_56)
+}
