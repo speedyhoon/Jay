@@ -46,7 +46,7 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 			v.enclosing = n.Name.Name
 		}
 	case *ast.StructType:
-		if n.Fields == nil || len(n.Fields.List) == 0 {
+		if n.Fields == nil || len(n.Fields.List) == 0 || v.enclosing == "" {
 			return v
 		}
 
