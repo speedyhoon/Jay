@@ -66,14 +66,8 @@ func (f *fieldList) mergeFields(structs []structTyp, structNames []string, struc
 			continue
 		}
 
-		aliasType, fieldName := (*f)[i].aliasType, (*f)[i].name
-		embedded := findStruct(structs, aliasType)
-		if embedded == nil {
-			// TODO change this log message to verbose only mode.
-			log.Printf("can't find %s %s used as name %s", (*f)[i].typ, aliasType, fieldName)
-		}
-
-		structs[structIndex].join(embedded, fieldName)
+		embedded := findStruct(structs, (*f)[i])
+		structs[structIndex].join(embedded, (*f)[i].name)
 
 		// Remove the struct field so its contents are not referenced twice.
 		*f = Remove(*f, i)
@@ -91,12 +85,15 @@ func isNew(a *[]string, s string) bool {
 	return true
 }
 
-func findStruct(s []structTyp, name string) *structTyp {
+func findStruct(s []structTyp, f field) *structTyp {
 	for i := range s {
-		if s[i].name == name {
+		if s[i].name == f.aliasType {
 			return &s[i]
 		}
 	}
+
+	// TODO change this log message to verbose only mode.
+	log.Printf("can't find %s %s used as name %s", f.typ, f.aliasType, f.name)
 	return nil
 }
 
