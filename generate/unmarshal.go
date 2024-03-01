@@ -187,6 +187,8 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 		c, size, totalSize = jay.ReadFloat64, 8, 8
 	case "int64":
 		c, size, totalSize = jay.ReadInt64, 8, 8
+	case "time.Duration":
+		c, size, totalSize = jay.ReadDuration, 8, 8
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {

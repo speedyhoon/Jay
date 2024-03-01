@@ -226,6 +226,8 @@ func (o Option) typeFuncs(fe field, isLast bool) (_ string, size, totalSize uint
 		f, size, totalSize = jay.WriteFloat64, 8, 8
 	case "int64":
 		f, size, totalSize = jay.WriteInt64, 8, 8
+	case "time.Duration":
+		f, size, totalSize = jay.WriteDuration, 8, 8
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {

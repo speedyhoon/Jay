@@ -88,13 +88,24 @@ func (o Option) isSupportedType(t *ast.Field) (fe field, ok bool) {
 	case nil:
 	// Ignore.
 	case *ast.SelectorExpr:
-		x, ok := d.X.(*ast.Ident)
-		if ok && x.Name == "time" && d.Sel.Name == "Time" {
-			fe.typ = "time.Time"
-			fe.aliasType = "time.Time"
-			fe.isFixedLen = true
-			return fe, true
+		var x *ast.Ident
+		x, ok = d.X.(*ast.Ident)
+		if ok && x.Name == "time" {
+			switch d.Sel.Name {
+			case "Time":
+				fe.typ = "time.Time"
+				fe.aliasType = fe.typ
+				fe.isFixedLen = true
+				return fe, true
+			case "Duration":
+				fe.typ = "time.Duration"
+				fe.aliasType = fe.typ
+				fe.isFixedLen = true
+				return fe, true
+			}
 		}
+		log.Println("not supported yet")
+
 	//case *ast.StructType:
 	// TODO not yet implemented.
 	case *ast.ArrayType:
@@ -128,12 +139,21 @@ func (o Option) calcType(t interface{}, typePrefix string) (f field, ok bool) {
 	case nil:
 	// Ignore.
 	case *ast.SelectorExpr:
-		x, ok := d.X.(*ast.Ident)
-		if ok && x.Name == "time" && d.Sel.Name == "Time" {
-			f.typ = "time.Time"
-			f.aliasType = "time.Time"
-			f.isFixedLen = true
-			return f, true
+		var x *ast.Ident
+		x, ok = d.X.(*ast.Ident)
+		if ok && x.Name == "time" {
+			switch d.Sel.Name {
+			case "Time":
+				f.typ = "time.Time"
+				f.aliasType = f.typ
+				f.isFixedLen = true
+				return f, true
+			case "Duration":
+				f.typ = "time.Duration"
+				f.aliasType = f.typ
+				f.isFixedLen = true
+				return f, true
+			}
 		}
 	//case *ast.StructType:
 	// TODO not yet implemented.
