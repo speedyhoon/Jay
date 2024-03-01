@@ -38,6 +38,17 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []by
 			continue
 		}
 
+		var fi os.FileInfo
+		fi, err = os.Stat(filenames[i])
+		if err != nil {
+			log.Printf("unable to retrieve file info for %s: %s", filenames[i], err)
+			continue
+		}
+		if fi.Size() == 0 {
+			log.Printf("ignoring empty Go file %s", filenames[i])
+			continue
+		}
+
 		f, err = ParseFile(filenames[i], nil)
 		if err != nil {
 			return
