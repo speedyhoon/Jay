@@ -38,7 +38,7 @@ func main() {
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
 	flag.Var(&types, "y", "Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types. For example: Vet,animal.Cat,animal.Cow  will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package \"animal\".")
 	flag.Parse()
-	paths := flag.Args()
+	paths := generate.RemoveDuplicates(flag.Args())
 
 	if opt.SkipMarshal && opt.SkipUnmarshal {
 		log.Println("Nothing to do. Both -m and -u flags are set.")

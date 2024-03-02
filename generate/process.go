@@ -37,6 +37,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		}
 	}
 
+	filenames = RemoveDuplicates(filenames)
 	for i := range filenames {
 		if !IsGoFileName(filenames[i]) {
 			log.Printf("`%s` does not contain a Go file extension", filenames[i])
