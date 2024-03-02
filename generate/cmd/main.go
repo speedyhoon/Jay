@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"strings"
 )
 
 // TODO fix error:
@@ -20,11 +19,6 @@ import (
 // cd jay
 // go run cmd/main.go -o jay.go bench/byte/make.go
 // jay.go should be created in bench/byte/jay.go instead.
-
-const (
-	goExt      = ".go"
-	testSuffix = "_test" + goExt
-)
 
 func main() {
 	log.SetFlags(log.Lshortfile)
@@ -92,8 +86,8 @@ func process(opt generate.Option, outputFile string, filePaths ...string) {
 
 func walkDir(path string, opt generate.Option) (filenames []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-		if info != nil && !info.IsDir() && strings.HasSuffix(info.Name(), goExt) {
-			if !opt.SearchTests && strings.HasSuffix(path, testSuffix) {
+		if info != nil && !info.IsDir() && generate.IsGoFileName(info.Name()) {
+			if !opt.SearchTests && generate.IsGoTestFileName(path) {
 				generate.Verbose.Println("ignoring test file", path)
 				return nil
 			}

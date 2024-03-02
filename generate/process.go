@@ -33,7 +33,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []by
 	}
 
 	for i := range filenames {
-		if !isGoFileName(filenames[i]) {
+		if !IsGoFileName(filenames[i]) {
 			log.Printf("`%s` does not contain a Go file extension", filenames[i])
 			continue
 		}
@@ -182,6 +182,10 @@ func onlyExportedNames(names ...*ast.Ident) []*ast.Ident {
 	return names
 }
 
-func isGoFileName(path string) bool {
+func IsGoFileName(path string) bool {
 	return strings.HasSuffix(strings.ToLower(path), goExt)
+}
+
+func IsGoTestFileName(path string) bool {
+	return strings.HasSuffix(strings.ToLower(path), testSuffix)
 }
