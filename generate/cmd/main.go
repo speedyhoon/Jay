@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 // TODO fix error:
@@ -24,6 +25,7 @@ func main() {
 	log.SetFlags(log.Lshortfile)
 	var opt generate.Option
 	var outputFile string
+	var types slice
 
 	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.")
 	flag.BoolVar(&opt.FixedIntSize, "fi", true, "Fixed int size.")
@@ -34,6 +36,7 @@ func main() {
 	flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
+	flag.Var(&types, "y", "Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types. For example: Vet,animal.Cat,animal.Cow  will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package \"animal\".")
 	flag.Parse()
 	paths := flag.Args()
 
@@ -43,6 +46,10 @@ func main() {
 
 	if opt.Verbose {
 		generate.Verbose.SetOutput(os.Stdout)
+	}
+
+	if len(types) >= 1 {
+		generate.Verbose.Println("-y", types)
 	}
 
 	if len(paths) == 0 {
@@ -115,4 +122,21 @@ func isDir(path string) bool {
 	}
 
 	return fs.IsDir()
+}
+
+type slice []string
+
+func (l *slice) String() string {
+	return strings.Join(*l, ", ")
+}
+
+func (l *slice) Set(s string) error {
+	for _, item := range strings.Split(s, ",") {
+		item = strings.TrimSpace(item)
+		if item != "" {
+			*l = append(*l, item)
+		}
+	}
+
+	return nil
 }
