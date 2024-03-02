@@ -70,13 +70,19 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		for _, file := range fl.files {
 			ast.Walk(visitor{structs: &fl.structs, option: *o, dir: dir, files: files}, file)
 		}
+		directories[dir] = fl
+	}
 
+	structList := directories.allStructs()
+
+	// Traverse the directories again because some imports weren't populated in the correct order to run makeFile() immediately after ast.Walk().
+	for dir, fl := range directories {
 		if len(fl.structs) == 0 {
 			lg.Println("no exported structs in directory", dir)
 			continue
 		}
 
-		src, err = makeFile(filepath.Base(dir), fl.structs, *o)
+		src, err = makeFile(filepath.Base(dir), structList, *o)
 		if err != nil {
 			errors.Join(errs, err)
 			lg.Println("makeFile:", err)
@@ -104,6 +110,13 @@ func (fl *dirList) add(path string, file *ast.File) {
 	list, _ := (*fl)[dir]
 	list.files = append(list.files, file)
 	(*fl)[dir] = list
+}
+
+func (fl dirList) allStructs() (st []structTyp) {
+	for _, dirs := range fl {
+		st = append(st, dirs.structs...)
+	}
+	return
 }
 
 func ParseFile(filename string, src interface{}) (f *ast.File, err error) {

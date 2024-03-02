@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"go/ast"
 	"mvdan.cc/gofumpt/format"
+	"path/filepath"
 	"runtime"
 	"strings"
 )
@@ -29,7 +30,9 @@ func makeFile(pkg string, s []structTyp, option Option) ([]byte, error) {
 
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
-		s[i].makeFuncs(buf, option)
+		if pkg == filepath.Base(s[i].dir) {
+			s[i].makeFuncs(buf, option)
+		}
 	}
 
 	src := buf.Bytes()
