@@ -56,8 +56,7 @@ func main() {
 		paths = []string{"."}
 	}
 
-	// Batch files based on their directory location to prevent structs from being referenced in the wrong package (directory).
-	dirBatch := make(map[string][]string)
+	var filePaths []string
 
 	for _, path := range paths {
 		path = filepath.Clean(path)
@@ -66,25 +65,12 @@ func main() {
 		}
 
 		if isDir(path) {
-			process(opt, filepath.Join(path, outputFile), walkDir(path, opt)...)
+			filePaths = append(filePaths, walkDir(path, opt)...)
 		} else {
-			batchAppend(&dirBatch, path)
+			filePaths = append(filePaths, path)
 		}
 	}
 
-	for _, list := range dirBatch {
-		// Process all files in the same directory so the package has the correct name and structures.
-		process(opt, outputFile, list...)
-	}
-}
-
-func batchAppend(filePaths *map[string][]string, file string) {
-	dir := filepath.Dir(file)
-	list, _ := (*filePaths)[dir]
-	(*filePaths)[dir] = append(list, file)
-}
-
-func process(opt generate.Option, outputFile string, filePaths ...string) {
 	err := opt.ProcessWrite(nil, outputFile, filePaths...)
 	if err != nil {
 		log.Println(err)

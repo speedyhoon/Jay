@@ -1,6 +1,7 @@
 package generate
 
 import (
+	"errors"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -14,7 +15,7 @@ import (
 var Verbose = log.New(io.Discard, "", log.Lshortfile)
 
 // ProcessFiles ...
-func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []byte, err error) {
+func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output []Output, errs error) {
 	if source == nil && len(filenames) == 0 {
 		return nil, ErrNoSource
 	}
@@ -22,13 +23,17 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []by
 	*o = LoadOptions(*o)
 	var files []*ast.File
 	var f *ast.File
+	var err error
+	directories := make(dirList)
 
 	if source != nil {
 		f, err = ParseFile("", source)
 		if err != nil {
 			log.Println("source error:", err)
+			errors.Join(errs, err)
 		} else {
 			files = append(files, f)
+			directories.add("", f)
 		}
 	}
 
@@ -41,6 +46,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []by
 		var fi os.FileInfo
 		fi, err = os.Stat(filenames[i])
 		if err != nil {
+			errors.Join(errs, err)
 			log.Printf("unable to retrieve file info for %s: %s", filenames[i], err)
 			continue
 		}
@@ -51,25 +57,52 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []by
 
 		f, err = ParseFile(filenames[i], nil)
 		if err != nil {
-			return
+			errors.Join(errs, err)
+			continue
 		}
 		files = append(files, f)
+		directories.add(filenames[i], f)
 	}
 
-	var list []structTyp
-	if len(files) == 0 {
-		return
-	}
+	var src []byte
+	for dir, fl := range directories {
+		for _, file := range fl.files {
+			ast.Walk(visitor{structs: &fl.structs, option: *o, dir: dir, files: files}, file)
+		}
 
-	for i := range files {
-		ast.Walk(visitor{structs: &list, option: *o, files: Remove(files, i)}, files[i])
-	}
+		if len(fl.structs) == 0 {
+			log.Println("no exported structs in directory", dir)
+			continue
+		}
 
-	src, err = makeFile(files[0].Name.Name, list, *o)
-	if err != nil {
-		log.Println("err", err.Error())
+		src, err = makeFile(filepath.Base(dir), fl.structs, *o)
+		if err != nil {
+			errors.Join(errs, err)
+			log.Println("makeFile:", err)
+		} else {
+			output = append(output, Output{Dir: dir, Src: src})
+		}
 	}
 	return
+}
+
+type (
+	fileList struct {
+		structs []structTyp
+		files   []*ast.File
+	}
+	dirList map[string]fileList
+	Output  struct {
+		Src []byte
+		Dir string
+	}
+)
+
+func (fl *dirList) add(path string, file *ast.File) {
+	dir := filepath.Dir(path)
+	list, _ := (*fl)[dir]
+	list.files = append(list.files, file)
+	(*fl)[dir] = list
 }
 
 func ParseFile(filename string, src interface{}) (f *ast.File, err error) {
@@ -85,21 +118,21 @@ func ParseFile(filename string, src interface{}) (f *ast.File, err error) {
 
 // ProcessWrite processes a file and writes to outputFile.
 func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames ...string) (err error) {
-	src, err := o.ProcessFiles(source, filenames...)
-	if err != nil || len(src) == 0 {
+	output, errs := o.ProcessFiles(source, filenames...)
+	if errs != nil || len(output) == 0 {
 		return err
 	}
 
 	if outputFile == "" {
 		outputFile = DefaultOutputFileName
-
-		if len(filenames) != 0 {
-			outputFile = filepath.Join(filepath.Dir(filenames[0]), outputFile)
-		}
 	}
 
-	err = os.WriteFile(outputFile, src, 0666)
-	return
+	for i := range output {
+		err = os.WriteFile(filepath.Join(output[i].Dir, outputFile), output[i].Src, 0666)
+		errors.Join(err)
+	}
+
+	return errs
 }
 
 func (s *structTyp) process(fields []*ast.Field, o Option, files []*ast.File) (hasExportedFields bool) {
