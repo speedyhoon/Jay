@@ -69,10 +69,10 @@ func supportedType(typ string) bool {
 	return false
 }
 
-func (o Option) isSupportedType(t *ast.Field) (fe field, ok bool) {
+func (o Option) isSupportedType(t *ast.Field, files []*ast.File) (fe field, ok bool) {
 	switch d := t.Type.(type) {
 	case *ast.Ident:
-		if supportedType(d.Name) {
+		if supportedType(d.Name) { // TODO its probably better to check if the obj != nil first otherwise do this.
 			fe.typ = d.Name
 			fe.aliasType = d.Name
 			fe.isFixedLen = !o.isLenVariable(d.Name)
@@ -103,6 +103,15 @@ func (o Option) isSupportedType(t *ast.Field) (fe field, ok bool) {
 				fe.isFixedLen = true
 				return fe, true
 			}
+		} else {
+			obj := findFirstImportedType(files, x.Name, d.Sel.Name)
+			if obj != nil {
+				typeOf, isVarLen := o.typeOf(obj)
+				fe.typ = typeOf
+				fe.aliasType = d.Sel.Name
+				fe.isFixedLen = !isVarLen
+				return fe, typeOf != ""
+			}
 		}
 		log.Println("not supported yet")
 
@@ -115,6 +124,40 @@ func (o Option) isSupportedType(t *ast.Field) (fe field, ok bool) {
 		log.Printf("type %T not expected in Option.isSupportedType()", d)
 	}
 	return fe, false
+}
+
+func findFirstImportedType(files []*ast.File, pkg, typName string) *ast.Object {
+	// TODO doesn't handle aliased imports
+	// TODO doesn't handld several objects found
+	//func findImportedType(files []*ast.File, pkg, typName string) (found []*ast.Object) {
+
+	var found []*ast.Object
+
+	for _, file := range files {
+		if file == nil || file.Name == nil || file.Name.Name != pkg || file.Scope == nil {
+			continue
+		}
+
+		for key, obj := range file.Scope.Objects {
+			if obj == nil || obj.Decl == nil {
+				continue
+			}
+			if key == typName {
+				found = append(found, obj)
+				//return obj
+			}
+		}
+	}
+
+	switch len(found) {
+	case 0:
+		log.Println("none found")
+	case 1:
+		return found[0]
+	default:
+		log.Println("too many found")
+	}
+	return nil
 }
 
 func (o Option) calcType(t interface{}, typePrefix string) (f field, ok bool) {
@@ -284,7 +327,7 @@ func (o Option) isVariableLen(fields []*ast.Field) bool {
 			continue
 		}
 
-		fe, ok := o.isSupportedType(f)
+		fe, ok := o.isSupportedType(f, nil)
 		if !ok {
 			continue
 		}

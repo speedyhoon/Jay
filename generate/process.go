@@ -62,7 +62,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (src []by
 	}
 
 	for i := range files {
-		ast.Walk(visitor{structs: &list, option: *o}, files[i])
+		ast.Walk(visitor{structs: &list, option: *o, files: Remove(files, i)}, files[i])
 	}
 
 	src, err = makeFile(files[0].Name.Name, list, *o)
@@ -102,7 +102,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 	return
 }
 
-func (s *structTyp) process(fields []*ast.Field, o Option) (hasExportedFields bool) {
+func (s *structTyp) process(fields []*ast.Field, o Option, files []*ast.File) (hasExportedFields bool) {
 	for i := 0; i < len(fields); {
 		t := fields[i]
 
@@ -112,7 +112,7 @@ func (s *structTyp) process(fields []*ast.Field, o Option) (hasExportedFields bo
 			continue
 		}
 
-		fe, ok := o.isSupportedType(t)
+		fe, ok := o.isSupportedType(t, files)
 		if !ok {
 			fields = Remove(fields, i)
 			continue

@@ -8,6 +8,7 @@ type visitor struct {
 	enclosing string
 	structs   *[]structTyp
 	option    Option
+	files     []*ast.File
 }
 
 type structTyp struct {
@@ -56,7 +57,7 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 		}
 		s.bufferName = bufferName(s.receiver)
 
-		if s.process(n.Fields.List, v.option) {
+		if s.process(n.Fields.List, v.option, v.files) {
 			*v.structs = append(*v.structs, s)
 		}
 	}
