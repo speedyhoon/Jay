@@ -65,7 +65,6 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		directories.add(filenames[i], f)
 	}
 
-	var src []byte
 	for dir, fl := range directories {
 		for _, file := range fl.files {
 			ast.Walk(visitor{structs: &fl.structs, option: *o, dir: dir, files: files}, file)
@@ -73,6 +72,12 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		directories[dir] = fl
 	}
 
+	return o.makeFiles(directories)
+}
+
+func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
+	var src []byte
+	var err error
 	structList := directories.allStructs()
 
 	// Traverse the directories again because some imports weren't populated in the correct order to run makeFile() immediately after ast.Walk().
@@ -82,7 +87,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 			continue
 		}
 
-		src, err = makeFile(filepath.Base(dir), structList, *o)
+		src, err = makeFile(filepath.Base(dir), structList, o)
 		if err != nil {
 			errors.Join(errs, err)
 			lg.Println("makeFile:", err)
