@@ -65,14 +65,19 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		directories.add(filenames[i], f)
 	}
 
-	for dir, fl := range directories {
-		for _, file := range fl.files {
-			ast.Walk(visitor{structs: &fl.structs, option: *o, dir: dir, files: files}, file)
-		}
-		directories[dir] = fl
-	}
+	directories.Walk(*o)
 
 	return o.makeFiles(directories)
+}
+
+func (d *dirList) Walk(o Option) {
+	files := d.allFiles()
+	for dir, fl := range *d {
+		for _, file := range fl.files {
+			ast.Walk(visitor{structs: &fl.structs, option: o, dir: dir, files: files}, file)
+		}
+		(*d)[dir] = fl
+	}
 }
 
 func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
@@ -110,16 +115,23 @@ type (
 	}
 )
 
-func (fl *dirList) add(path string, file *ast.File) {
+func (d *dirList) add(path string, file *ast.File) {
 	dir := filepath.Dir(path)
-	list, _ := (*fl)[dir]
+	list, _ := (*d)[dir]
 	list.files = append(list.files, file)
-	(*fl)[dir] = list
+	(*d)[dir] = list
 }
 
-func (fl dirList) allStructs() (st []structTyp) {
-	for _, dirs := range fl {
+func (d dirList) allStructs() (st []structTyp) {
+	for _, dirs := range d {
 		st = append(st, dirs.structs...)
+	}
+	return
+}
+
+func (d dirList) allFiles() (files []*ast.File) {
+	for _, dirs := range d {
+		files = append(files, dirs.files...)
 	}
 	return
 }
