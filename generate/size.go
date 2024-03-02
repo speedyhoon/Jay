@@ -1,7 +1,6 @@
 package generate
 
 import (
-	"log"
 	"strconv"
 )
 
@@ -105,13 +104,13 @@ func (o Option) typeFuncSize(typ string) (size uint) {
 			sizeStr := typ[1 : len(typ)-1-len(underlyingType)]
 			siz, err := strconv.ParseUint(sizeStr, 10, 0)
 			if err != nil {
-				log.Printf("array %s size `%s` is invalid", typ, sizeStr)
+				lg.Printf("array %s size `%s` is invalid", typ, sizeStr)
 				return 0
 			}
 			return uint(siz) * itemSize
 		}
 
-		log.Printf("no function set yet for type %s in typeFuncSize()", typ)
+		lg.Printf("no function set yet for type %s in typeFuncSize()", typ)
 		return 0
 	}
 }

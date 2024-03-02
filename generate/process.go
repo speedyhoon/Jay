@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-var Verbose = log.New(io.Discard, "", log.Lshortfile)
+var lg = log.New(io.Discard, "", log.Lshortfile)
 
 // ProcessFiles ...
 func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output []Output, errs error) {
@@ -29,7 +29,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 	if source != nil {
 		f, err = ParseFile("", source)
 		if err != nil {
-			log.Println("source error:", err)
+			lg.Println("source error:", err)
 			errors.Join(errs, err)
 		} else {
 			files = append(files, f)
@@ -40,7 +40,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 	filenames = RemoveDuplicates(filenames)
 	for i := range filenames {
 		if !IsGoFileName(filenames[i]) {
-			log.Printf("`%s` does not contain a Go file extension", filenames[i])
+			lg.Printf("`%s` does not contain a Go file extension", filenames[i])
 			continue
 		}
 
@@ -48,11 +48,11 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		fi, err = os.Stat(filenames[i])
 		if err != nil {
 			errors.Join(errs, err)
-			log.Printf("unable to retrieve file info for %s: %s", filenames[i], err)
+			lg.Printf("unable to retrieve file info for %s: %s", filenames[i], err)
 			continue
 		}
 		if fi.Size() == 0 {
-			log.Printf("ignoring empty Go file %s", filenames[i])
+			lg.Printf("ignoring empty Go file %s", filenames[i])
 			continue
 		}
 
@@ -72,14 +72,14 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		}
 
 		if len(fl.structs) == 0 {
-			log.Println("no exported structs in directory", dir)
+			lg.Println("no exported structs in directory", dir)
 			continue
 		}
 
 		src, err = makeFile(filepath.Base(dir), fl.structs, *o)
 		if err != nil {
 			errors.Join(errs, err)
-			log.Println("makeFile:", err)
+			lg.Println("makeFile:", err)
 		} else {
 			output = append(output, Output{Dir: dir, Src: src})
 		}
@@ -193,7 +193,7 @@ func getNames(f *ast.Field) (names []*ast.Ident) {
 		idt, ok := f.Type.(*ast.Ident)
 		if !ok || idt == nil {
 			if !ok {
-				log.Printf("unexpected type %T\n", f.Type)
+				lg.Printf("unexpected type %T\n", f.Type)
 			}
 			return nil
 		}

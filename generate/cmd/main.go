@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/speedyhoon/jay/generate"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -22,16 +23,16 @@ import (
 // jay.go should be created in bench/byte/jay.go instead.
 
 func main() {
-	log.SetFlags(log.Lshortfile)
 	var opt generate.Option
 	var outputFile string
 	var types slice
+	var verbose bool
 
 	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.")
 	flag.BoolVar(&opt.FixedIntSize, "fi", true, "Fixed int size.")
 	flag.BoolVar(&opt.FixedUintSize, "fu", true, "Fixed uint size.")
 	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
-	flag.BoolVar(&opt.Verbose, "v", false, "Verbose output.")
+	flag.BoolVar(&verbose, "v", false, "Verbose output.")
 	flag.BoolVar(&opt.SearchTests, "s", false, "Search Go test files for exported structs too.")
 	flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
@@ -44,12 +45,14 @@ func main() {
 		log.Println("Nothing to do. Both -m and -u flags are set.")
 	}
 
-	if opt.Verbose {
-		generate.Verbose.SetOutput(os.Stdout)
+	if verbose {
+		opt.Verbose = log.New(os.Stdout, "", log.Lshortfile)
+	} else {
+		opt.Verbose = log.New(io.Discard, "", 0)
 	}
 
 	if len(types) >= 1 {
-		generate.Verbose.Println("-y", types)
+		opt.Verbose.Println("-y", types)
 	}
 
 	if len(paths) == 0 {
@@ -73,7 +76,7 @@ func main() {
 
 	err := opt.ProcessWrite(nil, outputFile, filePaths...)
 	if err != nil {
-		log.Println(err)
+		opt.Verbose.Println(err)
 	}
 }
 
@@ -81,7 +84,7 @@ func walkDir(path string, opt generate.Option) (filenames []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
 		if info != nil && !info.IsDir() && generate.IsGoFileName(info.Name()) {
 			if !opt.SearchTests && generate.IsGoTestFileName(path) {
-				generate.Verbose.Println("ignoring test file", path)
+				opt.Verbose.Println("ignoring test file", path)
 				return nil
 			}
 
@@ -90,7 +93,7 @@ func walkDir(path string, opt generate.Option) (filenames []string) {
 		return nil
 	})
 	if err != nil {
-		log.Println(err)
+		opt.Verbose.Println(err)
 	}
 
 	return

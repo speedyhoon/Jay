@@ -92,7 +92,7 @@ func findStruct(s []structTyp, f field) *structTyp {
 		}
 	}
 
-	Verbose.Printf("can't find %s %s used as name %s", f.typ, f.aliasType, f.name)
+	lg.Printf("can't find %s %s used as name %s", f.typ, f.aliasType, f.name)
 	return nil
 }
 

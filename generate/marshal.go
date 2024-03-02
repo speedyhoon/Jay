@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/speedyhoon/jay"
-	"log"
 	"reflect"
 	"runtime"
 	"strconv"
@@ -89,7 +88,7 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string,
 	fun, size, totalSize := o.typeFuncs(f, isLast)
 	if fun == "" {
 		// Unknown type, not supported yet.
-		log.Printf("no generateLine for type `%s` yet", f.typ)
+		lg.Printf("no generateLine for type `%s` yet", f.typ)
 		return ""
 	}
 

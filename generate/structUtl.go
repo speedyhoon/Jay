@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"go/ast"
 	"go/token"
-	"log"
 	"reflect"
 	"regexp"
 	"strconv"
@@ -113,7 +112,7 @@ func (o Option) isSupportedType(t *ast.Field, files []*ast.File) (fe field, ok b
 				return fe, typeOf != ""
 			}
 		}
-		log.Println("not supported yet")
+		lg.Println("not supported yet")
 
 	//case *ast.StructType:
 	// TODO not yet implemented.
@@ -121,7 +120,7 @@ func (o Option) isSupportedType(t *ast.Field, files []*ast.File) (fe field, ok b
 		fe, ok = o.calcType(d, "")
 		return fe, ok
 	default:
-		log.Printf("type %T not expected in Option.isSupportedType()", d)
+		lg.Printf("type %T not expected in Option.isSupportedType()", d)
 	}
 	return fe, false
 }
@@ -151,11 +150,11 @@ func findFirstImportedType(files []*ast.File, pkg, typName string) *ast.Object {
 
 	switch len(found) {
 	case 0:
-		log.Println("none found")
+		lg.Println("none found")
 	case 1:
 		return found[0]
 	default:
-		log.Println("too many found")
+		lg.Println("too many found")
 	}
 	return nil
 }
@@ -219,7 +218,7 @@ func (o Option) calcType(t interface{}, typePrefix string) (f field, ok bool) {
 			return f, true
 		}
 	default:
-		log.Printf("type %T not expected in Option.isSupportedType()", d)
+		lg.Printf("type %T not expected in Option.isSupportedType()", d)
 	}
 	return f, false
 }
@@ -251,7 +250,7 @@ func (o *Option) calcArrayType(x interface{}) (typeOf string, ok bool) {
 			return d.Name, true
 		}
 	}
-	log.Println("array type not supported yet")
+	lg.Println("array type not supported yet")
 	return "", false
 }
 func supportedArrayType(s string) bool {
@@ -259,7 +258,7 @@ func supportedArrayType(s string) bool {
 	case "byte", "int8", "uint8":
 		return true
 	default:
-		log.Println("array type", s, "not supported yet")
+		lg.Println("array type", s, "not supported yet")
 	}
 	return false
 }
@@ -271,13 +270,13 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 		return -1, true
 	case *ast.BasicLit:
 		if d.Kind != token.INT {
-			log.Println("unhandled token type", d.Kind, d.Value)
+			lg.Println("unhandled token type", d.Kind, d.Value)
 			return 0, false
 		}
 
 		u, err := strconv.ParseUint(d.Value, 10, 24)
 		if err != nil {
-			log.Println("invalid array size", d.Value)
+			lg.Println("invalid array size", d.Value)
 			return 0, false
 		}
 		return int(u), true
@@ -291,7 +290,7 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 			return calcArraySize(d.Obj.Decl)
 		}
 	default:
-		log.Printf("unhandled case %t in calcArraySize", d)
+		lg.Printf("unhandled case %t in calcArraySize", d)
 	}
 	return 0, false
 }
@@ -316,7 +315,7 @@ func (o Option) typeOf(t interface{}) (s string, isVarLen bool) {
 	case nil:
 		// Ignore.
 	default:
-		log.Printf("type %T not expected in typeOf", x)
+		lg.Printf("type %T not expected in typeOf", x)
 	}
 	return "", false
 }

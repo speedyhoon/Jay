@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/speedyhoon/jay"
-	"log"
 	"reflect"
 	"runtime"
 	"strings"
@@ -88,7 +87,7 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 	fun, size, totalSize := o.unmarshalFuncs(f, isLast)
 	if fun == "" {
 		// Unknown type, not supported yet.
-		log.Printf("no generateLine for type `%s` yet in unmarshalLine()", f.typ)
+		lg.Printf("no generateLine for type `%s` yet in unmarshalLine()", f.typ)
 		return ""
 	}
 
@@ -215,7 +214,7 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 		var ok bool
 		c, size, totalSize, ok = unmarshalArrayFuncs(f, isLast)
 		if !ok {
-			log.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
+			lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
 			return "", 0, 0
 		}
 	}

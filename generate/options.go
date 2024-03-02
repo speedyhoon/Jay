@@ -2,6 +2,7 @@ package generate
 
 import (
 	"fmt"
+	"log"
 	"math"
 )
 
@@ -46,7 +47,7 @@ type Option struct {
 	// If the null byte wasn't there - how would the Read functions know if there was an unexpected
 	// end of buffer vs the struct/map was empty?
 
-	Verbose     bool
+	Verbose     *log.Logger
 	SearchTests bool
 
 	SkipTests     bool
@@ -66,6 +67,10 @@ func (m *MaxSize) Set(value *uint) error {
 func LoadOptions(opts ...Option) (o Option) {
 	if len(opts) >= 1 {
 		o = opts[0]
+	}
+
+	if o.Verbose != nil {
+		lg = o.Verbose
 	}
 
 	if o.MaxDefaultStrSize == 0 {

@@ -1,7 +1,6 @@
 package generate
 
 import (
-	"log"
 	"strconv"
 	"strings"
 )
@@ -81,7 +80,7 @@ func byteSize(v tagSize) uint {
 func (f *tagSize) set(s string) {
 	uu, err := strconv.ParseUint(s, 10, 64)
 	if err != nil {
-		log.Println(err)
+		lg.Println(err)
 	}
 	*f = tagSize(uu)
 }
