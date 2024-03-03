@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"math"
+	"regexp"
+	"strings"
 )
 
 const (
@@ -11,6 +13,8 @@ const (
 	Bit32
 	Bit64
 )
+
+var typeNameRegex = regexp.MustCompile(`^[[:alpha:]][[:alnum:]]*(\.[[:alpha:]][[:alnum:]]*)?$`)
 
 type MaxSize uint8
 
@@ -28,6 +32,11 @@ type Option struct {
 	// The smallest value is the most optimal for performance.
 	MaxDefaultStrSize uint
 	strSizeOfDefault  uint8
+
+	// OnlyTypes will only generate marshalling & unmarshalling functions for the listed types.
+	// When empty, all types are permitted.
+	// Expected struct type alias names like: "Vehicle", "animal.Species".
+	OnlyTypes []string
 
 	// MaxUint16 = 64 kilobytes,
 	// MaxUint24 = 16 Megabytes,
@@ -73,6 +82,8 @@ func LoadOptions(opts ...Option) (o Option) {
 		lg = o.Verbose
 	}
 
+	o.removeInvalidTypes()
+
 	if o.MaxDefaultStrSize == 0 {
 		o.MaxDefaultStrSize = MaxUint8
 	} else if o.MaxDefaultStrSize > MaxUint24 {
@@ -94,6 +105,32 @@ func LoadOptions(opts ...Option) (o Option) {
 		o.MaxIntSize = Bit32
 	}
 	return
+}
+
+func (o *Option) removeInvalidTypes() {
+	for i := 0; i < len(o.OnlyTypes); i++ {
+		o.OnlyTypes[i] = strings.TrimSpace(o.OnlyTypes[i])
+		if !typeNameRegex.MatchString(o.OnlyTypes[i]) {
+			lg.Println("type:", o.OnlyTypes[i], "didn't satisfy validation regex")
+			o.OnlyTypes = Remove(o.OnlyTypes, i)
+		}
+	}
+}
+
+// IsSpecifiedType checks if typeName is one of the types listed in Option.OnlyTypes.
+// If OnlyTypes is empty, then allow all types.
+func (o Option) IsSpecifiedType(pkg, typeName string) bool {
+	if len(o.OnlyTypes) == 0 {
+		return true
+	}
+
+	pkg = fmt.Sprintf("%s.%s", pkg, typeName)
+	for _, onlyType := range o.OnlyTypes {
+		if pkg == onlyType {
+			return true
+		}
+	}
+	return false
 }
 
 // bytesRequired returns how many bytes are required to represent an unsigned integer.

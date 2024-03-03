@@ -116,12 +116,15 @@ _In order of priority._
 * slices _(`[]string`)_
 * arrays _(`[5]string`)_
 * pointers _(`*string`)_
-* Specify which types to process in a large project directory. E.g.: `foo.Bar`
 * Field tag options.
 * Field tag documentation.
 * Performance benchmarks.
 * maps? _(`map[string]uint`)_
 * complex?
+
+## Done
+
+* Specify which struct types to process in a large project directory. E.g.: ```-y Animal,settings.Config,engine.Specs```
 
 ## Not Supported
 

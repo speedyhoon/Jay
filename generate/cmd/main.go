@@ -37,7 +37,7 @@ func main() {
 	flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
-	flag.Var(&types, "y", "Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types. For example: Vet,animal.Cat,animal.Cow  will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package \"animal\".")
+	flag.Var(&types, "y", "Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types. For example: Vet,animal.Cat,animal.Cow will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package \"animal\".")
 	flag.Parse()
 	paths := generate.RemoveDuplicates(flag.Args())
 
@@ -53,6 +53,7 @@ func main() {
 
 	if len(types) >= 1 {
 		opt.Verbose.Println("-y", types)
+		opt.OnlyTypes = types
 	}
 
 	if len(paths) == 0 {

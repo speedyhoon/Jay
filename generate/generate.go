@@ -30,7 +30,7 @@ func makeFile(pkg string, s []structTyp, option Option) ([]byte, error) {
 
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
-		if pkg == filepath.Base(s[i].dir) {
+		if pkg == filepath.Base(s[i].dir) && option.IsSpecifiedType(pkg, s[i].name) {
 			s[i].makeFuncs(buf, option)
 		}
 	}
