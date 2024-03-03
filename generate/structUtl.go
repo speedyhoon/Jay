@@ -68,61 +68,34 @@ func supportedType(typ string) bool {
 	return false
 }
 
-func (o Option) isSupportedType(t *ast.Field, files []*ast.File) (fe field, ok bool) {
+func (o Option) isSupportedType(t *ast.Field, files []*ast.File) (f field, ok bool) {
 	switch d := t.Type.(type) {
 	case *ast.Ident:
 		if supportedType(d.Name) { // TODO its probably better to check if the obj != nil first otherwise do this.
-			fe.typ = d.Name
-			fe.aliasType = d.Name
-			fe.isFixedLen = !o.isLenVariable(d.Name)
-			return fe, true
+			f.typ = d.Name
+			f.aliasType = d.Name
+			f.isFixedLen = o.isLenFixed(d.Name)
+			return f, true
 		}
 
 		// Type has an alias name.
-		typeOf, isVarLen := o.typeOf(d.Obj)
-		fe.typ = typeOf
-		fe.aliasType = d.Name
-		fe.isFixedLen = !isVarLen
-		return fe, typeOf != ""
+		f.typ, f.isFixedLen = o.typeOf(d.Obj)
+		f.aliasType = d.Name
+		return f, f.typ != ""
 	case nil:
 	// Ignore.
 	case *ast.SelectorExpr:
-		var x *ast.Ident
-		x, ok = d.X.(*ast.Ident)
-		if ok && x.Name == "time" {
-			switch d.Sel.Name {
-			case "Time":
-				fe.typ = "time.Time"
-				fe.aliasType = fe.typ
-				fe.isFixedLen = true
-				return fe, true
-			case "Duration":
-				fe.typ = "time.Duration"
-				fe.aliasType = fe.typ
-				fe.isFixedLen = true
-				return fe, true
-			}
-		} else {
-			obj := findFirstImportedType(files, x.Name, d.Sel.Name)
-			if obj != nil {
-				typeOf, isVarLen := o.typeOf(obj)
-				fe.typ = typeOf
-				fe.aliasType = d.Sel.Name
-				fe.isFixedLen = !isVarLen
-				return fe, typeOf != ""
-			}
-		}
-		lg.Println("not supported yet")
+		return o.isSupportedSelector(d, files)
 
 	//case *ast.StructType:
 	// TODO not yet implemented.
 	case *ast.ArrayType:
-		fe, ok = o.calcType(d, "")
-		return fe, ok
+		f, ok = o.calcType(d, "", files)
+		return f, ok
 	default:
 		lg.Printf("type %T not expected in Option.isSupportedType()", d)
 	}
-	return fe, false
+	return f, false
 }
 
 func findFirstImportedType(files []*ast.File, pkg, typName string) *ast.Object {
@@ -159,44 +132,27 @@ func findFirstImportedType(files []*ast.File, pkg, typName string) *ast.Object {
 	return nil
 }
 
-func (o Option) calcType(t interface{}, typePrefix string) (f field, ok bool) {
+func (o Option) calcType(t interface{}, typePrefix string, files []*ast.File) (f field, ok bool) {
 	switch d := t.(type) {
 	case *ast.Field:
-		return o.calcType(d.Type, typePrefix)
+		return o.calcType(d.Type, typePrefix, files)
 	case *ast.Ident:
 		name := typePrefix + d.Name
 		if supportedType(name) {
 			f.typ = name
 			f.aliasType = name
-			f.isFixedLen = !o.isLenVariable(name)
+			f.isFixedLen = o.isLenFixed(name)
 			return f, true
 		}
 
 		// Type has an alias name.
-		var isVarLen bool
-		f.typ, isVarLen = o.typeOf(d.Obj)
+		f.typ, f.isFixedLen = o.typeOf(d.Obj)
 		f.aliasType = name
-		f.isFixedLen = !isVarLen
 		return f, f.typ != ""
 	case nil:
 	// Ignore.
 	case *ast.SelectorExpr:
-		var x *ast.Ident
-		x, ok = d.X.(*ast.Ident)
-		if ok && x.Name == "time" {
-			switch d.Sel.Name {
-			case "Time":
-				f.typ = "time.Time"
-				f.aliasType = f.typ
-				f.isFixedLen = true
-				return f, true
-			case "Duration":
-				f.typ = "time.Duration"
-				f.aliasType = f.typ
-				f.isFixedLen = true
-				return f, true
-			}
-		}
+		return o.isSupportedSelector(d, files)
 	//case *ast.StructType:
 	// TODO not yet implemented.
 	case *ast.ArrayType:
@@ -223,12 +179,43 @@ func (o Option) calcType(t interface{}, typePrefix string) (f field, ok bool) {
 	return f, false
 }
 
+func (o Option) isSupportedSelector(d *ast.SelectorExpr, files []*ast.File) (f field, ok bool) {
+	x, ok := d.X.(*ast.Ident)
+	if !ok {
+		return
+	}
+
+	switch x.Name {
+	case "time":
+		switch d.Sel.Name {
+		case "Time", "Duration":
+			f.typ = pkgSelName(x.Name, d.Sel.Name)
+			f.aliasType = f.typ
+			f.isFixedLen = true
+			return f, true
+		}
+	}
+
+	obj := findFirstImportedType(files, x.Name, d.Sel.Name)
+	if obj != nil {
+		f.typ, f.isFixedLen = o.typeOf(obj)
+		f.aliasType = d.Sel.Name
+		return f, f.typ != ""
+	}
+
+	return
+}
+
+func pkgSelName(pkg, selector string) string {
+	return fmt.Sprintf("%s.%s", pkg, selector)
+}
+
 func (o *Option) newFieldArray(arraySize int, arrayType string) (f field) {
 	f = field{
 		arraySize:  arraySize,
 		arrayType:  arrayType,
 		typ:        genType(arraySize, arrayType),
-		isFixedLen: arraySize >= 0 && !o.isLenVariable(arrayType),
+		isFixedLen: arraySize >= 0 && o.isLenFixed(arrayType),
 	}
 	return
 }
@@ -295,7 +282,7 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 	return 0, false
 }
 
-func (o Option) typeOf(t interface{}) (s string, isVarLen bool) {
+func (o Option) typeOf(t interface{}) (s string, isFixedLen bool) {
 	switch x := t.(type) {
 	case *ast.Object:
 		if x == nil || x.Name == "" || x.Kind != ast.Typ {
@@ -306,11 +293,11 @@ func (o Option) typeOf(t interface{}) (s string, isVarLen bool) {
 		return o.typeOf(x.Type)
 	case *ast.StructType:
 		if x.Fields != nil && len(x.Fields.List) != 0 {
-			return "struct", o.isVariableLen(x.Fields.List)
+			return "struct", !o.isVariableLen(x.Fields.List)
 		}
 	case *ast.Ident:
 		if supportedType(x.Name) {
-			return x.Name, o.isLenVariable(x.Name)
+			return x.Name, o.isLenFixed(x.Name)
 		}
 	case nil:
 		// Ignore.
@@ -394,17 +381,21 @@ func isLen(typ string) uint {
 	return 0
 }
 
-func (o Option) isLenVariable(typ string) bool {
+func (o Option) isLenFixed(typ string) bool {
 	switch typ {
 	// TODO case "[]bool", "[]int", "map[x]x",
 	case "int":
-		return !o.FixedIntSize
+		return o.FixedIntSize
 	case "string", "[]byte":
-		return true
+		return false
 	case "uint":
-		return !o.FixedUintSize
+		return o.FixedUintSize
 	}
-	return false
+	return true
+}
+
+func (o Option) isLenVariable(typ string) bool {
+	return !o.isLenFixed(typ)
 }
 
 /*func isLenStructVariable(t interface{}) bool {
