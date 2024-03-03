@@ -66,7 +66,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 func fieldNames(fields []field, receiver string) string {
 	var s []string
 	for i := range fields {
-		s = append(s, fmt.Sprintf("%s.%s", receiver, fields[i].name))
+		s = append(s, pkgSelName(receiver, fields[i].name))
 	}
 	return strings.Join(s, ", ")
 }
@@ -94,7 +94,7 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string,
 
 	start := *byteIndex
 	*byteIndex += totalSize
-	thisField := fmt.Sprintf("%s.%s", receiver, f.name)
+	thisField := pkgSelName(receiver, f.name)
 
 	switch f.typ {
 	case "string":
@@ -136,7 +136,7 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string,
 
 		switch f.typ {
 		case "struct":
-			return fmt.Sprintf("%s.%s", thisField, printFunc(fun, slice))
+			return pkgSelName(thisField, printFunc(fun, slice))
 		}
 
 		if isLast {

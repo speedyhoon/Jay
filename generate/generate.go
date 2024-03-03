@@ -113,7 +113,7 @@ func (s *structTyp) join(embedded *structTyp, name string) {
 func appendEmbed(fields *fieldList, embedName string, embedded fieldList) {
 	for _, e := range embedded {
 		// Change the embedded name, so it is correctly referenced in the code generated.
-		e.name = fmt.Sprintf("%s.%s", embedName, e.name)
+		e.name = pkgSelName(embedName, e.name)
 		*fields = append(*fields, e)
 	}
 }

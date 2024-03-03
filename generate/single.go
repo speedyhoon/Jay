@@ -27,7 +27,7 @@ func (s *structTyp) useMakeFunc() bool {
 }
 
 func writeSingle(single field, b *bytes.Buffer, byteIndex uint, receiver, fun, bufferName string, isMake, isLast bool) {
-	thisField := fmt.Sprintf("%s.%s", receiver, single.name)
+	thisField := pkgSelName(receiver, single.name)
 
 	if isMake {
 		bufWriteF(b, "%s[%d]=%s\n", bufferName, byteIndex, printFunc(fun, thisField))

@@ -124,7 +124,7 @@ func (o Option) IsSpecifiedType(pkg, typeName string) bool {
 		return true
 	}
 
-	pkg = fmt.Sprintf("%s.%s", pkg, typeName)
+	pkg = pkgSelName(pkg, typeName)
 	for _, onlyType := range o.OnlyTypes {
 		if pkg == onlyType {
 			return true
