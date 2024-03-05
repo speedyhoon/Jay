@@ -3,8 +3,7 @@ package fuzz_test
 import (
 	"errors"
 	"github.com/speedyhoon/jay/generate"
-	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/assert"
+	"github.com/speedyhoon/rando/types"
 	"github.com/stretchr/testify/require"
 	"log"
 	"os"
@@ -32,15 +31,13 @@ func TestFuzz(t *testing.T) {
 
 	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
 
-	pkg, tests, err := rando.Package(tempPath)
+	pkg, tests, err := types.Package(tempPath)
 	// Ensure both files are saved before processing. But if pathPkg fails to save, at least try to save pathTest too.
 	err1 := os.WriteFile(pathPkg, pkg, perm)
 	err2 := os.WriteFile(pathTest, tests, perm)
 	require.NoError(t, errors.Join(err, err1, err2))
 
-	src, err := opt.ProcessFiles(pkg)
-	assert.NoErrorf(t, err, "src: %s", src)
-	require.NoError(t, os.WriteFile(pathJay, src, perm))
+	require.NoError(t, opt.ProcessWrite(pkg, pathJay))
 
 	cmd := exec.Command("go", "test")
 	cmd.Dir = tempPath

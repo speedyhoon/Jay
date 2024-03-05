@@ -16,6 +16,8 @@ github.com/speedyhoon/jay v0.0.0-20240227101254-eac1be29401c h1:2rhPPKH/DLfaFfp4
 github.com/speedyhoon/jay v0.0.0-20240227101254-eac1be29401c/go.mod h1:dGs0XfOCSBaFI7/YIs2aEmVdsglxkKOpAd429cswCL4=
 github.com/speedyhoon/rando v0.0.0-20240214031143-7df48f59d007 h1:nDi42wb+mGg+uuAUnKxQbY7/gNST6Kn3nKWdwibHShs=
 github.com/speedyhoon/rando v0.0.0-20240214031143-7df48f59d007/go.mod h1:HS4kVHAohgYIPBcPH3gfXXHQPfW4CSBgykeOFFmEO0w=
+github.com/speedyhoon/rando/types v0.0.0-20240214031143-7df48f59d007 h1:aOq66jKGjfEomumbWDawuJMznZErcffs2ApuTj67Lmk=
+github.com/speedyhoon/rando/types v0.0.0-20240214031143-7df48f59d007/go.mod h1:jNtixhtSrYKCaVHkNOnC2SIGFaKz6Q/SN7LeyxLiMpk=
 github.com/speedyhoon/utl v0.0.0-20240305010849-8c0101d907aa h1:TuNDViPf8uBgl7FV62XrWsvhoqo0tA7ZaqF2SyCSxZw=
 github.com/speedyhoon/utl v0.0.0-20240305010849-8c0101d907aa/go.mod h1:QKuUdR/OISZ6aYZk5ZyR+QkxGVLVIkDoqY12OOm6BRM=
 github.com/speedyhoon/utl/flagvar v0.0.0-20240305010849-8c0101d907aa h1:+EAv2kfagEEgkp6cUXmBAS70Zl2lcZrIUbgpHZxz2Sk=
