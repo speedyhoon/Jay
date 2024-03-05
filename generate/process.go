@@ -2,6 +2,7 @@ package generate
 
 import (
 	"errors"
+	"github.com/speedyhoon/utl"
 	"go/ast"
 	"go/parser"
 	"go/token"
@@ -9,7 +10,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"strings"
 )
 
 var lg = log.New(io.Discard, "", log.Lshortfile)
@@ -39,7 +39,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 
 	filenames = RemoveDuplicates(filenames)
 	for i := range filenames {
-		if !IsGoFileName(filenames[i]) {
+		if !utl.IsGoFileName(filenames[i]) {
 			lg.Printf("`%s` does not contain a Go file extension", filenames[i])
 			continue
 		}
@@ -244,12 +244,4 @@ func onlyExportedNames(names ...*ast.Ident) []*ast.Ident {
 	}
 
 	return names
-}
-
-func IsGoFileName(path string) bool {
-	return strings.HasSuffix(strings.ToLower(path), goExt)
-}
-
-func IsGoTestFileName(path string) bool {
-	return strings.HasSuffix(strings.ToLower(path), testSuffix)
 }

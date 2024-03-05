@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/speedyhoon/jay/generate"
+	"github.com/speedyhoon/utl"
 	"github.com/speedyhoon/utl/flagvar"
 	"io"
 	"log"
@@ -68,7 +69,13 @@ func main() {
 			path = "."
 		}
 
-		if isDir(path) {
+		isDir, err := utl.IsDir(path)
+		if err != nil {
+			log.Printf("ignoring path: `%s`, err: %s", path, err)
+			continue
+		}
+
+		if isDir {
 			filePaths = append(filePaths, walkDir(path, opt)...)
 		} else {
 			filePaths = append(filePaths, path)
@@ -83,8 +90,8 @@ func main() {
 
 func walkDir(path string, opt generate.Option) (filenames []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-		if info != nil && !info.IsDir() && generate.IsGoFileName(info.Name()) {
-			if !opt.SearchTests && generate.IsGoTestFileName(path) {
+		if info != nil && !info.IsDir() && utl.IsGoFileName(info.Name()) {
+			if !opt.SearchTests && utl.IsGoTestFileName(path) {
 				opt.Verbose.Println("ignoring test file", path)
 				return nil
 			}
@@ -98,18 +105,4 @@ func walkDir(path string, opt generate.Option) (filenames []string) {
 	}
 
 	return
-}
-
-func isDir(path string) bool {
-	f, err := os.Open(path)
-	if err != nil {
-		return false
-	}
-
-	fs, err := f.Stat()
-	if err != nil {
-		return false
-	}
-
-	return fs.IsDir()
 }

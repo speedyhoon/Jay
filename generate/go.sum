@@ -16,8 +16,12 @@ github.com/speedyhoon/jay v0.0.0-20240227101254-eac1be29401c h1:2rhPPKH/DLfaFfp4
 github.com/speedyhoon/jay v0.0.0-20240227101254-eac1be29401c/go.mod h1:dGs0XfOCSBaFI7/YIs2aEmVdsglxkKOpAd429cswCL4=
 github.com/speedyhoon/rando v0.0.0-20240214031143-7df48f59d007 h1:nDi42wb+mGg+uuAUnKxQbY7/gNST6Kn3nKWdwibHShs=
 github.com/speedyhoon/rando v0.0.0-20240214031143-7df48f59d007/go.mod h1:HS4kVHAohgYIPBcPH3gfXXHQPfW4CSBgykeOFFmEO0w=
-github.com/speedyhoon/utl/flagvar v0.0.0-20240305001328-c6ec72d33dcf h1:2+ca4n9trPIIYsGsauBlGTpjYmteNHc6u4NRH/7o4mw=
-github.com/speedyhoon/utl/flagvar v0.0.0-20240305001328-c6ec72d33dcf/go.mod h1:0hr9o8sgiD7rub1GU0nM4whOLGfN8s8yO7uzTowBxsk=
+github.com/speedyhoon/utl v0.0.0-20240305010849-8c0101d907aa h1:TuNDViPf8uBgl7FV62XrWsvhoqo0tA7ZaqF2SyCSxZw=
+github.com/speedyhoon/utl v0.0.0-20240305010849-8c0101d907aa/go.mod h1:QKuUdR/OISZ6aYZk5ZyR+QkxGVLVIkDoqY12OOm6BRM=
+github.com/speedyhoon/utl/flagvar v0.0.0-20240305010849-8c0101d907aa h1:+EAv2kfagEEgkp6cUXmBAS70Zl2lcZrIUbgpHZxz2Sk=
+github.com/speedyhoon/utl/flagvar v0.0.0-20240305010849-8c0101d907aa/go.mod h1:0hr9o8sgiD7rub1GU0nM4whOLGfN8s8yO7uzTowBxsk=
+github.com/speedyhoon/utl/tf v0.0.0-20240305004506-ee9abb1e303f h1:hwWbGisI5OMZcsGah2hPWgQV39ghaQjgU3LXARlewrw=
+github.com/speedyhoon/utl/tf v0.0.0-20240305004506-ee9abb1e303f/go.mod h1:F7pya3IfvPjg9EMkJ/YNS8pr1bCGzkCqzLb6Jw+6aJ4=
 github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
 github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 golang.org/x/mod v0.14.0 h1:dGoOF9QVLYng8IHTm7BAyWqCqSheQ5pYWGhzW00YJr0=
