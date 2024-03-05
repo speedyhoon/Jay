@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/speedyhoon/jay"
-	"reflect"
-	"runtime"
 	"strings"
 )
 
@@ -219,10 +217,7 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 		}
 	}
 
-	return strings.TrimPrefix(
-		runtime.FuncForPC(reflect.ValueOf(c).Pointer()).Name(),
-		pkgPrefix,
-	), size, totalSize
+	return nameOf(c), size, totalSize
 }
 
 // unmarshalArrayFuncs returns the unmarshalling functions for slices and arrays.
