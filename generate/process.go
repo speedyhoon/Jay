@@ -92,7 +92,7 @@ func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
 			continue
 		}
 
-		src, err = makeFile(filepath.Base(dir), structList, o)
+		src, err = o.makeFile(filepath.Base(dir), structList)
 		if err != nil {
 			errors.Join(errs, err)
 			lg.Println("makeFile:", err)
