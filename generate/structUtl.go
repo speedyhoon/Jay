@@ -210,6 +210,13 @@ func pkgSelName(pkg, selector string) string {
 	return fmt.Sprintf("%s.%s", pkg, selector)
 }
 
+func packageName(f *ast.File) string {
+	if f != nil && f.Name != nil {
+		return f.Name.Name
+	}
+	return ""
+}
+
 func (o *Option) newFieldArray(arraySize int, arrayType string) (f field) {
 	f = field{
 		arraySize:  arraySize,

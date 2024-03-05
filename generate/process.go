@@ -33,7 +33,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 			errors.Join(errs, err)
 		} else {
 			files = append(files, f)
-			directories.add("", f)
+			directories.add(packageName(f), f)
 		}
 	}
 
@@ -62,7 +62,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 			continue
 		}
 		files = append(files, f)
-		directories.add(filenames[i], f)
+		directories.add(filepath.Dir(filenames[i]), f)
 	}
 
 	directories.Walk(*o)
@@ -115,8 +115,7 @@ type (
 	}
 )
 
-func (d *dirList) add(path string, file *ast.File) {
-	dir := filepath.Dir(path)
+func (d *dirList) add(dir string, file *ast.File) {
 	list, _ := (*d)[dir]
 	list.files = append(list.files, file)
 	(*d)[dir] = list
