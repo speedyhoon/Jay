@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver string, opt Option) (isReturnInlined bool) {
+func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver string, opt Option, importJ *bool) (isReturnInlined bool) {
 	if len(s.single) == 0 {
 		return false
 	}
@@ -14,7 +14,7 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver stri
 
 	for i, l := 0, len(s.single); i < l; i++ {
 		isLast := i+1 == l
-		fun, _, _ := opt.typeFuncs(s.single[i], isLast)
+		fun, _, _ := opt.typeFuncs(s.single[i], isLast, importJ)
 		writeSingle(s.single[i], b, *byteIndex, receiver, fun, s.bufferName, isMake, isLast)
 		*byteIndex++
 	}

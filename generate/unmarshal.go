@@ -217,7 +217,7 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 		}
 	}
 
-	return nameOf(c), size, totalSize
+	return nameOf(c, nil), size, totalSize
 }
 
 // unmarshalArrayFuncs returns the unmarshalling functions for slices and arrays.

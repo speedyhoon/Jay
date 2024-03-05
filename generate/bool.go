@@ -4,13 +4,14 @@ import (
 	"bytes"
 )
 
-func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint) (isReturnInlined bool) {
+func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bool) (isReturnInlined bool) {
 	if len(s.bool) == 0 {
 		return false
 	}
 
 	isReturnInlined = !s.useMakeFunc()
 	hasSingles := len(s.single) != 0
+	*importJ = true
 
 	l := len(s.bool)
 	for i := 0; i < l; i += 8 {

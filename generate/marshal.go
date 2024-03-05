@@ -14,17 +14,17 @@ import (
 // TODO add support for enums with restricted sizes like: buf[1] = WriteEnum44(e.Enum1, e.Enum2)
 
 // makeMarshal ...
-func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
+func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	varLengths := lengths2(s.varLenFieldNames(o), s.receiver)
 	makeSize := joinSizes(s.calcSize(o), s.variableLen, o)
 
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
-	isReturnInlined := s.makeWriteBools(buf, &byteIndex)
-	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o) || isReturnInlined
+	isReturnInlined := s.makeWriteBools(buf, &byteIndex, importJ)
+	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o, importJ) || isReturnInlined
 
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, "", "", 0, i == 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, s.bufferName))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, "", "", 0, i == 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, s.bufferName, importJ))
 		buf.WriteString("\n")
 	}
 
@@ -32,7 +32,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i)
-		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == 0, i == vLen, s.bufferName))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == 0, i == vLen, s.bufferName, importJ))
 		buf.WriteString("\n")
 	}
 
@@ -61,6 +61,8 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option) {
 		s.generateSizeLine(),
 		code,
 	))
+
+	return
 }
 
 func fieldNames(fields []field, receiver string) string {
@@ -84,8 +86,8 @@ func (s *structTyp) generateSizeLine() string {
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
-func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string, index uint, isFirst, isLast bool, bufferName string) string {
-	fun, size, totalSize := o.typeFuncs(f, isLast)
+func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string, index uint, isFirst, isLast bool, bufferName string, importJ *bool) string {
+	fun, size, totalSize := o.typeFuncs(f, isLast, importJ)
 	if fun == "" {
 		// Unknown type, not supported yet.
 		lg.Printf("no generateLine for type `%s` yet", f.typ)
@@ -197,7 +199,7 @@ func printFunc(fun string, params ...string) string {
 	return b
 }
 
-func (o Option) typeFuncs(fe field, isLast bool) (_ string, size, totalSize uint) {
+func (o Option) typeFuncs(fe field, isLast bool, importJ *bool) (fun string, size, totalSize uint) {
 	var f interface{}
 	switch fe.typ {
 	case "byte", "uint8":
@@ -263,10 +265,18 @@ func (o Option) typeFuncs(fe field, isLast bool) (_ string, size, totalSize uint
 		return "", 0, 0
 	}
 
-	return nameOf(f), size, totalSize
+	return nameOf(f, importJ), size, totalSize
 }
 
-func nameOf(f any) string {
+func nameOf(f any, importJ *bool) string {
+	if s, ok := f.(string); ok {
+		return s
+	}
+
+	if importJ != nil {
+		*importJ = true
+	}
+
 	return strings.TrimPrefix(
 		runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
 		pkgPrefix,
