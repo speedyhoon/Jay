@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"github.com/speedyhoon/jay/generate"
+	"github.com/speedyhoon/utl/flagvar"
 	"io"
 	"log"
 	"os"
 	"path/filepath"
-	"strings"
 )
 
 // TODO fix error:
@@ -25,7 +25,7 @@ import (
 func main() {
 	var opt generate.Option
 	var outputFile string
-	var types slice
+	var types flagvar.StrList
 	var verbose bool
 
 	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.")
@@ -112,21 +112,4 @@ func isDir(path string) bool {
 	}
 
 	return fs.IsDir()
-}
-
-type slice []string
-
-func (l *slice) String() string {
-	return strings.Join(*l, ", ")
-}
-
-func (l *slice) Set(s string) error {
-	for _, item := range strings.Split(s, ",") {
-		item = strings.TrimSpace(item)
-		if item != "" {
-			*l = append(*l, item)
-		}
-	}
-
-	return nil
 }
