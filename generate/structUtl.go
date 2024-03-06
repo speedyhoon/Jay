@@ -104,11 +104,8 @@ func (o Option) isSupportedType(t *ast.Field, files []*ast.File) (f field, ok bo
 	return f, false
 }
 
-func findFirstImportedType(files []*ast.File, pkg, typName string) *ast.Object {
+func findImportedType(files []*ast.File, pkg, typName string) *ast.Object {
 	// TODO doesn't handle aliased imports
-	// TODO doesn't handld several objects found
-	//func findImportedType(files []*ast.File, pkg, typName string) (found []*ast.Object) {
-
 	var found []*ast.Object
 
 	for _, file := range files {
@@ -129,11 +126,11 @@ func findFirstImportedType(files []*ast.File, pkg, typName string) *ast.Object {
 
 	switch len(found) {
 	case 0:
-		lg.Println("none found")
+		lg.Println("no imports found:", pkgSelName(pkg, typName))
 	case 1:
 		return found[0]
 	default:
-		lg.Println("too many found")
+		lg.Printf("%d imports found: %s", len(found), pkgSelName(pkg, typName))
 	}
 	return nil
 }
@@ -202,7 +199,7 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, files []*ast.File) (f f
 		}
 	}
 
-	obj := findFirstImportedType(files, x.Name, d.Sel.Name)
+	obj := findImportedType(files, x.Name, d.Sel.Name)
 	if obj != nil {
 		f.typ, f.isFixedLen = o.typeOf(obj)
 		f.aliasType = d.Sel.Name
