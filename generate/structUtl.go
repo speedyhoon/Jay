@@ -399,7 +399,7 @@ func (o Option) isLenFixed(typ string) bool {
 	// TODO case "[]bool", "[]int", "map[x]x",
 	case "int":
 		return o.FixedIntSize
-	case "string", "[]byte":
+	case "string", "[]byte", "[]uint8", "[]int8":
 		return false
 	case "uint":
 		return o.FixedUintSize
