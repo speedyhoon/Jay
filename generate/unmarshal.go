@@ -103,7 +103,7 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 		} else {
 			return fmt.Sprintf("%s = %s(%s[%s:%s])", thisField, fun, bufferName, at, end)
 		}
-	case "[]byte":
+	case "[]byte", "[]uint8":
 		if f.typ != f.aliasType {
 			fun = f.aliasType
 		}
@@ -237,27 +237,27 @@ func unmarshalArrayFuncs(f field, isLast bool) (fun interface{}, size, totalSize
 	}
 
 	switch f.arrayType {
-	case "uint8":
-		if f.arraySize == -1 {
-			return "copy", 0, 1, true // Type []uint8.
-		} else {
-			// TODO flexible array sizes
-			return "[15]uint8", uint(f.arraySize), uint(f.arraySize), true
-		}
+	/*case "uint8":
+	if f.arraySize == -1 {
+		return "copy", 0, 1, true // Type []uint8.
+	} else {
+		// TODO flexible array sizes
+		return "[15]uint8", uint(f.arraySize), uint(f.arraySize), true
+	}*/
 
-	case "byte":
+	case "byte", "uint8":
 		if f.arraySize == -1 {
 			// Type []byte.
-			if isLast {
-				//return jay.ReadBytesPtrErr, 0, 1, true
-				return "copy", 0, 0, true
-			} else {
-				//return jay.ReadBytesAt, 0, 1, true
-				return "copy", 0, 0, true
-			}
+			//if isLast {
+			//return jay.ReadBytesPtrErr, 0, 1, true
+			return "copy", 0, 0, true
+			//} else {
+			//return jay.ReadBytesAt, 0, 1, true
+			return "copy", 0, 0, true
+			//}
 		} else {
 			// TODO flexible array sizes
-			return "[15]byte", uint(f.arraySize), uint(f.arraySize), true
+			return "[15]" + f.arrayType, uint(f.arraySize), uint(f.arraySize), true
 		}
 	}
 
