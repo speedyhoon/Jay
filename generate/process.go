@@ -148,9 +148,13 @@ func ParseFile(filename string, src interface{}) (f *ast.File, err error) {
 
 // ProcessWrite processes a file and writes to outputFile.
 func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames ...string) (err error) {
-	output, errs := o.ProcessFiles(source, filenames...)
-	if errs != nil || len(output) == 0 {
+	output, err := o.ProcessFiles(source, filenames...)
+	if err != nil {
 		return err
+	}
+
+	if len(output) == 0 {
+		return nil
 	}
 
 	if outputFile == "" {
@@ -162,7 +166,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 		errors.Join(err)
 	}
 
-	return errs
+	return err
 }
 
 func (s *structTyp) process(fields []*ast.Field, o Option, files []*ast.File) (hasExportedFields bool) {
