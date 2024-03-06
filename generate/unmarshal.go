@@ -25,7 +25,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end)
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, i == 0, i == vLen, &returnInlined, s.bufferName, &hasDefinedOkVar))
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, i == 0, i == vLen, &returnInlined, s.bufferName, &hasDefinedOkVar, fmt.Sprintf("l%d", i)))
 		buf.WriteString("\n")
 	}
 
@@ -108,9 +108,9 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 			fun = f.aliasType
 		}
 		if isFirst && isLast {
-			return fmt.Sprintf("%s.%s = %s[%d:]", receiver, f.name, bufferName, *byteIndex)
+			return fmt.Sprintf("if %s != 0 {\n%s.%s = %s[%d:]\n}", lenVar, receiver, f.name, bufferName, *byteIndex)
 		} else {
-			return fmt.Sprintf("%s.%s = %s[%s:%s]", receiver, f.name, bufferName, at, end)
+			return fmt.Sprintf("if %s != 0 {%s.%s = %s[%s:%s]\n}", lenVar, receiver, f.name, bufferName, at, end)
 		}
 	}
 
