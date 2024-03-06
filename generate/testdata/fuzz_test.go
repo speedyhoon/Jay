@@ -34,6 +34,7 @@ func TestFuzz(t *testing.T) {
 		"uint32",
 		"uint64",
 		"[]byte",
+		"[]uint8",
 	} {
 		tempPath := strings.ReplaceAll(strings.Trim(typ, "[].{}"), ".", "")
 		if strings.HasPrefix(typ, "[]") {
