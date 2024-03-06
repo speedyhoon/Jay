@@ -113,8 +113,14 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string,
 		//	fun = f.aliasType
 		//}
 		if isFirst && isLast {
+			if f.Required {
+				return fmt.Sprintf("%s(%s[%d:], %s)", fun, bufferName, *byteIndex, thisField)
+			}
 			return fmt.Sprintf("if %s != 0 {\n%s(%s[%d:], %s)\n}", lenVar, fun, bufferName, *byteIndex, thisField)
 		} else {
+			if f.Required {
+				return fmt.Sprintf("%s(%s[%s:%s], %s)", fun, bufferName, at, end, thisField)
+			}
 			return fmt.Sprintf("if %s != 0 {%s(%s[%s:%s], %s)\n}", lenVar, fun, bufferName, at, end, thisField)
 		}
 	}

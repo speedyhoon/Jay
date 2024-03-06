@@ -108,8 +108,14 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 			fun = f.aliasType
 		}
 		if isFirst && isLast {
+			if f.Required {
+				return fmt.Sprintf("%s = %s[%d:]", thisField, bufferName, *byteIndex)
+			}
 			return fmt.Sprintf("if %s != 0 {\n%s = %s[%d:]\n}", lenVar, thisField, bufferName, *byteIndex)
 		} else {
+			if f.Required {
+				return fmt.Sprintf("%s = %s[%s:%s]", thisField, bufferName, at, end)
+			}
 			return fmt.Sprintf("if %s != 0 {%s = %s[%s:%s]\n}", lenVar, thisField, bufferName, at, end)
 		}
 	}

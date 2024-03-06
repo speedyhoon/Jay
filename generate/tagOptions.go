@@ -5,6 +5,13 @@ import (
 	"strings"
 )
 
+const (
+	tagMax      = "max"
+	tagMin      = "min"
+	tagNano     = "nano"
+	tagRequired = "required"
+)
+
 type tagOptions struct {
 	// The maximum and minimum value expected in the variable.
 	// Any value out of this range isn't guaranteed to be marshalled or unmarshaled correctly.
@@ -12,37 +19,45 @@ type tagOptions struct {
 
 	maxBytes uint
 	TimeNano bool
-	Required bool // If "required" appears in the tag, then additional checks are omitted from the generated code.
+	Required bool // If "required" appears in the tag, then empty checks are omitted from the generated code.
 }
 
 type tagSize uint
 
 func (f *field) LoadTagOptions() {
-	const (
-		tagMax      = "max"
-		tagMin      = "min"
-		tagTime     = "nano"
-		tagRequired = "required"
-	)
-
 	f.tag = strings.TrimSpace(f.tag)
 	if f.tag == "" {
 		return
 	}
 	for _, c := range strings.Split(f.tag, ",") {
 		d := strings.Split(c, ":")
-		switch g := strings.ToLower(d[0]); g {
+		switch g := strings.ToLower(strings.TrimSpace(d[0])); g {
 		case tagMax:
 			f.tagOptions.Max.set(d[1])
 			f.tagOptions.maxBytes = byteSize(f.tagOptions.Max)
 		case tagMin:
 			f.tagOptions.Min.set(g)
-		case tagTime:
+		case tagNano:
 			f.tagOptions.TimeNano = true
 		case tagRequired:
 			f.tagOptions.Required = true
+		default:
+			f.tagOptions.Required = isShortRequiredTag(g)
 		}
 	}
+}
+
+// isShortRequiredTag returns true if the tag starts with "r", "req", "require" or "required".
+func isShortRequiredTag(tag string) bool {
+	if len(tag) > len(tagRequired) {
+		return false
+	}
+	for i := min(len(tag), len(tagRequired)-1); i >= 1; i-- {
+		if tag == tagRequired[:i] {
+			return true
+		}
+	}
+	return false
 }
 
 const (
