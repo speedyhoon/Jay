@@ -158,7 +158,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 	}
 
 	for i := range output {
-		err = os.WriteFile(filepath.Join(output[i].Dir, outputFile), output[i].Src, 0666)
+		err = os.WriteFile(outputFile, output[i].Src, 0666)
 		errors.Join(err)
 	}
 
