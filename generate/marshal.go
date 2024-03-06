@@ -108,7 +108,7 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string,
 		} else {
 			return fmt.Sprintf("%s(%s[%s:%s], %s)", fun, bufferName, at, end, thisField)
 		}
-	case "[]byte":
+	case "[]byte", "[]uint8":
 		//if f.typ != f.aliasType {
 		//	fun = f.aliasType
 		//}
@@ -260,7 +260,7 @@ func (o Option) typeFuncs(fe field, isLast bool, importJ *bool) (fun string, siz
 			f, size, totalSize = jay.WriteTime, 8, 8
 		}
 	case "[]uint8", "[]byte":
-		return "copy", 0, 1
+		return "copy", 0, 0
 
 	case "[15]byte", "[15]uint8":
 		return "copy", uint(fe.arraySize), uint(fe.arraySize)
