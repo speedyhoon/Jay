@@ -58,7 +58,7 @@ func Genny(t *testing.T, tempPath string, typ string) {
 
 	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
 
-	pkg, tests, err := types.PackageSequence("main", typ)
+	pkg, tests, err := types.PackageSequence("main", typ, "testdata/fuzz_test")
 	// Ensure both files are saved before processing. But if pathPkg fails to save, at least try to save pathTest too.
 	err1 := os.WriteFile(pathPkg, pkg, perm)
 	err2 := os.WriteFile(pathTest, tests, perm)
