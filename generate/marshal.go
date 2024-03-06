@@ -24,7 +24,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o, importJ) || isReturnInlined
 
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, "", "", 0, i == 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, s.bufferName, importJ))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, "", "", 0, i == 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, s.bufferName, importJ, ""))
 		buf.WriteString("\n")
 	}
 
@@ -32,7 +32,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end)
-		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == 0, i == vLen, s.bufferName, importJ))
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == 0, i == vLen, s.bufferName, importJ, fmt.Sprintf("l%d", i)))
 		buf.WriteString("\n")
 	}
 
@@ -86,7 +86,7 @@ func (s *structTyp) generateSizeLine() string {
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
-func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string, index uint, isFirst, isLast bool, bufferName string, importJ *bool) string {
+func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string, index uint, isFirst, isLast bool, bufferName string, importJ *bool, lenVar string) string {
 	fun, size, totalSize := o.typeFuncs(f, isLast, importJ)
 	if fun == "" {
 		// Unknown type, not supported yet.
@@ -104,9 +104,18 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string,
 		//	fun = f.aliasType
 		//}
 		if isFirst && isLast {
-			return fmt.Sprintf("%s(%s[%d:], %s.%s)", fun, bufferName, start, receiver, f.name)
+			return fmt.Sprintf("%s(%s[%d:], %s)", fun, bufferName, start, thisField)
 		} else {
-			return fmt.Sprintf("%s(%s[%s:%s], %s.%s)", fun, bufferName, at, end, receiver, f.name)
+			return fmt.Sprintf("%s(%s[%s:%s], %s)", fun, bufferName, at, end, thisField)
+		}
+	case "[]byte":
+		//if f.typ != f.aliasType {
+		//	fun = f.aliasType
+		//}
+		if isFirst && isLast {
+			return fmt.Sprintf("if %s != 0 {\n%s(%s[%d:], %s)\n}", lenVar, fun, bufferName, *byteIndex, thisField)
+		} else {
+			return fmt.Sprintf("if %s != 0 {%s(%s[%s:%s], %s)\n}", lenVar, fun, bufferName, at, end, thisField)
 		}
 	}
 
@@ -250,12 +259,8 @@ func (o Option) typeFuncs(fe field, isLast bool, importJ *bool) (fun string, siz
 		} else {
 			f, size, totalSize = jay.WriteTime, 8, 8
 		}
-	case "[]byte":
-		if isLast {
-			f, size, totalSize = jay.WriteBytes, 0, 1
-		} else {
-			f, size, totalSize = jay.WriteBytesAt, 0, 1
-		}
+	case "[]uint8", "[]byte":
+		return "copy", 0, 1
 
 	case "[15]byte", "[15]uint8":
 		return "copy", uint(fe.arraySize), uint(fe.arraySize)

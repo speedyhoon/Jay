@@ -99,18 +99,18 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 			fun = f.aliasType
 		}
 		if isFirst && isLast {
-			return fmt.Sprintf("%s.%s = %s(%s[%d:])", receiver, f.name, fun, bufferName, *byteIndex)
+			return fmt.Sprintf("%s = %s(%s[%d:])", thisField, fun, bufferName, *byteIndex)
 		} else {
-			return fmt.Sprintf("%s.%s = %s(%s[%s:%s])", receiver, f.name, fun, bufferName, at, end)
+			return fmt.Sprintf("%s = %s(%s[%s:%s])", thisField, fun, bufferName, at, end)
 		}
 	case "[]byte":
 		if f.typ != f.aliasType {
 			fun = f.aliasType
 		}
 		if isFirst && isLast {
-			return fmt.Sprintf("if %s != 0 {\n%s.%s = %s[%d:]\n}", lenVar, receiver, f.name, bufferName, *byteIndex)
+			return fmt.Sprintf("if %s != 0 {\n%s = %s[%d:]\n}", lenVar, thisField, bufferName, *byteIndex)
 		} else {
-			return fmt.Sprintf("if %s != 0 {%s.%s = %s[%s:%s]\n}", lenVar, receiver, f.name, bufferName, at, end)
+			return fmt.Sprintf("if %s != 0 {%s = %s[%s:%s]\n}", lenVar, thisField, bufferName, at, end)
 		}
 	}
 
