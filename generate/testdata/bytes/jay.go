@@ -7,1630 +7,2598 @@ import "github.com/speedyhoon/jay"
 func (o *One) MarshalJ() (b []byte) {
 	l0 := len(o.One)
 	b = make([]byte, 1+l0)
-	jay.WriteBytes(b, o.One, l0)
+	b[0] = byte(l0)
+	if l0 != 0 {
+		copy(b[1:], o.One)
+	}
 	return
 }
 
 func (o *One) UnmarshalJ(b []byte) error {
-	if len(b) < 1 {
+	l := len(b)
+	if l < 1 {
 		return jay.ErrUnexpectedEOB
 	}
-	return jay.ReadBytesPtrErr(b, &o.One)
+	l0 := int(b[0])
+	if l < 1+l0 {
+		return jay.ErrUnexpectedEOB
+	}
+	if l0 != 0 {
+		o.One = b[1:]
+	}
+	return nil
 }
 
 func (t *Two) MarshalJ() (b []byte) {
 	l0, l1 := len(t.One), len(t.Two)
 	b = make([]byte, 2+l0+l1)
-	at := jay.WriteBytesAt(b, t.One, l0, 0)
-	jay.WriteBytes(b[at:], t.Two, l1)
+	b[0], b[1] = byte(l0), byte(l1)
+	at, end := 2, 2+l0
+	if l0 != 0 {
+		copy(b[at:end], t.One)
+	}
+	if l1 != 0 {
+		copy(b[end:], t.Two)
+	}
 	return
 }
 
 func (t *Two) UnmarshalJ(b []byte) error {
-	if len(b) < 2 {
+	l := len(b)
+	if l < 2 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	t.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1 := int(b[0]), int(b[1])
+	if l < 2+l0+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	return jay.ReadBytesPtrErr(b[at:], &t.Two)
+	at, end := 2, 2+l0
+	if l0 != 0 {
+		t.One = b[at:end]
+	}
+	if l1 != 0 {
+		t.Two = b[end:]
+	}
+	return nil
 }
 
 func (t *Three) MarshalJ() (b []byte) {
 	l0, l1, l2 := len(t.One), len(t.Two), len(t.Three)
 	b = make([]byte, 3+l0+l1+l2)
-	at := jay.WriteBytesAt(b, t.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], t.Two, l1, at)
-	jay.WriteBytes(b[at:], t.Three, l2)
+	b[0], b[1], b[2] = byte(l0), byte(l1), byte(l2)
+	at, end := 3, 3+l0
+	if l0 != 0 {
+		copy(b[at:end], t.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], t.Two)
+	}
+	if l2 != 0 {
+		copy(b[end:], t.Three)
+	}
 	return
 }
 
 func (t *Three) UnmarshalJ(b []byte) error {
-	if len(b) < 3 {
+	l := len(b)
+	if l < 3 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	t.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2 := int(b[0]), int(b[1]), int(b[2])
+	if l < 3+l0+l1+l2 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 3, 3+l0
+	if l0 != 0 {
+		t.One = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &t.Three)
+	at, end = end, end+l1
+	if l1 != 0 {
+		t.Two = b[at:end]
+	}
+	if l2 != 0 {
+		t.Three = b[end:]
+	}
+	return nil
 }
 
 func (f *Four) MarshalJ() (b []byte) {
 	l0, l1, l2, l3 := len(f.One), len(f.Two), len(f.Three), len(f.Four)
 	b = make([]byte, 4+l0+l1+l2+l3)
-	at := jay.WriteBytesAt(b, f.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], f.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], f.Three, l2, at)
-	jay.WriteBytes(b[at:], f.Four, l3)
+	b[0], b[1], b[2], b[3] = byte(l0), byte(l1), byte(l2), byte(l3)
+	at, end := 4, 4+l0
+	if l0 != 0 {
+		copy(b[at:end], f.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], f.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], f.Three)
+	}
+	if l3 != 0 {
+		copy(b[end:], f.Four)
+	}
 	return
 }
 
 func (f *Four) UnmarshalJ(b []byte) error {
-	if len(b) < 4 {
+	l := len(b)
+	if l < 4 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	f.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3 := int(b[0]), int(b[1]), int(b[2]), int(b[3])
+	if l < 4+l0+l1+l2+l3 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 4, 4+l0
+	if l0 != 0 {
+		f.One = b[at:end]
 	}
-	f.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		f.Two = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &f.Four)
+	at, end = end, end+l2
+	if l2 != 0 {
+		f.Three = b[at:end]
+	}
+	if l3 != 0 {
+		f.Four = b[end:]
+	}
+	return nil
 }
 
 func (f *Five) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4 := len(f.One), len(f.Two), len(f.Three), len(f.Four), len(f.Five)
 	b = make([]byte, 5+l0+l1+l2+l3+l4)
-	at := jay.WriteBytesAt(b, f.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], f.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], f.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], f.Four, l3, at)
-	jay.WriteBytes(b[at:], f.Five, l4)
+	b[0], b[1], b[2], b[3], b[4] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4)
+	at, end := 5, 5+l0
+	if l0 != 0 {
+		copy(b[at:end], f.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], f.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], f.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], f.Four)
+	}
+	if l4 != 0 {
+		copy(b[end:], f.Five)
+	}
 	return
 }
 
 func (f *Five) UnmarshalJ(b []byte) error {
-	if len(b) < 5 {
+	l := len(b)
+	if l < 5 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	f.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4])
+	if l < 5+l0+l1+l2+l3+l4 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 5, 5+l0
+	if l0 != 0 {
+		f.One = b[at:end]
 	}
-	f.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		f.Two = b[at:end]
 	}
-	f.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		f.Three = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &f.Five)
+	at, end = end, end+l3
+	if l3 != 0 {
+		f.Four = b[at:end]
+	}
+	if l4 != 0 {
+		f.Five = b[end:]
+	}
+	return nil
 }
 
 func (s *Six) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six)
 	b = make([]byte, 6+l0+l1+l2+l3+l4+l5)
-	at := jay.WriteBytesAt(b, s.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], s.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], s.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], s.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], s.Five, l4, at)
-	jay.WriteBytes(b[at:], s.Six, l5)
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
+	at, end := 6, 6+l0
+	if l0 != 0 {
+		copy(b[at:end], s.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], s.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], s.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], s.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], s.Five)
+	}
+	if l5 != 0 {
+		copy(b[end:], s.Six)
+	}
 	return
 }
 
 func (s *Six) UnmarshalJ(b []byte) error {
-	if len(b) < 6 {
+	l := len(b)
+	if l < 6 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	s.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5])
+	if l < 6+l0+l1+l2+l3+l4+l5 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 6, 6+l0
+	if l0 != 0 {
+		s.One = b[at:end]
 	}
-	s.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		s.Two = b[at:end]
 	}
-	s.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		s.Three = b[at:end]
 	}
-	s.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		s.Four = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &s.Six)
+	at, end = end, end+l4
+	if l4 != 0 {
+		s.Five = b[at:end]
+	}
+	if l5 != 0 {
+		s.Six = b[end:]
+	}
+	return nil
 }
 
 func (s *Seven) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six), len(s.Seven)
 	b = make([]byte, 7+l0+l1+l2+l3+l4+l5+l6)
-	at := jay.WriteBytesAt(b, s.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], s.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], s.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], s.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], s.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], s.Six, l5, at)
-	jay.WriteBytes(b[at:], s.Seven, l6)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6)
+	at, end := 7, 7+l0
+	if l0 != 0 {
+		copy(b[at:end], s.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], s.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], s.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], s.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], s.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], s.Six)
+	}
+	if l6 != 0 {
+		copy(b[end:], s.Seven)
+	}
 	return
 }
 
 func (s *Seven) UnmarshalJ(b []byte) error {
-	if len(b) < 7 {
+	l := len(b)
+	if l < 7 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	s.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6])
+	if l < 7+l0+l1+l2+l3+l4+l5+l6 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 7, 7+l0
+	if l0 != 0 {
+		s.One = b[at:end]
 	}
-	s.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		s.Two = b[at:end]
 	}
-	s.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		s.Three = b[at:end]
 	}
-	s.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		s.Four = b[at:end]
 	}
-	s.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		s.Five = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &s.Seven)
+	at, end = end, end+l5
+	if l5 != 0 {
+		s.Six = b[at:end]
+	}
+	if l6 != 0 {
+		s.Seven = b[end:]
+	}
+	return nil
 }
 
 func (e *Eight) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7 := len(e.One), len(e.Two), len(e.Three), len(e.Four), len(e.Five), len(e.Six), len(e.Seven), len(e.Eight)
 	b = make([]byte, 8+l0+l1+l2+l3+l4+l5+l6+l7)
-	at := jay.WriteBytesAt(b, e.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], e.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], e.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], e.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], e.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], e.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], e.Seven, l6, at)
-	jay.WriteBytes(b[at:], e.Eight, l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7)
+	at, end := 8, 8+l0
+	if l0 != 0 {
+		copy(b[at:end], e.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], e.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], e.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], e.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], e.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], e.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], e.Seven)
+	}
+	if l7 != 0 {
+		copy(b[end:], e.Eight)
+	}
 	return
 }
 
 func (e *Eight) UnmarshalJ(b []byte) error {
-	if len(b) < 8 {
+	l := len(b)
+	if l < 8 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	e.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7])
+	if l < 8+l0+l1+l2+l3+l4+l5+l6+l7 {
 		return jay.ErrUnexpectedEOB
 	}
-	e.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 8, 8+l0
+	if l0 != 0 {
+		e.One = b[at:end]
 	}
-	e.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		e.Two = b[at:end]
 	}
-	e.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		e.Three = b[at:end]
 	}
-	e.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		e.Four = b[at:end]
 	}
-	e.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		e.Five = b[at:end]
 	}
-	e.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		e.Six = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &e.Eight)
+	at, end = end, end+l6
+	if l6 != 0 {
+		e.Seven = b[at:end]
+	}
+	if l7 != 0 {
+		e.Eight = b[end:]
+	}
+	return nil
 }
 
 func (n *Nine) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8 := len(n.One), len(n.Two), len(n.Three), len(n.Four), len(n.Five), len(n.Six), len(n.Seven), len(n.Eight), len(n.Nine)
 	b = make([]byte, 9+l0+l1+l2+l3+l4+l5+l6+l7+l8)
-	at := jay.WriteBytesAt(b, n.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], n.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], n.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], n.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], n.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], n.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], n.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], n.Eight, l7, at)
-	jay.WriteBytes(b[at:], n.Nine, l8)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8)
+	at, end := 9, 9+l0
+	if l0 != 0 {
+		copy(b[at:end], n.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], n.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], n.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], n.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], n.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], n.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], n.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], n.Eight)
+	}
+	if l8 != 0 {
+		copy(b[end:], n.Nine)
+	}
 	return
 }
 
 func (n *Nine) UnmarshalJ(b []byte) error {
-	if len(b) < 9 {
+	l := len(b)
+	if l < 9 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	n.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8])
+	if l < 9+l0+l1+l2+l3+l4+l5+l6+l7+l8 {
 		return jay.ErrUnexpectedEOB
 	}
-	n.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 9, 9+l0
+	if l0 != 0 {
+		n.One = b[at:end]
 	}
-	n.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		n.Two = b[at:end]
 	}
-	n.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		n.Three = b[at:end]
 	}
-	n.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		n.Four = b[at:end]
 	}
-	n.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		n.Five = b[at:end]
 	}
-	n.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		n.Six = b[at:end]
 	}
-	n.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		n.Seven = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &n.Nine)
+	at, end = end, end+l7
+	if l7 != 0 {
+		n.Eight = b[at:end]
+	}
+	if l8 != 0 {
+		n.Nine = b[end:]
+	}
+	return nil
 }
 
 func (t *Ten) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten)
 	b = make([]byte, 10+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9)
-	at := jay.WriteBytesAt(b, t.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], t.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], t.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], t.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], t.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], t.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], t.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], t.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], t.Nine, l8, at)
-	jay.WriteBytes(b[at:], t.Ten, l9)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9)
+	at, end := 10, 10+l0
+	if l0 != 0 {
+		copy(b[at:end], t.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], t.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], t.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], t.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], t.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], t.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], t.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], t.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], t.Nine)
+	}
+	if l9 != 0 {
+		copy(b[end:], t.Ten)
+	}
 	return
 }
 
 func (t *Ten) UnmarshalJ(b []byte) error {
-	if len(b) < 10 {
+	l := len(b)
+	if l < 10 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	t.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9])
+	if l < 10+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 10, 10+l0
+	if l0 != 0 {
+		t.One = b[at:end]
 	}
-	t.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		t.Two = b[at:end]
 	}
-	t.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		t.Three = b[at:end]
 	}
-	t.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		t.Four = b[at:end]
 	}
-	t.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		t.Five = b[at:end]
 	}
-	t.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		t.Six = b[at:end]
 	}
-	t.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		t.Seven = b[at:end]
 	}
-	t.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		t.Eight = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &t.Ten)
+	at, end = end, end+l8
+	if l8 != 0 {
+		t.Nine = b[at:end]
+	}
+	if l9 != 0 {
+		t.Ten = b[end:]
+	}
+	return nil
 }
 
 func (e *Eleven) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := len(e.One), len(e.Two), len(e.Three), len(e.Four), len(e.Five), len(e.Six), len(e.Seven), len(e.Eight), len(e.Nine), len(e.Ten), len(e.Eleven)
 	b = make([]byte, 11+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10)
-	at := jay.WriteBytesAt(b, e.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], e.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], e.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], e.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], e.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], e.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], e.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], e.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], e.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], e.Ten, l9, at)
-	jay.WriteBytes(b[at:], e.Eleven, l10)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
+	at, end := 11, 11+l0
+	if l0 != 0 {
+		copy(b[at:end], e.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], e.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], e.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], e.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], e.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], e.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], e.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], e.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], e.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], e.Ten)
+	}
+	if l10 != 0 {
+		copy(b[end:], e.Eleven)
+	}
 	return
 }
 
 func (e *Eleven) UnmarshalJ(b []byte) error {
-	if len(b) < 11 {
+	l := len(b)
+	if l < 11 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	e.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10])
+	if l < 11+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10 {
 		return jay.ErrUnexpectedEOB
 	}
-	e.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 11, 11+l0
+	if l0 != 0 {
+		e.One = b[at:end]
 	}
-	e.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		e.Two = b[at:end]
 	}
-	e.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		e.Three = b[at:end]
 	}
-	e.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		e.Four = b[at:end]
 	}
-	e.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		e.Five = b[at:end]
 	}
-	e.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		e.Six = b[at:end]
 	}
-	e.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		e.Seven = b[at:end]
 	}
-	e.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		e.Eight = b[at:end]
 	}
-	e.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		e.Nine = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &e.Eleven)
+	at, end = end, end+l9
+	if l9 != 0 {
+		e.Ten = b[at:end]
+	}
+	if l10 != 0 {
+		e.Eleven = b[end:]
+	}
+	return nil
 }
 
 func (t *Twelve) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve)
 	b = make([]byte, 12+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11)
-	at := jay.WriteBytesAt(b, t.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], t.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], t.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], t.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], t.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], t.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], t.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], t.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], t.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], t.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], t.Eleven, l10, at)
-	jay.WriteBytes(b[at:], t.Twelve, l11)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11)
+	at, end := 12, 12+l0
+	if l0 != 0 {
+		copy(b[at:end], t.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], t.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], t.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], t.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], t.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], t.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], t.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], t.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], t.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], t.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], t.Eleven)
+	}
+	if l11 != 0 {
+		copy(b[end:], t.Twelve)
+	}
 	return
 }
 
 func (t *Twelve) UnmarshalJ(b []byte) error {
-	if len(b) < 12 {
+	l := len(b)
+	if l < 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	t.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11])
+	if l < 12+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 12, 12+l0
+	if l0 != 0 {
+		t.One = b[at:end]
 	}
-	t.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		t.Two = b[at:end]
 	}
-	t.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		t.Three = b[at:end]
 	}
-	t.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		t.Four = b[at:end]
 	}
-	t.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		t.Five = b[at:end]
 	}
-	t.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		t.Six = b[at:end]
 	}
-	t.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		t.Seven = b[at:end]
 	}
-	t.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		t.Eight = b[at:end]
 	}
-	t.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		t.Nine = b[at:end]
 	}
-	t.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		t.Ten = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &t.Twelve)
+	at, end = end, end+l10
+	if l10 != 0 {
+		t.Eleven = b[at:end]
+	}
+	if l11 != 0 {
+		t.Twelve = b[end:]
+	}
+	return nil
 }
 
 func (t *Thirteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen)
 	b = make([]byte, 13+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12)
-	at := jay.WriteBytesAt(b, t.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], t.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], t.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], t.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], t.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], t.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], t.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], t.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], t.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], t.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], t.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], t.Twelve, l11, at)
-	jay.WriteBytes(b[at:], t.Thirteen, l12)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12)
+	at, end := 13, 13+l0
+	if l0 != 0 {
+		copy(b[at:end], t.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], t.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], t.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], t.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], t.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], t.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], t.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], t.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], t.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], t.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], t.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], t.Twelve)
+	}
+	if l12 != 0 {
+		copy(b[end:], t.Thirteen)
+	}
 	return
 }
 
 func (t *Thirteen) UnmarshalJ(b []byte) error {
-	if len(b) < 13 {
+	l := len(b)
+	if l < 13 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	t.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12])
+	if l < 13+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 13, 13+l0
+	if l0 != 0 {
+		t.One = b[at:end]
 	}
-	t.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		t.Two = b[at:end]
 	}
-	t.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		t.Three = b[at:end]
 	}
-	t.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		t.Four = b[at:end]
 	}
-	t.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		t.Five = b[at:end]
 	}
-	t.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		t.Six = b[at:end]
 	}
-	t.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		t.Seven = b[at:end]
 	}
-	t.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		t.Eight = b[at:end]
 	}
-	t.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		t.Nine = b[at:end]
 	}
-	t.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		t.Ten = b[at:end]
 	}
-	t.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		t.Eleven = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &t.Thirteen)
+	at, end = end, end+l11
+	if l11 != 0 {
+		t.Twelve = b[at:end]
+	}
+	if l12 != 0 {
+		t.Thirteen = b[end:]
+	}
+	return nil
 }
 
 func (f *Fourteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := len(f.One), len(f.Two), len(f.Three), len(f.Four), len(f.Five), len(f.Six), len(f.Seven), len(f.Eight), len(f.Nine), len(f.Ten), len(f.Eleven), len(f.Twelve), len(f.Thirteen), len(f.Fourteen)
 	b = make([]byte, 14+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13)
-	at := jay.WriteBytesAt(b, f.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], f.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], f.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], f.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], f.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], f.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], f.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], f.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], f.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], f.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], f.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], f.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], f.Thirteen, l12, at)
-	jay.WriteBytes(b[at:], f.Fourteen, l13)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13)
+	at, end := 14, 14+l0
+	if l0 != 0 {
+		copy(b[at:end], f.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], f.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], f.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], f.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], f.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], f.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], f.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], f.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], f.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], f.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], f.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], f.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], f.Thirteen)
+	}
+	if l13 != 0 {
+		copy(b[end:], f.Fourteen)
+	}
 	return
 }
 
 func (f *Fourteen) UnmarshalJ(b []byte) error {
-	if len(b) < 14 {
+	l := len(b)
+	if l < 14 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	f.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13])
+	if l < 14+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 14, 14+l0
+	if l0 != 0 {
+		f.One = b[at:end]
 	}
-	f.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		f.Two = b[at:end]
 	}
-	f.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		f.Three = b[at:end]
 	}
-	f.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		f.Four = b[at:end]
 	}
-	f.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		f.Five = b[at:end]
 	}
-	f.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		f.Six = b[at:end]
 	}
-	f.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		f.Seven = b[at:end]
 	}
-	f.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		f.Eight = b[at:end]
 	}
-	f.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		f.Nine = b[at:end]
 	}
-	f.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		f.Ten = b[at:end]
 	}
-	f.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		f.Eleven = b[at:end]
 	}
-	f.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		f.Twelve = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &f.Fourteen)
+	at, end = end, end+l12
+	if l12 != 0 {
+		f.Thirteen = b[at:end]
+	}
+	if l13 != 0 {
+		f.Fourteen = b[end:]
+	}
+	return nil
 }
 
 func (f *Fifteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := len(f.One), len(f.Two), len(f.Three), len(f.Four), len(f.Five), len(f.Six), len(f.Seven), len(f.Eight), len(f.Nine), len(f.Ten), len(f.Eleven), len(f.Twelve), len(f.Thirteen), len(f.Fourteen), len(f.Fifteen)
 	b = make([]byte, 15+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14)
-	at := jay.WriteBytesAt(b, f.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], f.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], f.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], f.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], f.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], f.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], f.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], f.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], f.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], f.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], f.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], f.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], f.Thirteen, l12, at)
-	at = jay.WriteBytesAt(b[at:], f.Fourteen, l13, at)
-	jay.WriteBytes(b[at:], f.Fifteen, l14)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14)
+	at, end := 15, 15+l0
+	if l0 != 0 {
+		copy(b[at:end], f.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], f.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], f.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], f.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], f.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], f.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], f.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], f.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], f.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], f.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], f.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], f.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], f.Thirteen)
+	}
+	at, end = end, end+l13
+	if l13 != 0 {
+		copy(b[at:end], f.Fourteen)
+	}
+	if l14 != 0 {
+		copy(b[end:], f.Fifteen)
+	}
 	return
 }
 
 func (f *Fifteen) UnmarshalJ(b []byte) error {
-	if len(b) < 15 {
+	l := len(b)
+	if l < 15 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	f.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14])
+	if l < 15+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 15, 15+l0
+	if l0 != 0 {
+		f.One = b[at:end]
 	}
-	f.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		f.Two = b[at:end]
 	}
-	f.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		f.Three = b[at:end]
 	}
-	f.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		f.Four = b[at:end]
 	}
-	f.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		f.Five = b[at:end]
 	}
-	f.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		f.Six = b[at:end]
 	}
-	f.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		f.Seven = b[at:end]
 	}
-	f.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		f.Eight = b[at:end]
 	}
-	f.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		f.Nine = b[at:end]
 	}
-	f.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		f.Ten = b[at:end]
 	}
-	f.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		f.Eleven = b[at:end]
 	}
-	f.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		f.Twelve = b[at:end]
 	}
-	f.Fourteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l12
+	if l12 != 0 {
+		f.Thirteen = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &f.Fifteen)
+	at, end = end, end+l13
+	if l13 != 0 {
+		f.Fourteen = b[at:end]
+	}
+	if l14 != 0 {
+		f.Fifteen = b[end:]
+	}
+	return nil
 }
 
 func (s *Sixteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six), len(s.Seven), len(s.Eight), len(s.Nine), len(s.Ten), len(s.Eleven), len(s.Twelve), len(s.Thirteen), len(s.Fourteen), len(s.Fifteen), len(s.Sixteen)
 	b = make([]byte, 16+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15)
-	at := jay.WriteBytesAt(b, s.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], s.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], s.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], s.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], s.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], s.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], s.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], s.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], s.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], s.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], s.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], s.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], s.Thirteen, l12, at)
-	at = jay.WriteBytesAt(b[at:], s.Fourteen, l13, at)
-	at = jay.WriteBytesAt(b[at:], s.Fifteen, l14, at)
-	jay.WriteBytes(b[at:], s.Sixteen, l15)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15)
+	at, end := 16, 16+l0
+	if l0 != 0 {
+		copy(b[at:end], s.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], s.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], s.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], s.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], s.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], s.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], s.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], s.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], s.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], s.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], s.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], s.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], s.Thirteen)
+	}
+	at, end = end, end+l13
+	if l13 != 0 {
+		copy(b[at:end], s.Fourteen)
+	}
+	at, end = end, end+l14
+	if l14 != 0 {
+		copy(b[at:end], s.Fifteen)
+	}
+	if l15 != 0 {
+		copy(b[end:], s.Sixteen)
+	}
 	return
 }
 
 func (s *Sixteen) UnmarshalJ(b []byte) error {
-	if len(b) < 16 {
+	l := len(b)
+	if l < 16 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	s.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15])
+	if l < 16+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 16, 16+l0
+	if l0 != 0 {
+		s.One = b[at:end]
 	}
-	s.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		s.Two = b[at:end]
 	}
-	s.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		s.Three = b[at:end]
 	}
-	s.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		s.Four = b[at:end]
 	}
-	s.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		s.Five = b[at:end]
 	}
-	s.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		s.Six = b[at:end]
 	}
-	s.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		s.Seven = b[at:end]
 	}
-	s.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		s.Eight = b[at:end]
 	}
-	s.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		s.Nine = b[at:end]
 	}
-	s.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		s.Ten = b[at:end]
 	}
-	s.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		s.Eleven = b[at:end]
 	}
-	s.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		s.Twelve = b[at:end]
 	}
-	s.Fourteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l12
+	if l12 != 0 {
+		s.Thirteen = b[at:end]
 	}
-	s.Fifteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l13
+	if l13 != 0 {
+		s.Fourteen = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &s.Sixteen)
+	at, end = end, end+l14
+	if l14 != 0 {
+		s.Fifteen = b[at:end]
+	}
+	if l15 != 0 {
+		s.Sixteen = b[end:]
+	}
+	return nil
 }
 
 func (s *Seventeen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six), len(s.Seven), len(s.Eight), len(s.Nine), len(s.Ten), len(s.Eleven), len(s.Twelve), len(s.Thirteen), len(s.Fourteen), len(s.Fifteen), len(s.Sixteen), len(s.Seventeen)
 	b = make([]byte, 17+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16)
-	at := jay.WriteBytesAt(b, s.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], s.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], s.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], s.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], s.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], s.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], s.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], s.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], s.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], s.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], s.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], s.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], s.Thirteen, l12, at)
-	at = jay.WriteBytesAt(b[at:], s.Fourteen, l13, at)
-	at = jay.WriteBytesAt(b[at:], s.Fifteen, l14, at)
-	at = jay.WriteBytesAt(b[at:], s.Sixteen, l15, at)
-	jay.WriteBytes(b[at:], s.Seventeen, l16)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
+	at, end := 17, 17+l0
+	if l0 != 0 {
+		copy(b[at:end], s.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], s.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], s.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], s.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], s.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], s.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], s.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], s.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], s.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], s.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], s.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], s.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], s.Thirteen)
+	}
+	at, end = end, end+l13
+	if l13 != 0 {
+		copy(b[at:end], s.Fourteen)
+	}
+	at, end = end, end+l14
+	if l14 != 0 {
+		copy(b[at:end], s.Fifteen)
+	}
+	at, end = end, end+l15
+	if l15 != 0 {
+		copy(b[at:end], s.Sixteen)
+	}
+	if l16 != 0 {
+		copy(b[end:], s.Seventeen)
+	}
 	return
 }
 
 func (s *Seventeen) UnmarshalJ(b []byte) error {
-	if len(b) < 17 {
+	l := len(b)
+	if l < 17 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	s.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16])
+	if l < 17+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 17, 17+l0
+	if l0 != 0 {
+		s.One = b[at:end]
 	}
-	s.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		s.Two = b[at:end]
 	}
-	s.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		s.Three = b[at:end]
 	}
-	s.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		s.Four = b[at:end]
 	}
-	s.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		s.Five = b[at:end]
 	}
-	s.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		s.Six = b[at:end]
 	}
-	s.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		s.Seven = b[at:end]
 	}
-	s.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		s.Eight = b[at:end]
 	}
-	s.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		s.Nine = b[at:end]
 	}
-	s.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		s.Ten = b[at:end]
 	}
-	s.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		s.Eleven = b[at:end]
 	}
-	s.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		s.Twelve = b[at:end]
 	}
-	s.Fourteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l12
+	if l12 != 0 {
+		s.Thirteen = b[at:end]
 	}
-	s.Fifteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l13
+	if l13 != 0 {
+		s.Fourteen = b[at:end]
 	}
-	s.Sixteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l14
+	if l14 != 0 {
+		s.Fifteen = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &s.Seventeen)
+	at, end = end, end+l15
+	if l15 != 0 {
+		s.Sixteen = b[at:end]
+	}
+	if l16 != 0 {
+		s.Seventeen = b[end:]
+	}
+	return nil
 }
 
 func (e *Eighteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := len(e.One), len(e.Two), len(e.Three), len(e.Four), len(e.Five), len(e.Six), len(e.Seven), len(e.Eight), len(e.Nine), len(e.Ten), len(e.Eleven), len(e.Twelve), len(e.Thirteen), len(e.Fourteen), len(e.Fifteen), len(e.Sixteen), len(e.Seventeen), len(e.Eighteen)
 	b = make([]byte, 18+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17)
-	at := jay.WriteBytesAt(b, e.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], e.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], e.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], e.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], e.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], e.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], e.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], e.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], e.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], e.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], e.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], e.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], e.Thirteen, l12, at)
-	at = jay.WriteBytesAt(b[at:], e.Fourteen, l13, at)
-	at = jay.WriteBytesAt(b[at:], e.Fifteen, l14, at)
-	at = jay.WriteBytesAt(b[at:], e.Sixteen, l15, at)
-	at = jay.WriteBytesAt(b[at:], e.Seventeen, l16, at)
-	jay.WriteBytes(b[at:], e.Eighteen, l17)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
+	at, end := 18, 18+l0
+	if l0 != 0 {
+		copy(b[at:end], e.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], e.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], e.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], e.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], e.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], e.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], e.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], e.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], e.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], e.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], e.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], e.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], e.Thirteen)
+	}
+	at, end = end, end+l13
+	if l13 != 0 {
+		copy(b[at:end], e.Fourteen)
+	}
+	at, end = end, end+l14
+	if l14 != 0 {
+		copy(b[at:end], e.Fifteen)
+	}
+	at, end = end, end+l15
+	if l15 != 0 {
+		copy(b[at:end], e.Sixteen)
+	}
+	at, end = end, end+l16
+	if l16 != 0 {
+		copy(b[at:end], e.Seventeen)
+	}
+	if l17 != 0 {
+		copy(b[end:], e.Eighteen)
+	}
 	return
 }
 
 func (e *Eighteen) UnmarshalJ(b []byte) error {
-	if len(b) < 18 {
+	l := len(b)
+	if l < 18 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	e.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17])
+	if l < 18+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17 {
 		return jay.ErrUnexpectedEOB
 	}
-	e.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 18, 18+l0
+	if l0 != 0 {
+		e.One = b[at:end]
 	}
-	e.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		e.Two = b[at:end]
 	}
-	e.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		e.Three = b[at:end]
 	}
-	e.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		e.Four = b[at:end]
 	}
-	e.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		e.Five = b[at:end]
 	}
-	e.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		e.Six = b[at:end]
 	}
-	e.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		e.Seven = b[at:end]
 	}
-	e.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		e.Eight = b[at:end]
 	}
-	e.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		e.Nine = b[at:end]
 	}
-	e.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		e.Ten = b[at:end]
 	}
-	e.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		e.Eleven = b[at:end]
 	}
-	e.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		e.Twelve = b[at:end]
 	}
-	e.Fourteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l12
+	if l12 != 0 {
+		e.Thirteen = b[at:end]
 	}
-	e.Fifteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l13
+	if l13 != 0 {
+		e.Fourteen = b[at:end]
 	}
-	e.Sixteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l14
+	if l14 != 0 {
+		e.Fifteen = b[at:end]
 	}
-	e.Seventeen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l15
+	if l15 != 0 {
+		e.Sixteen = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &e.Eighteen)
+	at, end = end, end+l16
+	if l16 != 0 {
+		e.Seventeen = b[at:end]
+	}
+	if l17 != 0 {
+		e.Eighteen = b[end:]
+	}
+	return nil
 }
 
 func (n *Nineteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := len(n.One), len(n.Two), len(n.Three), len(n.Four), len(n.Five), len(n.Six), len(n.Seven), len(n.Eight), len(n.Nine), len(n.Ten), len(n.Eleven), len(n.Twelve), len(n.Thirteen), len(n.Fourteen), len(n.Fifteen), len(n.Sixteen), len(n.Seventeen), len(n.Eighteen), len(n.Nineteen)
 	b = make([]byte, 19+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18)
-	at := jay.WriteBytesAt(b, n.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], n.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], n.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], n.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], n.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], n.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], n.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], n.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], n.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], n.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], n.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], n.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], n.Thirteen, l12, at)
-	at = jay.WriteBytesAt(b[at:], n.Fourteen, l13, at)
-	at = jay.WriteBytesAt(b[at:], n.Fifteen, l14, at)
-	at = jay.WriteBytesAt(b[at:], n.Sixteen, l15, at)
-	at = jay.WriteBytesAt(b[at:], n.Seventeen, l16, at)
-	at = jay.WriteBytesAt(b[at:], n.Eighteen, l17, at)
-	jay.WriteBytes(b[at:], n.Nineteen, l18)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18)
+	at, end := 19, 19+l0
+	if l0 != 0 {
+		copy(b[at:end], n.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], n.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], n.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], n.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], n.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], n.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], n.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], n.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], n.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], n.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], n.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], n.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], n.Thirteen)
+	}
+	at, end = end, end+l13
+	if l13 != 0 {
+		copy(b[at:end], n.Fourteen)
+	}
+	at, end = end, end+l14
+	if l14 != 0 {
+		copy(b[at:end], n.Fifteen)
+	}
+	at, end = end, end+l15
+	if l15 != 0 {
+		copy(b[at:end], n.Sixteen)
+	}
+	at, end = end, end+l16
+	if l16 != 0 {
+		copy(b[at:end], n.Seventeen)
+	}
+	at, end = end, end+l17
+	if l17 != 0 {
+		copy(b[at:end], n.Eighteen)
+	}
+	if l18 != 0 {
+		copy(b[end:], n.Nineteen)
+	}
 	return
 }
 
 func (n *Nineteen) UnmarshalJ(b []byte) error {
-	if len(b) < 19 {
+	l := len(b)
+	if l < 19 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	n.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18])
+	if l < 19+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18 {
 		return jay.ErrUnexpectedEOB
 	}
-	n.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 19, 19+l0
+	if l0 != 0 {
+		n.One = b[at:end]
 	}
-	n.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		n.Two = b[at:end]
 	}
-	n.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		n.Three = b[at:end]
 	}
-	n.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		n.Four = b[at:end]
 	}
-	n.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		n.Five = b[at:end]
 	}
-	n.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		n.Six = b[at:end]
 	}
-	n.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		n.Seven = b[at:end]
 	}
-	n.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		n.Eight = b[at:end]
 	}
-	n.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		n.Nine = b[at:end]
 	}
-	n.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		n.Ten = b[at:end]
 	}
-	n.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		n.Eleven = b[at:end]
 	}
-	n.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		n.Twelve = b[at:end]
 	}
-	n.Fourteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l12
+	if l12 != 0 {
+		n.Thirteen = b[at:end]
 	}
-	n.Fifteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l13
+	if l13 != 0 {
+		n.Fourteen = b[at:end]
 	}
-	n.Sixteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l14
+	if l14 != 0 {
+		n.Fifteen = b[at:end]
 	}
-	n.Seventeen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l15
+	if l15 != 0 {
+		n.Sixteen = b[at:end]
 	}
-	n.Eighteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l16
+	if l16 != 0 {
+		n.Seventeen = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &n.Nineteen)
+	at, end = end, end+l17
+	if l17 != 0 {
+		n.Eighteen = b[at:end]
+	}
+	if l18 != 0 {
+		n.Nineteen = b[end:]
+	}
+	return nil
 }
 
 func (t *Twenty) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty)
 	b = make([]byte, 20+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19)
-	at := jay.WriteBytesAt(b, t.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], t.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], t.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], t.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], t.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], t.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], t.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], t.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], t.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], t.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], t.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], t.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], t.Thirteen, l12, at)
-	at = jay.WriteBytesAt(b[at:], t.Fourteen, l13, at)
-	at = jay.WriteBytesAt(b[at:], t.Fifteen, l14, at)
-	at = jay.WriteBytesAt(b[at:], t.Sixteen, l15, at)
-	at = jay.WriteBytesAt(b[at:], t.Seventeen, l16, at)
-	at = jay.WriteBytesAt(b[at:], t.Eighteen, l17, at)
-	at = jay.WriteBytesAt(b[at:], t.Nineteen, l18, at)
-	jay.WriteBytes(b[at:], t.Twenty, l19)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19)
+	at, end := 20, 20+l0
+	if l0 != 0 {
+		copy(b[at:end], t.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], t.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], t.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], t.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], t.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], t.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], t.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], t.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], t.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], t.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], t.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], t.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], t.Thirteen)
+	}
+	at, end = end, end+l13
+	if l13 != 0 {
+		copy(b[at:end], t.Fourteen)
+	}
+	at, end = end, end+l14
+	if l14 != 0 {
+		copy(b[at:end], t.Fifteen)
+	}
+	at, end = end, end+l15
+	if l15 != 0 {
+		copy(b[at:end], t.Sixteen)
+	}
+	at, end = end, end+l16
+	if l16 != 0 {
+		copy(b[at:end], t.Seventeen)
+	}
+	at, end = end, end+l17
+	if l17 != 0 {
+		copy(b[at:end], t.Eighteen)
+	}
+	at, end = end, end+l18
+	if l18 != 0 {
+		copy(b[at:end], t.Nineteen)
+	}
+	if l19 != 0 {
+		copy(b[end:], t.Twenty)
+	}
 	return
 }
 
 func (t *Twenty) UnmarshalJ(b []byte) error {
-	if len(b) < 20 {
+	l := len(b)
+	if l < 20 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	t.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19])
+	if l < 20+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 20, 20+l0
+	if l0 != 0 {
+		t.One = b[at:end]
 	}
-	t.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		t.Two = b[at:end]
 	}
-	t.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		t.Three = b[at:end]
 	}
-	t.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		t.Four = b[at:end]
 	}
-	t.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		t.Five = b[at:end]
 	}
-	t.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		t.Six = b[at:end]
 	}
-	t.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		t.Seven = b[at:end]
 	}
-	t.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		t.Eight = b[at:end]
 	}
-	t.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		t.Nine = b[at:end]
 	}
-	t.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		t.Ten = b[at:end]
 	}
-	t.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		t.Eleven = b[at:end]
 	}
-	t.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		t.Twelve = b[at:end]
 	}
-	t.Fourteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l12
+	if l12 != 0 {
+		t.Thirteen = b[at:end]
 	}
-	t.Fifteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l13
+	if l13 != 0 {
+		t.Fourteen = b[at:end]
 	}
-	t.Sixteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l14
+	if l14 != 0 {
+		t.Fifteen = b[at:end]
 	}
-	t.Seventeen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l15
+	if l15 != 0 {
+		t.Sixteen = b[at:end]
 	}
-	t.Eighteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l16
+	if l16 != 0 {
+		t.Seventeen = b[at:end]
 	}
-	t.Nineteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l17
+	if l17 != 0 {
+		t.Eighteen = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &t.Twenty)
+	at, end = end, end+l18
+	if l18 != 0 {
+		t.Nineteen = b[at:end]
+	}
+	if l19 != 0 {
+		t.Twenty = b[end:]
+	}
+	return nil
 }
 
 func (t *TwentyOne) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty), len(t.TwentyOne)
 	b = make([]byte, 21+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20)
-	at := jay.WriteBytesAt(b, t.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], t.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], t.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], t.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], t.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], t.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], t.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], t.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], t.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], t.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], t.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], t.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], t.Thirteen, l12, at)
-	at = jay.WriteBytesAt(b[at:], t.Fourteen, l13, at)
-	at = jay.WriteBytesAt(b[at:], t.Fifteen, l14, at)
-	at = jay.WriteBytesAt(b[at:], t.Sixteen, l15, at)
-	at = jay.WriteBytesAt(b[at:], t.Seventeen, l16, at)
-	at = jay.WriteBytesAt(b[at:], t.Eighteen, l17, at)
-	at = jay.WriteBytesAt(b[at:], t.Nineteen, l18, at)
-	at = jay.WriteBytesAt(b[at:], t.Twenty, l19, at)
-	jay.WriteBytes(b[at:], t.TwentyOne, l20)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20)
+	at, end := 21, 21+l0
+	if l0 != 0 {
+		copy(b[at:end], t.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], t.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], t.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], t.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], t.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], t.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], t.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], t.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], t.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], t.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], t.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], t.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], t.Thirteen)
+	}
+	at, end = end, end+l13
+	if l13 != 0 {
+		copy(b[at:end], t.Fourteen)
+	}
+	at, end = end, end+l14
+	if l14 != 0 {
+		copy(b[at:end], t.Fifteen)
+	}
+	at, end = end, end+l15
+	if l15 != 0 {
+		copy(b[at:end], t.Sixteen)
+	}
+	at, end = end, end+l16
+	if l16 != 0 {
+		copy(b[at:end], t.Seventeen)
+	}
+	at, end = end, end+l17
+	if l17 != 0 {
+		copy(b[at:end], t.Eighteen)
+	}
+	at, end = end, end+l18
+	if l18 != 0 {
+		copy(b[at:end], t.Nineteen)
+	}
+	at, end = end, end+l19
+	if l19 != 0 {
+		copy(b[at:end], t.Twenty)
+	}
+	if l20 != 0 {
+		copy(b[end:], t.TwentyOne)
+	}
 	return
 }
 
 func (t *TwentyOne) UnmarshalJ(b []byte) error {
-	if len(b) < 21 {
+	l := len(b)
+	if l < 21 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	t.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20])
+	if l < 21+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 21, 21+l0
+	if l0 != 0 {
+		t.One = b[at:end]
 	}
-	t.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		t.Two = b[at:end]
 	}
-	t.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		t.Three = b[at:end]
 	}
-	t.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		t.Four = b[at:end]
 	}
-	t.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		t.Five = b[at:end]
 	}
-	t.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		t.Six = b[at:end]
 	}
-	t.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		t.Seven = b[at:end]
 	}
-	t.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		t.Eight = b[at:end]
 	}
-	t.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		t.Nine = b[at:end]
 	}
-	t.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		t.Ten = b[at:end]
 	}
-	t.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		t.Eleven = b[at:end]
 	}
-	t.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		t.Twelve = b[at:end]
 	}
-	t.Fourteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l12
+	if l12 != 0 {
+		t.Thirteen = b[at:end]
 	}
-	t.Fifteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l13
+	if l13 != 0 {
+		t.Fourteen = b[at:end]
 	}
-	t.Sixteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l14
+	if l14 != 0 {
+		t.Fifteen = b[at:end]
 	}
-	t.Seventeen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l15
+	if l15 != 0 {
+		t.Sixteen = b[at:end]
 	}
-	t.Eighteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l16
+	if l16 != 0 {
+		t.Seventeen = b[at:end]
 	}
-	t.Nineteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l17
+	if l17 != 0 {
+		t.Eighteen = b[at:end]
 	}
-	t.Twenty, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l18
+	if l18 != 0 {
+		t.Nineteen = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &t.TwentyOne)
+	at, end = end, end+l19
+	if l19 != 0 {
+		t.Twenty = b[at:end]
+	}
+	if l20 != 0 {
+		t.TwentyOne = b[end:]
+	}
+	return nil
 }
 
 func (t *TwentyTwo) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty), len(t.TwentyOne), len(t.TwentyTwo)
 	b = make([]byte, 22+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21)
-	at := jay.WriteBytesAt(b, t.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], t.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], t.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], t.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], t.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], t.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], t.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], t.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], t.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], t.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], t.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], t.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], t.Thirteen, l12, at)
-	at = jay.WriteBytesAt(b[at:], t.Fourteen, l13, at)
-	at = jay.WriteBytesAt(b[at:], t.Fifteen, l14, at)
-	at = jay.WriteBytesAt(b[at:], t.Sixteen, l15, at)
-	at = jay.WriteBytesAt(b[at:], t.Seventeen, l16, at)
-	at = jay.WriteBytesAt(b[at:], t.Eighteen, l17, at)
-	at = jay.WriteBytesAt(b[at:], t.Nineteen, l18, at)
-	at = jay.WriteBytesAt(b[at:], t.Twenty, l19, at)
-	at = jay.WriteBytesAt(b[at:], t.TwentyOne, l20, at)
-	jay.WriteBytes(b[at:], t.TwentyTwo, l21)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20), byte(l21)
+	at, end := 22, 22+l0
+	if l0 != 0 {
+		copy(b[at:end], t.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], t.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], t.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], t.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], t.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], t.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], t.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], t.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], t.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], t.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], t.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], t.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], t.Thirteen)
+	}
+	at, end = end, end+l13
+	if l13 != 0 {
+		copy(b[at:end], t.Fourteen)
+	}
+	at, end = end, end+l14
+	if l14 != 0 {
+		copy(b[at:end], t.Fifteen)
+	}
+	at, end = end, end+l15
+	if l15 != 0 {
+		copy(b[at:end], t.Sixteen)
+	}
+	at, end = end, end+l16
+	if l16 != 0 {
+		copy(b[at:end], t.Seventeen)
+	}
+	at, end = end, end+l17
+	if l17 != 0 {
+		copy(b[at:end], t.Eighteen)
+	}
+	at, end = end, end+l18
+	if l18 != 0 {
+		copy(b[at:end], t.Nineteen)
+	}
+	at, end = end, end+l19
+	if l19 != 0 {
+		copy(b[at:end], t.Twenty)
+	}
+	at, end = end, end+l20
+	if l20 != 0 {
+		copy(b[at:end], t.TwentyOne)
+	}
+	if l21 != 0 {
+		copy(b[end:], t.TwentyTwo)
+	}
 	return
 }
 
 func (t *TwentyTwo) UnmarshalJ(b []byte) error {
-	if len(b) < 22 {
+	l := len(b)
+	if l < 22 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	t.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20]), int(b[21])
+	if l < 22+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 22, 22+l0
+	if l0 != 0 {
+		t.One = b[at:end]
 	}
-	t.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		t.Two = b[at:end]
 	}
-	t.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		t.Three = b[at:end]
 	}
-	t.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		t.Four = b[at:end]
 	}
-	t.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		t.Five = b[at:end]
 	}
-	t.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		t.Six = b[at:end]
 	}
-	t.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		t.Seven = b[at:end]
 	}
-	t.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		t.Eight = b[at:end]
 	}
-	t.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		t.Nine = b[at:end]
 	}
-	t.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		t.Ten = b[at:end]
 	}
-	t.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		t.Eleven = b[at:end]
 	}
-	t.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		t.Twelve = b[at:end]
 	}
-	t.Fourteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l12
+	if l12 != 0 {
+		t.Thirteen = b[at:end]
 	}
-	t.Fifteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l13
+	if l13 != 0 {
+		t.Fourteen = b[at:end]
 	}
-	t.Sixteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l14
+	if l14 != 0 {
+		t.Fifteen = b[at:end]
 	}
-	t.Seventeen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l15
+	if l15 != 0 {
+		t.Sixteen = b[at:end]
 	}
-	t.Eighteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l16
+	if l16 != 0 {
+		t.Seventeen = b[at:end]
 	}
-	t.Nineteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l17
+	if l17 != 0 {
+		t.Eighteen = b[at:end]
 	}
-	t.Twenty, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l18
+	if l18 != 0 {
+		t.Nineteen = b[at:end]
 	}
-	t.TwentyOne, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l19
+	if l19 != 0 {
+		t.Twenty = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &t.TwentyTwo)
+	at, end = end, end+l20
+	if l20 != 0 {
+		t.TwentyOne = b[at:end]
+	}
+	if l21 != 0 {
+		t.TwentyTwo = b[end:]
+	}
+	return nil
 }
 
 func (t *TwentyThree) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty), len(t.TwentyOne), len(t.TwentyTwo), len(t.TwentyThree)
 	b = make([]byte, 23+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22)
-	at := jay.WriteBytesAt(b, t.One, l0, 0)
-	at = jay.WriteBytesAt(b[at:], t.Two, l1, at)
-	at = jay.WriteBytesAt(b[at:], t.Three, l2, at)
-	at = jay.WriteBytesAt(b[at:], t.Four, l3, at)
-	at = jay.WriteBytesAt(b[at:], t.Five, l4, at)
-	at = jay.WriteBytesAt(b[at:], t.Six, l5, at)
-	at = jay.WriteBytesAt(b[at:], t.Seven, l6, at)
-	at = jay.WriteBytesAt(b[at:], t.Eight, l7, at)
-	at = jay.WriteBytesAt(b[at:], t.Nine, l8, at)
-	at = jay.WriteBytesAt(b[at:], t.Ten, l9, at)
-	at = jay.WriteBytesAt(b[at:], t.Eleven, l10, at)
-	at = jay.WriteBytesAt(b[at:], t.Twelve, l11, at)
-	at = jay.WriteBytesAt(b[at:], t.Thirteen, l12, at)
-	at = jay.WriteBytesAt(b[at:], t.Fourteen, l13, at)
-	at = jay.WriteBytesAt(b[at:], t.Fifteen, l14, at)
-	at = jay.WriteBytesAt(b[at:], t.Sixteen, l15, at)
-	at = jay.WriteBytesAt(b[at:], t.Seventeen, l16, at)
-	at = jay.WriteBytesAt(b[at:], t.Eighteen, l17, at)
-	at = jay.WriteBytesAt(b[at:], t.Nineteen, l18, at)
-	at = jay.WriteBytesAt(b[at:], t.Twenty, l19, at)
-	at = jay.WriteBytesAt(b[at:], t.TwentyOne, l20, at)
-	at = jay.WriteBytesAt(b[at:], t.TwentyTwo, l21, at)
-	jay.WriteBytes(b[at:], t.TwentyThree, l22)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21], b[22] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20), byte(l21), byte(l22)
+	at, end := 23, 23+l0
+	if l0 != 0 {
+		copy(b[at:end], t.One)
+	}
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:end], t.Two)
+	}
+	at, end = end, end+l2
+	if l2 != 0 {
+		copy(b[at:end], t.Three)
+	}
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:end], t.Four)
+	}
+	at, end = end, end+l4
+	if l4 != 0 {
+		copy(b[at:end], t.Five)
+	}
+	at, end = end, end+l5
+	if l5 != 0 {
+		copy(b[at:end], t.Six)
+	}
+	at, end = end, end+l6
+	if l6 != 0 {
+		copy(b[at:end], t.Seven)
+	}
+	at, end = end, end+l7
+	if l7 != 0 {
+		copy(b[at:end], t.Eight)
+	}
+	at, end = end, end+l8
+	if l8 != 0 {
+		copy(b[at:end], t.Nine)
+	}
+	at, end = end, end+l9
+	if l9 != 0 {
+		copy(b[at:end], t.Ten)
+	}
+	at, end = end, end+l10
+	if l10 != 0 {
+		copy(b[at:end], t.Eleven)
+	}
+	at, end = end, end+l11
+	if l11 != 0 {
+		copy(b[at:end], t.Twelve)
+	}
+	at, end = end, end+l12
+	if l12 != 0 {
+		copy(b[at:end], t.Thirteen)
+	}
+	at, end = end, end+l13
+	if l13 != 0 {
+		copy(b[at:end], t.Fourteen)
+	}
+	at, end = end, end+l14
+	if l14 != 0 {
+		copy(b[at:end], t.Fifteen)
+	}
+	at, end = end, end+l15
+	if l15 != 0 {
+		copy(b[at:end], t.Sixteen)
+	}
+	at, end = end, end+l16
+	if l16 != 0 {
+		copy(b[at:end], t.Seventeen)
+	}
+	at, end = end, end+l17
+	if l17 != 0 {
+		copy(b[at:end], t.Eighteen)
+	}
+	at, end = end, end+l18
+	if l18 != 0 {
+		copy(b[at:end], t.Nineteen)
+	}
+	at, end = end, end+l19
+	if l19 != 0 {
+		copy(b[at:end], t.Twenty)
+	}
+	at, end = end, end+l20
+	if l20 != 0 {
+		copy(b[at:end], t.TwentyOne)
+	}
+	at, end = end, end+l21
+	if l21 != 0 {
+		copy(b[at:end], t.TwentyTwo)
+	}
+	if l22 != 0 {
+		copy(b[end:], t.TwentyThree)
+	}
 	return
 }
 
 func (t *TwentyThree) UnmarshalJ(b []byte) error {
-	if len(b) < 23 {
+	l := len(b)
+	if l < 23 {
 		return jay.ErrUnexpectedEOB
 	}
-	var ok bool
-	at := 0
-	t.One, at, ok = jay.ReadBytesAt(b, at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20]), int(b[21]), int(b[22])
+	if l < 23+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.Two, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end := 23, 23+l0
+	if l0 != 0 {
+		t.One = b[at:end]
 	}
-	t.Three, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l1
+	if l1 != 0 {
+		t.Two = b[at:end]
 	}
-	t.Four, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	if l2 != 0 {
+		t.Three = b[at:end]
 	}
-	t.Five, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l3
+	if l3 != 0 {
+		t.Four = b[at:end]
 	}
-	t.Six, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	if l4 != 0 {
+		t.Five = b[at:end]
 	}
-	t.Seven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l5
+	if l5 != 0 {
+		t.Six = b[at:end]
 	}
-	t.Eight, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l6
+	if l6 != 0 {
+		t.Seven = b[at:end]
 	}
-	t.Nine, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l7
+	if l7 != 0 {
+		t.Eight = b[at:end]
 	}
-	t.Ten, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l8
+	if l8 != 0 {
+		t.Nine = b[at:end]
 	}
-	t.Eleven, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l9
+	if l9 != 0 {
+		t.Ten = b[at:end]
 	}
-	t.Twelve, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l10
+	if l10 != 0 {
+		t.Eleven = b[at:end]
 	}
-	t.Thirteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l11
+	if l11 != 0 {
+		t.Twelve = b[at:end]
 	}
-	t.Fourteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l12
+	if l12 != 0 {
+		t.Thirteen = b[at:end]
 	}
-	t.Fifteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l13
+	if l13 != 0 {
+		t.Fourteen = b[at:end]
 	}
-	t.Sixteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l14
+	if l14 != 0 {
+		t.Fifteen = b[at:end]
 	}
-	t.Seventeen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l15
+	if l15 != 0 {
+		t.Sixteen = b[at:end]
 	}
-	t.Eighteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l16
+	if l16 != 0 {
+		t.Seventeen = b[at:end]
 	}
-	t.Nineteen, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l17
+	if l17 != 0 {
+		t.Eighteen = b[at:end]
 	}
-	t.Twenty, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l18
+	if l18 != 0 {
+		t.Nineteen = b[at:end]
 	}
-	t.TwentyOne, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l19
+	if l19 != 0 {
+		t.Twenty = b[at:end]
 	}
-	t.TwentyTwo, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l20
+	if l20 != 0 {
+		t.TwentyOne = b[at:end]
 	}
-	return jay.ReadBytesPtrErr(b[at:], &t.TwentyThree)
+	at, end = end, end+l21
+	if l21 != 0 {
+		t.TwentyTwo = b[at:end]
+	}
+	if l22 != 0 {
+		t.TwentyThree = b[end:]
+	}
+	return nil
 }
