@@ -48,6 +48,12 @@ func bufferName(receiverName string) string {
 	}
 	return "b"
 }
+func lengthName(receiverName string) string {
+	if receiverName == "l" {
+		return "z"
+	}
+	return "l"
+}
 
 var typeArray = regexp.MustCompile(`\[(\d)+\](\w)+`)
 var typeArrayBrackets = regexp.MustCompile(`\[(\d)+\]`)
@@ -440,7 +446,11 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 	return
 }
 
-func (s *structTyp) tracking(buf *bytes.Buffer, i int) (at, end string) {
+func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string) (at, end string) {
+	if endVar == "" {
+		return strconv.Itoa(i), ""
+	}
+
 	if i == len(s.variableLen)-1 {
 		return "end", ""
 	}

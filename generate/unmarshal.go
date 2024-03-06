@@ -24,8 +24,8 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i)
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, i == 0, i == vLen, &returnInlined, s.bufferName))
+		at, end = s.tracking(buf, i, end)
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, i == 0, i == vLen, &returnInlined, s.bufferName, &hasDefinedOkVar))
 		buf.WriteString("\n")
 	}
 
@@ -40,7 +40,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	if len(s.variableLen) == 0 {
 		lengthCheck = fmt.Sprintf("if len(%s) < %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
 	} else {
-		lengthCheck = fmt.Sprintf("l := len(%s)\nif l < %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\nif %[1]s < %[3]d {\nreturn %[4]s\n}", s.lengthName, s.bufferName, byteIndex, exportedErr)
 	}
 	variableLengthCheck := s.generateCheckSizes(exportedErr, byteIndex)
 
@@ -99,9 +99,18 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 			fun = f.aliasType
 		}
 		if isFirst && isLast {
-			return fmt.Sprintf("%s.%s = %s(b[%d:])", receiver, f.name, fun, *byteIndex)
+			return fmt.Sprintf("%s.%s = %s(%s[%d:])", receiver, f.name, fun, bufferName, *byteIndex)
 		} else {
-			return fmt.Sprintf("%s.%s = %s(b[%s:%s])", receiver, f.name, fun, at, end)
+			return fmt.Sprintf("%s.%s = %s(%s[%s:%s])", receiver, f.name, fun, bufferName, at, end)
+		}
+	case "[]byte":
+		if f.typ != f.aliasType {
+			fun = f.aliasType
+		}
+		if isFirst && isLast {
+			return fmt.Sprintf("%s.%s = %s[%d:]", receiver, f.name, bufferName, *byteIndex)
+		} else {
+			return fmt.Sprintf("%s.%s = %s[%s:%s]", receiver, f.name, bufferName, at, end)
 		}
 	}
 
@@ -240,9 +249,11 @@ func unmarshalArrayFuncs(f field, isLast bool) (fun interface{}, size, totalSize
 		if f.arraySize == -1 {
 			// Type []byte.
 			if isLast {
-				return jay.ReadBytesPtrErr, 0, 1, true
+				//return jay.ReadBytesPtrErr, 0, 1, true
+				return "copy", 0, 0, true
 			} else {
-				return jay.ReadBytesAt, 0, 1, true
+				//return jay.ReadBytesAt, 0, 1, true
+				return "copy", 0, 0, true
 			}
 		} else {
 			// TODO flexible array sizes

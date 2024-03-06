@@ -16,6 +16,7 @@ type structTyp struct {
 	name       string
 	receiver   string
 	bufferName string
+	lengthName string
 	dir        string
 
 	// Exported fields.
@@ -61,6 +62,7 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 			dir:      v.dir,
 		}
 		s.bufferName = bufferName(s.receiver)
+		s.lengthName = lengthName(s.receiver)
 
 		if s.process(n.Fields.List, v.option, v.files) {
 			*v.structs = append(*v.structs, s)
