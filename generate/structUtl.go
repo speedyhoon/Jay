@@ -306,6 +306,10 @@ func (o Option) typeOf(t interface{}) (s string, isFixedLen bool) {
 			return "struct", !o.isVariableLen(x.Fields.List)
 		}
 	case *ast.Ident:
+		if x.Obj != nil {
+			return o.typeOf(x.Obj)
+		}
+
 		if supportedType(x.Name) {
 			return x.Name, o.isLenFixed(x.Name)
 		}
