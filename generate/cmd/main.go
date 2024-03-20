@@ -34,6 +34,7 @@ func main() {
 	flag.BoolVar(&opt.FixedUintSize, "fu", true, "Fixed uint size.")
 	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
 	flag.BoolVar(&verbose, "v", false, "Verbose output.")
+	flag.BoolVar(&opt.PointerMarshalFunc, "p", false, "Pointer MarshalJ()  method.")
 	flag.BoolVar(&opt.SearchTests, "s", false, "Search Go test files for exported structs too.")
 	flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")

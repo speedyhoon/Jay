@@ -41,10 +41,16 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 		return
 	}
 
+	var pointer string
+	if o.PointerMarshalFunc {
+		pointer = "*"
+	}
+
 	if isReturnInlined {
 		bufWriteF(b,
-			"func (%s *%s) MarshalJ() []byte {\nreturn []byte{%s}\n}\n",
+			"func (%s %s%s) MarshalJ() []byte {\nreturn []byte{%s}\n}\n",
 			s.receiver,
+			pointer,
 			s.name,
 			code,
 		)
@@ -52,7 +58,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	}
 
 	b.WriteString(fmt.Sprintf(
-		"func (%[1]s *%[2]s) MarshalJ() (%[3]s []byte) {\n%[4]s\n%[3]s = make([]byte, %[5]s)\n%[6]s%[7]sreturn\n}\n",
+		"func (%[1]s %[8]s%[2]s) MarshalJ() (%[3]s []byte) {\n%[4]s\n%[3]s = make([]byte, %[5]s)\n%[6]s%[7]sreturn\n}\n",
 		s.receiver,
 		s.name,
 		s.bufferName,
@@ -60,6 +66,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 		makeSize,
 		s.generateSizeLine(),
 		code,
+		pointer,
 	))
 
 	return

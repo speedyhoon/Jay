@@ -59,6 +59,9 @@ type Option struct {
 	Verbose     *log.Logger
 	SearchTests bool
 
+	// PointerMarshalFunc changes generated MarshalJ method to a pointer receiver. true: `func (f *Foo) MarshalJ()`, false: `func (f Foo) MarshalJ()`.
+	PointerMarshalFunc bool
+
 	SkipTests     bool
 	SkipMarshal   bool
 	SkipUnmarshal bool
