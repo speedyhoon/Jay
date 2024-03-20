@@ -4,6 +4,8 @@ import (
 	"bytes"
 )
 
+const marshalBoolsFuncPrefix = "Bool"
+
 func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bool) (isReturnInlined bool) {
 	if len(s.bool) == 0 {
 		return false
@@ -35,8 +37,6 @@ func boolsSliceIndex(input uint) uint {
 }
 
 func writeBools(bools []field, b *bytes.Buffer, byteIndex uint, receiver, bufferName string, isMake bool) {
-	const marshalBoolsFuncPrefix = "Bool"
-
 	if len(bools) > 8 {
 		bools = bools[:8]
 	}
