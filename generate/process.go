@@ -71,10 +71,9 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 }
 
 func (d *dirList) Walk(o Option) {
-	files := d.allFiles()
 	for dir, fl := range *d {
 		for _, file := range fl.files {
-			ast.Walk(visitor{structs: &fl.structs, option: o, dir: dir, files: files}, file)
+			ast.Walk(visitor{structs: &fl.structs, option: o, dir: dir, dirList: d}, file)
 		}
 		(*d)[dir] = fl
 	}
@@ -176,7 +175,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 	return err
 }
 
-func (s *structTyp) process(fields []*ast.Field, o Option, files []*ast.File) (hasExportedFields bool) {
+func (s *structTyp) process(fields []*ast.Field, o Option, dirList *dirList) (hasExportedFields bool) {
 	for i := 0; i < len(fields); {
 		t := fields[i]
 
@@ -186,7 +185,7 @@ func (s *structTyp) process(fields []*ast.Field, o Option, files []*ast.File) (h
 			continue
 		}
 
-		fe, ok := o.isSupportedType(t, files)
+		fe, ok := o.isSupportedType(t, dirList, s.dir)
 		if !ok {
 			fields = Remove(fields, i)
 			continue

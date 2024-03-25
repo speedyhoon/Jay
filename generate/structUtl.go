@@ -74,7 +74,7 @@ func supportedType(typ string) bool {
 	return false
 }
 
-func (o Option) isSupportedType(t *ast.Field, files []*ast.File) (f field, ok bool) {
+func (o Option) isSupportedType(t *ast.Field, dirList *dirList, pkg string) (f field, ok bool) {
 	switch d := t.Type.(type) {
 	case *ast.Ident:
 		if supportedType(d.Name) { // TODO its probably better to check if the obj != nil first otherwise do this.
@@ -84,6 +84,11 @@ func (o Option) isSupportedType(t *ast.Field, files []*ast.File) (f field, ok bo
 			return f, true
 		}
 
+		// Object might be declared in another file in the same package.
+		if d.Obj == nil && dirList != nil {
+			d.Obj = findImportedType((*dirList)[pkg].files, pkg, t.Names[0].Name)
+		}
+
 		// Type has an alias name.
 		f.typ, f.isFixedLen = o.typeOf(d.Obj)
 		f.aliasType = d.Name
@@ -91,12 +96,16 @@ func (o Option) isSupportedType(t *ast.Field, files []*ast.File) (f field, ok bo
 	case nil:
 	// Ignore.
 	case *ast.SelectorExpr:
-		return o.isSupportedSelector(d, files)
+		if dirList != nil {
+			return o.isSupportedSelector(d, dirList.allFiles())
+		} else {
+			return o.isSupportedSelector(d, nil)
+		}
 
 	//case *ast.StructType:
 	// TODO not yet implemented.
 	case *ast.ArrayType:
-		f, ok = o.calcType(d, "", files)
+		f, ok = o.calcType(d, "", dirList.allFiles())
 		return f, ok
 	default:
 		lg.Printf("type %T not expected in Option.isSupportedType()", d)
@@ -327,7 +336,7 @@ func (o Option) isVariableLen(fields []*ast.Field) bool {
 			continue
 		}
 
-		fe, ok := o.isSupportedType(f, nil)
+		fe, ok := o.isSupportedType(f, nil, "")
 		if !ok {
 			continue
 		}
