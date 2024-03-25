@@ -9,7 +9,6 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"unicode"
 )
 
 const (
@@ -37,22 +36,6 @@ func unwrapTagValue(str string) string {
 		return str[1 : len(str)-1]
 	}
 	return str
-}
-
-func receiverName(typeName string) string {
-	return string(unicode.ToLower([]rune(typeName)[0]))
-}
-func bufferName(receiverName string) string {
-	if receiverName == "b" {
-		return "y"
-	}
-	return "b"
-}
-func lengthName(receiverName string) string {
-	if receiverName == "l" {
-		return "z"
-	}
-	return "l"
 }
 
 var typeArray = regexp.MustCompile(`\[(\d)+\](\w)+`)

@@ -12,22 +12,6 @@ type visitor struct {
 	dir       string
 }
 
-type structTyp struct {
-	name       string
-	receiver   string
-	bufferName string
-	lengthName string
-	dir        string
-
-	// Exported fields.
-	fixedLen, // Fixed length types like int16, uint64 and some arrays etc.
-	single, // Fields represented in one byte like int8 & uint8. These have additional optimisations.
-	variableLen, // Variable length fields like string and all slice types. These are generated last & have the most processing overhead.
-	bool, // Boolean fields are joined together and represented as binary.
-	boolArray,
-	boolSlice fieldList
-}
-
 type field struct {
 	name string // The string used as the variable name.
 	typ  string // The underlying type of the variable (uint, byte, bool, map, etc).
@@ -56,14 +40,7 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 			return v
 		}
 
-		s := structTyp{
-			name:     v.enclosing,
-			receiver: receiverName(v.enclosing),
-			dir:      v.dir,
-		}
-		s.bufferName = bufferName(s.receiver)
-		s.lengthName = lengthName(s.receiver)
-
+		s := newStructTyp(v.dir, v.enclosing)
 		if s.process(n.Fields.List, v.option, v.dirList) {
 			*v.structs = append(*v.structs, s)
 		}
