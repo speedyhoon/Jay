@@ -40,12 +40,12 @@ func TestFuzz(t *testing.T) {
 		if strings.HasPrefix(typ, "[]") {
 			tempPath += "s"
 		}
-		Genny(t, tempPath, typ)
+		GenerateFuzzTest(t, tempPath, typ)
 	}
 }
 
-func Genny(t *testing.T, tempPath string, typ string) {
-	err := os.MkdirAll(tempPath, os.ModePerm)
+func GenerateFuzzTest(t *testing.T, fuzzDir string, typ string) {
+	err := os.MkdirAll(fuzzDir, os.ModePerm)
 	if err != nil {
 		log.Panicln("Error creating directory:", err)
 		return
@@ -53,9 +53,9 @@ func Genny(t *testing.T, tempPath string, typ string) {
 
 	const perm = 0666
 
-	pathPkg := filepath.Join(tempPath, "pkg.go")
-	pathTest := filepath.Join(tempPath, "jay_test.go")
-	pathJay := filepath.Join(tempPath, generate.DefaultOutputFileName)
+	pathPkg := filepath.Join(fuzzDir, "pkg.go")
+	pathTest := filepath.Join(fuzzDir, "jay_test.go")
+	pathJay := filepath.Join(fuzzDir, generate.DefaultOutputFileName)
 
 	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
 
@@ -68,7 +68,7 @@ func Genny(t *testing.T, tempPath string, typ string) {
 	require.NoError(t, opt.ProcessWrite(pkg, pathJay))
 
 	cmd := exec.Command("go", "test")
-	cmd.Dir = tempPath
+	cmd.Dir = fuzzDir
 	cmd.Stdout, cmd.Stderr = os.Stdout, os.Stderr
 
 	err = cmd.Run()
