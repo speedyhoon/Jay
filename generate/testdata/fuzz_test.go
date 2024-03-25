@@ -57,7 +57,7 @@ func GenerateFuzzTest(t *testing.T, fuzzDir string, typ string) {
 	pathTest := filepath.Join(fuzzDir, "jay_test.go")
 	pathJay := filepath.Join(fuzzDir, generate.DefaultOutputFileName)
 
-	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
+	opt := generate.Option{FixedIntSize: true, FixedUintSize: true, PointerMarshalFunc: true}
 
 	pkg, tests, err := types.PackageSequence("main", typ, "testdata/fuzz_test")
 	// Ensure both files are saved before processing. But if pathPkg fails to save, at least try to save pathTest too.
