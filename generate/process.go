@@ -116,6 +116,13 @@ type (
 )
 
 func (d *dirList) add(dir string, file *ast.File) {
+	if dir == "." {
+		if file != nil && file.Name != nil && file.Name.Name != "" {
+			dir = file.Name.Name
+		} else {
+			dir = "main"
+		}
+	}
 	list, _ := (*d)[dir]
 	list.files = append(list.files, file)
 	(*d)[dir] = list
