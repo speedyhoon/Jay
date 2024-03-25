@@ -65,12 +65,12 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		directories.add(filepath.Dir(filenames[i]), f)
 	}
 
-	directories.Walk(*o)
+	directories.walk(*o)
 
 	return o.makeFiles(directories)
 }
 
-func (d *dirList) Walk(o Option) {
+func (d *dirList) walk(o Option) {
 	for dir, fl := range *d {
 		for _, file := range fl.files {
 			ast.Walk(visitor{structs: &fl.structs, option: o, dir: dir, dirList: d}, file)
