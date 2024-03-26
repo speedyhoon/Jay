@@ -439,9 +439,9 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 	return
 }
 
-func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string) (at, end string) {
+func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint) (at, end string) {
 	if endVar == "" {
-		return strconv.Itoa(i), ""
+		return Utoa(byteIndex), ""
 	}
 
 	if i == len(s.variableLen)-1 {

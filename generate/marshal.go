@@ -31,7 +31,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i, end)
+		at, end = s.tracking(buf, i, end, byteIndex)
 		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == 0, i == vLen, s.bufferName, importJ, fmt.Sprintf("l%d", i)))
 		buf.WriteString("\n")
 	}
@@ -130,6 +130,8 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string,
 			}
 			return fmt.Sprintf("if %s != 0 {%s(%s[%s:%s], %s)\n}", lenVar, fun, bufferName, at, end, thisField)
 		}
+	case "[]int8":
+		return fmt.Sprintf("%s(%s[%s:%s], %s)", fun, bufferName, at, end, thisField)
 	}
 
 	switch size {
@@ -209,6 +211,7 @@ func (f *field) isSlice() bool {
 	return "", 0, false
 }*/
 
+// Utoa is equivalent to strconv.FormatUint(uint64(u), 10).
 func Utoa(u uint) string {
 	return strconv.FormatUint(uint64(u), 10)
 }
@@ -274,6 +277,8 @@ func (o Option) typeFuncs(fe field, isLast bool, importJ *bool) (fun string, siz
 		}
 	case "[]uint8", "[]byte":
 		return "copy", 0, 0
+	case "[]int8":
+		f, size, totalSize = jay.WriteInt8s, 0, 1
 
 	case "[15]byte", "[15]uint8":
 		return "copy", uint(fe.arraySize), uint(fe.arraySize)

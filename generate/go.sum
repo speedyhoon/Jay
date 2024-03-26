@@ -12,8 +12,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rogpeppe/go-internal v1.12.0 h1:exVL4IDcn6na9z1rAb56Vxr+CgyK3nn3O+epU5NdKM8=
 github.com/rogpeppe/go-internal v1.12.0/go.mod h1:E+RYuTGaKKdloAfM02xzb0FW3Paa99yedzYV+kq4uf4=
-github.com/speedyhoon/jay v0.0.0-20240227101254-eac1be29401c h1:2rhPPKH/DLfaFfp43yWyOXTNEJhga6+7sX1sKuVdK1s=
-github.com/speedyhoon/jay v0.0.0-20240227101254-eac1be29401c/go.mod h1:dGs0XfOCSBaFI7/YIs2aEmVdsglxkKOpAd429cswCL4=
+github.com/speedyhoon/jay v0.0.0-20240326041922-a9f6c73b3bd6 h1:mfVO0sVSFovWZTu0qDNy+X+NJiqfcpPe3I/+MEQAnno=
+github.com/speedyhoon/jay v0.0.0-20240326041922-a9f6c73b3bd6/go.mod h1:dGs0XfOCSBaFI7/YIs2aEmVdsglxkKOpAd429cswCL4=
 github.com/speedyhoon/rando v0.0.0-20240214031143-7df48f59d007 h1:nDi42wb+mGg+uuAUnKxQbY7/gNST6Kn3nKWdwibHShs=
 github.com/speedyhoon/rando v0.0.0-20240214031143-7df48f59d007/go.mod h1:HS4kVHAohgYIPBcPH3gfXXHQPfW4CSBgykeOFFmEO0w=
 github.com/speedyhoon/rando/types v0.0.0-20240306044551-d2a71bcf8506 h1:lW/DvOenkR2N3Bf5+G91PcUSwhwduCAQPqQoBQoosq4=

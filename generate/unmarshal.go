@@ -24,7 +24,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i, end)
+		at, end = s.tracking(buf, i, end, byteIndex)
 		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, i == 0, i == vLen, &returnInlined, s.bufferName, &hasDefinedOkVar, fmt.Sprintf("l%d", i)))
 		buf.WriteString("\n")
 	}
@@ -118,6 +118,8 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 			}
 			return fmt.Sprintf("if %s != 0 {%s = %s[%s:%s]\n}", lenVar, thisField, bufferName, at, end)
 		}
+	case "[]int8":
+		return fmt.Sprintf("%s = %s(%s[%s:%s], %s)", thisField, fun, bufferName, at, end, lenVar)
 	}
 
 	if f.isArray() && f.arrayType == "int8" {
@@ -222,6 +224,8 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 		} else {
 			c, size, totalSize = jay.ReadTime, 8, 8
 		}
+	case "[]int8":
+		c, size, totalSize = jay.ReadInt8s, 0, 0
 
 	default:
 		var ok bool
