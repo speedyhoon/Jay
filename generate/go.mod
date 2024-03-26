@@ -4,7 +4,7 @@ go 1.21.4
 
 require (
 	github.com/speedyhoon/jay v0.0.0-20240326041922-a9f6c73b3bd6
-	github.com/speedyhoon/rando v0.0.0-20240214031143-7df48f59d007
+	github.com/speedyhoon/rando v0.0.0-20240326080109-08454ea15f13
 	github.com/speedyhoon/rando/types v0.0.0-20240306044551-d2a71bcf8506
 	github.com/speedyhoon/utl v0.0.0-20240305010849-8c0101d907aa
 	github.com/speedyhoon/utl/flagvar v0.0.0-20240305010849-8c0101d907aa
