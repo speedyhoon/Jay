@@ -21,7 +21,6 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 	}
 
 	*o = LoadOptions(*o)
-	var files []*ast.File
 	var f *ast.File
 	var err error
 	directories := make(dirList)
@@ -32,7 +31,6 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 			lg.Println("source error:", err)
 			errors.Join(errs, err)
 		} else {
-			files = append(files, f)
 			directories.add(packageName(f), f)
 		}
 	}
@@ -61,7 +59,6 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 			errors.Join(errs, err)
 			continue
 		}
-		files = append(files, f)
 		directories.add(filepath.Dir(filenames[i]), f)
 	}
 
