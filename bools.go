@@ -1,5 +1,12 @@
 package jay
 
+func SizeBools(length int) int {
+	if length <= 0 {
+		return 0
+	}
+	return (length-1)/8 + 1
+}
+
 func WriteBools(y []byte, a []bool, length int) {
 	for i, n := 0, 0; i*8 < length; i++ {
 		n = i * 8
