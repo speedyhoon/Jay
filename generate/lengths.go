@@ -2,6 +2,7 @@ package generate
 
 import (
 	"fmt"
+	"github.com/speedyhoon/jay"
 	"strconv"
 	"strings"
 )
@@ -36,28 +37,22 @@ func (s *structTyp) LenDecl(b *bytes.Buffer) {
 	))
 }*/
 
-func joinSizes(qty uint, variableLen []field, o Option) string {
+func joinSizes(qty uint, variableLen []field, o Option, importJ *bool) string {
 	var s []string
 	if qty != 0 {
 		s = []string{Utoa(qty)}
 	}
 
-	var variableFields, variableStructs []string
-	for _, v := range variableLen {
+	for i, v := range variableLen {
 		qty += isLen(v.typ)
 		if o.isLenVariable(v.typ) {
-			variableFields = append(variableFields, v.name)
-		} else if v.typ == "struct" {
-			variableStructs = append(variableStructs, v.name)
+			if v.typ == "[]bool" {
+				s = append(s, fmt.Sprintf("%s(%s)", nameOf(jay.SizeBools, importJ), lenVariable(i)))
+			} else {
+				s = append(s, lenVariable(i))
+			}
 		}
 	}
-
-	if len(variableFields) != 0 {
-		s = append(s, addDecls(len(variableFields)))
-	}
-	//if len(variableStructs) != 0 {
-	//	s = append(s, lengths2(variableStructs, receiverName))
-	//}
 
 	return strings.Join(s, "+")
 }

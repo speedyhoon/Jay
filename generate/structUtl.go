@@ -3,6 +3,7 @@ package generate
 import (
 	"bytes"
 	"fmt"
+	"github.com/speedyhoon/jay"
 	"go/ast"
 	"go/token"
 	"reflect"
@@ -244,7 +245,7 @@ func (o *Option) calcArrayType(x interface{}) (typeOf string, ok bool) {
 }
 func supportedArrayType(s string) bool {
 	switch s {
-	case "byte", "int8", "uint8":
+	case "byte", "int8", "uint8", "bool":
 		return true
 	default:
 		lg.Println("array type", s, "not supported yet")
@@ -389,10 +390,9 @@ func isLen(typ string) uint {
 
 func (o Option) isLenFixed(typ string) bool {
 	switch typ {
-	// TODO case "[]bool", "[]int", "map[x]x",
 	case "int":
 		return o.FixedIntSize
-	case "string", "[]byte", "[]uint8", "[]int8":
+	case "string", "[]byte", "[]uint8", "[]int8", "[]bool":
 		return false
 	case "uint":
 		return o.FixedUintSize
@@ -433,13 +433,17 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 	case 1:
 		at = Utoa(byteIndex)
 	default:
-		bufWriteF(buf, "at, end := %d, %[1]d+l0\n", byteIndex)
+		if s.variableLen[0].typ == "[]bool" {
+			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), lenVariable(0))
+		} else {
+			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, lenVariable(0))
+		}
 		at, end = "at", "end"
 	}
 	return
 }
 
-func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint) (at, end string) {
+func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint, varType string) (at, end string) {
 	if endVar == "" {
 		return Utoa(byteIndex), ""
 	}
@@ -448,7 +452,16 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 		return "end", ""
 	}
 	if i >= 1 {
-		bufWriteF(buf, "at, end = end, end+l%d\n", i)
+		if varType == "[]bool" {
+			bufWriteF(buf, "at, end = end, end+%s(%s)\n", nameOf(jay.SizeBools, nil), lenVariable(i))
+		} else {
+			bufWriteF(buf, "at, end = end, end+%s\n", lenVariable(i))
+		}
 	}
 	return "at", "end"
+}
+
+func lenVariable(index int) string {
+	const lengthVarPrefix = "l"
+	return lengthVarPrefix + Utoa(uint(index))
 }

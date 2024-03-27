@@ -24,8 +24,8 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i, end, byteIndex)
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, i == 0, i == vLen, &returnInlined, s.bufferName, &hasDefinedOkVar, fmt.Sprintf("l%d", i)))
+		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
+		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, i == 0, i == vLen, &returnInlined, s.bufferName, &hasDefinedOkVar, lenVariable(i)))
 		buf.WriteString("\n")
 	}
 
@@ -66,17 +66,24 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	if qty == 0 {
 		return ""
 	}
-	assignments, values := make([]string, qty), make([]string, qty)
-	for i := 0; i < qty; i++ {
-		assignments[i] = fmt.Sprintf("l%d", i)
+
+	assignments, values, conditions := make([]string, qty), make([]string, qty), make([]string, qty)
+	for i, f := range s.variableLen {
+		assignments[i] = lenVariable(i)
 		values[i] = fmt.Sprintf("int(%s[%d])", s.bufferName, i)
+		if f.typ == "[]bool" {
+			conditions[i] = fmt.Sprintf("%s(%s)", nameOf(jay.SizeBools, nil), assignments[i])
+		} else {
+			conditions[i] = assignments[i]
+		}
 	}
+
 	return fmt.Sprintf(
 		"%s := %s\nif l < %d+%s {\nreturn %s\n}\n",
 		strings.Join(assignments, ", "),
 		strings.Join(values, ", "),
 		totalSize,
-		strings.Join(assignments, "+"),
+		strings.Join(conditions, "+"),
 		exportedErr,
 	)
 }
@@ -118,7 +125,7 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 			}
 			return fmt.Sprintf("if %s != 0 {%s = %s[%s:%s]\n}", lenVar, thisField, bufferName, at, end)
 		}
-	case "[]int8":
+	case "[]int8", "[]bool":
 		return fmt.Sprintf("%s = %s(%s[%s:%s], %s)", thisField, fun, bufferName, at, end, lenVar)
 	}
 
@@ -226,6 +233,8 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 		}
 	case "[]int8":
 		c, size, totalSize = jay.ReadInt8s, 0, 0
+	case "[]bool":
+		c, size, totalSize = jay.ReadBools, 0, 0
 
 	default:
 		var ok bool

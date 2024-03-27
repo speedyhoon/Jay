@@ -16,7 +16,7 @@ import (
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	varLengths := lengths2(s.varLenFieldNames(o), s.receiver)
-	makeSize := joinSizes(s.calcSize(o), s.variableLen, o)
+	makeSize := joinSizes(s.calcSize(o), s.variableLen, o, importJ)
 
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
@@ -31,8 +31,8 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i, end, byteIndex)
-		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == 0, i == vLen, s.bufferName, importJ, fmt.Sprintf("l%d", i)))
+		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
+		buf.WriteString(o.generateLine(f, &byteIndex, s.receiver, at, end, uint(i), i == 0, i == vLen, s.bufferName, importJ, lenVariable(i)))
 		buf.WriteString("\n")
 	}
 
@@ -88,7 +88,7 @@ func (s *structTyp) generateSizeLine() string {
 	assignments, values := make([]string, qty), make([]string, qty)
 	for i := 0; i < qty; i++ {
 		assignments[i] = fmt.Sprintf("%s[%d]", s.bufferName, i)
-		values[i] = fmt.Sprintf("byte(l%d)", i)
+		values[i] = fmt.Sprintf("byte(%s)", lenVariable(i))
 	}
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
@@ -132,6 +132,8 @@ func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string,
 		}
 	case "[]int8":
 		return fmt.Sprintf("%s(%s[%s:%s], %s)", fun, bufferName, at, end, thisField)
+	case "[]bool":
+		return fmt.Sprintf("%s(%s[%s:%s], %s, %s)", fun, bufferName, at, end, thisField, lenVar)
 	}
 
 	switch size {
@@ -279,6 +281,8 @@ func (o Option) typeFuncs(fe field, isLast bool, importJ *bool) (fun string, siz
 		return "copy", 0, 0
 	case "[]int8":
 		f, size, totalSize = jay.WriteInt8s, 0, 1
+	case "[]bool":
+		f, size, totalSize = jay.WriteBools, 0, 1
 
 	case "[15]byte", "[15]uint8":
 		return "copy", uint(fe.arraySize), uint(fe.arraySize)
