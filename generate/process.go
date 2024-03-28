@@ -173,7 +173,6 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 }
 
 func (s *structTyp) process(fields []*ast.Field, o Option, dirList *dirList) (hasExportedFields bool) {
-	var qty uint
 	for i := 0; i < len(fields); {
 		t := fields[i]
 
@@ -197,19 +196,28 @@ func (s *structTyp) process(fields []*ast.Field, o Option, dirList *dirList) (ha
 
 		fe.tag = tag
 		fe.LoadTagOptions()
-		fe.isFirst = qty == 0
-		qty++
 
 		s.addExportedFields(names, fe)
 		// Only increment `i` if the field was added. If the field was removed, `i` will still point to the next field.
 		i++
 	}
 
-	setLast(s.bool, s.boolArray, s.single, s.fixedLen, s.variableLen)
+	s.setFirstNLast()
 	return s.hasExportedFields()
 }
 
-func setLast(lists ...fieldList) {
+func (s *structTyp) setFirstNLast() {
+	// lists is the order that each field list is processed.
+	lists := []fieldList{s.bool, s.boolArray, s.single, s.fixedLen, s.variableLen}
+	for i := range lists {
+		for n := range lists[i] {
+			lists[i][n].isFirst = true
+			goto setLast
+		}
+	}
+
+setLast:
+	// Reverse order loop.
 	for i := len(lists) - 1; i >= 0; i-- {
 		for n := len(lists[i]) - 1; n >= 0; n-- {
 			lists[i][n].isLast = true
