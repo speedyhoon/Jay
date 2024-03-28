@@ -94,7 +94,7 @@ func (s *structTyp) generateSizeLine() string {
 }
 
 func (o Option) generateLine(f field, byteIndex *uint, receiver, at, end string, index uint, isFirst, isLast bool, bufferName string, importJ *bool, lenVar string) string {
-	fun, size, totalSize := o.typeFuncs(f, isLast, importJ)
+	fun, size, totalSize := o.typeFuncs(f, importJ)
 	if fun == "" {
 		// Unknown type, not supported yet.
 		lg.Printf("no generateLine for type `%s` yet", f.typ)
@@ -226,7 +226,7 @@ func printFunc(fun string, params ...string) string {
 	return b
 }
 
-func (o Option) typeFuncs(fe field, isLast bool, importJ *bool) (fun string, size, totalSize uint) {
+func (o Option) typeFuncs(fe field, importJ *bool) (fun string, size, totalSize uint) {
 	var f interface{}
 	switch fe.typ {
 	case "byte", "uint8":
