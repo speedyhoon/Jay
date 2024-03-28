@@ -24,14 +24,14 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o, importJ) || isReturnInlined
 
 	for _, f := range s.fixedLen {
-		buf.WriteString(o.generateLine(s, f, &byteIndex, "", "", 0, importJ, ""))
+		buf.WriteString(o.generateLine(s, f, &byteIndex, Utoa(byteIndex), "", importJ, ""))
 		buf.WriteString("\n")
 	}
 
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(o.generateLine(s, f, &byteIndex, at, end, uint(i), importJ, lenVariable(i)))
+		buf.WriteString(o.generateLine(s, f, &byteIndex, at, end, importJ, lenVariable(i)))
 		buf.WriteString("\n")
 	}
 
@@ -92,7 +92,7 @@ func (s *structTyp) generateSizeLine() string {
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
-func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end string, index uint, importJ *bool, lenVar string) string {
+func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
 	fun, size, totalSize := o.typeFuncs(f, importJ)
 	if fun == "" {
 		// Unknown type, not supported yet.
@@ -109,35 +109,29 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 		//if f.typ != f.aliasType {
 		//	fun = f.aliasType
 		//}
-		if f.isFirst && f.isLast {
-			return fmt.Sprintf("%s(%s[%d:], %s)", fun, s.bufferName, start, thisField)
-		} else {
-			return fmt.Sprintf("%s(%s[%s:%s], %s)", fun, s.bufferName, at, end, thisField)
-		}
+		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
 	case "[]byte", "[]uint8":
 		//if f.typ != f.aliasType {
 		//	fun = f.aliasType
 		//}
 		if f.isFirst && f.isLast {
 			if f.Required {
-				return fmt.Sprintf("%s(%s[%d:], %s)", fun, s.bufferName, *byteIndex, thisField)
+				return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
 			}
-			return fmt.Sprintf("if %s != 0 {\n%s(%s[%d:], %s)\n}", lenVar, fun, s.bufferName, *byteIndex, thisField)
+			return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, sliceExpr(s, f, at, end), thisField)
 		} else {
 			if f.Required {
-				return fmt.Sprintf("%s(%s[%s:%s], %s)", fun, s.bufferName, at, end, thisField)
+				return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
 			}
-			return fmt.Sprintf("if %s != 0 {%s(%s[%s:%s], %s)\n}", lenVar, fun, s.bufferName, at, end, thisField)
+			return fmt.Sprintf("if %s != 0 {%s(%s, %s)\n}", lenVar, fun, sliceExpr(s, f, at, end), thisField)
 		}
 	case "[]int8":
-		return fmt.Sprintf("%s(%s[%s:%s], %s)", fun, s.bufferName, at, end, thisField)
+		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
 	case "[]bool":
-		return fmt.Sprintf("%s(%s[%s:%s], %s, %s)", fun, s.bufferName, at, end, thisField, lenVar)
+		return fmt.Sprintf("%s(%s, %s, %s)", fun, sliceExpr(s, f, at, end), thisField, lenVar)
 	}
 
 	switch size {
-	case 1:
-		return fmt.Sprintf("%s[%d]=%s", s.bufferName, start, printFunc(fun, thisField))
 	default:
 		if f.isArray() && fun == "copy" {
 			thisField += "[:]"
@@ -146,49 +140,28 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 
 	case 0:
 		// Variable length size.
-		slice := s.bufferName
-		idx := at
-		if start >= 1 {
-			if at == "" {
-				slice = fmt.Sprintf("%s[%d:]", s.bufferName, start)
-				idx = "0"
-			} else if at != "0" {
-				slice = fmt.Sprintf("%s[%s:]", s.bufferName, at)
-			}
-		}
+		//slice := s.bufferName
+		////idx := at
+		//if start >= 1 {
+		//	if at == "" {
+		//		slice = fmt.Sprintf("%s[%d:]", s.bufferName, start)
+		//		idx = "0"
+		//	} else if at != "0" {
+		//		slice = fmt.Sprintf("%s[%s:]", s.bufferName, at)
+		//	}
+		//}
 
-		switch f.typ {
-		case "struct":
-			return pkgSelName(thisField, printFunc(fun, slice))
-		}
+		//switch f.typ {
+		//case "struct":
+		//	return pkgSelName(thisField, printFunc(fun, slice))
+		//}
 
 		if f.isLast {
-			return printFunc(fun, slice, thisField, "l"+Utoa(index))
+			return printFunc(fun, sliceExpr(s, f, at, end), thisField, lenVar)
 		} else {
-			return printFunc(fun, slice, thisField, "l"+Utoa(index), idx)
+			return printFunc(fun, sliceExpr(s, f, at, end), thisField, lenVar, at)
 		}
 	}
-
-	/*switch f.typ {
-	case /*"bool",* / "byte", "uint8":
-		return fmt.Sprintf("b[%d]=%s", start, thisField)
-	case "int8":
-		return fmt.Sprintf("b[%d]=%s", start, o.marshalFunc(f.typ, thisField))
-		/*case "int8":
-		return fmt.Sprintf("b[%d]=byte(%s)", start, o.marshalFunc(f.typ, thisField))* /
-	case "int", "int16", "int32", "int64", "float32", "float64", "uint", "uint16", "uint32", "uint64":
-		return o.marshalFunc(f.typ, buffer, thisField)
-	case "string":
-		slice := "b"
-		if at != "0" {
-			slice = fmt.Sprintf("b[%v:]", at)
-		}
-		//return fmt.Sprintf("%s.WriteString(b%s, %s)", pkgName, slice, thisField)
-		//return fmt.Sprintf("%s(b%s, %s)", o.marshalFunc(f.typ, thisField), slice, thisField)
-		//return fmt.Sprintf("%s", o.marshalFunc(f.typ, slice, thisField, "l1"))
-		return o.marshalFunc(f.typ, slice, thisField, "l1")
-	}
-	return ""*/
 }
 
 func (f *field) isArrayOrSlice() bool {
@@ -306,6 +279,10 @@ func nameOf(f any, importJ *bool) string {
 }
 
 func sliceExpr(s *structTyp, f field, at, end string) string {
+	if at == "0" {
+		at = ""
+	}
+
 	if f.isFixedLen {
 		if f.isFirst && f.isLast {
 			return s.bufferName
@@ -317,6 +294,13 @@ func sliceExpr(s *structTyp, f field, at, end string) string {
 			return fmt.Sprintf("%s[%s:]", s.bufferName, at)
 		}
 		return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
+
+	} else {
+		// Variable length types.
+
+		if f.isLast {
+			return fmt.Sprintf("%s[%s:]", s.bufferName, at)
+		}
+		return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
 	}
-	return ""
 }
