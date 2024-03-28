@@ -79,9 +79,10 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	}
 
 	return fmt.Sprintf(
-		"%s := %s\nif l < %d+%s {\nreturn %s\n}\n",
+		"%s := %s\nif %s < %d+%s {\nreturn %s\n}\n",
 		strings.Join(assignments, ", "),
 		strings.Join(values, ", "),
+		s.lengthName,
 		totalSize,
 		strings.Join(conditions, "+"),
 		exportedErr,
