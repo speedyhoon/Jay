@@ -1,6 +1,7 @@
 package generate
 
 import (
+	"github.com/speedyhoon/jay"
 	"strconv"
 )
 
@@ -35,9 +36,7 @@ func (s *structTyp) MakeSize(b *bytes.Buffer) {
 }*/
 
 func (s *structTyp) calcSize(o Option) (qty uint) {
-	if l := len(s.bool); l >= 1 {
-		qty = boolsSliceIndex(uint(l)) + 1
-	}
+	qty = uint(jay.SizeBools(len(s.bool)))
 
 	qty += uint(len(s.single))
 
