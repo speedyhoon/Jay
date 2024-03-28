@@ -6,7 +6,7 @@ import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() (b []byte) {
 	b = make([]byte, 8)
-	jay.WriteFloat64(b[:8], o.One)
+	jay.WriteFloat64(b, o.One)
 	return
 }
 
@@ -21,7 +21,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 func (t *Two) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
 	jay.WriteFloat64(b[:8], t.One)
-	jay.WriteFloat64(b[8:16], t.Two)
+	jay.WriteFloat64(b[8:], t.Two)
 	return
 }
 
@@ -38,7 +38,7 @@ func (t *Three) MarshalJ() (b []byte) {
 	b = make([]byte, 24)
 	jay.WriteFloat64(b[:8], t.One)
 	jay.WriteFloat64(b[8:16], t.Two)
-	jay.WriteFloat64(b[16:24], t.Three)
+	jay.WriteFloat64(b[16:], t.Three)
 	return
 }
 
@@ -57,7 +57,7 @@ func (f *Four) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[:8], f.One)
 	jay.WriteFloat64(b[8:16], f.Two)
 	jay.WriteFloat64(b[16:24], f.Three)
-	jay.WriteFloat64(b[24:32], f.Four)
+	jay.WriteFloat64(b[24:], f.Four)
 	return
 }
 
@@ -78,7 +78,7 @@ func (f *Five) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[8:16], f.Two)
 	jay.WriteFloat64(b[16:24], f.Three)
 	jay.WriteFloat64(b[24:32], f.Four)
-	jay.WriteFloat64(b[32:40], f.Five)
+	jay.WriteFloat64(b[32:], f.Five)
 	return
 }
 
@@ -101,7 +101,7 @@ func (s *Six) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[16:24], s.Three)
 	jay.WriteFloat64(b[24:32], s.Four)
 	jay.WriteFloat64(b[32:40], s.Five)
-	jay.WriteFloat64(b[40:48], s.Six)
+	jay.WriteFloat64(b[40:], s.Six)
 	return
 }
 
@@ -126,7 +126,7 @@ func (s *Seven) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[24:32], s.Four)
 	jay.WriteFloat64(b[32:40], s.Five)
 	jay.WriteFloat64(b[40:48], s.Six)
-	jay.WriteFloat64(b[48:56], s.Seven)
+	jay.WriteFloat64(b[48:], s.Seven)
 	return
 }
 
@@ -153,7 +153,7 @@ func (e *Eight) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[32:40], e.Five)
 	jay.WriteFloat64(b[40:48], e.Six)
 	jay.WriteFloat64(b[48:56], e.Seven)
-	jay.WriteFloat64(b[56:64], e.Eight)
+	jay.WriteFloat64(b[56:], e.Eight)
 	return
 }
 
@@ -182,7 +182,7 @@ func (n *Nine) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[40:48], n.Six)
 	jay.WriteFloat64(b[48:56], n.Seven)
 	jay.WriteFloat64(b[56:64], n.Eight)
-	jay.WriteFloat64(b[64:72], n.Nine)
+	jay.WriteFloat64(b[64:], n.Nine)
 	return
 }
 
@@ -213,7 +213,7 @@ func (t *Ten) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[48:56], t.Seven)
 	jay.WriteFloat64(b[56:64], t.Eight)
 	jay.WriteFloat64(b[64:72], t.Nine)
-	jay.WriteFloat64(b[72:80], t.Ten)
+	jay.WriteFloat64(b[72:], t.Ten)
 	return
 }
 
@@ -246,7 +246,7 @@ func (e *Eleven) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[56:64], e.Eight)
 	jay.WriteFloat64(b[64:72], e.Nine)
 	jay.WriteFloat64(b[72:80], e.Ten)
-	jay.WriteFloat64(b[80:88], e.Eleven)
+	jay.WriteFloat64(b[80:], e.Eleven)
 	return
 }
 
@@ -281,7 +281,7 @@ func (t *Twelve) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[64:72], t.Nine)
 	jay.WriteFloat64(b[72:80], t.Ten)
 	jay.WriteFloat64(b[80:88], t.Eleven)
-	jay.WriteFloat64(b[88:96], t.Twelve)
+	jay.WriteFloat64(b[88:], t.Twelve)
 	return
 }
 
@@ -318,7 +318,7 @@ func (t *Thirteen) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[72:80], t.Ten)
 	jay.WriteFloat64(b[80:88], t.Eleven)
 	jay.WriteFloat64(b[88:96], t.Twelve)
-	jay.WriteFloat64(b[96:104], t.Thirteen)
+	jay.WriteFloat64(b[96:], t.Thirteen)
 	return
 }
 
@@ -357,7 +357,7 @@ func (f *Fourteen) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[80:88], f.Eleven)
 	jay.WriteFloat64(b[88:96], f.Twelve)
 	jay.WriteFloat64(b[96:104], f.Thirteen)
-	jay.WriteFloat64(b[104:112], f.Fourteen)
+	jay.WriteFloat64(b[104:], f.Fourteen)
 	return
 }
 
@@ -398,7 +398,7 @@ func (f *Fifteen) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[88:96], f.Twelve)
 	jay.WriteFloat64(b[96:104], f.Thirteen)
 	jay.WriteFloat64(b[104:112], f.Fourteen)
-	jay.WriteFloat64(b[112:120], f.Fifteen)
+	jay.WriteFloat64(b[112:], f.Fifteen)
 	return
 }
 
@@ -441,7 +441,7 @@ func (s *Sixteen) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[96:104], s.Thirteen)
 	jay.WriteFloat64(b[104:112], s.Fourteen)
 	jay.WriteFloat64(b[112:120], s.Fifteen)
-	jay.WriteFloat64(b[120:128], s.Sixteen)
+	jay.WriteFloat64(b[120:], s.Sixteen)
 	return
 }
 
@@ -486,7 +486,7 @@ func (s *Seventeen) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[104:112], s.Fourteen)
 	jay.WriteFloat64(b[112:120], s.Fifteen)
 	jay.WriteFloat64(b[120:128], s.Sixteen)
-	jay.WriteFloat64(b[128:136], s.Seventeen)
+	jay.WriteFloat64(b[128:], s.Seventeen)
 	return
 }
 
@@ -533,7 +533,7 @@ func (e *Eighteen) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[112:120], e.Fifteen)
 	jay.WriteFloat64(b[120:128], e.Sixteen)
 	jay.WriteFloat64(b[128:136], e.Seventeen)
-	jay.WriteFloat64(b[136:144], e.Eighteen)
+	jay.WriteFloat64(b[136:], e.Eighteen)
 	return
 }
 
@@ -582,7 +582,7 @@ func (n *Nineteen) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[120:128], n.Sixteen)
 	jay.WriteFloat64(b[128:136], n.Seventeen)
 	jay.WriteFloat64(b[136:144], n.Eighteen)
-	jay.WriteFloat64(b[144:152], n.Nineteen)
+	jay.WriteFloat64(b[144:], n.Nineteen)
 	return
 }
 
@@ -633,7 +633,7 @@ func (t *Twenty) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[128:136], t.Seventeen)
 	jay.WriteFloat64(b[136:144], t.Eighteen)
 	jay.WriteFloat64(b[144:152], t.Nineteen)
-	jay.WriteFloat64(b[152:160], t.Twenty)
+	jay.WriteFloat64(b[152:], t.Twenty)
 	return
 }
 
@@ -686,7 +686,7 @@ func (t *TwentyOne) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[136:144], t.Eighteen)
 	jay.WriteFloat64(b[144:152], t.Nineteen)
 	jay.WriteFloat64(b[152:160], t.Twenty)
-	jay.WriteFloat64(b[160:168], t.TwentyOne)
+	jay.WriteFloat64(b[160:], t.TwentyOne)
 	return
 }
 
@@ -741,7 +741,7 @@ func (t *TwentyTwo) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[144:152], t.Nineteen)
 	jay.WriteFloat64(b[152:160], t.Twenty)
 	jay.WriteFloat64(b[160:168], t.TwentyOne)
-	jay.WriteFloat64(b[168:176], t.TwentyTwo)
+	jay.WriteFloat64(b[168:], t.TwentyTwo)
 	return
 }
 
@@ -798,7 +798,7 @@ func (t *TwentyThree) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[152:160], t.Twenty)
 	jay.WriteFloat64(b[160:168], t.TwentyOne)
 	jay.WriteFloat64(b[168:176], t.TwentyTwo)
-	jay.WriteFloat64(b[176:184], t.TwentyThree)
+	jay.WriteFloat64(b[176:], t.TwentyThree)
 	return
 }
 

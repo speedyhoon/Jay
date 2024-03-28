@@ -140,15 +140,11 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 	case 1:
 		return fmt.Sprintf("%s[%d]=%s", s.bufferName, start, printFunc(fun, thisField))
 	default:
-		if start == 0 {
-			return printFunc(fun, fmt.Sprintf("%s[:%d]", s.bufferName, *byteIndex), thisField)
-		} else {
-			if f.isArray() && fun == "copy" {
-				return printFunc(fun, fmt.Sprintf("%s[%d:%d]", s.bufferName, start, *byteIndex), thisField+"[:]")
-			} else {
-				return printFunc(fun, fmt.Sprintf("%s[%d:%d]", s.bufferName, start, *byteIndex), thisField)
-			}
+		if f.isArray() && fun == "copy" {
+			thisField += "[:]"
 		}
+		return printFunc(fun, sliceExpr(s, f, Utoa(start), Utoa(*byteIndex), start == 0, isLast), thisField)
+
 	case 0:
 		// Variable length size.
 		slice := s.bufferName
@@ -308,4 +304,20 @@ func nameOf(f any, importJ *bool) string {
 		runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
 		pkgPrefix,
 	)
+}
+
+func sliceExpr(s *structTyp, f field, at, end string, isFirst, isLast bool) string {
+	if f.isFixedLen {
+		if isFirst && isLast {
+			return s.bufferName
+		}
+		if isFirst {
+			return fmt.Sprintf("%s[:%s]", s.bufferName, end)
+		}
+		if isLast {
+			return fmt.Sprintf("%s[%s:]", s.bufferName, at)
+		}
+		return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
+	}
+	return ""
 }

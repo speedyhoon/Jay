@@ -6,7 +6,7 @@ import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() (b []byte) {
 	b = make([]byte, 4)
-	jay.WriteInt32(b[:4], o.One)
+	jay.WriteInt32(b, o.One)
 	return
 }
 
@@ -21,7 +21,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 func (t *Two) MarshalJ() (b []byte) {
 	b = make([]byte, 8)
 	jay.WriteInt32(b[:4], t.One)
-	jay.WriteInt32(b[4:8], t.Two)
+	jay.WriteInt32(b[4:], t.Two)
 	return
 }
 
@@ -38,7 +38,7 @@ func (t *Three) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
 	jay.WriteInt32(b[:4], t.One)
 	jay.WriteInt32(b[4:8], t.Two)
-	jay.WriteInt32(b[8:12], t.Three)
+	jay.WriteInt32(b[8:], t.Three)
 	return
 }
 
@@ -57,7 +57,7 @@ func (f *Four) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[:4], f.One)
 	jay.WriteInt32(b[4:8], f.Two)
 	jay.WriteInt32(b[8:12], f.Three)
-	jay.WriteInt32(b[12:16], f.Four)
+	jay.WriteInt32(b[12:], f.Four)
 	return
 }
 
@@ -78,7 +78,7 @@ func (f *Five) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[4:8], f.Two)
 	jay.WriteInt32(b[8:12], f.Three)
 	jay.WriteInt32(b[12:16], f.Four)
-	jay.WriteInt32(b[16:20], f.Five)
+	jay.WriteInt32(b[16:], f.Five)
 	return
 }
 
@@ -101,7 +101,7 @@ func (s *Six) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[8:12], s.Three)
 	jay.WriteInt32(b[12:16], s.Four)
 	jay.WriteInt32(b[16:20], s.Five)
-	jay.WriteInt32(b[20:24], s.Six)
+	jay.WriteInt32(b[20:], s.Six)
 	return
 }
 
@@ -126,7 +126,7 @@ func (s *Seven) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[12:16], s.Four)
 	jay.WriteInt32(b[16:20], s.Five)
 	jay.WriteInt32(b[20:24], s.Six)
-	jay.WriteInt32(b[24:28], s.Seven)
+	jay.WriteInt32(b[24:], s.Seven)
 	return
 }
 
@@ -153,7 +153,7 @@ func (e *Eight) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[16:20], e.Five)
 	jay.WriteInt32(b[20:24], e.Six)
 	jay.WriteInt32(b[24:28], e.Seven)
-	jay.WriteInt32(b[28:32], e.Eight)
+	jay.WriteInt32(b[28:], e.Eight)
 	return
 }
 
@@ -182,7 +182,7 @@ func (n *Nine) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[20:24], n.Six)
 	jay.WriteInt32(b[24:28], n.Seven)
 	jay.WriteInt32(b[28:32], n.Eight)
-	jay.WriteInt32(b[32:36], n.Nine)
+	jay.WriteInt32(b[32:], n.Nine)
 	return
 }
 
@@ -213,7 +213,7 @@ func (t *Ten) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[24:28], t.Seven)
 	jay.WriteInt32(b[28:32], t.Eight)
 	jay.WriteInt32(b[32:36], t.Nine)
-	jay.WriteInt32(b[36:40], t.Ten)
+	jay.WriteInt32(b[36:], t.Ten)
 	return
 }
 
@@ -246,7 +246,7 @@ func (e *Eleven) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[28:32], e.Eight)
 	jay.WriteInt32(b[32:36], e.Nine)
 	jay.WriteInt32(b[36:40], e.Ten)
-	jay.WriteInt32(b[40:44], e.Eleven)
+	jay.WriteInt32(b[40:], e.Eleven)
 	return
 }
 
@@ -281,7 +281,7 @@ func (t *Twelve) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[32:36], t.Nine)
 	jay.WriteInt32(b[36:40], t.Ten)
 	jay.WriteInt32(b[40:44], t.Eleven)
-	jay.WriteInt32(b[44:48], t.Twelve)
+	jay.WriteInt32(b[44:], t.Twelve)
 	return
 }
 
@@ -318,7 +318,7 @@ func (t *Thirteen) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[36:40], t.Ten)
 	jay.WriteInt32(b[40:44], t.Eleven)
 	jay.WriteInt32(b[44:48], t.Twelve)
-	jay.WriteInt32(b[48:52], t.Thirteen)
+	jay.WriteInt32(b[48:], t.Thirteen)
 	return
 }
 
@@ -357,7 +357,7 @@ func (f *Fourteen) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[40:44], f.Eleven)
 	jay.WriteInt32(b[44:48], f.Twelve)
 	jay.WriteInt32(b[48:52], f.Thirteen)
-	jay.WriteInt32(b[52:56], f.Fourteen)
+	jay.WriteInt32(b[52:], f.Fourteen)
 	return
 }
 
@@ -398,7 +398,7 @@ func (f *Fifteen) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[44:48], f.Twelve)
 	jay.WriteInt32(b[48:52], f.Thirteen)
 	jay.WriteInt32(b[52:56], f.Fourteen)
-	jay.WriteInt32(b[56:60], f.Fifteen)
+	jay.WriteInt32(b[56:], f.Fifteen)
 	return
 }
 
@@ -441,7 +441,7 @@ func (s *Sixteen) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[48:52], s.Thirteen)
 	jay.WriteInt32(b[52:56], s.Fourteen)
 	jay.WriteInt32(b[56:60], s.Fifteen)
-	jay.WriteInt32(b[60:64], s.Sixteen)
+	jay.WriteInt32(b[60:], s.Sixteen)
 	return
 }
 
@@ -486,7 +486,7 @@ func (s *Seventeen) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[52:56], s.Fourteen)
 	jay.WriteInt32(b[56:60], s.Fifteen)
 	jay.WriteInt32(b[60:64], s.Sixteen)
-	jay.WriteInt32(b[64:68], s.Seventeen)
+	jay.WriteInt32(b[64:], s.Seventeen)
 	return
 }
 
@@ -533,7 +533,7 @@ func (e *Eighteen) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[56:60], e.Fifteen)
 	jay.WriteInt32(b[60:64], e.Sixteen)
 	jay.WriteInt32(b[64:68], e.Seventeen)
-	jay.WriteInt32(b[68:72], e.Eighteen)
+	jay.WriteInt32(b[68:], e.Eighteen)
 	return
 }
 
@@ -582,7 +582,7 @@ func (n *Nineteen) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[60:64], n.Sixteen)
 	jay.WriteInt32(b[64:68], n.Seventeen)
 	jay.WriteInt32(b[68:72], n.Eighteen)
-	jay.WriteInt32(b[72:76], n.Nineteen)
+	jay.WriteInt32(b[72:], n.Nineteen)
 	return
 }
 
@@ -633,7 +633,7 @@ func (t *Twenty) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[64:68], t.Seventeen)
 	jay.WriteInt32(b[68:72], t.Eighteen)
 	jay.WriteInt32(b[72:76], t.Nineteen)
-	jay.WriteInt32(b[76:80], t.Twenty)
+	jay.WriteInt32(b[76:], t.Twenty)
 	return
 }
 
@@ -686,7 +686,7 @@ func (t *TwentyOne) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[68:72], t.Eighteen)
 	jay.WriteInt32(b[72:76], t.Nineteen)
 	jay.WriteInt32(b[76:80], t.Twenty)
-	jay.WriteInt32(b[80:84], t.TwentyOne)
+	jay.WriteInt32(b[80:], t.TwentyOne)
 	return
 }
 
@@ -741,7 +741,7 @@ func (t *TwentyTwo) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[72:76], t.Nineteen)
 	jay.WriteInt32(b[76:80], t.Twenty)
 	jay.WriteInt32(b[80:84], t.TwentyOne)
-	jay.WriteInt32(b[84:88], t.TwentyTwo)
+	jay.WriteInt32(b[84:], t.TwentyTwo)
 	return
 }
 
@@ -798,7 +798,7 @@ func (t *TwentyThree) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[76:80], t.Twenty)
 	jay.WriteInt32(b[80:84], t.TwentyOne)
 	jay.WriteInt32(b[84:88], t.TwentyTwo)
-	jay.WriteInt32(b[88:92], t.TwentyThree)
+	jay.WriteInt32(b[88:], t.TwentyThree)
 	return
 }
 
