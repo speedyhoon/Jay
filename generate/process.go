@@ -173,6 +173,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 }
 
 func (s *structTyp) process(fields []*ast.Field, o Option, dirList *dirList) (hasExportedFields bool) {
+	var qty uint
 	for i := 0; i < len(fields); {
 		t := fields[i]
 
@@ -196,12 +197,25 @@ func (s *structTyp) process(fields []*ast.Field, o Option, dirList *dirList) (ha
 
 		fe.tag = tag
 		fe.LoadTagOptions()
+		fe.isFirst = qty == 0
+		qty++
 
 		s.addExportedFields(names, fe)
+		// Only increment `i` if the field was added. If the field was removed, `i` will still point to the next field.
 		i++
 	}
 
+	setLast(s.bool, s.boolArray, s.single, s.fixedLen, s.variableLen)
 	return s.hasExportedFields()
+}
+
+func setLast(lists ...fieldList) {
+	for i := len(lists) - 1; i >= 0; i-- {
+		for n := len(lists[i]) - 1; n >= 0; n-- {
+			lists[i][n].isLast = true
+			return
+		}
+	}
 }
 
 func Remove[T any](t []T, index int) []T {

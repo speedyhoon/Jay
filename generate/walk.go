@@ -23,6 +23,8 @@ type field struct {
 	tag        string // The tag value within `j:""`
 	tagOptions        // Valid tag options that have been successfully parsed and loaded from the `tag` string.
 	isFixedLen bool   // Is represented by a fixed quantity of bytes (like int64) or a variable quantity of bytes (like string & slices).
+	isFirst    bool
+	isLast     bool
 }
 type fieldList []field
 

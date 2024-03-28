@@ -23,16 +23,15 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	isReturnInlined := s.makeWriteBools(buf, &byteIndex, importJ)
 	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o, importJ) || isReturnInlined
 
-	for i, f := range s.fixedLen {
-		buf.WriteString(o.generateLine(s, f, &byteIndex, "", "", 0, i == 0, i == len(s.fixedLen)-1 && len(s.variableLen) == 0, importJ, ""))
+	for _, f := range s.fixedLen {
+		buf.WriteString(o.generateLine(s, f, &byteIndex, "", "", 0, importJ, ""))
 		buf.WriteString("\n")
 	}
 
 	at, end := s.defineTrackingVars(buf, byteIndex)
-	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(o.generateLine(s, f, &byteIndex, at, end, uint(i), i == 0, i == vLen, importJ, lenVariable(i)))
+		buf.WriteString(o.generateLine(s, f, &byteIndex, at, end, uint(i), importJ, lenVariable(i)))
 		buf.WriteString("\n")
 	}
 
@@ -93,7 +92,7 @@ func (s *structTyp) generateSizeLine() string {
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
-func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end string, index uint, isFirst, isLast bool, importJ *bool, lenVar string) string {
+func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end string, index uint, importJ *bool, lenVar string) string {
 	fun, size, totalSize := o.typeFuncs(f, importJ)
 	if fun == "" {
 		// Unknown type, not supported yet.
@@ -110,7 +109,7 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 		//if f.typ != f.aliasType {
 		//	fun = f.aliasType
 		//}
-		if isFirst && isLast {
+		if f.isFirst && f.isLast {
 			return fmt.Sprintf("%s(%s[%d:], %s)", fun, s.bufferName, start, thisField)
 		} else {
 			return fmt.Sprintf("%s(%s[%s:%s], %s)", fun, s.bufferName, at, end, thisField)
@@ -119,7 +118,7 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 		//if f.typ != f.aliasType {
 		//	fun = f.aliasType
 		//}
-		if isFirst && isLast {
+		if f.isFirst && f.isLast {
 			if f.Required {
 				return fmt.Sprintf("%s(%s[%d:], %s)", fun, s.bufferName, *byteIndex, thisField)
 			}
@@ -143,7 +142,7 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 		if f.isArray() && fun == "copy" {
 			thisField += "[:]"
 		}
-		return printFunc(fun, sliceExpr(s, f, Utoa(start), Utoa(*byteIndex), start == 0, isLast), thisField)
+		return printFunc(fun, sliceExpr(s, f, Utoa(start), Utoa(*byteIndex)), thisField)
 
 	case 0:
 		// Variable length size.
@@ -163,7 +162,7 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 			return pkgSelName(thisField, printFunc(fun, slice))
 		}
 
-		if isLast {
+		if f.isLast {
 			return printFunc(fun, slice, thisField, "l"+Utoa(index))
 		} else {
 			return printFunc(fun, slice, thisField, "l"+Utoa(index), idx)
@@ -306,15 +305,15 @@ func nameOf(f any, importJ *bool) string {
 	)
 }
 
-func sliceExpr(s *structTyp, f field, at, end string, isFirst, isLast bool) string {
+func sliceExpr(s *structTyp, f field, at, end string) string {
 	if f.isFixedLen {
-		if isFirst && isLast {
+		if f.isFirst && f.isLast {
 			return s.bufferName
 		}
-		if isFirst {
+		if f.isFirst {
 			return fmt.Sprintf("%s[:%s]", s.bufferName, end)
 		}
-		if isLast {
+		if f.isLast {
 			return fmt.Sprintf("%s[%s:]", s.bufferName, at)
 		}
 		return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
