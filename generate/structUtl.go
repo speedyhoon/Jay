@@ -74,8 +74,15 @@ func (o Option) isSupportedType(t *ast.Field, dirList *dirList, pkg string) (f f
 		}
 
 		// Type has an alias name.
-		f.typ, f.isFixedLen = o.typeOf(d.Obj)
-		f.aliasType = d.Name
+		var isDefinition bool
+		f.typ, f.isFixedLen, isDefinition = o.typeOf(d.Obj)
+		if isDefinition {
+			// type definition (`type toggle bool`) requires converting (`bool(foo)`) or casting (`foo.(bool)`) to correct type.
+			f.aliasType = d.Name
+		} else {
+			// type alias (`type toggle = bool`) can be used interchangeably. No extra processing required.
+			f.aliasType = f.typ
+		}
 		return f, f.typ != ""
 	case nil:
 	// Ignore.
@@ -142,7 +149,7 @@ func (o Option) calcType(t interface{}, typePrefix string, files []*ast.File) (f
 		}
 
 		// Type has an alias name.
-		f.typ, f.isFixedLen = o.typeOf(d.Obj)
+		f.typ, f.isFixedLen, _ = o.typeOf(d.Obj)
 		f.aliasType = name
 		return f, f.typ != ""
 	case nil:
@@ -194,7 +201,7 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, files []*ast.File) (f f
 
 	obj := findImportedType(files, x.Name, d.Sel.Name)
 	if obj != nil {
-		f.typ, f.isFixedLen = o.typeOf(obj)
+		f.typ, f.isFixedLen, _ = o.typeOf(obj)
 		f.aliasType = d.Sel.Name
 		return f, f.typ != ""
 	}
@@ -285,18 +292,20 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 	return 0, false
 }
 
-func (o Option) typeOf(t interface{}) (s string, isFixedLen bool) {
+func (o Option) typeOf(t interface{}) (s string, isFixedLen bool, isDefinition bool) {
 	switch x := t.(type) {
 	case *ast.Object:
 		if x == nil || x.Name == "" || x.Kind != ast.Typ {
-			return "", false
+			return "", false, isDefinition
 		}
 		return o.typeOf(x.Decl)
 	case *ast.TypeSpec:
-		return o.typeOf(x.Type)
+		s, isFixedLen, isDefinition = o.typeOf(x.Type)
+		isDefinition = isDefinition || x.Assign == token.NoPos
+		return
 	case *ast.StructType:
 		if x.Fields != nil && len(x.Fields.List) != 0 {
-			return "struct", !o.isVariableLen(x.Fields.List)
+			return "struct", !o.isVariableLen(x.Fields.List), isDefinition
 		}
 	case *ast.Ident:
 		if x.Obj != nil {
@@ -304,14 +313,14 @@ func (o Option) typeOf(t interface{}) (s string, isFixedLen bool) {
 		}
 
 		if supportedType(x.Name) {
-			return x.Name, o.isLenFixed(x.Name)
+			return x.Name, o.isLenFixed(x.Name), isDefinition
 		}
 	case nil:
 		// Ignore.
 	default:
 		lg.Printf("type %T not expected in typeOf", x)
 	}
-	return "", false
+	return "", false, false
 }
 
 func (o Option) isVariableLen(fields []*ast.Field) bool {
