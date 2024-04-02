@@ -69,5 +69,6 @@ func (c *Cow) UnmarshalJ(b []byte) error {
 	return nil
 }
 `
-	assert.Equal(t, want, string(src))
+	assert.Len(t, src, 1)
+	assert.Equal(t, want, string(src[0].Src))
 }

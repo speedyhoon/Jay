@@ -40,9 +40,10 @@ func (b *Boat) UnmarshalJ(y []byte) error {
 	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
-	assert.Equal(t, expected, string(src))
-	assert.Contains(t, string(src), "func (b *Boat) MarshalJ() (y []byte) {")
-	assert.Contains(t, string(src), "func (b *Boat) UnmarshalJ(y []byte) error {")
+	assert.Len(t, src, 1)
+	assert.Equal(t, expected, string(src[0].Src))
+	assert.Contains(t, string(src[0].Src), "func (b *Boat) MarshalJ() (y []byte) {")
+	assert.Contains(t, string(src[0].Src), "func (b *Boat) UnmarshalJ(y []byte) error {")
 }
 
 // test receiver name (c *Car) doesn't collide with default return parameter (b []byte).
@@ -79,9 +80,10 @@ func (c *Car) UnmarshalJ(b []byte) error {
 	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
-	assert.Equal(t, expected, string(src))
-	assert.Contains(t, string(src), "func (c *Car) MarshalJ() (b []byte) {")
-	assert.Contains(t, string(src), "func (c *Car) UnmarshalJ(b []byte) error {")
+	assert.Len(t, src, 1)
+	assert.Equal(t, expected, string(src[0].Src))
+	assert.Contains(t, string(src[0].Src), "func (c *Car) MarshalJ() (b []byte) {")
+	assert.Contains(t, string(src[0].Src), "func (c *Car) UnmarshalJ(b []byte) error {")
 }
 
 // test receiver name (y *Yacht) doesn't collide with default return parameter (b []byte).
@@ -118,7 +120,8 @@ func (y *Yacht) UnmarshalJ(b []byte) error {
 	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
-	assert.Equal(t, expected, string(src))
-	assert.Contains(t, string(src), "func (y *Yacht) MarshalJ() (b []byte) {")
-	assert.Contains(t, string(src), "func (y *Yacht) UnmarshalJ(b []byte) error {")
+	assert.Len(t, src, 1)
+	assert.Equal(t, expected, string(src[0].Src))
+	assert.Contains(t, string(src[0].Src), "func (y *Yacht) MarshalJ() (b []byte) {")
+	assert.Contains(t, string(src[0].Src), "func (y *Yacht) UnmarshalJ(b []byte) error {")
 }
