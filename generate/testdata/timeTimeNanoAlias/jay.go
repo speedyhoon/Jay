@@ -6,7 +6,7 @@ import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() (b []byte) {
 	b = make([]byte, 8)
-	jay.WriteTimeNano(b[:8], o.One)
+	jay.WriteTimeNano(b, o.One)
 	return
 }
 
@@ -21,7 +21,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 func (t *Two) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
 	jay.WriteTimeNano(b[:8], t.One)
-	jay.WriteTimeNano(b[8:16], t.Two)
+	jay.WriteTimeNano(b[8:], t.Two)
 	return
 }
 
@@ -38,7 +38,7 @@ func (t *Three) MarshalJ() (b []byte) {
 	b = make([]byte, 24)
 	jay.WriteTimeNano(b[:8], t.One)
 	jay.WriteTimeNano(b[8:16], t.Two)
-	jay.WriteTimeNano(b[16:24], t.Three)
+	jay.WriteTimeNano(b[16:], t.Three)
 	return
 }
 
@@ -57,7 +57,7 @@ func (f *Four) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[:8], f.One)
 	jay.WriteTimeNano(b[8:16], f.Two)
 	jay.WriteTimeNano(b[16:24], f.Three)
-	jay.WriteTimeNano(b[24:32], f.Four)
+	jay.WriteTimeNano(b[24:], f.Four)
 	return
 }
 
@@ -78,7 +78,7 @@ func (f *Five) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[8:16], f.Two)
 	jay.WriteTimeNano(b[16:24], f.Three)
 	jay.WriteTimeNano(b[24:32], f.Four)
-	jay.WriteTimeNano(b[32:40], f.Five)
+	jay.WriteTimeNano(b[32:], f.Five)
 	return
 }
 
@@ -101,7 +101,7 @@ func (s *Six) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[16:24], s.Three)
 	jay.WriteTimeNano(b[24:32], s.Four)
 	jay.WriteTimeNano(b[32:40], s.Five)
-	jay.WriteTimeNano(b[40:48], s.Six)
+	jay.WriteTimeNano(b[40:], s.Six)
 	return
 }
 
@@ -126,7 +126,7 @@ func (s *Seven) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[24:32], s.Four)
 	jay.WriteTimeNano(b[32:40], s.Five)
 	jay.WriteTimeNano(b[40:48], s.Six)
-	jay.WriteTimeNano(b[48:56], s.Seven)
+	jay.WriteTimeNano(b[48:], s.Seven)
 	return
 }
 
@@ -153,7 +153,7 @@ func (e *Eight) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[32:40], e.Five)
 	jay.WriteTimeNano(b[40:48], e.Six)
 	jay.WriteTimeNano(b[48:56], e.Seven)
-	jay.WriteTimeNano(b[56:64], e.Eight)
+	jay.WriteTimeNano(b[56:], e.Eight)
 	return
 }
 
@@ -182,7 +182,7 @@ func (n *Nine) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[40:48], n.Six)
 	jay.WriteTimeNano(b[48:56], n.Seven)
 	jay.WriteTimeNano(b[56:64], n.Eight)
-	jay.WriteTimeNano(b[64:72], n.Nine)
+	jay.WriteTimeNano(b[64:], n.Nine)
 	return
 }
 
@@ -213,7 +213,7 @@ func (t *Ten) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[48:56], t.Seven)
 	jay.WriteTimeNano(b[56:64], t.Eight)
 	jay.WriteTimeNano(b[64:72], t.Nine)
-	jay.WriteTimeNano(b[72:80], t.Ten)
+	jay.WriteTimeNano(b[72:], t.Ten)
 	return
 }
 
@@ -246,7 +246,7 @@ func (e *Eleven) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[56:64], e.Eight)
 	jay.WriteTimeNano(b[64:72], e.Nine)
 	jay.WriteTimeNano(b[72:80], e.Ten)
-	jay.WriteTimeNano(b[80:88], e.Eleven)
+	jay.WriteTimeNano(b[80:], e.Eleven)
 	return
 }
 
@@ -281,7 +281,7 @@ func (t *Twelve) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[64:72], t.Nine)
 	jay.WriteTimeNano(b[72:80], t.Ten)
 	jay.WriteTimeNano(b[80:88], t.Eleven)
-	jay.WriteTimeNano(b[88:96], t.Twelve)
+	jay.WriteTimeNano(b[88:], t.Twelve)
 	return
 }
 
@@ -318,7 +318,7 @@ func (t *Thirteen) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[72:80], t.Ten)
 	jay.WriteTimeNano(b[80:88], t.Eleven)
 	jay.WriteTimeNano(b[88:96], t.Twelve)
-	jay.WriteTimeNano(b[96:104], t.Thirteen)
+	jay.WriteTimeNano(b[96:], t.Thirteen)
 	return
 }
 
@@ -357,7 +357,7 @@ func (f *Fourteen) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[80:88], f.Eleven)
 	jay.WriteTimeNano(b[88:96], f.Twelve)
 	jay.WriteTimeNano(b[96:104], f.Thirteen)
-	jay.WriteTimeNano(b[104:112], f.Fourteen)
+	jay.WriteTimeNano(b[104:], f.Fourteen)
 	return
 }
 
@@ -398,7 +398,7 @@ func (f *Fifteen) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[88:96], f.Twelve)
 	jay.WriteTimeNano(b[96:104], f.Thirteen)
 	jay.WriteTimeNano(b[104:112], f.Fourteen)
-	jay.WriteTimeNano(b[112:120], f.Fifteen)
+	jay.WriteTimeNano(b[112:], f.Fifteen)
 	return
 }
 
@@ -441,7 +441,7 @@ func (s *Sixteen) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[96:104], s.Thirteen)
 	jay.WriteTimeNano(b[104:112], s.Fourteen)
 	jay.WriteTimeNano(b[112:120], s.Fifteen)
-	jay.WriteTimeNano(b[120:128], s.Sixteen)
+	jay.WriteTimeNano(b[120:], s.Sixteen)
 	return
 }
 
@@ -486,7 +486,7 @@ func (s *Seventeen) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[104:112], s.Fourteen)
 	jay.WriteTimeNano(b[112:120], s.Fifteen)
 	jay.WriteTimeNano(b[120:128], s.Sixteen)
-	jay.WriteTimeNano(b[128:136], s.Seventeen)
+	jay.WriteTimeNano(b[128:], s.Seventeen)
 	return
 }
 
@@ -533,7 +533,7 @@ func (e *Eighteen) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[112:120], e.Fifteen)
 	jay.WriteTimeNano(b[120:128], e.Sixteen)
 	jay.WriteTimeNano(b[128:136], e.Seventeen)
-	jay.WriteTimeNano(b[136:144], e.Eighteen)
+	jay.WriteTimeNano(b[136:], e.Eighteen)
 	return
 }
 
@@ -582,7 +582,7 @@ func (n *Nineteen) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[120:128], n.Sixteen)
 	jay.WriteTimeNano(b[128:136], n.Seventeen)
 	jay.WriteTimeNano(b[136:144], n.Eighteen)
-	jay.WriteTimeNano(b[144:152], n.Nineteen)
+	jay.WriteTimeNano(b[144:], n.Nineteen)
 	return
 }
 
@@ -633,7 +633,7 @@ func (t *Twenty) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[128:136], t.Seventeen)
 	jay.WriteTimeNano(b[136:144], t.Eighteen)
 	jay.WriteTimeNano(b[144:152], t.Nineteen)
-	jay.WriteTimeNano(b[152:160], t.Twenty)
+	jay.WriteTimeNano(b[152:], t.Twenty)
 	return
 }
 
@@ -686,7 +686,7 @@ func (t *TwentyOne) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[136:144], t.Eighteen)
 	jay.WriteTimeNano(b[144:152], t.Nineteen)
 	jay.WriteTimeNano(b[152:160], t.Twenty)
-	jay.WriteTimeNano(b[160:168], t.TwentyOne)
+	jay.WriteTimeNano(b[160:], t.TwentyOne)
 	return
 }
 
@@ -741,7 +741,7 @@ func (t *TwentyTwo) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[144:152], t.Nineteen)
 	jay.WriteTimeNano(b[152:160], t.Twenty)
 	jay.WriteTimeNano(b[160:168], t.TwentyOne)
-	jay.WriteTimeNano(b[168:176], t.TwentyTwo)
+	jay.WriteTimeNano(b[168:], t.TwentyTwo)
 	return
 }
 
@@ -798,7 +798,7 @@ func (t *TwentyThree) MarshalJ() (b []byte) {
 	jay.WriteTimeNano(b[152:160], t.Twenty)
 	jay.WriteTimeNano(b[160:168], t.TwentyOne)
 	jay.WriteTimeNano(b[168:176], t.TwentyTwo)
-	jay.WriteTimeNano(b[176:184], t.TwentyThree)
+	jay.WriteTimeNano(b[176:], t.TwentyThree)
 	return
 }
 
