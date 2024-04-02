@@ -106,9 +106,6 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 
 	switch f.typ {
 	case "string":
-		//if f.typ != f.aliasType {
-		//	fun = f.aliasType
-		//}
 		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
 	case "[]byte", "[]uint8":
 		//if f.typ != f.aliasType {
