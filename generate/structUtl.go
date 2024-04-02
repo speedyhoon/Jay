@@ -217,7 +217,7 @@ func packageName(f *ast.File) string {
 	if f != nil && f.Name != nil {
 		return f.Name.Name
 	}
-	return ""
+	return "main"
 }
 
 func (o *Option) newFieldArray(arraySize int, arrayType string) (f field) {
@@ -314,6 +314,11 @@ func (o Option) typeOf(t interface{}) (s string, isFixedLen bool, isDefinition b
 
 		if supportedType(x.Name) {
 			return x.Name, o.isLenFixed(x.Name), isDefinition
+		}
+	case *ast.SelectorExpr:
+		fe, ok := o.isSupportedSelector(x, nil)
+		if ok {
+			return fe.typ, fe.isFixedLen, fe.typ == fe.aliasType
 		}
 	case nil:
 		// Ignore.

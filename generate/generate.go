@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"go/ast"
 	"mvdan.cc/gofumpt/format"
-	"path/filepath"
 	"runtime"
 	"strings"
 )
@@ -31,7 +30,7 @@ func (o Option) makeFile(pkg string, s []structTyp) ([]byte, error) {
 
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
-		if pkg == filepath.Base(s[i].dir) && o.IsSpecifiedType(pkg, s[i].name) {
+		if o.IsSpecifiedType(pkg, s[i].name) {
 			s[i].makeFuncs(buf, o, &importJ)
 		}
 	}

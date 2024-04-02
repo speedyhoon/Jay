@@ -79,7 +79,6 @@ func (d *dirList) walk(o Option) {
 func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
 	var src []byte
 	var err error
-	structList := directories.allStructs()
 
 	// Traverse the directories again because some imports weren't populated in the correct order to run makeFile() immediately after ast.Walk().
 	for dir, fl := range directories {
@@ -88,10 +87,10 @@ func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
 			continue
 		}
 
-		src, err = o.makeFile(filepath.Base(dir), structList)
+		src, err = o.makeFile(fl.pkg, fl.structs)
 		if err != nil {
 			errors.Join(errs, err)
-			lg.Println("makeFile:", err)
+			lg.Println("makeFile:", err, dir)
 		} else {
 			output = append(output, Output{Dir: dir, Src: src})
 		}
@@ -101,6 +100,7 @@ func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
 
 type (
 	fileList struct {
+		pkg     string
 		structs []structTyp
 		files   []*ast.File
 	}
@@ -112,23 +112,15 @@ type (
 )
 
 func (d *dirList) add(dir string, file *ast.File) {
-	if dir == "." {
-		if file != nil && file.Name != nil && file.Name.Name != "" {
-			dir = file.Name.Name
-		} else {
-			dir = "main"
-		}
+	if dir == "" {
+		dir = "."
 	}
 	list, _ := (*d)[dir]
+	if list.pkg == "" {
+		list.pkg = packageName(file)
+	}
 	list.files = append(list.files, file)
 	(*d)[dir] = list
-}
-
-func (d dirList) allStructs() (st []structTyp) {
-	for _, dirs := range d {
-		st = append(st, dirs.structs...)
-	}
-	return
 }
 
 func (d dirList) allFiles() (files []*ast.File) {
