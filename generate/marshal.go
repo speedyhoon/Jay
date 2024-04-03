@@ -71,14 +71,6 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	return
 }
 
-func fieldNames(fields []field, receiver string) string {
-	var s []string
-	for i := range fields {
-		s = append(s, pkgSelName(receiver, fields[i].name))
-	}
-	return strings.Join(s, ", ")
-}
-
 func (s *structTyp) generateSizeLine() string {
 	qty := len(s.variableLen)
 	if qty == 0 {
@@ -108,9 +100,6 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 	case "string":
 		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
 	case "[]byte", "[]uint8":
-		//if f.typ != f.aliasType {
-		//	fun = f.aliasType
-		//}
 		if f.isFirst && f.isLast {
 			if f.Required {
 				return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)

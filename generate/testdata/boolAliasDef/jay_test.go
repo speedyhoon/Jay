@@ -17,7 +17,7 @@ func TestFuzz_1(t *testing.T) {
 	require.Equal(t, One{}, actual)
 
 	actual = One{
-		One: rando.Bool(),
+		One: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -34,8 +34,8 @@ func TestFuzz_2(t *testing.T) {
 	require.Equal(t, Two{}, actual)
 
 	actual = Two{
-		One: rando.Bool(),
-		Two: rando.Bool(),
+		One: toggle(rando.Bool()),
+		Two: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -52,9 +52,9 @@ func TestFuzz_3(t *testing.T) {
 	require.Equal(t, Three{}, actual)
 
 	actual = Three{
-		One:   rando.Bool(),
-		Two:   rando.Bool(),
-		Three: rando.Bool(),
+		One:   toggle(rando.Bool()),
+		Two:   toggle(rando.Bool()),
+		Three: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -71,10 +71,10 @@ func TestFuzz_4(t *testing.T) {
 	require.Equal(t, Four{}, actual)
 
 	actual = Four{
-		One:   rando.Bool(),
-		Two:   rando.Bool(),
-		Three: rando.Bool(),
-		Four:  rando.Bool(),
+		One:   toggle(rando.Bool()),
+		Two:   toggle(rando.Bool()),
+		Three: toggle(rando.Bool()),
+		Four:  toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -91,11 +91,11 @@ func TestFuzz_5(t *testing.T) {
 	require.Equal(t, Five{}, actual)
 
 	actual = Five{
-		One:   rando.Bool(),
-		Two:   rando.Bool(),
-		Three: rando.Bool(),
-		Four:  rando.Bool(),
-		Five:  rando.Bool(),
+		One:   toggle(rando.Bool()),
+		Two:   toggle(rando.Bool()),
+		Three: toggle(rando.Bool()),
+		Four:  toggle(rando.Bool()),
+		Five:  toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -112,12 +112,12 @@ func TestFuzz_6(t *testing.T) {
 	require.Equal(t, Six{}, actual)
 
 	actual = Six{
-		One:   rando.Bool(),
-		Two:   rando.Bool(),
-		Three: rando.Bool(),
-		Four:  rando.Bool(),
-		Five:  rando.Bool(),
-		Six:   rando.Bool(),
+		One:   toggle(rando.Bool()),
+		Two:   toggle(rando.Bool()),
+		Three: toggle(rando.Bool()),
+		Four:  toggle(rando.Bool()),
+		Five:  toggle(rando.Bool()),
+		Six:   toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -134,13 +134,13 @@ func TestFuzz_7(t *testing.T) {
 	require.Equal(t, Seven{}, actual)
 
 	actual = Seven{
-		One:   rando.Bool(),
-		Two:   rando.Bool(),
-		Three: rando.Bool(),
-		Four:  rando.Bool(),
-		Five:  rando.Bool(),
-		Six:   rando.Bool(),
-		Seven: rando.Bool(),
+		One:   toggle(rando.Bool()),
+		Two:   toggle(rando.Bool()),
+		Three: toggle(rando.Bool()),
+		Four:  toggle(rando.Bool()),
+		Five:  toggle(rando.Bool()),
+		Six:   toggle(rando.Bool()),
+		Seven: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -157,14 +157,14 @@ func TestFuzz_8(t *testing.T) {
 	require.Equal(t, Eight{}, actual)
 
 	actual = Eight{
-		One:   rando.Bool(),
-		Two:   rando.Bool(),
-		Three: rando.Bool(),
-		Four:  rando.Bool(),
-		Five:  rando.Bool(),
-		Six:   rando.Bool(),
-		Seven: rando.Bool(),
-		Eight: rando.Bool(),
+		One:   toggle(rando.Bool()),
+		Two:   toggle(rando.Bool()),
+		Three: toggle(rando.Bool()),
+		Four:  toggle(rando.Bool()),
+		Five:  toggle(rando.Bool()),
+		Six:   toggle(rando.Bool()),
+		Seven: toggle(rando.Bool()),
+		Eight: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -181,15 +181,15 @@ func TestFuzz_9(t *testing.T) {
 	require.Equal(t, Nine{}, actual)
 
 	actual = Nine{
-		One:   rando.Bool(),
-		Two:   rando.Bool(),
-		Three: rando.Bool(),
-		Four:  rando.Bool(),
-		Five:  rando.Bool(),
-		Six:   rando.Bool(),
-		Seven: rando.Bool(),
-		Eight: rando.Bool(),
-		Nine:  rando.Bool(),
+		One:   toggle(rando.Bool()),
+		Two:   toggle(rando.Bool()),
+		Three: toggle(rando.Bool()),
+		Four:  toggle(rando.Bool()),
+		Five:  toggle(rando.Bool()),
+		Six:   toggle(rando.Bool()),
+		Seven: toggle(rando.Bool()),
+		Eight: toggle(rando.Bool()),
+		Nine:  toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -206,16 +206,16 @@ func TestFuzz_10(t *testing.T) {
 	require.Equal(t, Ten{}, actual)
 
 	actual = Ten{
-		One:   rando.Bool(),
-		Two:   rando.Bool(),
-		Three: rando.Bool(),
-		Four:  rando.Bool(),
-		Five:  rando.Bool(),
-		Six:   rando.Bool(),
-		Seven: rando.Bool(),
-		Eight: rando.Bool(),
-		Nine:  rando.Bool(),
-		Ten:   rando.Bool(),
+		One:   toggle(rando.Bool()),
+		Two:   toggle(rando.Bool()),
+		Three: toggle(rando.Bool()),
+		Four:  toggle(rando.Bool()),
+		Five:  toggle(rando.Bool()),
+		Six:   toggle(rando.Bool()),
+		Seven: toggle(rando.Bool()),
+		Eight: toggle(rando.Bool()),
+		Nine:  toggle(rando.Bool()),
+		Ten:   toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -232,17 +232,17 @@ func TestFuzz_11(t *testing.T) {
 	require.Equal(t, Eleven{}, actual)
 
 	actual = Eleven{
-		One:    rando.Bool(),
-		Two:    rando.Bool(),
-		Three:  rando.Bool(),
-		Four:   rando.Bool(),
-		Five:   rando.Bool(),
-		Six:    rando.Bool(),
-		Seven:  rando.Bool(),
-		Eight:  rando.Bool(),
-		Nine:   rando.Bool(),
-		Ten:    rando.Bool(),
-		Eleven: rando.Bool(),
+		One:    toggle(rando.Bool()),
+		Two:    toggle(rando.Bool()),
+		Three:  toggle(rando.Bool()),
+		Four:   toggle(rando.Bool()),
+		Five:   toggle(rando.Bool()),
+		Six:    toggle(rando.Bool()),
+		Seven:  toggle(rando.Bool()),
+		Eight:  toggle(rando.Bool()),
+		Nine:   toggle(rando.Bool()),
+		Ten:    toggle(rando.Bool()),
+		Eleven: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -259,18 +259,18 @@ func TestFuzz_12(t *testing.T) {
 	require.Equal(t, Twelve{}, actual)
 
 	actual = Twelve{
-		One:    rando.Bool(),
-		Two:    rando.Bool(),
-		Three:  rando.Bool(),
-		Four:   rando.Bool(),
-		Five:   rando.Bool(),
-		Six:    rando.Bool(),
-		Seven:  rando.Bool(),
-		Eight:  rando.Bool(),
-		Nine:   rando.Bool(),
-		Ten:    rando.Bool(),
-		Eleven: rando.Bool(),
-		Twelve: rando.Bool(),
+		One:    toggle(rando.Bool()),
+		Two:    toggle(rando.Bool()),
+		Three:  toggle(rando.Bool()),
+		Four:   toggle(rando.Bool()),
+		Five:   toggle(rando.Bool()),
+		Six:    toggle(rando.Bool()),
+		Seven:  toggle(rando.Bool()),
+		Eight:  toggle(rando.Bool()),
+		Nine:   toggle(rando.Bool()),
+		Ten:    toggle(rando.Bool()),
+		Eleven: toggle(rando.Bool()),
+		Twelve: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -287,19 +287,19 @@ func TestFuzz_13(t *testing.T) {
 	require.Equal(t, Thirteen{}, actual)
 
 	actual = Thirteen{
-		One:      rando.Bool(),
-		Two:      rando.Bool(),
-		Three:    rando.Bool(),
-		Four:     rando.Bool(),
-		Five:     rando.Bool(),
-		Six:      rando.Bool(),
-		Seven:    rando.Bool(),
-		Eight:    rando.Bool(),
-		Nine:     rando.Bool(),
-		Ten:      rando.Bool(),
-		Eleven:   rando.Bool(),
-		Twelve:   rando.Bool(),
-		Thirteen: rando.Bool(),
+		One:      toggle(rando.Bool()),
+		Two:      toggle(rando.Bool()),
+		Three:    toggle(rando.Bool()),
+		Four:     toggle(rando.Bool()),
+		Five:     toggle(rando.Bool()),
+		Six:      toggle(rando.Bool()),
+		Seven:    toggle(rando.Bool()),
+		Eight:    toggle(rando.Bool()),
+		Nine:     toggle(rando.Bool()),
+		Ten:      toggle(rando.Bool()),
+		Eleven:   toggle(rando.Bool()),
+		Twelve:   toggle(rando.Bool()),
+		Thirteen: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -316,20 +316,20 @@ func TestFuzz_14(t *testing.T) {
 	require.Equal(t, Fourteen{}, actual)
 
 	actual = Fourteen{
-		One:      rando.Bool(),
-		Two:      rando.Bool(),
-		Three:    rando.Bool(),
-		Four:     rando.Bool(),
-		Five:     rando.Bool(),
-		Six:      rando.Bool(),
-		Seven:    rando.Bool(),
-		Eight:    rando.Bool(),
-		Nine:     rando.Bool(),
-		Ten:      rando.Bool(),
-		Eleven:   rando.Bool(),
-		Twelve:   rando.Bool(),
-		Thirteen: rando.Bool(),
-		Fourteen: rando.Bool(),
+		One:      toggle(rando.Bool()),
+		Two:      toggle(rando.Bool()),
+		Three:    toggle(rando.Bool()),
+		Four:     toggle(rando.Bool()),
+		Five:     toggle(rando.Bool()),
+		Six:      toggle(rando.Bool()),
+		Seven:    toggle(rando.Bool()),
+		Eight:    toggle(rando.Bool()),
+		Nine:     toggle(rando.Bool()),
+		Ten:      toggle(rando.Bool()),
+		Eleven:   toggle(rando.Bool()),
+		Twelve:   toggle(rando.Bool()),
+		Thirteen: toggle(rando.Bool()),
+		Fourteen: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -346,21 +346,21 @@ func TestFuzz_15(t *testing.T) {
 	require.Equal(t, Fifteen{}, actual)
 
 	actual = Fifteen{
-		One:      rando.Bool(),
-		Two:      rando.Bool(),
-		Three:    rando.Bool(),
-		Four:     rando.Bool(),
-		Five:     rando.Bool(),
-		Six:      rando.Bool(),
-		Seven:    rando.Bool(),
-		Eight:    rando.Bool(),
-		Nine:     rando.Bool(),
-		Ten:      rando.Bool(),
-		Eleven:   rando.Bool(),
-		Twelve:   rando.Bool(),
-		Thirteen: rando.Bool(),
-		Fourteen: rando.Bool(),
-		Fifteen:  rando.Bool(),
+		One:      toggle(rando.Bool()),
+		Two:      toggle(rando.Bool()),
+		Three:    toggle(rando.Bool()),
+		Four:     toggle(rando.Bool()),
+		Five:     toggle(rando.Bool()),
+		Six:      toggle(rando.Bool()),
+		Seven:    toggle(rando.Bool()),
+		Eight:    toggle(rando.Bool()),
+		Nine:     toggle(rando.Bool()),
+		Ten:      toggle(rando.Bool()),
+		Eleven:   toggle(rando.Bool()),
+		Twelve:   toggle(rando.Bool()),
+		Thirteen: toggle(rando.Bool()),
+		Fourteen: toggle(rando.Bool()),
+		Fifteen:  toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -377,22 +377,22 @@ func TestFuzz_16(t *testing.T) {
 	require.Equal(t, Sixteen{}, actual)
 
 	actual = Sixteen{
-		One:      rando.Bool(),
-		Two:      rando.Bool(),
-		Three:    rando.Bool(),
-		Four:     rando.Bool(),
-		Five:     rando.Bool(),
-		Six:      rando.Bool(),
-		Seven:    rando.Bool(),
-		Eight:    rando.Bool(),
-		Nine:     rando.Bool(),
-		Ten:      rando.Bool(),
-		Eleven:   rando.Bool(),
-		Twelve:   rando.Bool(),
-		Thirteen: rando.Bool(),
-		Fourteen: rando.Bool(),
-		Fifteen:  rando.Bool(),
-		Sixteen:  rando.Bool(),
+		One:      toggle(rando.Bool()),
+		Two:      toggle(rando.Bool()),
+		Three:    toggle(rando.Bool()),
+		Four:     toggle(rando.Bool()),
+		Five:     toggle(rando.Bool()),
+		Six:      toggle(rando.Bool()),
+		Seven:    toggle(rando.Bool()),
+		Eight:    toggle(rando.Bool()),
+		Nine:     toggle(rando.Bool()),
+		Ten:      toggle(rando.Bool()),
+		Eleven:   toggle(rando.Bool()),
+		Twelve:   toggle(rando.Bool()),
+		Thirteen: toggle(rando.Bool()),
+		Fourteen: toggle(rando.Bool()),
+		Fifteen:  toggle(rando.Bool()),
+		Sixteen:  toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -409,23 +409,23 @@ func TestFuzz_17(t *testing.T) {
 	require.Equal(t, Seventeen{}, actual)
 
 	actual = Seventeen{
-		One:       rando.Bool(),
-		Two:       rando.Bool(),
-		Three:     rando.Bool(),
-		Four:      rando.Bool(),
-		Five:      rando.Bool(),
-		Six:       rando.Bool(),
-		Seven:     rando.Bool(),
-		Eight:     rando.Bool(),
-		Nine:      rando.Bool(),
-		Ten:       rando.Bool(),
-		Eleven:    rando.Bool(),
-		Twelve:    rando.Bool(),
-		Thirteen:  rando.Bool(),
-		Fourteen:  rando.Bool(),
-		Fifteen:   rando.Bool(),
-		Sixteen:   rando.Bool(),
-		Seventeen: rando.Bool(),
+		One:       toggle(rando.Bool()),
+		Two:       toggle(rando.Bool()),
+		Three:     toggle(rando.Bool()),
+		Four:      toggle(rando.Bool()),
+		Five:      toggle(rando.Bool()),
+		Six:       toggle(rando.Bool()),
+		Seven:     toggle(rando.Bool()),
+		Eight:     toggle(rando.Bool()),
+		Nine:      toggle(rando.Bool()),
+		Ten:       toggle(rando.Bool()),
+		Eleven:    toggle(rando.Bool()),
+		Twelve:    toggle(rando.Bool()),
+		Thirteen:  toggle(rando.Bool()),
+		Fourteen:  toggle(rando.Bool()),
+		Fifteen:   toggle(rando.Bool()),
+		Sixteen:   toggle(rando.Bool()),
+		Seventeen: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -442,24 +442,24 @@ func TestFuzz_18(t *testing.T) {
 	require.Equal(t, Eighteen{}, actual)
 
 	actual = Eighteen{
-		One:       rando.Bool(),
-		Two:       rando.Bool(),
-		Three:     rando.Bool(),
-		Four:      rando.Bool(),
-		Five:      rando.Bool(),
-		Six:       rando.Bool(),
-		Seven:     rando.Bool(),
-		Eight:     rando.Bool(),
-		Nine:      rando.Bool(),
-		Ten:       rando.Bool(),
-		Eleven:    rando.Bool(),
-		Twelve:    rando.Bool(),
-		Thirteen:  rando.Bool(),
-		Fourteen:  rando.Bool(),
-		Fifteen:   rando.Bool(),
-		Sixteen:   rando.Bool(),
-		Seventeen: rando.Bool(),
-		Eighteen:  rando.Bool(),
+		One:       toggle(rando.Bool()),
+		Two:       toggle(rando.Bool()),
+		Three:     toggle(rando.Bool()),
+		Four:      toggle(rando.Bool()),
+		Five:      toggle(rando.Bool()),
+		Six:       toggle(rando.Bool()),
+		Seven:     toggle(rando.Bool()),
+		Eight:     toggle(rando.Bool()),
+		Nine:      toggle(rando.Bool()),
+		Ten:       toggle(rando.Bool()),
+		Eleven:    toggle(rando.Bool()),
+		Twelve:    toggle(rando.Bool()),
+		Thirteen:  toggle(rando.Bool()),
+		Fourteen:  toggle(rando.Bool()),
+		Fifteen:   toggle(rando.Bool()),
+		Sixteen:   toggle(rando.Bool()),
+		Seventeen: toggle(rando.Bool()),
+		Eighteen:  toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -476,25 +476,25 @@ func TestFuzz_19(t *testing.T) {
 	require.Equal(t, Nineteen{}, actual)
 
 	actual = Nineteen{
-		One:       rando.Bool(),
-		Two:       rando.Bool(),
-		Three:     rando.Bool(),
-		Four:      rando.Bool(),
-		Five:      rando.Bool(),
-		Six:       rando.Bool(),
-		Seven:     rando.Bool(),
-		Eight:     rando.Bool(),
-		Nine:      rando.Bool(),
-		Ten:       rando.Bool(),
-		Eleven:    rando.Bool(),
-		Twelve:    rando.Bool(),
-		Thirteen:  rando.Bool(),
-		Fourteen:  rando.Bool(),
-		Fifteen:   rando.Bool(),
-		Sixteen:   rando.Bool(),
-		Seventeen: rando.Bool(),
-		Eighteen:  rando.Bool(),
-		Nineteen:  rando.Bool(),
+		One:       toggle(rando.Bool()),
+		Two:       toggle(rando.Bool()),
+		Three:     toggle(rando.Bool()),
+		Four:      toggle(rando.Bool()),
+		Five:      toggle(rando.Bool()),
+		Six:       toggle(rando.Bool()),
+		Seven:     toggle(rando.Bool()),
+		Eight:     toggle(rando.Bool()),
+		Nine:      toggle(rando.Bool()),
+		Ten:       toggle(rando.Bool()),
+		Eleven:    toggle(rando.Bool()),
+		Twelve:    toggle(rando.Bool()),
+		Thirteen:  toggle(rando.Bool()),
+		Fourteen:  toggle(rando.Bool()),
+		Fifteen:   toggle(rando.Bool()),
+		Sixteen:   toggle(rando.Bool()),
+		Seventeen: toggle(rando.Bool()),
+		Eighteen:  toggle(rando.Bool()),
+		Nineteen:  toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -511,26 +511,26 @@ func TestFuzz_20(t *testing.T) {
 	require.Equal(t, Twenty{}, actual)
 
 	actual = Twenty{
-		One:       rando.Bool(),
-		Two:       rando.Bool(),
-		Three:     rando.Bool(),
-		Four:      rando.Bool(),
-		Five:      rando.Bool(),
-		Six:       rando.Bool(),
-		Seven:     rando.Bool(),
-		Eight:     rando.Bool(),
-		Nine:      rando.Bool(),
-		Ten:       rando.Bool(),
-		Eleven:    rando.Bool(),
-		Twelve:    rando.Bool(),
-		Thirteen:  rando.Bool(),
-		Fourteen:  rando.Bool(),
-		Fifteen:   rando.Bool(),
-		Sixteen:   rando.Bool(),
-		Seventeen: rando.Bool(),
-		Eighteen:  rando.Bool(),
-		Nineteen:  rando.Bool(),
-		Twenty:    rando.Bool(),
+		One:       toggle(rando.Bool()),
+		Two:       toggle(rando.Bool()),
+		Three:     toggle(rando.Bool()),
+		Four:      toggle(rando.Bool()),
+		Five:      toggle(rando.Bool()),
+		Six:       toggle(rando.Bool()),
+		Seven:     toggle(rando.Bool()),
+		Eight:     toggle(rando.Bool()),
+		Nine:      toggle(rando.Bool()),
+		Ten:       toggle(rando.Bool()),
+		Eleven:    toggle(rando.Bool()),
+		Twelve:    toggle(rando.Bool()),
+		Thirteen:  toggle(rando.Bool()),
+		Fourteen:  toggle(rando.Bool()),
+		Fifteen:   toggle(rando.Bool()),
+		Sixteen:   toggle(rando.Bool()),
+		Seventeen: toggle(rando.Bool()),
+		Eighteen:  toggle(rando.Bool()),
+		Nineteen:  toggle(rando.Bool()),
+		Twenty:    toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -547,27 +547,27 @@ func TestFuzz_21(t *testing.T) {
 	require.Equal(t, TwentyOne{}, actual)
 
 	actual = TwentyOne{
-		One:       rando.Bool(),
-		Two:       rando.Bool(),
-		Three:     rando.Bool(),
-		Four:      rando.Bool(),
-		Five:      rando.Bool(),
-		Six:       rando.Bool(),
-		Seven:     rando.Bool(),
-		Eight:     rando.Bool(),
-		Nine:      rando.Bool(),
-		Ten:       rando.Bool(),
-		Eleven:    rando.Bool(),
-		Twelve:    rando.Bool(),
-		Thirteen:  rando.Bool(),
-		Fourteen:  rando.Bool(),
-		Fifteen:   rando.Bool(),
-		Sixteen:   rando.Bool(),
-		Seventeen: rando.Bool(),
-		Eighteen:  rando.Bool(),
-		Nineteen:  rando.Bool(),
-		Twenty:    rando.Bool(),
-		TwentyOne: rando.Bool(),
+		One:       toggle(rando.Bool()),
+		Two:       toggle(rando.Bool()),
+		Three:     toggle(rando.Bool()),
+		Four:      toggle(rando.Bool()),
+		Five:      toggle(rando.Bool()),
+		Six:       toggle(rando.Bool()),
+		Seven:     toggle(rando.Bool()),
+		Eight:     toggle(rando.Bool()),
+		Nine:      toggle(rando.Bool()),
+		Ten:       toggle(rando.Bool()),
+		Eleven:    toggle(rando.Bool()),
+		Twelve:    toggle(rando.Bool()),
+		Thirteen:  toggle(rando.Bool()),
+		Fourteen:  toggle(rando.Bool()),
+		Fifteen:   toggle(rando.Bool()),
+		Sixteen:   toggle(rando.Bool()),
+		Seventeen: toggle(rando.Bool()),
+		Eighteen:  toggle(rando.Bool()),
+		Nineteen:  toggle(rando.Bool()),
+		Twenty:    toggle(rando.Bool()),
+		TwentyOne: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -584,28 +584,28 @@ func TestFuzz_22(t *testing.T) {
 	require.Equal(t, TwentyTwo{}, actual)
 
 	actual = TwentyTwo{
-		One:       rando.Bool(),
-		Two:       rando.Bool(),
-		Three:     rando.Bool(),
-		Four:      rando.Bool(),
-		Five:      rando.Bool(),
-		Six:       rando.Bool(),
-		Seven:     rando.Bool(),
-		Eight:     rando.Bool(),
-		Nine:      rando.Bool(),
-		Ten:       rando.Bool(),
-		Eleven:    rando.Bool(),
-		Twelve:    rando.Bool(),
-		Thirteen:  rando.Bool(),
-		Fourteen:  rando.Bool(),
-		Fifteen:   rando.Bool(),
-		Sixteen:   rando.Bool(),
-		Seventeen: rando.Bool(),
-		Eighteen:  rando.Bool(),
-		Nineteen:  rando.Bool(),
-		Twenty:    rando.Bool(),
-		TwentyOne: rando.Bool(),
-		TwentyTwo: rando.Bool(),
+		One:       toggle(rando.Bool()),
+		Two:       toggle(rando.Bool()),
+		Three:     toggle(rando.Bool()),
+		Four:      toggle(rando.Bool()),
+		Five:      toggle(rando.Bool()),
+		Six:       toggle(rando.Bool()),
+		Seven:     toggle(rando.Bool()),
+		Eight:     toggle(rando.Bool()),
+		Nine:      toggle(rando.Bool()),
+		Ten:       toggle(rando.Bool()),
+		Eleven:    toggle(rando.Bool()),
+		Twelve:    toggle(rando.Bool()),
+		Thirteen:  toggle(rando.Bool()),
+		Fourteen:  toggle(rando.Bool()),
+		Fifteen:   toggle(rando.Bool()),
+		Sixteen:   toggle(rando.Bool()),
+		Seventeen: toggle(rando.Bool()),
+		Eighteen:  toggle(rando.Bool()),
+		Nineteen:  toggle(rando.Bool()),
+		Twenty:    toggle(rando.Bool()),
+		TwentyOne: toggle(rando.Bool()),
+		TwentyTwo: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -622,29 +622,29 @@ func TestFuzz_23(t *testing.T) {
 	require.Equal(t, TwentyThree{}, actual)
 
 	actual = TwentyThree{
-		One:         rando.Bool(),
-		Two:         rando.Bool(),
-		Three:       rando.Bool(),
-		Four:        rando.Bool(),
-		Five:        rando.Bool(),
-		Six:         rando.Bool(),
-		Seven:       rando.Bool(),
-		Eight:       rando.Bool(),
-		Nine:        rando.Bool(),
-		Ten:         rando.Bool(),
-		Eleven:      rando.Bool(),
-		Twelve:      rando.Bool(),
-		Thirteen:    rando.Bool(),
-		Fourteen:    rando.Bool(),
-		Fifteen:     rando.Bool(),
-		Sixteen:     rando.Bool(),
-		Seventeen:   rando.Bool(),
-		Eighteen:    rando.Bool(),
-		Nineteen:    rando.Bool(),
-		Twenty:      rando.Bool(),
-		TwentyOne:   rando.Bool(),
-		TwentyTwo:   rando.Bool(),
-		TwentyThree: rando.Bool(),
+		One:         toggle(rando.Bool()),
+		Two:         toggle(rando.Bool()),
+		Three:       toggle(rando.Bool()),
+		Four:        toggle(rando.Bool()),
+		Five:        toggle(rando.Bool()),
+		Six:         toggle(rando.Bool()),
+		Seven:       toggle(rando.Bool()),
+		Eight:       toggle(rando.Bool()),
+		Nine:        toggle(rando.Bool()),
+		Ten:         toggle(rando.Bool()),
+		Eleven:      toggle(rando.Bool()),
+		Twelve:      toggle(rando.Bool()),
+		Thirteen:    toggle(rando.Bool()),
+		Fourteen:    toggle(rando.Bool()),
+		Fifteen:     toggle(rando.Bool()),
+		Sixteen:     toggle(rando.Bool()),
+		Seventeen:   toggle(rando.Bool()),
+		Eighteen:    toggle(rando.Bool()),
+		Nineteen:    toggle(rando.Bool()),
+		Twenty:      toggle(rando.Bool()),
+		TwentyOne:   toggle(rando.Bool()),
+		TwentyTwo:   toggle(rando.Bool()),
+		TwentyThree: toggle(rando.Bool()),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
