@@ -138,13 +138,6 @@ func (f *field) isSlice() bool {
 	return f.arraySize <= -1
 }
 
-/*func marshalU64(f *field) (fun string, sizeOf uint, ok bool) {
-	if f.tagOptions.maxBytes != 0 {
-		return fmt.Sprintf("WriteUint%dBytes", f.tagOptions.maxBytes*8), f.tagOptions.maxBytes, true
-	}
-	return "", 0, false
-}*/
-
 // Utoa is equivalent to strconv.FormatUint(uint64(u), 10).
 func Utoa(u uint) string {
 	return strconv.FormatUint(uint64(u), 10)
