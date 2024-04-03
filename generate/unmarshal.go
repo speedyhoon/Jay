@@ -131,48 +131,18 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end st
 		return fmt.Sprintf("%s = %s{%s}", thisField, f.typ, strings.Join(values, ", "))
 	}
 
-	switch size {
-	default:
-		if start == 0 {
-			fun = printFunc(fun, fmt.Sprintf("%s[:%d]", bufferName, *byteIndex))
-			if f.typ != f.aliasType {
-				fun = printFunc(f.aliasType, fun)
-			}
-			return fmt.Sprintf("%s = %s", thisField, fun)
-		} else {
-			fun = printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex))
-			if f.typ != f.aliasType {
-				fun = printFunc(f.aliasType, fun)
-			}
-			return fmt.Sprintf("%s = %s", thisField, fun)
+	if start == 0 {
+		fun = printFunc(fun, fmt.Sprintf("%s[:%d]", s.bufferName, *byteIndex))
+		if f.typ != f.aliasType {
+			fun = printFunc(f.aliasType, fun)
 		}
-	case 0:
-		// Variable length size.
-		slice := bufferName
-		idx := at
-		if start >= 1 {
-			if at == "" {
-				slice = fmt.Sprintf("%s[%d:]", bufferName, start)
-				idx = "0"
-			} else if at != "0" {
-				slice = fmt.Sprintf("%s[%s:]", bufferName, at)
-			}
+		return fmt.Sprintf("%s = %s", thisField, fun)
+	} else {
+		fun = printFunc(fun, fmt.Sprintf("%s[%d:%d]", s.bufferName, start, *byteIndex))
+		if f.typ != f.aliasType {
+			fun = printFunc(f.aliasType, fun)
 		}
-
-		switch f.typ {
-		case "struct":
-			return pkgSelName(thisField, printFunc(fun, slice))
-		}
-
-		if isLast {
-			if f.typ == "string" || f.typ == "[]byte" {
-				*returnInlined = true
-				return fmt.Sprintf("return %s", printFunc(fun, slice, "&"+thisField))
-			}
-			return fmt.Sprintf("%s, at, ok = %s", thisField, printFunc(fun, slice))
-		} else {
-			return fmt.Sprintf("%s, at, ok = %s", thisField, printFunc(fun, slice, idx))
-		}
+		return fmt.Sprintf("%s = %s", thisField, fun)
 	}
 }
 
