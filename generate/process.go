@@ -56,7 +56,8 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 
 		f, err = ParseFile(filenames[i], nil)
 		if err != nil {
-			errors.Join(errs, err)
+			err = errors.Join(errs, err)
+			// If a file is unable to be parsed, continue parsing the other files.
 			continue
 		}
 		directories.add(filepath.Dir(filenames[i]), f)
@@ -90,7 +91,7 @@ func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
 		src, err = o.makeFile(fl.pkg, fl.structs)
 		if err != nil {
 			errors.Join(errs, err)
-			lg.Println("makeFile:", err, dir)
+			lg.Printf("makeFile err: %s, in dir: %s file:\n%s\n", err, dir, src)
 		} else {
 			output = append(output, Output{Dir: dir, Src: src})
 		}
