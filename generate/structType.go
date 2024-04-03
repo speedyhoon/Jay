@@ -15,6 +15,7 @@ type structTyp struct {
 	bufferName string
 	lengthName string
 	dir        string
+	imports    importList // Imports required for generated code.
 
 	// Exported fields.
 	fixedLen, // Fixed length types like int16, uint64 and some arrays etc.

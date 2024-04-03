@@ -124,6 +124,7 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 		}
 
 		if f.typ != f.aliasType {
+			s.imports.add(f.pkgReq)
 			thisField = printFunc(f.typ, thisField)
 		}
 		return printFunc(fun, sliceExpr(s, f, Utoa(start), Utoa(*byteIndex)), thisField)

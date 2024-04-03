@@ -16,13 +16,14 @@ type field struct {
 	name string // The string used as the variable name.
 	typ  string // The underlying type of the variable (uint, byte, bool, map, etc).
 
-	// Alias name assigned to the type, for example, `type Toggle bool`, typ = "bool", aliasType = "Toggle".
-	aliasType  string
+	aliasType  string // Alias name assigned to the type, for example, `type Toggle bool`, typ = "bool", aliasType = "Toggle".
 	arraySize  int    // 0 = not an array or slice, -1 = slice, >=1 = array size
+	pkgReq     string // Which package is required to be imported if referenced in the generated code.
 	arrayType  string // The type without the size in brackets. An empty string is not an array.
 	tag        string // The tag value within `j:""`
 	tagOptions        // Valid tag options that have been successfully parsed and loaded from the `tag` string.
 	isFixedLen bool   // Is represented by a fixed quantity of bytes (like int64) or a variable quantity of bytes (like string & slices).
+	isAliasDef bool
 	isFirst    bool
 	isLast     bool
 }
