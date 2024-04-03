@@ -4,7 +4,7 @@ func SizeBools(length int) int {
 	if length <= 0 {
 		return 0
 	}
-	return (length-1)/8 + 1
+	return (length + 7) >> 3
 }
 
 func WriteBools(y []byte, a []bool, length int) {
