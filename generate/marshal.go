@@ -282,19 +282,12 @@ func sliceExpr(s *structTyp, f field, at, end string) string {
 		if f.isFirst {
 			return fmt.Sprintf("%s[:%s]", s.bufferName, end)
 		}
-		if f.isLast {
-			return fmt.Sprintf("%s[%s:]", s.bufferName, at)
-		}
-		return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
-
-	} else {
-		// Variable length types.
-
-		if f.isLast {
-			return fmt.Sprintf("%s[%s:]", s.bufferName, at)
-		}
-		return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
 	}
+
+	if f.isLast {
+		return fmt.Sprintf("%s[%s:]", s.bufferName, at)
+	}
+	return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
 }
 
 func sliceExprU(s *structTyp, f field, at, end uint) string {
