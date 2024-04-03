@@ -4,7 +4,7 @@ package main
 
 import "github.com/speedyhoon/jay"
 
-func (c *Car) MarshalJ() (b []byte) {
+func (c Car) MarshalJ() (b []byte) {
 	l0, l1, l2, l3 := len(c.Name), len(c.CC), len(c.Gearbox.Model), len(c.Gearbox.Manufacturer)
 	b = make([]byte, 41+l0+l1+l2+l3)
 	b[0], b[1], b[2], b[3] = byte(l0), byte(l1), byte(l2), byte(l3)

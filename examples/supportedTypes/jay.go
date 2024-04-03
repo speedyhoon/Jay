@@ -4,186 +4,216 @@ package main
 
 import "github.com/speedyhoon/jay"
 
-func (s *Supported) MarshalJ() (b []byte) {
+func (s Supported) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5 := len(s.String), len(s.ByteSlice), len(s.Embed.String), len(s.Embed.ByteSlice), len(s.SubStruct.String), len(s.SubStruct.ByteSlice)
-	b = make([]byte, 238+l0+l1+l2+l3+l4+l5)
-	b[0] = jay.Bool3(s.Bool, s.Embed.Bool, s.SubStruct.Bool)
-	b[1] = s.Byte
-	b[2] = byte(s.Int8)
-	b[3] = s.Uint8
-	jay.WriteFloat32(b[4:8], s.Float32)
-	jay.WriteFloat64(b[8:16], s.Float64)
-	jay.WriteIntArch64(b[16:24], s.Int)
-	jay.WriteInt16(b[24:26], s.Int16)
-	jay.WriteInt32(b[26:30], s.Int32)
-	jay.WriteInt64(b[30:38], s.Int64)
-	jay.WriteUintArch64(b[38:46], s.Uint)
-	jay.WriteUint16(b[46:48], s.Uint16)
-	jay.WriteUint32(b[48:52], s.Uint32)
-	jay.WriteUint64(b[52:60], s.Uint64)
-	jay.WriteInt32(b[60:64], s.Rune)
-	jay.WriteTime(b[64:72], s.Time)
-	jay.WriteTimeNano(b[72:80], s.Nano)
-	jay.WriteFloat32(b[80:84], s.Embed.Float32)
-	jay.WriteFloat64(b[84:92], s.Embed.Float64)
-	jay.WriteIntArch64(b[92:100], s.Embed.Int)
-	jay.WriteInt16(b[100:102], s.Embed.Int16)
-	jay.WriteInt32(b[102:106], s.Embed.Int32)
-	jay.WriteInt64(b[106:114], s.Embed.Int64)
-	jay.WriteUintArch64(b[114:122], s.Embed.Uint)
-	jay.WriteUint16(b[122:124], s.Embed.Uint16)
-	jay.WriteUint32(b[124:128], s.Embed.Uint32)
-	jay.WriteUint64(b[128:136], s.Embed.Uint64)
-	jay.WriteInt32(b[136:140], s.Embed.Rune)
-	jay.WriteTime(b[140:148], s.Embed.Time)
-	jay.WriteTimeNano(b[148:156], s.Embed.Nano)
-	jay.WriteFloat32(b[156:160], s.SubStruct.Float32)
-	jay.WriteFloat64(b[160:168], s.SubStruct.Float64)
-	jay.WriteIntArch64(b[168:176], s.SubStruct.Int)
-	jay.WriteInt16(b[176:178], s.SubStruct.Int16)
-	jay.WriteInt32(b[178:182], s.SubStruct.Int32)
-	jay.WriteInt64(b[182:190], s.SubStruct.Int64)
-	jay.WriteUintArch64(b[190:198], s.SubStruct.Uint)
-	jay.WriteUint16(b[198:200], s.SubStruct.Uint16)
-	jay.WriteUint32(b[200:204], s.SubStruct.Uint32)
-	jay.WriteUint64(b[204:212], s.SubStruct.Uint64)
-	jay.WriteInt32(b[212:216], s.SubStruct.Rune)
-	jay.WriteTime(b[216:224], s.SubStruct.Time)
-	jay.WriteTimeNano(b[224:232], s.SubStruct.Nano)
-	at := jay.WriteStringAt(b[232:], s.String, l0, 232)
-	at = jay.WriteBytesAt(b[at:], s.ByteSlice, l1, at)
-	at = jay.WriteStringAt(b[at:], s.Embed.String, l2, at)
-	at = jay.WriteBytesAt(b[at:], s.Embed.ByteSlice, l3, at)
-	at = jay.WriteStringAt(b[at:], s.SubStruct.String, l4, at)
-	jay.WriteBytes(b[at:], s.SubStruct.ByteSlice, l5)
-
+	b = make([]byte, 244+l0+l1+l2+l3+l4+l5)
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
+	b[6] = jay.Bool3(s.Bool, s.Embed.Bool, s.SubStruct.Bool)
+	b[7] = s.Byte
+	b[8] = byte(s.Int8)
+	b[9] = s.Uint8
+	b[10] = s.Embed.Byte
+	b[11] = byte(s.Embed.Int8)
+	b[12] = s.Embed.Uint8
+	b[13] = s.SubStruct.Byte
+	b[14] = byte(s.SubStruct.Int8)
+	b[15] = s.SubStruct.Uint8
+	jay.WriteFloat32(b[16:20], s.Float32)
+	jay.WriteFloat64(b[20:28], s.Float64)
+	jay.WriteIntArch64(b[28:36], s.Int)
+	jay.WriteInt16(b[36:38], s.Int16)
+	jay.WriteInt32(b[38:42], s.Int32)
+	jay.WriteInt64(b[42:50], s.Int64)
+	jay.WriteUintArch64(b[50:58], s.Uint)
+	jay.WriteUint16(b[58:60], s.Uint16)
+	jay.WriteUint32(b[60:64], s.Uint32)
+	jay.WriteUint64(b[64:72], s.Uint64)
+	jay.WriteInt32(b[72:76], s.Rune)
+	jay.WriteTime(b[76:84], s.Time)
+	jay.WriteTimeNano(b[84:92], s.Nano)
+	jay.WriteFloat32(b[92:96], s.Embed.Float32)
+	jay.WriteFloat64(b[96:104], s.Embed.Float64)
+	jay.WriteIntArch64(b[104:112], s.Embed.Int)
+	jay.WriteInt16(b[112:114], s.Embed.Int16)
+	jay.WriteInt32(b[114:118], s.Embed.Int32)
+	jay.WriteInt64(b[118:126], s.Embed.Int64)
+	jay.WriteUintArch64(b[126:134], s.Embed.Uint)
+	jay.WriteUint16(b[134:136], s.Embed.Uint16)
+	jay.WriteUint32(b[136:140], s.Embed.Uint32)
+	jay.WriteUint64(b[140:148], s.Embed.Uint64)
+	jay.WriteInt32(b[148:152], s.Embed.Rune)
+	jay.WriteTime(b[152:160], s.Embed.Time)
+	jay.WriteTimeNano(b[160:168], s.Embed.Nano)
+	jay.WriteFloat32(b[168:172], s.SubStruct.Float32)
+	jay.WriteFloat64(b[172:180], s.SubStruct.Float64)
+	jay.WriteIntArch64(b[180:188], s.SubStruct.Int)
+	jay.WriteInt16(b[188:190], s.SubStruct.Int16)
+	jay.WriteInt32(b[190:194], s.SubStruct.Int32)
+	jay.WriteInt64(b[194:202], s.SubStruct.Int64)
+	jay.WriteUintArch64(b[202:210], s.SubStruct.Uint)
+	jay.WriteUint16(b[210:212], s.SubStruct.Uint16)
+	jay.WriteUint32(b[212:216], s.SubStruct.Uint32)
+	jay.WriteUint64(b[216:224], s.SubStruct.Uint64)
+	jay.WriteInt32(b[224:228], s.SubStruct.Rune)
+	jay.WriteTime(b[228:236], s.SubStruct.Time)
+	jay.WriteTimeNano(b[236:244], s.SubStruct.Nano)
+	at, end := 244, 244+l0
+	copy(b[at:end], s.String)
+	at, end = end, end+l1
+	if l1 != 0 {
+		copy(b[at:], s.ByteSlice)
+	}
+	at, end = end, end+l2
+	copy(b[at:end], s.Embed.String)
+	at, end = end, end+l3
+	if l3 != 0 {
+		copy(b[at:], s.Embed.ByteSlice)
+	}
+	at, end = end, end+l4
+	copy(b[at:end], s.SubStruct.String)
+	if l5 != 0 {
+		copy(b[end:], s.SubStruct.ByteSlice)
+	}
 	return
 }
 
 func (s *Supported) UnmarshalJ(b []byte) error {
-	if len(b) < 232 {
+	l := len(b)
+	if l < 244 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.Bool, s.Embed.Bool, s.SubStruct.Bool = jay.ReadBool3(b[0])
-	s.Byte = b[1]
-	s.Int8 = int8(b[2])
-	s.Uint8 = b[3]
-	s.Float32 = jay.ReadFloat32(b[4:8])
-	s.Float64 = jay.ReadFloat64(b[8:16])
-	s.Int = jay.ReadIntArch64(b[16:24])
-	s.Int16 = jay.ReadInt16(b[24:26])
-	s.Int32 = jay.ReadInt32(b[26:30])
-	s.Int64 = jay.ReadInt64(b[30:38])
-	s.Uint = jay.ReadUintArch64(b[38:46])
-	s.Uint16 = jay.ReadUint16(b[46:48])
-	s.Uint32 = jay.ReadUint32(b[48:52])
-	s.Uint64 = jay.ReadUint64(b[52:60])
-	s.Rune = jay.ReadInt32(b[60:64])
-	s.Time = jay.ReadTime(b[64:72])
-	s.Nano = jay.ReadTimeNano(b[72:80])
-	s.Embed.Float32 = jay.ReadFloat32(b[80:84])
-	s.Embed.Float64 = jay.ReadFloat64(b[84:92])
-	s.Embed.Int = jay.ReadIntArch64(b[92:100])
-	s.Embed.Int16 = jay.ReadInt16(b[100:102])
-	s.Embed.Int32 = jay.ReadInt32(b[102:106])
-	s.Embed.Int64 = jay.ReadInt64(b[106:114])
-	s.Embed.Uint = jay.ReadUintArch64(b[114:122])
-	s.Embed.Uint16 = jay.ReadUint16(b[122:124])
-	s.Embed.Uint32 = jay.ReadUint32(b[124:128])
-	s.Embed.Uint64 = jay.ReadUint64(b[128:136])
-	s.Embed.Rune = jay.ReadInt32(b[136:140])
-	s.Embed.Time = jay.ReadTime(b[140:148])
-	s.Embed.Nano = jay.ReadTimeNano(b[148:156])
-	s.SubStruct.Float32 = jay.ReadFloat32(b[156:160])
-	s.SubStruct.Float64 = jay.ReadFloat64(b[160:168])
-	s.SubStruct.Int = jay.ReadIntArch64(b[168:176])
-	s.SubStruct.Int16 = jay.ReadInt16(b[176:178])
-	s.SubStruct.Int32 = jay.ReadInt32(b[178:182])
-	s.SubStruct.Int64 = jay.ReadInt64(b[182:190])
-	s.SubStruct.Uint = jay.ReadUintArch64(b[190:198])
-	s.SubStruct.Uint16 = jay.ReadUint16(b[198:200])
-	s.SubStruct.Uint32 = jay.ReadUint32(b[200:204])
-	s.SubStruct.Uint64 = jay.ReadUint64(b[204:212])
-	s.SubStruct.Rune = jay.ReadInt32(b[212:216])
-	s.SubStruct.Time = jay.ReadTime(b[216:224])
-	s.SubStruct.Nano = jay.ReadTimeNano(b[224:232])
-	var ok bool
-	at := 232
-	s.String, at, ok = jay.ReadStringAt(b[at:], at)
-	if !ok {
+	l0, l1, l2, l3, l4, l5 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5])
+	if l < 244+l0+l1+l2+l3+l4+l5 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.ByteSlice, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	s.Bool, s.Embed.Bool, s.SubStruct.Bool = jay.ReadBool3(b[6])
+	s.Byte = b[7]
+	s.Int8 = int8(b[8])
+	s.Uint8 = b[9]
+	s.Embed.Byte = b[10]
+	s.Embed.Int8 = int8(b[11])
+	s.Embed.Uint8 = b[12]
+	s.SubStruct.Byte = b[13]
+	s.SubStruct.Int8 = int8(b[14])
+	s.SubStruct.Uint8 = b[15]
+	s.Float32 = jay.ReadFloat32(b[16:20])
+	s.Float64 = jay.ReadFloat64(b[20:28])
+	s.Int = jay.ReadIntArch64(b[28:36])
+	s.Int16 = jay.ReadInt16(b[36:38])
+	s.Int32 = jay.ReadInt32(b[38:42])
+	s.Int64 = jay.ReadInt64(b[42:50])
+	s.Uint = jay.ReadUintArch64(b[50:58])
+	s.Uint16 = jay.ReadUint16(b[58:60])
+	s.Uint32 = jay.ReadUint32(b[60:64])
+	s.Uint64 = jay.ReadUint64(b[64:72])
+	s.Rune = jay.ReadInt32(b[72:76])
+	s.Time = jay.ReadTime(b[76:84])
+	s.Nano = jay.ReadTimeNano(b[84:92])
+	s.Embed.Float32 = jay.ReadFloat32(b[92:96])
+	s.Embed.Float64 = jay.ReadFloat64(b[96:104])
+	s.Embed.Int = jay.ReadIntArch64(b[104:112])
+	s.Embed.Int16 = jay.ReadInt16(b[112:114])
+	s.Embed.Int32 = jay.ReadInt32(b[114:118])
+	s.Embed.Int64 = jay.ReadInt64(b[118:126])
+	s.Embed.Uint = jay.ReadUintArch64(b[126:134])
+	s.Embed.Uint16 = jay.ReadUint16(b[134:136])
+	s.Embed.Uint32 = jay.ReadUint32(b[136:140])
+	s.Embed.Uint64 = jay.ReadUint64(b[140:148])
+	s.Embed.Rune = jay.ReadInt32(b[148:152])
+	s.Embed.Time = jay.ReadTime(b[152:160])
+	s.Embed.Nano = jay.ReadTimeNano(b[160:168])
+	s.SubStruct.Float32 = jay.ReadFloat32(b[168:172])
+	s.SubStruct.Float64 = jay.ReadFloat64(b[172:180])
+	s.SubStruct.Int = jay.ReadIntArch64(b[180:188])
+	s.SubStruct.Int16 = jay.ReadInt16(b[188:190])
+	s.SubStruct.Int32 = jay.ReadInt32(b[190:194])
+	s.SubStruct.Int64 = jay.ReadInt64(b[194:202])
+	s.SubStruct.Uint = jay.ReadUintArch64(b[202:210])
+	s.SubStruct.Uint16 = jay.ReadUint16(b[210:212])
+	s.SubStruct.Uint32 = jay.ReadUint32(b[212:216])
+	s.SubStruct.Uint64 = jay.ReadUint64(b[216:224])
+	s.SubStruct.Rune = jay.ReadInt32(b[224:228])
+	s.SubStruct.Time = jay.ReadTime(b[228:236])
+	s.SubStruct.Nano = jay.ReadTimeNano(b[236:244])
+	at, end := 244, 244+l0
+	s.String = string(b[at:end])
+	at, end = end, end+l1
+	if l1 != 0 {
+		s.ByteSlice = b[at:end]
 	}
-	s.Embed.String, at, ok = jay.ReadStringAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l2
+	s.Embed.String = string(b[at:end])
+	at, end = end, end+l3
+	if l3 != 0 {
+		s.Embed.ByteSlice = b[at:end]
 	}
-	s.Embed.ByteSlice, at, ok = jay.ReadBytesAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
+	at, end = end, end+l4
+	s.SubStruct.String = string(b[at:end])
+	if l5 != 0 {
+		s.SubStruct.ByteSlice = b[end:]
 	}
-	s.SubStruct.String, at, ok = jay.ReadStringAt(b[at:], at)
-	if !ok {
-		return jay.ErrUnexpectedEOB
-	}
-	return jay.ReadBytesPtrErr(b[at:], &s.SubStruct.ByteSlice)
+	return nil
 }
 
-func (e *Embed) MarshalJ() (b []byte) {
+func (e Embed) MarshalJ() (b []byte) {
 	l0, l1 := len(e.String), len(e.ByteSlice)
 	b = make([]byte, 82+l0+l1)
-	b[0] = jay.Bool1(e.Bool)
-	b[1] = e.Byte
-	b[2] = byte(e.Int8)
-	b[3] = e.Uint8
-	jay.WriteFloat32(b[4:8], e.Float32)
-	jay.WriteFloat64(b[8:16], e.Float64)
-	jay.WriteIntArch64(b[16:24], e.Int)
-	jay.WriteInt16(b[24:26], e.Int16)
-	jay.WriteInt32(b[26:30], e.Int32)
-	jay.WriteInt64(b[30:38], e.Int64)
-	jay.WriteUintArch64(b[38:46], e.Uint)
-	jay.WriteUint16(b[46:48], e.Uint16)
-	jay.WriteUint32(b[48:52], e.Uint32)
-	jay.WriteUint64(b[52:60], e.Uint64)
-	jay.WriteInt32(b[60:64], e.Rune)
-	jay.WriteTime(b[64:72], e.Time)
-	jay.WriteTimeNano(b[72:80], e.Nano)
-	at := jay.WriteStringAt(b[80:], e.String, l0, 80)
-	jay.WriteBytes(b[at:], e.ByteSlice, l1)
-
+	b[0], b[1] = byte(l0), byte(l1)
+	b[2] = jay.Bool1(e.Bool)
+	b[3] = e.Byte
+	b[4] = byte(e.Int8)
+	b[5] = e.Uint8
+	jay.WriteFloat32(b[6:10], e.Float32)
+	jay.WriteFloat64(b[10:18], e.Float64)
+	jay.WriteIntArch64(b[18:26], e.Int)
+	jay.WriteInt16(b[26:28], e.Int16)
+	jay.WriteInt32(b[28:32], e.Int32)
+	jay.WriteInt64(b[32:40], e.Int64)
+	jay.WriteUintArch64(b[40:48], e.Uint)
+	jay.WriteUint16(b[48:50], e.Uint16)
+	jay.WriteUint32(b[50:54], e.Uint32)
+	jay.WriteUint64(b[54:62], e.Uint64)
+	jay.WriteInt32(b[62:66], e.Rune)
+	jay.WriteTime(b[66:74], e.Time)
+	jay.WriteTimeNano(b[74:82], e.Nano)
+	at, end := 82, 82+l0
+	copy(b[at:end], e.String)
+	if l1 != 0 {
+		copy(b[end:], e.ByteSlice)
+	}
 	return
 }
 
 func (e *Embed) UnmarshalJ(b []byte) error {
-	if len(b) < 80 {
+	l := len(b)
+	if l < 82 {
 		return jay.ErrUnexpectedEOB
 	}
-	e.Bool = jay.ReadBool1(b[0])
-	e.Byte = b[1]
-	e.Int8 = int8(b[2])
-	e.Uint8 = b[3]
-	e.Float32 = jay.ReadFloat32(b[4:8])
-	e.Float64 = jay.ReadFloat64(b[8:16])
-	e.Int = jay.ReadIntArch64(b[16:24])
-	e.Int16 = jay.ReadInt16(b[24:26])
-	e.Int32 = jay.ReadInt32(b[26:30])
-	e.Int64 = jay.ReadInt64(b[30:38])
-	e.Uint = jay.ReadUintArch64(b[38:46])
-	e.Uint16 = jay.ReadUint16(b[46:48])
-	e.Uint32 = jay.ReadUint32(b[48:52])
-	e.Uint64 = jay.ReadUint64(b[52:60])
-	e.Rune = jay.ReadInt32(b[60:64])
-	e.Time = jay.ReadTime(b[64:72])
-	e.Nano = jay.ReadTimeNano(b[72:80])
-	var ok bool
-	at := 80
-	e.String, at, ok = jay.ReadStringAt(b[at:], at)
-	if !ok {
+	l0, l1 := int(b[0]), int(b[1])
+	if l < 82+l0+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	return jay.ReadBytesPtrErr(b[at:], &e.ByteSlice)
+	e.Bool = jay.ReadBool1(b[2])
+	e.Byte = b[3]
+	e.Int8 = int8(b[4])
+	e.Uint8 = b[5]
+	e.Float32 = jay.ReadFloat32(b[6:10])
+	e.Float64 = jay.ReadFloat64(b[10:18])
+	e.Int = jay.ReadIntArch64(b[18:26])
+	e.Int16 = jay.ReadInt16(b[26:28])
+	e.Int32 = jay.ReadInt32(b[28:32])
+	e.Int64 = jay.ReadInt64(b[32:40])
+	e.Uint = jay.ReadUintArch64(b[40:48])
+	e.Uint16 = jay.ReadUint16(b[48:50])
+	e.Uint32 = jay.ReadUint32(b[50:54])
+	e.Uint64 = jay.ReadUint64(b[54:62])
+	e.Rune = jay.ReadInt32(b[62:66])
+	e.Time = jay.ReadTime(b[66:74])
+	e.Nano = jay.ReadTimeNano(b[74:82])
+	at, end := 82, 82+l0
+	e.String = string(b[at:end])
+	if l1 != 0 {
+		e.ByteSlice = b[end:]
+	}
+	return nil
 }
