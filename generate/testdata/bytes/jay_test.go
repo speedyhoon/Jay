@@ -17,7 +17,7 @@ func TestFuzz_1(t *testing.T) {
 	require.Equal(t, One{}, actual)
 
 	actual = One{
-		One: rando.Bytes(),
+		One: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -34,8 +34,8 @@ func TestFuzz_2(t *testing.T) {
 	require.Equal(t, Two{}, actual)
 
 	actual = Two{
-		One: rando.Bytes(),
-		Two: rando.Bytes(),
+		One: rando.BytesNil(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -52,9 +52,9 @@ func TestFuzz_3(t *testing.T) {
 	require.Equal(t, Three{}, actual)
 
 	actual = Three{
-		One:   rando.Bytes(),
-		Two:   rando.Bytes(),
-		Three: rando.Bytes(),
+		One:   rando.BytesNil(),
+		Two:   rando.BytesNil(),
+		Three: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -71,10 +71,10 @@ func TestFuzz_4(t *testing.T) {
 	require.Equal(t, Four{}, actual)
 
 	actual = Four{
-		One:   rando.Bytes(),
-		Two:   rando.Bytes(),
-		Three: rando.Bytes(),
-		Four:  rando.Bytes(),
+		One:   rando.BytesNil(),
+		Two:   rando.BytesNil(),
+		Three: rando.BytesNil(),
+		Four:  rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -91,11 +91,11 @@ func TestFuzz_5(t *testing.T) {
 	require.Equal(t, Five{}, actual)
 
 	actual = Five{
-		One:   rando.Bytes(),
-		Two:   rando.Bytes(),
-		Three: rando.Bytes(),
-		Four:  rando.Bytes(),
-		Five:  rando.Bytes(),
+		One:   rando.BytesNil(),
+		Two:   rando.BytesNil(),
+		Three: rando.BytesNil(),
+		Four:  rando.BytesNil(),
+		Five:  rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -112,12 +112,12 @@ func TestFuzz_6(t *testing.T) {
 	require.Equal(t, Six{}, actual)
 
 	actual = Six{
-		One:   rando.Bytes(),
-		Two:   rando.Bytes(),
-		Three: rando.Bytes(),
-		Four:  rando.Bytes(),
-		Five:  rando.Bytes(),
-		Six:   rando.Bytes(),
+		One:   rando.BytesNil(),
+		Two:   rando.BytesNil(),
+		Three: rando.BytesNil(),
+		Four:  rando.BytesNil(),
+		Five:  rando.BytesNil(),
+		Six:   rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -134,13 +134,13 @@ func TestFuzz_7(t *testing.T) {
 	require.Equal(t, Seven{}, actual)
 
 	actual = Seven{
-		One:   rando.Bytes(),
-		Two:   rando.Bytes(),
-		Three: rando.Bytes(),
-		Four:  rando.Bytes(),
-		Five:  rando.Bytes(),
-		Six:   rando.Bytes(),
-		Seven: rando.Bytes(),
+		One:   rando.BytesNil(),
+		Two:   rando.BytesNil(),
+		Three: rando.BytesNil(),
+		Four:  rando.BytesNil(),
+		Five:  rando.BytesNil(),
+		Six:   rando.BytesNil(),
+		Seven: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -157,14 +157,14 @@ func TestFuzz_8(t *testing.T) {
 	require.Equal(t, Eight{}, actual)
 
 	actual = Eight{
-		One:   rando.Bytes(),
-		Two:   rando.Bytes(),
-		Three: rando.Bytes(),
-		Four:  rando.Bytes(),
-		Five:  rando.Bytes(),
-		Six:   rando.Bytes(),
-		Seven: rando.Bytes(),
-		Eight: rando.Bytes(),
+		One:   rando.BytesNil(),
+		Two:   rando.BytesNil(),
+		Three: rando.BytesNil(),
+		Four:  rando.BytesNil(),
+		Five:  rando.BytesNil(),
+		Six:   rando.BytesNil(),
+		Seven: rando.BytesNil(),
+		Eight: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -181,15 +181,15 @@ func TestFuzz_9(t *testing.T) {
 	require.Equal(t, Nine{}, actual)
 
 	actual = Nine{
-		One:   rando.Bytes(),
-		Two:   rando.Bytes(),
-		Three: rando.Bytes(),
-		Four:  rando.Bytes(),
-		Five:  rando.Bytes(),
-		Six:   rando.Bytes(),
-		Seven: rando.Bytes(),
-		Eight: rando.Bytes(),
-		Nine:  rando.Bytes(),
+		One:   rando.BytesNil(),
+		Two:   rando.BytesNil(),
+		Three: rando.BytesNil(),
+		Four:  rando.BytesNil(),
+		Five:  rando.BytesNil(),
+		Six:   rando.BytesNil(),
+		Seven: rando.BytesNil(),
+		Eight: rando.BytesNil(),
+		Nine:  rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -206,16 +206,16 @@ func TestFuzz_10(t *testing.T) {
 	require.Equal(t, Ten{}, actual)
 
 	actual = Ten{
-		One:   rando.Bytes(),
-		Two:   rando.Bytes(),
-		Three: rando.Bytes(),
-		Four:  rando.Bytes(),
-		Five:  rando.Bytes(),
-		Six:   rando.Bytes(),
-		Seven: rando.Bytes(),
-		Eight: rando.Bytes(),
-		Nine:  rando.Bytes(),
-		Ten:   rando.Bytes(),
+		One:   rando.BytesNil(),
+		Two:   rando.BytesNil(),
+		Three: rando.BytesNil(),
+		Four:  rando.BytesNil(),
+		Five:  rando.BytesNil(),
+		Six:   rando.BytesNil(),
+		Seven: rando.BytesNil(),
+		Eight: rando.BytesNil(),
+		Nine:  rando.BytesNil(),
+		Ten:   rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -232,17 +232,17 @@ func TestFuzz_11(t *testing.T) {
 	require.Equal(t, Eleven{}, actual)
 
 	actual = Eleven{
-		One:    rando.Bytes(),
-		Two:    rando.Bytes(),
-		Three:  rando.Bytes(),
-		Four:   rando.Bytes(),
-		Five:   rando.Bytes(),
-		Six:    rando.Bytes(),
-		Seven:  rando.Bytes(),
-		Eight:  rando.Bytes(),
-		Nine:   rando.Bytes(),
-		Ten:    rando.Bytes(),
-		Eleven: rando.Bytes(),
+		One:    rando.BytesNil(),
+		Two:    rando.BytesNil(),
+		Three:  rando.BytesNil(),
+		Four:   rando.BytesNil(),
+		Five:   rando.BytesNil(),
+		Six:    rando.BytesNil(),
+		Seven:  rando.BytesNil(),
+		Eight:  rando.BytesNil(),
+		Nine:   rando.BytesNil(),
+		Ten:    rando.BytesNil(),
+		Eleven: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -259,18 +259,18 @@ func TestFuzz_12(t *testing.T) {
 	require.Equal(t, Twelve{}, actual)
 
 	actual = Twelve{
-		One:    rando.Bytes(),
-		Two:    rando.Bytes(),
-		Three:  rando.Bytes(),
-		Four:   rando.Bytes(),
-		Five:   rando.Bytes(),
-		Six:    rando.Bytes(),
-		Seven:  rando.Bytes(),
-		Eight:  rando.Bytes(),
-		Nine:   rando.Bytes(),
-		Ten:    rando.Bytes(),
-		Eleven: rando.Bytes(),
-		Twelve: rando.Bytes(),
+		One:    rando.BytesNil(),
+		Two:    rando.BytesNil(),
+		Three:  rando.BytesNil(),
+		Four:   rando.BytesNil(),
+		Five:   rando.BytesNil(),
+		Six:    rando.BytesNil(),
+		Seven:  rando.BytesNil(),
+		Eight:  rando.BytesNil(),
+		Nine:   rando.BytesNil(),
+		Ten:    rando.BytesNil(),
+		Eleven: rando.BytesNil(),
+		Twelve: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -287,19 +287,19 @@ func TestFuzz_13(t *testing.T) {
 	require.Equal(t, Thirteen{}, actual)
 
 	actual = Thirteen{
-		One:      rando.Bytes(),
-		Two:      rando.Bytes(),
-		Three:    rando.Bytes(),
-		Four:     rando.Bytes(),
-		Five:     rando.Bytes(),
-		Six:      rando.Bytes(),
-		Seven:    rando.Bytes(),
-		Eight:    rando.Bytes(),
-		Nine:     rando.Bytes(),
-		Ten:      rando.Bytes(),
-		Eleven:   rando.Bytes(),
-		Twelve:   rando.Bytes(),
-		Thirteen: rando.Bytes(),
+		One:      rando.BytesNil(),
+		Two:      rando.BytesNil(),
+		Three:    rando.BytesNil(),
+		Four:     rando.BytesNil(),
+		Five:     rando.BytesNil(),
+		Six:      rando.BytesNil(),
+		Seven:    rando.BytesNil(),
+		Eight:    rando.BytesNil(),
+		Nine:     rando.BytesNil(),
+		Ten:      rando.BytesNil(),
+		Eleven:   rando.BytesNil(),
+		Twelve:   rando.BytesNil(),
+		Thirteen: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -316,20 +316,20 @@ func TestFuzz_14(t *testing.T) {
 	require.Equal(t, Fourteen{}, actual)
 
 	actual = Fourteen{
-		One:      rando.Bytes(),
-		Two:      rando.Bytes(),
-		Three:    rando.Bytes(),
-		Four:     rando.Bytes(),
-		Five:     rando.Bytes(),
-		Six:      rando.Bytes(),
-		Seven:    rando.Bytes(),
-		Eight:    rando.Bytes(),
-		Nine:     rando.Bytes(),
-		Ten:      rando.Bytes(),
-		Eleven:   rando.Bytes(),
-		Twelve:   rando.Bytes(),
-		Thirteen: rando.Bytes(),
-		Fourteen: rando.Bytes(),
+		One:      rando.BytesNil(),
+		Two:      rando.BytesNil(),
+		Three:    rando.BytesNil(),
+		Four:     rando.BytesNil(),
+		Five:     rando.BytesNil(),
+		Six:      rando.BytesNil(),
+		Seven:    rando.BytesNil(),
+		Eight:    rando.BytesNil(),
+		Nine:     rando.BytesNil(),
+		Ten:      rando.BytesNil(),
+		Eleven:   rando.BytesNil(),
+		Twelve:   rando.BytesNil(),
+		Thirteen: rando.BytesNil(),
+		Fourteen: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -346,21 +346,21 @@ func TestFuzz_15(t *testing.T) {
 	require.Equal(t, Fifteen{}, actual)
 
 	actual = Fifteen{
-		One:      rando.Bytes(),
-		Two:      rando.Bytes(),
-		Three:    rando.Bytes(),
-		Four:     rando.Bytes(),
-		Five:     rando.Bytes(),
-		Six:      rando.Bytes(),
-		Seven:    rando.Bytes(),
-		Eight:    rando.Bytes(),
-		Nine:     rando.Bytes(),
-		Ten:      rando.Bytes(),
-		Eleven:   rando.Bytes(),
-		Twelve:   rando.Bytes(),
-		Thirteen: rando.Bytes(),
-		Fourteen: rando.Bytes(),
-		Fifteen:  rando.Bytes(),
+		One:      rando.BytesNil(),
+		Two:      rando.BytesNil(),
+		Three:    rando.BytesNil(),
+		Four:     rando.BytesNil(),
+		Five:     rando.BytesNil(),
+		Six:      rando.BytesNil(),
+		Seven:    rando.BytesNil(),
+		Eight:    rando.BytesNil(),
+		Nine:     rando.BytesNil(),
+		Ten:      rando.BytesNil(),
+		Eleven:   rando.BytesNil(),
+		Twelve:   rando.BytesNil(),
+		Thirteen: rando.BytesNil(),
+		Fourteen: rando.BytesNil(),
+		Fifteen:  rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -377,22 +377,22 @@ func TestFuzz_16(t *testing.T) {
 	require.Equal(t, Sixteen{}, actual)
 
 	actual = Sixteen{
-		One:      rando.Bytes(),
-		Two:      rando.Bytes(),
-		Three:    rando.Bytes(),
-		Four:     rando.Bytes(),
-		Five:     rando.Bytes(),
-		Six:      rando.Bytes(),
-		Seven:    rando.Bytes(),
-		Eight:    rando.Bytes(),
-		Nine:     rando.Bytes(),
-		Ten:      rando.Bytes(),
-		Eleven:   rando.Bytes(),
-		Twelve:   rando.Bytes(),
-		Thirteen: rando.Bytes(),
-		Fourteen: rando.Bytes(),
-		Fifteen:  rando.Bytes(),
-		Sixteen:  rando.Bytes(),
+		One:      rando.BytesNil(),
+		Two:      rando.BytesNil(),
+		Three:    rando.BytesNil(),
+		Four:     rando.BytesNil(),
+		Five:     rando.BytesNil(),
+		Six:      rando.BytesNil(),
+		Seven:    rando.BytesNil(),
+		Eight:    rando.BytesNil(),
+		Nine:     rando.BytesNil(),
+		Ten:      rando.BytesNil(),
+		Eleven:   rando.BytesNil(),
+		Twelve:   rando.BytesNil(),
+		Thirteen: rando.BytesNil(),
+		Fourteen: rando.BytesNil(),
+		Fifteen:  rando.BytesNil(),
+		Sixteen:  rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -409,23 +409,23 @@ func TestFuzz_17(t *testing.T) {
 	require.Equal(t, Seventeen{}, actual)
 
 	actual = Seventeen{
-		One:       rando.Bytes(),
-		Two:       rando.Bytes(),
-		Three:     rando.Bytes(),
-		Four:      rando.Bytes(),
-		Five:      rando.Bytes(),
-		Six:       rando.Bytes(),
-		Seven:     rando.Bytes(),
-		Eight:     rando.Bytes(),
-		Nine:      rando.Bytes(),
-		Ten:       rando.Bytes(),
-		Eleven:    rando.Bytes(),
-		Twelve:    rando.Bytes(),
-		Thirteen:  rando.Bytes(),
-		Fourteen:  rando.Bytes(),
-		Fifteen:   rando.Bytes(),
-		Sixteen:   rando.Bytes(),
-		Seventeen: rando.Bytes(),
+		One:       rando.BytesNil(),
+		Two:       rando.BytesNil(),
+		Three:     rando.BytesNil(),
+		Four:      rando.BytesNil(),
+		Five:      rando.BytesNil(),
+		Six:       rando.BytesNil(),
+		Seven:     rando.BytesNil(),
+		Eight:     rando.BytesNil(),
+		Nine:      rando.BytesNil(),
+		Ten:       rando.BytesNil(),
+		Eleven:    rando.BytesNil(),
+		Twelve:    rando.BytesNil(),
+		Thirteen:  rando.BytesNil(),
+		Fourteen:  rando.BytesNil(),
+		Fifteen:   rando.BytesNil(),
+		Sixteen:   rando.BytesNil(),
+		Seventeen: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -442,24 +442,24 @@ func TestFuzz_18(t *testing.T) {
 	require.Equal(t, Eighteen{}, actual)
 
 	actual = Eighteen{
-		One:       rando.Bytes(),
-		Two:       rando.Bytes(),
-		Three:     rando.Bytes(),
-		Four:      rando.Bytes(),
-		Five:      rando.Bytes(),
-		Six:       rando.Bytes(),
-		Seven:     rando.Bytes(),
-		Eight:     rando.Bytes(),
-		Nine:      rando.Bytes(),
-		Ten:       rando.Bytes(),
-		Eleven:    rando.Bytes(),
-		Twelve:    rando.Bytes(),
-		Thirteen:  rando.Bytes(),
-		Fourteen:  rando.Bytes(),
-		Fifteen:   rando.Bytes(),
-		Sixteen:   rando.Bytes(),
-		Seventeen: rando.Bytes(),
-		Eighteen:  rando.Bytes(),
+		One:       rando.BytesNil(),
+		Two:       rando.BytesNil(),
+		Three:     rando.BytesNil(),
+		Four:      rando.BytesNil(),
+		Five:      rando.BytesNil(),
+		Six:       rando.BytesNil(),
+		Seven:     rando.BytesNil(),
+		Eight:     rando.BytesNil(),
+		Nine:      rando.BytesNil(),
+		Ten:       rando.BytesNil(),
+		Eleven:    rando.BytesNil(),
+		Twelve:    rando.BytesNil(),
+		Thirteen:  rando.BytesNil(),
+		Fourteen:  rando.BytesNil(),
+		Fifteen:   rando.BytesNil(),
+		Sixteen:   rando.BytesNil(),
+		Seventeen: rando.BytesNil(),
+		Eighteen:  rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -476,25 +476,25 @@ func TestFuzz_19(t *testing.T) {
 	require.Equal(t, Nineteen{}, actual)
 
 	actual = Nineteen{
-		One:       rando.Bytes(),
-		Two:       rando.Bytes(),
-		Three:     rando.Bytes(),
-		Four:      rando.Bytes(),
-		Five:      rando.Bytes(),
-		Six:       rando.Bytes(),
-		Seven:     rando.Bytes(),
-		Eight:     rando.Bytes(),
-		Nine:      rando.Bytes(),
-		Ten:       rando.Bytes(),
-		Eleven:    rando.Bytes(),
-		Twelve:    rando.Bytes(),
-		Thirteen:  rando.Bytes(),
-		Fourteen:  rando.Bytes(),
-		Fifteen:   rando.Bytes(),
-		Sixteen:   rando.Bytes(),
-		Seventeen: rando.Bytes(),
-		Eighteen:  rando.Bytes(),
-		Nineteen:  rando.Bytes(),
+		One:       rando.BytesNil(),
+		Two:       rando.BytesNil(),
+		Three:     rando.BytesNil(),
+		Four:      rando.BytesNil(),
+		Five:      rando.BytesNil(),
+		Six:       rando.BytesNil(),
+		Seven:     rando.BytesNil(),
+		Eight:     rando.BytesNil(),
+		Nine:      rando.BytesNil(),
+		Ten:       rando.BytesNil(),
+		Eleven:    rando.BytesNil(),
+		Twelve:    rando.BytesNil(),
+		Thirteen:  rando.BytesNil(),
+		Fourteen:  rando.BytesNil(),
+		Fifteen:   rando.BytesNil(),
+		Sixteen:   rando.BytesNil(),
+		Seventeen: rando.BytesNil(),
+		Eighteen:  rando.BytesNil(),
+		Nineteen:  rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -511,26 +511,26 @@ func TestFuzz_20(t *testing.T) {
 	require.Equal(t, Twenty{}, actual)
 
 	actual = Twenty{
-		One:       rando.Bytes(),
-		Two:       rando.Bytes(),
-		Three:     rando.Bytes(),
-		Four:      rando.Bytes(),
-		Five:      rando.Bytes(),
-		Six:       rando.Bytes(),
-		Seven:     rando.Bytes(),
-		Eight:     rando.Bytes(),
-		Nine:      rando.Bytes(),
-		Ten:       rando.Bytes(),
-		Eleven:    rando.Bytes(),
-		Twelve:    rando.Bytes(),
-		Thirteen:  rando.Bytes(),
-		Fourteen:  rando.Bytes(),
-		Fifteen:   rando.Bytes(),
-		Sixteen:   rando.Bytes(),
-		Seventeen: rando.Bytes(),
-		Eighteen:  rando.Bytes(),
-		Nineteen:  rando.Bytes(),
-		Twenty:    rando.Bytes(),
+		One:       rando.BytesNil(),
+		Two:       rando.BytesNil(),
+		Three:     rando.BytesNil(),
+		Four:      rando.BytesNil(),
+		Five:      rando.BytesNil(),
+		Six:       rando.BytesNil(),
+		Seven:     rando.BytesNil(),
+		Eight:     rando.BytesNil(),
+		Nine:      rando.BytesNil(),
+		Ten:       rando.BytesNil(),
+		Eleven:    rando.BytesNil(),
+		Twelve:    rando.BytesNil(),
+		Thirteen:  rando.BytesNil(),
+		Fourteen:  rando.BytesNil(),
+		Fifteen:   rando.BytesNil(),
+		Sixteen:   rando.BytesNil(),
+		Seventeen: rando.BytesNil(),
+		Eighteen:  rando.BytesNil(),
+		Nineteen:  rando.BytesNil(),
+		Twenty:    rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -547,27 +547,27 @@ func TestFuzz_21(t *testing.T) {
 	require.Equal(t, TwentyOne{}, actual)
 
 	actual = TwentyOne{
-		One:       rando.Bytes(),
-		Two:       rando.Bytes(),
-		Three:     rando.Bytes(),
-		Four:      rando.Bytes(),
-		Five:      rando.Bytes(),
-		Six:       rando.Bytes(),
-		Seven:     rando.Bytes(),
-		Eight:     rando.Bytes(),
-		Nine:      rando.Bytes(),
-		Ten:       rando.Bytes(),
-		Eleven:    rando.Bytes(),
-		Twelve:    rando.Bytes(),
-		Thirteen:  rando.Bytes(),
-		Fourteen:  rando.Bytes(),
-		Fifteen:   rando.Bytes(),
-		Sixteen:   rando.Bytes(),
-		Seventeen: rando.Bytes(),
-		Eighteen:  rando.Bytes(),
-		Nineteen:  rando.Bytes(),
-		Twenty:    rando.Bytes(),
-		TwentyOne: rando.Bytes(),
+		One:       rando.BytesNil(),
+		Two:       rando.BytesNil(),
+		Three:     rando.BytesNil(),
+		Four:      rando.BytesNil(),
+		Five:      rando.BytesNil(),
+		Six:       rando.BytesNil(),
+		Seven:     rando.BytesNil(),
+		Eight:     rando.BytesNil(),
+		Nine:      rando.BytesNil(),
+		Ten:       rando.BytesNil(),
+		Eleven:    rando.BytesNil(),
+		Twelve:    rando.BytesNil(),
+		Thirteen:  rando.BytesNil(),
+		Fourteen:  rando.BytesNil(),
+		Fifteen:   rando.BytesNil(),
+		Sixteen:   rando.BytesNil(),
+		Seventeen: rando.BytesNil(),
+		Eighteen:  rando.BytesNil(),
+		Nineteen:  rando.BytesNil(),
+		Twenty:    rando.BytesNil(),
+		TwentyOne: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -584,28 +584,28 @@ func TestFuzz_22(t *testing.T) {
 	require.Equal(t, TwentyTwo{}, actual)
 
 	actual = TwentyTwo{
-		One:       rando.Bytes(),
-		Two:       rando.Bytes(),
-		Three:     rando.Bytes(),
-		Four:      rando.Bytes(),
-		Five:      rando.Bytes(),
-		Six:       rando.Bytes(),
-		Seven:     rando.Bytes(),
-		Eight:     rando.Bytes(),
-		Nine:      rando.Bytes(),
-		Ten:       rando.Bytes(),
-		Eleven:    rando.Bytes(),
-		Twelve:    rando.Bytes(),
-		Thirteen:  rando.Bytes(),
-		Fourteen:  rando.Bytes(),
-		Fifteen:   rando.Bytes(),
-		Sixteen:   rando.Bytes(),
-		Seventeen: rando.Bytes(),
-		Eighteen:  rando.Bytes(),
-		Nineteen:  rando.Bytes(),
-		Twenty:    rando.Bytes(),
-		TwentyOne: rando.Bytes(),
-		TwentyTwo: rando.Bytes(),
+		One:       rando.BytesNil(),
+		Two:       rando.BytesNil(),
+		Three:     rando.BytesNil(),
+		Four:      rando.BytesNil(),
+		Five:      rando.BytesNil(),
+		Six:       rando.BytesNil(),
+		Seven:     rando.BytesNil(),
+		Eight:     rando.BytesNil(),
+		Nine:      rando.BytesNil(),
+		Ten:       rando.BytesNil(),
+		Eleven:    rando.BytesNil(),
+		Twelve:    rando.BytesNil(),
+		Thirteen:  rando.BytesNil(),
+		Fourteen:  rando.BytesNil(),
+		Fifteen:   rando.BytesNil(),
+		Sixteen:   rando.BytesNil(),
+		Seventeen: rando.BytesNil(),
+		Eighteen:  rando.BytesNil(),
+		Nineteen:  rando.BytesNil(),
+		Twenty:    rando.BytesNil(),
+		TwentyOne: rando.BytesNil(),
+		TwentyTwo: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -622,29 +622,29 @@ func TestFuzz_23(t *testing.T) {
 	require.Equal(t, TwentyThree{}, actual)
 
 	actual = TwentyThree{
-		One:         rando.Bytes(),
-		Two:         rando.Bytes(),
-		Three:       rando.Bytes(),
-		Four:        rando.Bytes(),
-		Five:        rando.Bytes(),
-		Six:         rando.Bytes(),
-		Seven:       rando.Bytes(),
-		Eight:       rando.Bytes(),
-		Nine:        rando.Bytes(),
-		Ten:         rando.Bytes(),
-		Eleven:      rando.Bytes(),
-		Twelve:      rando.Bytes(),
-		Thirteen:    rando.Bytes(),
-		Fourteen:    rando.Bytes(),
-		Fifteen:     rando.Bytes(),
-		Sixteen:     rando.Bytes(),
-		Seventeen:   rando.Bytes(),
-		Eighteen:    rando.Bytes(),
-		Nineteen:    rando.Bytes(),
-		Twenty:      rando.Bytes(),
-		TwentyOne:   rando.Bytes(),
-		TwentyTwo:   rando.Bytes(),
-		TwentyThree: rando.Bytes(),
+		One:         rando.BytesNil(),
+		Two:         rando.BytesNil(),
+		Three:       rando.BytesNil(),
+		Four:        rando.BytesNil(),
+		Five:        rando.BytesNil(),
+		Six:         rando.BytesNil(),
+		Seven:       rando.BytesNil(),
+		Eight:       rando.BytesNil(),
+		Nine:        rando.BytesNil(),
+		Ten:         rando.BytesNil(),
+		Eleven:      rando.BytesNil(),
+		Twelve:      rando.BytesNil(),
+		Thirteen:    rando.BytesNil(),
+		Fourteen:    rando.BytesNil(),
+		Fifteen:     rando.BytesNil(),
+		Sixteen:     rando.BytesNil(),
+		Seventeen:   rando.BytesNil(),
+		Eighteen:    rando.BytesNil(),
+		Nineteen:    rando.BytesNil(),
+		Twenty:      rando.BytesNil(),
+		TwentyOne:   rando.BytesNil(),
+		TwentyTwo:   rando.BytesNil(),
+		TwentyThree: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))

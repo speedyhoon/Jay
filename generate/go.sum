@@ -14,10 +14,8 @@ github.com/rogpeppe/go-internal v1.12.0 h1:exVL4IDcn6na9z1rAb56Vxr+CgyK3nn3O+epU
 github.com/rogpeppe/go-internal v1.12.0/go.mod h1:E+RYuTGaKKdloAfM02xzb0FW3Paa99yedzYV+kq4uf4=
 github.com/speedyhoon/jay v0.0.0-20240326172713-e457ceb920c1 h1:t/VwuO2v5E40xmZQxaCLzEvWzcxU6ilJaa339+fCHTY=
 github.com/speedyhoon/jay v0.0.0-20240326172713-e457ceb920c1/go.mod h1:dGs0XfOCSBaFI7/YIs2aEmVdsglxkKOpAd429cswCL4=
-github.com/speedyhoon/rando v0.0.0-20240328051420-813f7ace2bfd h1:BFbShlrATcvPmpjn0rpC2jhP/85w5um8VgMjEd2x0hA=
-github.com/speedyhoon/rando v0.0.0-20240328051420-813f7ace2bfd/go.mod h1:HS4kVHAohgYIPBcPH3gfXXHQPfW4CSBgykeOFFmEO0w=
-github.com/speedyhoon/rando/types v0.0.0-20240328051420-813f7ace2bfd h1:A9nICeabVgneMsZVMOats0WZZazCZuOpdsEfOlr5Cj0=
-github.com/speedyhoon/rando/types v0.0.0-20240328051420-813f7ace2bfd/go.mod h1:jNtixhtSrYKCaVHkNOnC2SIGFaKz6Q/SN7LeyxLiMpk=
+github.com/speedyhoon/rando v0.0.0-20240403141059-1bc67d8e39d8 h1:5NaXhPO76LuuiVjkPLZIKmXetji2IxzQ6Ryf7RsZBpI=
+github.com/speedyhoon/rando v0.0.0-20240403141059-1bc67d8e39d8/go.mod h1:HS4kVHAohgYIPBcPH3gfXXHQPfW4CSBgykeOFFmEO0w=
 github.com/speedyhoon/utl v0.0.0-20240305010849-8c0101d907aa h1:TuNDViPf8uBgl7FV62XrWsvhoqo0tA7ZaqF2SyCSxZw=
 github.com/speedyhoon/utl v0.0.0-20240305010849-8c0101d907aa/go.mod h1:QKuUdR/OISZ6aYZk5ZyR+QkxGVLVIkDoqY12OOm6BRM=
 github.com/speedyhoon/utl/flagvar v0.0.0-20240305010849-8c0101d907aa h1:+EAv2kfagEEgkp6cUXmBAS70Zl2lcZrIUbgpHZxz2Sk=
