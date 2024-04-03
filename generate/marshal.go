@@ -150,12 +150,12 @@ func Utoa(u uint) string {
 	return strconv.FormatUint(uint64(u), 10)
 }
 
-func printFunc(fun string, params ...string) string {
+func printFunc(fun string, params ...string) (code string) {
 	if fun == "" {
 		return strings.Join(params, ", ")
 	}
-	b := fmt.Sprintf("%s(%s)", fun, strings.Join(params, ", "))
-	return b
+	code = fmt.Sprintf("%s(%s)", fun, strings.Join(params, ", "))
+	return
 }
 
 func (o Option) typeFuncs(fe field, importJ *bool) (fun string, totalSize uint) {
