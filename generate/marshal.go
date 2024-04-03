@@ -276,10 +276,8 @@ func nameOf(f any, importJ *bool) string {
 		*importJ = true
 	}
 
-	return strings.TrimPrefix(
-		runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(),
-		pkgPrefix,
-	)
+	s := strings.Split(runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(), "/")
+	return s[len(s)-1]
 }
 
 func sliceExpr(s *structTyp, f field, at, end string) string {

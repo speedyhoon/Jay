@@ -12,8 +12,7 @@ import (
 
 const (
 	pkgName               = "jay"
-	pkgPrefix             = "github.com/speedyhoon/"
-	pkgImport             = pkgPrefix + pkgName
+	pkgImport             = "github.com/speedyhoon/" + pkgName
 	goExt                 = ".go"
 	DefaultOutputFileName = pkgName + goExt
 	IntSize               = 32 << (^uint(0) >> 63) // 32 or 64
