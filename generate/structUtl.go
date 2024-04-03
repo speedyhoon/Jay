@@ -318,7 +318,7 @@ func (o Option) typeOf(t interface{}) (s string, isFixedLen bool, isDefinition b
 	case *ast.SelectorExpr:
 		fe, ok := o.isSupportedSelector(x, nil)
 		if ok {
-			return fe.typ, fe.isFixedLen, fe.typ == fe.aliasType
+			return fe.typ, fe.isFixedLen, fe.typ != fe.aliasType
 		}
 	case nil:
 		// Ignore.
