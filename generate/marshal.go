@@ -85,7 +85,7 @@ func (s *structTyp) generateSizeLine() string {
 }
 
 func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
-	fun, size, totalSize := o.typeFuncs(f, importJ)
+	fun, totalSize := o.typeFuncs(f, importJ)
 	if fun == "" {
 		// Unknown type, not supported yet.
 		lg.Printf("no generateLine for type `%s` yet", f.typ)
@@ -117,42 +117,15 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 		return fmt.Sprintf("%s(%s, %s, %s)", fun, sliceExpr(s, f, at, end), thisField, lenVar)
 	}
 
-	switch size {
-	default:
-		if f.isArray() && fun == "copy" {
-			thisField += "[:]"
-		}
-
-		if f.typ != f.aliasType {
-			s.imports.add(f.pkgReq)
-			thisField = printFunc(f.typ, thisField)
-		}
-		return printFunc(fun, sliceExpr(s, f, Utoa(start), Utoa(*byteIndex)), thisField)
-
-	case 0:
-		// Variable length size.
-		//slice := s.bufferName
-		////idx := at
-		//if start >= 1 {
-		//	if at == "" {
-		//		slice = fmt.Sprintf("%s[%d:]", s.bufferName, start)
-		//		idx = "0"
-		//	} else if at != "0" {
-		//		slice = fmt.Sprintf("%s[%s:]", s.bufferName, at)
-		//	}
-		//}
-
-		//switch f.typ {
-		//case "struct":
-		//	return pkgSelName(thisField, printFunc(fun, slice))
-		//}
-
-		if f.isLast {
-			return printFunc(fun, sliceExpr(s, f, at, end), thisField, lenVar)
-		} else {
-			return printFunc(fun, sliceExpr(s, f, at, end), thisField, lenVar, at)
-		}
+	if f.isArray() && fun == "copy" {
+		thisField += "[:]"
 	}
+
+	if f.typ != f.aliasType {
+		s.imports.add(f.pkgReq)
+		thisField = printFunc(f.typ, thisField)
+	}
+	return printFunc(fun, sliceExpr(s, f, Utoa(start), Utoa(*byteIndex)), thisField)
 }
 
 func (f *field) isArrayOrSlice() bool {
@@ -185,76 +158,76 @@ func printFunc(fun string, params ...string) string {
 	return b
 }
 
-func (o Option) typeFuncs(fe field, importJ *bool) (fun string, size, totalSize uint) {
+func (o Option) typeFuncs(fe field, importJ *bool) (fun string, totalSize uint) {
 	var f interface{}
 	switch fe.typ {
 	case "byte", "uint8":
 		if fe.typ != fe.aliasType {
-			return "byte", 1, 1
+			return "byte", 1
 		}
-		return "", 1, 1
+		return "", 1
 	case "int8":
-		return "byte", 1, 1
+		return "byte", 1
 	case "string":
-		return "copy", 0, 0
+		return "copy", 0
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
-				f, size, totalSize = jay.WriteIntArch32, 4, 4
+				f, totalSize = jay.WriteIntArch32, 4
 			}
-			f, size, totalSize = jay.WriteIntArch64, 8, 8
+			f, totalSize = jay.WriteIntArch64, 8
 			break
 		}
-		f, size, totalSize = jay.WriteIntVariable, 0, 1
+		f, totalSize = jay.WriteIntVariable, 1
 	case "int16":
-		f, size, totalSize = jay.WriteInt16, 2, 2
+		f, totalSize = jay.WriteInt16, 2
 	case "int32", "rune":
-		f, size, totalSize = jay.WriteInt32, 4, 4
+		f, totalSize = jay.WriteInt32, 4
 	case "float32":
-		f, size, totalSize = jay.WriteFloat32, 4, 4
+		f, totalSize = jay.WriteFloat32, 4
 	case "float64":
-		f, size, totalSize = jay.WriteFloat64, 8, 8
+		f, totalSize = jay.WriteFloat64, 8
 	case "int64":
-		f, size, totalSize = jay.WriteInt64, 8, 8
+		f, totalSize = jay.WriteInt64, 8
 	case "time.Duration":
-		f, size, totalSize = jay.WriteDuration, 8, 8
+		f, totalSize = jay.WriteDuration, 8
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {
-				f, size, totalSize = jay.WriteUintArch32, 4, 4
+				f, totalSize = jay.WriteUintArch32, 4
 			}
-			f, size, totalSize = jay.WriteUintArch64, 8, 8
+			f, totalSize = jay.WriteUintArch64, 8
 			break
 		}
-		f, size, totalSize = jay.WriteUintVariable, 0, 1
+		f, totalSize = jay.WriteUintVariable, 1
 	case "uint16":
-		f, size, totalSize = jay.WriteUint16, 2, 2
+		f, totalSize = jay.WriteUint16, 2
 	case "uint32":
-		f, size, totalSize = jay.WriteUint32, 4, 4
+		f, totalSize = jay.WriteUint32, 4
 	case "uint64":
-		f, size, totalSize = jay.WriteUint64, 8, 8
+		f, totalSize = jay.WriteUint64, 8
 	case "time.Time":
 		if fe.tagOptions.TimeNano {
-			f, size, totalSize = jay.WriteTimeNano, 8, 8
+			f, totalSize = jay.WriteTimeNano, 8
 		} else {
-			f, size, totalSize = jay.WriteTime, 8, 8
+			f, totalSize = jay.WriteTime, 8
 		}
 	case "[]uint8", "[]byte":
-		return "copy", 0, 0
+		return "copy", 0
 	case "[]int8":
-		f, size, totalSize = jay.WriteInt8s, 0, 1
+		f, totalSize = jay.WriteInt8s, 1
 	case "[]bool":
-		f, size, totalSize = jay.WriteBools, 0, 1
+		f, totalSize = jay.WriteBools, 1
 
 	case "[15]byte", "[15]uint8":
-		return "copy", uint(fe.arraySize), uint(fe.arraySize)
+		return "copy", uint(fe.arraySize)
 
 	default:
 		log.Printf("no function set for type %s yet in typeFuncs()", fe.typ)
 		return "", 0, 0
 	}
 
-	return nameOf(f, importJ), size, totalSize
+	return nameOf(f, importJ), totalSize
 }
 
 func nameOf(f any, importJ *bool) string {
