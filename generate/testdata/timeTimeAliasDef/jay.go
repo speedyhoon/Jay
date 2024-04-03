@@ -18,7 +18,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 	if len(b) < 8 {
 		return jay.ErrUnexpectedEOB
 	}
-	o.One = dateTime(jay.ReadTime(b[:8]))
+	o.One = dateTime(jay.ReadTime(b))
 	return nil
 }
 
@@ -34,7 +34,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = dateTime(jay.ReadTime(b[:8]))
-	t.Two = dateTime(jay.ReadTime(b[8:16]))
+	t.Two = dateTime(jay.ReadTime(b[8:]))
 	return nil
 }
 
@@ -52,7 +52,7 @@ func (t *Three) UnmarshalJ(b []byte) error {
 	}
 	t.One = dateTime(jay.ReadTime(b[:8]))
 	t.Two = dateTime(jay.ReadTime(b[8:16]))
-	t.Three = dateTime(jay.ReadTime(b[16:24]))
+	t.Three = dateTime(jay.ReadTime(b[16:]))
 	return nil
 }
 
@@ -72,7 +72,7 @@ func (f *Four) UnmarshalJ(b []byte) error {
 	f.One = dateTime(jay.ReadTime(b[:8]))
 	f.Two = dateTime(jay.ReadTime(b[8:16]))
 	f.Three = dateTime(jay.ReadTime(b[16:24]))
-	f.Four = dateTime(jay.ReadTime(b[24:32]))
+	f.Four = dateTime(jay.ReadTime(b[24:]))
 	return nil
 }
 
@@ -94,7 +94,7 @@ func (f *Five) UnmarshalJ(b []byte) error {
 	f.Two = dateTime(jay.ReadTime(b[8:16]))
 	f.Three = dateTime(jay.ReadTime(b[16:24]))
 	f.Four = dateTime(jay.ReadTime(b[24:32]))
-	f.Five = dateTime(jay.ReadTime(b[32:40]))
+	f.Five = dateTime(jay.ReadTime(b[32:]))
 	return nil
 }
 
@@ -118,7 +118,7 @@ func (s *Six) UnmarshalJ(b []byte) error {
 	s.Three = dateTime(jay.ReadTime(b[16:24]))
 	s.Four = dateTime(jay.ReadTime(b[24:32]))
 	s.Five = dateTime(jay.ReadTime(b[32:40]))
-	s.Six = dateTime(jay.ReadTime(b[40:48]))
+	s.Six = dateTime(jay.ReadTime(b[40:]))
 	return nil
 }
 
@@ -144,7 +144,7 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 	s.Four = dateTime(jay.ReadTime(b[24:32]))
 	s.Five = dateTime(jay.ReadTime(b[32:40]))
 	s.Six = dateTime(jay.ReadTime(b[40:48]))
-	s.Seven = dateTime(jay.ReadTime(b[48:56]))
+	s.Seven = dateTime(jay.ReadTime(b[48:]))
 	return nil
 }
 
@@ -172,7 +172,7 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 	e.Five = dateTime(jay.ReadTime(b[32:40]))
 	e.Six = dateTime(jay.ReadTime(b[40:48]))
 	e.Seven = dateTime(jay.ReadTime(b[48:56]))
-	e.Eight = dateTime(jay.ReadTime(b[56:64]))
+	e.Eight = dateTime(jay.ReadTime(b[56:]))
 	return nil
 }
 
@@ -202,7 +202,7 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 	n.Six = dateTime(jay.ReadTime(b[40:48]))
 	n.Seven = dateTime(jay.ReadTime(b[48:56]))
 	n.Eight = dateTime(jay.ReadTime(b[56:64]))
-	n.Nine = dateTime(jay.ReadTime(b[64:72]))
+	n.Nine = dateTime(jay.ReadTime(b[64:]))
 	return nil
 }
 
@@ -234,7 +234,7 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 	t.Seven = dateTime(jay.ReadTime(b[48:56]))
 	t.Eight = dateTime(jay.ReadTime(b[56:64]))
 	t.Nine = dateTime(jay.ReadTime(b[64:72]))
-	t.Ten = dateTime(jay.ReadTime(b[72:80]))
+	t.Ten = dateTime(jay.ReadTime(b[72:]))
 	return nil
 }
 
@@ -268,7 +268,7 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 	e.Eight = dateTime(jay.ReadTime(b[56:64]))
 	e.Nine = dateTime(jay.ReadTime(b[64:72]))
 	e.Ten = dateTime(jay.ReadTime(b[72:80]))
-	e.Eleven = dateTime(jay.ReadTime(b[80:88]))
+	e.Eleven = dateTime(jay.ReadTime(b[80:]))
 	return nil
 }
 
@@ -304,7 +304,7 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 	t.Nine = dateTime(jay.ReadTime(b[64:72]))
 	t.Ten = dateTime(jay.ReadTime(b[72:80]))
 	t.Eleven = dateTime(jay.ReadTime(b[80:88]))
-	t.Twelve = dateTime(jay.ReadTime(b[88:96]))
+	t.Twelve = dateTime(jay.ReadTime(b[88:]))
 	return nil
 }
 
@@ -342,7 +342,7 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 	t.Ten = dateTime(jay.ReadTime(b[72:80]))
 	t.Eleven = dateTime(jay.ReadTime(b[80:88]))
 	t.Twelve = dateTime(jay.ReadTime(b[88:96]))
-	t.Thirteen = dateTime(jay.ReadTime(b[96:104]))
+	t.Thirteen = dateTime(jay.ReadTime(b[96:]))
 	return nil
 }
 
@@ -382,7 +382,7 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 	f.Eleven = dateTime(jay.ReadTime(b[80:88]))
 	f.Twelve = dateTime(jay.ReadTime(b[88:96]))
 	f.Thirteen = dateTime(jay.ReadTime(b[96:104]))
-	f.Fourteen = dateTime(jay.ReadTime(b[104:112]))
+	f.Fourteen = dateTime(jay.ReadTime(b[104:]))
 	return nil
 }
 
@@ -424,7 +424,7 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 	f.Twelve = dateTime(jay.ReadTime(b[88:96]))
 	f.Thirteen = dateTime(jay.ReadTime(b[96:104]))
 	f.Fourteen = dateTime(jay.ReadTime(b[104:112]))
-	f.Fifteen = dateTime(jay.ReadTime(b[112:120]))
+	f.Fifteen = dateTime(jay.ReadTime(b[112:]))
 	return nil
 }
 
@@ -468,7 +468,7 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 	s.Thirteen = dateTime(jay.ReadTime(b[96:104]))
 	s.Fourteen = dateTime(jay.ReadTime(b[104:112]))
 	s.Fifteen = dateTime(jay.ReadTime(b[112:120]))
-	s.Sixteen = dateTime(jay.ReadTime(b[120:128]))
+	s.Sixteen = dateTime(jay.ReadTime(b[120:]))
 	return nil
 }
 
@@ -514,7 +514,7 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 	s.Fourteen = dateTime(jay.ReadTime(b[104:112]))
 	s.Fifteen = dateTime(jay.ReadTime(b[112:120]))
 	s.Sixteen = dateTime(jay.ReadTime(b[120:128]))
-	s.Seventeen = dateTime(jay.ReadTime(b[128:136]))
+	s.Seventeen = dateTime(jay.ReadTime(b[128:]))
 	return nil
 }
 
@@ -562,7 +562,7 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 	e.Fifteen = dateTime(jay.ReadTime(b[112:120]))
 	e.Sixteen = dateTime(jay.ReadTime(b[120:128]))
 	e.Seventeen = dateTime(jay.ReadTime(b[128:136]))
-	e.Eighteen = dateTime(jay.ReadTime(b[136:144]))
+	e.Eighteen = dateTime(jay.ReadTime(b[136:]))
 	return nil
 }
 
@@ -612,7 +612,7 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 	n.Sixteen = dateTime(jay.ReadTime(b[120:128]))
 	n.Seventeen = dateTime(jay.ReadTime(b[128:136]))
 	n.Eighteen = dateTime(jay.ReadTime(b[136:144]))
-	n.Nineteen = dateTime(jay.ReadTime(b[144:152]))
+	n.Nineteen = dateTime(jay.ReadTime(b[144:]))
 	return nil
 }
 
@@ -664,7 +664,7 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 	t.Seventeen = dateTime(jay.ReadTime(b[128:136]))
 	t.Eighteen = dateTime(jay.ReadTime(b[136:144]))
 	t.Nineteen = dateTime(jay.ReadTime(b[144:152]))
-	t.Twenty = dateTime(jay.ReadTime(b[152:160]))
+	t.Twenty = dateTime(jay.ReadTime(b[152:]))
 	return nil
 }
 
@@ -718,7 +718,7 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 	t.Eighteen = dateTime(jay.ReadTime(b[136:144]))
 	t.Nineteen = dateTime(jay.ReadTime(b[144:152]))
 	t.Twenty = dateTime(jay.ReadTime(b[152:160]))
-	t.TwentyOne = dateTime(jay.ReadTime(b[160:168]))
+	t.TwentyOne = dateTime(jay.ReadTime(b[160:]))
 	return nil
 }
 
@@ -774,7 +774,7 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 	t.Nineteen = dateTime(jay.ReadTime(b[144:152]))
 	t.Twenty = dateTime(jay.ReadTime(b[152:160]))
 	t.TwentyOne = dateTime(jay.ReadTime(b[160:168]))
-	t.TwentyTwo = dateTime(jay.ReadTime(b[168:176]))
+	t.TwentyTwo = dateTime(jay.ReadTime(b[168:]))
 	return nil
 }
 
@@ -832,6 +832,6 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 	t.Twenty = dateTime(jay.ReadTime(b[152:160]))
 	t.TwentyOne = dateTime(jay.ReadTime(b[160:168]))
 	t.TwentyTwo = dateTime(jay.ReadTime(b[168:176]))
-	t.TwentyThree = dateTime(jay.ReadTime(b[176:184]))
+	t.TwentyThree = dateTime(jay.ReadTime(b[176:]))
 	return nil
 }

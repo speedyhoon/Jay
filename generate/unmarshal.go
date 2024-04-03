@@ -99,28 +99,17 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end st
 		if f.typ != f.aliasType {
 			fun = f.aliasType
 		}
-		if isFirst && isLast {
-			return fmt.Sprintf("%s = %s(%s[%d:])", thisField, fun, s.bufferName, *byteIndex)
-		} else {
-			return fmt.Sprintf("%s = %s(%s[%s:%s])", thisField, fun, s.bufferName, at, end)
-		}
+		return fmt.Sprintf("%s = %s(%s)", thisField, fun, sliceExpr(s, f, at, end))
 	case "[]byte", "[]uint8":
 		if f.typ != f.aliasType {
 			fun = f.aliasType
 		}
-		if isFirst && isLast {
-			if f.Required {
-				return fmt.Sprintf("%s = %s[%d:]", thisField, s.bufferName, *byteIndex)
-			}
-			return fmt.Sprintf("if %s != 0 {\n%s = %s[%d:]\n}", lenVar, thisField, s.bufferName, *byteIndex)
-		} else {
-			if f.Required {
-				return fmt.Sprintf("%s = %s[%s:%s]", thisField, s.bufferName, at, end)
-			}
-			return fmt.Sprintf("if %s != 0 {%s = %s[%s:%s]\n}", lenVar, thisField, s.bufferName, at, end)
+		if f.Required {
+			return fmt.Sprintf("%s = %s", thisField, sliceExpr(s, f, at, end))
 		}
+		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, sliceExpr(s, f, at, end))
 	case "[]int8", "[]bool":
-		return fmt.Sprintf("%s = %s(%s[%s:%s], %s)", thisField, fun, s.bufferName, at, end, lenVar)
+		return fmt.Sprintf("%s = %s(%s, %s)", thisField, fun, sliceExpr(s, f, at, end), lenVar)
 	}
 
 	if f.isArray() && f.arrayType == "int8" {
@@ -131,19 +120,11 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end st
 		return fmt.Sprintf("%s = %s{%s}", thisField, f.typ, strings.Join(values, ", "))
 	}
 
-	if start == 0 {
-		fun = printFunc(fun, fmt.Sprintf("%s[:%d]", s.bufferName, *byteIndex))
-		if f.typ != f.aliasType {
-			fun = printFunc(f.aliasType, fun)
-		}
-		return fmt.Sprintf("%s = %s", thisField, fun)
-	} else {
-		fun = printFunc(fun, fmt.Sprintf("%s[%d:%d]", s.bufferName, start, *byteIndex))
-		if f.typ != f.aliasType {
-			fun = printFunc(f.aliasType, fun)
-		}
-		return fmt.Sprintf("%s = %s", thisField, fun)
+	fun = printFunc(fun, sliceExprU(s, f, start, *byteIndex))
+	if f.typ != f.aliasType {
+		fun = printFunc(f.aliasType, fun)
 	}
+	return fmt.Sprintf("%s = %s", thisField, fun)
 }
 
 // unmarshalFuncs returns the function name to handle unmarshalling.

@@ -14,7 +14,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 	if len(b) < 8 {
 		return jay.ErrUnexpectedEOB
 	}
-	o.One = long(jay.ReadUint64(b[:8]))
+	o.One = long(jay.ReadUint64(b))
 	return nil
 }
 
@@ -30,7 +30,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = long(jay.ReadUint64(b[:8]))
-	t.Two = long(jay.ReadUint64(b[8:16]))
+	t.Two = long(jay.ReadUint64(b[8:]))
 	return nil
 }
 
@@ -48,7 +48,7 @@ func (t *Three) UnmarshalJ(b []byte) error {
 	}
 	t.One = long(jay.ReadUint64(b[:8]))
 	t.Two = long(jay.ReadUint64(b[8:16]))
-	t.Three = long(jay.ReadUint64(b[16:24]))
+	t.Three = long(jay.ReadUint64(b[16:]))
 	return nil
 }
 
@@ -68,7 +68,7 @@ func (f *Four) UnmarshalJ(b []byte) error {
 	f.One = long(jay.ReadUint64(b[:8]))
 	f.Two = long(jay.ReadUint64(b[8:16]))
 	f.Three = long(jay.ReadUint64(b[16:24]))
-	f.Four = long(jay.ReadUint64(b[24:32]))
+	f.Four = long(jay.ReadUint64(b[24:]))
 	return nil
 }
 
@@ -90,7 +90,7 @@ func (f *Five) UnmarshalJ(b []byte) error {
 	f.Two = long(jay.ReadUint64(b[8:16]))
 	f.Three = long(jay.ReadUint64(b[16:24]))
 	f.Four = long(jay.ReadUint64(b[24:32]))
-	f.Five = long(jay.ReadUint64(b[32:40]))
+	f.Five = long(jay.ReadUint64(b[32:]))
 	return nil
 }
 
@@ -114,7 +114,7 @@ func (s *Six) UnmarshalJ(b []byte) error {
 	s.Three = long(jay.ReadUint64(b[16:24]))
 	s.Four = long(jay.ReadUint64(b[24:32]))
 	s.Five = long(jay.ReadUint64(b[32:40]))
-	s.Six = long(jay.ReadUint64(b[40:48]))
+	s.Six = long(jay.ReadUint64(b[40:]))
 	return nil
 }
 
@@ -140,7 +140,7 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 	s.Four = long(jay.ReadUint64(b[24:32]))
 	s.Five = long(jay.ReadUint64(b[32:40]))
 	s.Six = long(jay.ReadUint64(b[40:48]))
-	s.Seven = long(jay.ReadUint64(b[48:56]))
+	s.Seven = long(jay.ReadUint64(b[48:]))
 	return nil
 }
 
@@ -168,7 +168,7 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 	e.Five = long(jay.ReadUint64(b[32:40]))
 	e.Six = long(jay.ReadUint64(b[40:48]))
 	e.Seven = long(jay.ReadUint64(b[48:56]))
-	e.Eight = long(jay.ReadUint64(b[56:64]))
+	e.Eight = long(jay.ReadUint64(b[56:]))
 	return nil
 }
 
@@ -198,7 +198,7 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 	n.Six = long(jay.ReadUint64(b[40:48]))
 	n.Seven = long(jay.ReadUint64(b[48:56]))
 	n.Eight = long(jay.ReadUint64(b[56:64]))
-	n.Nine = long(jay.ReadUint64(b[64:72]))
+	n.Nine = long(jay.ReadUint64(b[64:]))
 	return nil
 }
 
@@ -230,7 +230,7 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 	t.Seven = long(jay.ReadUint64(b[48:56]))
 	t.Eight = long(jay.ReadUint64(b[56:64]))
 	t.Nine = long(jay.ReadUint64(b[64:72]))
-	t.Ten = long(jay.ReadUint64(b[72:80]))
+	t.Ten = long(jay.ReadUint64(b[72:]))
 	return nil
 }
 
@@ -264,7 +264,7 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 	e.Eight = long(jay.ReadUint64(b[56:64]))
 	e.Nine = long(jay.ReadUint64(b[64:72]))
 	e.Ten = long(jay.ReadUint64(b[72:80]))
-	e.Eleven = long(jay.ReadUint64(b[80:88]))
+	e.Eleven = long(jay.ReadUint64(b[80:]))
 	return nil
 }
 
@@ -300,7 +300,7 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 	t.Nine = long(jay.ReadUint64(b[64:72]))
 	t.Ten = long(jay.ReadUint64(b[72:80]))
 	t.Eleven = long(jay.ReadUint64(b[80:88]))
-	t.Twelve = long(jay.ReadUint64(b[88:96]))
+	t.Twelve = long(jay.ReadUint64(b[88:]))
 	return nil
 }
 
@@ -338,7 +338,7 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 	t.Ten = long(jay.ReadUint64(b[72:80]))
 	t.Eleven = long(jay.ReadUint64(b[80:88]))
 	t.Twelve = long(jay.ReadUint64(b[88:96]))
-	t.Thirteen = long(jay.ReadUint64(b[96:104]))
+	t.Thirteen = long(jay.ReadUint64(b[96:]))
 	return nil
 }
 
@@ -378,7 +378,7 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 	f.Eleven = long(jay.ReadUint64(b[80:88]))
 	f.Twelve = long(jay.ReadUint64(b[88:96]))
 	f.Thirteen = long(jay.ReadUint64(b[96:104]))
-	f.Fourteen = long(jay.ReadUint64(b[104:112]))
+	f.Fourteen = long(jay.ReadUint64(b[104:]))
 	return nil
 }
 
@@ -420,7 +420,7 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 	f.Twelve = long(jay.ReadUint64(b[88:96]))
 	f.Thirteen = long(jay.ReadUint64(b[96:104]))
 	f.Fourteen = long(jay.ReadUint64(b[104:112]))
-	f.Fifteen = long(jay.ReadUint64(b[112:120]))
+	f.Fifteen = long(jay.ReadUint64(b[112:]))
 	return nil
 }
 
@@ -464,7 +464,7 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 	s.Thirteen = long(jay.ReadUint64(b[96:104]))
 	s.Fourteen = long(jay.ReadUint64(b[104:112]))
 	s.Fifteen = long(jay.ReadUint64(b[112:120]))
-	s.Sixteen = long(jay.ReadUint64(b[120:128]))
+	s.Sixteen = long(jay.ReadUint64(b[120:]))
 	return nil
 }
 
@@ -510,7 +510,7 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 	s.Fourteen = long(jay.ReadUint64(b[104:112]))
 	s.Fifteen = long(jay.ReadUint64(b[112:120]))
 	s.Sixteen = long(jay.ReadUint64(b[120:128]))
-	s.Seventeen = long(jay.ReadUint64(b[128:136]))
+	s.Seventeen = long(jay.ReadUint64(b[128:]))
 	return nil
 }
 
@@ -558,7 +558,7 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 	e.Fifteen = long(jay.ReadUint64(b[112:120]))
 	e.Sixteen = long(jay.ReadUint64(b[120:128]))
 	e.Seventeen = long(jay.ReadUint64(b[128:136]))
-	e.Eighteen = long(jay.ReadUint64(b[136:144]))
+	e.Eighteen = long(jay.ReadUint64(b[136:]))
 	return nil
 }
 
@@ -608,7 +608,7 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 	n.Sixteen = long(jay.ReadUint64(b[120:128]))
 	n.Seventeen = long(jay.ReadUint64(b[128:136]))
 	n.Eighteen = long(jay.ReadUint64(b[136:144]))
-	n.Nineteen = long(jay.ReadUint64(b[144:152]))
+	n.Nineteen = long(jay.ReadUint64(b[144:]))
 	return nil
 }
 
@@ -660,7 +660,7 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 	t.Seventeen = long(jay.ReadUint64(b[128:136]))
 	t.Eighteen = long(jay.ReadUint64(b[136:144]))
 	t.Nineteen = long(jay.ReadUint64(b[144:152]))
-	t.Twenty = long(jay.ReadUint64(b[152:160]))
+	t.Twenty = long(jay.ReadUint64(b[152:]))
 	return nil
 }
 
@@ -714,7 +714,7 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 	t.Eighteen = long(jay.ReadUint64(b[136:144]))
 	t.Nineteen = long(jay.ReadUint64(b[144:152]))
 	t.Twenty = long(jay.ReadUint64(b[152:160]))
-	t.TwentyOne = long(jay.ReadUint64(b[160:168]))
+	t.TwentyOne = long(jay.ReadUint64(b[160:]))
 	return nil
 }
 
@@ -770,7 +770,7 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 	t.Nineteen = long(jay.ReadUint64(b[144:152]))
 	t.Twenty = long(jay.ReadUint64(b[152:160]))
 	t.TwentyOne = long(jay.ReadUint64(b[160:168]))
-	t.TwentyTwo = long(jay.ReadUint64(b[168:176]))
+	t.TwentyTwo = long(jay.ReadUint64(b[168:]))
 	return nil
 }
 
@@ -828,6 +828,6 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 	t.Twenty = long(jay.ReadUint64(b[152:160]))
 	t.TwentyOne = long(jay.ReadUint64(b[160:168]))
 	t.TwentyTwo = long(jay.ReadUint64(b[168:176]))
-	t.TwentyThree = long(jay.ReadUint64(b[176:184]))
+	t.TwentyThree = long(jay.ReadUint64(b[176:]))
 	return nil
 }

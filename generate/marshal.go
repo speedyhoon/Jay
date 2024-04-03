@@ -296,3 +296,7 @@ func sliceExpr(s *structTyp, f field, at, end string) string {
 		return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
 	}
 }
+
+func sliceExprU(s *structTyp, f field, at, end uint) string {
+	return sliceExpr(s, f, Utoa(at), Utoa(end))
+}

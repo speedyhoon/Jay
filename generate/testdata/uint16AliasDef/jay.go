@@ -14,7 +14,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 	if len(b) < 2 {
 		return jay.ErrUnexpectedEOB
 	}
-	o.One = small(jay.ReadUint16(b[:2]))
+	o.One = small(jay.ReadUint16(b))
 	return nil
 }
 
@@ -30,7 +30,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = small(jay.ReadUint16(b[:2]))
-	t.Two = small(jay.ReadUint16(b[2:4]))
+	t.Two = small(jay.ReadUint16(b[2:]))
 	return nil
 }
 
@@ -48,7 +48,7 @@ func (t *Three) UnmarshalJ(b []byte) error {
 	}
 	t.One = small(jay.ReadUint16(b[:2]))
 	t.Two = small(jay.ReadUint16(b[2:4]))
-	t.Three = small(jay.ReadUint16(b[4:6]))
+	t.Three = small(jay.ReadUint16(b[4:]))
 	return nil
 }
 
@@ -68,7 +68,7 @@ func (f *Four) UnmarshalJ(b []byte) error {
 	f.One = small(jay.ReadUint16(b[:2]))
 	f.Two = small(jay.ReadUint16(b[2:4]))
 	f.Three = small(jay.ReadUint16(b[4:6]))
-	f.Four = small(jay.ReadUint16(b[6:8]))
+	f.Four = small(jay.ReadUint16(b[6:]))
 	return nil
 }
 
@@ -90,7 +90,7 @@ func (f *Five) UnmarshalJ(b []byte) error {
 	f.Two = small(jay.ReadUint16(b[2:4]))
 	f.Three = small(jay.ReadUint16(b[4:6]))
 	f.Four = small(jay.ReadUint16(b[6:8]))
-	f.Five = small(jay.ReadUint16(b[8:10]))
+	f.Five = small(jay.ReadUint16(b[8:]))
 	return nil
 }
 
@@ -114,7 +114,7 @@ func (s *Six) UnmarshalJ(b []byte) error {
 	s.Three = small(jay.ReadUint16(b[4:6]))
 	s.Four = small(jay.ReadUint16(b[6:8]))
 	s.Five = small(jay.ReadUint16(b[8:10]))
-	s.Six = small(jay.ReadUint16(b[10:12]))
+	s.Six = small(jay.ReadUint16(b[10:]))
 	return nil
 }
 
@@ -140,7 +140,7 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 	s.Four = small(jay.ReadUint16(b[6:8]))
 	s.Five = small(jay.ReadUint16(b[8:10]))
 	s.Six = small(jay.ReadUint16(b[10:12]))
-	s.Seven = small(jay.ReadUint16(b[12:14]))
+	s.Seven = small(jay.ReadUint16(b[12:]))
 	return nil
 }
 
@@ -168,7 +168,7 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 	e.Five = small(jay.ReadUint16(b[8:10]))
 	e.Six = small(jay.ReadUint16(b[10:12]))
 	e.Seven = small(jay.ReadUint16(b[12:14]))
-	e.Eight = small(jay.ReadUint16(b[14:16]))
+	e.Eight = small(jay.ReadUint16(b[14:]))
 	return nil
 }
 
@@ -198,7 +198,7 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 	n.Six = small(jay.ReadUint16(b[10:12]))
 	n.Seven = small(jay.ReadUint16(b[12:14]))
 	n.Eight = small(jay.ReadUint16(b[14:16]))
-	n.Nine = small(jay.ReadUint16(b[16:18]))
+	n.Nine = small(jay.ReadUint16(b[16:]))
 	return nil
 }
 
@@ -230,7 +230,7 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 	t.Seven = small(jay.ReadUint16(b[12:14]))
 	t.Eight = small(jay.ReadUint16(b[14:16]))
 	t.Nine = small(jay.ReadUint16(b[16:18]))
-	t.Ten = small(jay.ReadUint16(b[18:20]))
+	t.Ten = small(jay.ReadUint16(b[18:]))
 	return nil
 }
 
@@ -264,7 +264,7 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 	e.Eight = small(jay.ReadUint16(b[14:16]))
 	e.Nine = small(jay.ReadUint16(b[16:18]))
 	e.Ten = small(jay.ReadUint16(b[18:20]))
-	e.Eleven = small(jay.ReadUint16(b[20:22]))
+	e.Eleven = small(jay.ReadUint16(b[20:]))
 	return nil
 }
 
@@ -300,7 +300,7 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 	t.Nine = small(jay.ReadUint16(b[16:18]))
 	t.Ten = small(jay.ReadUint16(b[18:20]))
 	t.Eleven = small(jay.ReadUint16(b[20:22]))
-	t.Twelve = small(jay.ReadUint16(b[22:24]))
+	t.Twelve = small(jay.ReadUint16(b[22:]))
 	return nil
 }
 
@@ -338,7 +338,7 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 	t.Ten = small(jay.ReadUint16(b[18:20]))
 	t.Eleven = small(jay.ReadUint16(b[20:22]))
 	t.Twelve = small(jay.ReadUint16(b[22:24]))
-	t.Thirteen = small(jay.ReadUint16(b[24:26]))
+	t.Thirteen = small(jay.ReadUint16(b[24:]))
 	return nil
 }
 
@@ -378,7 +378,7 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 	f.Eleven = small(jay.ReadUint16(b[20:22]))
 	f.Twelve = small(jay.ReadUint16(b[22:24]))
 	f.Thirteen = small(jay.ReadUint16(b[24:26]))
-	f.Fourteen = small(jay.ReadUint16(b[26:28]))
+	f.Fourteen = small(jay.ReadUint16(b[26:]))
 	return nil
 }
 
@@ -420,7 +420,7 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 	f.Twelve = small(jay.ReadUint16(b[22:24]))
 	f.Thirteen = small(jay.ReadUint16(b[24:26]))
 	f.Fourteen = small(jay.ReadUint16(b[26:28]))
-	f.Fifteen = small(jay.ReadUint16(b[28:30]))
+	f.Fifteen = small(jay.ReadUint16(b[28:]))
 	return nil
 }
 
@@ -464,7 +464,7 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 	s.Thirteen = small(jay.ReadUint16(b[24:26]))
 	s.Fourteen = small(jay.ReadUint16(b[26:28]))
 	s.Fifteen = small(jay.ReadUint16(b[28:30]))
-	s.Sixteen = small(jay.ReadUint16(b[30:32]))
+	s.Sixteen = small(jay.ReadUint16(b[30:]))
 	return nil
 }
 
@@ -510,7 +510,7 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 	s.Fourteen = small(jay.ReadUint16(b[26:28]))
 	s.Fifteen = small(jay.ReadUint16(b[28:30]))
 	s.Sixteen = small(jay.ReadUint16(b[30:32]))
-	s.Seventeen = small(jay.ReadUint16(b[32:34]))
+	s.Seventeen = small(jay.ReadUint16(b[32:]))
 	return nil
 }
 
@@ -558,7 +558,7 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 	e.Fifteen = small(jay.ReadUint16(b[28:30]))
 	e.Sixteen = small(jay.ReadUint16(b[30:32]))
 	e.Seventeen = small(jay.ReadUint16(b[32:34]))
-	e.Eighteen = small(jay.ReadUint16(b[34:36]))
+	e.Eighteen = small(jay.ReadUint16(b[34:]))
 	return nil
 }
 
@@ -608,7 +608,7 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 	n.Sixteen = small(jay.ReadUint16(b[30:32]))
 	n.Seventeen = small(jay.ReadUint16(b[32:34]))
 	n.Eighteen = small(jay.ReadUint16(b[34:36]))
-	n.Nineteen = small(jay.ReadUint16(b[36:38]))
+	n.Nineteen = small(jay.ReadUint16(b[36:]))
 	return nil
 }
 
@@ -660,7 +660,7 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 	t.Seventeen = small(jay.ReadUint16(b[32:34]))
 	t.Eighteen = small(jay.ReadUint16(b[34:36]))
 	t.Nineteen = small(jay.ReadUint16(b[36:38]))
-	t.Twenty = small(jay.ReadUint16(b[38:40]))
+	t.Twenty = small(jay.ReadUint16(b[38:]))
 	return nil
 }
 
@@ -714,7 +714,7 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 	t.Eighteen = small(jay.ReadUint16(b[34:36]))
 	t.Nineteen = small(jay.ReadUint16(b[36:38]))
 	t.Twenty = small(jay.ReadUint16(b[38:40]))
-	t.TwentyOne = small(jay.ReadUint16(b[40:42]))
+	t.TwentyOne = small(jay.ReadUint16(b[40:]))
 	return nil
 }
 
@@ -770,7 +770,7 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 	t.Nineteen = small(jay.ReadUint16(b[36:38]))
 	t.Twenty = small(jay.ReadUint16(b[38:40]))
 	t.TwentyOne = small(jay.ReadUint16(b[40:42]))
-	t.TwentyTwo = small(jay.ReadUint16(b[42:44]))
+	t.TwentyTwo = small(jay.ReadUint16(b[42:]))
 	return nil
 }
 
@@ -828,6 +828,6 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 	t.Twenty = small(jay.ReadUint16(b[38:40]))
 	t.TwentyOne = small(jay.ReadUint16(b[40:42]))
 	t.TwentyTwo = small(jay.ReadUint16(b[42:44]))
-	t.TwentyThree = small(jay.ReadUint16(b[44:46]))
+	t.TwentyThree = small(jay.ReadUint16(b[44:]))
 	return nil
 }

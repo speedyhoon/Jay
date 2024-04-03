@@ -18,7 +18,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 	if len(b) < 8 {
 		return jay.ErrUnexpectedEOB
 	}
-	o.One = tim(jay.ReadTimeNano(b[:8]))
+	o.One = tim(jay.ReadTimeNano(b))
 	return nil
 }
 
@@ -34,7 +34,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = tim(jay.ReadTimeNano(b[:8]))
-	t.Two = tim(jay.ReadTimeNano(b[8:16]))
+	t.Two = tim(jay.ReadTimeNano(b[8:]))
 	return nil
 }
 
@@ -52,7 +52,7 @@ func (t *Three) UnmarshalJ(b []byte) error {
 	}
 	t.One = tim(jay.ReadTimeNano(b[:8]))
 	t.Two = tim(jay.ReadTimeNano(b[8:16]))
-	t.Three = tim(jay.ReadTimeNano(b[16:24]))
+	t.Three = tim(jay.ReadTimeNano(b[16:]))
 	return nil
 }
 
@@ -72,7 +72,7 @@ func (f *Four) UnmarshalJ(b []byte) error {
 	f.One = tim(jay.ReadTimeNano(b[:8]))
 	f.Two = tim(jay.ReadTimeNano(b[8:16]))
 	f.Three = tim(jay.ReadTimeNano(b[16:24]))
-	f.Four = tim(jay.ReadTimeNano(b[24:32]))
+	f.Four = tim(jay.ReadTimeNano(b[24:]))
 	return nil
 }
 
@@ -94,7 +94,7 @@ func (f *Five) UnmarshalJ(b []byte) error {
 	f.Two = tim(jay.ReadTimeNano(b[8:16]))
 	f.Three = tim(jay.ReadTimeNano(b[16:24]))
 	f.Four = tim(jay.ReadTimeNano(b[24:32]))
-	f.Five = tim(jay.ReadTimeNano(b[32:40]))
+	f.Five = tim(jay.ReadTimeNano(b[32:]))
 	return nil
 }
 
@@ -118,7 +118,7 @@ func (s *Six) UnmarshalJ(b []byte) error {
 	s.Three = tim(jay.ReadTimeNano(b[16:24]))
 	s.Four = tim(jay.ReadTimeNano(b[24:32]))
 	s.Five = tim(jay.ReadTimeNano(b[32:40]))
-	s.Six = tim(jay.ReadTimeNano(b[40:48]))
+	s.Six = tim(jay.ReadTimeNano(b[40:]))
 	return nil
 }
 
@@ -144,7 +144,7 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 	s.Four = tim(jay.ReadTimeNano(b[24:32]))
 	s.Five = tim(jay.ReadTimeNano(b[32:40]))
 	s.Six = tim(jay.ReadTimeNano(b[40:48]))
-	s.Seven = tim(jay.ReadTimeNano(b[48:56]))
+	s.Seven = tim(jay.ReadTimeNano(b[48:]))
 	return nil
 }
 
@@ -172,7 +172,7 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 	e.Five = tim(jay.ReadTimeNano(b[32:40]))
 	e.Six = tim(jay.ReadTimeNano(b[40:48]))
 	e.Seven = tim(jay.ReadTimeNano(b[48:56]))
-	e.Eight = tim(jay.ReadTimeNano(b[56:64]))
+	e.Eight = tim(jay.ReadTimeNano(b[56:]))
 	return nil
 }
 
@@ -202,7 +202,7 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 	n.Six = tim(jay.ReadTimeNano(b[40:48]))
 	n.Seven = tim(jay.ReadTimeNano(b[48:56]))
 	n.Eight = tim(jay.ReadTimeNano(b[56:64]))
-	n.Nine = tim(jay.ReadTimeNano(b[64:72]))
+	n.Nine = tim(jay.ReadTimeNano(b[64:]))
 	return nil
 }
 
@@ -234,7 +234,7 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 	t.Seven = tim(jay.ReadTimeNano(b[48:56]))
 	t.Eight = tim(jay.ReadTimeNano(b[56:64]))
 	t.Nine = tim(jay.ReadTimeNano(b[64:72]))
-	t.Ten = tim(jay.ReadTimeNano(b[72:80]))
+	t.Ten = tim(jay.ReadTimeNano(b[72:]))
 	return nil
 }
 
@@ -268,7 +268,7 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 	e.Eight = tim(jay.ReadTimeNano(b[56:64]))
 	e.Nine = tim(jay.ReadTimeNano(b[64:72]))
 	e.Ten = tim(jay.ReadTimeNano(b[72:80]))
-	e.Eleven = tim(jay.ReadTimeNano(b[80:88]))
+	e.Eleven = tim(jay.ReadTimeNano(b[80:]))
 	return nil
 }
 
@@ -304,7 +304,7 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 	t.Nine = tim(jay.ReadTimeNano(b[64:72]))
 	t.Ten = tim(jay.ReadTimeNano(b[72:80]))
 	t.Eleven = tim(jay.ReadTimeNano(b[80:88]))
-	t.Twelve = tim(jay.ReadTimeNano(b[88:96]))
+	t.Twelve = tim(jay.ReadTimeNano(b[88:]))
 	return nil
 }
 
@@ -342,7 +342,7 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 	t.Ten = tim(jay.ReadTimeNano(b[72:80]))
 	t.Eleven = tim(jay.ReadTimeNano(b[80:88]))
 	t.Twelve = tim(jay.ReadTimeNano(b[88:96]))
-	t.Thirteen = tim(jay.ReadTimeNano(b[96:104]))
+	t.Thirteen = tim(jay.ReadTimeNano(b[96:]))
 	return nil
 }
 
@@ -382,7 +382,7 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 	f.Eleven = tim(jay.ReadTimeNano(b[80:88]))
 	f.Twelve = tim(jay.ReadTimeNano(b[88:96]))
 	f.Thirteen = tim(jay.ReadTimeNano(b[96:104]))
-	f.Fourteen = tim(jay.ReadTimeNano(b[104:112]))
+	f.Fourteen = tim(jay.ReadTimeNano(b[104:]))
 	return nil
 }
 
@@ -424,7 +424,7 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 	f.Twelve = tim(jay.ReadTimeNano(b[88:96]))
 	f.Thirteen = tim(jay.ReadTimeNano(b[96:104]))
 	f.Fourteen = tim(jay.ReadTimeNano(b[104:112]))
-	f.Fifteen = tim(jay.ReadTimeNano(b[112:120]))
+	f.Fifteen = tim(jay.ReadTimeNano(b[112:]))
 	return nil
 }
 
@@ -468,7 +468,7 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 	s.Thirteen = tim(jay.ReadTimeNano(b[96:104]))
 	s.Fourteen = tim(jay.ReadTimeNano(b[104:112]))
 	s.Fifteen = tim(jay.ReadTimeNano(b[112:120]))
-	s.Sixteen = tim(jay.ReadTimeNano(b[120:128]))
+	s.Sixteen = tim(jay.ReadTimeNano(b[120:]))
 	return nil
 }
 
@@ -514,7 +514,7 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 	s.Fourteen = tim(jay.ReadTimeNano(b[104:112]))
 	s.Fifteen = tim(jay.ReadTimeNano(b[112:120]))
 	s.Sixteen = tim(jay.ReadTimeNano(b[120:128]))
-	s.Seventeen = tim(jay.ReadTimeNano(b[128:136]))
+	s.Seventeen = tim(jay.ReadTimeNano(b[128:]))
 	return nil
 }
 
@@ -562,7 +562,7 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 	e.Fifteen = tim(jay.ReadTimeNano(b[112:120]))
 	e.Sixteen = tim(jay.ReadTimeNano(b[120:128]))
 	e.Seventeen = tim(jay.ReadTimeNano(b[128:136]))
-	e.Eighteen = tim(jay.ReadTimeNano(b[136:144]))
+	e.Eighteen = tim(jay.ReadTimeNano(b[136:]))
 	return nil
 }
 
@@ -612,7 +612,7 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 	n.Sixteen = tim(jay.ReadTimeNano(b[120:128]))
 	n.Seventeen = tim(jay.ReadTimeNano(b[128:136]))
 	n.Eighteen = tim(jay.ReadTimeNano(b[136:144]))
-	n.Nineteen = tim(jay.ReadTimeNano(b[144:152]))
+	n.Nineteen = tim(jay.ReadTimeNano(b[144:]))
 	return nil
 }
 
@@ -664,7 +664,7 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 	t.Seventeen = tim(jay.ReadTimeNano(b[128:136]))
 	t.Eighteen = tim(jay.ReadTimeNano(b[136:144]))
 	t.Nineteen = tim(jay.ReadTimeNano(b[144:152]))
-	t.Twenty = tim(jay.ReadTimeNano(b[152:160]))
+	t.Twenty = tim(jay.ReadTimeNano(b[152:]))
 	return nil
 }
 
@@ -718,7 +718,7 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 	t.Eighteen = tim(jay.ReadTimeNano(b[136:144]))
 	t.Nineteen = tim(jay.ReadTimeNano(b[144:152]))
 	t.Twenty = tim(jay.ReadTimeNano(b[152:160]))
-	t.TwentyOne = tim(jay.ReadTimeNano(b[160:168]))
+	t.TwentyOne = tim(jay.ReadTimeNano(b[160:]))
 	return nil
 }
 
@@ -774,7 +774,7 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 	t.Nineteen = tim(jay.ReadTimeNano(b[144:152]))
 	t.Twenty = tim(jay.ReadTimeNano(b[152:160]))
 	t.TwentyOne = tim(jay.ReadTimeNano(b[160:168]))
-	t.TwentyTwo = tim(jay.ReadTimeNano(b[168:176]))
+	t.TwentyTwo = tim(jay.ReadTimeNano(b[168:]))
 	return nil
 }
 
@@ -832,6 +832,6 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 	t.Twenty = tim(jay.ReadTimeNano(b[152:160]))
 	t.TwentyOne = tim(jay.ReadTimeNano(b[160:168]))
 	t.TwentyTwo = tim(jay.ReadTimeNano(b[168:176]))
-	t.TwentyThree = tim(jay.ReadTimeNano(b[176:184]))
+	t.TwentyThree = tim(jay.ReadTimeNano(b[176:]))
 	return nil
 }
