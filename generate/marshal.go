@@ -133,6 +133,10 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 		if f.isArray() && fun == "copy" {
 			thisField += "[:]"
 		}
+
+		if f.typ != f.aliasType {
+			thisField = printFunc(f.typ, thisField)
+		}
 		return printFunc(fun, sliceExpr(s, f, Utoa(start), Utoa(*byteIndex)), thisField)
 
 	case 0:
@@ -195,6 +199,9 @@ func (o Option) typeFuncs(fe field, importJ *bool) (fun string, size, totalSize 
 	var f interface{}
 	switch fe.typ {
 	case "byte", "uint8":
+		if fe.typ != fe.aliasType {
+			return "byte", 1, 1
+		}
 		return "", 1, 1
 	case "int8":
 		return "byte", 1, 1

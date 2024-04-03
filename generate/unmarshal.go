@@ -144,9 +144,17 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 		return fmt.Sprintf("%s=%s", thisField, printFunc(fun, fmt.Sprintf("%s[%d]", bufferName, start)))
 	default:
 		if start == 0 {
-			return fmt.Sprintf("%s = %s", thisField, printFunc(fun, fmt.Sprintf("%s[:%d]", bufferName, *byteIndex)))
+			fun = printFunc(fun, fmt.Sprintf("%s[:%d]", bufferName, *byteIndex))
+			if f.typ != f.aliasType {
+				fun = printFunc(f.aliasType, fun)
+			}
+			return fmt.Sprintf("%s = %s", thisField, fun)
 		} else {
-			return fmt.Sprintf("%s = %s", thisField, printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex)))
+			fun = printFunc(fun, fmt.Sprintf("%s[%d:%d]", bufferName, start, *byteIndex))
+			if f.typ != f.aliasType {
+				fun = printFunc(f.aliasType, fun)
+			}
+			return fmt.Sprintf("%s = %s", thisField, fun)
 		}
 	case 0:
 		// Variable length size.
@@ -184,8 +192,14 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 	var c interface{}
 	switch f.typ {
 	case "byte", "uint8":
+		if f.typ != f.aliasType {
+			return f.aliasType, 1, 1
+		}
 		return "", 1, 1
 	case "int8":
+		if f.typ != f.aliasType {
+			return f.aliasType, 1, 1
+		}
 		return "int8", 1, 1
 	case "string":
 		return "string", 0, 0
