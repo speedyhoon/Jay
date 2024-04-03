@@ -15,9 +15,8 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	s.makeReadBools(buf, &byteIndex, s.receiver)
 	s.readSingles(buf, &byteIndex, s.receiver, o)
 
-	var returnInlined bool
 	for i, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, "", "", i == 0, len(s.variableLen) == 0 && i == len(s.fixedLen)-1, &returnInlined, s.bufferName))
+		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, "", "", i == 0, len(s.variableLen) == 0 && i == len(s.fixedLen)-1, ""))
 		buf.WriteString("\n")
 	}
 
@@ -25,7 +24,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(o.unmarshalLine(f, &byteIndex, s.receiver, at, end, i == 0, i == vLen, &returnInlined, s.bufferName, &hasDefinedOkVar, lenVariable(i)))
+		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, at, end, i == 0, i == vLen, lenVariable(i)))
 		buf.WriteString("\n")
 	}
 
@@ -44,20 +43,14 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	}
 	variableLengthCheck := s.generateCheckSizes(exportedErr, byteIndex)
 
-	var returnCode string
-	if !returnInlined {
-		returnCode = "return nil\n"
-	}
-
 	bufWriteF(b,
-		"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%s%s}\n",
+		"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%sreturn nil\n}\n",
 		s.receiver,
 		s.name,
 		s.bufferName,
 		lengthCheck,
 		variableLengthCheck,
 		code,
-		returnCode,
 	)
 }
 
@@ -89,8 +82,8 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	)
 }
 
-func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string, isFirst, isLast bool, returnInlined *bool, bufferName string) string {
-	fun, size, totalSize := o.unmarshalFuncs(f, isLast)
+func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end string, isFirst, isLast bool, lenVar string) string {
+	fun, _, totalSize := o.unmarshalFuncs(f, isLast)
 	if fun == "" {
 		// Unknown type, not supported yet.
 		lg.Printf("no generateLine for type `%s` yet in unmarshalLine()", f.typ)
@@ -99,7 +92,7 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 
 	start := *byteIndex
 	*byteIndex += totalSize
-	thisField := pkgSelName(receiver, f.name)
+	thisField := pkgSelName(s.receiver, f.name)
 
 	switch f.typ {
 	case "string":
@@ -107,9 +100,9 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 			fun = f.aliasType
 		}
 		if isFirst && isLast {
-			return fmt.Sprintf("%s = %s(%s[%d:])", thisField, fun, bufferName, *byteIndex)
+			return fmt.Sprintf("%s = %s(%s[%d:])", thisField, fun, s.bufferName, *byteIndex)
 		} else {
-			return fmt.Sprintf("%s = %s(%s[%s:%s])", thisField, fun, bufferName, at, end)
+			return fmt.Sprintf("%s = %s(%s[%s:%s])", thisField, fun, s.bufferName, at, end)
 		}
 	case "[]byte", "[]uint8":
 		if f.typ != f.aliasType {
@@ -117,23 +110,23 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 		}
 		if isFirst && isLast {
 			if f.Required {
-				return fmt.Sprintf("%s = %s[%d:]", thisField, bufferName, *byteIndex)
+				return fmt.Sprintf("%s = %s[%d:]", thisField, s.bufferName, *byteIndex)
 			}
-			return fmt.Sprintf("if %s != 0 {\n%s = %s[%d:]\n}", lenVar, thisField, bufferName, *byteIndex)
+			return fmt.Sprintf("if %s != 0 {\n%s = %s[%d:]\n}", lenVar, thisField, s.bufferName, *byteIndex)
 		} else {
 			if f.Required {
-				return fmt.Sprintf("%s = %s[%s:%s]", thisField, bufferName, at, end)
+				return fmt.Sprintf("%s = %s[%s:%s]", thisField, s.bufferName, at, end)
 			}
-			return fmt.Sprintf("if %s != 0 {%s = %s[%s:%s]\n}", lenVar, thisField, bufferName, at, end)
+			return fmt.Sprintf("if %s != 0 {%s = %s[%s:%s]\n}", lenVar, thisField, s.bufferName, at, end)
 		}
 	case "[]int8", "[]bool":
-		return fmt.Sprintf("%s = %s(%s[%s:%s], %s)", thisField, fun, bufferName, at, end, lenVar)
+		return fmt.Sprintf("%s = %s(%s[%s:%s], %s)", thisField, fun, s.bufferName, at, end, lenVar)
 	}
 
 	if f.isArray() && f.arrayType == "int8" {
 		values := make([]string, f.arraySize)
 		for i := 0; i < f.arraySize; i++ {
-			values[i] = fmt.Sprintf("%s(%s[%d])", f.arrayType, bufferName, i)
+			values[i] = fmt.Sprintf("%s(%s[%d])", f.arrayType, s.bufferName, i)
 		}
 		return fmt.Sprintf("%s = %s{%s}", thisField, f.typ, strings.Join(values, ", "))
 	}
@@ -284,7 +277,7 @@ func unmarshalArrayFuncs(f field, isLast bool) (fun interface{}, size, totalSize
 			return "copy", 0, 0, true
 			//} else {
 			//return jay.ReadBytesAt, 0, 1, true
-			return "copy", 0, 0, true
+			//return "copy", 0, 0, true
 			//}
 		} else {
 			// TODO flexible array sizes
