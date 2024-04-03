@@ -139,9 +139,6 @@ func (o Option) unmarshalLine(f field, byteIndex *uint, receiver, at, end string
 	}
 
 	switch size {
-	case 1:
-		//TODO  remove -- singles no longer needed!
-		return fmt.Sprintf("%s=%s", thisField, printFunc(fun, fmt.Sprintf("%s[%d]", bufferName, start)))
 	default:
 		if start == 0 {
 			fun = printFunc(fun, fmt.Sprintf("%s[:%d]", bufferName, *byteIndex))
