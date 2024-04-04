@@ -36,7 +36,8 @@ type Option struct {
 	// OnlyTypes will only generate marshalling & unmarshalling functions for the listed types.
 	// When empty, all types are permitted.
 	// Expected struct type alias names like: "Vehicle", "animal.Species".
-	OnlyTypes []string
+	OnlyTypes   []string
+	typeMatches []*regexp.Regexp
 
 	// MaxUint16 = 64 kilobytes,
 	// MaxUint24 = 16 Megabytes,
@@ -86,6 +87,7 @@ func LoadOptions(opts ...Option) (o Option) {
 	}
 
 	o.removeInvalidTypes()
+	o.regexSearchTypes()
 
 	if o.MaxDefaultStrSize == 0 {
 		o.MaxDefaultStrSize = MaxUint8
@@ -123,13 +125,13 @@ func (o *Option) removeInvalidTypes() {
 // IsSpecifiedType checks if typeName is one of the types listed in Option.OnlyTypes.
 // If OnlyTypes is empty, then allow all types.
 func (o Option) IsSpecifiedType(pkg, typeName string) bool {
-	if len(o.OnlyTypes) == 0 {
+	if len(o.typeMatches) == 0 {
 		return true
 	}
 
 	pkg = pkgSelName(pkg, typeName)
-	for _, onlyType := range o.OnlyTypes {
-		if pkg == onlyType {
+	for _, onlyType := range o.typeMatches {
+		if onlyType.MatchString(pkg) {
 			return true
 		}
 	}
@@ -146,4 +148,34 @@ func bytesRequired(input uint) uint8 {
 
 func LogBaseX(base, x float64) float64 {
 	return math.Log(x) / math.Log(base)
+}
+
+func (o *Option) regexSearchTypes() {
+	for i := 0; i < len(o.OnlyTypes); i++ {
+		o.OnlyTypes[i] = strings.TrimSpace(o.OnlyTypes[i])
+		o.OnlyTypes[i] = strings.Trim(o.OnlyTypes[i], ".")
+
+		// Remove duplicates.
+		for j := 1; j < len(o.OnlyTypes); j++ {
+			if i == j {
+				continue
+			}
+			if o.OnlyTypes[i] == o.OnlyTypes[j] {
+				o.OnlyTypes = Remove(o.OnlyTypes, j)
+			}
+		}
+
+		if strings.Contains(o.OnlyTypes[i], ".") {
+			o.OnlyTypes[i] = strings.ReplaceAll(o.OnlyTypes[i], ".", "\\.")
+		} else {
+			o.OnlyTypes[i] = fmt.Sprintf(`^[[:alpha:]][[:alnum:]]+\.%s$`, o.OnlyTypes[i])
+		}
+
+		r, err := regexp.Compile(o.OnlyTypes[i])
+		if err != nil {
+			log.Println(err)
+			continue
+		}
+		o.typeMatches = append(o.typeMatches, r)
+	}
 }
