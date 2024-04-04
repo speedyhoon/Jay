@@ -317,6 +317,8 @@ func (o Option) typeOf(t interface{}) (fe field) {
 	case *ast.SelectorExpr:
 		fe, _ = o.isSupportedSelector(x, nil)
 		return
+	case *ast.ArrayType:
+		fe, _ = o.calcType(x, "", nil)
 	case nil:
 		// Ignore.
 	default:
