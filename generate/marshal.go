@@ -238,7 +238,7 @@ func sliceExpr(s *structTyp, f field, at, end string) string {
 		if f.isFirst && f.isLast {
 			return s.bufferName
 		}
-		if f.isFirst {
+		if f.isFirst && at == "" { // `at == ""` is needed when structType contains variableLen types then `at` can't be absent because their sizes are placed before.
 			return fmt.Sprintf("%s[:%s]", s.bufferName, end)
 		}
 	}
