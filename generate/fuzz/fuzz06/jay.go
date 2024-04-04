@@ -14,7 +14,7 @@ func (w *W0rkOE1IkyT3uxkJm7j1A0uicgE06WXWL7GyJdUa7UF4Q5SbLew0AOSi25rtjQA) Unmars
 	if len(b) < 8 {
 		return jay.ErrUnexpectedEOB
 	}
-	w.F1Oi0yLLnyFy062S3yjF0u8b8V765l504p0uO2 = jay.ReadUintArch64(b[:8])
+	w.F1Oi0yLLnyFy062S3yjF0u8b8V765l504p0uO2 = jay.ReadUintArch64(b)
 	return nil
 }
 
@@ -335,7 +335,7 @@ func (q *QU3Ymj8o3j80P1YySWyVrOB50hOHv63U3pc2KUqkt7fvbh3N) UnmarshalJ(b []byte) 
 	q.TLFh8QL56AO4MI7FGw1VEjCs1S43rK0Qwh6Rt3s0kA0EWR85 = int8(b[1])
 	q.PpBFn602770rY615345kRiweiXo2oBn8xyflN3IkM80672 = jay.ReadUint64(b[2:10])
 	q.Bj0k1H0Sb = jay.ReadUintArch64(b[10:18])
-	q.SirR = jay.ReadUint16(b[18:20])
+	q.SirR = jay.ReadUint16(b[18:])
 	return nil
 }
 
