@@ -14,7 +14,7 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver stri
 
 	for i, l := 0, len(s.single); i < l; i++ {
 		isLast := i+1 == l
-		fun, _ := opt.typeFuncs(s.single[i], importJ)
+		fun, _, _ := s.single[i].MarshalFuncTemplate(opt, importJ)
 		writeSingle(s.single[i], b, *byteIndex, receiver, fun, s.bufferName, isMake, isLast)
 		*byteIndex++
 	}

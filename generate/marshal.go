@@ -85,47 +85,34 @@ func (s *structTyp) generateSizeLine() string {
 }
 
 func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
-	fun, totalSize := o.typeFuncs(f, importJ)
+	fun, template, totalSize := f.MarshalFuncTemplate(o, importJ)
 	if fun == "" {
 		// Unknown type, not supported yet.
-		lg.Printf("no generateLine for type `%s` yet", f.typ)
 		return ""
 	}
 
-	start := *byteIndex
 	*byteIndex += totalSize
 	thisField := pkgSelName(s.receiver, f.name)
-
-	switch f.typ {
-	case "string":
-		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
-	case "[]byte", "[]uint8":
-		if f.isFirst && f.isLast {
-			if f.Required {
-				return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
-			}
-			return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, sliceExpr(s, f, at, end), thisField)
-		} else {
-			if f.Required {
-				return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
-			}
-			return fmt.Sprintf("if %s != 0 {%s(%s, %s)\n}", lenVar, fun, sliceExpr(s, f, at, end), thisField)
-		}
-	case "[]int8":
-		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
-	case "[]bool":
-		return fmt.Sprintf("%s(%s, %s, %s)", fun, sliceExpr(s, f, at, end), thisField, lenVar)
+	if end == "" {
+		end = Utoa(*byteIndex)
 	}
 
-	if f.isArray() && fun == "copy" {
-		thisField += "[:]"
-	}
-
-	if f.typ != f.aliasType {
+	if f.typ != f.aliasType && f.aliasType != "" && fun != copyKeyword {
 		s.imports.add(f.pkgReq)
 		thisField = printFunc(f.typ, thisField)
 	}
-	return printFunc(fun, sliceExpr(s, f, Utoa(start), Utoa(*byteIndex)), thisField)
+
+	switch template {
+	case tFunc:
+		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
+	case tFuncOpt:
+		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, sliceExpr(s, f, at, end), thisField)
+	case tFuncLength:
+		return fmt.Sprintf("%s(%s, %s, %s)", fun, sliceExpr(s, f, at, end), thisField, lenVar)
+	default:
+		lg.Printf("template %d unhandled", template)
+		return ""
+	}
 }
 
 func (f *field) isArrayOrSlice() bool {
@@ -151,76 +138,82 @@ func printFunc(fun string, params ...string) (code string) {
 	return
 }
 
-func (o Option) typeFuncs(fe field, importJ *bool) (fun string, totalSize uint) {
-	var f interface{}
-	switch fe.typ {
+func (f field) MarshalFuncTemplate(o Option, importJ *bool) (funcName string, template uint8, totalSize uint) {
+	switch f.typ {
 	case "byte", "uint8":
-		if fe.typ != fe.aliasType {
-			return "byte", 1
+		if f.typ != f.aliasType {
+			return "byte", tByteConv, 1
 		}
-		return "", 1
+		return "", tByteAssign, 1
 	case "int8":
-		return "byte", 1
+		return "byte", tByteConv, 1
 	case "string":
-		return "copy", 0
+		return copyKeyword, tFunc, 0
+	case "[]uint8", "[]byte":
+		if f.Required {
+			return copyKeyword, tFunc, 0
+		}
+		return copyKeyword, tFuncOpt, 0
+	case "[15]byte", "[15]uint8":
+		return copyKeyword, tFunc, uint(f.arraySize)
+	}
+
+	var fun any
+	fun, template, totalSize = f.marshalFunc(o)
+	return nameOf(fun, importJ), template, totalSize
+}
+
+func (f field) marshalFunc(o Option) (fun interface{}, template uint8, totalSize uint) {
+	switch f.typ {
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
-				f, totalSize = jay.WriteIntArch32, 4
+				return jay.WriteIntArch32, tFunc, 4
 			}
-			f, totalSize = jay.WriteIntArch64, 8
-			break
+			return jay.WriteIntArch64, tFunc, 8
 		}
-		f, totalSize = jay.WriteIntVariable, 1
+		return jay.WriteIntVariable, tFuncLength, 1
 	case "int16":
-		f, totalSize = jay.WriteInt16, 2
+		return jay.WriteInt16, tFunc, 2
 	case "int32", "rune":
-		f, totalSize = jay.WriteInt32, 4
+		return jay.WriteInt32, tFunc, 4
 	case "float32":
-		f, totalSize = jay.WriteFloat32, 4
+		return jay.WriteFloat32, tFunc, 4
 	case "float64":
-		f, totalSize = jay.WriteFloat64, 8
+		return jay.WriteFloat64, tFunc, 8
 	case "int64":
-		f, totalSize = jay.WriteInt64, 8
+		return jay.WriteInt64, tFunc, 8
 	case "time.Duration":
-		f, totalSize = jay.WriteDuration, 8
+		return jay.WriteDuration, tFunc, 8
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {
-				f, totalSize = jay.WriteUintArch32, 4
+				return jay.WriteUintArch32, tFunc, 4
 			}
-			f, totalSize = jay.WriteUintArch64, 8
-			break
+			return jay.WriteUintArch64, tFunc, 8
 		}
-		f, totalSize = jay.WriteUintVariable, 1
+		return jay.WriteUintVariable, tFuncLength, 1
 	case "uint16":
-		f, totalSize = jay.WriteUint16, 2
+		return jay.WriteUint16, tFunc, 2
 	case "uint32":
-		f, totalSize = jay.WriteUint32, 4
+		return jay.WriteUint32, tFunc, 4
 	case "uint64":
-		f, totalSize = jay.WriteUint64, 8
+		return jay.WriteUint64, tFunc, 8
 	case "time.Time":
-		if fe.tagOptions.TimeNano {
-			f, totalSize = jay.WriteTimeNano, 8
+		if f.tagOptions.TimeNano {
+			return jay.WriteTimeNano, tFunc, 8
 		} else {
-			f, totalSize = jay.WriteTime, 8
+			return jay.WriteTime, tFunc, 8
 		}
-	case "[]uint8", "[]byte":
-		return "copy", 0
 	case "[]int8":
-		f, totalSize = jay.WriteInt8s, 1
+		return jay.WriteInt8s, tFunc, 1
 	case "[]bool":
-		f, totalSize = jay.WriteBools, 1
-
-	case "[15]byte", "[15]uint8":
-		return "copy", uint(fe.arraySize)
+		return jay.WriteBools, tFuncLength, 1
 
 	default:
-		log.Printf("no function set for type %s yet in typeFuncs()", fe.typ)
-		return "", 0, 0
+		lg.Printf("no function set for type %s yet in typeFuncs()", f.typ)
+		return
 	}
-
-	return nameOf(f, importJ), totalSize
 }
 
 func nameOf(f any, importJ *bool) string {
@@ -259,3 +252,23 @@ func sliceExpr(s *structTyp, f field, at, end string) string {
 func sliceExprU(s *structTyp, f field, at, end uint) string {
 	return sliceExpr(s, f, Utoa(at), Utoa(end))
 }
+
+// Template definitions.
+const (
+	// tFunc call a function with the type, `func(b[at:end], type)`.
+	tFunc uint8 = iota + 1
+
+	// tFuncOpt wraps tFunc with an if statement. `if l0 != 0 { tFunc... }`
+	tFuncOpt
+
+	// tFuncLength calls a function with a length parameter, `func(b[at:end], type, int)`.
+	tFuncLength
+
+	// tByteAssign byte assignment always populated. No function calls required, `b[0] = byte`.
+	tByteAssign
+
+	// tByteConv converts that type to a byte & assigns, `b[0] = byte(int8)`.
+	tByteConv
+
+	copyKeyword = "copy"
+)
