@@ -96,12 +96,12 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end st
 
 	switch f.typ {
 	case "string":
-		if f.typ != f.aliasType {
+		if f.isAliasDef {
 			fun = f.aliasType
 		}
 		return fmt.Sprintf("%s = %s(%s)", thisField, fun, sliceExpr(s, f, at, end))
 	case "[]byte", "[]uint8":
-		if f.typ != f.aliasType {
+		if f.isAliasDef {
 			fun = f.aliasType
 		}
 		if f.Required {
@@ -121,7 +121,7 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end st
 	}
 
 	fun = printFunc(fun, sliceExprU(s, f, start, *byteIndex))
-	if f.typ != f.aliasType {
+	if f.isAliasDef {
 		fun = printFunc(f.aliasType, fun)
 	}
 	return fmt.Sprintf("%s = %s", thisField, fun)
@@ -133,12 +133,12 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 	var c interface{}
 	switch f.typ {
 	case "byte", "uint8":
-		if f.typ != f.aliasType {
+		if f.isAliasDef {
 			return f.aliasType, 1, 1
 		}
 		return "", 1, 1
 	case "int8":
-		if f.typ != f.aliasType {
+		if f.isAliasDef {
 			return f.aliasType, 1, 1
 		}
 		return "int8", 1, 1

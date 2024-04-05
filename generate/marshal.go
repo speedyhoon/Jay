@@ -97,7 +97,7 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 		end = Utoa(*byteIndex)
 	}
 
-	if f.typ != f.aliasType && f.aliasType != "" && fun != copyKeyword {
+	if f.isAliasDef && fun != copyKeyword {
 		s.imports.add(f.pkgReq)
 		thisField = printFunc(f.typ, thisField)
 	}
@@ -141,7 +141,7 @@ func printFunc(fun string, params ...string) (code string) {
 func (f field) MarshalFuncTemplate(o Option, importJ *bool) (funcName string, template uint8, totalSize uint) {
 	switch f.typ {
 	case "byte", "uint8":
-		if f.typ != f.aliasType {
+		if f.isAliasDef {
 			return "byte", tByteConv, 1
 		}
 		return "", tByteAssign, 1

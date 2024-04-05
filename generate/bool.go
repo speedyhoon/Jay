@@ -62,7 +62,7 @@ func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint, receiver str
 func fieldNames(fields []field, receiver string, isMarshalling bool) string {
 	var s []string
 	for i := range fields {
-		if isMarshalling && fields[i].typ != fields[i].aliasType {
+		if isMarshalling && fields[i].isAliasDef {
 			s = append(s, printFunc(fields[i].typ, pkgSelName(receiver, fields[i].name)))
 		} else {
 			s = append(s, pkgSelName(receiver, fields[i].name))
@@ -88,7 +88,7 @@ func readBools(bools []field, b *bytes.Buffer, byteIndex uint, receiver string, 
 
 func isUnmarshalInline(bools []field) bool {
 	for _, b := range bools {
-		if b.typ != b.aliasType {
+		if b.isAliasDef {
 			return true
 		}
 	}
