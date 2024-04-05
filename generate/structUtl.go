@@ -228,14 +228,14 @@ func (o *Option) newFieldArray(arraySize int, arrayType string) (f field) {
 	}
 	return
 }
-func genType(arraySize int, arrayType string) string {
-	switch {
-	case arraySize <= -1:
-		return fmt.Sprintf("[]%s", arrayType)
-	case arraySize == 0:
-		return arrayType
+func genType(arraySize int, typ string) string {
+	switch arraySize {
+	case typeSlice:
+		return fmt.Sprintf("[]%s", typ)
+	case typeNotArrayOrSlice:
+		return typ
 	default:
-		return fmt.Sprintf("[%d]%s", arraySize, arrayType)
+		return fmt.Sprintf("[%d]%s", arraySize, typ)
 	}
 }
 
@@ -259,21 +259,26 @@ func supportedArrayType(s string) bool {
 	return false
 }
 
+const (
+	typeSlice           = -1
+	typeNotArrayOrSlice = 0
+)
+
 // calcArraySize returns -1 for a slice, 0 as invalid & >= 1 for array size.
 func calcArraySize(x interface{}) (size int, ok bool) {
 	switch d := x.(type) {
 	case nil:
-		return -1, true
+		return typeSlice, true
 	case *ast.BasicLit:
 		if d.Kind != token.INT {
 			lg.Println("unhandled token type", d.Kind, d.Value)
-			return 0, false
+			return typeNotArrayOrSlice, false
 		}
 
 		u, err := strconv.ParseUint(d.Value, 10, 24)
 		if err != nil {
 			lg.Println("invalid array size", d.Value)
-			return 0, false
+			return typeNotArrayOrSlice, false
 		}
 		return int(u), true
 
@@ -288,7 +293,7 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 	default:
 		lg.Printf("unhandled case %t in calcArraySize", d)
 	}
-	return 0, false
+	return typeNotArrayOrSlice, false
 }
 
 func (o Option) typeOf(t interface{}) (fe field) {

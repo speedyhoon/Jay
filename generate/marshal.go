@@ -116,13 +116,13 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 }
 
 func (f *field) isArrayOrSlice() bool {
-	return f.arraySize != 0
+	return f.arraySize != typeNotArrayOrSlice
 }
 func (f *field) isArray() bool {
-	return f.arraySize >= 1
+	return f.arraySize > typeNotArrayOrSlice
 }
 func (f *field) isSlice() bool {
-	return f.arraySize <= -1
+	return f.arraySize == typeSlice
 }
 
 // Utoa is equivalent to strconv.FormatUint(uint64(u), 10).
