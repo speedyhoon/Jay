@@ -214,7 +214,7 @@ func unmarshalArrayFuncs(f field, isLast bool) (fun interface{}, size, totalSize
 	switch f.arrayType {
 	/*case "uint8":
 	if f.arraySize == -1 {
-		return "copy", 0, 1, true // Type []uint8.
+		return copyKeyword, 0, 1, true // Type []uint8.
 	} else {
 		// TODO flexible array sizes
 		return "[15]uint8", uint(f.arraySize), uint(f.arraySize), true
@@ -225,10 +225,10 @@ func unmarshalArrayFuncs(f field, isLast bool) (fun interface{}, size, totalSize
 			// Type []byte.
 			//if isLast {
 			//return jay.ReadBytesPtrErr, 0, 1, true
-			return "copy", 0, 0, true
+			return copyKeyword, 0, 0, true
 			//} else {
 			//return jay.ReadBytesAt, 0, 1, true
-			//return "copy", 0, 0, true
+			//return copyKeyword, 0, 0, true
 			//}
 		} else {
 			// TODO flexible array sizes
