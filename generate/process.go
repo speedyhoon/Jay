@@ -175,7 +175,7 @@ func (s *structTyp) process(fields []*ast.Field, o Option, dirList *dirList) (ha
 			continue
 		}
 
-		fe, ok := o.isSupportedType(t, dirList, s.dir)
+		fe, ok := o.isSupportedType(t.Type, dirList, s.dir)
 		if !ok {
 			fields = Remove(fields, i)
 			continue

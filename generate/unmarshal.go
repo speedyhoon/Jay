@@ -192,49 +192,12 @@ func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, tot
 	case "[]bool":
 		c, size, totalSize = jay.ReadBools, 0, 0
 
+	case "[]byte", "[]uint8":
+		c, size, totalSize = copyKeyword, 0, 0
+
 	default:
-		var ok bool
-		c, size, totalSize, ok = unmarshalArrayFuncs(f, isLast)
-		if !ok {
-			lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
-			return "", 0, 0
-		}
+		lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
 	}
 
 	return nameOf(c, nil), size, totalSize
-}
-
-// unmarshalArrayFuncs returns the unmarshalling functions for slices and arrays.
-// `size` is the quantity of bytes required to represent the type.
-func unmarshalArrayFuncs(f field, isLast bool) (fun interface{}, size, totalSize uint, ok bool) {
-	if f.arraySize == 0 {
-		return nil, 0, 0, false
-	}
-
-	switch f.arrayType {
-	/*case "uint8":
-	if f.arraySize == -1 {
-		return copyKeyword, 0, 1, true // Type []uint8.
-	} else {
-		// TODO flexible array sizes
-		return "[15]uint8", uint(f.arraySize), uint(f.arraySize), true
-	}*/
-
-	case "byte", "uint8":
-		if f.arraySize == -1 {
-			// Type []byte.
-			//if isLast {
-			//return jay.ReadBytesPtrErr, 0, 1, true
-			return copyKeyword, 0, 0, true
-			//} else {
-			//return jay.ReadBytesAt, 0, 1, true
-			//return copyKeyword, 0, 0, true
-			//}
-		} else {
-			// TODO flexible array sizes
-			return "[15]" + f.arrayType, uint(f.arraySize), uint(f.arraySize), true
-		}
-	}
-
-	return
 }

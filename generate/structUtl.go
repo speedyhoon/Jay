@@ -42,60 +42,60 @@ func unwrapTagValue(str string) string {
 var typeArray = regexp.MustCompile(`\[(\d)+\](\w)+`)
 var typeArrayBrackets = regexp.MustCompile(`\[(\d)+\]`)
 
-func supportedType(typ string) bool {
+func isBuiltIn(typ string) bool {
 	switch typ {
-	case "bool", "byte", "float32", "float64", "int", "int8", "int16", "int32", "int64", "rune", "string", "uint", "uint8", "uint16", "uint32", "uint64", "[]byte":
+	case "bool", "byte", "float32", "float64", "int", "int8", "int16", "int32", "int64", "rune", "string", "uint", "uint8", "uint16", "uint32", "uint64":
 		return true
 	}
-
-	if typeArray.MatchString(typ) {
-		switch typeArrayBrackets.ReplaceAllString(typ, "") {
-		case "byte", "int8", "uint8":
-			return true
-		}
-	}
-
 	return false
 }
 
-func (o Option) isSupportedType(t *ast.Field, dirList *dirList, pkg string) (f field, ok bool) {
-	switch d := t.Type.(type) {
+func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f field, ok bool) {
+	switch d := t.(type) {
 	case *ast.Ident:
-		if supportedType(d.Name) { // TODO its probably better to check if the obj != nil first otherwise do this.
+		if d.Obj == nil {
+			if !isBuiltIn(d.Name) {
+				// Object might be declared in another file in the same package.
+				if dirList != nil {
+					d.Obj = findImportedType((*dirList)[pkg].files, pkg, "") // t.Names[0].Name)
+				}
+				return f, false
+			}
 			f.typ = d.Name
-			f.aliasType = d.Name
 			f.isFixedLen = o.isLenFixed(d.Name)
 			return f, true
 		}
 
-		// Object might be declared in another file in the same package.
-		if d.Obj == nil && dirList != nil {
-			d.Obj = findImportedType((*dirList)[pkg].files, pkg, t.Names[0].Name)
-		}
+		f, ok = o.isSupportedType(d.Obj, dirList, pkg)
+		f.aliasType = d.Name
 
-		f = o.typeOf(d.Obj)
-		if f.isAliasDef {
-			// type definition (`type toggle bool`) requires converting (`bool(foo)`) or casting (`foo.(bool)`) to correct type.
-			f.aliasType = d.Name
-		} else {
-			// type alias (`type toggle = bool`) can be used interchangeably. No extra processing required.
-			f.aliasType = f.typ
-		}
-		return f, f.typ != ""
 	case nil:
 	// Ignore.
 	case *ast.SelectorExpr:
-		if dirList != nil {
-			return o.isSupportedSelector(d, dirList.allFiles())
-		} else {
-			return o.isSupportedSelector(d, nil)
+		f, ok = o.isSupportedSelector(d, dirList)
+
+	case *ast.Object:
+		if d.Kind != ast.Typ || d.Name == "" {
+			lg.Println(d)
+			return f, false
 		}
+		f, ok = o.isSupportedType(d.Decl, dirList, pkg)
 
 	//case *ast.StructType:
 	// TODO not yet implemented.
 	case *ast.ArrayType:
-		f, ok = o.calcType(d, "", dirList.allFiles())
-		return f, ok
+		f, ok = o.isSupportedType(d.Elt, dirList, pkg)
+		if ok {
+			f.arrayType = f.typ
+			f.typ = "[]" + f.typ
+			f.arraySize, ok = calcArraySize(d.Len)
+			f.isFixedLen = f.isFixedLen && f.arraySize != typeSlice
+		}
+
+	case *ast.TypeSpec:
+		f, ok = o.isSupportedType(d.Type, dirList, pkg)
+		f.isAliasDef = f.isAliasDef || d.Assign == token.NoPos
+
 	default:
 		lg.Printf("type %T not expected in Option.isSupportedType()", d)
 	}
@@ -133,54 +133,7 @@ func findImportedType(files []*ast.File, pkg, typName string) *ast.Object {
 	return nil
 }
 
-func (o Option) calcType(t interface{}, typePrefix string, files []*ast.File) (f field, ok bool) {
-	switch d := t.(type) {
-	case *ast.Field:
-		return o.calcType(d.Type, typePrefix, files)
-	case *ast.Ident:
-		name := typePrefix + d.Name
-		if supportedType(name) {
-			f.typ = name
-			f.aliasType = name
-			f.isFixedLen = o.isLenFixed(name)
-			return f, true
-		}
-
-		// Type has an alias name.
-		f = o.typeOf(d.Obj)
-		f.aliasType = name
-		return f, f.typ != ""
-	case nil:
-	// Ignore.
-	case *ast.SelectorExpr:
-		return o.isSupportedSelector(d, files)
-	//case *ast.StructType:
-	// TODO not yet implemented.
-	case *ast.ArrayType:
-		var typ string
-		typ, ok = o.calcArrayType(d.Elt)
-		if !ok {
-			return f, false
-		}
-		var size int
-		size, ok = calcArraySize(d.Len)
-		if !ok {
-			return f, false
-		}
-		f = o.newFieldArray(size, typ)
-		return f, true
-
-	case *ast.BasicLit:
-		if d.Kind == token.INT {
-			return f, true
-		}
-	default:
-		lg.Printf("type %T not expected in Option.isSupportedType()", d)
-	}
-	return f, false
-}
-
-func (o Option) isSupportedSelector(d *ast.SelectorExpr, files []*ast.File) (f field, ok bool) {
+func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f field, ok bool) {
 	x, ok := d.X.(*ast.Ident)
 	if !ok {
 		return
@@ -191,16 +144,15 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, files []*ast.File) (f f
 		switch d.Sel.Name {
 		case "Time", "Duration":
 			f.typ = pkgSelName(x.Name, d.Sel.Name)
-			f.aliasType = f.typ
 			f.pkgReq = x.Name
 			f.isFixedLen = true
 			return f, true
 		}
 	}
 
-	obj := findImportedType(files, x.Name, d.Sel.Name)
+	obj := findImportedType(dirList.allFiles(), x.Name, d.Sel.Name)
 	if obj != nil {
-		f = o.typeOf(obj)
+		f, ok = o.isSupportedType(obj, nil, "")
 		f.aliasType = d.Sel.Name
 		return f, f.typ != ""
 	}
@@ -237,26 +189,6 @@ func genType(arraySize int, typ string) string {
 	default:
 		return fmt.Sprintf("[%d]%s", arraySize, typ)
 	}
-}
-
-func (o *Option) calcArrayType(x interface{}) (typeOf string, ok bool) {
-	switch d := x.(type) {
-	case *ast.Ident:
-		if supportedArrayType(d.Name) {
-			return d.Name, true
-		}
-	}
-	lg.Println("array type not supported yet")
-	return "", false
-}
-func supportedArrayType(s string) bool {
-	switch s {
-	case "byte", "int8", "uint8", "bool":
-		return true
-	default:
-		lg.Println("array type", s, "not supported yet")
-	}
-	return false
 }
 
 const (
@@ -296,71 +228,8 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 	return typeNotArrayOrSlice, false
 }
 
-func (o Option) typeOf(t interface{}) (fe field) {
-	switch x := t.(type) {
-	case *ast.Object:
-		if x == nil || x.Name == "" || x.Kind != ast.Typ {
-			return
-		}
-		return o.typeOf(x.Decl)
-	case *ast.TypeSpec:
-		fe = o.typeOf(x.Type)
-		fe.isAliasDef = fe.isAliasDef || x.Assign == token.NoPos
-		return
-	case *ast.StructType:
-		if x.Fields != nil && len(x.Fields.List) != 0 {
-			return field{typ: "struct", isFixedLen: !o.isVariableLen(x.Fields.List)}
-		}
-	case *ast.Ident:
-		if x.Obj != nil {
-			return o.typeOf(x.Obj)
-		}
-
-		if supportedType(x.Name) {
-			return field{typ: x.Name, isFixedLen: o.isLenFixed(x.Name)}
-		}
-	case *ast.SelectorExpr:
-		fe, _ = o.isSupportedSelector(x, nil)
-		return
-	case *ast.ArrayType:
-		fe, _ = o.calcType(x, "", nil)
-	case nil:
-		// Ignore.
-	default:
-		lg.Printf("type %T not expected in typeOf", x)
-	}
-	return
-}
-
-func (o Option) isVariableLen(fields []*ast.Field) bool {
-	for _, f := range fields {
-		if !hasExported(f.Names) {
-			continue
-		}
-
-		fe, ok := o.isSupportedType(f, nil, "")
-		if !ok {
-			continue
-		}
-
-		if !fe.isFixedLen {
-			return true
-		}
-	}
-	return false
-}
-
 func (s *structTyp) hasExportedFields() bool {
 	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1 || len(s.single) >= 1
-}
-
-func hasExported(idents []*ast.Ident) bool {
-	for _, ident := range idents {
-		if ident.IsExported() {
-			return true
-		}
-	}
-	return false
 }
 
 func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
@@ -384,14 +253,6 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 	}
 }
 
-//func isLenFixed(typ string) bool {
-//	switch typ {
-//	case "byte" /*"float32","float64",*/, "int", "int8", "int16", "int32", "int64", "rune", "uint", "uint8", "uint16", "uint32", "uint64":
-//		return true
-//	}
-//	return false
-//}
-
 func isLen(typ string) uint {
 	switch typ {
 	case "bool", "byte", "int8", "uint8", "string", "int", "uint":
@@ -410,7 +271,7 @@ func (o Option) isLenFixed(typ string) bool {
 	switch typ {
 	case "int":
 		return o.FixedIntSize
-	case "string", "[]byte", "[]uint8", "[]int8", "[]bool":
+	case "string":
 		return false
 	case "uint":
 		return o.FixedUintSize
@@ -421,24 +282,6 @@ func (o Option) isLenFixed(typ string) bool {
 func (o Option) isLenVariable(typ string) bool {
 	return !o.isLenFixed(typ)
 }
-
-/*func isLenStructVariable(t interface{}) bool {
-	switch x := t.(type) {
-	case *ast.Ident:
-		if x.Obj != nil {
-			return isLenStructVariable(x.Obj.Decl)
-		}
-	case nil:
-	case *ast.TypeSpec:
-		if x.Type != nil {
-			return isLenStructVariable(x.Type)
-		}
-	case *ast.StructType:
-
-		return isLenStructVariable(x.Fields.List)
-	}
-	return false
-}*/
 
 func bufWriteF(b *bytes.Buffer, format string, a ...any) {
 	b.WriteString(fmt.Sprintf(format, a...))

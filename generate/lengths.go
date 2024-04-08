@@ -45,7 +45,7 @@ func joinSizes(qty uint, variableLen []field, o Option, importJ *bool) string {
 
 	for i, v := range variableLen {
 		qty += isLen(v.typ)
-		if o.isLenVariable(v.typ) {
+		if !v.isFixedLen {
 			if v.typ == "[]bool" {
 				s = append(s, fmt.Sprintf("%s(%s)", nameOf(jay.SizeBools, importJ), lenVariable(i)))
 			} else {
@@ -59,11 +59,11 @@ func joinSizes(qty uint, variableLen []field, o Option, importJ *bool) string {
 
 func (s *structTyp) varLenFieldNames(o Option) (names []string) {
 	for _, v := range s.variableLen {
-		if o.isLenVariable(v.typ) {
-			names = append(names, v.name)
-			//} else if v.typ == "struct" {
-			//variableStructs = append(variableStructs, v.name)
-		}
+		//if o.isLenVariable(v.typ) {
+		names = append(names, v.name)
+		//} else if v.typ == "struct" {
+		//variableStructs = append(variableStructs, v.name)
+		//}
 	}
 	return
 }
