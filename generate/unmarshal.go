@@ -105,6 +105,7 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end, l
 			return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, printFunc(f.aliasType, sliceExpr(s, f, at, end)))
 		}
 		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, sliceExpr(s, f, at, end))
+
 	case tFuncLength:
 		if f.isAliasDef && fun != copyKeyword {
 			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, sliceExpr(s, f, at, end), lenVar)))
@@ -112,10 +113,7 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end, l
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(s, f, at, end), lenVar))
 
 	case tByteConv:
-		if f.isAliasDef && fun != copyKeyword {
-			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, sliceExpr(s, f, at, end)))
-		}
-		return fmt.Sprintf("%s = %s", thisField, sliceExpr(s, f, at, end))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(s, f, at, end)))
 
 	case tByteAssign:
 		return fmt.Sprintf("%s = %s", thisField, sliceExpr(s, f, at, end))
@@ -135,16 +133,11 @@ func (o Option) unmarshalFuncs(f field) (funcName string, template uint8) {
 			return f.aliasType, tByteConv
 		}
 		return "", tByteAssign
-	case "int8":
+	case "int8", "string":
 		if f.isAliasDef {
 			return f.aliasType, tByteConv
 		}
-		return "int8", tByteConv
-	case "string":
-		if f.isAliasDef {
-			return f.aliasType, tByteConv
-		}
-		return "string", tFunc
+		return f.typ, tByteConv
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
