@@ -87,15 +87,3 @@ func decls(u int) (s []string) {
 	}
 	return
 }
-
-/*func structs2(names []string, receiver string) string {
-	if len(names) == 0 {
-		return ""
-	}
-
-	return fmt.Sprintf(
-		"+ %s.%s.SizeJ()",
-		receiver,
-		strings.Join(names, ".SizeJ()+"+receiver+"."),
-	)
-}*/
