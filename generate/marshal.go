@@ -85,7 +85,8 @@ func (s *structTyp) generateSizeLine() string {
 }
 
 func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
-	fun, template, totalSize := f.MarshalFuncTemplate(o, importJ)
+	fun, template := f.MarshalFuncTemplate(o, importJ)
+	totalSize := f.typeFuncSize(o)
 	if fun == "" {
 		// Unknown type, not supported yet.
 		return ""
@@ -138,77 +139,79 @@ func printFunc(fun string, params ...string) (code string) {
 	return
 }
 
-func (f field) MarshalFuncTemplate(o Option, importJ *bool) (funcName string, template uint8, totalSize uint) {
+func (f field) MarshalFuncTemplate(o Option, importJ *bool) (funcName string, template uint8) {
 	switch f.typ {
 	case "byte", "uint8":
 		if f.isAliasDef {
-			return "byte", tByteConv, 1
+			return "byte", tByteConv
 		}
-		return "", tByteAssign, 1
+		return "", tByteAssign
 	case "int8":
-		return "byte", tByteConv, 1
+		return "byte", tByteConv
 	case "string":
-		return copyKeyword, tFunc, 0
+		return copyKeyword, tFunc
 	case "[]uint8", "[]byte":
 		if f.Required {
-			return copyKeyword, tFunc, 0
+			return copyKeyword, tFunc
 		}
-		return copyKeyword, tFuncOpt, 0
+		return copyKeyword, tFuncOpt
 	case "[15]byte", "[15]uint8":
-		return copyKeyword, tFunc, uint(f.arraySize)
+		return copyKeyword, tFunc
 	}
 
 	var fun any
-	fun, template, totalSize = f.marshalFunc(o)
-	return nameOf(fun, importJ), template, totalSize
+	fun, template = f.marshalFunc(o)
+	return nameOf(fun, importJ), template
 }
 
-func (f field) marshalFunc(o Option) (fun interface{}, template uint8, totalSize uint) {
+func (f field) marshalFunc(o Option) (fun interface{}, template uint8) {
 	switch f.typ {
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
-				return jay.WriteIntArch32, tFunc, 4
+				return jay.WriteIntArch32, tFunc
 			}
-			return jay.WriteIntArch64, tFunc, 8
+			return jay.WriteIntArch64, tFunc
 		}
-		return jay.WriteIntVariable, tFuncLength, 1
+		return jay.WriteIntVariable, tFuncLength
 	case "int16":
-		return jay.WriteInt16, tFunc, 2
+		return jay.WriteInt16, tFunc
 	case "int32", "rune":
-		return jay.WriteInt32, tFunc, 4
+		return jay.WriteInt32, tFunc
 	case "float32":
-		return jay.WriteFloat32, tFunc, 4
+		return jay.WriteFloat32, tFunc
 	case "float64":
-		return jay.WriteFloat64, tFunc, 8
+		return jay.WriteFloat64, tFunc
 	case "int64":
-		return jay.WriteInt64, tFunc, 8
+		return jay.WriteInt64, tFunc
 	case "time.Duration":
-		return jay.WriteDuration, tFunc, 8
+		return jay.WriteDuration, tFunc
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {
-				return jay.WriteUintArch32, tFunc, 4
+				return jay.WriteUintArch32, tFunc
 			}
-			return jay.WriteUintArch64, tFunc, 8
+			return jay.WriteUintArch64, tFunc
 		}
-		return jay.WriteUintVariable, tFuncLength, 1
+		return jay.WriteUintVariable, tFuncLength
 	case "uint16":
-		return jay.WriteUint16, tFunc, 2
+		return jay.WriteUint16, tFunc
 	case "uint32":
-		return jay.WriteUint32, tFunc, 4
+		return jay.WriteUint32, tFunc
 	case "uint64":
-		return jay.WriteUint64, tFunc, 8
+		return jay.WriteUint64, tFunc
 	case "time.Time":
 		if f.tagOptions.TimeNano {
-			return jay.WriteTimeNano, tFunc, 8
+			return jay.WriteTimeNano, tFunc
 		} else {
-			return jay.WriteTime, tFunc, 8
+			return jay.WriteTime, tFunc
 		}
 	case "[]int8":
-		return jay.WriteInt8s, tFunc, 1
+		return jay.WriteInt8s, tFunc
 	case "[]bool":
-		return jay.WriteBools, tFuncLength, 1
+		return jay.WriteBools, tFuncLength
+	case "[]float32":
+		return jay.WriteFloat32s, tFuncLength
 
 	default:
 		lg.Printf("no function set for type %s yet in typeFuncs()", f.typ)

@@ -2,7 +2,6 @@ package generate
 
 import (
 	"github.com/speedyhoon/jay"
-	"strconv"
 )
 
 /*// MakeSize ...
@@ -41,10 +40,10 @@ func (s *structTyp) calcSize(o Option) (qty uint) {
 	qty += uint(len(s.single))
 
 	for _, x := range s.fixedLen {
-		qty += o.typeFuncSize(x.typ)
+		qty += x.typeFuncSize(o)
 	}
 	for _, v := range s.variableLen {
-		qty += o.typeFuncSize(v.typ)
+		qty += v.typeFuncSize(o)
 	}
 	return qty
 }
@@ -68,48 +67,41 @@ func structs(names []string, receiver string) string {
 }*/
 
 // typeFuncSize returns the minimum quantity of bytes required to represent an empty or undefined value.
-func (o Option) typeFuncSize(typ string) (size uint) {
-	switch typ {
-	case "string", "bool", "byte", "uint8", "int8", "[]byte", "[]uint8", "[]int8", "[]bool":
+func (f field) typeFuncSize(o Option) (size uint) {
+	switch {
+	case f.arraySize <= typeSlice:
 		return 1
-	case "int16", "uint16":
-		return 2
-	case "int32", "rune", "float32", "uint32":
-		return 4
-	case "float64", "int64", "uint64", "time.Time", "time.Duration":
-		return 8
-	case "int":
-		if o.FixedIntSize {
-			if o.Is32bit {
-				return 4
-			}
+	case f.arraySize >= typeArray:
+		itemSize := field{typ: f.arrayType}.typeFuncSize(o)
+		return uint(f.arraySize) * itemSize
+	case f.arraySize == typeNotArrayOrSlice:
+		switch f.typ {
+		case "string", "bool", "byte", "uint8", "int8":
+			return 1
+		case "int16", "uint16":
+			return 2
+		case "int32", "rune", "float32", "uint32":
+			return 4
+		case "float64", "int64", "uint64", "time.Time", "time.Duration":
 			return 8
-		}
-		return 1
-	case "uint":
-		if o.FixedUintSize {
-			if o.Is32bit {
-				return 4
+		case "int":
+			if o.FixedIntSize {
+				if o.Is32bit {
+					return 4
+				}
+				return 8
 			}
-			return 8
-		}
-		return 1
-
-	default:
-		if typeArray.MatchString(typ) {
-			underlyingType := typeArrayBrackets.ReplaceAllString(typ, "")
-
-			itemSize := o.typeFuncSize(underlyingType)
-			sizeStr := typ[1 : len(typ)-1-len(underlyingType)]
-			siz, err := strconv.ParseUint(sizeStr, 10, 0)
-			if err != nil {
-				lg.Printf("array %s size `%s` is invalid", typ, sizeStr)
-				return 0
+			return 1
+		case "uint":
+			if o.FixedUintSize {
+				if o.Is32bit {
+					return 4
+				}
+				return 8
 			}
-			return uint(siz) * itemSize
+			return 1
 		}
-
-		lg.Printf("no function set yet for type %s in typeFuncSize()", typ)
-		return 0
 	}
+	lg.Printf("type %s unhandled in typeFuncSize()", f.typ)
+	return
 }

@@ -7,7 +7,6 @@ import (
 	"go/ast"
 	"go/token"
 	"reflect"
-	"regexp"
 	"strconv"
 	"strings"
 )
@@ -38,9 +37,6 @@ func unwrapTagValue(str string) string {
 	}
 	return str
 }
-
-var typeArray = regexp.MustCompile(`\[(\d)+\](\w)+`)
-var typeArrayBrackets = regexp.MustCompile(`\[(\d)+\]`)
 
 func isBuiltIn(typ string) bool {
 	switch typ {
@@ -99,7 +95,7 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 	default:
 		lg.Printf("type %T not expected in Option.isSupportedType()", d)
 	}
-	return f, false
+	return
 }
 
 func findImportedType(files []*ast.File, pkg, typName string) *ast.Object {
@@ -194,6 +190,7 @@ func genType(arraySize int, typ string) string {
 const (
 	typeSlice           = -1
 	typeNotArrayOrSlice = 0
+	typeArray           = 1
 )
 
 // calcArraySize returns -1 for a slice, 0 as invalid & >= 1 for array size.

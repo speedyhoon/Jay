@@ -14,7 +14,7 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver stri
 
 	for i, l := 0, len(s.single); i < l; i++ {
 		isLast := i+1 == l
-		fun, _, _ := s.single[i].MarshalFuncTemplate(opt, importJ)
+		fun, _ := s.single[i].MarshalFuncTemplate(opt, importJ)
 		writeSingle(s.single[i], b, *byteIndex, receiver, fun, s.bufferName, isMake, isLast)
 		*byteIndex++
 	}
@@ -42,10 +42,9 @@ func writeSingle(single field, b *bytes.Buffer, byteIndex uint, receiver, fun, b
 
 func (s *structTyp) readSingles(b *bytes.Buffer, byteIndex *uint, receiver string, opt Option) {
 	for i, l := 0, len(s.single); i < l; i++ {
-		isLast := i+1 == l
-		fun, _, _ := opt.unmarshalFuncs(s.single[i], isLast)
+		fun, size := opt.unmarshalFuncs(s.single[i]), s.single[i].typeFuncSize(opt)
 		readSingle(s.single[i], b, *byteIndex, receiver, fun, s.bufferName)
-		*byteIndex++
+		*byteIndex += size
 	}
 }
 

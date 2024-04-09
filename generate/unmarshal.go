@@ -15,16 +15,15 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	s.makeReadBools(buf, &byteIndex, s.receiver)
 	s.readSingles(buf, &byteIndex, s.receiver, o)
 
-	for i, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, "", "", i == 0, len(s.variableLen) == 0 && i == len(s.fixedLen)-1, ""))
+	for _, f := range s.fixedLen {
+		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, "", "", ""))
 		buf.WriteString("\n")
 	}
 
 	at, end := s.defineTrackingVars(buf, byteIndex)
-	vLen := len(s.variableLen) - 1
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, at, end, i == 0, i == vLen, lenVariable(i)))
+		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, at, end, lenVariable(i)))
 		buf.WriteString("\n")
 	}
 
@@ -82,8 +81,8 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	)
 }
 
-func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end string, isFirst, isLast bool, lenVar string) string {
-	fun, _, totalSize := o.unmarshalFuncs(f, isLast)
+func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end, lenVar string) string {
+	fun, totalSize := o.unmarshalFuncs(f), f.typeFuncSize(o)
 	if fun == "" {
 		// Unknown type, not supported yet.
 		lg.Printf("no generateLine for type `%s` yet in unmarshalLine()", f.typ)
@@ -91,7 +90,9 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end st
 	}
 
 	start := *byteIndex
-	*byteIndex += totalSize
+	if f.isFixedLen {
+		*byteIndex += totalSize
+	}
 	thisField := pkgSelName(s.receiver, f.name)
 
 	switch f.typ {
@@ -129,75 +130,77 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end st
 
 // unmarshalFuncs returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
-func (o Option) unmarshalFuncs(f field, isLast bool) (funcName string, size, totalSize uint) {
+func (o Option) unmarshalFuncs(f field) (funcName string) {
 	var c interface{}
 	switch f.typ {
 	case "byte", "uint8":
 		if f.isAliasDef {
-			return f.aliasType, 1, 1
+			return f.aliasType
 		}
-		return "", 1, 1
+		return ""
 	case "int8":
 		if f.isAliasDef {
-			return f.aliasType, 1, 1
+			return f.aliasType
 		}
-		return "int8", 1, 1
+		return "int8"
 	case "string":
-		return "string", 0, 0
+		return "string"
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
-				c, size, totalSize = jay.ReadIntArch32, 4, 4
+				c = jay.ReadIntArch32
 			}
-			c, size, totalSize = jay.ReadIntArch64, 8, 8
+			c = jay.ReadIntArch64
 			break
 		}
-		//c, size, totalSize = jay.ReadIntVariable, 0,1
-		c, size, totalSize = jay.ReadInt, 0, 1
+		//c = jay.ReadIntVariable
+		c = jay.ReadInt
 	case "int16":
-		c, size, totalSize = jay.ReadInt16, 2, 2
+		c = jay.ReadInt16
 	case "int32", "rune":
-		c, size, totalSize = jay.ReadInt32, 4, 4
+		c = jay.ReadInt32
 	case "float32":
-		c, size, totalSize = jay.ReadFloat32, 4, 4
+		c = jay.ReadFloat32
 	case "float64":
-		c, size, totalSize = jay.ReadFloat64, 8, 8
+		c = jay.ReadFloat64
 	case "int64":
-		c, size, totalSize = jay.ReadInt64, 8, 8
+		c = jay.ReadInt64
 	case "time.Duration":
-		c, size, totalSize = jay.ReadDuration, 8, 8
+		c = jay.ReadDuration
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {
-				c, size, totalSize = jay.ReadUintArch32, 4, 4
+				c = jay.ReadUintArch32
 			}
-			c, size, totalSize = jay.ReadUintArch64, 8, 8
+			c = jay.ReadUintArch64
 			break
 		}
-		c, size, totalSize = jay.ReadUintVariable, 0, 1
+		c = jay.ReadUintVariable
 	case "uint16":
-		c, size, totalSize = jay.ReadUint16, 2, 2
+		c = jay.ReadUint16
 	case "uint32":
-		c, size, totalSize = jay.ReadUint32, 4, 4
+		c = jay.ReadUint32
 	case "uint64":
-		c, size, totalSize = jay.ReadUint64, 8, 8
+		c = jay.ReadUint64
 	case "time.Time":
 		if f.tagOptions.TimeNano {
-			c, size, totalSize = jay.ReadTimeNano, 8, 8
+			c = jay.ReadTimeNano
 		} else {
-			c, size, totalSize = jay.ReadTime, 8, 8
+			c = jay.ReadTime
 		}
 	case "[]int8":
-		c, size, totalSize = jay.ReadInt8s, 0, 0
+		c = jay.ReadInt8s
 	case "[]bool":
-		c, size, totalSize = jay.ReadBools, 0, 0
+		c = jay.ReadBools
 
 	case "[]byte", "[]uint8":
-		c, size, totalSize = copyKeyword, 0, 0
+		c = copyKeyword
+	case "[]float32":
+		c = jay.ReadFloat32s
 
 	default:
 		lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
 	}
 
-	return nameOf(c, nil), size, totalSize
+	return nameOf(c, nil)
 }
