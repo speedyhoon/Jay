@@ -2,6 +2,8 @@ package generate
 
 import (
 	"bytes"
+	"fmt"
+	"strings"
 )
 
 const marshalBoolsFuncPrefix = "Bool"
@@ -27,13 +29,6 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bo
 	}
 
 	return isReturnInlined
-}
-
-func boolsSliceIndex(input uint) uint {
-	if input == 0 {
-		return 0
-	}
-	return ((input-1)/8+1)*8 - 8
 }
 
 func writeBools(bools []field, b *bytes.Buffer, byteIndex uint, receiver, bufferName string, isMake bool) {
@@ -97,7 +92,7 @@ func isUnmarshalInline(bools []field) bool {
 
 func unmarshalBoolsInline(bufferName string, byteIndex uint, qty int) string {
 	if qty <= 0 || qty > 8 {
-		log.Println("qty must be >= 1 & <= 8", qty)
+		lg.Println("qty must be >= 1 & <= 8", qty)
 		return ""
 	}
 	return fmt.Sprintf(strings.Join([]string{
