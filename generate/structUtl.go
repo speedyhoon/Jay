@@ -276,10 +276,6 @@ func (o Option) isLenFixed(typ string) bool {
 	return true
 }
 
-func (o Option) isLenVariable(typ string) bool {
-	return !o.isLenFixed(typ)
-}
-
 func bufWriteF(b *bytes.Buffer, format string, a ...any) {
 	b.WriteString(fmt.Sprintf(format, a...))
 }

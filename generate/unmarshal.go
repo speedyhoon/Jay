@@ -16,7 +16,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
 	s.readSingles(buf, &byteIndex, s.receiver, o)
 
 	for _, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, "", "", ""))
+		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, Utoa(byteIndex), "", ""))
 		buf.WriteString("\n")
 	}
 
@@ -82,125 +82,129 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 }
 
 func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end, lenVar string) string {
-	fun, totalSize := o.unmarshalFuncs(f), f.typeFuncSize(o)
-	if fun == "" {
-		// Unknown type, not supported yet.
-		lg.Printf("no generateLine for type `%s` yet in unmarshalLine()", f.typ)
-		return ""
-	}
+	fun, template := o.unmarshalFuncs(f)
+	totalSize := f.typeFuncSize(o)
 
-	start := *byteIndex
 	if f.isFixedLen {
 		*byteIndex += totalSize
 	}
 	thisField := pkgSelName(s.receiver, f.name)
+	if end == "" {
+		end = Utoa(*byteIndex)
+	}
 
-	switch f.typ {
-	case "string":
-		if f.isAliasDef {
-			fun = f.aliasType
+	switch template {
+	case tFunc:
+		if f.isAliasDef && fun != copyKeyword {
+			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, sliceExpr(s, f, at, end))))
 		}
-		return fmt.Sprintf("%s = %s(%s)", thisField, fun, sliceExpr(s, f, at, end))
-	case "[]byte", "[]uint8":
-		if f.isAliasDef {
-			fun = f.aliasType
-		}
-		if f.Required {
-			return fmt.Sprintf("%s = %s", thisField, sliceExpr(s, f, at, end))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(s, f, at, end)))
+
+	case tFuncOpt:
+		if f.isAliasDef && fun != copyKeyword {
+			return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, printFunc(f.aliasType, sliceExpr(s, f, at, end)))
 		}
 		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, sliceExpr(s, f, at, end))
-	case "[]int8", "[]bool":
-		return fmt.Sprintf("%s = %s(%s, %s)", thisField, fun, sliceExpr(s, f, at, end), lenVar)
-	}
-
-	if f.isArray() && f.arrayType == "int8" {
-		values := make([]string, f.arraySize)
-		for i := 0; i < f.arraySize; i++ {
-			values[i] = fmt.Sprintf("%s(%s[%d])", f.arrayType, s.bufferName, i)
+	case tFuncLength:
+		if f.isAliasDef && fun != copyKeyword {
+			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, sliceExpr(s, f, at, end), lenVar)))
 		}
-		return fmt.Sprintf("%s = %s{%s}", thisField, f.typ, strings.Join(values, ", "))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(s, f, at, end), lenVar))
+
+	case tByteConv:
+		if f.isAliasDef && fun != copyKeyword {
+			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, sliceExpr(s, f, at, end)))
+		}
+		return fmt.Sprintf("%s = %s", thisField, sliceExpr(s, f, at, end))
+
+	case tByteAssign:
+		return fmt.Sprintf("%s = %s", thisField, sliceExpr(s, f, at, end))
 	}
 
-	fun = printFunc(fun, sliceExprU(s, f, start, *byteIndex))
-	if f.isAliasDef {
-		fun = printFunc(f.aliasType, fun)
-	}
-	return fmt.Sprintf("%s = %s", thisField, fun)
+	lg.Println("unhandled template")
+	return ""
 }
 
 // unmarshalFuncs returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
-func (o Option) unmarshalFuncs(f field) (funcName string) {
+func (o Option) unmarshalFuncs(f field) (funcName string, template uint8) {
 	var c interface{}
 	switch f.typ {
 	case "byte", "uint8":
 		if f.isAliasDef {
-			return f.aliasType
+			return f.aliasType, tByteConv
 		}
-		return ""
+		return "", tByteAssign
 	case "int8":
 		if f.isAliasDef {
-			return f.aliasType
+			return f.aliasType, tByteConv
 		}
-		return "int8"
+		return "int8", tByteConv
 	case "string":
-		return "string"
+		if f.isAliasDef {
+			return f.aliasType, tByteConv
+		}
+		return "string", tFunc
 	case "int":
 		if o.FixedIntSize {
 			if o.Is32bit {
-				c = jay.ReadIntArch32
+				c, template = jay.ReadIntArch32, tFunc
 			}
-			c = jay.ReadIntArch64
+			c, template = jay.ReadIntArch64, tFunc
 			break
 		}
 		//c = jay.ReadIntVariable
-		c = jay.ReadInt
+		c, template = jay.ReadInt, tFunc
 	case "int16":
-		c = jay.ReadInt16
+		c, template = jay.ReadInt16, tFunc
 	case "int32", "rune":
-		c = jay.ReadInt32
+		c, template = jay.ReadInt32, tFunc
 	case "float32":
-		c = jay.ReadFloat32
+		c, template = jay.ReadFloat32, tFunc
 	case "float64":
-		c = jay.ReadFloat64
+		c, template = jay.ReadFloat64, tFunc
 	case "int64":
-		c = jay.ReadInt64
+		c, template = jay.ReadInt64, tFunc
 	case "time.Duration":
-		c = jay.ReadDuration
+		c, template = jay.ReadDuration, tFunc
 	case "uint":
 		if o.FixedUintSize {
 			if o.Is32bit {
-				c = jay.ReadUintArch32
+				c, template = jay.ReadUintArch32, tFunc
 			}
-			c = jay.ReadUintArch64
+			c, template = jay.ReadUintArch64, tFunc
 			break
 		}
-		c = jay.ReadUintVariable
+		c, template = jay.ReadUintVariable, tFunc
 	case "uint16":
-		c = jay.ReadUint16
+		c, template = jay.ReadUint16, tFunc
 	case "uint32":
-		c = jay.ReadUint32
+		c, template = jay.ReadUint32, tFunc
 	case "uint64":
-		c = jay.ReadUint64
+		c, template = jay.ReadUint64, tFunc
 	case "time.Time":
 		if f.tagOptions.TimeNano {
-			c = jay.ReadTimeNano
+			c, template = jay.ReadTimeNano, tFunc
 		} else {
-			c = jay.ReadTime
+			c, template = jay.ReadTime, tFunc
 		}
 	case "[]int8":
-		c = jay.ReadInt8s
+		c, template = jay.ReadInt8s, tFuncLength
 	case "[]bool":
-		c = jay.ReadBools
+		c, template = jay.ReadBools, tFuncLength
 
 	case "[]byte", "[]uint8":
-		c = copyKeyword
+		if f.Required {
+			c, template = "", tByteAssign
+		} else {
+			c, template = copyKeyword, tFuncOpt
+		}
 	case "[]float32":
-		c = jay.ReadFloat32s
+		c, template = jay.ReadFloat32s, tFuncLength
 
 	default:
 		lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
 	}
 
-	return nameOf(c, nil)
+	return nameOf(c, nil), template
 }

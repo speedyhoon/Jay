@@ -42,9 +42,9 @@ func writeSingle(single field, b *bytes.Buffer, byteIndex uint, receiver, fun, b
 
 func (s *structTyp) readSingles(b *bytes.Buffer, byteIndex *uint, receiver string, opt Option) {
 	for i, l := 0, len(s.single); i < l; i++ {
-		fun, size := opt.unmarshalFuncs(s.single[i]), s.single[i].typeFuncSize(opt)
+		fun, _ := opt.unmarshalFuncs(s.single[i])
 		readSingle(s.single[i], b, *byteIndex, receiver, fun, s.bufferName)
-		*byteIndex += size
+		*byteIndex += s.single[i].typeFuncSize(opt)
 	}
 }
 
