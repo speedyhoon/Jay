@@ -15,8 +15,8 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
-	varLengths := lengths2(s.varLenFieldNames(o), s.receiver)
-	makeSize := joinSizes(s.calcSize(o), s.variableLen, o, importJ)
+	varLengths := lengths2(s.varLenFieldNames(), s.receiver)
+	makeSize := joinSizes(s.calcSize(o), s.variableLen, importJ)
 
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
@@ -250,10 +250,6 @@ func sliceExpr(s *structTyp, f field, at, end string) string {
 		return fmt.Sprintf("%s[%s:]", s.bufferName, at)
 	}
 	return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
-}
-
-func sliceExprU(s *structTyp, f field, at, end uint) string {
-	return sliceExpr(s, f, Utoa(at), Utoa(end))
 }
 
 // Template definitions.

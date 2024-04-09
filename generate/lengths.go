@@ -37,7 +37,7 @@ func (s *structTyp) LenDecl(b *bytes.Buffer) {
 	))
 }*/
 
-func joinSizes(qty uint, variableLen []field, o Option, importJ *bool) string {
+func joinSizes(qty uint, variableLen []field, importJ *bool) string {
 	var s []string
 	if qty != 0 {
 		s = []string{Utoa(qty)}
@@ -57,9 +57,8 @@ func joinSizes(qty uint, variableLen []field, o Option, importJ *bool) string {
 	return strings.Join(s, "+")
 }
 
-func (s *structTyp) varLenFieldNames(o Option) (names []string) {
+func (s *structTyp) varLenFieldNames() (names []string) {
 	for _, v := range s.variableLen {
-		//if o.isLenVariable(v.typ) {
 		names = append(names, v.name)
 		//} else if v.typ == "struct" {
 		//variableStructs = append(variableStructs, v.name)
@@ -87,10 +86,6 @@ func decls(u int) (s []string) {
 		s = append(s, "l"+strconv.Itoa(i))
 	}
 	return
-}
-
-func addDecls(u int) string {
-	return strings.Join(decls(u), "+")
 }
 
 /*func structs2(names []string, receiver string) string {
