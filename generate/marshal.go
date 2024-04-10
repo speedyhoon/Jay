@@ -24,14 +24,14 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, importJ) || isReturnInlined
 
 	for _, f := range s.fixedLen {
-		buf.WriteString(f.generateLine(&byteIndex, Utoa(byteIndex), "", importJ, ""))
+		buf.WriteString(f.marshalLine(&byteIndex, Utoa(byteIndex), "", importJ, ""))
 		buf.WriteString("\n")
 	}
 
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(f.generateLine(&byteIndex, at, end, importJ, lenVariable(i)))
+		buf.WriteString(f.marshalLine(&byteIndex, at, end, importJ, lenVariable(i)))
 		buf.WriteString("\n")
 	}
 
@@ -84,7 +84,7 @@ func (s *structTyp) generateSizeLine() string {
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
-func (f field) generateLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
+func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
 	fun, template := f.MarshalFuncTemplate(importJ)
 	totalSize := f.typeFuncSize()
 	if fun == "" {
@@ -105,11 +105,11 @@ func (f field) generateLine(byteIndex *uint, at, end string, importJ *bool, lenV
 
 	switch template {
 	case tFunc:
-		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(f, at, end), thisField)
+		return fmt.Sprintf("%s(%s, %s)", fun, f.sliceExpr(at, end), thisField)
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, sliceExpr(f, at, end), thisField)
+		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, f.sliceExpr(at, end), thisField)
 	case tFuncLength:
-		return fmt.Sprintf("%s(%s, %s, %s)", fun, sliceExpr(f, at, end), thisField, lenVar)
+		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExpr(at, end), thisField, lenVar)
 	default:
 		lg.Printf("template %d unhandled", template)
 		return ""
@@ -232,7 +232,7 @@ func nameOf(f any, importJ *bool) string {
 	return s[len(s)-1]
 }
 
-func sliceExpr(f field, at, end string) string {
+func (f *field) sliceExpr(at, end string) string {
 	if at == "0" {
 		at = ""
 	}
@@ -268,6 +268,4 @@ const (
 
 	// tByteConv converts that type to a byte & assigns, `b[0] = byte(int8)`.
 	tByteConv
-
-	copyKeyword = "copy"
 )

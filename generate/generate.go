@@ -16,6 +16,7 @@ const (
 	goExt                 = ".go"
 	DefaultOutputFileName = pkgName + goExt
 	IntSize               = 32 << (^uint(0) >> 63) // 32 or 64
+	copyKeyword           = "copy"
 )
 
 var (

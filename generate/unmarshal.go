@@ -81,7 +81,7 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	)
 }
 
-func (f field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
+func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	fun, template := f.unmarshalFuncs()
 	totalSize := f.typeFuncSize()
 
@@ -96,21 +96,21 @@ func (f field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	switch template {
 	case tFunc:
 		if f.isAliasDef && f.arraySize == typeNotArrayOrSlice {
-			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, sliceExpr(f, at, end))))
+			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, f.sliceExpr(at, end))))
 		}
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(f, at, end)))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end)))
 
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, sliceExpr(f, at, end))
+		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, f.sliceExpr(at, end))
 
 	case tFuncLength:
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(f, at, end), lenVar))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end), lenVar))
 
 	case tByteConv:
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(f, at, end)))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end)))
 
 	case tByteAssign:
-		return fmt.Sprintf("%s = %s", thisField, sliceExpr(f, at, end))
+		return fmt.Sprintf("%s = %s", thisField, f.sliceExpr(at, end))
 	}
 
 	lg.Println("unhandled template")
