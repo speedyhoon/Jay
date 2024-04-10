@@ -212,6 +212,8 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 		return jay.WriteBools, tFuncLength
 	case "[]float32":
 		return jay.WriteFloat32s, tFuncLength
+	case "[]float64":
+		return jay.WriteFloat64s, tFuncLength
 
 	default:
 		lg.Printf("no function set for type %s yet in typeFuncs()", f.typ)
