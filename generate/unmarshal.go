@@ -8,22 +8,22 @@ import (
 )
 
 // makeUnmarshal ...
-func (s *structTyp) makeUnmarshal(b *bytes.Buffer, o Option) {
+func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
 
 	s.makeReadBools(buf, &byteIndex, s.receiver)
-	s.readSingles(buf, &byteIndex, s.receiver, o)
+	s.readSingles(buf, &byteIndex)
 
 	for _, f := range s.fixedLen {
-		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, Utoa(byteIndex), "", ""))
+		buf.WriteString(f.unmarshalLine(&byteIndex, Utoa(byteIndex), "", ""))
 		buf.WriteString("\n")
 	}
 
-	at, end := s.defineTrackingVars(buf, byteIndex, o)
+	at, end := s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i, end, byteIndex, f.typ, o)
-		buf.WriteString(o.unmarshalLine(s, f, &byteIndex, at, end, lenVariable(i)))
+		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
+		buf.WriteString(f.unmarshalLine(&byteIndex, at, end, lenVariable(i)))
 		buf.WriteString("\n")
 	}
 
@@ -81,14 +81,14 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	)
 }
 
-func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end, lenVar string) string {
-	fun, template := o.unmarshalFuncs(f)
-	totalSize := f.typeFuncSize(o)
+func (f field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
+	fun, template := f.unmarshalFuncs()
+	totalSize := f.typeFuncSize()
 
 	if f.isFixedLen {
 		*byteIndex += totalSize
 	}
-	thisField := pkgSelName(s.receiver, f.name)
+	thisField := pkgSelName(f.structTyp.receiver, f.name)
 	if end == "" {
 		end = Utoa(*byteIndex)
 	}
@@ -96,21 +96,21 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end, l
 	switch template {
 	case tFunc:
 		if f.isAliasDef && f.arraySize == typeNotArrayOrSlice {
-			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, sliceExpr(s, f, at, end))))
+			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, sliceExpr(f, at, end))))
 		}
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(s, f, at, end)))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(f, at, end)))
 
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, sliceExpr(s, f, at, end))
+		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, sliceExpr(f, at, end))
 
 	case tFuncLength:
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(s, f, at, end), lenVar))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(f, at, end), lenVar))
 
 	case tByteConv:
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(s, f, at, end)))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(f, at, end)))
 
 	case tByteAssign:
-		return fmt.Sprintf("%s = %s", thisField, sliceExpr(s, f, at, end))
+		return fmt.Sprintf("%s = %s", thisField, sliceExpr(f, at, end))
 	}
 
 	lg.Println("unhandled template")
@@ -119,7 +119,7 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end, l
 
 // unmarshalFuncs returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
-func (o Option) unmarshalFuncs(f field) (funcName string, template uint8) {
+func (f field) unmarshalFuncs() (funcName string, template uint8) {
 	var c interface{}
 	switch f.typ {
 	case "byte", "uint8":
@@ -133,8 +133,8 @@ func (o Option) unmarshalFuncs(f field) (funcName string, template uint8) {
 		}
 		return f.typ, tByteConv
 	case "int":
-		if o.FixedIntSize {
-			if o.Is32bit {
+		if f.structTyp.option.FixedIntSize {
+			if f.structTyp.option.Is32bit {
 				c, template = jay.ReadIntArch32, tFunc
 			}
 			c, template = jay.ReadIntArch64, tFunc
@@ -155,8 +155,8 @@ func (o Option) unmarshalFuncs(f field) (funcName string, template uint8) {
 	case "time.Duration":
 		c, template = jay.ReadDuration, tFunc
 	case "uint":
-		if o.FixedUintSize {
-			if o.Is32bit {
+		if f.structTyp.option.FixedUintSize {
+			if f.structTyp.option.Is32bit {
 				c, template = jay.ReadUintArch32, tFunc
 			}
 			c, template = jay.ReadUintArch64, tFunc

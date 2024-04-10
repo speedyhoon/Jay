@@ -34,16 +34,16 @@ func (s *structTyp) MakeSize(b *bytes.Buffer) {
 	))
 }*/
 
-func (s *structTyp) calcSize(o Option) (qty uint) {
+func (s *structTyp) calcSize() (qty uint) {
 	qty = uint(jay.SizeBools(len(s.bool)))
 
 	qty += uint(len(s.single))
 
 	for _, x := range s.fixedLen {
-		qty += x.typeFuncSize(o)
+		qty += x.typeFuncSize()
 	}
 	for _, v := range s.variableLen {
-		qty += v.typeFuncSize(o)
+		qty += v.typeFuncSize()
 	}
 	return qty
 }
@@ -67,12 +67,12 @@ func structs(names []string, receiver string) string {
 }*/
 
 // typeFuncSize returns the minimum quantity of bytes required to represent an empty or undefined value.
-func (f field) typeFuncSize(o Option) (size uint) {
+func (f field) typeFuncSize() (size uint) {
 	switch {
 	case f.arraySize <= typeSlice:
 		return 1
 	case f.arraySize >= typeArray:
-		itemSize := field{typ: f.arrayType}.typeFuncSize(o)
+		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
 		return uint(f.arraySize) * itemSize
 	case f.arraySize == typeNotArrayOrSlice:
 		switch f.typ {
@@ -85,16 +85,16 @@ func (f field) typeFuncSize(o Option) (size uint) {
 		case "float64", "int64", "uint64", "time.Time", "time.Duration":
 			return 8
 		case "int":
-			if o.FixedIntSize {
-				if o.Is32bit {
+			if f.structTyp.option.FixedIntSize {
+				if f.structTyp.option.Is32bit {
 					return 4
 				}
 				return 8
 			}
 			return 1
 		case "uint":
-			if o.FixedUintSize {
-				if o.Is32bit {
+			if f.structTyp.option.FixedUintSize {
+				if f.structTyp.option.Is32bit {
 					return 4
 				}
 				return 8

@@ -63,12 +63,12 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		directories.add(filepath.Dir(filenames[i]), f)
 	}
 
-	directories.walk(*o)
+	directories.walk(o)
 
 	return o.makeFiles(directories)
 }
 
-func (d *dirList) walk(o Option) {
+func (d *dirList) walk(o *Option) {
 	for dir, fl := range *d {
 		for _, file := range fl.files {
 			ast.Walk(visitor{structs: &fl.structs, option: o, dir: dir, dirList: d}, file)
@@ -102,7 +102,7 @@ func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
 type (
 	fileList struct {
 		pkg     string
-		structs []structTyp
+		structs []*structTyp
 		files   []*ast.File
 	}
 	dirList map[string]fileList
@@ -165,7 +165,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 	return err
 }
 
-func (s *structTyp) process(fields []*ast.Field, o Option, dirList *dirList) (hasExportedFields bool) {
+func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedFields bool) {
 	for i := 0; i < len(fields); {
 		t := fields[i]
 
@@ -175,7 +175,7 @@ func (s *structTyp) process(fields []*ast.Field, o Option, dirList *dirList) (ha
 			continue
 		}
 
-		fe, ok := o.isSupportedType(t.Type, dirList, s.dir)
+		fe, ok := s.option.isSupportedType(t.Type, dirList, s.dir)
 		if !ok {
 			fields = Remove(fields, i)
 			continue

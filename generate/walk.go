@@ -6,8 +6,8 @@ import (
 
 type visitor struct {
 	enclosing string
-	structs   *[]structTyp
-	option    Option
+	structs   *[]*structTyp
+	option    *Option
 	dirList   *dirList
 	dir       string
 }
@@ -15,6 +15,8 @@ type visitor struct {
 type field struct {
 	name string // The string used as the variable name.
 	typ  string // The underlying type of the variable (uint, byte, bool, map, etc).
+
+	structTyp *structTyp
 
 	aliasType  string // Alias name assigned to the type, for example, `type Toggle bool`, typ = "bool", aliasType = "Toggle".
 	arraySize  int    // 0 = not an array or slice, -1 = slice, >=1 = array size
@@ -43,8 +45,8 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 			return v
 		}
 
-		s := newStructTyp(v.dir, v.enclosing)
-		if s.process(n.Fields.List, v.option, v.dirList) {
+		s := newStructTyp(v.dir, v.enclosing, v.option)
+		if s.process(n.Fields.List, v.dirList) {
 			*v.structs = append(*v.structs, s)
 		}
 	}

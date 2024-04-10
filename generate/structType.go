@@ -16,6 +16,7 @@ type structTyp struct {
 	lengthName string
 	dir        string
 	imports    importList // Imports required for generated code.
+	option     *Option
 
 	// Exported fields.
 	fixedLen, // Fixed length types like int16, uint64 and some arrays etc.
@@ -25,14 +26,15 @@ type structTyp struct {
 	boolArray fieldList
 }
 
-func newStructTyp(dir, typeName string) structTyp {
+func newStructTyp(dir, typeName string, o *Option) *structTyp {
 	r := receiverName(typeName)
-	return structTyp{
+	return &structTyp{
 		name:       typeName,
 		receiver:   r,
 		dir:        dir,
 		bufferName: bufferName(r),
 		lengthName: lengthName(r),
+		option:     o,
 	}
 }
 

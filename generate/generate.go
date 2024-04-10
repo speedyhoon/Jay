@@ -23,7 +23,7 @@ var (
 	ErrNoneExported = errors.New("no exported struct fields found")
 )
 
-func (o Option) makeFile(pkg string, s []structTyp) ([]byte, error) {
+func (o Option) makeFile(pkg string, s []*structTyp) ([]byte, error) {
 	mergeEmbeddedStructs(s)
 	var importJ bool
 	imported := importList{}
@@ -31,7 +31,7 @@ func (o Option) makeFile(pkg string, s []structTyp) ([]byte, error) {
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
 		if o.IsSpecifiedType(pkg, s[i].name) {
-			s[i].makeFuncs(buf, o, &importJ)
+			s[i].makeFuncs(buf, &importJ)
 			imported.join(s[i].imports)
 		}
 	}
@@ -57,7 +57,7 @@ package %s
 	return GoFormat(src)
 }
 
-func mergeEmbeddedStructs(structs []structTyp) {
+func mergeEmbeddedStructs(structs []*structTyp) {
 	for i := range structs {
 		var structNames []string
 		structs[i].fixedLen.mergeFields(structs, structNames, i)
@@ -67,7 +67,7 @@ func mergeEmbeddedStructs(structs []structTyp) {
 	}
 }
 
-func (f *fieldList) mergeFields(structs []structTyp, structNames []string, structIndex int) {
+func (f *fieldList) mergeFields(structs []*structTyp, structNames []string, structIndex int) {
 	for i := 0; i < len(*f); i++ {
 		if (*f)[i].typ != "struct" || !isNew(&structNames, (*f)[i].name) {
 			continue
@@ -92,10 +92,10 @@ func isNew(a *[]string, s string) bool {
 	return true
 }
 
-func findStruct(s []structTyp, f field) *structTyp {
+func findStruct(s []*structTyp, f field) *structTyp {
 	for i := range s {
 		if s[i].name == f.aliasType {
-			return &s[i]
+			return s[i]
 		}
 	}
 
@@ -122,17 +122,17 @@ func appendEmbed(fields *fieldList, embedName string, embedded fieldList) {
 	}
 }
 
-func (s *structTyp) makeFuncs(b *bytes.Buffer, o Option, importJ *bool) {
+func (s *structTyp) makeFuncs(b *bytes.Buffer, importJ *bool) {
 	if !ast.IsExported(s.name) || !s.hasExportedFields() {
 		return
 	}
 
-	if !o.SkipMarshal {
-		s.makeMarshal(b, o, importJ)
+	if !s.option.SkipMarshal {
+		s.makeMarshal(b, importJ)
 	}
-	if !o.SkipUnmarshal {
+	if !s.option.SkipUnmarshal {
 		*importJ = true
-		s.makeUnmarshal(b, o)
+		s.makeUnmarshal(b)
 	}
 	return
 }

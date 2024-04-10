@@ -233,6 +233,7 @@ func (s *structTyp) hasExportedFields() bool {
 }
 
 func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
+	f.structTyp = s
 	for m := range names {
 		f.name = names[m].Name
 		switch f.typ {
@@ -283,7 +284,7 @@ func bufWriteF(b *bytes.Buffer, format string, a ...any) {
 	b.WriteString(fmt.Sprintf(format, a...))
 }
 
-func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint, o Option) (at, end string) {
+func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, end string) {
 	switch len(s.variableLen) {
 	case 0:
 		return
@@ -293,14 +294,14 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint, o Opti
 		if s.variableLen[0].typ == "[]bool" {
 			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), lenVariable(0))
 		} else {
-			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.variableLen[0], o, lenVariable(0)))
+			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.variableLen[0], lenVariable(0)))
 		}
 		at, end = "at", "end"
 	}
 	return
 }
 
-func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint, varType string, o Option) (at, end string) {
+func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint, varType string) (at, end string) {
 	if endVar == "" {
 		return Utoa(byteIndex), ""
 	}
@@ -312,7 +313,7 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 		if varType == "[]bool" {
 			bufWriteF(buf, "at, end = end, end+%s(%s)\n", nameOf(jay.SizeBools, nil), lenVariable(i))
 		} else {
-			bufWriteF(buf, "at, end = end, end+%s\n", multiples(s.variableLen[i], o, lenVariable(i)))
+			bufWriteF(buf, "at, end = end, end+%s\n", multiples(s.variableLen[i], lenVariable(i)))
 		}
 	}
 	return "at", "end"

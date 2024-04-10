@@ -14,24 +14,24 @@ import (
 // TODO add support for enums with restricted sizes like: buf[1] = WriteEnum44(e.Enum1, e.Enum2)
 
 // makeMarshal ...
-func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
+func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	varLengths := lengths2(s.varLenFieldNames(), s.receiver)
-	makeSize := joinSizes(s.calcSize(o), s.variableLen, importJ, o)
+	makeSize := joinSizes(s.calcSize(), s.variableLen, importJ)
 
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
 	isReturnInlined := s.makeWriteBools(buf, &byteIndex, importJ)
-	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, o, importJ) || isReturnInlined
+	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, importJ) || isReturnInlined
 
 	for _, f := range s.fixedLen {
-		buf.WriteString(o.generateLine(s, f, &byteIndex, Utoa(byteIndex), "", importJ, ""))
+		buf.WriteString(f.generateLine(&byteIndex, Utoa(byteIndex), "", importJ, ""))
 		buf.WriteString("\n")
 	}
 
-	at, end := s.defineTrackingVars(buf, byteIndex, o)
+	at, end := s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i, end, byteIndex, f.typ, o)
-		buf.WriteString(o.generateLine(s, f, &byteIndex, at, end, importJ, lenVariable(i)))
+		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
+		buf.WriteString(f.generateLine(&byteIndex, at, end, importJ, lenVariable(i)))
 		buf.WriteString("\n")
 	}
 
@@ -41,7 +41,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	}
 
 	var pointer string
-	if o.PointerMarshalFunc {
+	if s.option.PointerMarshalFunc {
 		pointer = "*"
 	}
 
@@ -84,32 +84,32 @@ func (s *structTyp) generateSizeLine() string {
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
-func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
-	fun, template := f.MarshalFuncTemplate(o, importJ)
-	totalSize := f.typeFuncSize(o)
+func (f field) generateLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
+	fun, template := f.MarshalFuncTemplate(importJ)
+	totalSize := f.typeFuncSize()
 	if fun == "" {
 		// Unknown type, not supported yet.
 		return ""
 	}
 
 	*byteIndex += totalSize
-	thisField := pkgSelName(s.receiver, f.name)
+	thisField := pkgSelName(f.structTyp.receiver, f.name)
 	if end == "" {
 		end = Utoa(*byteIndex)
 	}
 
 	if f.isAliasDef && fun != copyKeyword && f.arraySize == typeNotArrayOrSlice {
-		s.imports.add(f.pkgReq)
+		f.structTyp.imports.add(f.pkgReq)
 		thisField = printFunc(f.typ, thisField)
 	}
 
 	switch template {
 	case tFunc:
-		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(s, f, at, end), thisField)
+		return fmt.Sprintf("%s(%s, %s)", fun, sliceExpr(f, at, end), thisField)
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, sliceExpr(s, f, at, end), thisField)
+		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, sliceExpr(f, at, end), thisField)
 	case tFuncLength:
-		return fmt.Sprintf("%s(%s, %s, %s)", fun, sliceExpr(s, f, at, end), thisField, lenVar)
+		return fmt.Sprintf("%s(%s, %s, %s)", fun, sliceExpr(f, at, end), thisField, lenVar)
 	default:
 		lg.Printf("template %d unhandled", template)
 		return ""
@@ -139,7 +139,7 @@ func printFunc(fun string, params ...string) (code string) {
 	return
 }
 
-func (f field) MarshalFuncTemplate(o Option, importJ *bool) (funcName string, template uint8) {
+func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uint8) {
 	switch f.typ {
 	case "byte", "uint8":
 		if f.isAliasDef {
@@ -160,15 +160,15 @@ func (f field) MarshalFuncTemplate(o Option, importJ *bool) (funcName string, te
 	}
 
 	var fun any
-	fun, template = f.marshalFunc(o)
+	fun, template = f.marshalFunc()
 	return nameOf(fun, importJ), template
 }
 
-func (f field) marshalFunc(o Option) (fun interface{}, template uint8) {
+func (f field) marshalFunc() (fun interface{}, template uint8) {
 	switch f.typ {
 	case "int":
-		if o.FixedIntSize {
-			if o.Is32bit {
+		if f.structTyp.option.FixedIntSize {
+			if f.structTyp.option.Is32bit {
 				return jay.WriteIntArch32, tFunc
 			}
 			return jay.WriteIntArch64, tFunc
@@ -187,8 +187,8 @@ func (f field) marshalFunc(o Option) (fun interface{}, template uint8) {
 	case "time.Duration":
 		return jay.WriteDuration, tFunc
 	case "uint":
-		if o.FixedUintSize {
-			if o.Is32bit {
+		if f.structTyp.option.FixedUintSize {
+			if f.structTyp.option.Is32bit {
 				return jay.WriteUintArch32, tFunc
 			}
 			return jay.WriteUintArch64, tFunc
@@ -232,24 +232,24 @@ func nameOf(f any, importJ *bool) string {
 	return s[len(s)-1]
 }
 
-func sliceExpr(s *structTyp, f field, at, end string) string {
+func sliceExpr(f field, at, end string) string {
 	if at == "0" {
 		at = ""
 	}
 
 	if f.isFixedLen {
 		if f.isFirst && f.isLast {
-			return s.bufferName
+			return f.structTyp.bufferName
 		}
 		if f.isFirst && at == "" { // `at == ""` is needed when structType contains variableLen types then `at` can't be absent because their sizes are placed before.
-			return fmt.Sprintf("%s[:%s]", s.bufferName, end)
+			return fmt.Sprintf("%s[:%s]", f.structTyp.bufferName, end)
 		}
 	}
 
 	if f.isLast {
-		return fmt.Sprintf("%s[%s:]", s.bufferName, at)
+		return fmt.Sprintf("%s[%s:]", f.structTyp.bufferName, at)
 	}
-	return fmt.Sprintf("%s[%s:%s]", s.bufferName, at, end)
+	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, at, end)
 }
 
 // Template definitions.
