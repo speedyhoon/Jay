@@ -4,8 +4,8 @@ go 1.21.4
 
 require (
 	github.com/speedyhoon/jay v0.0.0-20240405031459-27da066018a1
-	github.com/speedyhoon/rando v0.0.0-20240405000005-ebdb6e9860af
-	github.com/speedyhoon/rando/types v0.0.0-20240405000005-ebdb6e9860af
+	github.com/speedyhoon/rando v0.0.0-20240410044606-44da2871713c
+	github.com/speedyhoon/rando/types v0.0.0-20240410044606-44da2871713c
 	github.com/speedyhoon/utl v0.0.0-20240404231947-dae8e873139b
 	github.com/speedyhoon/utl/flagvar v0.0.0-20240305010849-8c0101d907aa
 	github.com/stretchr/testify v1.8.4
