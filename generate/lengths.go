@@ -37,7 +37,7 @@ func (s *structTyp) LenDecl(b *bytes.Buffer) {
 	))
 }*/
 
-func joinSizes(qty uint, variableLen []field, importJ *bool) string {
+func joinSizes(qty uint, variableLen []field, importJ *bool, o Option) string {
 	var s []string
 	if qty != 0 {
 		s = []string{Utoa(qty)}
@@ -49,12 +49,28 @@ func joinSizes(qty uint, variableLen []field, importJ *bool) string {
 			if v.typ == "[]bool" {
 				s = append(s, fmt.Sprintf("%s(%s)", nameOf(jay.SizeBools, importJ), lenVariable(i)))
 			} else {
-				s = append(s, lenVariable(i))
+				s = append(s, multiples(v, o, lenVariable(i)))
 			}
 		}
 	}
 
 	return strings.Join(s, "+")
+}
+
+func multiples(f field, o Option, lenVar string) string {
+	switch {
+	case f.arraySize <= typeSlice:
+		itemSize := field{typ: f.arrayType}.typeFuncSize(o)
+		if itemSize >= 2 {
+			return fmt.Sprintf("%s*%d", lenVar, itemSize)
+		}
+		return lenVar
+	case f.arraySize >= typeArray:
+		itemSize := field{typ: f.arrayType}.typeFuncSize(o)
+		return Utoa(uint(f.arraySize) * itemSize)
+	default: // typeNotArrayOrSlice
+		return lenVar
+	}
 }
 
 func (s *structTyp) varLenFieldNames() (names []string) {

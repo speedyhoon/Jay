@@ -16,7 +16,7 @@ import (
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 	varLengths := lengths2(s.varLenFieldNames(), s.receiver)
-	makeSize := joinSizes(s.calcSize(o), s.variableLen, importJ)
+	makeSize := joinSizes(s.calcSize(o), s.variableLen, importJ, o)
 
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
@@ -28,9 +28,9 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, o Option, importJ *bool) {
 		buf.WriteString("\n")
 	}
 
-	at, end := s.defineTrackingVars(buf, byteIndex)
+	at, end := s.defineTrackingVars(buf, byteIndex, o)
 	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
+		at, end = s.tracking(buf, i, end, byteIndex, f.typ, o)
 		buf.WriteString(o.generateLine(s, f, &byteIndex, at, end, importJ, lenVariable(i)))
 		buf.WriteString("\n")
 	}

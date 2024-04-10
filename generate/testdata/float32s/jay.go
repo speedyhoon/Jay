@@ -6,7 +6,7 @@ import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() (b []byte) {
 	l0 := len(o.One)
-	b = make([]byte, 1+l0)
+	b = make([]byte, 1+l0*4)
 	b[0] = byte(l0)
 	jay.WriteFloat32s(b[1:], o.One, l0)
 	return
@@ -27,9 +27,9 @@ func (o *One) UnmarshalJ(b []byte) error {
 
 func (t *Two) MarshalJ() (b []byte) {
 	l0, l1 := len(t.One), len(t.Two)
-	b = make([]byte, 2+l0+l1)
+	b = make([]byte, 2+l0*4+l1*4)
 	b[0], b[1] = byte(l0), byte(l1)
-	at, end := 2, 2+l0
+	at, end := 2, 2+l0*4
 	jay.WriteFloat32s(b[at:end], t.One, l0)
 	jay.WriteFloat32s(b[end:], t.Two, l1)
 	return
@@ -44,7 +44,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 	if l < 2+l0+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 2, 2+l0
+	at, end := 2, 2+l0*4
 	t.One = jay.ReadFloat32s(b[at:end], l0)
 	t.Two = jay.ReadFloat32s(b[end:], l1)
 	return nil
@@ -52,11 +52,11 @@ func (t *Two) UnmarshalJ(b []byte) error {
 
 func (t *Three) MarshalJ() (b []byte) {
 	l0, l1, l2 := len(t.One), len(t.Two), len(t.Three)
-	b = make([]byte, 3+l0+l1+l2)
+	b = make([]byte, 3+l0*4+l1*4+l2*4)
 	b[0], b[1], b[2] = byte(l0), byte(l1), byte(l2)
-	at, end := 3, 3+l0
+	at, end := 3, 3+l0*4
 	jay.WriteFloat32s(b[at:end], t.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], t.Two, l1)
 	jay.WriteFloat32s(b[end:], t.Three, l2)
 	return
@@ -71,9 +71,9 @@ func (t *Three) UnmarshalJ(b []byte) error {
 	if l < 3+l0+l1+l2 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 3, 3+l0
+	at, end := 3, 3+l0*4
 	t.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	t.Two = jay.ReadFloat32s(b[at:end], l1)
 	t.Three = jay.ReadFloat32s(b[end:], l2)
 	return nil
@@ -81,13 +81,13 @@ func (t *Three) UnmarshalJ(b []byte) error {
 
 func (f *Four) MarshalJ() (b []byte) {
 	l0, l1, l2, l3 := len(f.One), len(f.Two), len(f.Three), len(f.Four)
-	b = make([]byte, 4+l0+l1+l2+l3)
+	b = make([]byte, 4+l0*4+l1*4+l2*4+l3*4)
 	b[0], b[1], b[2], b[3] = byte(l0), byte(l1), byte(l2), byte(l3)
-	at, end := 4, 4+l0
+	at, end := 4, 4+l0*4
 	jay.WriteFloat32s(b[at:end], f.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], f.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], f.Three, l2)
 	jay.WriteFloat32s(b[end:], f.Four, l3)
 	return
@@ -102,11 +102,11 @@ func (f *Four) UnmarshalJ(b []byte) error {
 	if l < 4+l0+l1+l2+l3 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 4, 4+l0
+	at, end := 4, 4+l0*4
 	f.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	f.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	f.Three = jay.ReadFloat32s(b[at:end], l2)
 	f.Four = jay.ReadFloat32s(b[end:], l3)
 	return nil
@@ -114,15 +114,15 @@ func (f *Four) UnmarshalJ(b []byte) error {
 
 func (f *Five) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4 := len(f.One), len(f.Two), len(f.Three), len(f.Four), len(f.Five)
-	b = make([]byte, 5+l0+l1+l2+l3+l4)
+	b = make([]byte, 5+l0*4+l1*4+l2*4+l3*4+l4*4)
 	b[0], b[1], b[2], b[3], b[4] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4)
-	at, end := 5, 5+l0
+	at, end := 5, 5+l0*4
 	jay.WriteFloat32s(b[at:end], f.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], f.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], f.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], f.Four, l3)
 	jay.WriteFloat32s(b[end:], f.Five, l4)
 	return
@@ -137,13 +137,13 @@ func (f *Five) UnmarshalJ(b []byte) error {
 	if l < 5+l0+l1+l2+l3+l4 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 5, 5+l0
+	at, end := 5, 5+l0*4
 	f.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	f.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	f.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	f.Four = jay.ReadFloat32s(b[at:end], l3)
 	f.Five = jay.ReadFloat32s(b[end:], l4)
 	return nil
@@ -151,17 +151,17 @@ func (f *Five) UnmarshalJ(b []byte) error {
 
 func (s *Six) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six)
-	b = make([]byte, 6+l0+l1+l2+l3+l4+l5)
+	b = make([]byte, 6+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4)
 	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
-	at, end := 6, 6+l0
+	at, end := 6, 6+l0*4
 	jay.WriteFloat32s(b[at:end], s.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], s.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], s.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], s.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], s.Five, l4)
 	jay.WriteFloat32s(b[end:], s.Six, l5)
 	return
@@ -176,15 +176,15 @@ func (s *Six) UnmarshalJ(b []byte) error {
 	if l < 6+l0+l1+l2+l3+l4+l5 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 6, 6+l0
+	at, end := 6, 6+l0*4
 	s.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	s.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	s.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	s.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	s.Five = jay.ReadFloat32s(b[at:end], l4)
 	s.Six = jay.ReadFloat32s(b[end:], l5)
 	return nil
@@ -192,19 +192,19 @@ func (s *Six) UnmarshalJ(b []byte) error {
 
 func (s *Seven) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six), len(s.Seven)
-	b = make([]byte, 7+l0+l1+l2+l3+l4+l5+l6)
+	b = make([]byte, 7+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6)
-	at, end := 7, 7+l0
+	at, end := 7, 7+l0*4
 	jay.WriteFloat32s(b[at:end], s.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], s.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], s.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], s.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], s.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], s.Six, l5)
 	jay.WriteFloat32s(b[end:], s.Seven, l6)
 	return
@@ -219,17 +219,17 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 	if l < 7+l0+l1+l2+l3+l4+l5+l6 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 7, 7+l0
+	at, end := 7, 7+l0*4
 	s.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	s.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	s.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	s.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	s.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	s.Six = jay.ReadFloat32s(b[at:end], l5)
 	s.Seven = jay.ReadFloat32s(b[end:], l6)
 	return nil
@@ -237,21 +237,21 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 
 func (e *Eight) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7 := len(e.One), len(e.Two), len(e.Three), len(e.Four), len(e.Five), len(e.Six), len(e.Seven), len(e.Eight)
-	b = make([]byte, 8+l0+l1+l2+l3+l4+l5+l6+l7)
+	b = make([]byte, 8+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7)
-	at, end := 8, 8+l0
+	at, end := 8, 8+l0*4
 	jay.WriteFloat32s(b[at:end], e.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], e.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], e.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], e.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], e.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], e.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], e.Seven, l6)
 	jay.WriteFloat32s(b[end:], e.Eight, l7)
 	return
@@ -266,19 +266,19 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 	if l < 8+l0+l1+l2+l3+l4+l5+l6+l7 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 8, 8+l0
+	at, end := 8, 8+l0*4
 	e.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	e.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	e.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	e.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	e.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	e.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	e.Seven = jay.ReadFloat32s(b[at:end], l6)
 	e.Eight = jay.ReadFloat32s(b[end:], l7)
 	return nil
@@ -286,23 +286,23 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 
 func (n *Nine) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8 := len(n.One), len(n.Two), len(n.Three), len(n.Four), len(n.Five), len(n.Six), len(n.Seven), len(n.Eight), len(n.Nine)
-	b = make([]byte, 9+l0+l1+l2+l3+l4+l5+l6+l7+l8)
+	b = make([]byte, 9+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8)
-	at, end := 9, 9+l0
+	at, end := 9, 9+l0*4
 	jay.WriteFloat32s(b[at:end], n.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], n.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], n.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], n.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], n.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], n.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], n.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], n.Eight, l7)
 	jay.WriteFloat32s(b[end:], n.Nine, l8)
 	return
@@ -317,21 +317,21 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 	if l < 9+l0+l1+l2+l3+l4+l5+l6+l7+l8 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 9, 9+l0
+	at, end := 9, 9+l0*4
 	n.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	n.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	n.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	n.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	n.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	n.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	n.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	n.Eight = jay.ReadFloat32s(b[at:end], l7)
 	n.Nine = jay.ReadFloat32s(b[end:], l8)
 	return nil
@@ -339,25 +339,25 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 
 func (t *Ten) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten)
-	b = make([]byte, 10+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9)
+	b = make([]byte, 10+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9)
-	at, end := 10, 10+l0
+	at, end := 10, 10+l0*4
 	jay.WriteFloat32s(b[at:end], t.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], t.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], t.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], t.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], t.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], t.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], t.Nine, l8)
 	jay.WriteFloat32s(b[end:], t.Ten, l9)
 	return
@@ -372,23 +372,23 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 	if l < 10+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 10, 10+l0
+	at, end := 10, 10+l0*4
 	t.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	t.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	t.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	t.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	t.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	t.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	t.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	t.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	t.Nine = jay.ReadFloat32s(b[at:end], l8)
 	t.Ten = jay.ReadFloat32s(b[end:], l9)
 	return nil
@@ -396,27 +396,27 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 
 func (e *Eleven) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := len(e.One), len(e.Two), len(e.Three), len(e.Four), len(e.Five), len(e.Six), len(e.Seven), len(e.Eight), len(e.Nine), len(e.Ten), len(e.Eleven)
-	b = make([]byte, 11+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10)
+	b = make([]byte, 11+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
-	at, end := 11, 11+l0
+	at, end := 11, 11+l0*4
 	jay.WriteFloat32s(b[at:end], e.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], e.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], e.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], e.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], e.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], e.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], e.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], e.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], e.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], e.Ten, l9)
 	jay.WriteFloat32s(b[end:], e.Eleven, l10)
 	return
@@ -431,25 +431,25 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 	if l < 11+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 11, 11+l0
+	at, end := 11, 11+l0*4
 	e.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	e.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	e.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	e.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	e.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	e.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	e.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	e.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	e.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	e.Ten = jay.ReadFloat32s(b[at:end], l9)
 	e.Eleven = jay.ReadFloat32s(b[end:], l10)
 	return nil
@@ -457,29 +457,29 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 
 func (t *Twelve) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve)
-	b = make([]byte, 12+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11)
+	b = make([]byte, 12+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11)
-	at, end := 12, 12+l0
+	at, end := 12, 12+l0*4
 	jay.WriteFloat32s(b[at:end], t.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], t.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], t.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], t.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], t.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], t.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], t.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], t.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], t.Eleven, l10)
 	jay.WriteFloat32s(b[end:], t.Twelve, l11)
 	return
@@ -494,27 +494,27 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 	if l < 12+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 12, 12+l0
+	at, end := 12, 12+l0*4
 	t.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	t.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	t.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	t.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	t.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	t.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	t.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	t.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	t.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	t.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	t.Eleven = jay.ReadFloat32s(b[at:end], l10)
 	t.Twelve = jay.ReadFloat32s(b[end:], l11)
 	return nil
@@ -522,31 +522,31 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 
 func (t *Thirteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen)
-	b = make([]byte, 13+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12)
+	b = make([]byte, 13+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12)
-	at, end := 13, 13+l0
+	at, end := 13, 13+l0*4
 	jay.WriteFloat32s(b[at:end], t.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], t.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], t.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], t.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], t.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], t.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], t.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], t.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], t.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], t.Twelve, l11)
 	jay.WriteFloat32s(b[end:], t.Thirteen, l12)
 	return
@@ -561,29 +561,29 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 	if l < 13+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 13, 13+l0
+	at, end := 13, 13+l0*4
 	t.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	t.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	t.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	t.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	t.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	t.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	t.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	t.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	t.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	t.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	t.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	t.Twelve = jay.ReadFloat32s(b[at:end], l11)
 	t.Thirteen = jay.ReadFloat32s(b[end:], l12)
 	return nil
@@ -591,33 +591,33 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 
 func (f *Fourteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := len(f.One), len(f.Two), len(f.Three), len(f.Four), len(f.Five), len(f.Six), len(f.Seven), len(f.Eight), len(f.Nine), len(f.Ten), len(f.Eleven), len(f.Twelve), len(f.Thirteen), len(f.Fourteen)
-	b = make([]byte, 14+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13)
+	b = make([]byte, 14+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13)
-	at, end := 14, 14+l0
+	at, end := 14, 14+l0*4
 	jay.WriteFloat32s(b[at:end], f.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], f.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], f.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], f.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], f.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], f.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], f.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], f.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], f.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], f.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], f.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], f.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], f.Thirteen, l12)
 	jay.WriteFloat32s(b[end:], f.Fourteen, l13)
 	return
@@ -632,31 +632,31 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 	if l < 14+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 14, 14+l0
+	at, end := 14, 14+l0*4
 	f.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	f.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	f.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	f.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	f.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	f.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	f.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	f.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	f.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	f.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	f.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	f.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	f.Thirteen = jay.ReadFloat32s(b[at:end], l12)
 	f.Fourteen = jay.ReadFloat32s(b[end:], l13)
 	return nil
@@ -664,35 +664,35 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 
 func (f *Fifteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := len(f.One), len(f.Two), len(f.Three), len(f.Four), len(f.Five), len(f.Six), len(f.Seven), len(f.Eight), len(f.Nine), len(f.Ten), len(f.Eleven), len(f.Twelve), len(f.Thirteen), len(f.Fourteen), len(f.Fifteen)
-	b = make([]byte, 15+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14)
+	b = make([]byte, 15+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4+l14*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14)
-	at, end := 15, 15+l0
+	at, end := 15, 15+l0*4
 	jay.WriteFloat32s(b[at:end], f.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], f.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], f.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], f.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], f.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], f.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], f.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], f.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], f.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], f.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], f.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], f.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], f.Thirteen, l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	jay.WriteFloat32s(b[at:end], f.Fourteen, l13)
 	jay.WriteFloat32s(b[end:], f.Fifteen, l14)
 	return
@@ -707,33 +707,33 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 	if l < 15+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 15, 15+l0
+	at, end := 15, 15+l0*4
 	f.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	f.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	f.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	f.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	f.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	f.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	f.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	f.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	f.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	f.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	f.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	f.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	f.Thirteen = jay.ReadFloat32s(b[at:end], l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	f.Fourteen = jay.ReadFloat32s(b[at:end], l13)
 	f.Fifteen = jay.ReadFloat32s(b[end:], l14)
 	return nil
@@ -741,37 +741,37 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 
 func (s *Sixteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six), len(s.Seven), len(s.Eight), len(s.Nine), len(s.Ten), len(s.Eleven), len(s.Twelve), len(s.Thirteen), len(s.Fourteen), len(s.Fifteen), len(s.Sixteen)
-	b = make([]byte, 16+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15)
+	b = make([]byte, 16+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4+l14*4+l15*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15)
-	at, end := 16, 16+l0
+	at, end := 16, 16+l0*4
 	jay.WriteFloat32s(b[at:end], s.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], s.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], s.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], s.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], s.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], s.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], s.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], s.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], s.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], s.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], s.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], s.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], s.Thirteen, l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	jay.WriteFloat32s(b[at:end], s.Fourteen, l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	jay.WriteFloat32s(b[at:end], s.Fifteen, l14)
 	jay.WriteFloat32s(b[end:], s.Sixteen, l15)
 	return
@@ -786,35 +786,35 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 	if l < 16+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 16, 16+l0
+	at, end := 16, 16+l0*4
 	s.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	s.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	s.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	s.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	s.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	s.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	s.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	s.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	s.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	s.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	s.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	s.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	s.Thirteen = jay.ReadFloat32s(b[at:end], l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	s.Fourteen = jay.ReadFloat32s(b[at:end], l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	s.Fifteen = jay.ReadFloat32s(b[at:end], l14)
 	s.Sixteen = jay.ReadFloat32s(b[end:], l15)
 	return nil
@@ -822,39 +822,39 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 
 func (s *Seventeen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six), len(s.Seven), len(s.Eight), len(s.Nine), len(s.Ten), len(s.Eleven), len(s.Twelve), len(s.Thirteen), len(s.Fourteen), len(s.Fifteen), len(s.Sixteen), len(s.Seventeen)
-	b = make([]byte, 17+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16)
+	b = make([]byte, 17+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4+l14*4+l15*4+l16*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
-	at, end := 17, 17+l0
+	at, end := 17, 17+l0*4
 	jay.WriteFloat32s(b[at:end], s.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], s.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], s.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], s.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], s.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], s.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], s.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], s.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], s.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], s.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], s.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], s.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], s.Thirteen, l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	jay.WriteFloat32s(b[at:end], s.Fourteen, l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	jay.WriteFloat32s(b[at:end], s.Fifteen, l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	jay.WriteFloat32s(b[at:end], s.Sixteen, l15)
 	jay.WriteFloat32s(b[end:], s.Seventeen, l16)
 	return
@@ -869,37 +869,37 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 	if l < 17+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 17, 17+l0
+	at, end := 17, 17+l0*4
 	s.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	s.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	s.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	s.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	s.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	s.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	s.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	s.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	s.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	s.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	s.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	s.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	s.Thirteen = jay.ReadFloat32s(b[at:end], l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	s.Fourteen = jay.ReadFloat32s(b[at:end], l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	s.Fifteen = jay.ReadFloat32s(b[at:end], l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	s.Sixteen = jay.ReadFloat32s(b[at:end], l15)
 	s.Seventeen = jay.ReadFloat32s(b[end:], l16)
 	return nil
@@ -907,41 +907,41 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 
 func (e *Eighteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := len(e.One), len(e.Two), len(e.Three), len(e.Four), len(e.Five), len(e.Six), len(e.Seven), len(e.Eight), len(e.Nine), len(e.Ten), len(e.Eleven), len(e.Twelve), len(e.Thirteen), len(e.Fourteen), len(e.Fifteen), len(e.Sixteen), len(e.Seventeen), len(e.Eighteen)
-	b = make([]byte, 18+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17)
+	b = make([]byte, 18+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4+l14*4+l15*4+l16*4+l17*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
-	at, end := 18, 18+l0
+	at, end := 18, 18+l0*4
 	jay.WriteFloat32s(b[at:end], e.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], e.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], e.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], e.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], e.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], e.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], e.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], e.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], e.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], e.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], e.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], e.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], e.Thirteen, l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	jay.WriteFloat32s(b[at:end], e.Fourteen, l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	jay.WriteFloat32s(b[at:end], e.Fifteen, l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	jay.WriteFloat32s(b[at:end], e.Sixteen, l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	jay.WriteFloat32s(b[at:end], e.Seventeen, l16)
 	jay.WriteFloat32s(b[end:], e.Eighteen, l17)
 	return
@@ -956,39 +956,39 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 	if l < 18+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 18, 18+l0
+	at, end := 18, 18+l0*4
 	e.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	e.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	e.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	e.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	e.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	e.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	e.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	e.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	e.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	e.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	e.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	e.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	e.Thirteen = jay.ReadFloat32s(b[at:end], l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	e.Fourteen = jay.ReadFloat32s(b[at:end], l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	e.Fifteen = jay.ReadFloat32s(b[at:end], l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	e.Sixteen = jay.ReadFloat32s(b[at:end], l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	e.Seventeen = jay.ReadFloat32s(b[at:end], l16)
 	e.Eighteen = jay.ReadFloat32s(b[end:], l17)
 	return nil
@@ -996,43 +996,43 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 
 func (n *Nineteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := len(n.One), len(n.Two), len(n.Three), len(n.Four), len(n.Five), len(n.Six), len(n.Seven), len(n.Eight), len(n.Nine), len(n.Ten), len(n.Eleven), len(n.Twelve), len(n.Thirteen), len(n.Fourteen), len(n.Fifteen), len(n.Sixteen), len(n.Seventeen), len(n.Eighteen), len(n.Nineteen)
-	b = make([]byte, 19+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18)
+	b = make([]byte, 19+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4+l14*4+l15*4+l16*4+l17*4+l18*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18)
-	at, end := 19, 19+l0
+	at, end := 19, 19+l0*4
 	jay.WriteFloat32s(b[at:end], n.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], n.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], n.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], n.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], n.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], n.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], n.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], n.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], n.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], n.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], n.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], n.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], n.Thirteen, l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	jay.WriteFloat32s(b[at:end], n.Fourteen, l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	jay.WriteFloat32s(b[at:end], n.Fifteen, l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	jay.WriteFloat32s(b[at:end], n.Sixteen, l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	jay.WriteFloat32s(b[at:end], n.Seventeen, l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	jay.WriteFloat32s(b[at:end], n.Eighteen, l17)
 	jay.WriteFloat32s(b[end:], n.Nineteen, l18)
 	return
@@ -1047,41 +1047,41 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 	if l < 19+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 19, 19+l0
+	at, end := 19, 19+l0*4
 	n.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	n.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	n.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	n.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	n.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	n.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	n.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	n.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	n.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	n.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	n.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	n.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	n.Thirteen = jay.ReadFloat32s(b[at:end], l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	n.Fourteen = jay.ReadFloat32s(b[at:end], l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	n.Fifteen = jay.ReadFloat32s(b[at:end], l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	n.Sixteen = jay.ReadFloat32s(b[at:end], l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	n.Seventeen = jay.ReadFloat32s(b[at:end], l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	n.Eighteen = jay.ReadFloat32s(b[at:end], l17)
 	n.Nineteen = jay.ReadFloat32s(b[end:], l18)
 	return nil
@@ -1089,45 +1089,45 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 
 func (t *Twenty) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty)
-	b = make([]byte, 20+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19)
+	b = make([]byte, 20+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4+l14*4+l15*4+l16*4+l17*4+l18*4+l19*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19)
-	at, end := 20, 20+l0
+	at, end := 20, 20+l0*4
 	jay.WriteFloat32s(b[at:end], t.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], t.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], t.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], t.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], t.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], t.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], t.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], t.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], t.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], t.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], t.Thirteen, l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	jay.WriteFloat32s(b[at:end], t.Fourteen, l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	jay.WriteFloat32s(b[at:end], t.Fifteen, l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	jay.WriteFloat32s(b[at:end], t.Sixteen, l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	jay.WriteFloat32s(b[at:end], t.Seventeen, l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	jay.WriteFloat32s(b[at:end], t.Eighteen, l17)
-	at, end = end, end+l18
+	at, end = end, end+l18*4
 	jay.WriteFloat32s(b[at:end], t.Nineteen, l18)
 	jay.WriteFloat32s(b[end:], t.Twenty, l19)
 	return
@@ -1142,43 +1142,43 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 	if l < 20+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 20, 20+l0
+	at, end := 20, 20+l0*4
 	t.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	t.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	t.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	t.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	t.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	t.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	t.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	t.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	t.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	t.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	t.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	t.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	t.Thirteen = jay.ReadFloat32s(b[at:end], l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	t.Fourteen = jay.ReadFloat32s(b[at:end], l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	t.Fifteen = jay.ReadFloat32s(b[at:end], l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	t.Sixteen = jay.ReadFloat32s(b[at:end], l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	t.Seventeen = jay.ReadFloat32s(b[at:end], l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	t.Eighteen = jay.ReadFloat32s(b[at:end], l17)
-	at, end = end, end+l18
+	at, end = end, end+l18*4
 	t.Nineteen = jay.ReadFloat32s(b[at:end], l18)
 	t.Twenty = jay.ReadFloat32s(b[end:], l19)
 	return nil
@@ -1186,47 +1186,47 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 
 func (t *TwentyOne) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty), len(t.TwentyOne)
-	b = make([]byte, 21+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20)
+	b = make([]byte, 21+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4+l14*4+l15*4+l16*4+l17*4+l18*4+l19*4+l20*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20)
-	at, end := 21, 21+l0
+	at, end := 21, 21+l0*4
 	jay.WriteFloat32s(b[at:end], t.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], t.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], t.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], t.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], t.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], t.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], t.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], t.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], t.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], t.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], t.Thirteen, l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	jay.WriteFloat32s(b[at:end], t.Fourteen, l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	jay.WriteFloat32s(b[at:end], t.Fifteen, l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	jay.WriteFloat32s(b[at:end], t.Sixteen, l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	jay.WriteFloat32s(b[at:end], t.Seventeen, l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	jay.WriteFloat32s(b[at:end], t.Eighteen, l17)
-	at, end = end, end+l18
+	at, end = end, end+l18*4
 	jay.WriteFloat32s(b[at:end], t.Nineteen, l18)
-	at, end = end, end+l19
+	at, end = end, end+l19*4
 	jay.WriteFloat32s(b[at:end], t.Twenty, l19)
 	jay.WriteFloat32s(b[end:], t.TwentyOne, l20)
 	return
@@ -1241,45 +1241,45 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 	if l < 21+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 21, 21+l0
+	at, end := 21, 21+l0*4
 	t.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	t.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	t.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	t.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	t.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	t.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	t.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	t.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	t.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	t.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	t.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	t.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	t.Thirteen = jay.ReadFloat32s(b[at:end], l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	t.Fourteen = jay.ReadFloat32s(b[at:end], l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	t.Fifteen = jay.ReadFloat32s(b[at:end], l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	t.Sixteen = jay.ReadFloat32s(b[at:end], l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	t.Seventeen = jay.ReadFloat32s(b[at:end], l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	t.Eighteen = jay.ReadFloat32s(b[at:end], l17)
-	at, end = end, end+l18
+	at, end = end, end+l18*4
 	t.Nineteen = jay.ReadFloat32s(b[at:end], l18)
-	at, end = end, end+l19
+	at, end = end, end+l19*4
 	t.Twenty = jay.ReadFloat32s(b[at:end], l19)
 	t.TwentyOne = jay.ReadFloat32s(b[end:], l20)
 	return nil
@@ -1287,49 +1287,49 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 
 func (t *TwentyTwo) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty), len(t.TwentyOne), len(t.TwentyTwo)
-	b = make([]byte, 22+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21)
+	b = make([]byte, 22+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4+l14*4+l15*4+l16*4+l17*4+l18*4+l19*4+l20*4+l21*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20), byte(l21)
-	at, end := 22, 22+l0
+	at, end := 22, 22+l0*4
 	jay.WriteFloat32s(b[at:end], t.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], t.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], t.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], t.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], t.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], t.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], t.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], t.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], t.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], t.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], t.Thirteen, l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	jay.WriteFloat32s(b[at:end], t.Fourteen, l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	jay.WriteFloat32s(b[at:end], t.Fifteen, l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	jay.WriteFloat32s(b[at:end], t.Sixteen, l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	jay.WriteFloat32s(b[at:end], t.Seventeen, l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	jay.WriteFloat32s(b[at:end], t.Eighteen, l17)
-	at, end = end, end+l18
+	at, end = end, end+l18*4
 	jay.WriteFloat32s(b[at:end], t.Nineteen, l18)
-	at, end = end, end+l19
+	at, end = end, end+l19*4
 	jay.WriteFloat32s(b[at:end], t.Twenty, l19)
-	at, end = end, end+l20
+	at, end = end, end+l20*4
 	jay.WriteFloat32s(b[at:end], t.TwentyOne, l20)
 	jay.WriteFloat32s(b[end:], t.TwentyTwo, l21)
 	return
@@ -1344,47 +1344,47 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 	if l < 22+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 22, 22+l0
+	at, end := 22, 22+l0*4
 	t.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	t.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	t.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	t.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	t.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	t.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	t.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	t.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	t.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	t.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	t.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	t.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	t.Thirteen = jay.ReadFloat32s(b[at:end], l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	t.Fourteen = jay.ReadFloat32s(b[at:end], l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	t.Fifteen = jay.ReadFloat32s(b[at:end], l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	t.Sixteen = jay.ReadFloat32s(b[at:end], l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	t.Seventeen = jay.ReadFloat32s(b[at:end], l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	t.Eighteen = jay.ReadFloat32s(b[at:end], l17)
-	at, end = end, end+l18
+	at, end = end, end+l18*4
 	t.Nineteen = jay.ReadFloat32s(b[at:end], l18)
-	at, end = end, end+l19
+	at, end = end, end+l19*4
 	t.Twenty = jay.ReadFloat32s(b[at:end], l19)
-	at, end = end, end+l20
+	at, end = end, end+l20*4
 	t.TwentyOne = jay.ReadFloat32s(b[at:end], l20)
 	t.TwentyTwo = jay.ReadFloat32s(b[end:], l21)
 	return nil
@@ -1392,51 +1392,51 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 
 func (t *TwentyThree) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty), len(t.TwentyOne), len(t.TwentyTwo), len(t.TwentyThree)
-	b = make([]byte, 23+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22)
+	b = make([]byte, 23+l0*4+l1*4+l2*4+l3*4+l4*4+l5*4+l6*4+l7*4+l8*4+l9*4+l10*4+l11*4+l12*4+l13*4+l14*4+l15*4+l16*4+l17*4+l18*4+l19*4+l20*4+l21*4+l22*4)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21], b[22] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20), byte(l21), byte(l22)
-	at, end := 23, 23+l0
+	at, end := 23, 23+l0*4
 	jay.WriteFloat32s(b[at:end], t.One, l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	jay.WriteFloat32s(b[at:end], t.Two, l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	jay.WriteFloat32s(b[at:end], t.Three, l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	jay.WriteFloat32s(b[at:end], t.Four, l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Five, l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.Six, l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	jay.WriteFloat32s(b[at:end], t.Seven, l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	jay.WriteFloat32s(b[at:end], t.Eight, l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], t.Nine, l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	jay.WriteFloat32s(b[at:end], t.Ten, l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	jay.WriteFloat32s(b[at:end], t.Eleven, l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], t.Twelve, l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	jay.WriteFloat32s(b[at:end], t.Thirteen, l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	jay.WriteFloat32s(b[at:end], t.Fourteen, l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	jay.WriteFloat32s(b[at:end], t.Fifteen, l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	jay.WriteFloat32s(b[at:end], t.Sixteen, l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	jay.WriteFloat32s(b[at:end], t.Seventeen, l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	jay.WriteFloat32s(b[at:end], t.Eighteen, l17)
-	at, end = end, end+l18
+	at, end = end, end+l18*4
 	jay.WriteFloat32s(b[at:end], t.Nineteen, l18)
-	at, end = end, end+l19
+	at, end = end, end+l19*4
 	jay.WriteFloat32s(b[at:end], t.Twenty, l19)
-	at, end = end, end+l20
+	at, end = end, end+l20*4
 	jay.WriteFloat32s(b[at:end], t.TwentyOne, l20)
-	at, end = end, end+l21
+	at, end = end, end+l21*4
 	jay.WriteFloat32s(b[at:end], t.TwentyTwo, l21)
 	jay.WriteFloat32s(b[end:], t.TwentyThree, l22)
 	return
@@ -1451,49 +1451,49 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 	if l < 23+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 23, 23+l0
+	at, end := 23, 23+l0*4
 	t.One = jay.ReadFloat32s(b[at:end], l0)
-	at, end = end, end+l1
+	at, end = end, end+l1*4
 	t.Two = jay.ReadFloat32s(b[at:end], l1)
-	at, end = end, end+l2
+	at, end = end, end+l2*4
 	t.Three = jay.ReadFloat32s(b[at:end], l2)
-	at, end = end, end+l3
+	at, end = end, end+l3*4
 	t.Four = jay.ReadFloat32s(b[at:end], l3)
-	at, end = end, end+l4
+	at, end = end, end+l4*4
 	t.Five = jay.ReadFloat32s(b[at:end], l4)
-	at, end = end, end+l5
+	at, end = end, end+l5*4
 	t.Six = jay.ReadFloat32s(b[at:end], l5)
-	at, end = end, end+l6
+	at, end = end, end+l6*4
 	t.Seven = jay.ReadFloat32s(b[at:end], l6)
-	at, end = end, end+l7
+	at, end = end, end+l7*4
 	t.Eight = jay.ReadFloat32s(b[at:end], l7)
-	at, end = end, end+l8
+	at, end = end, end+l8*4
 	t.Nine = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
+	at, end = end, end+l9*4
 	t.Ten = jay.ReadFloat32s(b[at:end], l9)
-	at, end = end, end+l10
+	at, end = end, end+l10*4
 	t.Eleven = jay.ReadFloat32s(b[at:end], l10)
-	at, end = end, end+l11
+	at, end = end, end+l11*4
 	t.Twelve = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
+	at, end = end, end+l12*4
 	t.Thirteen = jay.ReadFloat32s(b[at:end], l12)
-	at, end = end, end+l13
+	at, end = end, end+l13*4
 	t.Fourteen = jay.ReadFloat32s(b[at:end], l13)
-	at, end = end, end+l14
+	at, end = end, end+l14*4
 	t.Fifteen = jay.ReadFloat32s(b[at:end], l14)
-	at, end = end, end+l15
+	at, end = end, end+l15*4
 	t.Sixteen = jay.ReadFloat32s(b[at:end], l15)
-	at, end = end, end+l16
+	at, end = end, end+l16*4
 	t.Seventeen = jay.ReadFloat32s(b[at:end], l16)
-	at, end = end, end+l17
+	at, end = end, end+l17*4
 	t.Eighteen = jay.ReadFloat32s(b[at:end], l17)
-	at, end = end, end+l18
+	at, end = end, end+l18*4
 	t.Nineteen = jay.ReadFloat32s(b[at:end], l18)
-	at, end = end, end+l19
+	at, end = end, end+l19*4
 	t.Twenty = jay.ReadFloat32s(b[at:end], l19)
-	at, end = end, end+l20
+	at, end = end, end+l20*4
 	t.TwentyOne = jay.ReadFloat32s(b[at:end], l20)
-	at, end = end, end+l21
+	at, end = end, end+l21*4
 	t.TwentyTwo = jay.ReadFloat32s(b[at:end], l21)
 	t.TwentyThree = jay.ReadFloat32s(b[end:], l22)
 	return nil
