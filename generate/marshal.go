@@ -98,7 +98,7 @@ func (o Option) generateLine(s *structTyp, f field, byteIndex *uint, at, end str
 		end = Utoa(*byteIndex)
 	}
 
-	if f.isAliasDef && fun != copyKeyword {
+	if f.isAliasDef && fun != copyKeyword && f.arraySize == typeNotArrayOrSlice {
 		s.imports.add(f.pkgReq)
 		thisField = printFunc(f.typ, thisField)
 	}

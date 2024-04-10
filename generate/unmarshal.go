@@ -95,21 +95,15 @@ func (o Option) unmarshalLine(s *structTyp, f field, byteIndex *uint, at, end, l
 
 	switch template {
 	case tFunc:
-		if f.isAliasDef && fun != copyKeyword {
+		if f.isAliasDef && f.arraySize == typeNotArrayOrSlice {
 			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, sliceExpr(s, f, at, end))))
 		}
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(s, f, at, end)))
 
 	case tFuncOpt:
-		if f.isAliasDef && fun != copyKeyword {
-			return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, printFunc(f.aliasType, sliceExpr(s, f, at, end)))
-		}
 		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, sliceExpr(s, f, at, end))
 
 	case tFuncLength:
-		if f.isAliasDef && fun != copyKeyword {
-			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, sliceExpr(s, f, at, end), lenVar)))
-		}
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, sliceExpr(s, f, at, end), lenVar))
 
 	case tByteConv:

@@ -81,12 +81,15 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 	// TODO not yet implemented.
 	case *ast.ArrayType:
 		f, ok = o.isSupportedType(d.Elt, dirList, pkg)
-		if ok {
-			f.arrayType = f.typ
-			f.typ = "[]" + f.typ
-			f.arraySize, ok = calcArraySize(d.Len)
-			f.isFixedLen = f.isFixedLen && f.arraySize != typeSlice
+		if !ok || f.isAliasDef {
+			// f.isAliasDef prevents types like []float where `type float float32` which can't be easily converted to []float32 in one line.
+			// However, `type float = float32`, `type floats = []float32` & `type floats []float32` can be easily converted in one line.
+			return f, false
 		}
+		f.arrayType = f.typ
+		f.typ = "[]" + f.typ
+		f.arraySize, ok = calcArraySize(d.Len)
+		f.isFixedLen = f.isFixedLen && f.arraySize != typeSlice
 
 	case *ast.TypeSpec:
 		f, ok = o.isSupportedType(d.Type, dirList, pkg)
