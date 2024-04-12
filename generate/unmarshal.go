@@ -190,6 +190,8 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		c, template = jay.ReadFloat32s, tFuncLength
 	case "[]float64":
 		c, template = jay.ReadFloat64s, tFuncLength
+	case "[]int16":
+		c, template = jay.ReadInt16s, tFuncLength
 
 	default:
 		lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
