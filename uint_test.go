@@ -17,25 +17,25 @@ func TestWriteUint64(t *testing.T) {
 	assert.Equal(t, []byte{255, 255, 255, 255, 255, 255, 255, 255}, y)
 }
 
-func TestWriteUintArch64(t *testing.T) {
+func TestWriteUintX64(t *testing.T) {
 	y := make([]byte, 8)
-	jay.WriteUintArch64(y, 0)
+	jay.WriteUintX64(y, 0)
 	assert.Equal(t, []byte{0, 0, 0, 0, 0, 0, 0, 0}, y)
 
-	jay.WriteUintArch64(y, MaxInt64)
+	jay.WriteUintX64(y, MaxInt64)
 	assert.Equal(t, []byte{255, 255, 255, 255, 255, 255, 255, 127}, y)
 
-	jay.WriteUintArch64(y, MaxUint64)
+	jay.WriteUintX64(y, MaxUint64)
 	assert.Equal(t, []byte{255, 255, 255, 255, 255, 255, 255, 255}, y)
 }
 
-func TestWriteUintArch32(t *testing.T) {
+func TestWriteUintX32(t *testing.T) {
 	y := make([]byte, 4)
-	jay.WriteUintArch32(y, 0)
+	jay.WriteUintX32(y, 0)
 	assert.Equal(t, []byte{0, 0, 0, 0}, y)
-	jay.WriteUintArch32(y, MaxInt32)
+	jay.WriteUintX32(y, MaxInt32)
 	assert.Equal(t, []byte{255, 255, 255, 127}, y)
-	jay.WriteUintArch32(y, MaxUint64)
+	jay.WriteUintX32(y, MaxUint64)
 	assert.Equal(t, []byte{255, 255, 255, 255}, y)
 }
 
@@ -71,16 +71,16 @@ func TestReadUint64(t *testing.T) {
 	assert.Equal(t, uint64(MaxUint64), jay.ReadUint64([]byte{255, 255, 255, 255, 255, 255, 255, 255}))
 }
 
-func TestReadUintArch64(t *testing.T) {
-	assert.Equal(t, uint(0), jay.ReadUintArch64([]byte{0, 0, 0, 0, 0, 0, 0, 0}))
-	assert.Equal(t, uint(247), jay.ReadUintArch64([]byte{247, 0, 0, 0, 0, 0, 0, 0}))
-	assert.Equal(t, uint(MaxUint64), jay.ReadUintArch64([]byte{255, 255, 255, 255, 255, 255, 255, 255}))
+func TestReadUintX64(t *testing.T) {
+	assert.Equal(t, uint(0), jay.ReadUintX64([]byte{0, 0, 0, 0, 0, 0, 0, 0}))
+	assert.Equal(t, uint(247), jay.ReadUintX64([]byte{247, 0, 0, 0, 0, 0, 0, 0}))
+	assert.Equal(t, uint(MaxUint64), jay.ReadUintX64([]byte{255, 255, 255, 255, 255, 255, 255, 255}))
 }
 
-func TestReadUintArch32(t *testing.T) {
-	assert.Equal(t, uint(0), jay.ReadUintArch32([]byte{0, 0, 0, 0, 0, 0, 0, 0}))
-	assert.Equal(t, uint(247), jay.ReadUintArch32([]byte{247, 0, 0, 0, 0, 0, 0, 0}))
-	assert.Equal(t, uint(MaxUint32), jay.ReadUintArch32([]byte{255, 255, 255, 255, 255, 255, 255, 255}))
+func TestReadUintX32(t *testing.T) {
+	assert.Equal(t, uint(0), jay.ReadUintX32([]byte{0, 0, 0, 0, 0, 0, 0, 0}))
+	assert.Equal(t, uint(247), jay.ReadUintX32([]byte{247, 0, 0, 0, 0, 0, 0, 0}))
+	assert.Equal(t, uint(MaxUint32), jay.ReadUintX32([]byte{255, 255, 255, 255, 255, 255, 255, 255}))
 }
 
 func TestReadUint32(t *testing.T) {
