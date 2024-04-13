@@ -135,9 +135,9 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 	case "int":
 		if f.structTyp.option.FixedIntSize {
 			if f.structTyp.option.Is32bit {
-				c, template = jay.ReadIntArch32, tFunc
+				c, template = jay.ReadIntX32, tFunc
 			}
-			c, template = jay.ReadIntArch64, tFunc
+			c, template = jay.ReadIntX64, tFunc
 			break
 		}
 		//c = jay.ReadIntVariable
@@ -157,9 +157,9 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 	case "uint":
 		if f.structTyp.option.FixedUintSize {
 			if f.structTyp.option.Is32bit {
-				c, template = jay.ReadUintArch32, tFunc
+				c, template = jay.ReadUintX32, tFunc
 			}
-			c, template = jay.ReadUintArch64, tFunc
+			c, template = jay.ReadUintX64, tFunc
 			break
 		}
 		c, template = jay.ReadUintVariable, tFunc

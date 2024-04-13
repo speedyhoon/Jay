@@ -27,7 +27,7 @@ func TestRoundTripUint16s(t *testing.T) {
 	}
 }
 
-func TestRoundTripUintsArch32(t *testing.T) {
+func TestRoundTripUintsX32(t *testing.T) {
 	var b []byte
 	var list []uint
 	t.Run("zero", func(t *testing.T) {
@@ -49,7 +49,7 @@ func TestRoundTripUintsArch32(t *testing.T) {
 	}
 }
 
-func TestRoundTripUintsArch64(t *testing.T) {
+func TestRoundTripUintsX64(t *testing.T) {
 	var b []byte
 	var list []uint
 	t.Run("zero", func(t *testing.T) {

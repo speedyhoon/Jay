@@ -169,9 +169,9 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 	case "int":
 		if f.structTyp.option.FixedIntSize {
 			if f.structTyp.option.Is32bit {
-				return jay.WriteIntArch32, tFunc
+				return jay.WriteIntX32, tFunc
 			}
-			return jay.WriteIntArch64, tFunc
+			return jay.WriteIntX64, tFunc
 		}
 		return jay.WriteIntVariable, tFuncLength
 	case "int16":
@@ -189,9 +189,9 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 	case "uint":
 		if f.structTyp.option.FixedUintSize {
 			if f.structTyp.option.Is32bit {
-				return jay.WriteUintArch32, tFunc
+				return jay.WriteUintX32, tFunc
 			}
-			return jay.WriteUintArch64, tFunc
+			return jay.WriteUintX64, tFunc
 		}
 		return jay.WriteUintVariable, tFuncLength
 	case "uint16":

@@ -12,10 +12,10 @@ func (c Car) MarshalJ() (b []byte) {
 	b[5] = c.Gearbox.Reverse
 	b[6] = byte(c.Gearbox.LinkageDelta)
 	jay.WriteUint64(b[7:15], c.ID)
-	jay.WriteUintArch64(b[15:23], c.Row)
+	jay.WriteUintX64(b[15:23], c.Row)
 	jay.WriteUint16(b[23:25], c.RedLine)
 	jay.WriteTime(b[25:33], c.Expiry)
-	jay.WriteIntArch64(b[33:41], c.Gearbox.Gears)
+	jay.WriteIntX64(b[33:41], c.Gearbox.Gears)
 	at, end := 41, 41+l0
 	copy(b[at:end], c.Name)
 	at, end = end, end+l1
@@ -39,10 +39,10 @@ func (c *Car) UnmarshalJ(b []byte) error {
 	c.Gearbox.Reverse = b[5]
 	c.Gearbox.LinkageDelta = int8(b[6])
 	c.ID = jay.ReadUint64(b[7:15])
-	c.Row = jay.ReadUintArch64(b[15:23])
+	c.Row = jay.ReadUintX64(b[15:23])
 	c.RedLine = jay.ReadUint16(b[23:25])
 	c.Expiry = jay.ReadTime(b[25:33])
-	c.Gearbox.Gears = jay.ReadIntArch64(b[33:41])
+	c.Gearbox.Gears = jay.ReadIntX64(b[33:41])
 	at, end := 41, 41+l0
 	c.Name = string(b[at:end])
 	at, end = end, end+l1

@@ -20,10 +20,10 @@ package main
 
 import "github.com/speedyhoon/jay"
 
-func (b *Boat) MarshalJ() (y []byte) {
+func (b Boat) MarshalJ() (y []byte) {
 	y = make([]byte, 12)
 	jay.WriteFloat32(y[:4], b.Price)
-	jay.WriteIntArch64(y[4:12], b.Discount)
+	jay.WriteIntX64(y[4:], b.Discount)
 	return
 }
 
@@ -32,7 +32,7 @@ func (b *Boat) UnmarshalJ(y []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	b.Price = jay.ReadFloat32(y[:4])
-	b.Discount = jay.ReadIntArch64(y[4:12])
+	b.Discount = jay.ReadIntX64(y[4:])
 	return nil
 }
 `
@@ -42,7 +42,7 @@ func (b *Boat) UnmarshalJ(y []byte) error {
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)
 	assert.Equal(t, expected, string(src[0].Src))
-	assert.Contains(t, string(src[0].Src), "func (b *Boat) MarshalJ() (y []byte) {")
+	assert.Contains(t, string(src[0].Src), "func (b Boat) MarshalJ() (y []byte) {")
 	assert.Contains(t, string(src[0].Src), "func (b *Boat) UnmarshalJ(y []byte) error {")
 }
 
@@ -60,10 +60,10 @@ package main
 
 import "github.com/speedyhoon/jay"
 
-func (c *Car) MarshalJ() (b []byte) {
+func (c Car) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
 	jay.WriteFloat32(b[:4], c.Price)
-	jay.WriteIntArch64(b[4:12], c.Discount)
+	jay.WriteIntX64(b[4:], c.Discount)
 	return
 }
 
@@ -72,7 +72,7 @@ func (c *Car) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	c.Price = jay.ReadFloat32(b[:4])
-	c.Discount = jay.ReadIntArch64(b[4:12])
+	c.Discount = jay.ReadIntX64(b[4:])
 	return nil
 }
 `
@@ -82,7 +82,7 @@ func (c *Car) UnmarshalJ(b []byte) error {
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)
 	assert.Equal(t, expected, string(src[0].Src))
-	assert.Contains(t, string(src[0].Src), "func (c *Car) MarshalJ() (b []byte) {")
+	assert.Contains(t, string(src[0].Src), "func (c Car) MarshalJ() (b []byte) {")
 	assert.Contains(t, string(src[0].Src), "func (c *Car) UnmarshalJ(b []byte) error {")
 }
 
@@ -100,10 +100,10 @@ package main
 
 import "github.com/speedyhoon/jay"
 
-func (y *Yacht) MarshalJ() (b []byte) {
+func (y Yacht) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
 	jay.WriteFloat32(b[:4], y.Price)
-	jay.WriteIntArch64(b[4:12], y.Discount)
+	jay.WriteIntX64(b[4:], y.Discount)
 	return
 }
 
@@ -112,7 +112,7 @@ func (y *Yacht) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	y.Price = jay.ReadFloat32(b[:4])
-	y.Discount = jay.ReadIntArch64(b[4:12])
+	y.Discount = jay.ReadIntX64(b[4:])
 	return nil
 }
 `
@@ -122,6 +122,6 @@ func (y *Yacht) UnmarshalJ(b []byte) error {
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)
 	assert.Equal(t, expected, string(src[0].Src))
-	assert.Contains(t, string(src[0].Src), "func (y *Yacht) MarshalJ() (b []byte) {")
+	assert.Contains(t, string(src[0].Src), "func (y Yacht) MarshalJ() (b []byte) {")
 	assert.Contains(t, string(src[0].Src), "func (y *Yacht) UnmarshalJ(b []byte) error {")
 }

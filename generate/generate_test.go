@@ -15,7 +15,8 @@ func TestEmptyPackage(t *testing.T) {
 	pkg := []byte("package main\n")
 	opt := Option{FixedIntSize: true, FixedUintSize: true}
 	src, err := opt.ProcessFiles(pkg)
-	assert.ErrorIs(t, err, ErrNoneExported, src)
+	assert.NoError(t, err)
+	assert.Nil(t, src)
 }
 
 func TestNoPublicStructs(t *testing.T) {
@@ -26,7 +27,8 @@ type cow struct {
 `)
 	opt := Option{FixedIntSize: true, FixedUintSize: true}
 	src, err := opt.ProcessFiles(pkg)
-	assert.ErrorIs(t, err, ErrNoneExported, src)
+	assert.NoError(t, err)
+	assert.Nil(t, src)
 }
 
 func TestNoExportedFields(t *testing.T) {
@@ -37,7 +39,8 @@ type Cow struct {
 `)
 	opt := Option{FixedIntSize: true, FixedUintSize: true}
 	src, err := opt.ProcessFiles(pkg)
-	assert.ErrorIs(t, err, ErrNoneExported, src)
+	assert.NoError(t, err)
+	assert.Nil(t, src)
 }
 
 func TestOK(t *testing.T) {
@@ -55,9 +58,9 @@ package main
 
 import "github.com/speedyhoon/jay"
 
-func (c *Cow) MarshalJ() (b []byte) {
+func (c Cow) MarshalJ() (b []byte) {
 	b = make([]byte, 4)
-	jay.WriteFloat32(b[:4], c.Height)
+	jay.WriteFloat32(b, c.Height)
 	return
 }
 
@@ -65,7 +68,7 @@ func (c *Cow) UnmarshalJ(b []byte) error {
 	if len(b) < 4 {
 		return jay.ErrUnexpectedEOB
 	}
-	c.Height = jay.ReadFloat32(b[:4])
+	c.Height = jay.ReadFloat32(b)
 	return nil
 }
 `
