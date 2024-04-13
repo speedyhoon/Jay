@@ -60,13 +60,13 @@ func joinSizes(qty uint, variableLen []field, importJ *bool) string {
 func multiples(f field, lenVar string) string {
 	switch {
 	case f.arraySize <= typeSlice:
-		itemSize := field{typ: f.arrayType}.typeFuncSize()
+		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
 		if itemSize >= 2 {
 			return fmt.Sprintf("%s*%d", lenVar, itemSize)
 		}
 		return lenVar
 	case f.arraySize >= typeArray:
-		itemSize := field{typ: f.arrayType}.typeFuncSize()
+		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
 		return Utoa(uint(f.arraySize) * itemSize)
 	default: // typeNotArrayOrSlice
 		return lenVar
