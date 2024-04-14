@@ -57,7 +57,7 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 				}
 				return f, false
 			}
-			f.typ = resolveBuiltinAlias(d.Name)
+			f.resolveBuiltinAlias(d.Name)
 			f.isFixedLen = o.isLenFixed(f.typ)
 			return f, true
 		}
@@ -142,7 +142,7 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f fi
 	case "time":
 		switch d.Sel.Name {
 		case "Time", "Duration":
-			f.typ = pkgSelName(x.Name, d.Sel.Name)
+			f.resolveBuiltinAlias(pkgSelName(x.Name, d.Sel.Name))
 			f.pkgReq = x.Name
 			f.isFixedLen = true
 			return f, true
@@ -160,14 +160,19 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f fi
 }
 
 // resolveBuiltinAlias replaces the built-in alias with the underlining name to reduce the quantity of types to support.
-func resolveBuiltinAlias(typ string) string {
+func (f *field) resolveBuiltinAlias(typ string) {
 	switch typ {
 	case "byte":
-		return "uint8"
+		f.typ = "uint8"
 	case "rune":
-		return "int32"
+		f.typ = "int32"
+	case "time.Duration":
+		f.typ = "int64"
+		f.aliasType = typ
+		f.isAliasDef = true
+	default:
+		f.typ = typ
 	}
-	return typ
 }
 
 func pkgSelName(pkg, selector string) string {
