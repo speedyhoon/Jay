@@ -122,7 +122,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 func (f field) unmarshalFuncs() (funcName string, template uint8) {
 	var c interface{}
 	switch f.typ {
-	case "byte", "uint8":
+	case "uint8":
 		if f.isAliasDef {
 			return f.aliasType, tByteConv
 		}
@@ -180,7 +180,7 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 	case "[]bool":
 		c, template = jay.ReadBools, tFuncLength
 
-	case "[]byte", "[]uint8":
+	case "[]uint8":
 		if f.Required {
 			c, template = "", tByteAssign
 		} else {

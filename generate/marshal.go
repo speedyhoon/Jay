@@ -141,7 +141,7 @@ func printFunc(fun string, params ...string) (code string) {
 
 func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uint8) {
 	switch f.typ {
-	case "byte", "uint8":
+	case "uint8":
 		if f.isAliasDef {
 			return "byte", tByteConv
 		}
@@ -150,12 +150,12 @@ func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uin
 		return "byte", tByteConv
 	case "string":
 		return copyKeyword, tFunc
-	case "[]uint8", "[]byte":
+	case "[]uint8":
 		if f.Required {
 			return copyKeyword, tFunc
 		}
 		return copyKeyword, tFuncOpt
-	case "[15]byte", "[15]uint8":
+	case "[15]uint8":
 		return copyKeyword, tFunc
 	}
 
@@ -176,7 +176,7 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 		return jay.WriteIntVariable, tFuncLength
 	case "int16":
 		return jay.WriteInt16, tFunc
-	case "int32", "rune":
+	case "int32":
 		return jay.WriteInt32, tFunc
 	case "float32":
 		return jay.WriteFloat32, tFunc

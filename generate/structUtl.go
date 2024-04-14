@@ -57,8 +57,8 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 				}
 				return f, false
 			}
-			f.typ = d.Name
-			f.isFixedLen = o.isLenFixed(d.Name)
+			f.typ = resolveBuiltinAlias(d.Name)
+			f.isFixedLen = o.isLenFixed(f.typ)
 			return f, true
 		}
 
@@ -157,6 +157,17 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f fi
 	}
 
 	return
+}
+
+// resolveBuiltinAlias replaces the built-in alias with the underlining name to reduce the quantity of types to support.
+func resolveBuiltinAlias(typ string) string {
+	switch typ {
+	case "byte":
+		return "uint8"
+	case "rune":
+		return "int32"
+	}
+	return typ
 }
 
 func pkgSelName(pkg, selector string) string {
