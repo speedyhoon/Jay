@@ -15,18 +15,27 @@ generated using the [Jay commandline tool](https://github.com/speedyhoon/jay/tre
 
 ##### Pros:
 
-* Fastest Go serialisation and deserialization message format.
+* The fastest Go serialisation and deserialization message format.
+* Encoded variables use less network overhead because no schema is added to the output when marshalling (unlike JSON).
 * No custom language to learn. Jay uses Go's built in [`ast`](https://pkg.go.dev/go/ast) to find exported structs in your existing codebase.
 * No hassles between client and server. Generate the code once and share _(via a Go module or copy-paste)_.
 * Options to generate code optimised for:
 	* Processing more requests per second _(higher CPU throughput)_ **OR**.
 	* Least network bandwidth used _(10/100 networks)_.
 * Doesn't introduce extra dependencies.
+* Output could be compressed with `gzip`, `brotli`, [`zstd`](https://facebook.github.io/zstd/) or others.
 
 ##### Cons:
 
-* Needs to regenerate methods when Go structs are modified using the command line tool.
+* Need to regenerate methods when Go structs are modified using the `jay` command line tool.
+* Marshalled output is **not** human-readable.
 * Only written for the Go language.
+
+## Install
+
+```shell
+go install github.com/speedyhoon/jay/generate/jay
+```
 
 ## Speed
 
@@ -104,14 +113,23 @@ Auto, ID,   Make,      Model         = 15 bytes
 * `time.Time`, `time.Duration`
 * `uint`, `uint8`, `uint16`, `uint32`, `uint64`
 
-Jay also supports imported types. To include the type via the commandline, either:
+Jay also supports imported types. If the exported type is in the same package or a subpackage then `jay` will automatically find it with:
 
-* Specify the imported file: `jay myFile.go myImportedFile.go`
-* Or include that directory: `jay myFile.go my_imported_directory`
+```shell
+cd my_project_directory
+jay .
+```
+
+To include an external type via the commandline, either:
+
+* Specify the imported file: <br>
+  `jay myFile.go ../other_project/myImportedFile.go`
+* Or include that directory: <br>
+  `jay myFile.go my_imported_directory`
 
 ## TODO
 
-_In order of priority._
+In order of priority:
 
 * slices _(`[]string`)_
 * arrays _(`[5]string`)_
@@ -119,8 +137,11 @@ _In order of priority._
 * Field tag options.
 * Field tag documentation.
 * Performance benchmarks.
+* Low-bandwidth mode.
+* Aliased definition types like `[]float` where `float` is defined as `type float float32`. <br>
+  (`type float = float32`, `type floats = []float32` & `type floats []float32` are supported).
 * maps? _(`map[string]uint`)_
-* complex?
+* multi-dimensional arrays & slices? _(`[][]string`)_
 
 ## Done
 
@@ -132,26 +153,9 @@ _In order of priority._
   use a different package or write your own function to convert the `interface{}` to one of the supported types
   (a `[]byte` might be the fastest option).
 * Double nested pointers (`**string`).
-* Generics.
-
-[//]: # (Go files are scanned using the command line tool to generate functions for exported structs.)
-
-
-[//]: # (A fast serialization package alternative to JSON, MessagePack and Bebop. It outputs non-readable `[]byte` ideal for high throughput, using much less bandwidth than other options. )
-
-[//]: # (Jay is similar to [Bebop]&#40;&#41; where the serialization functions are generated before compiling. This makes serialising and deserialising much faster than other options that use reflection during runtime like JSON.)
-
-
-[//]: # (## Origins)
-
-[//]: # (Credit to the creators of [Bebop]&#40;&#41; for creating an extremely fast serialization format.)
-
-[//]: # (However, instead of using `.bop` schema files, `Jay` uses Go tags ``` `j:""` ``` to generate `Marshal` and `Unmarshal` functions for exported struct fields.)
-
-[//]: # (`Jay` differs from Bebop to do away with the)
-[//]: # (Using the command line tool,)
-[//]: # (to and any struct that has exported fields with a tag containing `j:""` have a `Marshal` and `Unmarshal` function generated.)
-[//]: # (without the `.bop` files.)
+* Generics (`any`).
+* Functions.
+* complex, use `[]byte` instead.
 
 ## Why
 
@@ -163,8 +167,9 @@ a dozen microseconds to restore performance without upgrading the processor.
 
 ###### Name
 
-The name `jay` gives tribute to a 17-year-old netbook with a stuck `j` key on the keyboard. Every boot looks like this:
-😆
+Jay (pronounced as just `J`)  is a wordplay on [JSON](https://pkg.go.dev/encoding/json) without the `SON`, since the schema information is chopped off 🪚 and it's not human-readable.
+
+The name `jay` also gives tribute to a 17-year-old netbook with a stuck `j` key on the keyboard. 🔁 😆 Every boot looks like:
 
 ```
 jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
