@@ -70,3 +70,47 @@ func TestRoundTripIntsX64(t *testing.T) {
 		})
 	}
 }
+
+func TestRoundTripInt64s(t *testing.T) {
+	var b []byte
+	var list []int64
+	t.Run("zero", func(t *testing.T) {
+		WriteInt64s(b, list)
+		assert.Equal(t, list, ReadInt64s(b, 0))
+	})
+
+	list = make([]int64, math.MaxUint8)
+	for i := range list {
+		list[i] = rando.Int64()
+	}
+
+	for i := 1; i <= math.MaxUint8; i++ {
+		tf.Run(t, i, func(t *testing.T) {
+			b = make([]byte, i*8)
+			WriteInt64s(b, list[:i])
+			assert.Equal(t, list[:i], ReadInt64s(b, i))
+		})
+	}
+}
+
+func TestRoundTripInt32s(t *testing.T) {
+	var b []byte
+	var list []int32
+	t.Run("zero", func(t *testing.T) {
+		WriteInt32s(b, list)
+		assert.Equal(t, list, ReadInt32s(b, 0))
+	})
+
+	list = make([]int32, math.MaxUint8)
+	for i := range list {
+		list[i] = rando.Int32()
+	}
+
+	for i := 1; i <= math.MaxUint8; i++ {
+		tf.Run(t, i, func(t *testing.T) {
+			b = make([]byte, i*4)
+			WriteInt32s(b, list[:i])
+			assert.Equal(t, list[:i], ReadInt32s(b, i))
+		})
+	}
+}
