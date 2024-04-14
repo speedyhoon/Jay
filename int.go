@@ -17,7 +17,7 @@ func ReadIntX64(b []byte) int {
 
 // ReadIntX32 converts the first 6 bits in `b` into an int.
 func ReadIntX32(b []byte) int {
-	return int(b[0]) | int(b[1])<<_8 | int(b[2])<<_16 | int(b[3])<<_24
+	return int(int32(b[0]) | int32(b[1])<<_8 | int32(b[2])<<_16 | int32(b[3])<<_24)
 }
 
 // ReadInt32 converts the first 4 bits in `b` into an int32.

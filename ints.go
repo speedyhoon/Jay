@@ -1,5 +1,41 @@
 package jay
 
+func WriteIntsX32(b []byte, slice []int) {
+	for i := range slice {
+		WriteIntX32(b[i*_4:i*_4+_4], slice[i])
+	}
+}
+
+func ReadIntsX32(b []byte, length int) (t []int) {
+	if length == 0 {
+		return
+	}
+
+	t = make([]int, length)
+	for i := 0; i < length; i++ {
+		t[i] = ReadIntX32(b[i*_4 : i*_4+_4])
+	}
+	return
+}
+
+func WriteIntsX64(b []byte, slice []int) {
+	for i := range slice {
+		WriteIntX64(b[i*_8:i*_8+_8], slice[i])
+	}
+}
+
+func ReadIntsX64(b []byte, length int) (t []int) {
+	if length == 0 {
+		return
+	}
+
+	t = make([]int, length)
+	for i := 0; i < length; i++ {
+		t[i] = ReadIntX64(b[i*_8 : i*_8+_8])
+	}
+	return
+}
+
 func WriteInt8s(b []byte, slice []int8) {
 	for i, v := range slice {
 		b[i] = byte(v)
