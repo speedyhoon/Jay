@@ -1,0 +1,16 @@
+github.com/200sc/bebop v0.6.0 h1:7gtWO0WTzraVqkzBnC7uLRVrXcr0VfU9nXePA1lvJ9s=
+github.com/200sc/bebop v0.6.0/go.mod h1:KG6I1uoHbJ5swZ/pU9v6QjiYmr1IOXrb2ijQMDgtVYE=
+github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
+github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
+github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
+github.com/speedyhoon/jay v0.0.0-20240413021937-0115223ff143 h1:itWZfI16K0DrUicZVbNvgaKWE5Gzrb23Mxa0arW4qQ8=
+github.com/speedyhoon/jay v0.0.0-20240413021937-0115223ff143/go.mod h1:DvsmOjvzwD1lghyu0nk1yXEx16NgcxjrqD/Q3GY1Ojk=
+github.com/speedyhoon/rando v0.0.0-20240412062651-bbe7d2a35303 h1:RcHnrwc+QZOpx+VJH3tAIsNlid1seG0jXd+0OuzVbEE=
+github.com/speedyhoon/rando v0.0.0-20240412062651-bbe7d2a35303/go.mod h1:HS4kVHAohgYIPBcPH3gfXXHQPfW4CSBgykeOFFmEO0w=
+github.com/speedyhoon/utl/tf v0.0.0-20240404231947-dae8e873139b h1:k/Md4uz7cxTZCaZ8SkjVUKwEOg1/No59YgM4YG95Fag=
+github.com/speedyhoon/utl/tf v0.0.0-20240404231947-dae8e873139b/go.mod h1:F7pya3IfvPjg9EMkJ/YNS8pr1bCGzkCqzLb6Jw+6aJ4=
+github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
+github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
+gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
