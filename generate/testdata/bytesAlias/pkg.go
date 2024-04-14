@@ -1,348 +1,348 @@
 package main
 
-type bytes = []byte
+type bite = byte
 
 type One struct {
-	One bytes
+	One []bite
 }
 
 type Two struct {
-	One bytes
-	Two bytes
+	One []bite
+	Two []bite
 }
 
 type Three struct {
-	One   bytes
-	Two   bytes
-	Three bytes
+	One   []bite
+	Two   []bite
+	Three []bite
 }
 
 type Four struct {
-	One   bytes
-	Two   bytes
-	Three bytes
-	Four  bytes
+	One   []bite
+	Two   []bite
+	Three []bite
+	Four  []bite
 }
 
 type Five struct {
-	One   bytes
-	Two   bytes
-	Three bytes
-	Four  bytes
-	Five  bytes
+	One   []bite
+	Two   []bite
+	Three []bite
+	Four  []bite
+	Five  []bite
 }
 
 type Six struct {
-	One   bytes
-	Two   bytes
-	Three bytes
-	Four  bytes
-	Five  bytes
-	Six   bytes
+	One   []bite
+	Two   []bite
+	Three []bite
+	Four  []bite
+	Five  []bite
+	Six   []bite
 }
 
 type Seven struct {
-	One   bytes
-	Two   bytes
-	Three bytes
-	Four  bytes
-	Five  bytes
-	Six   bytes
-	Seven bytes
+	One   []bite
+	Two   []bite
+	Three []bite
+	Four  []bite
+	Five  []bite
+	Six   []bite
+	Seven []bite
 }
 
 type Eight struct {
-	One   bytes
-	Two   bytes
-	Three bytes
-	Four  bytes
-	Five  bytes
-	Six   bytes
-	Seven bytes
-	Eight bytes
+	One   []bite
+	Two   []bite
+	Three []bite
+	Four  []bite
+	Five  []bite
+	Six   []bite
+	Seven []bite
+	Eight []bite
 }
 
 type Nine struct {
-	One   bytes
-	Two   bytes
-	Three bytes
-	Four  bytes
-	Five  bytes
-	Six   bytes
-	Seven bytes
-	Eight bytes
-	Nine  bytes
+	One   []bite
+	Two   []bite
+	Three []bite
+	Four  []bite
+	Five  []bite
+	Six   []bite
+	Seven []bite
+	Eight []bite
+	Nine  []bite
 }
 
 type Ten struct {
-	One   bytes
-	Two   bytes
-	Three bytes
-	Four  bytes
-	Five  bytes
-	Six   bytes
-	Seven bytes
-	Eight bytes
-	Nine  bytes
-	Ten   bytes
+	One   []bite
+	Two   []bite
+	Three []bite
+	Four  []bite
+	Five  []bite
+	Six   []bite
+	Seven []bite
+	Eight []bite
+	Nine  []bite
+	Ten   []bite
 }
 
 type Eleven struct {
-	One    bytes
-	Two    bytes
-	Three  bytes
-	Four   bytes
-	Five   bytes
-	Six    bytes
-	Seven  bytes
-	Eight  bytes
-	Nine   bytes
-	Ten    bytes
-	Eleven bytes
+	One    []bite
+	Two    []bite
+	Three  []bite
+	Four   []bite
+	Five   []bite
+	Six    []bite
+	Seven  []bite
+	Eight  []bite
+	Nine   []bite
+	Ten    []bite
+	Eleven []bite
 }
 
 type Twelve struct {
-	One    bytes
-	Two    bytes
-	Three  bytes
-	Four   bytes
-	Five   bytes
-	Six    bytes
-	Seven  bytes
-	Eight  bytes
-	Nine   bytes
-	Ten    bytes
-	Eleven bytes
-	Twelve bytes
+	One    []bite
+	Two    []bite
+	Three  []bite
+	Four   []bite
+	Five   []bite
+	Six    []bite
+	Seven  []bite
+	Eight  []bite
+	Nine   []bite
+	Ten    []bite
+	Eleven []bite
+	Twelve []bite
 }
 
 type Thirteen struct {
-	One      bytes
-	Two      bytes
-	Three    bytes
-	Four     bytes
-	Five     bytes
-	Six      bytes
-	Seven    bytes
-	Eight    bytes
-	Nine     bytes
-	Ten      bytes
-	Eleven   bytes
-	Twelve   bytes
-	Thirteen bytes
+	One      []bite
+	Two      []bite
+	Three    []bite
+	Four     []bite
+	Five     []bite
+	Six      []bite
+	Seven    []bite
+	Eight    []bite
+	Nine     []bite
+	Ten      []bite
+	Eleven   []bite
+	Twelve   []bite
+	Thirteen []bite
 }
 
 type Fourteen struct {
-	One      bytes
-	Two      bytes
-	Three    bytes
-	Four     bytes
-	Five     bytes
-	Six      bytes
-	Seven    bytes
-	Eight    bytes
-	Nine     bytes
-	Ten      bytes
-	Eleven   bytes
-	Twelve   bytes
-	Thirteen bytes
-	Fourteen bytes
+	One      []bite
+	Two      []bite
+	Three    []bite
+	Four     []bite
+	Five     []bite
+	Six      []bite
+	Seven    []bite
+	Eight    []bite
+	Nine     []bite
+	Ten      []bite
+	Eleven   []bite
+	Twelve   []bite
+	Thirteen []bite
+	Fourteen []bite
 }
 
 type Fifteen struct {
-	One      bytes
-	Two      bytes
-	Three    bytes
-	Four     bytes
-	Five     bytes
-	Six      bytes
-	Seven    bytes
-	Eight    bytes
-	Nine     bytes
-	Ten      bytes
-	Eleven   bytes
-	Twelve   bytes
-	Thirteen bytes
-	Fourteen bytes
-	Fifteen  bytes
+	One      []bite
+	Two      []bite
+	Three    []bite
+	Four     []bite
+	Five     []bite
+	Six      []bite
+	Seven    []bite
+	Eight    []bite
+	Nine     []bite
+	Ten      []bite
+	Eleven   []bite
+	Twelve   []bite
+	Thirteen []bite
+	Fourteen []bite
+	Fifteen  []bite
 }
 
 type Sixteen struct {
-	One      bytes
-	Two      bytes
-	Three    bytes
-	Four     bytes
-	Five     bytes
-	Six      bytes
-	Seven    bytes
-	Eight    bytes
-	Nine     bytes
-	Ten      bytes
-	Eleven   bytes
-	Twelve   bytes
-	Thirteen bytes
-	Fourteen bytes
-	Fifteen  bytes
-	Sixteen  bytes
+	One      []bite
+	Two      []bite
+	Three    []bite
+	Four     []bite
+	Five     []bite
+	Six      []bite
+	Seven    []bite
+	Eight    []bite
+	Nine     []bite
+	Ten      []bite
+	Eleven   []bite
+	Twelve   []bite
+	Thirteen []bite
+	Fourteen []bite
+	Fifteen  []bite
+	Sixteen  []bite
 }
 
 type Seventeen struct {
-	One       bytes
-	Two       bytes
-	Three     bytes
-	Four      bytes
-	Five      bytes
-	Six       bytes
-	Seven     bytes
-	Eight     bytes
-	Nine      bytes
-	Ten       bytes
-	Eleven    bytes
-	Twelve    bytes
-	Thirteen  bytes
-	Fourteen  bytes
-	Fifteen   bytes
-	Sixteen   bytes
-	Seventeen bytes
+	One       []bite
+	Two       []bite
+	Three     []bite
+	Four      []bite
+	Five      []bite
+	Six       []bite
+	Seven     []bite
+	Eight     []bite
+	Nine      []bite
+	Ten       []bite
+	Eleven    []bite
+	Twelve    []bite
+	Thirteen  []bite
+	Fourteen  []bite
+	Fifteen   []bite
+	Sixteen   []bite
+	Seventeen []bite
 }
 
 type Eighteen struct {
-	One       bytes
-	Two       bytes
-	Three     bytes
-	Four      bytes
-	Five      bytes
-	Six       bytes
-	Seven     bytes
-	Eight     bytes
-	Nine      bytes
-	Ten       bytes
-	Eleven    bytes
-	Twelve    bytes
-	Thirteen  bytes
-	Fourteen  bytes
-	Fifteen   bytes
-	Sixteen   bytes
-	Seventeen bytes
-	Eighteen  bytes
+	One       []bite
+	Two       []bite
+	Three     []bite
+	Four      []bite
+	Five      []bite
+	Six       []bite
+	Seven     []bite
+	Eight     []bite
+	Nine      []bite
+	Ten       []bite
+	Eleven    []bite
+	Twelve    []bite
+	Thirteen  []bite
+	Fourteen  []bite
+	Fifteen   []bite
+	Sixteen   []bite
+	Seventeen []bite
+	Eighteen  []bite
 }
 
 type Nineteen struct {
-	One       bytes
-	Two       bytes
-	Three     bytes
-	Four      bytes
-	Five      bytes
-	Six       bytes
-	Seven     bytes
-	Eight     bytes
-	Nine      bytes
-	Ten       bytes
-	Eleven    bytes
-	Twelve    bytes
-	Thirteen  bytes
-	Fourteen  bytes
-	Fifteen   bytes
-	Sixteen   bytes
-	Seventeen bytes
-	Eighteen  bytes
-	Nineteen  bytes
+	One       []bite
+	Two       []bite
+	Three     []bite
+	Four      []bite
+	Five      []bite
+	Six       []bite
+	Seven     []bite
+	Eight     []bite
+	Nine      []bite
+	Ten       []bite
+	Eleven    []bite
+	Twelve    []bite
+	Thirteen  []bite
+	Fourteen  []bite
+	Fifteen   []bite
+	Sixteen   []bite
+	Seventeen []bite
+	Eighteen  []bite
+	Nineteen  []bite
 }
 
 type Twenty struct {
-	One       bytes
-	Two       bytes
-	Three     bytes
-	Four      bytes
-	Five      bytes
-	Six       bytes
-	Seven     bytes
-	Eight     bytes
-	Nine      bytes
-	Ten       bytes
-	Eleven    bytes
-	Twelve    bytes
-	Thirteen  bytes
-	Fourteen  bytes
-	Fifteen   bytes
-	Sixteen   bytes
-	Seventeen bytes
-	Eighteen  bytes
-	Nineteen  bytes
-	Twenty    bytes
+	One       []bite
+	Two       []bite
+	Three     []bite
+	Four      []bite
+	Five      []bite
+	Six       []bite
+	Seven     []bite
+	Eight     []bite
+	Nine      []bite
+	Ten       []bite
+	Eleven    []bite
+	Twelve    []bite
+	Thirteen  []bite
+	Fourteen  []bite
+	Fifteen   []bite
+	Sixteen   []bite
+	Seventeen []bite
+	Eighteen  []bite
+	Nineteen  []bite
+	Twenty    []bite
 }
 
 type TwentyOne struct {
-	One       bytes
-	Two       bytes
-	Three     bytes
-	Four      bytes
-	Five      bytes
-	Six       bytes
-	Seven     bytes
-	Eight     bytes
-	Nine      bytes
-	Ten       bytes
-	Eleven    bytes
-	Twelve    bytes
-	Thirteen  bytes
-	Fourteen  bytes
-	Fifteen   bytes
-	Sixteen   bytes
-	Seventeen bytes
-	Eighteen  bytes
-	Nineteen  bytes
-	Twenty    bytes
-	TwentyOne bytes
+	One       []bite
+	Two       []bite
+	Three     []bite
+	Four      []bite
+	Five      []bite
+	Six       []bite
+	Seven     []bite
+	Eight     []bite
+	Nine      []bite
+	Ten       []bite
+	Eleven    []bite
+	Twelve    []bite
+	Thirteen  []bite
+	Fourteen  []bite
+	Fifteen   []bite
+	Sixteen   []bite
+	Seventeen []bite
+	Eighteen  []bite
+	Nineteen  []bite
+	Twenty    []bite
+	TwentyOne []bite
 }
 
 type TwentyTwo struct {
-	One       bytes
-	Two       bytes
-	Three     bytes
-	Four      bytes
-	Five      bytes
-	Six       bytes
-	Seven     bytes
-	Eight     bytes
-	Nine      bytes
-	Ten       bytes
-	Eleven    bytes
-	Twelve    bytes
-	Thirteen  bytes
-	Fourteen  bytes
-	Fifteen   bytes
-	Sixteen   bytes
-	Seventeen bytes
-	Eighteen  bytes
-	Nineteen  bytes
-	Twenty    bytes
-	TwentyOne bytes
-	TwentyTwo bytes
+	One       []bite
+	Two       []bite
+	Three     []bite
+	Four      []bite
+	Five      []bite
+	Six       []bite
+	Seven     []bite
+	Eight     []bite
+	Nine      []bite
+	Ten       []bite
+	Eleven    []bite
+	Twelve    []bite
+	Thirteen  []bite
+	Fourteen  []bite
+	Fifteen   []bite
+	Sixteen   []bite
+	Seventeen []bite
+	Eighteen  []bite
+	Nineteen  []bite
+	Twenty    []bite
+	TwentyOne []bite
+	TwentyTwo []bite
 }
 
 type TwentyThree struct {
-	One         bytes
-	Two         bytes
-	Three       bytes
-	Four        bytes
-	Five        bytes
-	Six         bytes
-	Seven       bytes
-	Eight       bytes
-	Nine        bytes
-	Ten         bytes
-	Eleven      bytes
-	Twelve      bytes
-	Thirteen    bytes
-	Fourteen    bytes
-	Fifteen     bytes
-	Sixteen     bytes
-	Seventeen   bytes
-	Eighteen    bytes
-	Nineteen    bytes
-	Twenty      bytes
-	TwentyOne   bytes
-	TwentyTwo   bytes
-	TwentyThree bytes
+	One         []bite
+	Two         []bite
+	Three       []bite
+	Four        []bite
+	Five        []bite
+	Six         []bite
+	Seven       []bite
+	Eight       []bite
+	Nine        []bite
+	Ten         []bite
+	Eleven      []bite
+	Twelve      []bite
+	Thirteen    []bite
+	Fourteen    []bite
+	Fifteen     []bite
+	Sixteen     []bite
+	Seventeen   []bite
+	Eighteen    []bite
+	Nineteen    []bite
+	Twenty      []bite
+	TwentyOne   []bite
+	TwentyTwo   []bite
+	TwentyThree []bite
 }
