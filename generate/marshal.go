@@ -223,6 +223,11 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 		return jay.WriteUintsX64, tFunc
 	case "[]uint16":
 		return jay.WriteUint16s, tFuncLength
+	case "[]int":
+		if f.structTyp.option.Is32bit {
+			return jay.WriteIntsX32, tFunc
+		}
+		return jay.WriteIntsX64, tFunc
 
 	default:
 		lg.Printf("no function set for type %s yet in typeFuncs()", f.typ)

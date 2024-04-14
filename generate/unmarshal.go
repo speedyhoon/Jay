@@ -199,6 +199,11 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		c, template = jay.ReadUintsX64, tFuncLength
 	case "[]uint16":
 		c, template = jay.ReadUint16s, tFuncLength
+	case "[]int":
+		if f.structTyp.option.Is32bit {
+			c, template = jay.ReadIntsX32, tFuncLength
+		}
+		c, template = jay.ReadIntsX64, tFuncLength
 
 	default:
 		lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
