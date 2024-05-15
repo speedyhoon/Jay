@@ -50,12 +50,14 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 	switch d := t.(type) {
 	case *ast.Ident:
 		if d.Obj == nil {
-			if !isBuiltIn(d.Name) {
+			if !isBuiltIn(d.Name) && dirList != nil {
 				// Object might be declared in another file in the same package.
-				if dirList != nil {
-					d.Obj = findImportedType((*dirList)[pkg].files, pkg, "") // t.Names[0].Name)
+				d.Obj = findImportedType((*dirList)[pkg].files, (*dirList)[pkg].pkg, d.Name)
+				if d.Obj == nil {
+					return f, false
 				}
-				return f, false
+				f, ok = o.isSupportedType(d.Obj, dirList, pkg)
+				f.aliasType = d.Name
 			}
 			f.resolveBuiltinAlias(d.Name)
 			f.isFixedLen = o.isLenFixed(f.typ)
