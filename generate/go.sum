@@ -12,8 +12,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rogpeppe/go-internal v1.12.0 h1:exVL4IDcn6na9z1rAb56Vxr+CgyK3nn3O+epU5NdKM8=
 github.com/rogpeppe/go-internal v1.12.0/go.mod h1:E+RYuTGaKKdloAfM02xzb0FW3Paa99yedzYV+kq4uf4=
-github.com/speedyhoon/jay v0.0.0-20240414131002-cb91738621c8 h1:ohruviU6qwjxlbtr3Y4k7gjxgOeBMCExJSwSOsf/idc=
-github.com/speedyhoon/jay v0.0.0-20240414131002-cb91738621c8/go.mod h1:DvsmOjvzwD1lghyu0nk1yXEx16NgcxjrqD/Q3GY1Ojk=
+github.com/speedyhoon/jay v0.0.0-20240527043747-84a14341691e h1:cluPnf6DXlngMntrz8Gq6zMvleP8sDuZh5TLlmhFiPo=
+github.com/speedyhoon/jay v0.0.0-20240527043747-84a14341691e/go.mod h1:DvsmOjvzwD1lghyu0nk1yXEx16NgcxjrqD/Q3GY1Ojk=
 github.com/speedyhoon/numnam v0.0.0-20240329054832-e00509f06bd0 h1:Wf/5ifooRefTK/EyowwKd21UySaXzWa36tWJHA9bit0=
 github.com/speedyhoon/numnam v0.0.0-20240329054832-e00509f06bd0/go.mod h1:yStEt6i5jVB9vGyLrY8MTVIERIBL3jF6xxqCGKjnHaE=
 github.com/speedyhoon/rando v0.0.0-20240414153633-da6e33330673 h1:i/svxJyY+WPc7KY9seSV38OuYO+I6+fASgke2i+5uYc=
@@ -26,12 +26,12 @@ github.com/speedyhoon/utl/flagvar v0.0.0-20240404234419-3a81ac44337a h1:qbYI357Q
 github.com/speedyhoon/utl/flagvar v0.0.0-20240404234419-3a81ac44337a/go.mod h1:0hr9o8sgiD7rub1GU0nM4whOLGfN8s8yO7uzTowBxsk=
 github.com/speedyhoon/utl/tf v0.0.0-20240404231947-dae8e873139b h1:k/Md4uz7cxTZCaZ8SkjVUKwEOg1/No59YgM4YG95Fag=
 github.com/speedyhoon/utl/tf v0.0.0-20240404231947-dae8e873139b/go.mod h1:F7pya3IfvPjg9EMkJ/YNS8pr1bCGzkCqzLb6Jw+6aJ4=
-github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
-github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
+github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
+github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 golang.org/x/mod v0.17.0 h1:zY54UmvipHiNd+pm+m0x9KhZ9hl1/7QNMyxXbc6ICqA=
 golang.org/x/mod v0.17.0/go.mod h1:hTbmBsO62+eylJbnUtE2MGJUyE7QWk4xUqPFrRgJ+7c=
-golang.org/x/tools v0.20.0 h1:hz/CVckiOxybQvFw6h7b/q80NTr9IUQb4s1IIzW7KNY=
-golang.org/x/tools v0.20.0/go.mod h1:WvitBU7JJf6A4jOdg4S1tviW9bhUxkgeCui/0JHctQg=
+golang.org/x/tools v0.21.0 h1:qc0xYgIbsSDt9EyWz05J5wfa7LOVW0YTLOXrqdLAWIw=
+golang.org/x/tools v0.21.0/go.mod h1:aiJjzUbINMkxbQROHiO6hDPo2LHcIPhhQsa9DLh0yGk=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
