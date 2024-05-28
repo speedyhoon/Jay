@@ -173,7 +173,9 @@ func (f *field) resolveBuiltinAlias(typ string) {
 		f.aliasType = typ
 		f.isAliasDef = true
 	default:
-		f.typ = typ
+		if f.typ == "" {
+			f.typ = typ
+		}
 	}
 }
 
