@@ -5,7 +5,7 @@ Command line tool
 ## Install
 
 ```shell
-go install github.com/speedyhoon/jay/generate/cmd
+go install github.com/speedyhoon/jay/generate/cmd/jay
 ```
 
 ## Usage

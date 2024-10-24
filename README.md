@@ -32,9 +32,9 @@ generated using the [Jay commandline tool](https://github.com/speedyhoon/jay/tre
 * Only written for the Go language.
 
 ## Install
-
+Install the `jay` command line tool to generate marshal and unmarshal code.
 ```shell
-go install github.com/speedyhoon/jay/generate/jay
+go install github.com/speedyhoon/jay/generate/cmd/jay
 ```
 
 ## Speed
