@@ -141,16 +141,16 @@ func printFunc(fun string, params ...string) (code string) {
 
 func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uint8) {
 	switch f.typ {
-	case "uint8":
+	case tUint8:
 		if f.isAliasDef {
-			return "byte", tByteConv
+			return tByte, tByteConv
 		}
 		return "", tByteAssign
-	case "int8":
-		return "byte", tByteConv
-	case "string":
+	case tInt8:
+		return tByte, tByteConv
+	case tString:
 		return copyKeyword, tFunc
-	case "[]uint8":
+	case tUint8S:
 		if f.Required {
 			return copyKeyword, tFunc
 		}
@@ -166,7 +166,7 @@ func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uin
 
 func (f field) marshalFunc() (fun interface{}, template uint8) {
 	switch f.typ {
-	case "int":
+	case tInt:
 		if f.structTyp.option.FixedIntSize {
 			if f.structTyp.option.Is32bit {
 				return jay.WriteIntX32, tFunc
@@ -174,19 +174,19 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 			return jay.WriteIntX64, tFunc
 		}
 		return jay.WriteIntVariable, tFuncLength
-	case "int16":
+	case tInt16:
 		return jay.WriteInt16, tFunc
-	case "int32":
+	case tInt32:
 		return jay.WriteInt32, tFunc
-	case "float32":
+	case tFloat32:
 		return jay.WriteFloat32, tFunc
-	case "float64":
+	case tFloat64:
 		return jay.WriteFloat64, tFunc
-	case "int64":
+	case tInt64:
 		return jay.WriteInt64, tFunc
-	case "time.Duration":
+	case tTimeDuration:
 		return jay.WriteDuration, tFunc
-	case "uint":
+	case tUint:
 		if f.structTyp.option.FixedUintSize {
 			if f.structTyp.option.Is32bit {
 				return jay.WriteUintX32, tFunc
@@ -194,47 +194,47 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 			return jay.WriteUintX64, tFunc
 		}
 		return jay.WriteUintVariable, tFuncLength
-	case "uint16":
+	case tUint16:
 		return jay.WriteUint16, tFunc
-	case "uint32":
+	case tUint32:
 		return jay.WriteUint32, tFunc
-	case "uint64":
+	case tUint64:
 		return jay.WriteUint64, tFunc
-	case "time.Time":
+	case tTime:
 		if f.tagOptions.TimeNano {
 			return jay.WriteTimeNano, tFunc
 		} else {
 			return jay.WriteTime, tFunc
 		}
-	case "[]int8":
+	case tInt8S:
 		return jay.WriteInt8s, tFunc
-	case "[]bool":
+	case tBoolS:
 		return jay.WriteBools, tFuncLength
-	case "[]float32":
+	case tFloat32S:
 		return jay.WriteFloat32s, tFuncLength
-	case "[]float64":
+	case tFloat64S:
 		return jay.WriteFloat64s, tFuncLength
-	case "[]int16":
+	case tInt16S:
 		return jay.WriteInt16s, tFuncLength
-	case "[]uint":
+	case tUintS:
 		if f.structTyp.option.Is32bit {
 			return jay.WriteUintsX32, tFunc
 		}
 		return jay.WriteUintsX64, tFunc
-	case "[]uint16":
+	case tUint16S:
 		return jay.WriteUint16s, tFuncLength
-	case "[]int":
+	case tIntS:
 		if f.structTyp.option.Is32bit {
 			return jay.WriteIntsX32, tFunc
 		}
 		return jay.WriteIntsX64, tFunc
-	case "[]int32":
+	case tInt32S:
 		return jay.WriteInt32s, tFunc
-	case "[]int64":
+	case tInt64S:
 		return jay.WriteInt64s, tFunc
-	case "[]uint32":
+	case tUint32S:
 		return jay.WriteUint32s, tFunc
-	case "[]uint64":
+	case tUint64S:
 		return jay.WriteUint64s, tFunc
 
 	default:

@@ -18,7 +18,7 @@ func (s *structTyp) MakeSize(b *bytes.Buffer) {
 	var variableFields []string
 	for _, v := range s.variableLen {
 		qty += isLen(v.typ)
-		if v.typ == "string" { //} isLenVariable(v.typ) {
+		if v.typ == tString { //} isLenVariable(v.typ) {
 			variableFields = append(variableFields, v.name)
 		} else if v.typ == "struct" {
 			variableStructs = append(variableStructs, v.name)
@@ -76,15 +76,15 @@ func (f field) typeFuncSize() (size uint) {
 		return uint(f.arraySize) * itemSize
 	case f.arraySize == typeNotArrayOrSlice:
 		switch f.typ {
-		case "string", "bool", "byte", "uint8", "int8":
+		case tString, tBool, tByte, tUint8, tInt8:
 			return 1
-		case "int16", "uint16":
+		case tInt16, tUint16:
 			return 2
-		case "int32", "rune", "float32", "uint32":
+		case tInt32, tRune, tFloat32, tUint32:
 			return 4
-		case "float64", "int64", "uint64", "time.Time", "time.Duration":
+		case tFloat64, tInt64, tUint64, tTime, tTimeDuration:
 			return 8
-		case "int":
+		case tInt:
 			if f.structTyp.option.FixedIntSize {
 				if f.structTyp.option.Is32bit {
 					return 4
@@ -92,7 +92,7 @@ func (f field) typeFuncSize() (size uint) {
 				return 8
 			}
 			return 1
-		case "uint":
+		case tUint:
 			if f.structTyp.option.FixedUintSize {
 				if f.structTyp.option.Is32bit {
 					return 4

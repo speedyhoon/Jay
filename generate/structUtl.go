@@ -40,7 +40,7 @@ func unwrapTagValue(str string) string {
 
 func isBuiltIn(typ string) bool {
 	switch typ {
-	case "bool", "byte", "float32", "float64", "int", "int8", "int16", "int32", "int64", "rune", "string", "uint", "uint8", "uint16", "uint32", "uint64":
+	case tBool, tByte, tFloat32, tFloat64, tInt, tInt8, tInt16, tInt32, tInt64, tRune, tString, tUint, tUint8, tUint16, tUint32, tUint64:
 		return true
 	}
 	return false
@@ -164,12 +164,12 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f fi
 // resolveBuiltinAlias replaces the built-in alias with the underlining name to reduce the quantity of types to support.
 func (f *field) resolveBuiltinAlias(typ string) {
 	switch typ {
-	case "byte":
-		f.typ = "uint8"
-	case "rune":
-		f.typ = "int32"
-	case "time.Duration":
-		f.typ = "int64"
+	case tByte:
+		f.typ = tUint8
+	case tRune:
+		f.typ = tInt32
+	case tTimeDuration:
+		f.typ = tInt64
 		f.aliasType = typ
 		f.isAliasDef = true
 	default:
@@ -257,10 +257,10 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 	for m := range names {
 		f.name = names[m].Name
 		switch f.typ {
-		case "bool":
+		case tBool:
 			s.bool = append(s.bool, f)
 			continue
-		case "byte", "int8", "uint8":
+		case tByte, tInt8, tUint8:
 			s.single = append(s.single, f)
 			continue
 		}
@@ -274,15 +274,16 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 	}
 }
 
+// isLen returns how many bytes each type requires.
 func isLen(typ string) uint {
 	switch typ {
-	case "bool", "byte", "int8", "uint8", "string", "int", "uint":
+	case tBool, tByte, tInt8, tUint8, tString, tInt, tUint:
 		return 1
-	case "int16", "uint16":
+	case tInt16, tUint16:
 		return 2
-	case "int32", "rune", "uint32", "float32":
+	case tInt32, tRune, tUint32, tFloat32:
 		return 4
-	case "int64", "uint64", "float64":
+	case tInt64, tUint64, tFloat64:
 		return 8
 	}
 	return 0
@@ -290,11 +291,11 @@ func isLen(typ string) uint {
 
 func (o Option) isLenFixed(typ string) bool {
 	switch typ {
-	case "int":
+	case tInt:
 		return o.FixedIntSize
-	case "string":
+	case tString:
 		return false
-	case "uint":
+	case tUint:
 		return o.FixedUintSize
 	}
 	return true
@@ -311,7 +312,7 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 	case 1:
 		at = Utoa(byteIndex)
 	default:
-		if s.variableLen[0].typ == "[]bool" {
+		if s.variableLen[0].typ == tBoolS {
 			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), lenVariable(0))
 		} else {
 			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.variableLen[0], lenVariable(0)))
@@ -330,7 +331,7 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 		return "end", ""
 	}
 	if i >= 1 {
-		if varType == "[]bool" {
+		if varType == tBoolS {
 			bufWriteF(buf, "at, end = end, end+%s(%s)\n", nameOf(jay.SizeBools, nil), lenVariable(i))
 		} else {
 			bufWriteF(buf, "at, end = end, end+%s\n", multiples(s.variableLen[i], lenVariable(i)))
@@ -343,3 +344,18 @@ func lenVariable(index int) string {
 	const lengthVarPrefix = "l"
 	return lengthVarPrefix + Utoa(uint(index))
 }
+
+// List of supported types.
+const (
+	tBool, tBoolS                                 = "bool", "[]bool"
+	tByte                                         = "byte"
+	tFloat32, tFloat32S                           = "float32", "[]float32"
+	tFloat64, tFloat64S                           = "float64", "[]float64"
+	tInt, tInt8, tInt16, tInt32, tInt64           = "int", "int8", "int16", "int32", "int64"
+	tRune                                         = "rune"
+	tIntS, tInt8S, tInt16S, tInt32S, tInt64S      = "[]int", "[]int8", "[]int16", "[]int32", "[]int64"
+	tUint, tUint8, tUint16, tUint32, tUint64      = "uint", "uint8", "uint16", "uint32", "uint64"
+	tUintS, tUint8S, tUint16S, tUint32S, tUint64S = "[]uint", "[]uint8", "[]uint16", "[]uint32", "[]uint64"
+	tString                                       = "string"
+	tTime, tTimeDuration                          = "time.Time", "time.Duration"
+)

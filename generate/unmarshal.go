@@ -63,7 +63,7 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	for i, f := range s.variableLen {
 		assignments[i] = lenVariable(i)
 		values[i] = fmt.Sprintf("int(%s[%d])", s.bufferName, i)
-		if f.typ == "[]bool" {
+		if f.typ == tBoolS {
 			conditions[i] = fmt.Sprintf("%s(%s)", nameOf(jay.SizeBools, nil), assignments[i])
 		} else {
 			conditions[i] = assignments[i]
@@ -122,17 +122,17 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 func (f field) unmarshalFuncs() (funcName string, template uint8) {
 	var c interface{}
 	switch f.typ {
-	case "uint8":
+	case tUint8:
 		if f.isAliasDef {
 			return f.aliasType, tByteConv
 		}
 		return "", tByteAssign
-	case "int8", "string":
+	case tInt8, tString:
 		if f.isAliasDef {
 			return f.aliasType, tByteConv
 		}
 		return f.typ, tByteConv
-	case "int":
+	case tInt:
 		if f.structTyp.option.FixedIntSize {
 			if f.structTyp.option.Is32bit {
 				c, template = jay.ReadIntX32, tFunc
@@ -142,19 +142,19 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		}
 		//c = jay.ReadIntVariable
 		c, template = jay.ReadInt, tFunc
-	case "int16":
+	case tInt16:
 		c, template = jay.ReadInt16, tFunc
-	case "int32", "rune":
+	case tInt32, tRune:
 		c, template = jay.ReadInt32, tFunc
-	case "float32":
+	case tFloat32:
 		c, template = jay.ReadFloat32, tFunc
-	case "float64":
+	case tFloat64:
 		c, template = jay.ReadFloat64, tFunc
-	case "int64":
+	case tInt64:
 		c, template = jay.ReadInt64, tFunc
-	case "time.Duration":
+	case tTimeDuration:
 		c, template = jay.ReadDuration, tFunc
-	case "uint":
+	case tUint:
 		if f.structTyp.option.FixedUintSize {
 			if f.structTyp.option.Is32bit {
 				c, template = jay.ReadUintX32, tFunc
@@ -163,54 +163,54 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 			break
 		}
 		c, template = jay.ReadUintVariable, tFunc
-	case "uint16":
+	case tUint16:
 		c, template = jay.ReadUint16, tFunc
-	case "uint32":
+	case tUint32:
 		c, template = jay.ReadUint32, tFunc
-	case "uint64":
+	case tUint64:
 		c, template = jay.ReadUint64, tFunc
-	case "time.Time":
+	case tTime:
 		if f.tagOptions.TimeNano {
 			c, template = jay.ReadTimeNano, tFunc
 		} else {
 			c, template = jay.ReadTime, tFunc
 		}
-	case "[]int8":
+	case tInt8S:
 		c, template = jay.ReadInt8s, tFuncLength
-	case "[]bool":
+	case tBoolS:
 		c, template = jay.ReadBools, tFuncLength
 
-	case "[]uint8":
+	case tUint8S:
 		if f.Required {
 			c, template = "", tByteAssign
 		} else {
 			c, template = copyKeyword, tFuncOpt
 		}
-	case "[]float32":
+	case tFloat32S:
 		c, template = jay.ReadFloat32s, tFuncLength
-	case "[]float64":
+	case tFloat64S:
 		c, template = jay.ReadFloat64s, tFuncLength
-	case "[]int16":
+	case tInt16S:
 		c, template = jay.ReadInt16s, tFuncLength
-	case "[]uint":
+	case tUintS:
 		if f.structTyp.option.Is32bit {
 			c, template = jay.ReadUintsX32, tFuncLength
 		}
 		c, template = jay.ReadUintsX64, tFuncLength
-	case "[]uint16":
+	case tUint16S:
 		c, template = jay.ReadUint16s, tFuncLength
-	case "[]int":
+	case tIntS:
 		if f.structTyp.option.Is32bit {
 			c, template = jay.ReadIntsX32, tFuncLength
 		}
 		c, template = jay.ReadIntsX64, tFuncLength
-	case "[]int32":
+	case tInt32S:
 		c, template = jay.ReadInt32s, tFuncLength
-	case "[]int64":
+	case tInt64S:
 		c, template = jay.ReadInt64s, tFuncLength
-	case "[]uint32":
+	case tUint32S:
 		c, template = jay.ReadUint32s, tFuncLength
-	case "[]uint64":
+	case tUint64S:
 		c, template = jay.ReadUint64s, tFuncLength
 
 	default:

@@ -21,7 +21,7 @@ func (s *structTyp) LenDecl(b *bytes.Buffer) {
 	var variableFields []string
 	for _, v := range s.variableLen {
 		qty += isLen(v.typ)
-		if v.typ == "string" { //} isLenVariable(v.typ) {
+		if v.typ == tString { //} isLenVariable(v.typ) {
 			variableFields = append(variableFields, v.name)
 		} else if v.typ == "struct" {
 			variableStructs = append(variableStructs, v.name)
@@ -46,7 +46,7 @@ func joinSizes(qty uint, variableLen []field, importJ *bool) string {
 	for i, v := range variableLen {
 		qty += isLen(v.typ)
 		if !v.isFixedLen {
-			if v.typ == "[]bool" {
+			if v.typ == tBoolS {
 				s = append(s, fmt.Sprintf("%s(%s)", nameOf(jay.SizeBools, importJ), lenVariable(i)))
 			} else {
 				s = append(s, multiples(v, lenVariable(i)))
