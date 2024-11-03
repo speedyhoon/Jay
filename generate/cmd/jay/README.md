@@ -1,6 +1,6 @@
 # jay
 
-Command line tool
+The `jay` command line tool scans `.go` files for exported structs and generates methods `.MarshalJ()` & `.UnmarshalJ()` to serialise structs into the [Jay serialisation format](https://github.com/speedyhoon/jay).
 
 ## Install
 
@@ -9,28 +9,51 @@ go install github.com/speedyhoon/jay/generate/cmd/jay
 ```
 
 ## Usage
-
+Whole directory:
 ```shell
 cd <<my_project_path>>
 jay
 ```
 
+Single file:
+```shell
+cd <<my_project_path>>
+jay my_file.go
+```
+
 ## Flags
 
-`-32` Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.
+`-32` Force 32-bit output for `ints` & `uints`. _Defaults to your system's architecture._
 
-`-fi` Fixed int size. _default: `true`_
+`-fi` Fixed int size. _Default: `true`_
 
-`-fu` Fixed uint size. _default: `true`_
+`-fu` Fixed uint size. _Default: `true`_
 
-`-o`  Output file.  _default: `jay.go`_
+`-o` Output file.  _Default: `jay.go`_
 
-`-v`  Verbose output. _default: `false`_
+`-v` Verbose output. _Default: `false`_
 
-`-s`  Search Go test files for exported structs too. _default: `false`_
+`-p` Generates pointer `.MarshalJ()` methods instead of functions. _Default: `false`_
 
-`-t`  Don't generate Go test files. _default: `false`_
+`-s` Search Go test files for exported structs too. _Default: `false`_
 
-`-m`  Don't generate MarshalJ() function. _default: `false`_
+`-t` Don't generate Go test files. _Default: `false`_
 
-`-u`  Don't generate UnmarshalJ() function. _default: `false`_
+`-m` Don't generate `MarshalJ()` functions or methods. _Default: `false`_
+
+`-u` Don't generate `UnmarshalJ()` function. _Default: `false`_
+
+`-y` Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. _Default is to process all exported types._ <br>
+         For example: `-y Vet,animal.Cat,animal.Cow` will process locally defined `Vet struct` along with `Cat` & `Cow` in imported package `animal`.
+
+## When to regenerate code
+How often does `jay` need to be executed?
+* Regenerate when:
+  * Any exported struct is added, deleted or renamed,
+  * Any exported field is added, deleted or renamed,
+  * Any exported field type is changed,
+  * Any field is toggled between exported or private.
+* Regenerate not required when:
+  * Struct field order has changed,
+  * Unexported structs or fields are added, deleted or renamed,
+  * Unexported field types are modified.
