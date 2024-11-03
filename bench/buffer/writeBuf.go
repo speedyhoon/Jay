@@ -3,14 +3,14 @@ package buffer
 import "bytes"
 
 const (
-	MaxUint8  = 1<<8 - 1  // 255
-	MaxUint16 = 1<<16 - 1 // 65535
-	MaxUint24 = 1<<24 - 1 // 16777215
-	MaxUint32 = 1<<32 - 1 // 4294967295
-	MaxUint40 = 1<<40 - 1 // 1099511627775
-	MaxUint48 = 1<<48 - 1 // 281474976710655
-	MaxUint56 = 1<<56 - 1 // 72057594037927935
-	//MaxUint64 = 1<<64 - 1 // 18446744073709551615
+	maxUint8  = 1<<8 - 1  // 255
+	maxUint16 = 1<<16 - 1 // 65535
+	maxUint24 = 1<<24 - 1 // 16777215
+	maxUint32 = 1<<32 - 1 // 4294967295
+	maxUint40 = 1<<40 - 1 // 1099511627775
+	maxUint48 = 1<<48 - 1 // 281474976710655
+	maxUint56 = 1<<56 - 1 // 72057594037927935
+	//maxUint64 = 1<<64 - 1 // 18446744073709551615
 )
 
 func WriteBufBool(b *bytes.Buffer, t bool) error {
@@ -60,19 +60,19 @@ func WriteBufUint(b *bytes.Buffer, i uint) (err error) {
 	switch {
 	case i == 0:
 		return b.WriteByte(0)
-	case i <= MaxUint8:
+	case i <= maxUint8:
 		_, err = b.Write([]byte{1, byte(i)})
-	case i <= MaxUint16:
+	case i <= maxUint16:
 		_, err = b.Write([]byte{2, byte(i), byte(i >> 8)})
-	case i <= MaxUint24:
+	case i <= maxUint24:
 		_, err = b.Write([]byte{3, byte(i), byte(i >> 8), byte(i >> 16)})
-	case i <= MaxUint32:
+	case i <= maxUint32:
 		_, err = b.Write([]byte{4, byte(i), byte(i >> 8), byte(i >> 16), byte(i >> 24)})
-	case i <= MaxUint40:
+	case i <= maxUint40:
 		_, err = b.Write([]byte{5, byte(i), byte(i >> 8), byte(i >> 16), byte(i >> 24), byte(i >> 32)})
-	case i <= MaxUint48:
+	case i <= maxUint48:
 		_, err = b.Write([]byte{6, byte(i), byte(i >> 8), byte(i >> 16), byte(i >> 24), byte(i >> 32), byte(i >> 40)})
-	case i <= MaxUint56:
+	case i <= maxUint56:
 		_, err = b.Write([]byte{7, byte(i), byte(i >> 8), byte(i >> 16), byte(i >> 24), byte(i >> 32), byte(i >> 40), byte(i >> 48)})
 	default:
 		_, err = b.Write([]byte{8, byte(i), byte(i >> 8), byte(i >> 16), byte(i >> 24), byte(i >> 32), byte(i >> 40), byte(i >> 48), byte(i >> 56)})

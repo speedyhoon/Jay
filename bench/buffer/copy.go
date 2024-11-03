@@ -52,7 +52,7 @@ func WriteBytes(buf *bytes.Buffer, y ...byte) {
 }
 
 func WriteUintBytes(buf *bytes.Buffer, u uint) int {
-	if u > MaxUint56 {
+	if u > maxUint56 {
 		WriteBytes(buf, 8, byte(u), byte(u>>8), byte(u>>16), byte(u>>24), byte(u>>32), byte(u>>40), byte(u>>48), byte(u>>56))
 		//buf.WriteByte(byte(u))
 		//buf.WriteByte(byte(u >> 8))
@@ -65,32 +65,32 @@ func WriteUintBytes(buf *bytes.Buffer, u uint) int {
 		return 9
 	}
 
-	if u > MaxUint48 {
+	if u > maxUint48 {
 		WriteBytes(buf, 7, byte(u), byte(u>>8), byte(u>>16), byte(u>>24), byte(u>>32), byte(u>>40), byte(u>>48))
 		return 8
 	}
 
-	if u > MaxUint40 {
+	if u > maxUint40 {
 		WriteBytes(buf, 6, byte(u), byte(u>>8), byte(u>>16), byte(u>>24), byte(u>>32), byte(u>>40))
 		return 7
 	}
 
-	if u > MaxUint32 {
+	if u > maxUint32 {
 		WriteBytes(buf, 5, byte(u), byte(u>>8), byte(u>>16), byte(u>>24), byte(u>>32))
 		return 6
 	}
 
-	if u > MaxUint24 {
+	if u > maxUint24 {
 		WriteBytes(buf, 4, byte(u), byte(u>>8), byte(u>>16), byte(u>>24))
 		return 5
 	}
 
-	if u > MaxUint16 {
+	if u > maxUint16 {
 		WriteBytes(buf, 3, byte(u), byte(u>>8), byte(u>>16))
 		return 4
 	}
 
-	if u > MaxUint8 {
+	if u > maxUint8 {
 		WriteBytes(buf, 2, byte(u), byte(u>>8))
 		return 3
 	}
@@ -108,21 +108,21 @@ func WriteUintBytes(buf *bytes.Buffer, u uint) int {
 		case u == 0:
 			buf.WriteByte(0)
 			return 1
-		case u <= MaxUint8:
+		case u <= maxUint8:
 			buf.Write([]byte{1, byte(u)})
 			return 2
-		case u <= MaxUint16:
+		case u <= maxUint16:
 			buf.WriteByte(2)
 			buf.WriteByte(byte(u))
 			buf.WriteByte(byte(u >> 8))
 			return 3
-		case u <= MaxUint24:
+		case u <= maxUint24:
 			buf.WriteByte(3)
 			buf.WriteByte(byte(u))
 			buf.WriteByte(byte(u >> 8))
 			buf.WriteByte(byte(u >> 16))
 			return 4
-		case u <= MaxUint32:
+		case u <= maxUint32:
 			buf.WriteByte(4)
 			buf.WriteByte(byte(u))
 			buf.WriteByte(byte(u >> 8))
@@ -140,37 +140,37 @@ func WriteUintBytes(buf *bytes.Buffer, u uint) int {
 }
 
 func WriteUintBytes2(buf *bytes.Buffer, u uint) int {
-	if u > MaxUint56 {
+	if u > maxUint56 {
 		buf.Write([]byte{8, byte(u), byte(u >> 8), byte(u >> 16), byte(u >> 24), byte(u >> 32), byte(u >> 40), byte(u >> 48), byte(u >> 56)})
 		return 9
 	}
 
-	if u > MaxUint48 {
+	if u > maxUint48 {
 		buf.Write([]byte{7, byte(u), byte(u >> 8), byte(u >> 16), byte(u >> 24), byte(u >> 32), byte(u >> 40), byte(u >> 48)})
 		return 8
 	}
 
-	if u > MaxUint40 {
+	if u > maxUint40 {
 		buf.Write([]byte{6, byte(u), byte(u >> 8), byte(u >> 16), byte(u >> 24), byte(u >> 32), byte(u >> 40)})
 		return 7
 	}
 
-	if u > MaxUint32 {
+	if u > maxUint32 {
 		buf.Write([]byte{5, byte(u), byte(u >> 8), byte(u >> 16), byte(u >> 24), byte(u >> 32)})
 		return 6
 	}
 
-	if u > MaxUint24 {
+	if u > maxUint24 {
 		buf.Write([]byte{4, byte(u), byte(u >> 8), byte(u >> 16), byte(u >> 24)})
 		return 5
 	}
 
-	if u > MaxUint16 {
+	if u > maxUint16 {
 		buf.Write([]byte{3, byte(u), byte(u >> 8), byte(u >> 16)})
 		return 4
 	}
 
-	if u > MaxUint8 {
+	if u > maxUint8 {
 		buf.Write([]byte{2, byte(u), byte(u >> 8)})
 		return 3
 	}
@@ -184,7 +184,7 @@ func WriteUintBytes2(buf *bytes.Buffer, u uint) int {
 	return 2
 }
 func WriteUintBytes3(buf *bytes.Buffer, u uint) int {
-	if u > MaxUint56 {
+	if u > maxUint56 {
 		buf.WriteByte(8)
 		buf.WriteByte(byte(u))
 		buf.WriteByte(byte(u >> 8))
@@ -197,7 +197,7 @@ func WriteUintBytes3(buf *bytes.Buffer, u uint) int {
 		return 9
 	}
 
-	if u > MaxUint48 {
+	if u > maxUint48 {
 		buf.WriteByte(7)
 		buf.WriteByte(byte(u))
 		buf.WriteByte(byte(u >> 8))
@@ -209,7 +209,7 @@ func WriteUintBytes3(buf *bytes.Buffer, u uint) int {
 		return 8
 	}
 
-	if u > MaxUint40 {
+	if u > maxUint40 {
 		buf.WriteByte(6)
 		buf.WriteByte(byte(u))
 		buf.WriteByte(byte(u >> 8))
@@ -220,7 +220,7 @@ func WriteUintBytes3(buf *bytes.Buffer, u uint) int {
 		return 7
 	}
 
-	if u > MaxUint32 {
+	if u > maxUint32 {
 		buf.WriteByte(5)
 		buf.WriteByte(byte(u))
 		buf.WriteByte(byte(u >> 8))
@@ -230,7 +230,7 @@ func WriteUintBytes3(buf *bytes.Buffer, u uint) int {
 		return 6
 	}
 
-	if u > MaxUint24 {
+	if u > maxUint24 {
 		buf.WriteByte(4)
 		buf.WriteByte(byte(u))
 		buf.WriteByte(byte(u >> 8))
@@ -239,7 +239,7 @@ func WriteUintBytes3(buf *bytes.Buffer, u uint) int {
 		return 5
 	}
 
-	if u > MaxUint16 {
+	if u > maxUint16 {
 		buf.WriteByte(3)
 		buf.WriteByte(byte(u))
 		buf.WriteByte(byte(u >> 8))
@@ -247,7 +247,7 @@ func WriteUintBytes3(buf *bytes.Buffer, u uint) int {
 		return 4
 	}
 
-	if u > MaxUint8 {
+	if u > maxUint8 {
 		buf.WriteByte(2)
 		buf.WriteByte(byte(u))
 		buf.WriteByte(byte(u >> 8))
