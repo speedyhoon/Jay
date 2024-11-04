@@ -12,9 +12,9 @@ import (
 )
 
 const (
-	StructTagName = "j"
-	IgnoreFlag    = "-"
-	tagSymbol     = '`'
+	StructTagName = "j" // StructTagName is the field tag to specify optional flags. For example: `j:max=0`
+	IgnoreFlag    = "-" // IgnoreFlag is the value to ignore any exported field from serialising: `j:-`
+	tagSymbol     = '`' // tagSymbol specifies which rune encloses field tags.
 )
 
 // getTag returns the value associated with key "j" in the tag string.

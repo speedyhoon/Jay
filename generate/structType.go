@@ -18,7 +18,7 @@ type structTyp struct {
 	imports    importList // Imports required for generated code.
 	option     *Option
 
-	// Exported fields.
+	// Lists of exported fields detected during AST traversal.
 	fixedLen, // Fixed length types like int16, uint64 and some arrays etc.
 	single, // Fields represented in one byte like int8 & uint8. These have additional optimisations.
 	variableLen, // Variable length fields like string and all slice types. These are generated last & have the most processing overhead.

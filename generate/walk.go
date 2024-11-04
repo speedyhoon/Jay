@@ -16,7 +16,7 @@ type field struct {
 	name string // The string used as the variable name.
 	typ  string // The underlying type of the variable (uint, byte, bool, map, etc).
 
-	structTyp *structTyp
+	structTyp *structTyp // Pointer to the parent struct containing this field.
 
 	aliasType  string // Alias name assigned to the type, for example, `type Toggle bool`, typ = "bool", aliasType = "Toggle".
 	arraySize  int    // 0 = not an array or slice, -1 = slice, >=1 = array size

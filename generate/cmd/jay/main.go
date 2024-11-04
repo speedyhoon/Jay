@@ -1,3 +1,19 @@
+// Command jay is the command line tool. See jay/generate for the internals.
+//
+// Optional flags:
+//
+//	-32	Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.
+//	-fi	Fixed int size.
+//	-fu	Fixed uint size.
+//	-o	Output file.
+//	-v	Verbose output.
+//	-p	Pointer MarshalJ()  method.
+//	-s	Search Go test files for exported structs too.
+//	-t	Don't generate Go test files.
+//	-m	Don't generate MarshalJ() function.
+//	-u	Don't generate UnmarshalJ() function.
+//	-y	Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types.
+//		For example: Vet,animal.Cat,animal.Cow will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package 'animal'.
 package main
 
 import (
