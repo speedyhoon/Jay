@@ -64,7 +64,7 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 		assignments[i] = lenVariable(i)
 		values[i] = fmt.Sprintf("int(%s[%d])", s.bufferName, i)
 		if f.typ == tBoolS {
-			conditions[i] = fmt.Sprintf("%s(%s)", nameOf(jay.SizeBools, nil), assignments[i])
+			conditions[i] = printFunc(nameOf(jay.SizeBools, nil), assignments[i])
 		} else {
 			conditions[i] = assignments[i]
 		}

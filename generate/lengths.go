@@ -47,7 +47,7 @@ func joinSizes(qty uint, variableLen []field, importJ *bool) string {
 		qty += isLen(v.typ)
 		if !v.isFixedLen {
 			if v.typ == tBoolS {
-				s = append(s, fmt.Sprintf("%s(%s)", nameOf(jay.SizeBools, importJ), lenVariable(i)))
+				s = append(s, printFunc(nameOf(jay.SizeBools, importJ), lenVariable(i)))
 			} else {
 				s = append(s, multiples(v, lenVariable(i)))
 			}
