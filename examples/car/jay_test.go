@@ -26,7 +26,7 @@ func TestCar_MarshalUnmarshal_small(t *testing.T) {
 		CC:   rando.String(),
 		//Timing:  ptrStr(rando.String()),
 		RedLine: rando.Uint16(),
-		Expiry:  rando.DateTime(),
+		Expiry:  rando.Time(),
 		Gearbox: gearbox{},
 	}
 	src := c.MarshalJ()
