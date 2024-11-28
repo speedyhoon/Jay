@@ -26,8 +26,8 @@ type Option struct {
 
 	// MaxDefaultStrSize limits all strings to be within this length if a field tag is NOT present.
 	// Minimum:	1 (1 byte),
-	// Default: MaxUint8 (255 bytes),
-	// Maximum: MaxUint24 (16 Megabytes).
+	// Default: maxUint8 (255 bytes),
+	// Maximum: maxUint24 (16 Megabytes).
 	// To override the default for a field use: `j:"max:4030"` for 4,030 bytes.
 	// The smallest value is the most optimal for performance.
 	MaxDefaultStrSize uint
@@ -39,11 +39,11 @@ type Option struct {
 	OnlyTypes   []string
 	typeMatches []*regexp.Regexp
 
-	// MaxUint16 = 64 kilobytes,
-	// MaxUint24 = 16 Megabytes,
+	// maxUint16 = 64 kilobytes,
+	// maxUint24 = 16 Megabytes,
 	//4 Gigabytes
-	//	// MaxUint8 = 255 bytes (default),
-	//	// MaxUint32 = 4 Gigabytes (maximum).
+	//	// maxUint8 = 255 bytes (default),
+	//	// maxUint32 = 4 Gigabytes (maximum).
 
 	// Should integers be fixed to 4 or 8 bytes or vary in length depending on the value provided.
 	FixedIntSize bool
@@ -90,9 +90,9 @@ func LoadOptions(opts ...Option) (o Option) {
 	o.regexSearchTypes()
 
 	if o.MaxDefaultStrSize == 0 {
-		o.MaxDefaultStrSize = MaxUint8
-	} else if o.MaxDefaultStrSize > MaxUint24 {
-		o.MaxDefaultStrSize = MaxUint24
+		o.MaxDefaultStrSize = maxUint8
+	} else if o.MaxDefaultStrSize > maxUint24 {
+		o.MaxDefaultStrSize = maxUint24
 	}
 	o.strSizeOfDefault = bytesRequired(o.MaxDefaultStrSize)
 

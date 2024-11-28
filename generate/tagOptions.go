@@ -61,32 +61,32 @@ func isShortRequiredTag(tag string) bool {
 }
 
 const (
-	MaxUint8  = 1<<8 - 1  // 255
-	MaxUint16 = 1<<16 - 1 // 65535
-	MaxUint24 = 1<<24 - 1 // 16777215
-	MaxUint32 = 1<<32 - 1 // 4294967295
-	MaxUint40 = 1<<40 - 1 // 1099511627775
-	MaxUint48 = 1<<48 - 1 // 281474976710655
-	MaxUint56 = 1<<56 - 1 // 72057594037927935
+	maxUint8  = 1<<8 - 1  // 255
+	maxUint16 = 1<<16 - 1 // 65535
+	maxUint24 = 1<<24 - 1 // 16777215
+	maxUint32 = 1<<32 - 1 // 4294967295
+	maxUint40 = 1<<40 - 1 // 1099511627775
+	maxUint48 = 1<<48 - 1 // 281474976710655
+	maxUint56 = 1<<56 - 1 // 72057594037927935
 )
 
 func byteSize(v tagSize) uint {
 	switch {
 	case v == 0:
 		return 0
-	case v <= MaxUint8:
+	case v <= maxUint8:
 		return 1
-	case v <= MaxUint16:
+	case v <= maxUint16:
 		return 2
-	case v <= MaxUint24:
+	case v <= maxUint24:
 		return 3
-	case v <= MaxUint32:
+	case v <= maxUint32:
 		return 4
-	case v <= MaxUint40:
+	case v <= maxUint40:
 		return 5
-	case v <= MaxUint48:
+	case v <= maxUint48:
 		return 6
-	case v <= MaxUint56:
+	case v <= maxUint56:
 		return 7
 	}
 	return 8
