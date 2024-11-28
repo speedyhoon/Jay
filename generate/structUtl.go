@@ -79,8 +79,6 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 		}
 		f, ok = o.isSupportedType(d.Decl, dirList, pkg)
 
-	//case *ast.StructType:
-	// TODO not yet implemented.
 	case *ast.ArrayType:
 		f, ok = o.isSupportedType(d.Elt, dirList, pkg)
 		if !ok || f.isAliasDef {

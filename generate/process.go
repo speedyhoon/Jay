@@ -2,6 +2,7 @@ package generate
 
 import (
 	"errors"
+	"fmt"
 	"github.com/speedyhoon/utl"
 	"go/ast"
 	"go/parser"
@@ -182,6 +183,12 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 			continue
 		}
 
+		if fs, ok := isStruct(t); ok {
+			s.process(fs, dirList)
+			i++
+			continue
+		}
+
 		fe, ok := s.option.isSupportedType(t.Type, dirList, s.dir)
 		if !ok {
 			fields = Remove(fields, i)
@@ -204,6 +211,64 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 
 	s.setFirstNLast()
 	return s.hasExportedFields()
+}
+
+func structFields(t any, names []string) (fields []*ast.Field, ok bool) {
+	switch d := t.(type) {
+	case *ast.Ident:
+		if d.Obj != nil {
+			return structFields(d.Obj, names)
+		}
+	case *ast.Object:
+		if d.Decl != nil {
+			return structFields(d.Decl, names)
+		}
+	case *ast.TypeSpec:
+		if d.Type != nil {
+			return structFields(d.Type, names)
+		}
+	case *ast.StructType:
+		if d.Fields != nil && len(d.Fields.List) >= 1 {
+			prefixFieldList(d.Fields, names)
+			return d.Fields.List, true
+		}
+	}
+	return
+}
+
+func prefixFieldList(f *ast.FieldList, names []string) {
+	qty := len(names)
+	for i := range f.List {
+		for j := range f.List[i].Names {
+			if f.List[i].Names[j].IsExported() {
+
+				// Duplicate the FieldList name for 2nd onwards names.
+				for k := 1; k < qty; k++ {
+					n := ast.Ident{
+						Name: fmt.Sprintf("%s.%s", names[k], f.List[i].Names[j].Name),
+						Obj:  f.List[i].Names[j].Obj,
+					}
+					f.List[i].Names = append(f.List[i].Names, &n)
+				}
+
+				// Prefix the name of the first ident.
+				f.List[i].Names[j].Name = fmt.Sprintf("%s.%s", names[0], f.List[i].Names[j].Name)
+			}
+		}
+	}
+}
+
+func isStruct(f *ast.Field) (fields []*ast.Field, ok bool) {
+	names := getNames(f)
+	if len(names) >= 1 {
+		list := make([]string, len(names))
+		for i, name := range names {
+			list[i] = name.Name
+		}
+		return structFields(f.Type, list)
+	}
+
+	return
 }
 
 func (s *structTyp) setFirstNLast() {
