@@ -57,15 +57,15 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	}
 
 	b.WriteString(fmt.Sprintf(
-		"func (%[1]s %[8]s%[2]s) MarshalJ() (%[3]s []byte) {\n%[4]s\n%[3]s = make([]byte, %[5]s)\n%[6]s%[7]sreturn\n}\n",
+		"func (%[1]s %[2]s%[3]s) MarshalJ() (%[4]s []byte) {\n%[5]s\n%[4]s = make([]byte, %[6]s)\n%[7]s%[8]sreturn\n}\n",
 		s.receiver,
+		pointer,
 		s.name,
 		s.bufferName,
 		varLengths,
 		makeSize,
 		s.generateSizeLine(),
 		code,
-		pointer,
 	))
 
 	return
