@@ -24,7 +24,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, importJ) || isReturnInlined
 
 	for _, f := range s.fixedLen {
-		buf.WriteString(f.marshalLine(&byteIndex, Utoa(byteIndex), "", importJ, ""))
+		buf.WriteString(f.marshalLine(&byteIndex, utoa(byteIndex), "", importJ, ""))
 		buf.WriteString("\n")
 	}
 
@@ -95,7 +95,7 @@ func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenV
 	*byteIndex += totalSize
 	thisField := pkgSelName(f.structTyp.receiver, f.name)
 	if end == "" {
-		end = Utoa(*byteIndex)
+		end = utoa(*byteIndex)
 	}
 
 	if f.isAliasDef && fun != copyKeyword && f.arraySize == typeNotArrayOrSlice {
@@ -126,8 +126,8 @@ func (f *field) isSlice() bool {
 	return f.arraySize == typeSlice
 }
 
-// Utoa is equivalent to strconv.FormatUint(uint64(u), 10).
-func Utoa(u uint) string {
+// utoa is equivalent to strconv.FormatUint(uint64(u), 10).
+func utoa(u uint) string {
 	return strconv.FormatUint(uint64(u), 10)
 }
 

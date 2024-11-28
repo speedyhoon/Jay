@@ -40,7 +40,7 @@ func (s *structTyp) LenDecl(b *bytes.Buffer) {
 func joinSizes(qty uint, variableLen []field, importJ *bool) string {
 	var s []string
 	if qty != 0 {
-		s = []string{Utoa(qty)}
+		s = []string{utoa(qty)}
 	}
 
 	for i, v := range variableLen {
@@ -67,7 +67,7 @@ func multiples(f field, lenVar string) string {
 		return lenVar
 	case f.arraySize >= typeArray:
 		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
-		return Utoa(uint(f.arraySize) * itemSize)
+		return utoa(uint(f.arraySize) * itemSize)
 	default: // typeNotArrayOrSlice
 		return lenVar
 	}
