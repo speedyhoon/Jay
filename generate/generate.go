@@ -14,6 +14,7 @@ import (
 const (
 	pkgName               = "jay"
 	pkgImport             = "github.com/speedyhoon/" + pkgName
+	exportedErr           = pkgName + ".ErrUnexpectedEOB"
 	goExt                 = ".go"
 	DefaultOutputFileName = pkgName + goExt
 	IntSize               = 32 << (^uint(0) >> 63) // 32 or 64

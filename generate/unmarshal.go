@@ -32,7 +32,6 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		return
 	}
 
-	const exportedErr = "jay.ErrUnexpectedEOB"
 	// Prevent panic: runtime error: index out of range
 	var lengthCheck string
 	if len(s.variableLen) == 0 {
