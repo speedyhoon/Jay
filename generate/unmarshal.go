@@ -94,7 +94,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 
 	switch template {
 	case tFunc:
-		if f.isAliasDef && f.arraySize == typeNotArrayOrSlice {
+		if f.isDef && f.arraySize == typeNotArrayOrSlice {
 			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, f.sliceExpr(at, end))))
 		}
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end)))
@@ -116,19 +116,27 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	return ""
 }
 
+func (f *field) typeConvert() string {
+	if f.pkgReq != "" {
+		f.structTyp.imports.add(f.pkgReq)
+		return pkgSelName(f.pkgReq, f.aliasType)
+	}
+	return f.aliasType
+}
+
 // unmarshalFuncs returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
 func (f field) unmarshalFuncs() (funcName string, template uint8) {
 	var c interface{}
 	switch f.typ {
 	case tUint8:
-		if f.isAliasDef {
-			return f.aliasType, tByteConv
+		if f.isDef {
+			return f.typeConvert(), tByteConv
 		}
 		return "", tByteAssign
 	case tInt8, tString:
-		if f.isAliasDef {
-			return f.aliasType, tByteConv
+		if f.isDef {
+			return f.typeConvert(), tByteConv
 		}
 		return f.typ, tByteConv
 	case tInt:
@@ -145,12 +153,12 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		c, template = jay.ReadInt16, tFunc
 	case tInt32, tRune:
 		c, template = jay.ReadInt32, tFunc
+	case tInt64:
+		c, template = jay.ReadInt64, tFunc
 	case tFloat32:
 		c, template = jay.ReadFloat32, tFunc
 	case tFloat64:
 		c, template = jay.ReadFloat64, tFunc
-	case tInt64:
-		c, template = jay.ReadInt64, tFunc
 	case tTimeDuration:
 		c, template = jay.ReadDuration, tFunc
 	case tUint:

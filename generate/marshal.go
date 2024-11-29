@@ -98,7 +98,7 @@ func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenV
 		end = utoa(*byteIndex)
 	}
 
-	if f.isAliasDef && fun != copyKeyword && f.arraySize == typeNotArrayOrSlice {
+	if f.isDef && fun != copyKeyword && f.arraySize == typeNotArrayOrSlice {
 		f.structTyp.imports.add(f.pkgReq)
 		thisField = printFunc(f.typ, thisField)
 	}
@@ -142,7 +142,7 @@ func printFunc(fun string, params ...string) (code string) {
 func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uint8) {
 	switch f.typ {
 	case tUint8:
-		if f.isAliasDef {
+		if f.isDef {
 			return tByte, tByteConv
 		}
 		return "", tByteAssign
@@ -178,12 +178,12 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 		return jay.WriteInt16, tFunc
 	case tInt32:
 		return jay.WriteInt32, tFunc
+	case tInt64:
+		return jay.WriteInt64, tFunc
 	case tFloat32:
 		return jay.WriteFloat32, tFunc
 	case tFloat64:
 		return jay.WriteFloat64, tFunc
-	case tInt64:
-		return jay.WriteInt64, tFunc
 	case tTimeDuration:
 		return jay.WriteDuration, tFunc
 	case tUint:

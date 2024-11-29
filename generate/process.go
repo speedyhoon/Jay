@@ -2,7 +2,6 @@ package generate
 
 import (
 	"errors"
-	"fmt"
 	"github.com/speedyhoon/utl"
 	"go/ast"
 	"go/parser"
@@ -245,14 +244,14 @@ func prefixFieldList(f *ast.FieldList, names []string) {
 				// Duplicate the FieldList name for 2nd onwards names.
 				for k := 1; k < qty; k++ {
 					n := ast.Ident{
-						Name: fmt.Sprintf("%s.%s", names[k], f.List[i].Names[j].Name),
+						Name: pkgSelName(names[k], f.List[i].Names[j].Name),
 						Obj:  f.List[i].Names[j].Obj,
 					}
 					f.List[i].Names = append(f.List[i].Names, &n)
 				}
 
 				// Prefix the name of the first ident.
-				f.List[i].Names[j].Name = fmt.Sprintf("%s.%s", names[0], f.List[i].Names[j].Name)
+				f.List[i].Names[j].Name = pkgSelName(names[0], f.List[i].Names[j].Name)
 			}
 		}
 	}

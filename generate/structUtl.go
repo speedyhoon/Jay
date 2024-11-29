@@ -81,8 +81,8 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 
 	case *ast.ArrayType:
 		f, ok = o.isSupportedType(d.Elt, dirList, pkg)
-		if !ok || f.isAliasDef {
-			// f.isAliasDef prevents types like []float where `type float float32` which can't be easily converted to []float32 in one line.
+		if !ok || f.isDef {
+			// f.isDef prevents types like []float where `type float float32` which can't be easily converted to []float32 in one line.
 			// However, `type float = float32`, `type floats = []float32` & `type floats []float32` can be easily converted in one line.
 			return f, false
 		}
@@ -93,7 +93,10 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 
 	case *ast.TypeSpec:
 		f, ok = o.isSupportedType(d.Type, dirList, pkg)
-		f.isAliasDef = f.isAliasDef || d.Assign == token.NoPos
+		// Replace the imported type with the local type name.
+		f.aliasType = d.Name.Name
+		// Field is a type definition if it is not an assignment (there is no equal sign), or it has already been set (for time.Duration aliases).
+		f.isDef = f.isDef || d.Assign == token.NoPos
 
 	default:
 		lg.Printf("type %T not expected in Option.isSupportedType()", d)
@@ -141,9 +144,17 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f fi
 	switch x.Name {
 	case "time":
 		switch d.Sel.Name {
-		case "Time", "Duration":
-			f.resolveBuiltinAlias(pkgSelName(x.Name, d.Sel.Name))
+		case "Duration":
+			f.typ = tInt64
 			f.pkgReq = x.Name
+			f.aliasType = tTimeDuration
+			f.isDef = true
+			f.isFixedLen = true
+			return f, true
+		case "Time":
+			f.typ = tTime
+			f.pkgReq = x.Name
+			f.aliasType = tTime
 			f.isFixedLen = true
 			return f, true
 		}
@@ -168,8 +179,6 @@ func (f *field) resolveBuiltinAlias(typ string) {
 		f.typ = tInt32
 	case tTimeDuration:
 		f.typ = tInt64
-		f.aliasType = typ
-		f.isAliasDef = true
 	default:
 		if f.typ == "" {
 			f.typ = typ
@@ -178,7 +187,10 @@ func (f *field) resolveBuiltinAlias(typ string) {
 }
 
 func pkgSelName(pkg, selector string) string {
-	return fmt.Sprintf("%s.%s", pkg, selector)
+	if pkg != "" {
+		return fmt.Sprintf("%s.%s", pkg, selector)
+	}
+	return selector
 }
 
 func packageName(f *ast.File) string {
