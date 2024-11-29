@@ -2,7 +2,7 @@
 
 ### Directory Suffixes
 #### Built-ins
-* `*` No suffix, built in type use directly. `int16`
+* `*` No suffix, built in type used directly. `int16`
 * `*Alias` Type alias. `type small = int16`
 * `*Def` Type definition. `type small int16`
 
