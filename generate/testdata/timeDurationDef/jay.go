@@ -2,9 +2,7 @@
 
 package main
 
-import (
-	"github.com/speedyhoon/jay"
-)
+import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() (b []byte) {
 	b = make([]byte, 8)

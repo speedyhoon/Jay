@@ -94,10 +94,23 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 
 	case *ast.TypeSpec:
 		f, ok = o.isSupportedType(d.Type, dirList, pkg)
-		// Replace the imported type with the local type name.
-		f.aliasType = d.Name.Name
-		// Field is a type definition if it is not an assignment (there is no equal sign), or it has already been set (for time.Duration aliases).
+		// Field is a type definition if isDef has already been set via inspecting d.Type beforehand, like time.Duration (type Duration int64),
+		// OR if TypeSpec is not an assignment (there is no equal sign).
 		f.isDef = f.isDef || d.Assign == token.NoPos
+
+		// Saves having to run goimports to fix unused imports.
+		if f.aliasType != d.Name.Name {
+			// Replace the imported type with the local type name.
+			f.aliasType = d.Name.Name
+
+			if f.isDef && isBuiltIn(f.typ) {
+				// Remove the import required when the underlying type is a simple
+				// built-in type (like int64) instead of an imported struct (like time.Time)
+				// that needs the import, to resolve any type conversions needed.
+				// This is only needed for type definitions (type A int), not type aliases (type A = int).
+				f.pkgReq = ""
+			}
+		}
 
 	default:
 		lg.Printf("type %T not expected in Option.isSupportedType()", d)
