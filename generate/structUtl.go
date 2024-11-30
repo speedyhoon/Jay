@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/utl"
 	"go/ast"
 	"go/token"
 	"reflect"
@@ -320,7 +321,7 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 	case 0:
 		return
 	case 1:
-		at = utoa(byteIndex)
+		at = utl.UtoA(byteIndex)
 	default:
 		if s.variableLen[0].typ == tBoolS {
 			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), lenVariable(0))
@@ -334,7 +335,7 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 
 func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint, varType string) (at, end string) {
 	if endVar == "" {
-		return utoa(byteIndex), ""
+		return utl.UtoA(byteIndex), ""
 	}
 
 	if i == len(s.variableLen)-1 {
@@ -352,7 +353,7 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 
 func lenVariable(index int) string {
 	const lengthVarPrefix = "l"
-	return lengthVarPrefix + utoa(uint(index))
+	return lengthVarPrefix + utl.UtoA(uint(index))
 }
 
 // List of supported types.

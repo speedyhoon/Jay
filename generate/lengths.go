@@ -3,6 +3,7 @@ package generate
 import (
 	"fmt"
 	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/utl"
 	"strconv"
 	"strings"
 )
@@ -40,7 +41,7 @@ func (s *structTyp) LenDecl(b *bytes.Buffer) {
 func joinSizes(qty uint, variableLen []field, importJ *bool) string {
 	var s []string
 	if qty != 0 {
-		s = []string{utoa(qty)}
+		s = []string{utl.UtoA(qty)}
 	}
 
 	for i, v := range variableLen {
@@ -67,7 +68,7 @@ func multiples(f field, lenVar string) string {
 		return lenVar
 	case f.arraySize >= typeArray:
 		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
-		return utoa(uint(f.arraySize) * itemSize)
+		return utl.UtoA(uint(f.arraySize) * itemSize)
 	default: // typeNotArrayOrSlice
 		return lenVar
 	}

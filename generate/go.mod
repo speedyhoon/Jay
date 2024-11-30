@@ -6,9 +6,9 @@ require (
 	github.com/speedyhoon/jay v0.0.0-20241104120304-dca148186730
 	github.com/speedyhoon/rando v0.0.0-20240727071055-70332f55d0f7
 	github.com/speedyhoon/rando/types v0.0.0-20240727071055-70332f55d0f7
-	github.com/speedyhoon/utl v0.0.0-20240404234419-3a81ac44337a
-	github.com/speedyhoon/utl/flagvar v0.0.0-20240404234419-3a81ac44337a
-	github.com/stretchr/testify v1.9.0
+	github.com/speedyhoon/utl v0.0.0-20241130025530-32e046ad4edf
+	github.com/speedyhoon/utl/flagvar v0.0.0-20241130025530-32e046ad4edf
+	github.com/stretchr/testify v1.10.0
 	mvdan.cc/gofumpt v0.6.0
 )
 

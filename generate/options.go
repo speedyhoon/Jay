@@ -2,8 +2,8 @@ package generate
 
 import (
 	"fmt"
+	"github.com/speedyhoon/utl"
 	"log"
-	"math"
 	"regexp"
 	"strings"
 )
@@ -143,11 +143,7 @@ func bytesRequired(input uint) uint8 {
 	if input <= 1 {
 		return uint8(input)
 	}
-	return uint8(math.Ceil(LogBaseX(256, float64(input+1))))
-}
-
-func LogBaseX(base, x float64) float64 {
-	return math.Log(x) / math.Log(base)
+	return uint8(utl.LogBaseXUint(256, input+1))
 }
 
 func (o *Option) regexSearchTypes() {

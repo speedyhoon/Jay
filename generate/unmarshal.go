@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/utl"
 	"strings"
 )
 
@@ -16,7 +17,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	s.readSingles(buf, &byteIndex)
 
 	for _, f := range s.fixedLen {
-		buf.WriteString(f.unmarshalLine(&byteIndex, utoa(byteIndex), "", ""))
+		buf.WriteString(f.unmarshalLine(&byteIndex, utl.UtoA(byteIndex), "", ""))
 		buf.WriteString("\n")
 	}
 
@@ -89,7 +90,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	}
 	thisField := pkgSelName(f.structTyp.receiver, f.name)
 	if end == "" {
-		end = utoa(*byteIndex)
+		end = utl.UtoA(*byteIndex)
 	}
 
 	switch template {
