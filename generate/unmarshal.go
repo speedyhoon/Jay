@@ -36,7 +36,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	// Prevent panic: runtime error: index out of range
 	var lengthCheck string
 	if len(s.variableLen) == 0 {
-		lengthCheck = fmt.Sprintf("if len(%s) < %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("if len(%s) != %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
 	} else {
 		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\nif %[1]s < %[3]d {\nreturn %[4]s\n}", s.lengthName, s.bufferName, byteIndex, exportedErr)
 	}

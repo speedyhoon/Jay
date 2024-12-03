@@ -11,7 +11,7 @@ func (o *One) MarshalJ() (b []byte) {
 }
 
 func (o *One) UnmarshalJ(b []byte) error {
-	if len(b) < 2 {
+	if len(b) != 2 {
 		return jay.ErrUnexpectedEOB
 	}
 	o.One = jay.ReadInt16(b)
@@ -26,7 +26,7 @@ func (t *Two) MarshalJ() (b []byte) {
 }
 
 func (t *Two) UnmarshalJ(b []byte) error {
-	if len(b) < 4 {
+	if len(b) != 4 {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = jay.ReadInt16(b[:2])
@@ -43,7 +43,7 @@ func (t *Three) MarshalJ() (b []byte) {
 }
 
 func (t *Three) UnmarshalJ(b []byte) error {
-	if len(b) < 6 {
+	if len(b) != 6 {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = jay.ReadInt16(b[:2])
@@ -62,7 +62,7 @@ func (f *Four) MarshalJ() (b []byte) {
 }
 
 func (f *Four) UnmarshalJ(b []byte) error {
-	if len(b) < 8 {
+	if len(b) != 8 {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt16(b[:2])
@@ -83,7 +83,7 @@ func (f *Five) MarshalJ() (b []byte) {
 }
 
 func (f *Five) UnmarshalJ(b []byte) error {
-	if len(b) < 10 {
+	if len(b) != 10 {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt16(b[:2])
@@ -106,7 +106,7 @@ func (s *Six) MarshalJ() (b []byte) {
 }
 
 func (s *Six) UnmarshalJ(b []byte) error {
-	if len(b) < 12 {
+	if len(b) != 12 {
 		return jay.ErrUnexpectedEOB
 	}
 	s.One = jay.ReadInt16(b[:2])
@@ -131,7 +131,7 @@ func (s *Seven) MarshalJ() (b []byte) {
 }
 
 func (s *Seven) UnmarshalJ(b []byte) error {
-	if len(b) < 14 {
+	if len(b) != 14 {
 		return jay.ErrUnexpectedEOB
 	}
 	s.One = jay.ReadInt16(b[:2])
@@ -158,7 +158,7 @@ func (e *Eight) MarshalJ() (b []byte) {
 }
 
 func (e *Eight) UnmarshalJ(b []byte) error {
-	if len(b) < 16 {
+	if len(b) != 16 {
 		return jay.ErrUnexpectedEOB
 	}
 	e.One = jay.ReadInt16(b[:2])
@@ -187,7 +187,7 @@ func (n *Nine) MarshalJ() (b []byte) {
 }
 
 func (n *Nine) UnmarshalJ(b []byte) error {
-	if len(b) < 18 {
+	if len(b) != 18 {
 		return jay.ErrUnexpectedEOB
 	}
 	n.One = jay.ReadInt16(b[:2])
@@ -218,7 +218,7 @@ func (t *Ten) MarshalJ() (b []byte) {
 }
 
 func (t *Ten) UnmarshalJ(b []byte) error {
-	if len(b) < 20 {
+	if len(b) != 20 {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = jay.ReadInt16(b[:2])
@@ -251,7 +251,7 @@ func (e *Eleven) MarshalJ() (b []byte) {
 }
 
 func (e *Eleven) UnmarshalJ(b []byte) error {
-	if len(b) < 22 {
+	if len(b) != 22 {
 		return jay.ErrUnexpectedEOB
 	}
 	e.One = jay.ReadInt16(b[:2])
@@ -286,7 +286,7 @@ func (t *Twelve) MarshalJ() (b []byte) {
 }
 
 func (t *Twelve) UnmarshalJ(b []byte) error {
-	if len(b) < 24 {
+	if len(b) != 24 {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = jay.ReadInt16(b[:2])
@@ -323,7 +323,7 @@ func (t *Thirteen) MarshalJ() (b []byte) {
 }
 
 func (t *Thirteen) UnmarshalJ(b []byte) error {
-	if len(b) < 26 {
+	if len(b) != 26 {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = jay.ReadInt16(b[:2])
@@ -362,7 +362,7 @@ func (f *Fourteen) MarshalJ() (b []byte) {
 }
 
 func (f *Fourteen) UnmarshalJ(b []byte) error {
-	if len(b) < 28 {
+	if len(b) != 28 {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt16(b[:2])
@@ -403,7 +403,7 @@ func (f *Fifteen) MarshalJ() (b []byte) {
 }
 
 func (f *Fifteen) UnmarshalJ(b []byte) error {
-	if len(b) < 30 {
+	if len(b) != 30 {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt16(b[:2])
@@ -446,7 +446,7 @@ func (s *Sixteen) MarshalJ() (b []byte) {
 }
 
 func (s *Sixteen) UnmarshalJ(b []byte) error {
-	if len(b) < 32 {
+	if len(b) != 32 {
 		return jay.ErrUnexpectedEOB
 	}
 	s.One = jay.ReadInt16(b[:2])
@@ -491,7 +491,7 @@ func (s *Seventeen) MarshalJ() (b []byte) {
 }
 
 func (s *Seventeen) UnmarshalJ(b []byte) error {
-	if len(b) < 34 {
+	if len(b) != 34 {
 		return jay.ErrUnexpectedEOB
 	}
 	s.One = jay.ReadInt16(b[:2])
@@ -538,7 +538,7 @@ func (e *Eighteen) MarshalJ() (b []byte) {
 }
 
 func (e *Eighteen) UnmarshalJ(b []byte) error {
-	if len(b) < 36 {
+	if len(b) != 36 {
 		return jay.ErrUnexpectedEOB
 	}
 	e.One = jay.ReadInt16(b[:2])
@@ -587,7 +587,7 @@ func (n *Nineteen) MarshalJ() (b []byte) {
 }
 
 func (n *Nineteen) UnmarshalJ(b []byte) error {
-	if len(b) < 38 {
+	if len(b) != 38 {
 		return jay.ErrUnexpectedEOB
 	}
 	n.One = jay.ReadInt16(b[:2])
@@ -638,7 +638,7 @@ func (t *Twenty) MarshalJ() (b []byte) {
 }
 
 func (t *Twenty) UnmarshalJ(b []byte) error {
-	if len(b) < 40 {
+	if len(b) != 40 {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = jay.ReadInt16(b[:2])
@@ -691,7 +691,7 @@ func (t *TwentyOne) MarshalJ() (b []byte) {
 }
 
 func (t *TwentyOne) UnmarshalJ(b []byte) error {
-	if len(b) < 42 {
+	if len(b) != 42 {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = jay.ReadInt16(b[:2])
@@ -746,7 +746,7 @@ func (t *TwentyTwo) MarshalJ() (b []byte) {
 }
 
 func (t *TwentyTwo) UnmarshalJ(b []byte) error {
-	if len(b) < 44 {
+	if len(b) != 44 {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = jay.ReadInt16(b[:2])
@@ -803,7 +803,7 @@ func (t *TwentyThree) MarshalJ() (b []byte) {
 }
 
 func (t *TwentyThree) UnmarshalJ(b []byte) error {
-	if len(b) < 46 {
+	if len(b) != 46 {
 		return jay.ErrUnexpectedEOB
 	}
 	t.One = jay.ReadInt16(b[:2])
