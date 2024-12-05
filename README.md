@@ -91,27 +91,30 @@ High-throughput mode on a 64-bit system:
 
 ```
 Auto, ID,               Make,      Model         = 21 bytes
-[0,   42,0,0,0,0,0,0,0, 5,F,o,r,d, 6,E,s,c,o,r,t]
+[0,   42,0,0,0,0,0,0,0, 4,F,o,r,d, 6,E,s,c,o,r,t]
 ```
 
 Low-bandwidth mode: _(unfinished)_
 
 ```
 Auto, ID,   Make,      Model         = 15 bytes
-[0,   1,42, 5,F,o,r,d, 6,E,s,c,o,r,t]
+[0,   1,42, 4,F,o,r,d, 6,E,s,c,o,r,t]
 ```
 
 ## Supported types:
 
-* `bool`
-* `byte`, `[]byte`, `[]uint8`
+* `bool`, `[]bool`
+* `byte`, `[]byte`
 * `float32`, `float64`
+* `[]float32`, `[]float64`
 * `int`, `int8`, `int16`, `int32`, `int64`
-* `rune`
+* `[]int`, `[]int8`, `[]int16`, `[]int32`, `[]int64`
+* `rune`, `[]rune`
 * `string`
 * `struct` _(Embedded structs aren't fully fuzz tested yet.)_
 * `time.Time`, `time.Duration`
 * `uint`, `uint8`, `uint16`, `uint32`, `uint64`
+* `[]uint`, `[]uint8`, `[]uint16`, `[]uint32`, `[]uint64`
 
 Jay also supports imported types. If the exported type is in the same package or a subpackage then `jay` will automatically find it with:
 
@@ -131,11 +134,15 @@ To include an external type via the commandline, either:
 
 In order of priority:
 
-* slices _(`[]string`)_
-* arrays _(`[5]string`)_
-* pointers _(`*string`)_
+* arrays _(`[5]string`)_ <br>
+  **WIP** -- depends upon type definition work for slices.
+* Expand fuzz testing.
 * Field tag options.
 * Field tag documentation.
+* slices _(`[]string`, `[]time.Time`, `[]time.Duration`)_ <br>
+  **WIP** -- type aliases are working (`type strs = []string`), undecided upon type definitions (`type strs []string`),
+* pointers _(`*uint64`)_ <br>
+  **R&D** -- have a working prototype for `bool` and all integer types, undecided on `string`, slices and arrays.
 * Performance benchmarks.
 * Low-bandwidth mode.
 * Aliased definition types like `[]float` where `float` is defined as `type float float32`. <br>
@@ -167,7 +174,7 @@ a dozen microseconds to restore performance without upgrading the processor.
 
 ###### Name
 
-Jay (pronounced as just `J`)  is a wordplay on [JSON](https://pkg.go.dev/encoding/json) without the `SON`, since the schema information is chopped off 🪚 and it's not human-readable.
+Jay _(pronounced as just `J`)_ is a wordplay on [JSON](https://pkg.go.dev/encoding/json) without the `SON`, since the schema information is chopped off 🪚 and it's not human-readable.
 
 The name `jay` also gives tribute to a 17-year-old netbook with a stuck `j` key on the keyboard. 🔁 😆 Every boot looks like:
 
