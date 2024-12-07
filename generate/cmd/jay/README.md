@@ -1,6 +1,8 @@
-# jay
+# `jay`
 
-The `jay` command line tool scans `.go` files for exported structs and generates methods `.MarshalJ()` & `.UnmarshalJ()` to serialise structs into the [Jay serialisation format](https://github.com/speedyhoon/jay).
+The `jay` command line tool scans `.go` files for exported structs and generates methods `.MarshalJ()` and `.UnmarshalJ()` to serialise structs into the [Jay serialisation format](https://github.com/speedyhoon/jay).
+`jay` is a wrapper around the [jay/generate](../../README.md) package, 
+providing optional command line flags and traverses directories in search for `.go` files.
 
 ## Install
 
@@ -11,13 +13,13 @@ go install github.com/speedyhoon/jay/generate/cmd/jay
 ## Usage
 Whole directory:
 ```shell
-cd <<my_project_path>>
+cd my_project_path
 jay
 ```
 
 Single file:
 ```shell
-cd <<my_project_path>>
+cd my_project_path
 jay my_file.go
 ```
 
@@ -50,10 +52,12 @@ jay my_file.go
 How often does `jay` need to be executed?
 * Regenerate when:
   * Any exported struct is added, deleted or renamed,
+  * Any embedded struct with an exported field name is added, deleted or renamed,
   * Any exported field is added, deleted or renamed,
   * Any exported field type is changed,
+  * Any exported field tag is added, deleted or altered,
   * Any field is toggled between exported or private.
-* Regenerate not required when:
+* Regenerate isn't required when:
   * Struct field order has changed,
   * Unexported structs or fields are added, deleted or renamed,
   * Unexported field types are modified.

@@ -4,12 +4,13 @@ Jay aims to be the fastest production safe, serialization package written in [Go
 an alternative to
 [JSON](https://pkg.go.dev/encoding/json),
 [Protocol Buffers](https://pkg.go.dev/google.golang.org/protobuf), FlatBuffers,
+[gob](https://pkg.go.dev/encoding/gob),
 [MessagePack](https://msgpack.org),
 [Bebop](https://github.com/betwixt-labs/bebop),
-and [`mus-go`](https://github.com/mus-format/mus-go).
+and [mus-go](https://github.com/mus-format/mus-go) with less setup required and no extra languages to learn.
 
 Jay doesn't determine any types during runtime. Instead, the marshalling and unmarshalling functions are easily
-generated using the [Jay commandline tool](https://github.com/speedyhoon/jay/tree/master/cmd).
+generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/master/cmd/jay).
 
 ## TLDR;
 
@@ -27,15 +28,9 @@ generated using the [Jay commandline tool](https://github.com/speedyhoon/jay/tre
 
 ##### Cons:
 
-* Need to regenerate methods when Go structs are modified using the `jay` command line tool.
+* Need to regenerate methods when Go structs are modified using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/master/cmd/jay).
 * Marshalled output is **not** human-readable.
 * Only written for the Go language.
-
-## Install
-Install the `jay` command line tool to generate marshal and unmarshal code.
-```shell
-go install github.com/speedyhoon/jay/generate/cmd/jay
-```
 
 ## Speed
 
@@ -45,20 +40,22 @@ This significantly increases execution speed during runtime by removing type ref
 Most small structs with 10 fields can be serialized within 175 nanoseconds on old hardware _(Intel T6400 @ 2.0GHz
 with GM45 GPU)_.
 
+## Install
+Install the `jay` command line tool to generate marshal and unmarshal code.
+```shell
+go install github.com/speedyhoon/jay/generate/cmd/jay
+```
+
 ## Command line tool.
 
-1. Install the Jay commandline tool.
-	```shell
-	go install github.com/speedyhoon/jay/generate/cmd
-	```
-2. Execute the command line tool and specify which `.go` file contains the exported structs.
+1. Execute the command line tool and specify which `.go` file contains the exported structs.
 	For example, `type Car struct` is located within `main.go`.
 	```shell
-	cd <<my_project_path>>
-	jay
+	cd my_project_path
+	jay main.go
 	```
-3. Jay will then generate methods `MarshalJ()` and `UnmarshalJ([]byte)` in `jay.go` _(the default output file)_.
-4. The new methods can then be used. For example:
+2. `jay` will then generate methods `MarshalJ()` and `UnmarshalJ([]byte)` in `jay.go` _(the default output file)_.
+3. The new methods can then be used. For example:
 
 ```go
 package main
@@ -66,13 +63,13 @@ package main
 import "fmt"
 
 type Car struct {
-	ID          uint
-	Make, Model string
-	Auto        bool
+	ID            uint
+	Make, Model   string
+	Auto, HasFuel bool
 }
 
 func main() {
-	car := Car{ID: 42, Make: "Ford", Model: "Escort", Auto: false}
+	car := Car{ID: 42, Make: "Ford", Model: "Escort", Auto: true, HasFuel: true}
 	var src []byte
 	src = car.MarshalJ()
 	fmt.Println(src)
@@ -90,15 +87,15 @@ Exported struct fields are concatenated together in binary format, delimited by 
 High-throughput mode on a 64-bit system:
 
 ```
-Auto, ID,               Make,      Model         = 21 bytes
-[0,   42,0,0,0,0,0,0,0, 4,F,o,r,d, 6,E,s,c,o,r,t]
+Auto & HasFuel, ID,               Make,      Model         = 21 bytes
+[192,           42,0,0,0,0,0,0,0, 4,F,o,r,d, 6,E,s,c,o,r,t]
 ```
 
 Low-bandwidth mode: _(unfinished)_
 
 ```
-Auto, ID,   Make,      Model         = 15 bytes
-[0,   1,42, 4,F,o,r,d, 6,E,s,c,o,r,t]
+Auto & HasFuel, ID,   Make,      Model         = 15 bytes
+[192,           1,42, 4,F,o,r,d, 6,E,s,c,o,r,t]
 ```
 
 ## Supported types:
@@ -110,7 +107,7 @@ Auto, ID,   Make,      Model         = 15 bytes
 * `int`, `int8`, `int16`, `int32`, `int64`
 * `[]int`, `[]int8`, `[]int16`, `[]int32`, `[]int64`
 * `rune`, `[]rune`
-* `string`
+* `string` _(Currently limited to 255 byte lengths)_
 * `struct` _(Embedded structs aren't fully fuzz tested yet.)_
 * `time.Time`, `time.Duration`
 * `uint`, `uint8`, `uint16`, `uint32`, `uint64`
@@ -139,20 +136,22 @@ In order of priority:
 * Expand fuzz testing.
 * Field tag options.
 * Field tag documentation.
-* slices _(`[]string`, `[]time.Time`, `[]time.Duration`)_ <br>
+* `string` _(Increase supported length from 255 bytes to 16 MB)_
+* slices _(including `[]string`, `[]time.Time`, `[]time.Duration`)_ <br>
   **WIP** -- type aliases are working (`type strs = []string`), undecided upon type definitions (`type strs []string`),
 * pointers _(`*uint64`)_ <br>
-  **R&D** -- have a working prototype for `bool` and all integer types, undecided on `string`, slices and arrays.
+  **R&D** -- have a working prototype for `bool` and all integer types, undecided on `string`, slices, arrays and struct slices.
 * Performance benchmarks.
 * Low-bandwidth mode.
-* Aliased definition types like `[]float` where `float` is defined as `type float float32`. <br>
-  (`type float = float32`, `type floats = []float32` & `type floats []float32` are supported).
-* maps? _(`map[string]uint`)_
+* Definition types like `[]float` where `float` is defined as `type float float32`.
 * multi-dimensional arrays & slices? _(`[][]string`)_
+* maps? _(`map[string]uint`)_
 
 ## Done
 
 * Specify which struct types to process in a large project directory. E.g.: ```-y Animal,settings.Config,engine.Specs```
+* Aliased types like `type float = float32` and `type floats = []float32`.
+* Simple definition types for built-ins only like `type floats []float32`.
 
 ## Not Supported
 
@@ -173,10 +172,11 @@ The aim was to process external messages within
 a dozen microseconds to restore performance without upgrading the processor.
 
 ###### Name
+**Clarification:** The serialisation format is Jay, whereas `jay` is the command line tool.
 
 Jay _(pronounced as just `J`)_ is a wordplay on [JSON](https://pkg.go.dev/encoding/json) without the `SON`, since the schema information is chopped off 🪚 and it's not human-readable.
 
-The name `jay` also gives tribute to a 17-year-old netbook with a stuck `j` key on the keyboard. 🔁 😆 Every boot looks like:
+The name Jay also gives tribute to a 17-year-old netbook with a stuck `j` key on the keyboard. 🔁 😆 Every boot looks like:
 
 ```
 jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
