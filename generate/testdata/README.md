@@ -1,4 +1,5 @@
 # testdata
+Provides tests for marshalling and unmarshalling each built-in Go type with 1 to 23 struct fields. 
 
 ### Directory Suffixes
 #### Built-ins
