@@ -329,7 +329,10 @@ func (o Option) isLenFixed(typ string) bool {
 }
 
 func bufWriteF(b *bytes.Buffer, format string, a ...any) {
-	b.WriteString(fmt.Sprintf(format, a...))
+	_, err := fmt.Fprintf(b, format, a...)
+	if err != nil {
+		lg.Println("err writing to buffer:", err)
+	}
 }
 
 func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, end string) {
