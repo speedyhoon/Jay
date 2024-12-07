@@ -24,6 +24,9 @@ type structTyp struct {
 	variableLen, // Variable length fields like string and all slice types. These are generated last & have the most processing overhead.
 	bool, // Boolean fields are joined together and represented as binary.
 	boolArray fieldList
+
+	// When true: returns the Marshal code in a single return statement, when false: MarshalJ() method contains several lines.
+	returnInline bool
 }
 
 func newStructTyp(dir, typeName string, o *Option) *structTyp {

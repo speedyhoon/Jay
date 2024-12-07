@@ -253,11 +253,20 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 			return typeNotArrayOrSlice, false
 		}
 
-		u, err := strconv.ParseUint(d.Value, 10, 24)
+		u, err := strconv.ParseUint(d.Value, 10, 64)
 		if err != nil {
 			lg.Println("invalid array size", d.Value)
 			return typeNotArrayOrSlice, false
 		}
+		if u > maxUint24 {
+			lg.Println("invalid array size", d.Value, "> expected:", maxUint24)
+			return typeNotArrayOrSlice, false
+		}
+		if u == 0 {
+			lg.Println("arrays with size zero ([0]int) are not supported")
+			return typeNotArrayOrSlice, false
+		}
+
 		return int(u), true
 
 	case *ast.ValueSpec:
@@ -282,10 +291,11 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 	f.structTyp = s
 	for m := range names {
 		f.name = names[m].Name
-		switch f.typ {
-		case tBool:
+		if f.typ == tBool || f.arrayType == tBool && f.arraySize >= typeArray {
 			s.bool = append(s.bool, f)
 			continue
+		}
+		switch f.typ {
 		case tByte, tInt8, tUint8:
 			s.single = append(s.single, f)
 			continue

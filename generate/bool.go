@@ -8,19 +8,31 @@ import (
 
 const marshalBoolsFuncPrefix = "Bool"
 
-func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bool) (isReturnInlined bool) {
+func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bool) {
 	if len(s.bool) == 0 {
-		return false
+		return
 	}
 
-	isReturnInlined = !s.useMakeFunc()
 	hasSingles := len(s.single) != 0
 	*importJ = true
 
-	l := len(s.bool)
+	if s.returnInline {
+		b.WriteString("[]byte{")
+	}
+
+	newList := fieldNamesArrays(s.bool, s.receiver)
+	l := len(newList)
 	for i := 0; i < l; i += 8 {
-		writeBools(s.bool[i:], b, *byteIndex, s.receiver, s.bufferName, isReturnInlined)
-		if isReturnInlined {
+		next8 := min(8, len(newList[i:]))
+
+		if s.returnInline {
+			b.WriteString(boolsFunc(newList, i, next8))
+			//bufWriteF(b, "%s.%s%d(%s)", pkgName, marshalBoolsFuncPrefix, next8, strings.Join(newList[i:i+next8], ", "))
+		} else {
+			bufWriteF(b, "%s[%d] = %s\n", s.bufferName, *byteIndex, boolsFunc(newList, i, next8)) // pkgName, marshalBoolsFuncPrefix, next8, strings.Join(newList[i:i+next8], ", "))
+		}
+
+		if s.returnInline {
 			if i+1 < l || i+1 == l && hasSingles {
 				b.WriteString(",")
 			}
@@ -28,19 +40,13 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bo
 		*byteIndex++
 	}
 
-	return isReturnInlined
+	if s.returnInline {
+		b.WriteString("}")
+	}
 }
 
-func writeBools(bools []field, b *bytes.Buffer, byteIndex uint, receiver, bufferName string, isMake bool) {
-	if len(bools) > 8 {
-		bools = bools[:8]
-	}
-
-	if isMake {
-		bufWriteF(b, "%s.%s%d(%s)", pkgName, marshalBoolsFuncPrefix, len(bools), fieldNames(bools, receiver, true))
-	} else {
-		bufWriteF(b, "%s[%d] = %s.%s%d(%s)\n", bufferName, byteIndex, pkgName, marshalBoolsFuncPrefix, len(bools), fieldNames(bools, receiver, true))
-	}
+func boolsFunc(newList []string, i, next8 int) string {
+	return fmt.Sprintf("%s.%s%d(%s)", pkgName, marshalBoolsFuncPrefix, next8, strings.Join(newList[i:i+next8], ", "))
 }
 
 func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint, receiver string) {
@@ -48,8 +54,11 @@ func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint, receiver str
 		return
 	}
 
-	for i := 0; i < len(s.bool); i += 8 {
-		readBools(s.bool[i:], b, *byteIndex, receiver, s.bufferName)
+	newList, uList := fieldNamesArraysUnmarshalInline(s.bool, s.receiver)
+
+	l := len(newList)
+	for i := 0; i < l; i += 8 {
+		readBools2(newList[i:], b, *byteIndex, receiver, s.bufferName, uList[i:])
 		*byteIndex++
 	}
 }
@@ -81,9 +90,33 @@ func readBools(bools []field, b *bytes.Buffer, byteIndex uint, receiver string, 
 	bufWriteF(b, "%s = %s.%s%d(%s[%d])\n", fieldNames(bools, receiver, false), pkgName, marshalBoolsFuncPrefix, len(bools), bufferName, byteIndex)
 }
 
+func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, receiver string, bufferName string, uList []bool) {
+	const marshalBoolsFuncPrefix = "ReadBool"
+
+	if len(bools) > 8 {
+		bools = bools[:8]
+	}
+
+	if isUnmarshalInline2(uList) {
+		bufWriteF(b, "%s = %s\n", strings.Join(bools, ", ") /*fieldNames2(bools, receiver, false)*/, unmarshalBoolsInline(bufferName, byteIndex, len(bools)))
+		return
+	}
+
+	bufWriteF(b, "%s = %s.%s%d(%s[%d])\n", strings.Join(bools, ", ") /*fieldNames2(bools, receiver, false)*/, pkgName, marshalBoolsFuncPrefix, len(bools), bufferName, byteIndex)
+}
+
 func isUnmarshalInline(bools []field) bool {
 	for _, b := range bools {
 		if b.isDef {
+			return true
+		}
+	}
+	return false
+}
+
+func isUnmarshalInline2(bools []bool) bool {
+	for _, b := range bools {
+		if b {
 			return true
 		}
 	}
@@ -105,4 +138,42 @@ func unmarshalBoolsInline(bufferName string, byteIndex uint, qty int) string {
 		"%[1]s[%[2]d]&2 == 2",
 		"%[1]s[%[2]d]&1 == 1",
 	}[:qty], ", "), bufferName, byteIndex)
+}
+
+func fieldNamesArrays(fields []field, receiver string) (s []string) {
+	for i := range fields {
+		if fields[i].isDef {
+			if fields[i].arraySize >= typeArray {
+				for j := 0; j < fields[i].arraySize; j++ {
+					s = append(s, printFunc(fields[i].typ, pkgSelName(receiver, fmt.Sprintf("%s[%d]", fields[i].name, j))))
+				}
+			} else {
+				s = append(s, printFunc(fields[i].typ, pkgSelName(receiver, fields[i].name)))
+			}
+		} else {
+			if fields[i].arraySize >= typeArray {
+				for j := 0; j < fields[i].arraySize; j++ {
+					s = append(s, pkgSelName(receiver, fmt.Sprintf("%s[%d]", fields[i].name, j)))
+				}
+			} else {
+				s = append(s, pkgSelName(receiver, fields[i].name))
+			}
+		}
+	}
+	return
+}
+
+func fieldNamesArraysUnmarshalInline(fields []field, receiver string) (s []string, u []bool) {
+	for i := range fields {
+		if fields[i].arraySize >= typeArray {
+			for j := 0; j < fields[i].arraySize; j++ {
+				s = append(s, pkgSelName(receiver, fmt.Sprintf("%s[%d]", fields[i].name, j)))
+				u = append(u, fields[i].isDef)
+			}
+		} else {
+			s = append(s, pkgSelName(receiver, fields[i].name))
+			u = append(u, fields[i].isDef)
+		}
+	}
+	return
 }

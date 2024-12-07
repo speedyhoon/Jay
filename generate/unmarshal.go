@@ -110,10 +110,17 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end)))
 
 	case tByteAssign:
-		return fmt.Sprintf("%s = %s", thisField, f.sliceExpr(at, end))
+		return fmt.Sprintf("%s = %s", thisField, printFunc(f.convertTo(), f.sliceExpr(at, end)))
 	}
 
 	lg.Println("unhandled template")
+	return ""
+}
+
+func (f *field) convertTo() string {
+	if f.arraySize >= typeArray {
+		return fmt.Sprintf("[%d]%s", f.arraySize, f.arrayType)
+	}
 	return ""
 }
 
@@ -189,6 +196,11 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		c, template = jay.ReadBools, tFuncLength
 
 	case tUint8S:
+		if f.arraySize >= typeArray {
+			c, template = "", tByteAssign
+			return
+		}
+
 		if f.Required {
 			c, template = "", tByteAssign
 		} else {

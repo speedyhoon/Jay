@@ -17,11 +17,12 @@ import (
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	varLengths := lengths2(s.varLenFieldNames(), s.receiver)
 	makeSize := joinSizes(s.calcSize(), s.variableLen, importJ)
+	s.isReturnedInline()
 
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
-	isReturnInlined := s.makeWriteBools(buf, &byteIndex, importJ)
-	isReturnInlined = s.writeSingles(buf, &byteIndex, s.receiver, importJ) || isReturnInlined
+	s.makeWriteBools(buf, &byteIndex, importJ)
+	s.writeSingles(buf, &byteIndex, s.receiver, importJ)
 
 	for _, f := range s.fixedLen {
 		buf.WriteString(f.marshalLine(&byteIndex, utl.UtoA(byteIndex), "", importJ, ""))
@@ -45,9 +46,9 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 		pointer = "*"
 	}
 
-	if isReturnInlined {
+	if s.returnInline {
 		bufWriteF(b,
-			"func (%s %s%s) MarshalJ() []byte {\nreturn []byte{%s}\n}\n",
+			"func (%s %s%s) MarshalJ() []byte {\nreturn %s\n}\n",
 			s.receiver,
 			pointer,
 			s.name,
@@ -84,10 +85,15 @@ func (s *structTyp) generateSizeLine() string {
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
 
+func (s *structTyp) isReturnedInline() {
+	s.returnInline = !(len(s.variableLen) >= 1 || len(s.fixedLen) >= 1) ||
+		len(s.fixedLen) == 1 && s.fixedLen[0].arraySize >= typeArray && s.fixedLen[0].typ == tUint8S
+}
+
 func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
 	fun, template := f.MarshalFuncTemplate(importJ)
 	totalSize := f.typeFuncSize()
-	if fun == "" {
+	if template == 0 {
 		// Unknown type, not supported yet.
 		return ""
 	}
@@ -105,11 +111,17 @@ func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenV
 
 	switch template {
 	case tFunc:
+		if f.arraySize >= typeArray {
+			thisField += "[:]"
+		}
+
 		return fmt.Sprintf("%s(%s, %s)", fun, f.sliceExpr(at, end), thisField)
 	case tFuncOpt:
 		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, f.sliceExpr(at, end), thisField)
 	case tFuncLength:
 		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExpr(at, end), thisField, lenVar)
+	case tByteAssign:
+		return fmt.Sprintf("%s[:]", thisField)
 	default:
 		lg.Printf("template %d unhandled", template)
 		return ""
@@ -146,12 +158,17 @@ func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uin
 	case tString:
 		return copyKeyword, tFunc
 	case tUint8S:
+		if f.arraySize >= typeArray {
+			if f.isFirst && f.isLast {
+				return "", tByteAssign
+			}
+			return copyKeyword, tFunc
+		}
+
 		if f.Required {
 			return copyKeyword, tFunc
 		}
 		return copyKeyword, tFuncOpt
-	case "[15]uint8":
-		return copyKeyword, tFunc
 	}
 
 	var fun any
@@ -258,6 +275,9 @@ func (f *field) sliceExpr(at, end string) string {
 
 	if f.isFixedLen {
 		if f.isFirst && f.isLast {
+			if f.arraySize >= typeArray {
+				return fmt.Sprintf("%s[:]", f.structTyp.bufferName)
+			}
 			return f.structTyp.bufferName
 		}
 		if f.isFirst && at == "" { // `at == ""` is needed when structType contains variableLen types then `at` can't be absent because their sizes are placed before.

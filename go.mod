@@ -3,7 +3,7 @@ module github.com/speedyhoon/jay
 go 1.21.4
 
 require (
-	github.com/speedyhoon/rando v0.0.0-20240727071055-70332f55d0f7
+	github.com/speedyhoon/rando v0.0.0-20241207060149-59900bd5e51c
 	github.com/speedyhoon/utl/tf v0.0.0-20241130025530-32e046ad4edf
 	github.com/stretchr/testify v1.10.0
 )

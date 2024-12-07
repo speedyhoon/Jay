@@ -5,21 +5,25 @@ import (
 	"fmt"
 )
 
-func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver string, importJ *bool) (isReturnInlined bool) {
+func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver string, importJ *bool) {
 	if len(s.single) == 0 {
-		return false
+		return
 	}
 
-	isMake := s.useMakeFunc()
+	if s.returnInline {
+		bufWriteF(b, "[]%s{", tByte)
+	}
 
 	for i, l := 0, len(s.single); i < l; i++ {
 		isLast := i+1 == l
 		fun, _ := s.single[i].MarshalFuncTemplate(importJ)
-		writeSingle(s.single[i], b, *byteIndex, receiver, fun, s.bufferName, isMake, isLast)
+		writeSingle(s.single[i], b, *byteIndex, receiver, fun, s.bufferName, !s.returnInline, isLast)
 		*byteIndex++
 	}
 
-	return !isMake
+	if s.returnInline {
+		b.WriteString("}")
+	}
 }
 
 func (s *structTyp) useMakeFunc() bool {
