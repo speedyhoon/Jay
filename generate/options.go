@@ -45,10 +45,10 @@ type Option struct {
 	//	// maxUint8 = 255 bytes (default),
 	//	// maxUint32 = 4 Gigabytes (maximum).
 
-	// Should integers be fixed to 4 or 8 bytes or vary in length depending on the value provided.
+	// Whether type ` int` should be a fixed length (4 bytes 32-bit, or 8 bytes 64-bit) or vary in length depending on the value provided.
 	FixedIntSize bool
 
-	// Whether unsigned integers be a fixed length (4 bytes 32-bit, or 8 bytes 64-bit) or vary in length depending on the value provided.
+	// Whether type `uint` should be a fixed length (4 bytes 32-bit, or 8 bytes 64-bit) or vary in length depending on the value provided.
 	// True = Highest CPU serialization/deserialization throughput,
 	// false = Least bandwidth used.
 	FixedUintSize bool
