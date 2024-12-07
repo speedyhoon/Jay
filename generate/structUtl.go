@@ -149,23 +149,26 @@ func findImportedType(files []*ast.File, pkg, typName string) *ast.Object {
 	return nil
 }
 
+// isSupportedSelector resolves imported types and some types within Go's standard library.
 func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f field, ok bool) {
 	x, ok := d.X.(*ast.Ident)
 	if !ok {
 		return
 	}
 
+	// Go standard library types are hardcoded rather than trying to find the Go source files on every environment;
+	// especially difficult when the GOROOT environment variable isn't set and Go could be installed anywhere, even a NAS.
 	switch x.Name {
 	case "time":
 		switch d.Sel.Name {
-		case "Duration":
+		case "Duration": // type Duration int64
 			f.typ = tInt64
 			f.pkgReq = x.Name
 			f.aliasType = tTimeDuration
 			f.isDef = true
 			f.isFixedLen = true
 			return f, true
-		case "Time":
+		case "Time": // type Time struct
 			f.typ = tTime
 			f.pkgReq = x.Name
 			f.aliasType = tTime

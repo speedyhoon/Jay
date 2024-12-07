@@ -12,8 +12,8 @@ const (
 type structTyp struct {
 	name       string
 	receiver   string
-	bufferName string
-	lengthName string
+	bufferName string // Prefix assigned to the buffer variable.
+	lengthName string // Prefix assigned to the length variables.
 	dir        string
 	imports    importList // Imports required for generated code.
 	option     *Option
