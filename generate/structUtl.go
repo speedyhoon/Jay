@@ -66,7 +66,6 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 		}
 
 		f, ok = o.isSupportedType(d.Obj, dirList, pkg)
-		f.aliasType = d.Name
 
 	case nil:
 	// Ignore.
