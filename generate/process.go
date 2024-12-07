@@ -91,7 +91,7 @@ func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
 		src, err = o.makeFile(fl.pkg, fl.structs)
 		if err != nil {
 			errors.Join(errs, err)
-			lg.Printf("makeFile err: %s, in dir: %s file:\n%s\n", err, dir, src)
+			lg.Printf("makeFile err: %s,\ndirectory: %s,\npackage: %s\nsrc:\n%s\n", err, fl.pkg, dir, src)
 		} else {
 			output = append(output, Output{Dir: dir, Src: src})
 		}
