@@ -87,7 +87,7 @@ func (s *structTyp) generateSizeLine() string {
 
 func (s *structTyp) isReturnedInline() {
 	s.returnInline = !(len(s.variableLen) >= 1 || len(s.fixedLen) >= 1) ||
-		len(s.fixedLen) == 1 && s.fixedLen[0].arraySize >= typeArray && s.fixedLen[0].typ == tUint8S
+		len(s.fixedLen) == 1 && s.fixedLen[0].arraySize >= typeArray && s.fixedLen[0].typ == tByteS
 }
 
 func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
@@ -148,7 +148,7 @@ func printFunc(fun string, params ...string) (code string) {
 
 func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uint8) {
 	switch f.typ {
-	case tUint8:
+	case tByte:
 		if f.isDef {
 			return tByte, tByteConv
 		}
@@ -157,7 +157,7 @@ func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uin
 		return tByte, tByteConv
 	case tString:
 		return copyKeyword, tFunc
-	case tUint8S:
+	case tByteS:
 		if f.arraySize >= typeArray {
 			if f.isFirst && f.isLast {
 				return "", tByteAssign
@@ -196,8 +196,6 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 		return jay.WriteFloat32, tFunc
 	case tFloat64:
 		return jay.WriteFloat64, tFunc
-	case tTimeDuration:
-		return jay.WriteDuration, tFunc
 	case tUint:
 		if f.structTyp.option.FixedUintSize {
 			if f.structTyp.option.Is32bit {

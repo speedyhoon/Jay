@@ -12,7 +12,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 	if len(b) != 15 {
 		return jay.ErrUnexpectedEOB
 	}
-	o.One = [15]uint8(b[:])
+	o.One = [15]byte(b[:])
 	return nil
 }
 
@@ -27,8 +27,8 @@ func (t *Two) UnmarshalJ(b []byte) error {
 	if len(b) != 30 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.One = [15]uint8(b[:15])
-	t.Two = [15]uint8(b[15:])
+	t.One = [15]byte(b[:15])
+	t.Two = [15]byte(b[15:])
 	return nil
 }
 
@@ -44,9 +44,9 @@ func (t *Three) UnmarshalJ(b []byte) error {
 	if len(b) != 45 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.One = [15]uint8(b[:15])
-	t.Two = [15]uint8(b[15:30])
-	t.Three = [15]uint8(b[30:])
+	t.One = [15]byte(b[:15])
+	t.Two = [15]byte(b[15:30])
+	t.Three = [15]byte(b[30:])
 	return nil
 }
 
@@ -63,10 +63,10 @@ func (f *Four) UnmarshalJ(b []byte) error {
 	if len(b) != 60 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = [15]uint8(b[:15])
-	f.Two = [15]uint8(b[15:30])
-	f.Three = [15]uint8(b[30:45])
-	f.Four = [15]uint8(b[45:])
+	f.One = [15]byte(b[:15])
+	f.Two = [15]byte(b[15:30])
+	f.Three = [15]byte(b[30:45])
+	f.Four = [15]byte(b[45:])
 	return nil
 }
 
@@ -84,11 +84,11 @@ func (f *Five) UnmarshalJ(b []byte) error {
 	if len(b) != 75 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = [15]uint8(b[:15])
-	f.Two = [15]uint8(b[15:30])
-	f.Three = [15]uint8(b[30:45])
-	f.Four = [15]uint8(b[45:60])
-	f.Five = [15]uint8(b[60:])
+	f.One = [15]byte(b[:15])
+	f.Two = [15]byte(b[15:30])
+	f.Three = [15]byte(b[30:45])
+	f.Four = [15]byte(b[45:60])
+	f.Five = [15]byte(b[60:])
 	return nil
 }
 
@@ -107,12 +107,12 @@ func (s *Six) UnmarshalJ(b []byte) error {
 	if len(b) != 90 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.One = [15]uint8(b[:15])
-	s.Two = [15]uint8(b[15:30])
-	s.Three = [15]uint8(b[30:45])
-	s.Four = [15]uint8(b[45:60])
-	s.Five = [15]uint8(b[60:75])
-	s.Six = [15]uint8(b[75:])
+	s.One = [15]byte(b[:15])
+	s.Two = [15]byte(b[15:30])
+	s.Three = [15]byte(b[30:45])
+	s.Four = [15]byte(b[45:60])
+	s.Five = [15]byte(b[60:75])
+	s.Six = [15]byte(b[75:])
 	return nil
 }
 
@@ -132,13 +132,13 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 	if len(b) != 105 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.One = [15]uint8(b[:15])
-	s.Two = [15]uint8(b[15:30])
-	s.Three = [15]uint8(b[30:45])
-	s.Four = [15]uint8(b[45:60])
-	s.Five = [15]uint8(b[60:75])
-	s.Six = [15]uint8(b[75:90])
-	s.Seven = [15]uint8(b[90:])
+	s.One = [15]byte(b[:15])
+	s.Two = [15]byte(b[15:30])
+	s.Three = [15]byte(b[30:45])
+	s.Four = [15]byte(b[45:60])
+	s.Five = [15]byte(b[60:75])
+	s.Six = [15]byte(b[75:90])
+	s.Seven = [15]byte(b[90:])
 	return nil
 }
 
@@ -159,14 +159,14 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 	if len(b) != 120 {
 		return jay.ErrUnexpectedEOB
 	}
-	e.One = [15]uint8(b[:15])
-	e.Two = [15]uint8(b[15:30])
-	e.Three = [15]uint8(b[30:45])
-	e.Four = [15]uint8(b[45:60])
-	e.Five = [15]uint8(b[60:75])
-	e.Six = [15]uint8(b[75:90])
-	e.Seven = [15]uint8(b[90:105])
-	e.Eight = [15]uint8(b[105:])
+	e.One = [15]byte(b[:15])
+	e.Two = [15]byte(b[15:30])
+	e.Three = [15]byte(b[30:45])
+	e.Four = [15]byte(b[45:60])
+	e.Five = [15]byte(b[60:75])
+	e.Six = [15]byte(b[75:90])
+	e.Seven = [15]byte(b[90:105])
+	e.Eight = [15]byte(b[105:])
 	return nil
 }
 
@@ -188,15 +188,15 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 	if len(b) != 135 {
 		return jay.ErrUnexpectedEOB
 	}
-	n.One = [15]uint8(b[:15])
-	n.Two = [15]uint8(b[15:30])
-	n.Three = [15]uint8(b[30:45])
-	n.Four = [15]uint8(b[45:60])
-	n.Five = [15]uint8(b[60:75])
-	n.Six = [15]uint8(b[75:90])
-	n.Seven = [15]uint8(b[90:105])
-	n.Eight = [15]uint8(b[105:120])
-	n.Nine = [15]uint8(b[120:])
+	n.One = [15]byte(b[:15])
+	n.Two = [15]byte(b[15:30])
+	n.Three = [15]byte(b[30:45])
+	n.Four = [15]byte(b[45:60])
+	n.Five = [15]byte(b[60:75])
+	n.Six = [15]byte(b[75:90])
+	n.Seven = [15]byte(b[90:105])
+	n.Eight = [15]byte(b[105:120])
+	n.Nine = [15]byte(b[120:])
 	return nil
 }
 
@@ -219,16 +219,16 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 	if len(b) != 150 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.One = [15]uint8(b[:15])
-	t.Two = [15]uint8(b[15:30])
-	t.Three = [15]uint8(b[30:45])
-	t.Four = [15]uint8(b[45:60])
-	t.Five = [15]uint8(b[60:75])
-	t.Six = [15]uint8(b[75:90])
-	t.Seven = [15]uint8(b[90:105])
-	t.Eight = [15]uint8(b[105:120])
-	t.Nine = [15]uint8(b[120:135])
-	t.Ten = [15]uint8(b[135:])
+	t.One = [15]byte(b[:15])
+	t.Two = [15]byte(b[15:30])
+	t.Three = [15]byte(b[30:45])
+	t.Four = [15]byte(b[45:60])
+	t.Five = [15]byte(b[60:75])
+	t.Six = [15]byte(b[75:90])
+	t.Seven = [15]byte(b[90:105])
+	t.Eight = [15]byte(b[105:120])
+	t.Nine = [15]byte(b[120:135])
+	t.Ten = [15]byte(b[135:])
 	return nil
 }
 
@@ -252,17 +252,17 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 	if len(b) != 165 {
 		return jay.ErrUnexpectedEOB
 	}
-	e.One = [15]uint8(b[:15])
-	e.Two = [15]uint8(b[15:30])
-	e.Three = [15]uint8(b[30:45])
-	e.Four = [15]uint8(b[45:60])
-	e.Five = [15]uint8(b[60:75])
-	e.Six = [15]uint8(b[75:90])
-	e.Seven = [15]uint8(b[90:105])
-	e.Eight = [15]uint8(b[105:120])
-	e.Nine = [15]uint8(b[120:135])
-	e.Ten = [15]uint8(b[135:150])
-	e.Eleven = [15]uint8(b[150:])
+	e.One = [15]byte(b[:15])
+	e.Two = [15]byte(b[15:30])
+	e.Three = [15]byte(b[30:45])
+	e.Four = [15]byte(b[45:60])
+	e.Five = [15]byte(b[60:75])
+	e.Six = [15]byte(b[75:90])
+	e.Seven = [15]byte(b[90:105])
+	e.Eight = [15]byte(b[105:120])
+	e.Nine = [15]byte(b[120:135])
+	e.Ten = [15]byte(b[135:150])
+	e.Eleven = [15]byte(b[150:])
 	return nil
 }
 
@@ -287,18 +287,18 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 	if len(b) != 180 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.One = [15]uint8(b[:15])
-	t.Two = [15]uint8(b[15:30])
-	t.Three = [15]uint8(b[30:45])
-	t.Four = [15]uint8(b[45:60])
-	t.Five = [15]uint8(b[60:75])
-	t.Six = [15]uint8(b[75:90])
-	t.Seven = [15]uint8(b[90:105])
-	t.Eight = [15]uint8(b[105:120])
-	t.Nine = [15]uint8(b[120:135])
-	t.Ten = [15]uint8(b[135:150])
-	t.Eleven = [15]uint8(b[150:165])
-	t.Twelve = [15]uint8(b[165:])
+	t.One = [15]byte(b[:15])
+	t.Two = [15]byte(b[15:30])
+	t.Three = [15]byte(b[30:45])
+	t.Four = [15]byte(b[45:60])
+	t.Five = [15]byte(b[60:75])
+	t.Six = [15]byte(b[75:90])
+	t.Seven = [15]byte(b[90:105])
+	t.Eight = [15]byte(b[105:120])
+	t.Nine = [15]byte(b[120:135])
+	t.Ten = [15]byte(b[135:150])
+	t.Eleven = [15]byte(b[150:165])
+	t.Twelve = [15]byte(b[165:])
 	return nil
 }
 
@@ -324,19 +324,19 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 	if len(b) != 195 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.One = [15]uint8(b[:15])
-	t.Two = [15]uint8(b[15:30])
-	t.Three = [15]uint8(b[30:45])
-	t.Four = [15]uint8(b[45:60])
-	t.Five = [15]uint8(b[60:75])
-	t.Six = [15]uint8(b[75:90])
-	t.Seven = [15]uint8(b[90:105])
-	t.Eight = [15]uint8(b[105:120])
-	t.Nine = [15]uint8(b[120:135])
-	t.Ten = [15]uint8(b[135:150])
-	t.Eleven = [15]uint8(b[150:165])
-	t.Twelve = [15]uint8(b[165:180])
-	t.Thirteen = [15]uint8(b[180:])
+	t.One = [15]byte(b[:15])
+	t.Two = [15]byte(b[15:30])
+	t.Three = [15]byte(b[30:45])
+	t.Four = [15]byte(b[45:60])
+	t.Five = [15]byte(b[60:75])
+	t.Six = [15]byte(b[75:90])
+	t.Seven = [15]byte(b[90:105])
+	t.Eight = [15]byte(b[105:120])
+	t.Nine = [15]byte(b[120:135])
+	t.Ten = [15]byte(b[135:150])
+	t.Eleven = [15]byte(b[150:165])
+	t.Twelve = [15]byte(b[165:180])
+	t.Thirteen = [15]byte(b[180:])
 	return nil
 }
 
@@ -363,20 +363,20 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 	if len(b) != 210 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = [15]uint8(b[:15])
-	f.Two = [15]uint8(b[15:30])
-	f.Three = [15]uint8(b[30:45])
-	f.Four = [15]uint8(b[45:60])
-	f.Five = [15]uint8(b[60:75])
-	f.Six = [15]uint8(b[75:90])
-	f.Seven = [15]uint8(b[90:105])
-	f.Eight = [15]uint8(b[105:120])
-	f.Nine = [15]uint8(b[120:135])
-	f.Ten = [15]uint8(b[135:150])
-	f.Eleven = [15]uint8(b[150:165])
-	f.Twelve = [15]uint8(b[165:180])
-	f.Thirteen = [15]uint8(b[180:195])
-	f.Fourteen = [15]uint8(b[195:])
+	f.One = [15]byte(b[:15])
+	f.Two = [15]byte(b[15:30])
+	f.Three = [15]byte(b[30:45])
+	f.Four = [15]byte(b[45:60])
+	f.Five = [15]byte(b[60:75])
+	f.Six = [15]byte(b[75:90])
+	f.Seven = [15]byte(b[90:105])
+	f.Eight = [15]byte(b[105:120])
+	f.Nine = [15]byte(b[120:135])
+	f.Ten = [15]byte(b[135:150])
+	f.Eleven = [15]byte(b[150:165])
+	f.Twelve = [15]byte(b[165:180])
+	f.Thirteen = [15]byte(b[180:195])
+	f.Fourteen = [15]byte(b[195:])
 	return nil
 }
 
@@ -404,21 +404,21 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 	if len(b) != 225 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = [15]uint8(b[:15])
-	f.Two = [15]uint8(b[15:30])
-	f.Three = [15]uint8(b[30:45])
-	f.Four = [15]uint8(b[45:60])
-	f.Five = [15]uint8(b[60:75])
-	f.Six = [15]uint8(b[75:90])
-	f.Seven = [15]uint8(b[90:105])
-	f.Eight = [15]uint8(b[105:120])
-	f.Nine = [15]uint8(b[120:135])
-	f.Ten = [15]uint8(b[135:150])
-	f.Eleven = [15]uint8(b[150:165])
-	f.Twelve = [15]uint8(b[165:180])
-	f.Thirteen = [15]uint8(b[180:195])
-	f.Fourteen = [15]uint8(b[195:210])
-	f.Fifteen = [15]uint8(b[210:])
+	f.One = [15]byte(b[:15])
+	f.Two = [15]byte(b[15:30])
+	f.Three = [15]byte(b[30:45])
+	f.Four = [15]byte(b[45:60])
+	f.Five = [15]byte(b[60:75])
+	f.Six = [15]byte(b[75:90])
+	f.Seven = [15]byte(b[90:105])
+	f.Eight = [15]byte(b[105:120])
+	f.Nine = [15]byte(b[120:135])
+	f.Ten = [15]byte(b[135:150])
+	f.Eleven = [15]byte(b[150:165])
+	f.Twelve = [15]byte(b[165:180])
+	f.Thirteen = [15]byte(b[180:195])
+	f.Fourteen = [15]byte(b[195:210])
+	f.Fifteen = [15]byte(b[210:])
 	return nil
 }
 
@@ -447,22 +447,22 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 	if len(b) != 240 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.One = [15]uint8(b[:15])
-	s.Two = [15]uint8(b[15:30])
-	s.Three = [15]uint8(b[30:45])
-	s.Four = [15]uint8(b[45:60])
-	s.Five = [15]uint8(b[60:75])
-	s.Six = [15]uint8(b[75:90])
-	s.Seven = [15]uint8(b[90:105])
-	s.Eight = [15]uint8(b[105:120])
-	s.Nine = [15]uint8(b[120:135])
-	s.Ten = [15]uint8(b[135:150])
-	s.Eleven = [15]uint8(b[150:165])
-	s.Twelve = [15]uint8(b[165:180])
-	s.Thirteen = [15]uint8(b[180:195])
-	s.Fourteen = [15]uint8(b[195:210])
-	s.Fifteen = [15]uint8(b[210:225])
-	s.Sixteen = [15]uint8(b[225:])
+	s.One = [15]byte(b[:15])
+	s.Two = [15]byte(b[15:30])
+	s.Three = [15]byte(b[30:45])
+	s.Four = [15]byte(b[45:60])
+	s.Five = [15]byte(b[60:75])
+	s.Six = [15]byte(b[75:90])
+	s.Seven = [15]byte(b[90:105])
+	s.Eight = [15]byte(b[105:120])
+	s.Nine = [15]byte(b[120:135])
+	s.Ten = [15]byte(b[135:150])
+	s.Eleven = [15]byte(b[150:165])
+	s.Twelve = [15]byte(b[165:180])
+	s.Thirteen = [15]byte(b[180:195])
+	s.Fourteen = [15]byte(b[195:210])
+	s.Fifteen = [15]byte(b[210:225])
+	s.Sixteen = [15]byte(b[225:])
 	return nil
 }
 
@@ -492,23 +492,23 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 	if len(b) != 255 {
 		return jay.ErrUnexpectedEOB
 	}
-	s.One = [15]uint8(b[:15])
-	s.Two = [15]uint8(b[15:30])
-	s.Three = [15]uint8(b[30:45])
-	s.Four = [15]uint8(b[45:60])
-	s.Five = [15]uint8(b[60:75])
-	s.Six = [15]uint8(b[75:90])
-	s.Seven = [15]uint8(b[90:105])
-	s.Eight = [15]uint8(b[105:120])
-	s.Nine = [15]uint8(b[120:135])
-	s.Ten = [15]uint8(b[135:150])
-	s.Eleven = [15]uint8(b[150:165])
-	s.Twelve = [15]uint8(b[165:180])
-	s.Thirteen = [15]uint8(b[180:195])
-	s.Fourteen = [15]uint8(b[195:210])
-	s.Fifteen = [15]uint8(b[210:225])
-	s.Sixteen = [15]uint8(b[225:240])
-	s.Seventeen = [15]uint8(b[240:])
+	s.One = [15]byte(b[:15])
+	s.Two = [15]byte(b[15:30])
+	s.Three = [15]byte(b[30:45])
+	s.Four = [15]byte(b[45:60])
+	s.Five = [15]byte(b[60:75])
+	s.Six = [15]byte(b[75:90])
+	s.Seven = [15]byte(b[90:105])
+	s.Eight = [15]byte(b[105:120])
+	s.Nine = [15]byte(b[120:135])
+	s.Ten = [15]byte(b[135:150])
+	s.Eleven = [15]byte(b[150:165])
+	s.Twelve = [15]byte(b[165:180])
+	s.Thirteen = [15]byte(b[180:195])
+	s.Fourteen = [15]byte(b[195:210])
+	s.Fifteen = [15]byte(b[210:225])
+	s.Sixteen = [15]byte(b[225:240])
+	s.Seventeen = [15]byte(b[240:])
 	return nil
 }
 
@@ -539,24 +539,24 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 	if len(b) != 270 {
 		return jay.ErrUnexpectedEOB
 	}
-	e.One = [15]uint8(b[:15])
-	e.Two = [15]uint8(b[15:30])
-	e.Three = [15]uint8(b[30:45])
-	e.Four = [15]uint8(b[45:60])
-	e.Five = [15]uint8(b[60:75])
-	e.Six = [15]uint8(b[75:90])
-	e.Seven = [15]uint8(b[90:105])
-	e.Eight = [15]uint8(b[105:120])
-	e.Nine = [15]uint8(b[120:135])
-	e.Ten = [15]uint8(b[135:150])
-	e.Eleven = [15]uint8(b[150:165])
-	e.Twelve = [15]uint8(b[165:180])
-	e.Thirteen = [15]uint8(b[180:195])
-	e.Fourteen = [15]uint8(b[195:210])
-	e.Fifteen = [15]uint8(b[210:225])
-	e.Sixteen = [15]uint8(b[225:240])
-	e.Seventeen = [15]uint8(b[240:255])
-	e.Eighteen = [15]uint8(b[255:])
+	e.One = [15]byte(b[:15])
+	e.Two = [15]byte(b[15:30])
+	e.Three = [15]byte(b[30:45])
+	e.Four = [15]byte(b[45:60])
+	e.Five = [15]byte(b[60:75])
+	e.Six = [15]byte(b[75:90])
+	e.Seven = [15]byte(b[90:105])
+	e.Eight = [15]byte(b[105:120])
+	e.Nine = [15]byte(b[120:135])
+	e.Ten = [15]byte(b[135:150])
+	e.Eleven = [15]byte(b[150:165])
+	e.Twelve = [15]byte(b[165:180])
+	e.Thirteen = [15]byte(b[180:195])
+	e.Fourteen = [15]byte(b[195:210])
+	e.Fifteen = [15]byte(b[210:225])
+	e.Sixteen = [15]byte(b[225:240])
+	e.Seventeen = [15]byte(b[240:255])
+	e.Eighteen = [15]byte(b[255:])
 	return nil
 }
 
@@ -588,25 +588,25 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 	if len(b) != 285 {
 		return jay.ErrUnexpectedEOB
 	}
-	n.One = [15]uint8(b[:15])
-	n.Two = [15]uint8(b[15:30])
-	n.Three = [15]uint8(b[30:45])
-	n.Four = [15]uint8(b[45:60])
-	n.Five = [15]uint8(b[60:75])
-	n.Six = [15]uint8(b[75:90])
-	n.Seven = [15]uint8(b[90:105])
-	n.Eight = [15]uint8(b[105:120])
-	n.Nine = [15]uint8(b[120:135])
-	n.Ten = [15]uint8(b[135:150])
-	n.Eleven = [15]uint8(b[150:165])
-	n.Twelve = [15]uint8(b[165:180])
-	n.Thirteen = [15]uint8(b[180:195])
-	n.Fourteen = [15]uint8(b[195:210])
-	n.Fifteen = [15]uint8(b[210:225])
-	n.Sixteen = [15]uint8(b[225:240])
-	n.Seventeen = [15]uint8(b[240:255])
-	n.Eighteen = [15]uint8(b[255:270])
-	n.Nineteen = [15]uint8(b[270:])
+	n.One = [15]byte(b[:15])
+	n.Two = [15]byte(b[15:30])
+	n.Three = [15]byte(b[30:45])
+	n.Four = [15]byte(b[45:60])
+	n.Five = [15]byte(b[60:75])
+	n.Six = [15]byte(b[75:90])
+	n.Seven = [15]byte(b[90:105])
+	n.Eight = [15]byte(b[105:120])
+	n.Nine = [15]byte(b[120:135])
+	n.Ten = [15]byte(b[135:150])
+	n.Eleven = [15]byte(b[150:165])
+	n.Twelve = [15]byte(b[165:180])
+	n.Thirteen = [15]byte(b[180:195])
+	n.Fourteen = [15]byte(b[195:210])
+	n.Fifteen = [15]byte(b[210:225])
+	n.Sixteen = [15]byte(b[225:240])
+	n.Seventeen = [15]byte(b[240:255])
+	n.Eighteen = [15]byte(b[255:270])
+	n.Nineteen = [15]byte(b[270:])
 	return nil
 }
 
@@ -639,26 +639,26 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 	if len(b) != 300 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.One = [15]uint8(b[:15])
-	t.Two = [15]uint8(b[15:30])
-	t.Three = [15]uint8(b[30:45])
-	t.Four = [15]uint8(b[45:60])
-	t.Five = [15]uint8(b[60:75])
-	t.Six = [15]uint8(b[75:90])
-	t.Seven = [15]uint8(b[90:105])
-	t.Eight = [15]uint8(b[105:120])
-	t.Nine = [15]uint8(b[120:135])
-	t.Ten = [15]uint8(b[135:150])
-	t.Eleven = [15]uint8(b[150:165])
-	t.Twelve = [15]uint8(b[165:180])
-	t.Thirteen = [15]uint8(b[180:195])
-	t.Fourteen = [15]uint8(b[195:210])
-	t.Fifteen = [15]uint8(b[210:225])
-	t.Sixteen = [15]uint8(b[225:240])
-	t.Seventeen = [15]uint8(b[240:255])
-	t.Eighteen = [15]uint8(b[255:270])
-	t.Nineteen = [15]uint8(b[270:285])
-	t.Twenty = [15]uint8(b[285:])
+	t.One = [15]byte(b[:15])
+	t.Two = [15]byte(b[15:30])
+	t.Three = [15]byte(b[30:45])
+	t.Four = [15]byte(b[45:60])
+	t.Five = [15]byte(b[60:75])
+	t.Six = [15]byte(b[75:90])
+	t.Seven = [15]byte(b[90:105])
+	t.Eight = [15]byte(b[105:120])
+	t.Nine = [15]byte(b[120:135])
+	t.Ten = [15]byte(b[135:150])
+	t.Eleven = [15]byte(b[150:165])
+	t.Twelve = [15]byte(b[165:180])
+	t.Thirteen = [15]byte(b[180:195])
+	t.Fourteen = [15]byte(b[195:210])
+	t.Fifteen = [15]byte(b[210:225])
+	t.Sixteen = [15]byte(b[225:240])
+	t.Seventeen = [15]byte(b[240:255])
+	t.Eighteen = [15]byte(b[255:270])
+	t.Nineteen = [15]byte(b[270:285])
+	t.Twenty = [15]byte(b[285:])
 	return nil
 }
 
@@ -692,27 +692,27 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 	if len(b) != 315 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.One = [15]uint8(b[:15])
-	t.Two = [15]uint8(b[15:30])
-	t.Three = [15]uint8(b[30:45])
-	t.Four = [15]uint8(b[45:60])
-	t.Five = [15]uint8(b[60:75])
-	t.Six = [15]uint8(b[75:90])
-	t.Seven = [15]uint8(b[90:105])
-	t.Eight = [15]uint8(b[105:120])
-	t.Nine = [15]uint8(b[120:135])
-	t.Ten = [15]uint8(b[135:150])
-	t.Eleven = [15]uint8(b[150:165])
-	t.Twelve = [15]uint8(b[165:180])
-	t.Thirteen = [15]uint8(b[180:195])
-	t.Fourteen = [15]uint8(b[195:210])
-	t.Fifteen = [15]uint8(b[210:225])
-	t.Sixteen = [15]uint8(b[225:240])
-	t.Seventeen = [15]uint8(b[240:255])
-	t.Eighteen = [15]uint8(b[255:270])
-	t.Nineteen = [15]uint8(b[270:285])
-	t.Twenty = [15]uint8(b[285:300])
-	t.TwentyOne = [15]uint8(b[300:])
+	t.One = [15]byte(b[:15])
+	t.Two = [15]byte(b[15:30])
+	t.Three = [15]byte(b[30:45])
+	t.Four = [15]byte(b[45:60])
+	t.Five = [15]byte(b[60:75])
+	t.Six = [15]byte(b[75:90])
+	t.Seven = [15]byte(b[90:105])
+	t.Eight = [15]byte(b[105:120])
+	t.Nine = [15]byte(b[120:135])
+	t.Ten = [15]byte(b[135:150])
+	t.Eleven = [15]byte(b[150:165])
+	t.Twelve = [15]byte(b[165:180])
+	t.Thirteen = [15]byte(b[180:195])
+	t.Fourteen = [15]byte(b[195:210])
+	t.Fifteen = [15]byte(b[210:225])
+	t.Sixteen = [15]byte(b[225:240])
+	t.Seventeen = [15]byte(b[240:255])
+	t.Eighteen = [15]byte(b[255:270])
+	t.Nineteen = [15]byte(b[270:285])
+	t.Twenty = [15]byte(b[285:300])
+	t.TwentyOne = [15]byte(b[300:])
 	return nil
 }
 
@@ -747,28 +747,28 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 	if len(b) != 330 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.One = [15]uint8(b[:15])
-	t.Two = [15]uint8(b[15:30])
-	t.Three = [15]uint8(b[30:45])
-	t.Four = [15]uint8(b[45:60])
-	t.Five = [15]uint8(b[60:75])
-	t.Six = [15]uint8(b[75:90])
-	t.Seven = [15]uint8(b[90:105])
-	t.Eight = [15]uint8(b[105:120])
-	t.Nine = [15]uint8(b[120:135])
-	t.Ten = [15]uint8(b[135:150])
-	t.Eleven = [15]uint8(b[150:165])
-	t.Twelve = [15]uint8(b[165:180])
-	t.Thirteen = [15]uint8(b[180:195])
-	t.Fourteen = [15]uint8(b[195:210])
-	t.Fifteen = [15]uint8(b[210:225])
-	t.Sixteen = [15]uint8(b[225:240])
-	t.Seventeen = [15]uint8(b[240:255])
-	t.Eighteen = [15]uint8(b[255:270])
-	t.Nineteen = [15]uint8(b[270:285])
-	t.Twenty = [15]uint8(b[285:300])
-	t.TwentyOne = [15]uint8(b[300:315])
-	t.TwentyTwo = [15]uint8(b[315:])
+	t.One = [15]byte(b[:15])
+	t.Two = [15]byte(b[15:30])
+	t.Three = [15]byte(b[30:45])
+	t.Four = [15]byte(b[45:60])
+	t.Five = [15]byte(b[60:75])
+	t.Six = [15]byte(b[75:90])
+	t.Seven = [15]byte(b[90:105])
+	t.Eight = [15]byte(b[105:120])
+	t.Nine = [15]byte(b[120:135])
+	t.Ten = [15]byte(b[135:150])
+	t.Eleven = [15]byte(b[150:165])
+	t.Twelve = [15]byte(b[165:180])
+	t.Thirteen = [15]byte(b[180:195])
+	t.Fourteen = [15]byte(b[195:210])
+	t.Fifteen = [15]byte(b[210:225])
+	t.Sixteen = [15]byte(b[225:240])
+	t.Seventeen = [15]byte(b[240:255])
+	t.Eighteen = [15]byte(b[255:270])
+	t.Nineteen = [15]byte(b[270:285])
+	t.Twenty = [15]byte(b[285:300])
+	t.TwentyOne = [15]byte(b[300:315])
+	t.TwentyTwo = [15]byte(b[315:])
 	return nil
 }
 
@@ -804,28 +804,28 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 	if len(b) != 345 {
 		return jay.ErrUnexpectedEOB
 	}
-	t.One = [15]uint8(b[:15])
-	t.Two = [15]uint8(b[15:30])
-	t.Three = [15]uint8(b[30:45])
-	t.Four = [15]uint8(b[45:60])
-	t.Five = [15]uint8(b[60:75])
-	t.Six = [15]uint8(b[75:90])
-	t.Seven = [15]uint8(b[90:105])
-	t.Eight = [15]uint8(b[105:120])
-	t.Nine = [15]uint8(b[120:135])
-	t.Ten = [15]uint8(b[135:150])
-	t.Eleven = [15]uint8(b[150:165])
-	t.Twelve = [15]uint8(b[165:180])
-	t.Thirteen = [15]uint8(b[180:195])
-	t.Fourteen = [15]uint8(b[195:210])
-	t.Fifteen = [15]uint8(b[210:225])
-	t.Sixteen = [15]uint8(b[225:240])
-	t.Seventeen = [15]uint8(b[240:255])
-	t.Eighteen = [15]uint8(b[255:270])
-	t.Nineteen = [15]uint8(b[270:285])
-	t.Twenty = [15]uint8(b[285:300])
-	t.TwentyOne = [15]uint8(b[300:315])
-	t.TwentyTwo = [15]uint8(b[315:330])
-	t.TwentyThree = [15]uint8(b[330:])
+	t.One = [15]byte(b[:15])
+	t.Two = [15]byte(b[15:30])
+	t.Three = [15]byte(b[30:45])
+	t.Four = [15]byte(b[45:60])
+	t.Five = [15]byte(b[60:75])
+	t.Six = [15]byte(b[75:90])
+	t.Seven = [15]byte(b[90:105])
+	t.Eight = [15]byte(b[105:120])
+	t.Nine = [15]byte(b[120:135])
+	t.Ten = [15]byte(b[135:150])
+	t.Eleven = [15]byte(b[150:165])
+	t.Twelve = [15]byte(b[165:180])
+	t.Thirteen = [15]byte(b[180:195])
+	t.Fourteen = [15]byte(b[195:210])
+	t.Fifteen = [15]byte(b[210:225])
+	t.Sixteen = [15]byte(b[225:240])
+	t.Seventeen = [15]byte(b[240:255])
+	t.Eighteen = [15]byte(b[255:270])
+	t.Nineteen = [15]byte(b[270:285])
+	t.Twenty = [15]byte(b[285:300])
+	t.TwentyOne = [15]byte(b[300:315])
+	t.TwentyTwo = [15]byte(b[315:330])
+	t.TwentyThree = [15]byte(b[330:])
 	return nil
 }

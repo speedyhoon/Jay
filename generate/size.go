@@ -76,13 +76,13 @@ func (f field) typeFuncSize() (size uint) {
 		return uint(f.arraySize) * itemSize
 	case f.arraySize == typeNotArrayOrSlice:
 		switch f.typ {
-		case tString, tBool, tByte, tUint8, tInt8:
+		case tString, tBool, tByte, tInt8:
 			return 1
 		case tInt16, tUint16:
 			return 2
-		case tInt32, tRune, tFloat32, tUint32:
+		case tInt32, tFloat32, tUint32:
 			return 4
-		case tFloat64, tInt64, tUint64, tTime, tTimeDuration:
+		case tFloat64, tInt64, tUint64, tTime:
 			return 8
 		case tInt:
 			if f.structTyp.option.FixedIntSize {

@@ -41,7 +41,7 @@ func unwrapTagValue(str string) string {
 
 func isBuiltIn(typ string) bool {
 	switch typ {
-	case tBool, tByte, tFloat32, tFloat64, tInt, tInt8, tInt16, tInt32, tInt64, tRune, tString, tUint, tUint8, tUint16, tUint32, tUint64:
+	case tBool, tByte, tFloat32, tFloat64, tInt, tInt8, tInt16, tInt32, tInt64, tString, tUint, tUint16, tUint32, tUint64:
 		return true
 	}
 	return false
@@ -51,16 +51,19 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 	switch d := t.(type) {
 	case *ast.Ident:
 		if d.Obj == nil {
-			if !isBuiltIn(d.Name) && dirList != nil {
+			typ := resolveBuiltinAlias(d.Name)
+			if !isBuiltIn(typ) && dirList != nil {
 				// Object might be declared in another file in the same package.
-				d.Obj = findImportedType((*dirList)[pkg].files, (*dirList)[pkg].pkg, d.Name)
+				d.Obj = findImportedType((*dirList)[pkg].files, (*dirList)[pkg].pkg, typ)
 				if d.Obj == nil {
 					return f, false
 				}
 				f, ok = o.isSupportedType(d.Obj, dirList, pkg)
-				f.aliasType = d.Name
+				f.aliasType = typ
 			}
-			f.resolveBuiltinAlias(d.Name)
+			if f.typ == "" {
+				f.typ = typ
+			}
 			f.isFixedLen = o.isLenFixed(f.typ)
 			return f, true
 		}
@@ -186,22 +189,6 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f fi
 	return
 }
 
-// resolveBuiltinAlias replaces the built-in alias with the underlining name to reduce the quantity of types to support.
-func (f *field) resolveBuiltinAlias(typ string) {
-	switch typ {
-	case tByte:
-		f.typ = tUint8
-	case tRune:
-		f.typ = tInt32
-	case tTimeDuration:
-		f.typ = tInt64
-	default:
-		if f.typ == "" {
-			f.typ = typ
-		}
-	}
-}
-
 func pkgSelName(pkg, selector string) string {
 	if pkg != "" {
 		return fmt.Sprintf("%s.%s", pkg, selector)
@@ -296,7 +283,7 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 			continue
 		}
 		switch f.typ {
-		case tByte, tInt8, tUint8:
+		case tByte, tInt8:
 			s.single = append(s.single, f)
 			continue
 		}
@@ -313,11 +300,11 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 // isLen returns how many bytes each type requires.
 func isLen(typ string) uint {
 	switch typ {
-	case tBool, tByte, tInt8, tUint8, tString, tInt, tUint:
+	case tBool, tByte, tInt8, tString, tInt, tUint:
 		return 1
 	case tInt16, tUint16:
 		return 2
-	case tInt32, tRune, tUint32, tFloat32:
+	case tInt32, tUint32, tFloat32:
 		return 4
 	case tInt64, tUint64, tFloat64:
 		return 8
@@ -386,15 +373,27 @@ func lenVariable(index int) string {
 
 // List of supported types.
 const (
-	tBool, tBoolS                                 = "bool", "[]bool"
-	tByte                                         = "byte"
-	tFloat32, tFloat32S                           = "float32", "[]float32"
-	tFloat64, tFloat64S                           = "float64", "[]float64"
-	tInt, tInt8, tInt16, tInt32, tInt64           = "int", "int8", "int16", "int32", "int64"
-	tRune                                         = "rune"
-	tIntS, tInt8S, tInt16S, tInt32S, tInt64S      = "[]int", "[]int8", "[]int16", "[]int32", "[]int64"
-	tUint, tUint8, tUint16, tUint32, tUint64      = "uint", "uint8", "uint16", "uint32", "uint64"
-	tUintS, tUint8S, tUint16S, tUint32S, tUint64S = "[]uint", "[]uint8", "[]uint16", "[]uint32", "[]uint64"
-	tString                                       = "string"
-	tTime, tTimeDuration                          = "time.Time", "time.Duration"
+	tBool, tBoolS                            = "bool", "[]bool"
+	tByte, tByteS                            = "byte", "[]byte"
+	tFloat32, tFloat32S                      = "float32", "[]float32"
+	tFloat64, tFloat64S                      = "float64", "[]float64"
+	tInt, tInt8, tInt16, tInt32, tInt64      = "int", "int8", "int16", "int32", "int64"
+	tIntS, tInt8S, tInt16S, tInt32S, tInt64S = "[]int", "[]int8", "[]int16", "[]int32", "[]int64"
+	tUint, tUint16, tUint32, tUint64         = "uint", "uint16", "uint32", "uint64"
+	tUintS, tUint16S, tUint32S, tUint64S     = "[]uint", "[]uint16", "[]uint32", "[]uint64"
+	tString                                  = "string"
+	tTime, tTimeDuration                     = "time.Time", "time.Duration"
 )
+
+// resolveBuiltinAlias replaces the built-in alias with the underlining name to reduce the quantity of types to support.
+func resolveBuiltinAlias(typ string) string {
+	switch typ {
+	case "uint8":
+		return tByte
+	case "rune":
+		return tInt32
+	case tTimeDuration:
+		return tInt64
+	}
+	return typ
+}

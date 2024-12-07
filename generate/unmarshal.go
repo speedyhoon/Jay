@@ -137,7 +137,7 @@ func (f *field) typeConvert() string {
 func (f field) unmarshalFuncs() (funcName string, template uint8) {
 	var c interface{}
 	switch f.typ {
-	case tUint8:
+	case tByte:
 		if f.isDef {
 			return f.typeConvert(), tByteConv
 		}
@@ -159,7 +159,7 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		c, template = jay.ReadInt, tFunc
 	case tInt16:
 		c, template = jay.ReadInt16, tFunc
-	case tInt32, tRune:
+	case tInt32:
 		c, template = jay.ReadInt32, tFunc
 	case tInt64:
 		c, template = jay.ReadInt64, tFunc
@@ -195,7 +195,7 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 	case tBoolS:
 		c, template = jay.ReadBools, tFuncLength
 
-	case tUint8S:
+	case tByteS:
 		if f.arraySize >= typeArray {
 			c, template = "", tByteAssign
 			return
