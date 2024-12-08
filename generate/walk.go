@@ -20,6 +20,7 @@ type field struct {
 
 	aliasType  string // Alias name assigned to the type, for example: `type Toggle bool`, field.typ = "bool", field.aliasType = "Toggle".
 	arraySize  int    // 0 = not an array or slice, -1 = slice, >=1 = array size.
+	elmSize    uint   // Quantity of bytes required to represent the type.
 	pkgReq     string // Which package is required to be imported if referenced in the generated code.
 	arrayType  string // The type without the size in brackets. An empty string is not an array.
 	tag        string // The tag value within `j:""`

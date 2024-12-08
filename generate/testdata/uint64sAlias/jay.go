@@ -18,7 +18,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0 := int(b[0])
-	if l < 1+l0 {
+	if l != 1+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
 	o.One = jay.ReadUint64s(b[1:], l0)
@@ -41,7 +41,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1 := int(b[0]), int(b[1])
-	if l < 2+l0+l1 {
+	if l != 2+8*(l0+l1) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 2, 2+l0*8
@@ -68,7 +68,7 @@ func (t *Three) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2 := int(b[0]), int(b[1]), int(b[2])
-	if l < 3+l0+l1+l2 {
+	if l != 3+8*(l0+l1+l2) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 3, 3+l0*8
@@ -99,7 +99,7 @@ func (f *Four) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3 := int(b[0]), int(b[1]), int(b[2]), int(b[3])
-	if l < 4+l0+l1+l2+l3 {
+	if l != 4+8*(l0+l1+l2+l3) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 4, 4+l0*8
@@ -134,7 +134,7 @@ func (f *Five) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4])
-	if l < 5+l0+l1+l2+l3+l4 {
+	if l != 5+8*(l0+l1+l2+l3+l4) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 5, 5+l0*8
@@ -173,7 +173,7 @@ func (s *Six) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5])
-	if l < 6+l0+l1+l2+l3+l4+l5 {
+	if l != 6+8*(l0+l1+l2+l3+l4+l5) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 6, 6+l0*8
@@ -216,7 +216,7 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6])
-	if l < 7+l0+l1+l2+l3+l4+l5+l6 {
+	if l != 7+8*(l0+l1+l2+l3+l4+l5+l6) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 7, 7+l0*8
@@ -263,7 +263,7 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7])
-	if l < 8+l0+l1+l2+l3+l4+l5+l6+l7 {
+	if l != 8+8*(l0+l1+l2+l3+l4+l5+l6+l7) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 8, 8+l0*8
@@ -314,7 +314,7 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8])
-	if l < 9+l0+l1+l2+l3+l4+l5+l6+l7+l8 {
+	if l != 9+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 9, 9+l0*8
@@ -369,7 +369,7 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9])
-	if l < 10+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9 {
+	if l != 10+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 10, 10+l0*8
@@ -428,7 +428,7 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10])
-	if l < 11+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10 {
+	if l != 11+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 11, 11+l0*8
@@ -491,7 +491,7 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11])
-	if l < 12+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11 {
+	if l != 12+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 12, 12+l0*8
@@ -558,7 +558,7 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12])
-	if l < 13+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12 {
+	if l != 13+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 13, 13+l0*8
@@ -629,7 +629,7 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13])
-	if l < 14+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13 {
+	if l != 14+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 14, 14+l0*8
@@ -704,7 +704,7 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14])
-	if l < 15+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14 {
+	if l != 15+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 15, 15+l0*8
@@ -783,7 +783,7 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15])
-	if l < 16+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15 {
+	if l != 16+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 16, 16+l0*8
@@ -866,7 +866,7 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16])
-	if l < 17+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16 {
+	if l != 17+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 17, 17+l0*8
@@ -953,7 +953,7 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17])
-	if l < 18+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17 {
+	if l != 18+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 18, 18+l0*8
@@ -1044,7 +1044,7 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18])
-	if l < 19+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18 {
+	if l != 19+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 19, 19+l0*8
@@ -1139,7 +1139,7 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19])
-	if l < 20+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19 {
+	if l != 20+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 20, 20+l0*8
@@ -1238,7 +1238,7 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20])
-	if l < 21+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20 {
+	if l != 21+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 21, 21+l0*8
@@ -1341,7 +1341,7 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20]), int(b[21])
-	if l < 22+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21 {
+	if l != 22+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 22, 22+l0*8
@@ -1448,7 +1448,7 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20]), int(b[21]), int(b[22])
-	if l < 23+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22 {
+	if l != 23+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 23, 23+l0*8

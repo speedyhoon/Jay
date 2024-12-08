@@ -32,7 +32,7 @@ func (c *Car) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3 := int(b[0]), int(b[1]), int(b[2]), int(b[3])
-	if l < 41+l0+l1+l2+l3 {
+	if l != 41+(l0+l1+l2+l3) {
 		return jay.ErrUnexpectedEOB
 	}
 	c.Auto, c.Gearbox.Sequential, c.Gearbox.Automatic = jay.ReadBool3(b[4])

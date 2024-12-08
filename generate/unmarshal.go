@@ -59,24 +59,26 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 		return ""
 	}
 
-	assignments, values, conditions := make([]string, qty), make([]string, qty), make([]string, qty)
+	assignments, values := make([]string, qty), make([]string, qty)
+	var conditions []string
+	var sizeChecks []sizeCheck
 	for i, f := range s.variableLen {
 		assignments[i] = lenVariable(i)
 		values[i] = fmt.Sprintf("int(%s[%d])", s.bufferName, i)
 		if f.typ == tBoolS {
-			conditions[i] = printFunc(nameOf(jay.SizeBools, nil), assignments[i])
+			conditions = append(conditions, printFunc(nameOf(jay.SizeBools, nil), assignments[i]))
 		} else {
-			conditions[i] = assignments[i]
+			sizeChecks = append(sizeChecks, sizeCheck{name: assignments[i], bytesNeeded: f.elmSize})
 		}
 	}
 
 	return fmt.Sprintf(
-		"%s := %s\nif %s < %d+%s {\nreturn %s\n}\n",
+		"%s := %s\nif %s != %d+%s {\nreturn %s\n}\n",
 		strings.Join(assignments, ", "),
 		strings.Join(values, ", "),
 		s.lengthName,
 		totalSize,
-		strings.Join(conditions, "+"),
+		groupConditionSizes(sizeChecks, conditions),
 		exportedErr,
 	)
 }

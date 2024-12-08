@@ -65,7 +65,7 @@ func (c Cow) MarshalJ() (b []byte) {
 }
 
 func (c *Cow) UnmarshalJ(b []byte) error {
-	if len(b) < 4 {
+	if len(b) != 4 {
 		return jay.ErrUnexpectedEOB
 	}
 	c.Height = jay.ReadFloat32(b)

@@ -28,7 +28,7 @@ func (b Boat) MarshalJ() (y []byte) {
 }
 
 func (b *Boat) UnmarshalJ(y []byte) error {
-	if len(y) < 12 {
+	if len(y) != 12 {
 		return jay.ErrUnexpectedEOB
 	}
 	b.Price = jay.ReadFloat32(y[:4])
@@ -68,7 +68,7 @@ func (c Car) MarshalJ() (b []byte) {
 }
 
 func (c *Car) UnmarshalJ(b []byte) error {
-	if len(b) < 12 {
+	if len(b) != 12 {
 		return jay.ErrUnexpectedEOB
 	}
 	c.Price = jay.ReadFloat32(b[:4])
@@ -108,7 +108,7 @@ func (y Yacht) MarshalJ() (b []byte) {
 }
 
 func (y *Yacht) UnmarshalJ(b []byte) error {
-	if len(b) < 12 {
+	if len(b) != 12 {
 		return jay.ErrUnexpectedEOB
 	}
 	y.Price = jay.ReadFloat32(b[:4])

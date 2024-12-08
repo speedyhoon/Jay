@@ -64,6 +64,9 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 			if f.typ == "" {
 				f.typ = typ
 			}
+			if f.elmSize == 0 {
+				f.elmSize = isLen(f.typ)
+			}
 			f.isFixedLen = o.isLenFixed(f.typ)
 			return f, true
 		}
