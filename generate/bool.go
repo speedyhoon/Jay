@@ -23,13 +23,12 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bo
 	newList := fieldNamesArrays(s.bool, s.receiver)
 	l := len(newList)
 	for i := 0; i < l; i += 8 {
-		next8 := min(8, len(newList[i:]))
+		next8Qty := min(8, len(newList[i:]))
 
 		if s.returnInline {
-			b.WriteString(boolsFunc(newList, i, next8))
-			//bufWriteF(b, "%s.%s%d(%s)", pkgName, marshalBoolsFuncPrefix, next8, strings.Join(newList[i:i+next8], ", "))
+			b.WriteString(boolsFunc(newList, i, next8Qty))
 		} else {
-			bufWriteF(b, "%s[%d] = %s\n", s.bufferName, *byteIndex, boolsFunc(newList, i, next8)) // pkgName, marshalBoolsFuncPrefix, next8, strings.Join(newList[i:i+next8], ", "))
+			bufWriteF(b, "%s[%d] = %s\n", s.bufferName, *byteIndex, boolsFunc(newList, i, next8Qty))
 		}
 
 		if s.returnInline {
@@ -45,8 +44,9 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bo
 	}
 }
 
-func boolsFunc(newList []string, i, next8 int) string {
-	return fmt.Sprintf("%s.%s%d(%s)", pkgName, marshalBoolsFuncPrefix, next8, strings.Join(newList[i:i+next8], ", "))
+// boolsFunc generates a function call string to one of jay.BoolX functions depending on the quantity of bools between `i` and `next8Qty`.
+func boolsFunc(newList []string, i, next8Qty int) string {
+	return fmt.Sprintf("%s.%s%d(%s)", pkgName, marshalBoolsFuncPrefix, next8Qty, strings.Join(newList[i:i+next8Qty], ", "))
 }
 
 func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint, receiver string) {
