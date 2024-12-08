@@ -188,14 +188,14 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 			continue
 		}
 
-		fe, ok := s.option.isSupportedType(t.Type, dirList, s.dir)
-		if !ok {
+		names := getNames(t)
+		if len(names) == 0 {
 			fields = Remove(fields, i)
 			continue
 		}
 
-		names := getNames(t)
-		if len(names) == 0 {
+		fe, ok := s.option.isSupportedType(t.Type, dirList, s.dir)
+		if !ok {
 			fields = Remove(fields, i)
 			continue
 		}
