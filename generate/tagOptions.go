@@ -14,7 +14,7 @@ const (
 
 type tagOptions struct {
 	// The maximum and minimum value expected in the variable.
-	// Any value out of this range isn't guaranteed to be marshalled or unmarshaled correctly.
+	// Any value out of this range isn't guaranteed to be marshalled or unmarshalled correctly.
 	Max, Min tagSize
 
 	maxBytes uint
