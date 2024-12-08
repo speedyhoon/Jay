@@ -167,8 +167,6 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		c, template = jay.ReadFloat32, tFunc
 	case tFloat64:
 		c, template = jay.ReadFloat64, tFunc
-	case tTimeDuration:
-		c, template = jay.ReadDuration, tFunc
 	case tUint:
 		if f.structTyp.option.FixedUintSize {
 			if f.structTyp.option.Is32bit {
