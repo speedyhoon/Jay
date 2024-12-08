@@ -23,6 +23,7 @@ type Option struct {
 	MaxUintSize MaxSize
 
 	Is32bit bool
+	IsDebug bool
 
 	// MaxDefaultStrSize limits all strings to be within this length if a field tag is NOT present.
 	// Minimum:	1 (1 byte),

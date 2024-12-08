@@ -92,7 +92,10 @@ func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
 		if err != nil {
 			errors.Join(errs, err)
 			lg.Printf("makeFile err: %s,\ndirectory: %s,\npackage: %s\nsrc:\n%s\n", err, fl.pkg, dir, src)
-		} else {
+		}
+
+		if err == nil || o.IsDebug {
+			// Write to disk when success or when the debug flag is set.
 			output = append(output, Output{Dir: dir, Src: src})
 		}
 	}

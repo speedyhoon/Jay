@@ -27,6 +27,8 @@ jay my_file.go
 
 `-32` Force 32-bit output for `ints` & `uints`. _Defaults to your system's architecture._
 
+`-d` Debug mode, always write to disk. _Default: `false`_
+
 `-fi` Fixed int size. _Default: `true`_
 
 `-fu` Fixed uint size. _Default: `true`_

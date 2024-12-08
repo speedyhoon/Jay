@@ -3,6 +3,7 @@
 // Optional flags:
 //
 //	-32	Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.
+//	-d	Debug mode, always write to disk.
 //	-fi	Fixed int size.
 //	-fu	Fixed uint size.
 //	-o	Output file.
@@ -46,6 +47,7 @@ func main() {
 	var verbose bool
 
 	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.")
+	flag.BoolVar(&opt.IsDebug, "d", false, "Debug mode, always write to disk.")
 	flag.BoolVar(&opt.FixedIntSize, "fi", true, "Fixed int size.")
 	flag.BoolVar(&opt.FixedUintSize, "fu", true, "Fixed uint size.")
 	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
