@@ -12,7 +12,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 	if len(b) != 15 {
 		return jay.ErrUnexpectedEOB
 	}
-	o.One = [15]byte(b[:])
+	o.One = [15]byte(b)
 	return nil
 }
 

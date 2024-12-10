@@ -273,9 +273,6 @@ func (f *field) sliceExpr(at, end string) string {
 
 	if f.isFixedLen {
 		if f.isFirst && f.isLast {
-			if f.arraySize >= typeArray {
-				return fmt.Sprintf("%s[:]", f.structTyp.bufferName)
-			}
 			return f.structTyp.bufferName
 		}
 		if f.isFirst && at == "" { // `at == ""` is needed when structType contains variableLen types then `at` can't be absent because their sizes are placed before.
