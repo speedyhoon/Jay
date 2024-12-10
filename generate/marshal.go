@@ -25,7 +25,8 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	s.writeSingles(buf, &byteIndex, s.receiver, importJ)
 
 	for _, f := range s.fixedLen {
-		buf.WriteString(f.marshalLine(&byteIndex, utl.UtoA(byteIndex), "", importJ, ""))
+		at := utl.UtoA(byteIndex)
+		buf.WriteString(f.marshalLine(&byteIndex, at, "", importJ, ""))
 		buf.WriteString("\n")
 	}
 
@@ -275,7 +276,10 @@ func (f *field) sliceExpr(at, end string) string {
 		if f.isFirst && f.isLast {
 			return f.structTyp.bufferName
 		}
-		if f.isFirst && at == "" { // `at == ""` is needed when structType contains variableLen types then `at` can't be absent because their sizes are placed before.
+
+		// `at == ""` is needed when structType contains variableLen types
+		// then `at` can't be absent because their sizes are placed before.
+		if f.isFirst && at == "" {
 			return fmt.Sprintf("%s[:%s]", f.structTyp.bufferName, end)
 		}
 	}
