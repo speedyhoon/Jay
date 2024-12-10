@@ -1,4 +1,4 @@
-package fuzz33
+package fuzz08
 
 import (
 	"testing"
