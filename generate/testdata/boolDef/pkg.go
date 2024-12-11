@@ -1,4 +1,4 @@
-package main
+package boolDef
 
 type toggle bool
 
