@@ -4,36 +4,6 @@ import (
 	"github.com/speedyhoon/jay"
 )
 
-/*// MakeSize ...
-func (s *structTyp) MakeSize(b *bytes.Buffer) {
-	var qty uint
-	// TODO add bool sizes
-	var variableStructs []string
-	for _, x := range s.fixedLen {
-		qty += isLen(x.typ)
-		if x.typ == "struct" {
-			variableStructs = append(variableStructs, x.name)
-		}
-	}
-	var variableFields []string
-	for _, v := range s.variableLen {
-		qty += isLen(v.typ)
-		if v.typ == tString { //} isLenVariable(v.typ) {
-			variableFields = append(variableFields, v.name)
-		} else if v.typ == "struct" {
-			variableStructs = append(variableStructs, v.name)
-		}
-	}
-	bufWriteF(b,
-		"func (%s *%s) SizeJ() int {\nreturn %d%s%s\n}\n",
-		s.receiverName(),
-		s.name,
-		qty,
-		lengths(variableFields, s.receiverName()),
-		structs(variableStructs, s.receiverName()),
-	))
-}*/
-
 func (s *structTyp) calcSize() (qty uint) {
 	qty = uint(jay.SizeBools(len(s.bool)))
 
@@ -47,24 +17,6 @@ func (s *structTyp) calcSize() (qty uint) {
 	}
 	return qty
 }
-
-/*func lengths(names []string, receiver string) string {
-	if len(names) == 0 {
-		return ""
-	}
-	receiver = fmt.Sprintf("+len(%s.", receiver)
-	return receiver + strings.Join(names, ")"+receiver) + ")"
-}
-
-func structs(names []string, receiver string) string {
-	if len(names) == 0 {
-		return ""
-	}
-
-	//receiver = fmt.Sprintf(".SizeJ()+%s.", receiver)
-	return "+" + receiver + "." + strings.Join(names, ".SizeJ()+"+receiver+".") + ".SizeJ()"
-	//+c.Wheels.SizeJ()+c.Gearbox.SizeJ()+c.Roof.SizeJ()
-}*/
 
 // typeFuncSize returns the minimum quantity of bytes required to represent an empty or undefined value.
 func (f field) typeFuncSize() (size uint) {

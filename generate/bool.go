@@ -49,7 +49,7 @@ func boolsFunc(newList []string, i, next8Qty int) string {
 	return fmt.Sprintf("%s.%s%d(%s)", pkgName, marshalBoolsFuncPrefix, next8Qty, strings.Join(newList[i:i+next8Qty], ", "))
 }
 
-func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint, receiver string) {
+func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint) {
 	if len(s.bool) == 0 {
 		return
 	}
@@ -58,39 +58,12 @@ func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint, receiver str
 
 	l := len(newList)
 	for i := 0; i < l; i += 8 {
-		readBools2(newList[i:], b, *byteIndex, receiver, s.bufferName, uList[i:])
+		readBools2(newList[i:], b, *byteIndex, s.bufferName, uList[i:])
 		*byteIndex++
 	}
 }
 
-func fieldNames(fields []field, receiver string, isMarshalling bool) string {
-	var s []string
-	for i := range fields {
-		if isMarshalling && fields[i].isDef {
-			s = append(s, printFunc(fields[i].typ, pkgSelName(receiver, fields[i].name)))
-		} else {
-			s = append(s, pkgSelName(receiver, fields[i].name))
-		}
-	}
-	return strings.Join(s, ", ")
-}
-
-func readBools(bools []field, b *bytes.Buffer, byteIndex uint, receiver string, bufferName string) {
-	const marshalBoolsFuncPrefix = "ReadBool"
-
-	if len(bools) > 8 {
-		bools = bools[:8]
-	}
-
-	if isUnmarshalInline(bools) {
-		bufWriteF(b, "%s = %s\n", fieldNames(bools, receiver, false), unmarshalBoolsInline(bufferName, byteIndex, len(bools)))
-		return
-	}
-
-	bufWriteF(b, "%s = %s.%s%d(%s[%d])\n", fieldNames(bools, receiver, false), pkgName, marshalBoolsFuncPrefix, len(bools), bufferName, byteIndex)
-}
-
-func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, receiver string, bufferName string, uList []bool) {
+func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, bufferName string, uList []bool) {
 	const marshalBoolsFuncPrefix = "ReadBool"
 
 	if len(bools) > 8 {
@@ -98,20 +71,11 @@ func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, receiver string
 	}
 
 	if isUnmarshalInline2(uList) {
-		bufWriteF(b, "%s = %s\n", strings.Join(bools, ", ") /*fieldNames2(bools, receiver, false)*/, unmarshalBoolsInline(bufferName, byteIndex, len(bools)))
+		bufWriteF(b, "%s = %s\n", strings.Join(bools, ", "), unmarshalBoolsInline(bufferName, byteIndex, len(bools)))
 		return
 	}
 
-	bufWriteF(b, "%s = %s.%s%d(%s[%d])\n", strings.Join(bools, ", ") /*fieldNames2(bools, receiver, false)*/, pkgName, marshalBoolsFuncPrefix, len(bools), bufferName, byteIndex)
-}
-
-func isUnmarshalInline(bools []field) bool {
-	for _, b := range bools {
-		if b.isDef {
-			return true
-		}
-	}
-	return false
+	bufWriteF(b, "%s = %s.%s%d(%s[%d])\n", strings.Join(bools, ", "), pkgName, marshalBoolsFuncPrefix, len(bools), bufferName, byteIndex)
 }
 
 func isUnmarshalInline2(bools []bool) bool {

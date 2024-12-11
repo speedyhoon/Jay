@@ -13,7 +13,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
 
-	s.makeReadBools(buf, &byteIndex, s.receiver)
+	s.makeReadBools(buf, &byteIndex)
 	s.readSingles(buf, &byteIndex)
 
 	for _, f := range s.fixedLen {

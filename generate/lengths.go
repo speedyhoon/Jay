@@ -8,36 +8,6 @@ import (
 	"strings"
 )
 
-/*// LenDecl ...
-func (s *structTyp) LenDecl(b *bytes.Buffer) {
-	var qty uint
-	// TODO add bool sizes
-	var variableStructs []string
-	for _, x := range s.fixedLen {
-		qty += isLen(x.typ)
-		if x.typ == "struct" {
-			variableStructs = append(variableStructs, x.name)
-		}
-	}
-	var variableFields []string
-	for _, v := range s.variableLen {
-		qty += isLen(v.typ)
-		if v.typ == tString { //} isLenVariable(v.typ) {
-			variableFields = append(variableFields, v.name)
-		} else if v.typ == "struct" {
-			variableStructs = append(variableStructs, v.name)
-		}
-	}
-	bufWriteF(b,
-		"func (%s *%s) SizeJ() int {\nreturn %d%s%s\n}\n",
-		s.receiverName(),
-		s.name,
-		qty,
-		lengths2(variableFields, s.receiverName()),
-		structs2(variableStructs, s.receiverName()),
-	))
-}*/
-
 func joinSizes(qty uint, variableLen []field, importJ *bool) string {
 	var s []string
 	if qty != 0 {
@@ -77,9 +47,6 @@ func multiples(f field, lenVar string) string {
 func (s *structTyp) varLenFieldNames() (names []string) {
 	for _, v := range s.variableLen {
 		names = append(names, v.name)
-		//} else if v.typ == "struct" {
-		//variableStructs = append(variableStructs, v.name)
-		//}
 	}
 	return
 }
