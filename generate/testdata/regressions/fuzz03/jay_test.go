@@ -2,7 +2,6 @@ package fuzz03
 
 import (
 	"github.com/stretchr/testify/assert"
-	"log"
 	"testing"
 
 	"github.com/speedyhoon/rando"
@@ -602,8 +601,6 @@ func TestFuzz_3(t *testing.T) {
 	assert.Equal(t, expected.Om40t0dTFg4XxBk247p8v26OYHbQKDogx04o8qEmNMdbOP, actual.Om40t0dTFg4XxBk247p8v26OYHbQKDogx04o8qEmNMdbOP)
 	assert.Equal(t, expected.V4oAFTJfic0g5r7Aj864wCtu7lMblg0L7i42xUHfB3M4L4EejhqpxusAAASj7Y0b87xlUB0l6485C0n5iL832aknd28pG7L, actual.V4oAFTJfic0g5r7Aj864wCtu7lMblg0L7i42xUHfB3M4L4EejhqpxusAAASj7Y0b87xlUB0l6485C0n5iL832aknd28pG7L)
 	assert.Equal(t, expected.NEFmR3GYcsX67Uai11Ybyo4KyPhTa25E17EUEX36agNChN2j2k5064G830g08ta5Oje4rskK0xToMvYXWQYjCP21wFQF82xEbRw, actual.NEFmR3GYcsX67Uai11Ybyo4KyPhTa25E17EUEX36agNChN2j2k5064G830g08ta5Oje4rskK0xToMvYXWQYjCP21wFQF82xEbRw)
-	log.Println(expected.NEFmR3GYcsX67Uai11Ybyo4KyPhTa25E17EUEX36agNChN2j2k5064G830g08ta5Oje4rskK0xToMvYXWQYjCP21wFQF82xEbRw)
-	log.Println(actual.NEFmR3GYcsX67Uai11Ybyo4KyPhTa25E17EUEX36agNChN2j2k5064G830g08ta5Oje4rskK0xToMvYXWQYjCP21wFQF82xEbRw)
 	assert.Equal(t, expected.GsXO60OQk2J1D1Fo5wDU86as6fmGC3yR21UgU83YOE2ROf3Sd0XpN2BCjr6R6WLtW3h2hUunD2e7gOURL3ieJoq, actual.GsXO60OQk2J1D1Fo5wDU86as6fmGC3yR21UgU83YOE2ROf3Sd0XpN2BCjr6R6WLtW3h2hUunD2e7gOURL3ieJoq)
 	assert.Equal(t, expected.BUL7SnjImLQ, actual.BUL7SnjImLQ)
 
