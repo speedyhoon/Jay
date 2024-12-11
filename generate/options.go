@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	Auto = MaxSize(iota * 32)
+	BitAuto = MaxSize(iota * 32)
 	Bit32
 	Bit64
 )
@@ -97,7 +97,7 @@ func LoadOptions(opts ...Option) (o Option) {
 	}
 	o.strSizeOfDefault = bytesRequired(o.MaxDefaultStrSize)
 
-	if o.MaxIntSize == Auto || o.MaxIntSize > Bit32 && o.MaxIntSize < Bit64 {
+	if o.MaxIntSize == BitAuto || o.MaxIntSize > Bit32 && o.MaxIntSize < Bit64 {
 		o.MaxIntSize = 32 << (^uint(0) >> 63) // 32 or 64
 		return
 	}
