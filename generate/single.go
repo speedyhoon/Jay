@@ -34,7 +34,7 @@ func writeSingle(single field, b *bytes.Buffer, byteIndex uint, receiver, fun, b
 	thisField := pkgSelName(receiver, single.name)
 
 	if isMake {
-		bufWriteF(b, "%s[%d]=%s\n", bufferName, byteIndex, printFunc(fun, thisField))
+		bufWriteF(b, "%s[%d] = %s\n", bufferName, byteIndex, printFunc(fun, thisField))
 		return
 	}
 
