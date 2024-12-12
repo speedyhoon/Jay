@@ -4,7 +4,7 @@ package fuzz02
 
 import "github.com/speedyhoon/jay"
 
-func (f Fu6r) MarshalJ() (b []byte) {
+func (f *Fu6r) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := len(f.U4Pj88C5olYGp3KX0mSdkV2ho6dht0q4Fu27gonv1Ycd1Rx8IqV1TWUTSkL5), len(f.SE7HbL7NWgR837vBFD7iffVJC5J8xQ), len(f.OKm5aK0O5BX57Swj5OpXKamuMwDBVLb48WR2ogjgB1jOVSa1lTmDkG00BHII2t14Jc0NQ2euk87PowO3mKwE1u8), len(f.IxgfiX5d6AvngcOhPl74YLsO1w65vPH8HiWHLPBx2CU6ioQf6ckn18SW6uPpooY2Ca61l4d1I), len(f.Mg8NJ3h731j7A171myxF4BVAL4CeI50X8jINQ47R431Npy6OAaFSds322G3jGx7564M5s01), len(f.EVnAB8265), len(f.Iy0iPJl0X5nSUpnc4jTCK3bBk0Ter2wraBGae87n60T0NbAB8M3QOwY4H), len(f.OuOtmU55i6H2mhOq5a16ssav0l5ODKTArDHvy1g47U1N604kUaytKS3EFLemLAOE6SInRHCoYp8ER4oAeJ1IkC), len(f.LIqS4DP7I53w), len(f.M2x4QUbRe5f33B7xJBhBlF2t7bV0gtU2543yjjqH8ajkk50Gr3h6w5LhU45NUL24Xe2CYOl36xwAEvKl4c05m), len(f.TyMo5V0rubk7x3Vg4Xm1eCT03b7jWY12ytco2w0W0OPKtu1vbG20s4XdIDXTqB614j1rI6XjfXorr50p), len(f.ITRAJSLp2WIt4), len(f.XAAK8PpyoOqlaq2HhlcCu), len(f.KEXjQSIbfXi167o1I0Oof5XR2x40LtnHSC6H4okis0N4usFymN826hKSPaB4k634Wtu0F2), len(f.T), len(f.StlNX1673TufC6Pnffo7Fj1k5W3g5N5SkFtvA03551B73e6OioUjxg4tsL062N6GSmHsS1fL2), len(f.N)
 	b = make([]byte, 575+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
@@ -189,7 +189,7 @@ func (f *Fu6r) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16])
-	if l < 575+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16 {
+	if l != 575+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16 {
 		return jay.ErrUnexpectedEOB
 	}
 	f.IE7AoH662kmK3J7Swet8oBt1W3qdAPgA5jX3F0L8pnfJ8NBj06ab25YK446Ecj0d, f.URBrKp75I2lw6iDUWK, f.NMTA1o3h722DoFGHi8Nce15a = jay.ReadBool3(b[17])

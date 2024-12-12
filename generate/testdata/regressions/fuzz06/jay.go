@@ -4,21 +4,21 @@ package fuzz06
 
 import "github.com/speedyhoon/jay"
 
-func (w W0rkOE1IkyT3uxkJm7j1A0uicgE06WXWL7GyJdUa7UF4Q5SbLew0AOSi25rtjQA) MarshalJ() (b []byte) {
+func (w *W0rkOE1IkyT3uxkJm7j1A0uicgE06WXWL7GyJdUa7UF4Q5SbLew0AOSi25rtjQA) MarshalJ() (b []byte) {
 	b = make([]byte, 8)
 	jay.WriteUintX64(b, w.F1Oi0yLLnyFy062S3yjF0u8b8V765l504p0uO2)
 	return
 }
 
 func (w *W0rkOE1IkyT3uxkJm7j1A0uicgE06WXWL7GyJdUa7UF4Q5SbLew0AOSi25rtjQA) UnmarshalJ(b []byte) error {
-	if len(b) < 8 {
+	if len(b) != 8 {
 		return jay.ErrUnexpectedEOB
 	}
 	w.F1Oi0yLLnyFy062S3yjF0u8b8V765l504p0uO2 = jay.ReadUintX64(b)
 	return nil
 }
 
-func (i IEm60mY4B4GoD52333Ot6a1Dk1s2S2ie) MarshalJ() (b []byte) {
+func (i *IEm60mY4B4GoD52333Ot6a1Dk1s2S2ie) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := len(i.OgjUQm03PaKenDN5vD32wHA1UtObOk6s3i0u884Qx1NBr1jFMjLCLJ6bSKmF4Y), len(i.FyYW8DQ5nkkTm6Lwn818U37k0nwDq30a3wu3Q36n38XR1wLw21f581858aA), len(i.M1118RenfXHc32R4Sh316IX3BNVT3o7vE2DNFj5QLkkF44TXY66r3416g4v07f), len(i.Oi6JO1WS3YLfwN2gYBvWVaH4ycK6aR852r5a5LytY0TQTYb8f1V7B4r1Dtx8qWv0a6L), len(i.NWqXk874i3Q5Ni2MfkF0dTO38OL31G5PHtOejNFSObeT5hg71jusX2n1TNgQ7vi2S4wr6A4DcTj), len(i.Nkp7025aXM8NUQkVP), len(i.P316f1l105Vt1Msorsau4s056J4qfcYsGe8GPGukGMSsEbCdR0Ou23a3XOktRbu68juSvv128VdJV1hvrMw2N), len(i.VPomO8URx1r1au07rDGO6uRlaaFPbKy2), len(i.AH4Lnyg5K2dWwqJnY4nK8UiSc2LyH7TvXNu5pQLddsA5), len(i.BuORF4L4WV7lV1jaXBi4vPrVXATVx1Gd7e6ywiw4Xjx1v8411FeGy4x5WwG3hKob4mGKK24J1au4CQ3SnRBJH4JW), len(i.UH4xPp1ul5e7q12), len(i.Q7ud664857WOoi2Y6Hd3Px8w02A0wlP5hFO5rw7c4J1Y3BH3PyMLoC)
 	b = make([]byte, 470+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11)
@@ -171,7 +171,7 @@ func (i *IEm60mY4B4GoD52333Ot6a1Dk1s2S2ie) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11])
-	if l < 470+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11 {
+	if l != 470+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11 {
 		return jay.ErrUnexpectedEOB
 	}
 	i.QsU1442N030PaQ11kd6Mgi4B84LPmIc2I6FpbU76n4R0Wob6bot6K7im1n1vDj2epM26HMU11D30URh8, i.O88gA4FQG1RovDOHH2R8M77L1SDaJw488RH5F56K184P, i.J0gc5iCNd80C8wUE5iC5t3DaQdgaE, i.N6hduYNKiAGgw8He58Vt54J8M2s1D, i.L3aRJI3V43d1gsUKC81HXAf, i.P5e3W4evH50IbGq3nRTNK0Il01Q5Dc5831B6VwkjjPifga0L641o84ct27UOAWq1d3372v1n8ugmmc8eKjJjU2, i.G1L2by6tT2odPm32NO, i.OV11JU23EFV02jf = jay.ReadBool8(b[12])
@@ -317,7 +317,7 @@ func (i *IEm60mY4B4GoD52333Ot6a1Dk1s2S2ie) UnmarshalJ(b []byte) error {
 	return nil
 }
 
-func (q QU3Ymj8o3j80P1YySWyVrOB50hOHv63U3pc2KUqkt7fvbh3N) MarshalJ() (b []byte) {
+func (q *QU3Ymj8o3j80P1YySWyVrOB50hOHv63U3pc2KUqkt7fvbh3N) MarshalJ() (b []byte) {
 	b = make([]byte, 20)
 	b[0] = q.MbpAxkR0qC41
 	b[1] = byte(q.TLFh8QL56AO4MI7FGw1VEjCs1S43rK0Qwh6Rt3s0kA0EWR85)
@@ -328,7 +328,7 @@ func (q QU3Ymj8o3j80P1YySWyVrOB50hOHv63U3pc2KUqkt7fvbh3N) MarshalJ() (b []byte) 
 }
 
 func (q *QU3Ymj8o3j80P1YySWyVrOB50hOHv63U3pc2KUqkt7fvbh3N) UnmarshalJ(b []byte) error {
-	if len(b) < 20 {
+	if len(b) != 20 {
 		return jay.ErrUnexpectedEOB
 	}
 	q.MbpAxkR0qC41 = b[0]
@@ -339,7 +339,7 @@ func (q *QU3Ymj8o3j80P1YySWyVrOB50hOHv63U3pc2KUqkt7fvbh3N) UnmarshalJ(b []byte) 
 	return nil
 }
 
-func (y YGE1U7snuv8fY6jvYGBRyIWQRMFeb6F4RQUuJUTHyq7a24Ft153kGK70i35m2L7XJaXS5eWCxmASOs7Vk7) MarshalJ() (b []byte) {
+func (y *YGE1U7snuv8fY6jvYGBRyIWQRMFeb6F4RQUuJUTHyq7a24Ft153kGK70i35m2L7XJaXS5eWCxmASOs7Vk7) MarshalJ() (b []byte) {
 	l0 := len(y.G5V6BFov1B6nC7ND8SqikkF6xDr6ypUf0aMe50HO44Q1xC2P8XUg80CcR871qd4lK2TToh7356f5Fa8D4O86Uc06e3H2ejsD)
 	b = make([]byte, 1+l0)
 	b[0] = byte(l0)
@@ -355,7 +355,7 @@ func (y *YGE1U7snuv8fY6jvYGBRyIWQRMFeb6F4RQUuJUTHyq7a24Ft153kGK70i35m2L7XJaXS5eW
 		return jay.ErrUnexpectedEOB
 	}
 	l0 := int(b[0])
-	if l < 1+l0 {
+	if l != 1+l0 {
 		return jay.ErrUnexpectedEOB
 	}
 	if l0 != 0 {

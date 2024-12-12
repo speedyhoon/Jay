@@ -4,7 +4,7 @@ package fuzz03
 
 import "github.com/speedyhoon/jay"
 
-func (u U6Ba28tAovfMN2Gps74G0I5ErVW18M0rpFA7o7v78k1155Oa50taNaINQ14Mfv0S8CQHHo4272N03el3uMYVC370201VR3mKRYud) MarshalJ() (b []byte) {
+func (u *U6Ba28tAovfMN2Gps74G0I5ErVW18M0rpFA7o7v78k1155Oa50taNaINQ14Mfv0S8CQHHo4272N03el3uMYVC370201VR3mKRYud) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := len(u.YmswLkr8Dgw2), len(u.Ob3e7p2C8pH8ejwBUy61nFbHFjRueurwmi72j2tfr35cVjS5O3y), len(u.FbH70qR073dEIWDCXxpJ4a0qJhC4W72g2pS7D6gEQoYU2y7AW), len(u.KjOXx4VqJuY01327itq0cMJ), len(u.K43U6foxWwro6M4J1P), len(u.BUw556Nqj3ytxnel3bm05caCa5uTgDK0sDv730qrt62srrfS1LoOM821), len(u.B5iXRo45537P8Np1PLu1pqeRD6S5dCR8skLecU65k5h7UgC1iO82vSc0iWlnC352I7sK20FH4YJ), len(u.UajCPLMc1j135Y74dk3yS6Gj6DC618UDf6262A4pUB0GH8JY7aJjp7kAQVjO3Q40xAQCe7t), len(u.I1x65d4VlQOPjiW5an0NXbls4cos3d3g2Nk3T7715wM236UGDaSsr77OYOtDm4YC), len(u.H0xmq10YD74U08b5uGh2l0eOpvbw2qL55c23hF13vi15Tp62p8OPBfjwaHMEqKx05ilHlN3Cd47eAKIKHLP1x06V8MA7v4), len(u.S2ftw6CjCpV0l0ie1d2X50wT6Kmqphq1EaC4FBATe60T0j3AAFbCo3yJsYQ5754vANBej4mGog832baX78oTf7ek), len(u.WGfpP5D83jy240J0o033ExaQR1G6i1tOD5R8koKQBifcY17P), len(u.C68vT35W147w0t4j0wo0yM0bVJMTE64Wnj4pGJX35Q11H2ocrb01Av3UM0), len(u.W40BE7b61Jvc0c5syJ3I62sesO410oR2Bg1W8mRn04kEjwCY12xt5AbUTmcskSNBk7dG5QxM3tlVy8g)
 	b = make([]byte, 506+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13)
@@ -166,7 +166,7 @@ func (u *U6Ba28tAovfMN2Gps74G0I5ErVW18M0rpFA7o7v78k1155Oa50taNaINQ14Mfv0S8CQHHo4
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13])
-	if l < 506+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13 {
+	if l != 506+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13 {
 		return jay.ErrUnexpectedEOB
 	}
 	u.BKr2, u.M8fr2E7t6Im5aRsb7Q4gmwh4s3ssjki276VSh2bt1Djj6L, u.R5jb2V36AAs32Um6o4d7DP86rATW4REH82C355ohp0BmytuSXDPAq5D3384vlA2U1MMk87Uf783CyWd6PG2, u.D54GF0atqJiJouFiV0uk = jay.ReadBool4(b[14])
@@ -321,7 +321,7 @@ func (u *U6Ba28tAovfMN2Gps74G0I5ErVW18M0rpFA7o7v78k1155Oa50taNaINQ14Mfv0S8CQHHo4
 	return nil
 }
 
-func (m MYh4g5vnmfR0Cl0fDWMn13r7KlRB8J6c3la4bN4nD3m8wcT0eOFSUk3t) MarshalJ() (b []byte) {
+func (m *MYh4g5vnmfR0Cl0fDWMn13r7KlRB8J6c3la4bN4nD3m8wcT0eOFSUk3t) MarshalJ() (b []byte) {
 	l0 := len(m.Kd2CfE274tOMYecW72j28D51oIg183e5a8dmSYKlP0OE7uyKr48B)
 	b = make([]byte, 75+l0)
 	b[0] = byte(l0)
@@ -355,7 +355,7 @@ func (m *MYh4g5vnmfR0Cl0fDWMn13r7KlRB8J6c3la4bN4nD3m8wcT0eOFSUk3t) UnmarshalJ(b 
 		return jay.ErrUnexpectedEOB
 	}
 	l0 := int(b[0])
-	if l < 75+l0 {
+	if l != 75+l0 {
 		return jay.ErrUnexpectedEOB
 	}
 	m.U4fmGkQtfA5AaBl0bh7 = jay.ReadBool1(b[1])
@@ -382,7 +382,7 @@ func (m *MYh4g5vnmfR0Cl0fDWMn13r7KlRB8J6c3la4bN4nD3m8wcT0eOFSUk3t) UnmarshalJ(b 
 	return nil
 }
 
-func (h HUEnJpdeWBcCf7465T267y4A4Inn0l2CMNAkbC) MarshalJ() (b []byte) {
+func (h *HUEnJpdeWBcCf7465T267y4A4Inn0l2CMNAkbC) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := len(h.J6F7V6), len(h.Oy0MPln83S3lVB53TLKqXr4l4PsYN7Ej15qGQqd537ipGrJT3p34545mWS), len(h.K1qm1iY7mqd30O721bmawsKWI7FPA0J17cYa0f1X627Ly585han2P), len(h.FeJ42rl3jI2DU8NXOTv4qe7e7aT2Y8o22oPoi3cbfyO8qK8TD73), len(h.U07ppaq2x0c74vB66b1), len(h.Wa5K2552bSnB6123K46C8jpp22wIl73EOT03wMO2m0eP7513XFoVuNDjxLrcf471A2Id50Y07I1H43Di6eo8oC03), len(h.C4EvAraDW88Ae541f5KqR5l762C4dA7OVHWCy7h6w2KXWfqllip), len(h.Ju7Ag14p01uTrByUMK6Dj2tp6if13r0qLJEsIKKXR11Ih1Le61TSlMNW8JAT1FEKM0A1wTpojsWDY4vO24T), len(h.P2OC82hiO70N3I7BEW0ek5VyB142Pq7Psu4eI70xF434tf), len(h.BMT7QYrph2yT2ipQ0vl73y3rq4c7C2dUkr), len(h.Fq2t0), len(h.UB6BQ08jJ2aECLM4cqdB35Sw27aQ3H7u6n0G741L03qb3HFT55Nm1Q6JyN70CJ4W), len(h.FmE0GYdUFc45YI3pOVQ4o2F4C1Oh6S8jYWfxJ7b1qG4vs0KOuiU5), len(h.BSnQ177Y46It5hRI0Ls77VPtPftQ3R12tmH2), len(h.G3dMX37XYLwhrGy6kVs8r54uKl52766R8waSS83C3sEyF6n4UqCR7Dx0p)
 	b = make([]byte, 356+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14)
@@ -517,7 +517,7 @@ func (h *HUEnJpdeWBcCf7465T267y4A4Inn0l2CMNAkbC) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14])
-	if l < 356+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14 {
+	if l != 356+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14 {
 		return jay.ErrUnexpectedEOB
 	}
 	h.TvEVgWmkKd77vK4jci, h.EepjkP87kiwkf208w0oyVm58eBxV03PGP7cR8Qkql4s8fx5MAsAnc2EX576R1IR0eEoY40UX0kktMr0yoOhWJt2uMEP = jay.ReadBool2(b[15])
@@ -645,7 +645,7 @@ func (h *HUEnJpdeWBcCf7465T267y4A4Inn0l2CMNAkbC) UnmarshalJ(b []byte) error {
 	return nil
 }
 
-func (a AMly01oki2JC2n77UJT22AVlo2VAiUh06W43tGk43P7th6t6MSj3ejR5PrL103BBIN1ji) MarshalJ() (b []byte) {
+func (a *AMly01oki2JC2n77UJT22AVlo2VAiUh06W43tGk43P7th6t6MSj3ejR5PrL103BBIN1ji) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := len(a.Kc3xL2bowR7TwOLpKkDMP44WlLgB5Rh5Ro82kAob3knH34), len(a.IW0B1ASu1777OmeqCcPQ45lC5YX2iqq), len(a.U82Uao8X38P7YLkt4d8qmyl8dNBtG5HxD0DWt161SeQWT6mE), len(a.B46TTl2OIN0mgMdUcD8p21rsFa04Cm4sv), len(a.C81nWkpqm630B8F0hS107UXT5T8), len(a.E161pw2FDkee46cYa85y2Y4X8), len(a.UvSK), len(a.F6w1voK3gWJ7wphds0Li8dJQ52W503DLR2lfRup0XxJ0Jf5VBkLN4F56Q), len(a.C56q26r), len(a.NEFmR3GYcsX67Uai11Ybyo4KyPhTa25E17EUEX36agNChN2j2k5064G830g08ta5Oje4rskK0xToMvYXWQYjCP21wFQF82xEbRw)
 	b = make([]byte, 518+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9)
@@ -800,7 +800,7 @@ func (a *AMly01oki2JC2n77UJT22AVlo2VAiUh06W43tGk43P7th6t6MSj3ejR5PrL103BBIN1ji) 
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9])
-	if l < 518+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9 {
+	if l != 518+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9 {
 		return jay.ErrUnexpectedEOB
 	}
 	a.K3EJ1UrKYkbWAauAtqwSN8AuP1rPdIEf2WJ886V006o, a.V5JvbOv0107N8qM2m5EPuM3rTIEPGSWFpkGLt4tvRWAk66181NKn7u3C1jak6A4YRc0S6hGQ8l7, a.UNW8I, a.Lv6uxvmRy6k50UkufS0i3LAC622511QkNF3pDmUCGpH6P6teD3oMJS0HkL5OLBVmjelU4O56f45ypWqy6UTLXD3x7GY8Q8MPRx, a.XDUv6BF2hW1u588d76C6qS0F64Q5c, a.F2iof7ha2MhsYvU3MQhB6ivy6X, a.P2J035F8Nk1, a.PX06Ty52WFLl3HwggY387niD34HBEp4QTvD37SXFBog7vh02RUMc4OI1OKJ641Ib3r67P = jay.ReadBool8(b[10])
@@ -948,7 +948,7 @@ func (a *AMly01oki2JC2n77UJT22AVlo2VAiUh06W43tGk43P7th6t6MSj3ejR5PrL103BBIN1ji) 
 	return nil
 }
 
-func (o O0x5DXIdW5D267tvCvQ35CkEn7oYIU30oGOTYy5EfC42i8PPpwin8n55cNSWllXyod) MarshalJ() (b []byte) {
+func (o *O0x5DXIdW5D267tvCvQ35CkEn7oYIU30oGOTYy5EfC42i8PPpwin8n55cNSWllXyod) MarshalJ() (b []byte) {
 	l0 := len(o.K3tR0F62ayb40x4Gtn4e7kOol87p7sJo55jH548y8Y0fYeK6)
 	b = make([]byte, 145+l0)
 	b[0] = byte(l0)
@@ -994,7 +994,7 @@ func (o *O0x5DXIdW5D267tvCvQ35CkEn7oYIU30oGOTYy5EfC42i8PPpwin8n55cNSWllXyod) Unm
 		return jay.ErrUnexpectedEOB
 	}
 	l0 := int(b[0])
-	if l < 145+l0 {
+	if l != 145+l0 {
 		return jay.ErrUnexpectedEOB
 	}
 	o.CwnoiTT, o.Y4202JJ58lJFxC5M3IGSCM1arBRxjUG156YFm1UEu21rXb71xiMks3c4uRMH01JnvG4AkW8u1O5WbQfKTd0 = jay.ReadBool2(b[1])

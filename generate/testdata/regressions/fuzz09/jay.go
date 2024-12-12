@@ -8,7 +8,7 @@ import (
 	"github.com/speedyhoon/jay"
 )
 
-func (q QQXGKCa4tQi1lgGl81IDkGRMc3627IiA3Fh4aC6y3815PWv684S) MarshalJ() (b []byte) {
+func (q *QQXGKCa4tQi1lgGl81IDkGRMc3627IiA3Fh4aC6y3815PWv684S) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := len(q.PbOlLcl2ETwy20l3lknJxJNnFWlmkmRSWVe5HESpc4vaet0E), len(q.DT1cHS5U8uMF), len(q.E6tA6O74SrjSJCUU7oA6l7lu5wVeRQ60Vs0OHLhL0Ou4O76Vt8pMTvUW4A2gQ7sptUU0tegMpd5xxIGbr), len(q.V1Wdc2grgqnNH5u3TpV56YA32J7gBda4), len(q.UtEX65ni33Bt3rw8RuW8FmYblO6), len(q.E26f8OdVYlG1B6aq4Pv5), len(q.Tr1KYq0T4Uy1K24Lcq2y3BDyy2V01c8Ef7htMVVs5QGuR5J7kHfF4q5utq2Bk8HsSS30W38fp44edxrF4N7vXFKnBvGQPE), len(q.OTC2L4uIAG1PPR6358V0BE637REP8u2QWwDQkCo66Kolju2TdsvPOON3Cv32Ip1F7qgr4oy7LK5v3aeaKHs8YEGyFHyygi), len(q.CJ8h7YjJ7FNVh80yaLoq877s3Tk08657bSoJgMtcE7850421jnxG8Wxaev7swX6U4Ujw8TKMO7gVsVY2xGlQsP074EE1rHOoW65), len(q.PPL4MNNL5O4XIUcAmcN6QH5USM11Ww1ExnOX264F26), len(q.AY3f6ey75rMm081JexU2f1y00205t3Ex6fIRyO582B2V843b51q0S), len(q.NhcKkk8qm300W80Kn3G35mPi5awFuuW81UFPg5NE04hLJ3ceqPv), len(q.YV0sM8YJ4ntqRHl2dNuVn31WdTtcXV020), len(q.Uiix48QL6HC6c5QYI653p7TLjD1160xwURC6ues631tskuS11xa52y7A5pBi7rA20YnYQuXy28), len(q.JtfT1dnDQ7cAI3O50K1jN8aG31xF4efCoh), len(q.GWyS13GXAp4Oh52eOn3wGoL5c7I27BF3VPs1kR76b3fil), len(q.Ev7r6CQjD110elh3GRUNaUNj40l36Y81d4m45FV3MaoVl0u2sF48e7nJ8S4rkAHJMvlU20sFP5oLmM655BOc3NJ), len(q.WIdcImvm6OV7OVR30omY2gbNQfmJduQ81I451it4238j6q8hlU0B14Kx66DR5opEJ52)
 	b = make([]byte, 332+l0+l1+l2+l3+l4*8+l5+jay.SizeBools(l6)+l7+l8*8+l9+l10+l11+jay.SizeBools(l12)+l13*4+l14*4+jay.SizeBools(l15)+l16+l17)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
@@ -128,7 +128,7 @@ func (q *QQXGKCa4tQi1lgGl81IDkGRMc3627IiA3Fh4aC6y3815PWv684S) UnmarshalJ(b []byt
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17])
-	if l < 332+l0+l1+l2+l3+l4+l5+jay.SizeBools(l6)+l7+l8+l9+l10+l11+jay.SizeBools(l12)+l13+l14+jay.SizeBools(l15)+l16+l17 {
+	if l != 332+l0+l1+l2+l3+l5+l7+l9+l10+l11+l16+l17+8*(l4+l8)+4*(l13+l14)+jay.SizeBools(l6)+jay.SizeBools(l12)+jay.SizeBools(l15) {
 		return jay.ErrUnexpectedEOB
 	}
 	q.Kl6hsSyQgQLvH3K4rTu28T00sPm0nTQ6876X6FlY785TpT1ePW50Yyb2EXgXV1m = b[18]

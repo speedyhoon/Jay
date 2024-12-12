@@ -2,9 +2,13 @@
 
 package fuzz04
 
-import "github.com/speedyhoon/jay"
+import (
+	"time"
 
-func (q Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) MarshalJ() (b []byte) {
+	"github.com/speedyhoon/jay"
+)
+
+func (q *Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23 := len(q.BpFSVdnYw6O5h2XMpnkM8N38QT0k50Pq7wrDk5245y), len(q.P2Id42yn3anx257X3y4CqaJ7r8EAToB8AV6abm5lm4Di31), len(q.BAvQBJfic53B4kC63YYvNNS8W87dLy4p1F6HXJ7i0J7j14CNu646836AUmtKlvTbj1X5YWw68S2858mdParjE3l1iQF3), len(q.PnmKu458Q4igmMV8Gl3L4eDD5q6rtx64GW4j8s0iG61es8wO1M6FRh1VJN4cw5R8DC7gen08CyQMrDP0SaXRv), len(q.J552j3873lO4B7Bw6kK48g5aC8tU6rD4eK5T22B5biFD1S2F6mwF5O6ov53O202R1E4Lj2ylomuInTmBlK4RAr5ri), len(q.O3qu2PK53aEGttH176AogGOjsy6rEg8HTalw2hq2ls436m5n6hNt4dUu1mfYH37hFmA8LFCk4sM1k4f4WL4kQxUu08BGPkS35I), len(q.Bx5kt2Gg4yniuYV1ddD5LIs3sxw48rARyrCL4e81K88TNDAD), len(q.WF0nl2T16285lih24hVJc0otr3AW24fcH8dM4cWeM4Q), len(q.SQ8CtdJgYD1Y8gcrY7hxusr4h5Qy46N1WoomLnA3rJG5sJccRy8LU7UF5nheS3148S6mbTw3L1NbDNnLyxM370qyJpL), len(q.Wf7Lpj), len(q.RE406VUn8Iq82dBCh8XU72W), len(q.Yn4sa), len(q.SIgmG5b7b6qi25FXyg82TyOkl3h2M27XBQtvf752jbR2tJ82asNUB6Co48), len(q.F70LgMAUVnmu3sX8H5yCFeuOJXF60nU5R7Mnbnx), len(q.AqE3Wq33IIYqc2PgLGEA37), len(q.P0mahNonYRtsf30qLU4h326PNpU760gA52H01BV586p5jOhSgdWcIcS5tfdvX255LePW6seY5f), len(q.OrF6E5Q23JX6QoWL28JYs50Ki07K268bu87UvC0TB7e63Nki0c4vUyRlb27UC4O3815Y5GGc22gKyQTi7o5NS034tYfk0), len(q.U5p48MmI70i0kHHTgYefyIwfo1Q86Up82B3d715IAPMFRuG8HIVtO68U5mQ41gCM3v71wx5Bn1hXiN3RfBqchjd8644), len(q.QGXDW54VLl51djg70jnqw11Ak35W4L7F4hHLds8X7YeBM1sD53qEl6eYO05R0D17y4OSBmy3SB), len(q.UT4oue1045A4hQ8Ag8Clw1DG7bX1BCsc6aqVj), len(q.Dwg3FkePFs730fYO48bR65sl5b6CJ57yE1C86t1DDJ7is2c18pdocaQ5QTus), len(q.D3jRq7LY47i14qmwqj1rfRgC1p5Yj1oc3nwS6Gb3), len(q.L7Sq22QInvGdelY7n0KP5BEKDqq2J1hw0), len(q.I7671q4xhm7i63p28IC)
 	b = make([]byte, 422+jay.SizeBools(l0)+l1+l2+jay.SizeBools(l3)+jay.SizeBools(l4)+l5+l6+l7+l8+l9+jay.SizeBools(l10)+l11+l12+l13+l14+jay.SizeBools(l15)+l16+jay.SizeBools(l17)+l18+l19+jay.SizeBools(l20)+l21+l22+l23)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21], b[22], b[23] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20), byte(l21), byte(l22), byte(l23)
@@ -32,14 +36,14 @@ func (q Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) MarshalJ() (b []byte) {
 	jay.WriteFloat32(b[48:52], q.VRek64TuxhlY3DdYIB5lLkIlO47Eg87U4ySq368QAR1hOfRqt5xeacaHi2o0EITryI06TT01o4OP7sP3IA87woDPR58jYLW4HU6T)
 	jay.WriteIntX64(b[52:60], q.B)
 	jay.WriteInt64(b[60:68], q.Xbie7bO16FI8mVy8auaP0fiX41V47ADyw8YfuIxI1jA0r2rdx77n7mM3CqPcfpflrh1KwgVF2OQ)
-	jay.WriteDuration(b[68:76], q.Q6865Q22Jptyvi73C55661MsdYIe8p6H6y5Yi4dt0751OubM7621cUiD)
+	jay.WriteInt64(b[68:76], int64(q.Q6865Q22Jptyvi73C55661MsdYIe8p6H6y5Yi4dt0751OubM7621cUiD))
 	jay.WriteInt32(b[76:80], q.GKKiPQ7NKTHwFpy6E5u5CCa3xc44m654GW0yj5T243CPuutQ8VO5k7)
 	jay.WriteInt32(b[80:84], q.OdHK6sOaq1375Q7Bo33708cGH7TsKLESyX10)
-	jay.WriteDuration(b[84:92], q.Mp37niu7QOrMa7h7vsyQ74S5L5B7Vc50bqkJ3bM1434Q46048iK0O8)
+	jay.WriteInt64(b[84:92], int64(q.Mp37niu7QOrMa7h7vsyQ74S5L5B7Vc50bqkJ3bM1434Q46048iK0O8))
 	jay.WriteInt64(b[92:100], q.OPx47t6OaXA6D1iMlok81h6g1to87u8T03tjm4tC5F3rkWopq6U2Fg2lRO6jhrC4yMfdniLsmK3w4pLsl)
 	jay.WriteInt16(b[100:102], q.IXq2m5JXO4m7358l7wNX3mONDAfi18bhp101s750C7t2E60BSE1cXc8MMGWTv78m3185CQm1KiqChJDR1m)
 	jay.WriteUint16(b[102:104], q.FjT8A6kylfRA33TTiX4p8ppqo3UTPg80i2a0ob0RsfwccN2bW2R6qleNhUIg52h4TTIQLXjVUy1v764wGG17TYy5uNlh46Lkwihc)
-	jay.WriteDuration(b[104:112], q.KX6KB242wuQom637CQpiF2o4fYuoGqhNS43dUR5q7fx)
+	jay.WriteInt64(b[104:112], int64(q.KX6KB242wuQom637CQpiF2o4fYuoGqhNS43dUR5q7fx))
 	jay.WriteInt64(b[112:120], q.VOfgs8YmWH3TyTH4vPB7Pgm2fe6It5U6VV8HKlBO6RX04GS4jObL55nkQlyvh6q3s72r4Um1H)
 	jay.WriteFloat64(b[120:128], q.Ny70AYu0m7f2BF875NnR0mxSSku0k3I6K2Jtn5FgFNXbXCooi6jCX7w4bb)
 	jay.WriteUintX64(b[128:136], q.RxIbFj48BQIT83gqW3Ss)
@@ -74,8 +78,8 @@ func (q Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[288:292], q.UVUfM7gpJ7BT1G)
 	jay.WriteTime(b[292:300], q.J4r3VYQ47Y648c02Td33t0GXyAYfB8CQx441pOOo0bETnmUV04x0hpE2N8DIuGLK054e8dCnt5F10OfJSwy4ePofJLl07t2x)
 	jay.WriteTime(b[300:308], q.NL8vL4O6lU4a1lLilKR4DpVY7Va26Bsx3FBdj5PDu4Vxre4H61EOs0vfTyj4w03Tvi7G)
-	jay.WriteDuration(b[308:316], q.ITa44b0qEFO7mQa6HYDYGC0658Q3VnO0okjhd4Pr8S3e4VCagsJ)
-	jay.WriteDuration(b[316:324], q.DTIK5Kc1dnTLJD0yXnVGQbcnRd80CRD7Y0nl6Pr84v2YDINY6r2wX3Juy5015d7QaH8kHoK0U)
+	jay.WriteInt64(b[308:316], int64(q.ITa44b0qEFO7mQa6HYDYGC0658Q3VnO0okjhd4Pr8S3e4VCagsJ))
+	jay.WriteInt64(b[316:324], int64(q.DTIK5Kc1dnTLJD0yXnVGQbcnRd80CRD7Y0nl6Pr84v2YDINY6r2wX3Juy5015d7QaH8kHoK0U))
 	jay.WriteInt32(b[324:328], q.C8mgyC4Rn1i2sFlaW58Y2syaFgCxYWDH53kWYFhlVoP0rCu740mj775x5a0TCe20cCIeCmBv1Ir)
 	jay.WriteUint64(b[328:336], q.Ssl1Y2IYkSbfwq267Iul0j0rBM866sF0x4)
 	jay.WriteFloat32(b[336:340], q.PtR4S5r)
@@ -91,7 +95,7 @@ func (q Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[384:388], q.AVfh7kRDOR0uD0oj741p36suHUJ5cNMVUp1T054xr424fl5MddANF83NvM3l8AU3e0h7QCeLyF)
 	jay.WriteTime(b[388:396], q.SRadVg84D65WhgObcblP6cEYw5utsy36JRV446V1W83vf2uG6M4Q53h2U7G54DjQW4E8Pq1IFJWe8nPoa)
 	jay.WriteInt32(b[396:400], q.FhDn1lOLx6JJ1sVMtYsGd7jYi)
-	jay.WriteDuration(b[400:408], q.M005s72q66yONw1xWnkyiHyQc5r4OqswY5irSc5B6S44Nl1J6B2u3MFCOUGhfHkV111w78nUvfvId0hHyMRxBK)
+	jay.WriteInt64(b[400:408], int64(q.M005s72q66yONw1xWnkyiHyQc5r4OqswY5irSc5B6S44Nl1J6B2u3MFCOUGhfHkV111w78nUvfvId0hHyMRxBK))
 	jay.WriteFloat64(b[408:416], q.IyA6xEMSdFvkwuvywc2I8v62Qirwwh43sa5AKRRw82J1xQ6Ti8sF22Gv0QkUO018ArB8Gsn33YdXNesy84h6lmW57V73y1J17)
 	jay.WriteUint16(b[416:418], q.UF8k2Rkj547xswX2pidxJlfa7JsA6brdjg36Lj8M01433rxRWOd10iOhN5HG4Ly7jEw0vqx57)
 	jay.WriteFloat32(b[418:422], q.BXnmcBO4aos4P8R2)
@@ -171,7 +175,7 @@ func (q *Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) UnmarshalJ(b []byte) e
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20]), int(b[21]), int(b[22]), int(b[23])
-	if l < 422+jay.SizeBools(l0)+l1+l2+jay.SizeBools(l3)+jay.SizeBools(l4)+l5+l6+l7+l8+l9+jay.SizeBools(l10)+l11+l12+l13+l14+jay.SizeBools(l15)+l16+jay.SizeBools(l17)+l18+l19+jay.SizeBools(l20)+l21+l22+l23 {
+	if l != 422+l1+l2+l5+l6+l7+l8+l9+l11+l12+l13+l14+l16+l18+l19+l21+l22+l23+jay.SizeBools(l0)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l10)+jay.SizeBools(l15)+jay.SizeBools(l17)+jay.SizeBools(l20) {
 		return jay.ErrUnexpectedEOB
 	}
 	q.Jftj8IQwesahcT66m1S3VKE6s088UN3, q.IOP7C6s0YfEeaE42HRgjQ4boHKN73dd4pCQirC8Xq3WTt2f70YGQOccH30QPU7w, q.MU5cGjp0rlXHlW7012Lq24d6LEV8gj8H2t11P283c5C8T8Tqp5rGnQhAqoKbq306k5B01ddhjFO877lLW3hW86N, q.I40U6O3HjVY6XsXItBG4L1cM8F0y8C04SMnfX7cg, q.B23dX171QfAKen6yi02kv2Yl6AbHyQsg8p0t726UTaG4MOrHvc4FlwOL0w28M75AdVcws250rfiN6Y0c4QVeYa, q.VO2JSRen8AXE10qsg74CVlg460iV2JB4XFAu6At, q.CayliklBtHGncMWNqa466V1A27O5fjQfu3TMO7UI4anVu0oItV45eBL71Ju = jay.ReadBool7(b[24])
@@ -198,14 +202,14 @@ func (q *Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) UnmarshalJ(b []byte) e
 	q.VRek64TuxhlY3DdYIB5lLkIlO47Eg87U4ySq368QAR1hOfRqt5xeacaHi2o0EITryI06TT01o4OP7sP3IA87woDPR58jYLW4HU6T = jay.ReadFloat32(b[48:52])
 	q.B = jay.ReadIntX64(b[52:60])
 	q.Xbie7bO16FI8mVy8auaP0fiX41V47ADyw8YfuIxI1jA0r2rdx77n7mM3CqPcfpflrh1KwgVF2OQ = jay.ReadInt64(b[60:68])
-	q.Q6865Q22Jptyvi73C55661MsdYIe8p6H6y5Yi4dt0751OubM7621cUiD = jay.ReadDuration(b[68:76])
+	q.Q6865Q22Jptyvi73C55661MsdYIe8p6H6y5Yi4dt0751OubM7621cUiD = time.Duration(jay.ReadInt64(b[68:76]))
 	q.GKKiPQ7NKTHwFpy6E5u5CCa3xc44m654GW0yj5T243CPuutQ8VO5k7 = jay.ReadInt32(b[76:80])
 	q.OdHK6sOaq1375Q7Bo33708cGH7TsKLESyX10 = jay.ReadInt32(b[80:84])
-	q.Mp37niu7QOrMa7h7vsyQ74S5L5B7Vc50bqkJ3bM1434Q46048iK0O8 = jay.ReadDuration(b[84:92])
+	q.Mp37niu7QOrMa7h7vsyQ74S5L5B7Vc50bqkJ3bM1434Q46048iK0O8 = time.Duration(jay.ReadInt64(b[84:92]))
 	q.OPx47t6OaXA6D1iMlok81h6g1to87u8T03tjm4tC5F3rkWopq6U2Fg2lRO6jhrC4yMfdniLsmK3w4pLsl = jay.ReadInt64(b[92:100])
 	q.IXq2m5JXO4m7358l7wNX3mONDAfi18bhp101s750C7t2E60BSE1cXc8MMGWTv78m3185CQm1KiqChJDR1m = jay.ReadInt16(b[100:102])
 	q.FjT8A6kylfRA33TTiX4p8ppqo3UTPg80i2a0ob0RsfwccN2bW2R6qleNhUIg52h4TTIQLXjVUy1v764wGG17TYy5uNlh46Lkwihc = jay.ReadUint16(b[102:104])
-	q.KX6KB242wuQom637CQpiF2o4fYuoGqhNS43dUR5q7fx = jay.ReadDuration(b[104:112])
+	q.KX6KB242wuQom637CQpiF2o4fYuoGqhNS43dUR5q7fx = time.Duration(jay.ReadInt64(b[104:112]))
 	q.VOfgs8YmWH3TyTH4vPB7Pgm2fe6It5U6VV8HKlBO6RX04GS4jObL55nkQlyvh6q3s72r4Um1H = jay.ReadInt64(b[112:120])
 	q.Ny70AYu0m7f2BF875NnR0mxSSku0k3I6K2Jtn5FgFNXbXCooi6jCX7w4bb = jay.ReadFloat64(b[120:128])
 	q.RxIbFj48BQIT83gqW3Ss = jay.ReadUintX64(b[128:136])
@@ -240,8 +244,8 @@ func (q *Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) UnmarshalJ(b []byte) e
 	q.UVUfM7gpJ7BT1G = jay.ReadInt32(b[288:292])
 	q.J4r3VYQ47Y648c02Td33t0GXyAYfB8CQx441pOOo0bETnmUV04x0hpE2N8DIuGLK054e8dCnt5F10OfJSwy4ePofJLl07t2x = jay.ReadTime(b[292:300])
 	q.NL8vL4O6lU4a1lLilKR4DpVY7Va26Bsx3FBdj5PDu4Vxre4H61EOs0vfTyj4w03Tvi7G = jay.ReadTime(b[300:308])
-	q.ITa44b0qEFO7mQa6HYDYGC0658Q3VnO0okjhd4Pr8S3e4VCagsJ = jay.ReadDuration(b[308:316])
-	q.DTIK5Kc1dnTLJD0yXnVGQbcnRd80CRD7Y0nl6Pr84v2YDINY6r2wX3Juy5015d7QaH8kHoK0U = jay.ReadDuration(b[316:324])
+	q.ITa44b0qEFO7mQa6HYDYGC0658Q3VnO0okjhd4Pr8S3e4VCagsJ = time.Duration(jay.ReadInt64(b[308:316]))
+	q.DTIK5Kc1dnTLJD0yXnVGQbcnRd80CRD7Y0nl6Pr84v2YDINY6r2wX3Juy5015d7QaH8kHoK0U = time.Duration(jay.ReadInt64(b[316:324]))
 	q.C8mgyC4Rn1i2sFlaW58Y2syaFgCxYWDH53kWYFhlVoP0rCu740mj775x5a0TCe20cCIeCmBv1Ir = jay.ReadInt32(b[324:328])
 	q.Ssl1Y2IYkSbfwq267Iul0j0rBM866sF0x4 = jay.ReadUint64(b[328:336])
 	q.PtR4S5r = jay.ReadFloat32(b[336:340])
@@ -257,7 +261,7 @@ func (q *Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) UnmarshalJ(b []byte) e
 	q.AVfh7kRDOR0uD0oj741p36suHUJ5cNMVUp1T054xr424fl5MddANF83NvM3l8AU3e0h7QCeLyF = jay.ReadInt32(b[384:388])
 	q.SRadVg84D65WhgObcblP6cEYw5utsy36JRV446V1W83vf2uG6M4Q53h2U7G54DjQW4E8Pq1IFJWe8nPoa = jay.ReadTime(b[388:396])
 	q.FhDn1lOLx6JJ1sVMtYsGd7jYi = jay.ReadInt32(b[396:400])
-	q.M005s72q66yONw1xWnkyiHyQc5r4OqswY5irSc5B6S44Nl1J6B2u3MFCOUGhfHkV111w78nUvfvId0hHyMRxBK = jay.ReadDuration(b[400:408])
+	q.M005s72q66yONw1xWnkyiHyQc5r4OqswY5irSc5B6S44Nl1J6B2u3MFCOUGhfHkV111w78nUvfvId0hHyMRxBK = time.Duration(jay.ReadInt64(b[400:408]))
 	q.IyA6xEMSdFvkwuvywc2I8v62Qirwwh43sa5AKRRw82J1xQ6Ti8sF22Gv0QkUO018ArB8Gsn33YdXNesy84h6lmW57V73y1J17 = jay.ReadFloat64(b[408:416])
 	q.UF8k2Rkj547xswX2pidxJlfa7JsA6brdjg36Lj8M01433rxRWOd10iOhN5HG4Ly7jEw0vqx57 = jay.ReadUint16(b[416:418])
 	q.BXnmcBO4aos4P8R2 = jay.ReadFloat32(b[418:422])
@@ -331,7 +335,7 @@ func (q *Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj) UnmarshalJ(b []byte) e
 	return nil
 }
 
-func (l LhUFP2bnKB64O0s75eXIU233RnmTG8f83O1L4JgOJv113DH7lGE7l3BVd57K28Hls3pUb1POHDUDk7wi44vWN) MarshalJ() (b []byte) {
+func (l *LhUFP2bnKB64O0s75eXIU233RnmTG8f83O1L4JgOJv113DH7lGE7l3BVd57K28Hls3pUb1POHDUDk7wi44vWN) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8 := len(l.YF5J), len(l.OOS8HHq6I6g7BRPl7w5csdp1mG4M36j2YgIU7BJVsu50SbbaAdpcQGM5T0jy6311s15NAl2iRE2rDL3tS8dxLhO3Sd4MA6f), len(l.ATW0Hj7qWNvNyj3a), len(l.TlYOTcd3tcIEctTItohN62Q55oqQag4m2qP43P7WI6K03), len(l.LyP0r48F5dPLT32gCu1), len(l.Lb54YTfM3e3I365kN5n), len(l.NJ5q77yYR6IRby1Eq3r433Kc744QVnFm278x5op13yETCq4jPS0Aa2u3lt), len(l.YgvG74ONXV), len(l.LwNPa82fdhLkr70Ym3iOLNDCEu2kP7efIBIS53u3oj064t5pp6Ud2WurXE1RjRC28J4QbslGFS6bv44)
 	b = make([]byte, 203+l0+l1+l2+l3+jay.SizeBools(l4)+l5+l6+l7+l8)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8)
@@ -344,18 +348,18 @@ func (l LhUFP2bnKB64O0s75eXIU233RnmTG8f83O1L4JgOJv113DH7lGE7l3BVd57K28Hls3pUb1PO
 	jay.WriteTime(b[39:47], l.QyvJ18Xg4YldJhdfeI7T053A5pX3gf3S58lIP)
 	jay.WriteUint32(b[47:51], l.KcmgPLhO4156lm2cH7hEDyPCgh0O6loULt84nOaWt1Jv784OWG4e7H2EB4YLvlv4C)
 	jay.WriteIntX64(b[51:59], l.D4dlSR83t167cC8kRaA1xtDn)
-	jay.WriteDuration(b[59:67], l.JHe6E4G6FK8k3oKn3r18Iho7O65loRRBO)
+	jay.WriteInt64(b[59:67], int64(l.JHe6E4G6FK8k3oKn3r18Iho7O65loRRBO))
 	jay.WriteInt16(b[67:69], l.F4pSOh8K68CEq4kP7iAg2)
 	jay.WriteInt32(b[69:73], l.RTrM32Sc7WFjrBrd5162n48g1dMNoHGBB0GSrw2uN8xmCljO5V4gJ)
 	jay.WriteFloat64(b[73:81], l.KHTrPXA2427ouM0nlJQa6KGkCwJv3uwft0y2yKUVVO2AOo)
 	jay.WriteTime(b[81:89], l.QuR47T5Sv50dvM3tg2EPN413Npk47)
 	jay.WriteUint64(b[89:97], l.KhM0bW3C4idS73silm4eLsadgt2wm0Xpp4)
 	jay.WriteUint16(b[97:99], l.PS67470bR5WSwYKmsg0S1kpLnDN63qFYnQogf1v38u0K836b0IISmAxoa64IPfvrTN0Ral5UB)
-	jay.WriteDuration(b[99:107], l.GuCJyIud45baP38G27CrO1s3AEnIA4Q1orbAgOkV7p00RnI6y0Y3fSvu8b6)
+	jay.WriteInt64(b[99:107], int64(l.GuCJyIud45baP38G27CrO1s3AEnIA4Q1orbAgOkV7p00RnI6y0Y3fSvu8b6))
 	jay.WriteFloat64(b[107:115], l.RE6c1RGsQDDy4R5n)
 	jay.WriteInt64(b[115:123], l.I8LGNwKCqU87h5eyBJ3oiQ42G5TAW5MHvVsO03p74WMOutf)
-	jay.WriteDuration(b[123:131], l.O2NFfw378RHeCu2yT6pBL8Hh6Nbn26xwcj08c4Q5s2j6r75e1gq718bvP03F50U2ONIi68ksyHt7GtRNP2LR4V)
-	jay.WriteDuration(b[131:139], l.FcB3T7oh70YEWg3WV8Qk1RwMSb4bsUG8PU51Bf513p2SBqLd5a3tB7rkEMSFMQWi8KR3b23wl6qOpY0UND3w)
+	jay.WriteInt64(b[123:131], int64(l.O2NFfw378RHeCu2yT6pBL8Hh6Nbn26xwcj08c4Q5s2j6r75e1gq718bvP03F50U2ONIi68ksyHt7GtRNP2LR4V))
+	jay.WriteInt64(b[131:139], int64(l.FcB3T7oh70YEWg3WV8Qk1RwMSb4bsUG8PU51Bf513p2SBqLd5a3tB7rkEMSFMQWi8KR3b23wl6qOpY0UND3w))
 	jay.WriteUint64(b[139:147], l.SL2jP4V531iHE)
 	jay.WriteTime(b[147:155], l.EMUl1q314N1I2by45DPaX5qrKX158Q8bIgUeToLX2b0tkLYJtY2j0vNO18Evw0)
 	jay.WriteIntX64(b[155:163], l.EI3qMdBg43ex15r01fWbuvxu1qcQQ7PN8S17oIC8hpb12Jca312FSHqWnyM222xpoJ85CWk2y7LP2w2f1Rc73kKHUcR7d8i)
@@ -400,7 +404,7 @@ func (l *LhUFP2bnKB64O0s75eXIU233RnmTG8f83O1L4JgOJv113DH7lGE7l3BVd57K28Hls3pUb1P
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8])
-	if z < 203+l0+l1+l2+l3+jay.SizeBools(l4)+l5+l6+l7+l8 {
+	if z != 203+l0+l1+l2+l3+l5+l6+l7+l8+jay.SizeBools(l4) {
 		return jay.ErrUnexpectedEOB
 	}
 	l.OBCSty54QJ04I7ONWQ7e6753DWrsLQY400Q74H5388442g44u3P1j1EMsEDyA0037HETBt = int8(b[9])
@@ -412,18 +416,18 @@ func (l *LhUFP2bnKB64O0s75eXIU233RnmTG8f83O1L4JgOJv113DH7lGE7l3BVd57K28Hls3pUb1P
 	l.QyvJ18Xg4YldJhdfeI7T053A5pX3gf3S58lIP = jay.ReadTime(b[39:47])
 	l.KcmgPLhO4156lm2cH7hEDyPCgh0O6loULt84nOaWt1Jv784OWG4e7H2EB4YLvlv4C = jay.ReadUint32(b[47:51])
 	l.D4dlSR83t167cC8kRaA1xtDn = jay.ReadIntX64(b[51:59])
-	l.JHe6E4G6FK8k3oKn3r18Iho7O65loRRBO = jay.ReadDuration(b[59:67])
+	l.JHe6E4G6FK8k3oKn3r18Iho7O65loRRBO = time.Duration(jay.ReadInt64(b[59:67]))
 	l.F4pSOh8K68CEq4kP7iAg2 = jay.ReadInt16(b[67:69])
 	l.RTrM32Sc7WFjrBrd5162n48g1dMNoHGBB0GSrw2uN8xmCljO5V4gJ = jay.ReadInt32(b[69:73])
 	l.KHTrPXA2427ouM0nlJQa6KGkCwJv3uwft0y2yKUVVO2AOo = jay.ReadFloat64(b[73:81])
 	l.QuR47T5Sv50dvM3tg2EPN413Npk47 = jay.ReadTime(b[81:89])
 	l.KhM0bW3C4idS73silm4eLsadgt2wm0Xpp4 = jay.ReadUint64(b[89:97])
 	l.PS67470bR5WSwYKmsg0S1kpLnDN63qFYnQogf1v38u0K836b0IISmAxoa64IPfvrTN0Ral5UB = jay.ReadUint16(b[97:99])
-	l.GuCJyIud45baP38G27CrO1s3AEnIA4Q1orbAgOkV7p00RnI6y0Y3fSvu8b6 = jay.ReadDuration(b[99:107])
+	l.GuCJyIud45baP38G27CrO1s3AEnIA4Q1orbAgOkV7p00RnI6y0Y3fSvu8b6 = time.Duration(jay.ReadInt64(b[99:107]))
 	l.RE6c1RGsQDDy4R5n = jay.ReadFloat64(b[107:115])
 	l.I8LGNwKCqU87h5eyBJ3oiQ42G5TAW5MHvVsO03p74WMOutf = jay.ReadInt64(b[115:123])
-	l.O2NFfw378RHeCu2yT6pBL8Hh6Nbn26xwcj08c4Q5s2j6r75e1gq718bvP03F50U2ONIi68ksyHt7GtRNP2LR4V = jay.ReadDuration(b[123:131])
-	l.FcB3T7oh70YEWg3WV8Qk1RwMSb4bsUG8PU51Bf513p2SBqLd5a3tB7rkEMSFMQWi8KR3b23wl6qOpY0UND3w = jay.ReadDuration(b[131:139])
+	l.O2NFfw378RHeCu2yT6pBL8Hh6Nbn26xwcj08c4Q5s2j6r75e1gq718bvP03F50U2ONIi68ksyHt7GtRNP2LR4V = time.Duration(jay.ReadInt64(b[123:131]))
+	l.FcB3T7oh70YEWg3WV8Qk1RwMSb4bsUG8PU51Bf513p2SBqLd5a3tB7rkEMSFMQWi8KR3b23wl6qOpY0UND3w = time.Duration(jay.ReadInt64(b[131:139]))
 	l.SL2jP4V531iHE = jay.ReadUint64(b[139:147])
 	l.EMUl1q314N1I2by45DPaX5qrKX158Q8bIgUeToLX2b0tkLYJtY2j0vNO18Evw0 = jay.ReadTime(b[147:155])
 	l.EI3qMdBg43ex15r01fWbuvxu1qcQQ7PN8S17oIC8hpb12Jca312FSHqWnyM222xpoJ85CWk2y7LP2w2f1Rc73kKHUcR7d8i = jay.ReadIntX64(b[155:163])
@@ -462,7 +466,7 @@ func (l *LhUFP2bnKB64O0s75eXIU233RnmTG8f83O1L4JgOJv113DH7lGE7l3BVd57K28Hls3pUb1P
 	return nil
 }
 
-func (s SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7GPUT8cGroe7XR) MarshalJ() (b []byte) {
+func (s *SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7GPUT8cGroe7XR) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := len(s.ELVC4y5JE3p0c1rlG83R873SpkF4Xnd25T5yLu2C24eb6cWj5qt161GHDT6myMdcNrLX0Sw26s6YDY40o6pe83CSlqwgQ7324MNV), len(s.E7bd0Kg4NatD4lUcsKdoJaYSba45p6Avn6XbjRBsIf3k1IgtcXGbN7UI55v5U0F2M43pAJAfa30Smj6413), len(s.Of48G3d0JN5R075iqp3rg05sD1qRq3hyPIDvu1SqNwyHh6U8r16hX0h7C2i3Ai6SUc), len(s.QPTW4X5CNo5tlwgEMadUl42k8QtB18gulsGUOodDUL5pV3E85thrqDGM5kVmBDOLqpvP8834pU28V22iRT56B0G540), len(s.Ki), len(s.Vht0656I44363m5wA4At6tt5OSd8Wv87), len(s.LwY2DyScOUdTDvQi86QPXaA6K12TlR6reg2l36mkd4soLfGsR25BEGE7V0G1871a3D4mMyM03EV5g1xe67XucHJ), len(s.SWkSAtTGt2YWUw24u1b8RYcRY0EG13p33yBtyrKh66nLrTvuB5t82), len(s.Al), len(s.TQAmwNQvMV07e8Dn8BWxOK2280s1v028kf22N2Ls4IWhs63xrn4DPs6HbM70v0I5yy4Wfe30euS5V), len(s.CcojpfLRQE2riv0XbxV6YaiP58t310525W4wKoX0ruSBn6k0Ye4LY7t1fR83), len(s.RF5P4UgRF82Cud5HRrk7wKI4SifPsNo5TH6L5cA172), len(s.X4d80gRybS8R2aXYVaeIJl8R8ybuwmthXhF), len(s.O), len(s.DYywDWWS1Xp4305q0iVIYIV5gygR61nG6jArrG1X813RRRg7X3RhOXu7Ll2N8SX8Iem4oG86Ip66vN0thSYDt6vtB7tx0y271), len(s.GgL0cGbkp2AX7527vaP3tB82n28xl62r3jt5vKu63UuvlWCIgfq2EnG37rhqm14d4x0KKa), len(s.HPExPYG8SKW8t1v3qFT2K1BF1d4O47P)
 	b = make([]byte, 347+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+jay.SizeBools(l16))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
@@ -483,7 +487,7 @@ func (s SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7GP
 	b[31] = byte(s.In8fFgSJ3vsB6ai7wbLdoQ0W8j2MXWw6F6INM3hi2)
 	b[32] = s.Jgs34l0K85QluxC0OpCEwYOM4b8xNmbqtB6N7uqiWT
 	jay.WriteInt32(b[33:37], s.VyO7X05H3JI10NQ6P8Nk54bvQjNJvS0d1M440SuH8H70cWBHaNFp0W016F61q)
-	jay.WriteDuration(b[37:45], s.P7Y6ESJ7yL5TDdpt83MQ5N5Mj8Di8vY77601Lnl3l5kOHu47snIIao82oBYL8804RshL6188d2l4w8m1AF)
+	jay.WriteInt64(b[37:45], int64(s.P7Y6ESJ7yL5TDdpt83MQ5N5Mj8Di8vY77601Lnl3l5kOHu47snIIao82oBYL8804RshL6188d2l4w8m1AF))
 	jay.WriteUint32(b[45:49], s.I4xh0iDAMNB2v8x46ue45nMD5FdNugFJSDgf0bc6f7epUmT4G71c7CF78LyTwb7ckE602)
 	jay.WriteUint32(b[49:53], s.M0aWjb66O3nv33wMBFvYpG75Cme4OQ2V5MuPVXvN)
 	jay.WriteInt32(b[53:57], s.Cty1X36s3r8PMO65K6QHfib2BwApxbbs24ESRGrrO44kGS7ohgKy42Vrq5nwBVI3t62JurSoXW32)
@@ -498,10 +502,10 @@ func (s SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7GP
 	jay.WriteUint64(b[105:113], s.L0S55tiU18G5U714dsR4fE1)
 	jay.WriteInt32(b[113:117], s.HsP77v1B6I7Pk8Os58SodPBE7D10i5mg8tDH7r58GG2sFj8yk13nBPS4H3hHsd0bCD4Kp80yQ5kLTb)
 	jay.WriteUint64(b[117:125], s.MC6CjYSE204wexq1k2358SFH0jS5v7Yd)
-	jay.WriteDuration(b[125:133], s.L0yaFcXrKN21Qkx8ueXvxf8D41K26na12jutvkCi2B5CrB)
+	jay.WriteInt64(b[125:133], int64(s.L0yaFcXrKN21Qkx8ueXvxf8D41K26na12jutvkCi2B5CrB))
 	jay.WriteTime(b[133:141], s.VN6Cx2IW2Sn61vbWT7E1T536K0Dg015w1sJj5aXe5yhSI8Q7cFqNLlU8yxuT86v5yJB5DxxORSMMETELtHYphgia0d6PI0iB5)
 	jay.WriteInt32(b[141:145], s.Mie5uSSMNXD5wHK6Olk)
-	jay.WriteDuration(b[145:153], s.FSmQF)
+	jay.WriteInt64(b[145:153], int64(s.FSmQF))
 	jay.WriteTime(b[153:161], s.G4HGqJ7F0c3)
 	jay.WriteIntX64(b[161:169], s.U8Wkp36XllgM4YL1mCl8TS3fjJ273eO4nhm4XyLA2pb3dT2JG1Vfn61080yIrS8mn8cIYxR82iW6oMk8xmwlw1g078RC)
 	jay.WriteInt64(b[169:177], s.Oo63k862OL353t5yP04LDmLSVnmE3l4tEPcmIpoY2JX728R3g3gyX6JrE0v58J3oU8S5FTytnX17CL)
@@ -521,7 +525,7 @@ func (s SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7GP
 	jay.WriteFloat32(b[255:259], s.CM0Kf01qNF0iuKRBalp)
 	jay.WriteUintX64(b[259:267], s.URLO55miT61DSKrWOyI2w1BLMJgCbDBac)
 	jay.WriteInt16(b[267:269], s.Nlnqvv8m5)
-	jay.WriteDuration(b[269:277], s.VUcfiapipjqF80K3yP0J7jDE2X)
+	jay.WriteInt64(b[269:277], int64(s.VUcfiapipjqF80K3yP0J7jDE2X))
 	jay.WriteUint32(b[277:281], s.XR2Sywv4DWH82rOyc)
 	jay.WriteInt16(b[281:283], s.VWkuOHDnsemWaA5xke2rD1cjGA4tD5vLwtdFQ2m25N7Q8P0H8J81DTob7YOwgN10)
 	jay.WriteIntX64(b[283:291], s.GoIikvVWiWk2834jnAQj)
@@ -529,7 +533,7 @@ func (s SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7GP
 	jay.WriteInt64(b[299:307], s.L3WAWbC3O3sTi6M)
 	jay.WriteTime(b[307:315], s.DjD2b300Um31eh847S5N8w0WG0BKRxPBFqy4bq7nXDc05E)
 	jay.WriteInt32(b[315:319], s.Wr76iRWU7lTb1c6RjQqMS37A5cuNrk16S0wV0F75S8G31KQ5ihn14exIpS183xV7M)
-	jay.WriteDuration(b[319:327], s.J2Rcx7WGgdhb5lHc6UVkmr02YG3R6TR1DPk7c7SS0c5J3qxK6eVrGOu7)
+	jay.WriteInt64(b[319:327], int64(s.J2Rcx7WGgdhb5lHc6UVkmr02YG3R6TR1DPk7c7SS0c5J3qxK6eVrGOu7))
 	jay.WriteUint64(b[327:335], s.Y76ebTdKn64WaK36n36xWTPpuw6a11w0kDGsv2Y4SMjWjOcQ4uX8W)
 	jay.WriteInt32(b[335:339], s.BMn5SxAix7PrdfOq85o5JD5vemm1c1R78V7yxbHjgmk4ptq7145fapPAGcYw0CS1Tt5B270aGvn0U7I)
 	jay.WriteIntX64(b[339:347], s.IR68B2fOf5KoweAQPPNqCh1mjTR757e3iSPQPAfU3LWy6SiFs71aQi4K64O230K4nQitex5Wat8E321rrA71oQh7Nkw)
@@ -591,7 +595,7 @@ func (s *SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7G
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16])
-	if l < 347+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+jay.SizeBools(l16) {
+	if l != 347+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+jay.SizeBools(l16) {
 		return jay.ErrUnexpectedEOB
 	}
 	s.Ep25TC0HAjvVVyN8YdCpKp6mR430oSwWvcfqC4ie2fEYRV1l3fCt14GRLNE6kxJ0UfDp0bN4, s.W2EFO5Frr62g = jay.ReadBool2(b[17])
@@ -611,7 +615,7 @@ func (s *SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7G
 	s.In8fFgSJ3vsB6ai7wbLdoQ0W8j2MXWw6F6INM3hi2 = int8(b[31])
 	s.Jgs34l0K85QluxC0OpCEwYOM4b8xNmbqtB6N7uqiWT = b[32]
 	s.VyO7X05H3JI10NQ6P8Nk54bvQjNJvS0d1M440SuH8H70cWBHaNFp0W016F61q = jay.ReadInt32(b[33:37])
-	s.P7Y6ESJ7yL5TDdpt83MQ5N5Mj8Di8vY77601Lnl3l5kOHu47snIIao82oBYL8804RshL6188d2l4w8m1AF = jay.ReadDuration(b[37:45])
+	s.P7Y6ESJ7yL5TDdpt83MQ5N5Mj8Di8vY77601Lnl3l5kOHu47snIIao82oBYL8804RshL6188d2l4w8m1AF = time.Duration(jay.ReadInt64(b[37:45]))
 	s.I4xh0iDAMNB2v8x46ue45nMD5FdNugFJSDgf0bc6f7epUmT4G71c7CF78LyTwb7ckE602 = jay.ReadUint32(b[45:49])
 	s.M0aWjb66O3nv33wMBFvYpG75Cme4OQ2V5MuPVXvN = jay.ReadUint32(b[49:53])
 	s.Cty1X36s3r8PMO65K6QHfib2BwApxbbs24ESRGrrO44kGS7ohgKy42Vrq5nwBVI3t62JurSoXW32 = jay.ReadInt32(b[53:57])
@@ -626,10 +630,10 @@ func (s *SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7G
 	s.L0S55tiU18G5U714dsR4fE1 = jay.ReadUint64(b[105:113])
 	s.HsP77v1B6I7Pk8Os58SodPBE7D10i5mg8tDH7r58GG2sFj8yk13nBPS4H3hHsd0bCD4Kp80yQ5kLTb = jay.ReadInt32(b[113:117])
 	s.MC6CjYSE204wexq1k2358SFH0jS5v7Yd = jay.ReadUint64(b[117:125])
-	s.L0yaFcXrKN21Qkx8ueXvxf8D41K26na12jutvkCi2B5CrB = jay.ReadDuration(b[125:133])
+	s.L0yaFcXrKN21Qkx8ueXvxf8D41K26na12jutvkCi2B5CrB = time.Duration(jay.ReadInt64(b[125:133]))
 	s.VN6Cx2IW2Sn61vbWT7E1T536K0Dg015w1sJj5aXe5yhSI8Q7cFqNLlU8yxuT86v5yJB5DxxORSMMETELtHYphgia0d6PI0iB5 = jay.ReadTime(b[133:141])
 	s.Mie5uSSMNXD5wHK6Olk = jay.ReadInt32(b[141:145])
-	s.FSmQF = jay.ReadDuration(b[145:153])
+	s.FSmQF = time.Duration(jay.ReadInt64(b[145:153]))
 	s.G4HGqJ7F0c3 = jay.ReadTime(b[153:161])
 	s.U8Wkp36XllgM4YL1mCl8TS3fjJ273eO4nhm4XyLA2pb3dT2JG1Vfn61080yIrS8mn8cIYxR82iW6oMk8xmwlw1g078RC = jay.ReadIntX64(b[161:169])
 	s.Oo63k862OL353t5yP04LDmLSVnmE3l4tEPcmIpoY2JX728R3g3gyX6JrE0v58J3oU8S5FTytnX17CL = jay.ReadInt64(b[169:177])
@@ -649,7 +653,7 @@ func (s *SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7G
 	s.CM0Kf01qNF0iuKRBalp = jay.ReadFloat32(b[255:259])
 	s.URLO55miT61DSKrWOyI2w1BLMJgCbDBac = jay.ReadUintX64(b[259:267])
 	s.Nlnqvv8m5 = jay.ReadInt16(b[267:269])
-	s.VUcfiapipjqF80K3yP0J7jDE2X = jay.ReadDuration(b[269:277])
+	s.VUcfiapipjqF80K3yP0J7jDE2X = time.Duration(jay.ReadInt64(b[269:277]))
 	s.XR2Sywv4DWH82rOyc = jay.ReadUint32(b[277:281])
 	s.VWkuOHDnsemWaA5xke2rD1cjGA4tD5vLwtdFQ2m25N7Q8P0H8J81DTob7YOwgN10 = jay.ReadInt16(b[281:283])
 	s.GoIikvVWiWk2834jnAQj = jay.ReadIntX64(b[283:291])
@@ -657,7 +661,7 @@ func (s *SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7G
 	s.L3WAWbC3O3sTi6M = jay.ReadInt64(b[299:307])
 	s.DjD2b300Um31eh847S5N8w0WG0BKRxPBFqy4bq7nXDc05E = jay.ReadTime(b[307:315])
 	s.Wr76iRWU7lTb1c6RjQqMS37A5cuNrk16S0wV0F75S8G31KQ5ihn14exIpS183xV7M = jay.ReadInt32(b[315:319])
-	s.J2Rcx7WGgdhb5lHc6UVkmr02YG3R6TR1DPk7c7SS0c5J3qxK6eVrGOu7 = jay.ReadDuration(b[319:327])
+	s.J2Rcx7WGgdhb5lHc6UVkmr02YG3R6TR1DPk7c7SS0c5J3qxK6eVrGOu7 = time.Duration(jay.ReadInt64(b[319:327]))
 	s.Y76ebTdKn64WaK36n36xWTPpuw6a11w0kDGsv2Y4SMjWjOcQ4uX8W = jay.ReadUint64(b[327:335])
 	s.BMn5SxAix7PrdfOq85o5JD5vemm1c1R78V7yxbHjgmk4ptq7145fapPAGcYw0CS1Tt5B270aGvn0U7I = jay.ReadInt32(b[335:339])
 	s.IR68B2fOf5KoweAQPPNqCh1mjTR757e3iSPQPAfU3LWy6SiFs71aQi4K64O230K4nQitex5Wat8E321rrA71oQh7Nkw = jay.ReadIntX64(b[339:347])
@@ -713,7 +717,7 @@ func (s *SdBa62uuihL4Pq1vBygCN881EDLa7x7L3Y6AHQ51eI5mchrS0qb0LR7c43G5o40Hi45Fp7G
 	return nil
 }
 
-func (g GmBv23265PV04e55k4) MarshalJ() (b []byte) {
+func (g *GmBv23265PV04e55k4) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := len(g.LOCaWFcwdkpm1Vy4OsLV1HB07AF3s6Wm353kWE55m5HCSBQwk3G7IHAVg1q4ClCr43b8Tv3TKKT2776), len(g.F3Rah55iU4YeYcFE1JWdhd028RBDN46I0Y6o5vsEF), len(g.BW2Bg6IgJTVtW37DpEl8vY5cv8RT0Q3ui23RqDduWx58vec), len(g.P6syomsrQSa1CLQc2twU0y723dFvhiRjGY2T60NWJ01H35M6ySdP37570u6hDTthjlUG), len(g.W2Eqj2BjuMO7IU3aAFV526d4), len(g.GfPEcEeQm3q8a3xX2x8f0jk1Br17FdXc40Aq7Lp3O78g8RtN2p2XFS4343037foqKhdEqQDa41nv7DIqh1s07), len(g.YIDWQ6fub5BGOPv0Cx3272ynblrEB5Y4dFI0Pxv1Y8jO87), len(g.YPcXPMljja1XCoX12dHax6K2wyFxbYy18i5VJe4XDYa4Fj2MlTfKpAG4axWhygU4hIVk20fK48Qv3541mU73EfQn55f2Gg22IM), len(g.DDRfq6ca6qW6vhOq8n4t5Q1YeGxx), len(g.EnGw2ff3NRd5Qe2R4tP4V5700mS3), len(g.IsKC8UoX1j5004QShl7PcOx1omQ7X52VA5vOQn8P8GmbWfNwPnR81r2feEwB4p3x3B0yFcsBQx), len(g.XKc3ntbQ1m), len(g.C17Yy4Gi8Np2d4xkhu5c8x8Ywa73Jd8QUr4A3wShEA03HFKyMt107cD060TjXIxP7w1yLyJdw2K026JNP1DD3jrUPWH540r), len(g.Or2J85jvBTcVJMopVL07V336dl7d0mt), len(g.Qb5wID5570T5yltEkyyeX), len(g.AppQtWa6Knkj72H167JPD0qUw24y2li23Oa), len(g.UGj0G2swnS5h4wS8bE1lD68E70vf73AqChtW3FF2N73v3mP8856DEig27p7AW4D)
 	b = make([]byte, 206+l0+l1+l2+jay.SizeBools(l3)+l4+l5+l6+l7+l8+l9+l10+jay.SizeBools(l11)+l12+jay.SizeBools(l13)+l14+l15+jay.SizeBools(l16))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
@@ -730,7 +734,7 @@ func (g GmBv23265PV04e55k4) MarshalJ() (b []byte) {
 	b[27] = g.XneDTR3o77s6rOenQqm2b4e2iUGsGOGnA3l2jn3Yr5AjxV4mu6EyGjBeATtfyxVXy1G5X5wjm58C7dN7g5GhKc5EOYsDent0d
 	jay.WriteInt16(b[28:30], g.Hr5GSIL2wc6FHp1KBLjA1L5Q2a0qQgp)
 	jay.WriteUintX64(b[30:38], g.Lv1kr71PdmcUe6YpEvh7Evu54jlht5SHBxSoYeS6c13UPBJ0M5MwGE5w7r768RYCP84sHFo)
-	jay.WriteDuration(b[38:46], g.FI8qTiaMoRu8t7yAj5wu4frb4mo4wFb4s74PlrFk5y8301KQC5CK0h47OcNNKYhqa74I6W8rjAwTk)
+	jay.WriteInt64(b[38:46], int64(g.FI8qTiaMoRu8t7yAj5wu4frb4mo4wFb4s74PlrFk5y8301KQC5CK0h47OcNNKYhqa74I6W8rjAwTk))
 	jay.WriteInt32(b[46:50], g.GTB4f4IxfONOnsY2Mb0g8hrN8MfcTXmy1t1Wg87pu1WG0OmMojm7Rc4rjF2TXM64SGi41804TODt1kjgT8MGQC3w10MDw)
 	jay.WriteUint16(b[50:52], g.H2vegR1MeP)
 	jay.WriteUintX64(b[52:60], g.RX4W2VC8s0851XfJDHjlySv844CnVwv43HEQ1)
@@ -746,7 +750,7 @@ func (g GmBv23265PV04e55k4) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[114:118], g.O5J850IH1YBR526c8X8tY70P4D26xb)
 	jay.WriteInt32(b[118:122], g.L5ai3356l5WSf8xCVHrgfUp3H1pNscRH)
 	jay.WriteTime(b[122:130], g.YV82G3n57G1KTbhv3kf7QTsUIB6gT8C7it5T2CbnXV1QG6R471VSoN1QK2LQLB)
-	jay.WriteDuration(b[130:138], g.K00Ff03j4KX5kLWUDuG766788f12Xk4kR4kR44Bb0pc4f8nNNb6mQd2CR2KQt76)
+	jay.WriteInt64(b[130:138], int64(g.K00Ff03j4KX5kLWUDuG766788f12Xk4kR4kR44Bb0pc4f8nNNb6mQd2CR2KQt76))
 	jay.WriteUint32(b[138:142], g.KE1kjDhPs3g4FP4YS6wrXAX44coJ03tP0mTl7bRekhXxJ)
 	jay.WriteUint32(b[142:146], g.GMa3JaYWLg17HihrG4CG44Cqkc06WAC)
 	jay.WriteFloat64(b[146:154], g.Xiy4wQCBa66kmk378Y2j054E40wYnypa3H2SF6PYBCKy6F82432c4rTk1X07y44oW)
@@ -756,7 +760,7 @@ func (g GmBv23265PV04e55k4) MarshalJ() (b []byte) {
 	jay.WriteInt16(b[162:164], g.ETe)
 	jay.WriteInt64(b[164:172], g.U11Ih4gJs8LFIqUnXKtN)
 	jay.WriteFloat32(b[172:176], g.CfWoe7FWFvs714rJfRUnRYR147yvYq2wKS24gSF37EFoA4i5WG51X53)
-	jay.WriteDuration(b[176:184], g.PXeYc55vNxnq3d0NDx0Y8nSC2RS7v1y1uof25jp8VDb2d8Qb56632UB8sCt0H4PLN80jWXIqK6LJ)
+	jay.WriteInt64(b[176:184], int64(g.PXeYc55vNxnq3d0NDx0Y8nSC2RS7v1y1uof25jp8VDb2d8Qb56632UB8sCt0H4PLN80jWXIqK6LJ))
 	jay.WriteTime(b[184:192], g.P8G3)
 	jay.WriteFloat64(b[192:200], g.QgUO0380G1C10pIxCdD2745TlJCxprInXEW57jBuM7e656C8F77B8QmA2PH62tNTq8QouBLJ784H)
 	jay.WriteInt32(b[200:204], g.E314Ld7)
@@ -819,7 +823,7 @@ func (g *GmBv23265PV04e55k4) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16])
-	if l < 206+l0+l1+l2+jay.SizeBools(l3)+l4+l5+l6+l7+l8+l9+l10+jay.SizeBools(l11)+l12+jay.SizeBools(l13)+l14+l15+jay.SizeBools(l16) {
+	if l != 206+l0+l1+l2+l4+l5+l6+l7+l8+l9+l10+l12+l14+l15+jay.SizeBools(l3)+jay.SizeBools(l11)+jay.SizeBools(l13)+jay.SizeBools(l16) {
 		return jay.ErrUnexpectedEOB
 	}
 	g.Ou614Kim2Vg55hAG684i0PI7Ak8 = jay.ReadBool1(b[17])
@@ -835,7 +839,7 @@ func (g *GmBv23265PV04e55k4) UnmarshalJ(b []byte) error {
 	g.XneDTR3o77s6rOenQqm2b4e2iUGsGOGnA3l2jn3Yr5AjxV4mu6EyGjBeATtfyxVXy1G5X5wjm58C7dN7g5GhKc5EOYsDent0d = b[27]
 	g.Hr5GSIL2wc6FHp1KBLjA1L5Q2a0qQgp = jay.ReadInt16(b[28:30])
 	g.Lv1kr71PdmcUe6YpEvh7Evu54jlht5SHBxSoYeS6c13UPBJ0M5MwGE5w7r768RYCP84sHFo = jay.ReadUintX64(b[30:38])
-	g.FI8qTiaMoRu8t7yAj5wu4frb4mo4wFb4s74PlrFk5y8301KQC5CK0h47OcNNKYhqa74I6W8rjAwTk = jay.ReadDuration(b[38:46])
+	g.FI8qTiaMoRu8t7yAj5wu4frb4mo4wFb4s74PlrFk5y8301KQC5CK0h47OcNNKYhqa74I6W8rjAwTk = time.Duration(jay.ReadInt64(b[38:46]))
 	g.GTB4f4IxfONOnsY2Mb0g8hrN8MfcTXmy1t1Wg87pu1WG0OmMojm7Rc4rjF2TXM64SGi41804TODt1kjgT8MGQC3w10MDw = jay.ReadInt32(b[46:50])
 	g.H2vegR1MeP = jay.ReadUint16(b[50:52])
 	g.RX4W2VC8s0851XfJDHjlySv844CnVwv43HEQ1 = jay.ReadUintX64(b[52:60])
@@ -851,7 +855,7 @@ func (g *GmBv23265PV04e55k4) UnmarshalJ(b []byte) error {
 	g.O5J850IH1YBR526c8X8tY70P4D26xb = jay.ReadInt32(b[114:118])
 	g.L5ai3356l5WSf8xCVHrgfUp3H1pNscRH = jay.ReadInt32(b[118:122])
 	g.YV82G3n57G1KTbhv3kf7QTsUIB6gT8C7it5T2CbnXV1QG6R471VSoN1QK2LQLB = jay.ReadTime(b[122:130])
-	g.K00Ff03j4KX5kLWUDuG766788f12Xk4kR4kR44Bb0pc4f8nNNb6mQd2CR2KQt76 = jay.ReadDuration(b[130:138])
+	g.K00Ff03j4KX5kLWUDuG766788f12Xk4kR4kR44Bb0pc4f8nNNb6mQd2CR2KQt76 = time.Duration(jay.ReadInt64(b[130:138]))
 	g.KE1kjDhPs3g4FP4YS6wrXAX44coJ03tP0mTl7bRekhXxJ = jay.ReadUint32(b[138:142])
 	g.GMa3JaYWLg17HihrG4CG44Cqkc06WAC = jay.ReadUint32(b[142:146])
 	g.Xiy4wQCBa66kmk378Y2j054E40wYnypa3H2SF6PYBCKy6F82432c4rTk1X07y44oW = jay.ReadFloat64(b[146:154])
@@ -861,7 +865,7 @@ func (g *GmBv23265PV04e55k4) UnmarshalJ(b []byte) error {
 	g.ETe = jay.ReadInt16(b[162:164])
 	g.U11Ih4gJs8LFIqUnXKtN = jay.ReadInt64(b[164:172])
 	g.CfWoe7FWFvs714rJfRUnRYR147yvYq2wKS24gSF37EFoA4i5WG51X53 = jay.ReadFloat32(b[172:176])
-	g.PXeYc55vNxnq3d0NDx0Y8nSC2RS7v1y1uof25jp8VDb2d8Qb56632UB8sCt0H4PLN80jWXIqK6LJ = jay.ReadDuration(b[176:184])
+	g.PXeYc55vNxnq3d0NDx0Y8nSC2RS7v1y1uof25jp8VDb2d8Qb56632UB8sCt0H4PLN80jWXIqK6LJ = time.Duration(jay.ReadInt64(b[176:184]))
 	g.P8G3 = jay.ReadTime(b[184:192])
 	g.QgUO0380G1C10pIxCdD2745TlJCxprInXEW57jBuM7e656C8F77B8QmA2PH62tNTq8QouBLJ784H = jay.ReadFloat64(b[192:200])
 	g.E314Ld7 = jay.ReadInt32(b[200:204])
@@ -918,7 +922,7 @@ func (g *GmBv23265PV04e55k4) UnmarshalJ(b []byte) error {
 	return nil
 }
 
-func (x X5j5d74Y0VN0YlXFP57yJG6iv6YNB0w5v61ss4pFQJBFM7sSVK5T8Q13DG414igFFyrB306Vepg) MarshalJ() (b []byte) {
+func (x *X5j5d74Y0VN0YlXFP57yJG6iv6YNB0w5v61ss4pFQJBFM7sSVK5T8Q13DG414igFFyrB306Vepg) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := len(x.X1Tdojl3SU0OF0), len(x.Hn4PHt3G3mom6IJDY0p4WGjQrmEB601rT), len(x.VV1KG), len(x.O8I4), len(x.Bh5A5GGjj5fT4cjlfhUem6SsG), len(x.AE57Ai2o7TyXlas4Ow0Ay6gpn8GCwv60aEQn6NVPj746V2EHJsV1i5sRW), len(x.Gy1pJI1CP23i1pR472Rt12u4DDfXG8mAYo2v1yXI1m53f0Ty1hRa3u15u7aHPfLUBYdy2Tj7Hlsu71iWlQQ8S4U750hs), len(x.C4xR7GdQS244s3d8tcY5Hf8LVWQW0dG2rKFftr), len(x.G2j0mDT8lEJAC33EirL2r2f6J6u6p23ou), len(x.N48JyU15dN7vs0GIcKuDp47kx38w0qUf8P4vyc5g6q351IwP848su46w3Ct3Ty44jtDG4Ew805hgAhD83BOS3vJokX7N8Fy80BaF), len(x.IrjaqwDYRrTEwPxM7TOWNsf2R44I2yU06uHlUDtDmEcq317aIY2006dV5b0lqV3FdHky0TTBJDgBGVr4f6RXFAo7QOO3gi), len(x.MwKVb8U6EUBwBioH0MUKR38411f7y0O7o34s5g688nh6uh7I4w3BCOneRgaa34UxrRwLNUsoeo2144MQGBXE), len(x.NKn5o2x7G4Hx24r8745LOtIM1RqMs2), len(x.Or7g1D27g1LvX6xalX57nFQcNBC7mX4wdrV3Ykfbflo), len(x.M28Q6nUbW5I0Pxkus3bVek55OPsJvduUl0x1UkJ7Y6q01gfaN26371N4EIHOI6SuP2nCSU3p2Nm8CPnK8bo8xN36bR), len(x.EqNaoKRw72HA0vDHC0q7yHNrS0fR87BRqQd8wuo005p5MBRxwd400ARAjq0BgaH1hr6PoXgk7rd37HtIp4aqU5wLF6lTBThO8iDO), len(x.XWVH85LI77X648lJQpexhDi8Qesh1W31), len(x.UUh7fPpgisL54k)
 	b = make([]byte, 228+l0+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+l6+l7+l8+l9+jay.SizeBools(l10)+l11+jay.SizeBools(l12)+l13+l14+l15+l16+jay.SizeBools(l17))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
@@ -929,7 +933,7 @@ func (x X5j5d74Y0VN0YlXFP57yJG6iv6YNB0w5v61ss4pFQJBFM7sSVK5T8Q13DG414igFFyrB306V
 	b[22] = byte(x.VL4YPIPbvM4li752n6QEwC6m1W32Jr78p26f3cD7xK5if874Havqsj1axdJTqn6dB7E6fDieJ6GP3e68Im6oYie06084K1)
 	b[23] = x.M7S6IAgpa2p20hly2j8815OtG51MDrRfLoqpa8FW3J3CR8c6WaT0aqB8g66m1
 	jay.WriteFloat32(b[24:28], x.FP140own43Xi45e6pF1b0U65mDKVh6dbPxVKRHAbJObd6t)
-	jay.WriteDuration(b[28:36], x.U022jqq1Gjwx5V2n252oU0523ja)
+	jay.WriteInt64(b[28:36], int64(x.U022jqq1Gjwx5V2n252oU0523ja))
 	jay.WriteUintX64(b[36:44], x.G3AlR6n25D7cxkUb14f6y8R8H3GvxMflse8rWrfyEeV8nbUUrR4cjOuC55u3n46o143DgsKwar7qDAMi20hj266W0)
 	jay.WriteInt16(b[44:46], x.S4s2qQMF3O85)
 	jay.WriteUintX64(b[46:54], x.Jbs8AVa5hfXh56gKaO0nVp866NilMn5lyd21q)
@@ -1015,7 +1019,7 @@ func (x *X5j5d74Y0VN0YlXFP57yJG6iv6YNB0w5v61ss4pFQJBFM7sSVK5T8Q13DG414igFFyrB306
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17])
-	if l < 228+l0+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+l6+l7+l8+l9+jay.SizeBools(l10)+l11+jay.SizeBools(l12)+l13+l14+l15+l16+jay.SizeBools(l17) {
+	if l != 228+l0+l6+l7+l8+l9+l11+l13+l14+l15+l16+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l10)+jay.SizeBools(l12)+jay.SizeBools(l17) {
 		return jay.ErrUnexpectedEOB
 	}
 	x.B7UNUq10k4qErrP385g4TO5Lbqbe4DsAy0e44djdYf2eFDpjptOv76upSfrrBDVWuw0270ITuBpTU56U0, x.HF2C1xLp6GyqfpgR5DJ1PjB8M33c3A8w41Q24H7ieD1ODW7vSIEx, x.Dt4MC76Xa, x.S5532eyl43rF2MsENsALhBP6mFS230SYi1Co7S644ep727M07loEr4c75vVOqcCWo5v = jay.ReadBool4(b[18])
@@ -1025,7 +1029,7 @@ func (x *X5j5d74Y0VN0YlXFP57yJG6iv6YNB0w5v61ss4pFQJBFM7sSVK5T8Q13DG414igFFyrB306
 	x.VL4YPIPbvM4li752n6QEwC6m1W32Jr78p26f3cD7xK5if874Havqsj1axdJTqn6dB7E6fDieJ6GP3e68Im6oYie06084K1 = int8(b[22])
 	x.M7S6IAgpa2p20hly2j8815OtG51MDrRfLoqpa8FW3J3CR8c6WaT0aqB8g66m1 = b[23]
 	x.FP140own43Xi45e6pF1b0U65mDKVh6dbPxVKRHAbJObd6t = jay.ReadFloat32(b[24:28])
-	x.U022jqq1Gjwx5V2n252oU0523ja = jay.ReadDuration(b[28:36])
+	x.U022jqq1Gjwx5V2n252oU0523ja = time.Duration(jay.ReadInt64(b[28:36]))
 	x.G3AlR6n25D7cxkUb14f6y8R8H3GvxMflse8rWrfyEeV8nbUUrR4cjOuC55u3n46o143DgsKwar7qDAMi20hj266W0 = jay.ReadUintX64(b[36:44])
 	x.S4s2qQMF3O85 = jay.ReadInt16(b[44:46])
 	x.Jbs8AVa5hfXh56gKaO0nVp866NilMn5lyd21q = jay.ReadUintX64(b[46:54])

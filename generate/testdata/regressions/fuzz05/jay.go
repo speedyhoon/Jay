@@ -2,9 +2,13 @@
 
 package fuzz05
 
-import "github.com/speedyhoon/jay"
+import (
+	"time"
 
-func (s S13Y8PdPX74Y7b) MarshalJ() (b []byte) {
+	"github.com/speedyhoon/jay"
+)
+
+func (s *S13Y8PdPX74Y7b) MarshalJ() (b []byte) {
 	b = make([]byte, 20)
 	jay.WriteFloat32(b[:4], s.P7m4M35D81iVo4Jui88pweX)
 	jay.WriteUintX64(b[4:12], s.A7v67va1bc3o5mmXP7Q1d2YfeHHEpf482P6UcyWnRO0C675gxM5HeS7Wevi1YHeL3f42pluc5)
@@ -14,7 +18,7 @@ func (s S13Y8PdPX74Y7b) MarshalJ() (b []byte) {
 }
 
 func (s *S13Y8PdPX74Y7b) UnmarshalJ(b []byte) error {
-	if len(b) < 20 {
+	if len(b) != 20 {
 		return jay.ErrUnexpectedEOB
 	}
 	s.P7m4M35D81iVo4Jui88pweX = jay.ReadFloat32(b[:4])
@@ -24,7 +28,7 @@ func (s *S13Y8PdPX74Y7b) UnmarshalJ(b []byte) error {
 	return nil
 }
 
-func (x XVSlCJMQLIo803Uwv4PYS033cc3la2yP84qq0P8aE6xhh7) MarshalJ() (b []byte) {
+func (x *XVSlCJMQLIo803Uwv4PYS033cc3la2yP84qq0P8aE6xhh7) MarshalJ() (b []byte) {
 	l0 := len(x.V5N46HInloeD0gsxmYCyP1fi32NfRMrKJp)
 	b = make([]byte, 1+l0)
 	b[0] = byte(l0)
@@ -38,14 +42,14 @@ func (x *XVSlCJMQLIo803Uwv4PYS033cc3la2yP84qq0P8aE6xhh7) UnmarshalJ(b []byte) er
 		return jay.ErrUnexpectedEOB
 	}
 	l0 := int(b[0])
-	if l < 1+l0 {
+	if l != 1+l0 {
 		return jay.ErrUnexpectedEOB
 	}
 	x.V5N46HInloeD0gsxmYCyP1fi32NfRMrKJp = string(b[1:])
 	return nil
 }
 
-func (f F0bUdl0FVVI4RWe05JFPQYFeIpJ4YKY782t0Q718S2EG7543XUicNL6O03FP3S2) MarshalJ() (b []byte) {
+func (f *F0bUdl0FVVI4RWe05JFPQYFeIpJ4YKY782t0Q718S2EG7543XUicNL6O03FP3S2) MarshalJ() (b []byte) {
 	b = make([]byte, 37)
 	b[0] = byte(f.HtEyGS5JY3LKv7dJ2p1K718K60GUPc4oI11Y46Al5hXP52PQFe2T3)
 	jay.WriteInt32(b[1:5], f.CW6f57keEQY07siB4JTgCAUjF27KD)
@@ -59,7 +63,7 @@ func (f F0bUdl0FVVI4RWe05JFPQYFeIpJ4YKY782t0Q718S2EG7543XUicNL6O03FP3S2) Marshal
 }
 
 func (f *F0bUdl0FVVI4RWe05JFPQYFeIpJ4YKY782t0Q718S2EG7543XUicNL6O03FP3S2) UnmarshalJ(b []byte) error {
-	if len(b) < 37 {
+	if len(b) != 37 {
 		return jay.ErrUnexpectedEOB
 	}
 	f.HtEyGS5JY3LKv7dJ2p1K718K60GUPc4oI11Y46Al5hXP52PQFe2T3 = int8(b[0])
@@ -73,21 +77,21 @@ func (f *F0bUdl0FVVI4RWe05JFPQYFeIpJ4YKY782t0Q718S2EG7543XUicNL6O03FP3S2) Unmars
 	return nil
 }
 
-func (b Bt70X1y6cxJ6p4P8mmN4cTwiQM67VI65Vx5WCgla46Haf5m88maEiQ68c0s6GReiyW8oO08TFPyVYAAfd73O3TibG47Gp34q6508) MarshalJ() (y []byte) {
+func (b *Bt70X1y6cxJ6p4P8mmN4cTwiQM67VI65Vx5WCgla46Haf5m88maEiQ68c0s6GReiyW8oO08TFPyVYAAfd73O3TibG47Gp34q6508) MarshalJ() (y []byte) {
 	y = make([]byte, 8)
 	jay.WriteIntX64(y, b.Tr4CRhFyrQU131P5c54NvHCsJAobs41v2e8u7J)
 	return
 }
 
 func (b *Bt70X1y6cxJ6p4P8mmN4cTwiQM67VI65Vx5WCgla46Haf5m88maEiQ68c0s6GReiyW8oO08TFPyVYAAfd73O3TibG47Gp34q6508) UnmarshalJ(y []byte) error {
-	if len(y) < 8 {
+	if len(y) != 8 {
 		return jay.ErrUnexpectedEOB
 	}
 	b.Tr4CRhFyrQU131P5c54NvHCsJAobs41v2e8u7J = jay.ReadIntX64(y)
 	return nil
 }
 
-func (y Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) MarshalJ() (b []byte) {
+func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) MarshalJ() (b []byte) {
 	l0 := len(y.WkMdF1S4rr0dYq0SN4TTo3h2)
 	b = make([]byte, 35+jay.SizeBools(l0))
 	b[0] = byte(l0)
@@ -96,7 +100,7 @@ func (y Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) MarshalJ() (b []byte) {
 	jay.WriteUint64(b[3:11], y.CaSAAqJ5d05dd7lTSBW8P74ro8Bu)
 	jay.WriteTime(b[11:19], y.VY123)
 	jay.WriteTime(b[19:27], y.N3L7V2OMyF3K5LqS0lRxe6IcMQPh5)
-	jay.WriteDuration(b[27:35], y.I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j)
+	jay.WriteInt64(b[27:35], int64(y.I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j))
 	jay.WriteBools(b[35:], y.WkMdF1S4rr0dYq0SN4TTo3h2, l0)
 	return
 }
@@ -107,7 +111,7 @@ func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) UnmarshalJ(b []byte) e
 		return jay.ErrUnexpectedEOB
 	}
 	l0 := int(b[0])
-	if l < 35+jay.SizeBools(l0) {
+	if l != 35+jay.SizeBools(l0) {
 		return jay.ErrUnexpectedEOB
 	}
 	y.IC5qlktHjoAxQ85BBL11a52LLqLNa03GvsFtx6660G0Bj78LXptHo40S737W4ro0Y27s10168Xc75kpo7, y.C11nVJCwQXED6cgc65lS0NNld6ormyMtGY42JNPP34hOA3GegJ10ObN56e = jay.ReadBool2(b[1])
@@ -115,7 +119,7 @@ func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) UnmarshalJ(b []byte) e
 	y.CaSAAqJ5d05dd7lTSBW8P74ro8Bu = jay.ReadUint64(b[3:11])
 	y.VY123 = jay.ReadTime(b[11:19])
 	y.N3L7V2OMyF3K5LqS0lRxe6IcMQPh5 = jay.ReadTime(b[19:27])
-	y.I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j = jay.ReadDuration(b[27:35])
+	y.I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j = time.Duration(jay.ReadInt64(b[27:35]))
 	y.WkMdF1S4rr0dYq0SN4TTo3h2 = jay.ReadBools(b[35:], l0)
 	return nil
 }
