@@ -6,7 +6,10 @@ import (
 	"strings"
 )
 
-const marshalBoolsFuncPrefix = "Bool"
+const (
+	marshalBoolsFuncPrefix   = "Bool"
+	unmarshalBoolsFuncPrefix = "ReadBool"
+)
 
 func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bool) {
 	if len(s.bool) == 0 {
@@ -64,7 +67,6 @@ func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint) {
 }
 
 func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, bufferName string, uList []bool) {
-	const marshalBoolsFuncPrefix = "ReadBool"
 
 	if len(bools) > 8 {
 		bools = bools[:8]
@@ -75,7 +77,7 @@ func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, bufferName stri
 		return
 	}
 
-	bufWriteF(b, "%s = %s.%s%d(%s[%d])\n", strings.Join(bools, ", "), pkgName, marshalBoolsFuncPrefix, len(bools), bufferName, byteIndex)
+	bufWriteF(b, "%s = %s.%s%d(%s[%d])\n", strings.Join(bools, ", "), pkgName, unmarshalBoolsFuncPrefix, len(bools), bufferName, byteIndex)
 }
 
 func isUnmarshalInline2(bools []bool) bool {
