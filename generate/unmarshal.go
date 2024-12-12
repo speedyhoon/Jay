@@ -24,7 +24,8 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(f.unmarshalLine(&byteIndex, at, end, lenVariable(i)))
+		lenVar := lenVariable(i)
+		buf.WriteString(f.unmarshalLine(&byteIndex, at, end, lenVar))
 		buf.WriteString("\n")
 	}
 
