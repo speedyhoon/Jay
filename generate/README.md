@@ -2,16 +2,20 @@
 Traverses `.go` files to find exported Go `structs` to generate marshalling `.MarshalJ()` and unmarshalling `.UnmarshalJ()` methods for the [Jay serialisation format](https://github.com/speedyhoon/jay).
 
 ## Field tag options
-`j:-` Ignore exported field.
+`j:-` Ignore this field.
 
 ### TODO
 `max`
-* maximum value for integers and floats
-* maximum length for strings and slices
+* Maximum value for integers and floats.
+* Maximum length for strings and slices.
 
 `min`
-* minimum value for integers and floats
-* minimum length for strings and slices
+* Minimum value for integers and floats.
+* Minimum length for strings and slices.
+
+`req`
+* Flag any string or slice field as required, indicating that it will never be empty.
+* A micro optimisation for marshalling, removing `length == 0` if statement before calling the function to convert into `[]byte`.
 
 ## Embedded structs
 Any private struct can be embedded into an exported struct when an exported field name is included. For example:
@@ -29,9 +33,9 @@ type Car struct {
 	w Wheels // Ignored - not an exported field name
 	_ Wheels // Ignored - not an exported field name
 
-	Wheels  `j:-`     // Ignored flag present
-	Wh Wheels `j:-`   // Ignored flag present
-	Gbx gearbox `j:-` // Ignored flag present
+	Wheels  `j:-`     // Ignored - flag present
+	Wh Wheels `j:-`   // Ignored - flag present
+	Gbx gearbox `j:-` // Ignored - flag present
 }
 
 type gearbox struct {
