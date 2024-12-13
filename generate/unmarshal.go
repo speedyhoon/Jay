@@ -233,6 +233,8 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		c, template = jay.ReadUint32s, tFuncLength
 	case tUint64S:
 		c, template = jay.ReadUint64s, tFuncLength
+	case tTimeDurations:
+		c, template = jay.ReadDurations, tFuncLength
 
 	default:
 		lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)

@@ -87,13 +87,22 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 
 	case *ast.ArrayType:
 		f, ok = o.isSupportedType(d.Elt, dirList, pkg)
-		if !ok || f.isDef {
-			// f.isDef prevents types like []float where `type float float32` which can't be easily converted to []float32 in one line.
-			// However, `type float = float32`, `type floats = []float32` & `type floats []float32` can be easily converted in one line.
+		if !ok {
 			return f, false
 		}
 		f.arrayType = f.typ
-		f.typ = "[]" + f.typ
+		if f.isDef {
+			// f.isDef prevents types like []float where `type float float32` which can't be easily converted to []float32 in one line.
+			// However, `type float = float32`, `type floats = []float32` & `type floats []float32` can be easily converted in one line.
+			if f.aliasType != tTimeDuration {
+				return f, false
+			}
+
+			f.typ = "[]" + f.aliasType
+		} else {
+			f.typ = "[]" + f.typ
+		}
+
 		f.arraySize, ok = calcArraySize(d.Len)
 		f.isFixedLen = f.isFixedLen && f.arraySize != typeSlice
 
@@ -172,6 +181,7 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f fi
 			f.aliasType = tTimeDuration
 			f.isDef = true
 			f.isFixedLen = true
+			f.elmSize = isLen(f.typ)
 			return f, true
 		case "Time": // type Time struct
 			f.typ = tTime
@@ -385,7 +395,7 @@ const (
 	tUint, tUint16, tUint32, tUint64         = "uint", "uint16", "uint32", "uint64"
 	tUintS, tUint16S, tUint32S, tUint64S     = "[]uint", "[]uint16", "[]uint32", "[]uint64"
 	tString                                  = "string"
-	tTime, tTimeDuration                     = "time.Time", "time.Duration"
+	tTime, tTimeDuration, tTimeDurations     = "time.Time", "time.Duration", "[]time.Duration"
 )
 
 // resolveBuiltinAlias replaces the built-in alias with the underlining name to reduce the quantity of types to support.

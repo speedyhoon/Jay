@@ -94,7 +94,7 @@ func (s *structTyp) isReturnedInline() {
 func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
 	fun, template := f.MarshalFuncTemplate(importJ)
 	totalSize := f.typeFuncSize()
-	if template == 0 {
+	if template == tNoTemplate {
 		// Unknown type, not supported yet.
 		return ""
 	}
@@ -247,6 +247,8 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 		return jay.WriteUint32s, tFunc
 	case tUint64S:
 		return jay.WriteUint64s, tFunc
+	case tTimeDurations:
+		return jay.WriteDurations, tFunc
 
 	default:
 		lg.Printf("no function set for type %s yet in typeFuncs()", f.typ)
@@ -292,8 +294,10 @@ func (f *field) sliceExpr(at, end string) string {
 
 // Template definitions.
 const (
+	tNoTemplate uint8 = iota
+
 	// tFunc call a function with the type, `func(b[at:end], type)`.
-	tFunc uint8 = iota + 1
+	tFunc
 
 	// tFuncOpt wraps tFunc with an if statement. `if l0 != 0 { tFunc... }`
 	tFuncOpt
