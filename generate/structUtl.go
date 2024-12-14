@@ -104,7 +104,7 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 		}
 
 		f.arraySize, ok = calcArraySize(d.Len)
-		f.isFixedLen = f.isFixedLen && f.arraySize != typeSlice
+		f.isFixedLen = f.isFixedLen && f.isSlice()
 
 	case *ast.TypeSpec:
 		f, ok = o.isSupportedType(d.Type, dirList, pkg)
@@ -291,7 +291,7 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 	f.structTyp = s
 	for m := range names {
 		f.name = names[m].Name
-		if f.typ == tBool || f.arrayType == tBool && f.arraySize >= typeArray {
+		if f.typ == tBool || f.arrayType == tBool && f.isArray() {
 			s.bool = append(s.bool, f)
 			continue
 		}

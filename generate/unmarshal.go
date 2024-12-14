@@ -98,7 +98,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 
 	switch template {
 	case tFunc:
-		if f.isDef && f.arraySize == typeNotArrayOrSlice {
+		if f.isDef && f.isNotArrayOrSlice() {
 			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, f.sliceExpr(at, end))))
 		}
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end)))
@@ -121,7 +121,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 }
 
 func (f *field) convertTo() string {
-	if f.arraySize >= typeArray {
+	if f.isArray() {
 		return fmt.Sprintf("[%d]%s", f.arraySize, f.arrayType)
 	}
 	return ""
@@ -197,7 +197,7 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		c, template = jay.ReadBools, tFuncLength
 
 	case tByteS:
-		if f.arraySize >= typeArray {
+		if f.isArray() {
 			c, template = "", tByteAssign
 			return
 		}

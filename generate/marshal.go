@@ -88,7 +88,7 @@ func (s *structTyp) generateSizeLine() string {
 
 func (s *structTyp) isReturnedInline() {
 	s.returnInline = !(len(s.variableLen) >= 1 || len(s.fixedLen) >= 1) ||
-		len(s.fixedLen) == 1 && s.fixedLen[0].arraySize >= typeArray && s.fixedLen[0].typ == tByteS
+		len(s.fixedLen) == 1 && s.fixedLen[0].isArray() && s.fixedLen[0].typ == tByteS
 }
 
 func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
@@ -105,14 +105,14 @@ func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenV
 		end = utl.UtoA(*byteIndex)
 	}
 
-	if f.isDef && fun != copyKeyword && f.arraySize == typeNotArrayOrSlice {
+	if f.isDef && fun != copyKeyword && f.isNotArrayOrSlice() {
 		f.structTyp.imports.add(f.pkgReq)
 		thisField = printFunc(f.typ, thisField)
 	}
 
 	switch template {
 	case tFunc:
-		if f.arraySize >= typeArray {
+		if f.isArray() {
 			thisField += "[:]"
 		}
 
@@ -129,14 +129,14 @@ func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenV
 	}
 }
 
-func (f *field) isArrayOrSlice() bool {
-	return f.arraySize != typeNotArrayOrSlice
+func (f *field) isNotArrayOrSlice() bool {
+	return f.arraySize == typeNotArrayOrSlice
 }
 func (f *field) isArray() bool {
-	return f.arraySize > typeNotArrayOrSlice
+	return f.arraySize >= typeArray
 }
 func (f *field) isSlice() bool {
-	return f.arraySize == typeSlice
+	return f.arraySize <= typeSlice
 }
 
 func printFunc(fun string, params ...string) (code string) {
@@ -159,7 +159,7 @@ func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uin
 	case tString:
 		return copyKeyword, tFunc
 	case tByteS:
-		if f.arraySize >= typeArray {
+		if f.isArray() {
 			if f.isFirst && f.isLast {
 				return "", tByteAssign
 			}

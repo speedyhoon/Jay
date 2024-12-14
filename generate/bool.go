@@ -109,7 +109,7 @@ func unmarshalBoolsInline(bufferName string, byteIndex uint, qty int) string {
 func fieldNamesArrays(fields []field, receiver string) (s []string) {
 	for i := range fields {
 		if fields[i].isDef {
-			if fields[i].arraySize >= typeArray {
+			if fields[i].isArray() {
 				for j := 0; j < fields[i].arraySize; j++ {
 					s = append(s, printFunc(fields[i].typ, pkgSelName(receiver, fmt.Sprintf("%s[%d]", fields[i].name, j))))
 				}
@@ -117,7 +117,7 @@ func fieldNamesArrays(fields []field, receiver string) (s []string) {
 				s = append(s, printFunc(fields[i].typ, pkgSelName(receiver, fields[i].name)))
 			}
 		} else {
-			if fields[i].arraySize >= typeArray {
+			if fields[i].isArray() {
 				for j := 0; j < fields[i].arraySize; j++ {
 					s = append(s, pkgSelName(receiver, fmt.Sprintf("%s[%d]", fields[i].name, j)))
 				}
@@ -131,7 +131,7 @@ func fieldNamesArrays(fields []field, receiver string) (s []string) {
 
 func fieldNamesArraysUnmarshalInline(fields []field, receiver string) (s []string, u []bool) {
 	for i := range fields {
-		if fields[i].arraySize >= typeArray {
+		if fields[i].isArray() {
 			for j := 0; j < fields[i].arraySize; j++ {
 				s = append(s, pkgSelName(receiver, fmt.Sprintf("%s[%d]", fields[i].name, j)))
 				u = append(u, fields[i].isDef)
