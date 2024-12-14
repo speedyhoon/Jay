@@ -277,8 +277,8 @@ func (s *structTyp) setFirstNLast() {
 	// lists is the order that each field list is processed.
 	lists := []fieldList{s.bool, s.boolArray, s.single, s.fixedLen, s.variableLen}
 	for i := range lists {
-		for n := range lists[i] {
-			lists[i][n].isFirst = true
+		if len(lists[i]) >= 1 {
+			lists[i][0].isFirst = true
 			goto setLast
 		}
 	}
@@ -286,7 +286,7 @@ func (s *structTyp) setFirstNLast() {
 setLast:
 	// Reverse order loop.
 	for i := len(lists) - 1; i >= 0; i-- {
-		for n := len(lists[i]) - 1; n >= 0; n-- {
+		if n := len(lists[i]) - 1; n >= 0 {
 			lists[i][n].isLast = true
 			return
 		}
