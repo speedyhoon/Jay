@@ -6,47 +6,17 @@ import (
 	"testing"
 )
 
-func TestString(t *testing.T) {
-	const str = "octopus camouflage"
-	const length = len(str)
-	y := make([]byte, length+1)
-
-	jay.WriteString(y, str, length)
-	assert.Equal(t, []byte("\022octopus camouflage"), y)
-
-	z := []byte("\022octopus camouflage")
-	s, l, ok := jay.ReadString(z)
-	assert.Equal(t, str, s)
-	assert.Equal(t, length+1, l)
-	assert.True(t, ok)
-}
-
-func TestStringPtr(t *testing.T) {
-	const str = "octopus camouflage"
-	const length = len(str)
-	y := make([]byte, length+1)
-
-	jay.WriteString(y, str, length)
-	assert.Equal(t, []byte("\022octopus camouflage"), y)
-
-	z := []byte("\022octopus camouflage")
-	var str1 string
-	l, ok := jay.ReadStringPtr(z, &str1)
-	assert.Equal(t, str, str1)
-	assert.Equal(t, length+1, l)
-	assert.True(t, ok)
-}
-
 func TestStrings(t *testing.T) {
 	list := []string{"octopus", "camouflage"}
-	length := 1 + len(list) + len(list[0]) + len(list[1])
+	qty := len(list)
+	length := qty + len(list[0]) + len(list[1])
 	b := make([]byte, length)
 
-	jay.WriteStrings(b, list)
-	assert.Equal(t, []byte("\002\007octopus\012camouflage"), b)
+	jay.WriteStrings(b[:qty], b[qty:], list)
+	assert.Equal(t, []byte{7, 10, 'o', 'c', 't', 'o', 'p', 'u', 's', 'c', 'a', 'm', 'o', 'u', 'f', 'l', 'a', 'g', 'e'}, b)
 
-	s, l, ok := jay.ReadStrings(b)
-	assert.Equal(t, list, s)
-	assert.Equal(t, length, l)
-	assert.True(t, ok)
+	//s, l, ok := jay.ReadStrings(b)
+	//assert.Equal(t, list, s)
+	//assert.Equal(t, length, l)
+	//assert.True(t, ok)
 }

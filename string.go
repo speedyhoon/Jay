@@ -1,71 +1,18 @@
 package jay
 
-const strSizeOf = 1
+//const strSizeOf = 1
 
-func WriteString(y []byte, s string, length int) {
-	y[0] = byte(length) // Set how long the string is.
-	if length != 0 {
-		copy(y[strSizeOf:length+strSizeOf], s)
-	}
-}
-
-func WriteStringAt(y []byte, s string, length, at int) int {
-	y[0] = byte(length) // Set how long the string is.
-	if length != 0 {
-		copy(y[strSizeOf:length+strSizeOf], s)
-	}
-	return at + length + strSizeOf
-}
-
-func WriteStringAtPtr(y []byte, s *string, length, at int) int {
-	y[0] = byte(length) // Set how long the string is.
-	if length != 0 {
-		copy(y[strSizeOf:length+strSizeOf], *s)
-	}
-	return at + length + strSizeOf
-}
-
-func ReadString(b []byte) (h string, size int, _ bool) {
-	size = int(b[0]) + strSizeOf
-	if size == strSizeOf || len(b) < size {
-		return "", size, size == strSizeOf
-	}
-
-	return string(b[strSizeOf:size]), size, true
-}
-
-func ReadStringPtrErr(b []byte, h *string) error {
-	size := int(b[0]) + strSizeOf
-	if size == strSizeOf {
-		return nil
-	}
-	if len(b) < size {
-		return ErrUnexpectedEOB
-	}
-
-	*h = string(b[strSizeOf:size])
-	return nil
-}
-
-func ReadStringAt(b []byte, at int) (h string, size int, ok bool) {
-	h, size, ok = ReadString(b)
-	return h, at + size, ok
-}
-
-func WriteStrings(y []byte, s []string) {
-	y[0] = byte(len(s)) // Set slice qty.
-	if y[0] == 0 {
-		return
-	}
-
-	index := 1
+func WriteStrings(ln, y []byte, s []string) {
+	var l, qty int
 	for i := range s {
-		WriteString(y[index:], s[i], len(s[i]))
-		index += len(s[i]) + strSizeOf
+		l = len(s[i])
+		ln[i] = byte(l)
+		copy(y[qty:qty+l], s[i])
+		qty += l
 	}
 }
 
-func ReadStrings(b []byte) (h []string, size int, ok bool) {
+/*func ReadStrings(b []byte) (h []string, size int, ok bool) {
 	l := len(b)
 	if l <= strSizeOf || b[0] == 0 {
 		return
@@ -103,4 +50,4 @@ func ReadStringPtr(b []byte, h *string) (size int, _ bool) {
 
 	*h = string(b[strSizeOf:size])
 	return size, true
-}
+}*/
