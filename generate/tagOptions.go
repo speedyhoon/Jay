@@ -1,12 +1,14 @@
 package generate
 
 import (
+	"math"
 	"strconv"
 	"strings"
 )
 
 const (
 	tagMax      = "max"
+	tagMaxQty   = "maxqty"
 	tagMin      = "min"
 	tagNano     = "nano"
 	tagRequired = "required"
@@ -17,14 +19,22 @@ type tagOptions struct {
 	// Any value out of this range isn't guaranteed to be marshalled or unmarshalled correctly.
 	Max, Min tagSize
 
+	// MaxQty is the maximum quantity of items allowed in a string slice ([]string).
+	MaxQty tagSize16
+
 	maxBytes uint
 	TimeNano bool
 	Required bool // If "required" appears in the tag, then empty checks are omitted from the generated code.
 }
 
-type tagSize uint
+type (
+	tagSize   uint
+	tagSize16 uint
+)
 
 func (f *field) LoadTagOptions() {
+	f.tagOptions.MaxQty = math.MaxUint16
+
 	f.tag = strings.TrimSpace(f.tag)
 	if f.tag == "" {
 		return
@@ -35,6 +45,8 @@ func (f *field) LoadTagOptions() {
 		case tagMax:
 			f.tagOptions.Max.set(d[1])
 			f.tagOptions.maxBytes = byteSize(f.tagOptions.Max)
+		case tagMaxQty:
+			f.tagOptions.MaxQty.set(d[1])
 		case tagMin:
 			f.tagOptions.Min.set(g)
 		case tagNano:
@@ -52,12 +64,7 @@ func isShortRequiredTag(tag string) bool {
 	if len(tag) > len(tagRequired) {
 		return false
 	}
-	for i := min(len(tag), len(tagRequired)-1); i >= 1; i-- {
-		if tag == tagRequired[:i] {
-			return true
-		}
-	}
-	return false
+	return tag == tagRequired[:len(tag)]
 }
 
 const (
@@ -93,9 +100,17 @@ func byteSize(v tagSize) uint {
 }
 
 func (f *tagSize) set(s string) {
-	uu, err := strconv.ParseUint(s, 10, 64)
+	u, err := strconv.ParseUint(s, 10, 64)
 	if err != nil {
 		lg.Println(err)
 	}
-	*f = tagSize(uu)
+	*f = tagSize(u)
+}
+
+func (f *tagSize16) set(s string) {
+	u, err := strconv.ParseUint(s, 10, 16)
+	if err != nil {
+		lg.Println(err)
+	}
+	*f = tagSize16(u)
 }

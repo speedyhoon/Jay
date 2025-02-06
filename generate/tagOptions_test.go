@@ -36,3 +36,28 @@ func Test_byteSize(t *testing.T) {
 		})
 	}
 }
+
+func Test_isShortRequiredTag(t *testing.T) {
+	tests := []struct {
+		tag  string
+		want bool
+	}{
+		{tag: "undefined", want: false},
+		{tag: "unmatched", want: false},
+		{tag: "unnamed", want: false},
+		{tag: "needed", want: false},
+		{tag: "required", want: true},
+		{tag: "require", want: true},
+		{tag: "requir", want: true},
+		{tag: "requi", want: true},
+		{tag: "requ", want: true},
+		{tag: "req", want: true},
+		{tag: "re", want: true},
+		{tag: "r", want: true},
+	}
+	for _, tt := range tests {
+		t.Run(tt.tag, func(t *testing.T) {
+			assert.Equalf(t, tt.want, isShortRequiredTag(tt.tag), "isShortRequiredTag(%v)", tt.tag)
+		})
+	}
+}
