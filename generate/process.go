@@ -203,8 +203,10 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 			continue
 		}
 
-		fe.tag = tag
-		fe.LoadTagOptions()
+		if !fe.LoadTagOptions(tag) {
+			fields = Remove(fields, i)
+			continue
+		}
 
 		s.addExportedFields(names, fe)
 		// Only increment `i` if the field was added. If the field was removed, `i` will still point to the next field.

@@ -32,7 +32,8 @@ type (
 	tagSize16 uint
 )
 
-func (f *field) LoadTagOptions() {
+func (f *field) LoadTagOptions(tag string) (ok bool) {
+	f.tag = tag
 	f.tagOptions.MaxQty = math.MaxUint16
 
 	f.tag = strings.TrimSpace(f.tag)
@@ -45,8 +46,16 @@ func (f *field) LoadTagOptions() {
 		case tagMax:
 			f.tagOptions.Max.set(d[1])
 			f.tagOptions.maxBytes = byteSize(f.tagOptions.Max)
+			if f.tagOptions.Max == 0 {
+				lg.Printf("field %s skipped because tag %s == 0\n", f.name, tagMax)
+				return false
+			}
 		case tagMaxQty:
 			f.tagOptions.MaxQty.set(d[1])
+			if f.tagOptions.MaxQty == 0 {
+				lg.Printf("field %s skipped because tag %s == 0\n", f.name, tagMaxQty)
+				return false
+			}
 		case tagMin:
 			f.tagOptions.Min.set(g)
 		case tagNano:
@@ -57,6 +66,7 @@ func (f *field) LoadTagOptions() {
 			f.tagOptions.Required = isShortRequiredTag(g)
 		}
 	}
+	return true
 }
 
 // isShortRequiredTag returns true if the tag starts with "r", "req", "require" or "required".
