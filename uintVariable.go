@@ -175,37 +175,20 @@ func lenUintDeprecated(u uint) uint8 {
 
 // WriteUint24 ...
 func WriteUint24(b []byte, u uint64) {
-	b[0] = byte(u)
-	b[1] = byte(u >> _8)
-	b[2] = byte(u >> _16)
+	b[0], b[1], b[2] = byte(u), byte(u>>_8), byte(u>>_16)
 }
 
 // WriteUint40 ...
 func WriteUint40(b []byte, u uint64) {
-	b[0] = byte(u)
-	b[1] = byte(u >> _8)
-	b[2] = byte(u >> _16)
-	b[3] = byte(u >> _24)
-	b[4] = byte(u >> _32)
+	b[0], b[1], b[2], b[3], b[4] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32)
 }
 
 // WriteUint48 ...
 func WriteUint48(b []byte, u uint64) {
-	b[0] = byte(u)
-	b[1] = byte(u >> _8)
-	b[2] = byte(u >> _16)
-	b[3] = byte(u >> _24)
-	b[4] = byte(u >> _32)
-	b[5] = byte(u >> _40)
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40)
 }
 
 // WriteUint56 ...
 func WriteUint56(b []byte, u uint64) {
-	b[0] = byte(u)
-	b[1] = byte(u >> _8)
-	b[2] = byte(u >> _16)
-	b[3] = byte(u >> _24)
-	b[4] = byte(u >> _32)
-	b[5] = byte(u >> _40)
-	b[6] = byte(u >> _48)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40), byte(u>>_48)
 }
