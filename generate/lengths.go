@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/utl"
-	"strconv"
 	"strings"
 )
 
@@ -68,6 +67,7 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 	}
 
 	qty := len(names)
+	declarations := strings.Join(decls(qty), ", ")
 	var sizes []string
 	var out string
 	if l := len(slices) - 1; l >= 1 {
@@ -83,7 +83,7 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 		out = strings.Join(sizes, ", ")
 		if len(names) == 0 {
 			return fmt.Sprintf("%s := %s",
-				strings.Join(decls(qty), ", "),
+				declarations,
 				out,
 			)
 		}
@@ -92,7 +92,6 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 	}
 
 	receiver = fmt.Sprintf("len(%s.", receiver)
-	declarations := strings.Join(decls(qty), ", ")
 	return fmt.Sprintf("%s := %s%s)%s",
 		declarations,
 		receiver,
@@ -103,7 +102,7 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 
 func decls(u int) (s []string) {
 	for i := 0; i < u; i++ {
-		s = append(s, "l"+strconv.Itoa(i))
+		s = append(s, lenVariable(i))
 	}
 	return
 }
