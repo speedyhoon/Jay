@@ -33,11 +33,10 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		buf.WriteString("\n")
 	}
 
-	for _, f := range s.stringSlice {
-		//at, end = s.tracking(buf, i, end, byteIndex, f.typ)
+	for i, f := range s.stringSlice {
+		at, _ = s.tracking(buf, i, end, byteIndex, f.typ)
 		//lenVar := lenVariable(i)
-		at = "at"
-		buf.WriteString(f.unmarshalLine(&byteIndex, at, end, ""))
+		buf.WriteString(f.unmarshalLine(&byteIndex, at, "", ""))
 		buf.WriteString("\n")
 	}
 

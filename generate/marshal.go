@@ -15,29 +15,12 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
-	//strSliceAssignVars, vars := assignStringSliceSizes(s.stringSlice)
-
 	varLengths := lengths2(s.varLenFieldNames(), s.stringSlice, s.receiver)
-
-	//varLengths := lengths2(s.varLenFieldNames(), s.receiver, "")
-	//varLengths := lengths3(s.varLenFieldNames(), vars, s.receiver)
-	//if strSliceAssignVars != "" {
-	//	if varLengths == "" {
-	//		varLengths = strSliceAssignVars
-	//	} else {
-	//		varLengths = strSliceAssignVars + "\n" + varLengths
-	//	}
-	//}
 	makeSize := joinSizes(s.calcSize(), s.variableLen, s.stringSlice, importJ)
 	s.isReturnedInline()
 
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
-	//if strSliceAssignVars != "" {
-	//	buf.WriteString(strSliceAssignVars + "\n")
-	//}
-	s.writeStrSlice(buf, nil, byteIndex)
-
 	s.makeWriteBools(buf, &byteIndex, importJ)
 	s.writeSingles(buf, &byteIndex, s.receiver, importJ)
 
@@ -46,6 +29,8 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 		buf.WriteString(f.marshalLine(&byteIndex, at, "", importJ, ""))
 		buf.WriteString("\n")
 	}
+
+	s.writeStrSlice(buf, nil, byteIndex)
 
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.variableLen {
