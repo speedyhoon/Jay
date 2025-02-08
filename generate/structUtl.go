@@ -104,7 +104,7 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 		}
 
 		f.arraySize, ok = calcArraySize(d.Len)
-		f.isFixedLen = f.isFixedLen && f.isSlice()
+		f.isFixedLen = f.isFixedLen && f.isArray()
 
 	case *ast.TypeSpec:
 		f, ok = o.isSupportedType(d.Type, dirList, pkg)
