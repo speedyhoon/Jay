@@ -27,7 +27,8 @@ type structTyp struct {
 	stringSlice fieldList
 
 	// When true: returns the Marshal code in a single return statement, when false: MarshalJ() method contains several lines.
-	returnInline bool
+	returnInline          bool
+	returnInlineUnmarshal canReturnInlined
 }
 
 func newStructTyp(dir, typeName string, o *Option) *structTyp {

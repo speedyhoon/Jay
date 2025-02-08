@@ -69,6 +69,19 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		return
 	}
 
+	if s.returnInlineUnmarshal {
+		bufWriteF(b,
+			"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%s}\n",
+			s.receiver,
+			s.name,
+			s.bufferName,
+			lengthCheck,
+			variableLengthCheck,
+			code,
+		)
+		return
+	}
+
 	bufWriteF(b,
 		"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%sreturn nil\n}\n",
 		s.receiver,
@@ -111,7 +124,9 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 }
 
 func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
-	fun, template, canReturnInline := f.unmarshalFuncs()
+	var fun string
+	var template uint8
+	fun, template, f.structTyp.returnInlineUnmarshal = f.unmarshalFuncs()
 	totalSize := f.typeFuncSize()
 
 	if f.isFixedLen || f.typ == tStrings {
@@ -136,7 +151,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end), lenVar))
 
 	case tFuncPtr:
-		return fmt.Sprintf("%s%s(%s, &%s)", canReturnInline, fun, f.sliceExpr(at, end), thisField)
+		return fmt.Sprintf("%s%s(%s, &%s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr(at, end), thisField)
 
 	case tFuncPtrCheck:
 		return fmt.Sprintf(
