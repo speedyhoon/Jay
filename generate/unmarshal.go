@@ -8,6 +8,10 @@ import (
 	"strings"
 )
 
+func (s *structTyp) ReturnInline() bool {
+	return len(s.fixedLen) == 0 && len(s.single) == 0 && len(s.variableLen) == 0 && len(s.bool) == 0 && len(s.boolArray) == 0 && len(s.stringSlice) >= 1
+}
+
 // makeUnmarshal ...
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	var byteIndex = uint(len(s.variableLen))
@@ -29,6 +33,14 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		buf.WriteString("\n")
 	}
 
+	for _, f := range s.stringSlice {
+		//at, end = s.tracking(buf, i, end, byteIndex, f.typ)
+		//lenVar := lenVariable(i)
+		at = "at"
+		buf.WriteString(f.unmarshalLine(&byteIndex, at, end, ""))
+		buf.WriteString("\n")
+	}
+
 	code := buf.Bytes()
 	if len(code) == 0 {
 		return
@@ -36,12 +48,26 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 
 	// Prevent panic: runtime error: index out of range
 	var lengthCheck string
-	if len(s.variableLen) == 0 {
+	if len(s.variableLen) == 0 && len(s.stringSlice) == 0 {
 		lengthCheck = fmt.Sprintf("if len(%s) != %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
+	} else if len(s.variableLen) == 0 && len(s.stringSlice) >= 1 {
+		lengthCheck = fmt.Sprintf("if len(%s) < %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
 	} else {
 		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\nif %[1]s < %[3]d {\nreturn %[4]s\n}", s.lengthName, s.bufferName, byteIndex, exportedErr)
 	}
 	variableLengthCheck := s.generateCheckSizes(exportedErr, byteIndex)
+
+	if s.ReturnInline() {
+		bufWriteF(b,
+			"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s\n}\n",
+			s.receiver,
+			s.name,
+			s.bufferName,
+			lengthCheck,
+			code,
+		)
+		return
+	}
 
 	bufWriteF(b,
 		"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%sreturn nil\n}\n",
@@ -85,10 +111,10 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 }
 
 func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
-	fun, template := f.unmarshalFuncs()
+	fun, template, canReturnInline := f.unmarshalFuncs()
 	totalSize := f.typeFuncSize()
 
-	if f.isFixedLen {
+	if f.isFixedLen || f.typ == tStrings {
 		*byteIndex += totalSize
 	}
 	thisField := pkgSelName(f.structTyp.receiver, f.name)
@@ -109,6 +135,21 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	case tFuncLength:
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end), lenVar))
 
+	case tFuncPtr:
+		return fmt.Sprintf("%s%s(%s, &%s)", canReturnInline, fun, f.sliceExpr(at, end), thisField)
+
+	case tFuncPtrCheck:
+		return fmt.Sprintf(
+			"at, ok := %s(%s, &%s)\n\tif !ok {\n\t\treturn %s\n\t}",
+			fun, f.sliceExpr(at, end), thisField, exportedErr,
+		)
+
+	case tFuncPtrCheckAt:
+		return fmt.Sprintf(
+			"if !%s(%s, &%s, &at) {\n\t\treturn %s\n\t}",
+			fun, f.sliceExpr(at, end), thisField, exportedErr,
+		)
+
 	case tByteConv:
 		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end)))
 
@@ -117,6 +158,15 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	}
 
 	lg.Println("unhandled template")
+	return ""
+}
+
+type canReturnInlined bool
+
+func (c canReturnInlined) String() string {
+	if c {
+		return "return "
+	}
 	return ""
 }
 
@@ -137,19 +187,19 @@ func (f *field) typeConvert() string {
 
 // unmarshalFuncs returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
-func (f field) unmarshalFuncs() (funcName string, template uint8) {
+func (f field) unmarshalFuncs() (funcName string, template uint8, canReturnInline canReturnInlined) {
 	var c interface{}
 	switch f.typ {
 	case tByte:
 		if f.isDef {
-			return f.typeConvert(), tByteConv
+			return f.typeConvert(), tByteConv, false
 		}
-		return "", tByteAssign
+		return "", tByteAssign, false
 	case tInt8, tString:
 		if f.isDef {
-			return f.typeConvert(), tByteConv
+			return f.typeConvert(), tByteConv, false
 		}
-		return f.typ, tByteConv
+		return f.typ, tByteConv, false
 	case tInt:
 		if f.structTyp.option.FixedIntSize {
 			if f.structTyp.option.Is32bit {
@@ -235,10 +285,29 @@ func (f field) unmarshalFuncs() (funcName string, template uint8) {
 		c, template = jay.ReadUint64s, tFuncLength
 	case tTimeDurations:
 		c, template = jay.ReadDurations, tFuncLength
+	case tStrings:
+		if f.isLast {
+			//switch {
+			//case f.tagOptions.MaxQty <= maxUint8:
+			//	c, template = jay.ReadStrings8Err, tFunc
+			//default:
+			c, template, canReturnInline = jay.ReadStrings16Err, tFuncPtr, canReturnInlined(f.isLast)
+			//}
+			//break
+		} else if f.isFirst {
+			c, template = jay.ReadStrings16n, tFuncPtrCheck
+		} else {
+			//switch {
+			//case f.tagOptions.MaxQty <= maxUint8:
+			//	c, template = jay.ReadStrings8nErr, tFuncPtrCheck
+			//default:
+			c, template = jay.ReadStrings16nb, tFuncPtrCheckAt
+			//}
+		}
 
 	default:
 		lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
 	}
 
-	return nameOf(c, nil), template
+	return nameOf(c, nil), template, canReturnInline
 }

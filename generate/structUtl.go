@@ -284,7 +284,7 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 }
 
 func (s *structTyp) hasExportedFields() bool {
-	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1 || len(s.single) >= 1
+	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1 || len(s.single) >= 1 || len(s.stringSlice) >= 1
 }
 
 func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
@@ -298,6 +298,9 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 		switch f.typ {
 		case tByte, tInt8:
 			s.single = append(s.single, f)
+			continue
+		case tStrings:
+			s.stringSlice = append(s.stringSlice, f)
 			continue
 		}
 		// TODO add support for adding tiny enums using <= 7 bits
@@ -394,7 +397,7 @@ const (
 	tIntS, tInt8S, tInt16S, tInt32S, tInt64S = "[]int", "[]int8", "[]int16", "[]int32", "[]int64"
 	tUint, tUint16, tUint32, tUint64         = "uint", "uint16", "uint32", "uint64"
 	tUintS, tUint16S, tUint32S, tUint64S     = "[]uint", "[]uint16", "[]uint32", "[]uint64"
-	tString                                  = "string"
+	tString, tStrings                        = "string", "[]string"
 	tTime, tTimeDuration, tTimeDurations     = "time.Time", "time.Duration", "[]time.Duration"
 )
 

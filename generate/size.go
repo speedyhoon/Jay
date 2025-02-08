@@ -22,6 +22,9 @@ func (s *structTyp) calcSize() (qty uint) {
 func (f field) typeFuncSize() (size uint) {
 	switch {
 	case f.isSlice():
+		if f.typ == tStrings {
+			return 2
+		}
 		return 1
 	case f.isArray():
 		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()

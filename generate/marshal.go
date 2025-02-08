@@ -15,12 +15,29 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
-	varLengths := lengths2(s.varLenFieldNames(), s.receiver)
-	makeSize := joinSizes(s.calcSize(), s.variableLen, importJ)
+	//strSliceAssignVars, vars := assignStringSliceSizes(s.stringSlice)
+
+	varLengths := s.defineLengths()
+
+	//varLengths := lengths2(s.varLenFieldNames(), s.receiver, "")
+	//varLengths := lengths3(s.varLenFieldNames(), vars, s.receiver)
+	//if strSliceAssignVars != "" {
+	//	if varLengths == "" {
+	//		varLengths = strSliceAssignVars
+	//	} else {
+	//		varLengths = strSliceAssignVars + "\n" + varLengths
+	//	}
+	//}
+	makeSize := joinSizes(s.calcSize(), s.variableLen, s.stringSlice, importJ)
 	s.isReturnedInline()
 
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
+	//if strSliceAssignVars != "" {
+	//	buf.WriteString(strSliceAssignVars + "\n")
+	//}
+	s.writeStrSlice(buf, nil, byteIndex)
+
 	s.makeWriteBools(buf, &byteIndex, importJ)
 	s.writeSingles(buf, &byteIndex, s.receiver, importJ)
 
@@ -87,14 +104,14 @@ func (s *structTyp) generateSizeLine() string {
 }
 
 func (s *structTyp) isReturnedInline() {
-	s.returnInline = !(len(s.variableLen) >= 1 || len(s.fixedLen) >= 1) ||
+	s.returnInline = !(len(s.variableLen) >= 1 || len(s.fixedLen) >= 1 || len(s.stringSlice) >= 1) ||
 		len(s.fixedLen) == 1 && s.fixedLen[0].isArray() && s.fixedLen[0].typ == tByteS
 }
 
 func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
 	fun, template := f.MarshalFuncTemplate(importJ)
 	totalSize := f.typeFuncSize()
-	if template == tNoTemplate {
+	if template == tNoTemplate || template > tByteConv {
 		// Unknown type, not supported yet.
 		return ""
 	}
@@ -249,6 +266,13 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 		return jay.WriteUint64s, tFunc
 	case tTimeDurations:
 		return jay.WriteDurations, tFunc
+	case tStrings:
+		switch {
+		case f.tagOptions.MaxQty <= maxUint8:
+			return jay.WriteStrings8, tFunc
+		default:
+			return jay.WriteStrings16, tFunc
+		}
 
 	default:
 		lg.Printf("no function set for type %s yet in typeFuncs()", f.typ)
@@ -270,15 +294,15 @@ func nameOf(f any, importJ *bool) string {
 }
 
 func (f *field) sliceExpr(at, end string) string {
+	if f.isFirst && (f.isLast || f.typ == tStrings) {
+		return f.structTyp.bufferName
+	}
+
 	if at == "0" {
 		at = ""
 	}
 
 	if f.isFixedLen {
-		if f.isFirst && f.isLast {
-			return f.structTyp.bufferName
-		}
-
 		// `at == ""` is needed when structType contains variableLen types
 		// then `at` can't be absent because their sizes are placed before.
 		if f.isFirst && at == "" {
@@ -286,7 +310,7 @@ func (f *field) sliceExpr(at, end string) string {
 		}
 	}
 
-	if f.isLast {
+	if f.isLast || f.typ == tStrings {
 		return fmt.Sprintf("%s[%s:]", f.structTyp.bufferName, at)
 	}
 	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, at, end)
@@ -304,6 +328,15 @@ const (
 
 	// tFuncLength calls a function with a length parameter, `func(b[at:end], type, int)`.
 	tFuncLength
+
+	// tFuncPtr calls a function with the field used as a pointer in the last parameter.
+	tFuncPtr
+
+	// tFuncPtrCheck wraps tFuncPtr with an if statement to check for any returned errors.
+	tFuncPtrCheck
+
+	// tFuncPtrCheckAt expands tFuncPtrCheck by adding a function parameter to update a pointer for the byte index.
+	tFuncPtrCheckAt
 
 	// tByteAssign byte assignment always populated. No function calls required, `b[0] = byte`.
 	tByteAssign
