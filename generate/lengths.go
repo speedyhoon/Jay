@@ -67,7 +67,6 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 	}
 
 	qty := len(names)
-	declarations := strings.Join(decls(qty), ", ")
 	var sizes []string
 	var out string
 	if l := len(slices) - 1; l >= 1 {
@@ -82,6 +81,7 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 		}
 		out = strings.Join(sizes, ", ")
 		if len(names) == 0 {
+			declarations := strings.Join(decls(qty), ", ")
 			return fmt.Sprintf("%s := %s",
 				declarations,
 				out,
@@ -92,6 +92,7 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 	}
 
 	receiver = fmt.Sprintf("len(%s.", receiver)
+	declarations := strings.Join(decls(qty), ", ")
 	return fmt.Sprintf("%s := %s%s)%s",
 		declarations,
 		receiver,
