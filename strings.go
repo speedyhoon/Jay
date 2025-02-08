@@ -119,6 +119,39 @@ func ReadStrings8n(y []byte, s *[]string) (total int, ok bool) {
 
 	return total, true
 }
+
+func ReadStrings8nErr(y []byte, s *[]string) (total int, err error) {
+	if y[0] == 0 {
+		return
+	}
+
+	l := len(y)
+	qty := int(y[0])
+	index := qty + 1
+	if l < index {
+		return 0, ErrUnexpectedEOB
+	}
+
+	total = index
+	*s = make([]string, qty)
+	for i := 0; i < qty; i++ {
+		u := int(y[1+i])
+		if u == 0 {
+			continue
+		}
+
+		total += u
+		if l < total {
+			return 0, ErrUnexpectedEOB
+		}
+
+		(*s)[i] = string(y[index:total])
+		index = total
+	}
+
+	return
+}
+
 func ReadStrings16(y []byte, s *[]string) (ok bool) {
 	// ReadUint16
 	qty := int(y[0]) | int(y[1])<<8
@@ -219,6 +252,41 @@ func ReadStrings16n(y []byte, s *[]string) (total int, ok bool) {
 	}
 
 	return total, true
+}
+
+func ReadStrings16nb(y []byte, s *[]string, at *int) ( /*total int,*/ ok bool) {
+	// ReadUint16
+	qty := int(y[0]) | int(y[1])<<8
+	if qty == 0 {
+		return true
+	}
+
+	l := len(y)
+	index := qty*2 + 2
+	if l < index {
+		return false
+	}
+
+	total := index
+	*s = make([]string, qty)
+	for i := 0; i < qty; i++ {
+		// ReadUint16
+		u := int(y[2+i*2]) | int(y[3+i*2])<<8
+		if u == 0 {
+			continue
+		}
+
+		total += u
+		if l < total {
+			return false
+		}
+
+		(*s)[i] = string(y[index:total])
+		index = total
+	}
+	*at += total
+
+	return true
 }
 
 func ReadStrings16nErr(y []byte, s *[]string) (total int, err error) {
