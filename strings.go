@@ -221,6 +221,40 @@ func ReadStrings16n(y []byte, s *[]string) (total int, ok bool) {
 	return total, true
 }
 
+func ReadStrings16nErr(y []byte, s *[]string) (total int, err error) {
+	// ReadUint16
+	qty := int(y[0]) | int(y[1])<<8
+	if qty == 0 {
+		return
+	}
+
+	l := len(y)
+	index := qty*2 + 2
+	if l < index {
+		return 0, ErrUnexpectedEOB
+	}
+
+	total = index
+	*s = make([]string, qty)
+	for i := 0; i < qty; i++ {
+		// ReadUint16
+		u := int(y[2+i*2]) | int(y[3+i*2])<<8
+		if u == 0 {
+			continue
+		}
+
+		total += u
+		if l < total {
+			return 0, ErrUnexpectedEOB
+		}
+
+		(*s)[i] = string(y[index:total])
+		index = total
+	}
+
+	return total, nil
+}
+
 func WriteStrings8(y []byte, s []string) {
 	qty := len(s)
 	if qty == 0 {
