@@ -17,7 +17,7 @@ import (
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	//strSliceAssignVars, vars := assignStringSliceSizes(s.stringSlice)
 
-	varLengths := s.defineLengths()
+	varLengths := lengths2(s.varLenFieldNames(), s.stringSlice, s.receiver)
 
 	//varLengths := lengths2(s.varLenFieldNames(), s.receiver, "")
 	//varLengths := lengths3(s.varLenFieldNames(), vars, s.receiver)
