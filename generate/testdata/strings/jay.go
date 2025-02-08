@@ -2,9 +2,7 @@
 
 package main
 
-import (
-	"github.com/speedyhoon/jay"
-)
+import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() (b []byte) {
 	b = make([]byte, jay.StringsSize16(o.One))
@@ -16,7 +14,6 @@ func (o *One) UnmarshalJ(b []byte) error {
 	if len(b) < 2 {
 		return jay.ErrUnexpectedEOB
 	}
-
 	return jay.ReadStrings16Err(b, &o.One)
 }
 
