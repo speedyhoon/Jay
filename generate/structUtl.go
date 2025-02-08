@@ -386,8 +386,7 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 }
 
 func lenVariable(index int) string {
-	const lengthVarPrefix = "l"
-	return lengthVarPrefix + utl.UtoA(uint(index))
+	return lengthNameDefault + utl.UtoA(uint(index))
 }
 
 // List of supported types.
