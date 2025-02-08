@@ -294,7 +294,7 @@ func nameOf(f any, importJ *bool) string {
 }
 
 func (f *field) sliceExpr(at, end string) string {
-	if f.isFirst && (f.isLast || f.typ == tStrings) {
+	if f.typ == tStrings && f.isFirst && f.isLast {
 		return f.structTyp.bufferName
 	}
 
@@ -303,6 +303,10 @@ func (f *field) sliceExpr(at, end string) string {
 	}
 
 	if f.isFixedLen {
+		if f.isFirst && f.isLast {
+			return f.structTyp.bufferName
+		}
+
 		// `at == ""` is needed when structType contains variableLen types
 		// then `at` can't be absent because their sizes are placed before.
 		if f.isFirst && at == "" {
