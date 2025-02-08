@@ -289,14 +289,14 @@ func ReadStrings16nb(y []byte, s *[]string, at *int) ( /*total int,*/ ok bool) {
 	return true
 }
 
-func ReadStrings16nErr(y []byte, s *[]string) (total int, err error) {
+func ReadStrings16nErr(y []byte, s *[]string) (total uint, err error) {
 	// ReadUint16
-	qty := int(y[0]) | int(y[1])<<8
+	qty := uint(y[0]) | uint(y[1])<<8
 	if qty == 0 {
 		return
 	}
 
-	l := len(y)
+	l := uint(len(y))
 	index := qty*2 + 2
 	if l < index {
 		return 0, ErrUnexpectedEOB
@@ -304,9 +304,10 @@ func ReadStrings16nErr(y []byte, s *[]string) (total int, err error) {
 
 	total = index
 	*s = make([]string, qty)
-	for i := 0; i < qty; i++ {
+	var i uint
+	for ; i < qty; i++ {
 		// ReadUint16
-		u := int(y[2+i*2]) | int(y[3+i*2])<<8
+		u := uint(y[2+i*2]) | uint(y[3+i*2])<<8
 		if u == 0 {
 			continue
 		}
@@ -320,7 +321,7 @@ func ReadStrings16nErr(y []byte, s *[]string) (total int, err error) {
 		index = total
 	}
 
-	return total, nil
+	return
 }
 
 func WriteStrings8(y []byte, s []string) {
