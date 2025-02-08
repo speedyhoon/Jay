@@ -141,7 +141,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	case tFuncPtrCheck:
 		return fmt.Sprintf(
 			"at, ok := %s(%s, &%s)\n\tif !ok {\n\t\treturn %s\n\t}",
-			fun, f.sliceExpr(at, end), thisField, exportedErr,
+			fun, f.structTyp.bufferName, thisField, exportedErr,
 		)
 
 	case tFuncPtrCheckAt:
