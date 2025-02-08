@@ -33,13 +33,13 @@ type (
 )
 
 func (f *field) LoadTagOptions(tag string) (ok bool) {
-	f.tag = tag
+	f.tag = strings.TrimSpace(tag)
+	if f.tag == "" {
+		return true
+	}
+
 	f.tagOptions.MaxQty = math.MaxUint16
 
-	f.tag = strings.TrimSpace(f.tag)
-	if f.tag == "" {
-		return
-	}
 	for _, c := range strings.Split(f.tag, ",") {
 		d := strings.Split(c, ":")
 		switch g := strings.ToLower(strings.TrimSpace(d[0])); g {
