@@ -316,13 +316,16 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 // isLen returns how many bytes each type requires.
 func isLen(typ string) uint {
 	switch typ {
-	case tBool, tByte, tInt8, tString, tInt, tUint:
+	case tBool, tByte, tInt8, tString:
 		return 1
 	case tInt16, tUint16:
 		return 2
 	case tInt32, tUint32, tFloat32:
 		return 4
 	case tInt64, tUint64, tFloat64:
+		return 8
+	case tInt, tUint:
+		// TODO dynamically set size for 32 or 64 bit systems
 		return 8
 	}
 	return 0
