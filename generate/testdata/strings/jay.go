@@ -25,18 +25,15 @@ func (t *Two) MarshalJ() (b []byte) {
 	return
 }
 
-func (t *Two) UnmarshalJ(b []byte) (err error) {
-	if len(b) < 2 {
+func (t *Two) UnmarshalJ(b []byte) error {
+	if len(b) < 4 {
 		return jay.ErrUnexpectedEOB
 	}
-
-	var index uint
-	index, err = jay.ReadStrings16nErr(b, &t.One)
-	if err != nil {
-		return
+	at, ok := jay.ReadStrings16n(b, &t.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
 	}
-
-	return jay.ReadStrings16Err(b[index:], &t.Two)
+	return jay.ReadStrings16Err(b[at:], &t.Two)
 }
 
 func (t *Three) MarshalJ() (b []byte) {
@@ -48,21 +45,16 @@ func (t *Three) MarshalJ() (b []byte) {
 	return
 }
 
-func (t *Three) UnmarshalJ(b []byte) (err error) {
-	if len(b) != 0 {
+func (t *Three) UnmarshalJ(b []byte) error {
+	if len(b) < 6 {
 		return jay.ErrUnexpectedEOB
 	}
-
-	var index uint
-	index, err = jay.ReadStrings16nErr(b, &t.One)
-	if err != nil {
-		return
+	at, ok := jay.ReadStrings16n(b, &t.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
 	}
-
-	index, err = jay.ReadStrings16nErr(b[index:], &t.Two)
-	if err != nil {
-		return
+	if !jay.ReadStrings16nb(b[at:], &t.Two, &at) {
+		return jay.ErrUnexpectedEOB
 	}
-
-	return jay.ReadStrings16Err(b[index:], &t.Three)
+	return jay.ReadStrings16Err(b[at:], &t.Three)
 }
