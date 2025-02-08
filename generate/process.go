@@ -37,6 +37,11 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 
 	filenames = RemoveDuplicates(filenames)
 	for i := range filenames {
+		if filenames[i] == o.outputFile {
+			// Don't bother parsing the output file, as it will be overwritten anyway.
+			continue
+		}
+
 		if !utl.IsGoFileName(filenames[i]) {
 			lg.Printf("`%s` does not contain a Go file extension", filenames[i])
 			continue
@@ -147,6 +152,11 @@ func ParseFile(filename string, src interface{}) (f *ast.File, err error) {
 
 // ProcessWrite processes a file and writes to outputFile.
 func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames ...string) (err error) {
+	if outputFile == "" {
+		outputFile = DefaultOutputFileName
+	}
+	o.outputFile = outputFile
+
 	output, err := o.ProcessFiles(source, filenames...)
 	if err != nil {
 		return err
@@ -154,10 +164,6 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 
 	if len(output) == 0 {
 		return nil
-	}
-
-	if outputFile == "" {
-		outputFile = DefaultOutputFileName
 	}
 
 	dir, _ := filepath.Split(outputFile)
