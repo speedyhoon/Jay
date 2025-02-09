@@ -5,3 +5,12 @@ type Lion struct {
 	Two   []string
 	Three bool
 }
+
+type Zebra struct {
+	One   bool
+	Two   []string
+	Three bool
+	Four  string
+	Five  []int
+	Six   uint64
+}
