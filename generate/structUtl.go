@@ -368,6 +368,10 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 }
 
 func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint, varType string) (at, end string) {
+	if varType == tStrings {
+		return "at", ""
+	}
+
 	if endVar == "" {
 		return utl.UtoA(byteIndex), ""
 	}
