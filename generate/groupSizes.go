@@ -2,69 +2,62 @@ package generate
 
 import (
 	"fmt"
+	"github.com/speedyhoon/jay"
+	"sort"
 	"strings"
 )
 
-type sizeCheck struct {
-	name        string
-	bytesNeeded uint
-}
+type varSize map[uint][]string
 
-func groupConditionSizes(sc []sizeCheck, conditions []string) (output string) {
-	if len(sc) >= 1 {
-		mm := map[uint][]string{}
-
-		for _, check := range sc {
-			_, ok := mm[check.bytesNeeded]
-			if !ok {
-				mm[check.bytesNeeded] = []string{check.name}
-				continue
-			}
-
-			mm[check.bytesNeeded] = append(mm[check.bytesNeeded], check.name)
-		}
-
-		grouped := make([]string, len(mm))
-		var c int
-
-		for sizeOf, indexList := range mm {
-			vars := additionJoin(indexList, sizeOf)
-
-			switch sizeOf {
-			case 0:
-				panic("invalid size 0 for sizeCheck :(")
-			case 1:
-				grouped[c] = vars
-			default:
-				if len(indexList) == 1 {
-					grouped[c] = fmt.Sprintf("%d*%s", sizeOf, vars)
-				} else {
-					grouped[c] = fmt.Sprintf("%d*(%s)", sizeOf, vars)
-				}
-			}
-			c++
-		}
-		output = strings.Join(grouped, "+")
+func (mm *varSize) add(sizeOf uint, varName string) {
+	if sizeOf == 0 {
+		varName = printFunc(nameOf(jay.SizeBools, nil), varName)
 	}
 
-	bools := strings.Join(conditions, "+")
-	if bools != "" {
-		if output != "" {
-			return output + "+" + bools
-		} else {
-			return bools
-		}
+	_, ok := (*mm)[sizeOf]
+	if !ok {
+		(*mm)[sizeOf] = []string{varName}
+		return
 	}
-	return output
+
+	(*mm)[sizeOf] = append((*mm)[sizeOf], varName)
 }
 
-func additionJoin(list []string, sizeOf uint) string {
+func (mm *varSize) group() (output string) {
+	c, l := 0, len(*mm)
+	sizes := make([]uint, len(*mm))
+	for u := range *mm {
+		sizes[c] = u
+		c++
+	}
+
+	sort.Slice(sizes, func(i, j int) bool {
+		return sizes[i] > sizes[j]
+	})
+
+	var grouped []string
+	for i := 0; i < l; i++ {
+		sizeOf := sizes[i]
+		additionJoin((*mm)[sizeOf], sizeOf, &grouped)
+	}
+	return strings.Join(grouped, "+")
+}
+
+func additionJoin(list []string, sizeOf uint, out *[]string) {
+	if len(list) >= 1 {
+		*out = append(*out, formatVarAdditions(list, sizeOf))
+	}
+}
+
+func formatVarAdditions(list []string, sizeOf uint) string {
 	if len(list) == 1 {
-		return list[0]
+		if sizeOf <= 1 { // bools and singles.
+			return list[0]
+		}
+		return fmt.Sprintf("%d*%s", sizeOf, list[0])
 	}
-
-	if sizeOf == 1 {
+	if sizeOf <= 1 { // bools and singles.
 		return strings.Join(list, "+")
 	}
-	return fmt.Sprintf("(%s)", strings.Join(list, "+"))
-}
+	return fmt.Sprintf("%d*(%s)", sizeOf, strings.Join(list, "+"))
+} //67

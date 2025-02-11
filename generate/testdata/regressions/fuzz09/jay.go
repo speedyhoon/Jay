@@ -128,7 +128,7 @@ func (q *QQXGKCa4tQi1lgGl81IDkGRMc3627IiA3Fh4aC6y3815PWv684S) UnmarshalJ(b []byt
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17])
-	if l != 332+l0+l1+l2+l3+l5+l7+l9+l10+l11+l16+l17+8*(l4+l8)+4*(l13+l14)+jay.SizeBools(l6)+jay.SizeBools(l12)+jay.SizeBools(l15) {
+	if l != 332+8*(l4+l8)+4*(l13+l14)+l0+l1+l2+l3+l5+l7+l9+l10+l11+l16+l17+jay.SizeBools(l6)+jay.SizeBools(l12)+jay.SizeBools(l15) {
 		return jay.ErrUnexpectedEOB
 	}
 	q.Kl6hsSyQgQLvH3K4rTu28T00sPm0nTQ6876X6FlY785TpT1ePW50Yyb2EXgXV1m = b[18]

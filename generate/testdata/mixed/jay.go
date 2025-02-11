@@ -38,7 +38,7 @@ func (z *Zebra) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1 := int(b[0]), int(b[1])
-	if l != 13+l0+8*l1 {
+	if l != 13+8*l1+l0 {
 		return jay.ErrUnexpectedEOB
 	}
 	z.One, z.Three = jay.ReadBool2(b[2])
