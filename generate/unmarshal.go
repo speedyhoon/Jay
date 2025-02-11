@@ -103,11 +103,7 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 	for i, f := range s.variableLen {
 		assignments[i] = lenVariable(i)
 		values[i] = fmt.Sprintf("int(%s[%d])", s.bufferName, i)
-		if f.typ == tBoolS {
-			sizeChecks.add(0, assignments[i])
-		} else {
-			sizeChecks.add(f.elmSize, assignments[i])
-		}
+		sizeChecks.add(f, assignments[i])
 	}
 
 	return fmt.Sprintf(

@@ -9,24 +9,26 @@ import (
 
 type varSize map[uint][]string
 
-func (mm *varSize) add(sizeOf uint, varName string) {
-	if sizeOf == 0 {
+func (vs *varSize) add(f field, varName string) {
+	sizeOf := f.elmSize
+	if f.typ == tBoolS {
 		varName = printFunc(nameOf(jay.SizeBools, nil), varName)
+		sizeOf = 0
 	}
 
-	_, ok := (*mm)[sizeOf]
+	_, ok := (*vs)[sizeOf]
 	if !ok {
-		(*mm)[sizeOf] = []string{varName}
+		(*vs)[sizeOf] = []string{varName}
 		return
 	}
 
-	(*mm)[sizeOf] = append((*mm)[sizeOf], varName)
+	(*vs)[sizeOf] = append((*vs)[sizeOf], varName)
 }
 
-func (mm *varSize) group() (output string) {
-	c, l := 0, len(*mm)
-	sizes := make([]uint, len(*mm))
-	for u := range *mm {
+func (vs *varSize) group() (output string) {
+	c, l := 0, len(*vs)
+	sizes := make([]uint, len(*vs))
+	for u := range *vs {
 		sizes[c] = u
 		c++
 	}
@@ -38,7 +40,7 @@ func (mm *varSize) group() (output string) {
 	var grouped []string
 	for i := 0; i < l; i++ {
 		sizeOf := sizes[i]
-		additionJoin((*mm)[sizeOf], sizeOf, &grouped)
+		additionJoin((*vs)[sizeOf], sizeOf, &grouped)
 	}
 	return strings.Join(grouped, "+")
 }
@@ -60,4 +62,4 @@ func formatVarAdditions(list []string, sizeOf uint) string {
 		return strings.Join(list, "+")
 	}
 	return fmt.Sprintf("%d*(%s)", sizeOf, strings.Join(list, "+"))
-} //67
+}
