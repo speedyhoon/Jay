@@ -73,7 +73,7 @@ type Option struct {
 
 func (m *MaxSize) Set(value *uint) error {
 	if *value > 8 {
-		return fmt.Errorf("value is greater than 8. Expected 1 - 8, got %d", *value)
+		return fmt.Errorf("value %d is greater than 8. Expected 1 - 8", *value)
 	}
 
 	*m = MaxSize(*value)
