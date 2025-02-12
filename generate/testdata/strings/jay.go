@@ -5,56 +5,56 @@ package main
 import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() (b []byte) {
-	b = make([]byte, jay.StringsSize16(o.One))
-	jay.WriteStrings16(b, o.One)
+	b = make([]byte, jay.StringsSize8(o.One))
+	jay.WriteStrings8(b, o.One)
 	return
 }
 
 func (o *One) UnmarshalJ(b []byte) error {
-	if len(b) < 2 {
+	if len(b) < 1 {
 		return jay.ErrUnexpectedEOB
 	}
-	return jay.ReadStrings16Err(b, &o.One)
+	return jay.ReadStrings8Err(b, &o.One)
 }
 
 func (t *Two) MarshalJ() (b []byte) {
-	l0 := jay.StringsSize16(t.One)
-	b = make([]byte, l0+jay.StringsSize16(t.Two))
-	jay.WriteStrings16(b[:l0], t.One)
-	jay.WriteStrings16(b[l0:], t.Two)
+	l0 := jay.StringsSize8(t.One)
+	b = make([]byte, l0+jay.StringsSize8(t.Two))
+	jay.WriteStrings8(b[:l0], t.One)
+	jay.WriteStrings8(b[l0:], t.Two)
 	return
 }
 
 func (t *Two) UnmarshalJ(b []byte) error {
-	if len(b) < 4 {
+	if len(b) < 2 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings16n(b, &t.One)
+	at, ok := jay.ReadStrings8n(b, &t.One)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
-	return jay.ReadStrings16Err(b[at:], &t.Two)
+	return jay.ReadStrings8Err(b[at:], &t.Two)
 }
 
 func (t *Three) MarshalJ() (b []byte) {
-	l0, l1 := jay.StringsSize16(t.One), jay.StringsSize16(t.Two)
-	b = make([]byte, l0+l1+jay.StringsSize16(t.Three))
-	jay.WriteStrings16(b[:l0], t.One)
-	jay.WriteStrings16(b[l0:l0+l1], t.Two)
-	jay.WriteStrings16(b[l0+l1:], t.Three)
+	l0, l1 := jay.StringsSize8(t.One), jay.StringsSize8(t.Two)
+	b = make([]byte, l0+l1+jay.StringsSize8(t.Three))
+	jay.WriteStrings8(b[:l0], t.One)
+	jay.WriteStrings8(b[l0:l0+l1], t.Two)
+	jay.WriteStrings8(b[l0+l1:], t.Three)
 	return
 }
 
 func (t *Three) UnmarshalJ(b []byte) error {
-	if len(b) < 6 {
+	if len(b) < 3 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings16n(b, &t.One)
+	at, ok := jay.ReadStrings8n(b, &t.One)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings16nb(b[at:], &t.Two, &at) {
+	if !jay.ReadStrings8nb(b[at:], &t.Two, &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	return jay.ReadStrings16Err(b[at:], &t.Three)
+	return jay.ReadStrings8Err(b[at:], &t.Three)
 }

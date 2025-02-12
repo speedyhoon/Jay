@@ -13,7 +13,7 @@ func (s *structTyp) writeStrSlice(buf *bytes.Buffer, vars []string, byteIndex ui
 		return
 	}
 
-	funcName := nameOf(jay.WriteStrings16, nil)
+	funcName := nameOf(s.stringSlice[0].sizeOfPick(jay.WriteStrings8, jay.WriteStrings16), nil)
 
 	if qty == 1 {
 		bufWriteF(buf, "%s(%s, %s)\n", funcName, s.stringSlice[0].sliceExpr(strconv.Itoa(qty), ""), s.stringSlice[0].Name())

@@ -43,7 +43,10 @@ func lengths2(names []string, slices fieldList) string {
 
 		for i := 0; i < l; i++ {
 			sizes = append(sizes, printFunc(
-				nameOf(jay.StringsSize16, nil),
+				nameOf(
+					slices[i].sizeOfPick(jay.StringsSize8, jay.StringsSize16),
+					nil,
+				),
 				slices[i].Name(),
 			))
 		}

@@ -1,7 +1,6 @@
 package generate
 
 import (
-	"math"
 	"strconv"
 	"strings"
 )
@@ -38,24 +37,14 @@ func (f *field) LoadTagOptions(tag string) (ok bool) {
 		return true
 	}
 
-	f.tagOptions.MaxQty = math.MaxUint16
-
 	for _, c := range strings.Split(f.tag, ",") {
 		d := strings.Split(c, ":")
 		switch g := strings.ToLower(strings.TrimSpace(d[0])); g {
 		case tagMax:
 			f.tagOptions.Max.set(d[1])
 			f.tagOptions.maxBytes = byteSize(f.tagOptions.Max)
-			if f.tagOptions.Max == 0 {
-				lg.Printf("field %s skipped because tag %s == 0\n", f.name, tagMax)
-				return false
-			}
 		case tagMaxQty:
 			f.tagOptions.MaxQty.set(d[1])
-			if f.tagOptions.MaxQty == 0 {
-				lg.Printf("field %s skipped because tag %s == 0\n", f.name, tagMaxQty)
-				return false
-			}
 		case tagMin:
 			f.tagOptions.Min.set(g)
 		case tagNano:
