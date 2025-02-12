@@ -292,23 +292,23 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
 	for m := range names {
 		f.name = names[m].Name
 		if f.typ == tBool || f.arrayType == tBool && f.isArray() {
-			s.bool = append(s.bool, f)
+			s.bool = append(s.bool, &f)
 			continue
 		}
 		switch f.typ {
 		case tByte, tInt8:
-			s.single = append(s.single, f)
+			s.single = append(s.single, &f)
 			continue
 		case tStrings:
-			s.stringSlice = append(s.stringSlice, f)
+			s.stringSlice = append(s.stringSlice, &f)
 			continue
 		}
 		// TODO add support for adding tiny enums using <= 7 bits
 
 		if f.isFixedLen {
-			s.fixedLen = append(s.fixedLen, f)
+			s.fixedLen = append(s.fixedLen, &f)
 		} else {
-			s.variableLen = append(s.variableLen, f)
+			s.variableLen = append(s.variableLen, &f)
 		}
 	}
 }

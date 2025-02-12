@@ -107,7 +107,7 @@ func unmarshalBoolsInline(bufferName string, byteIndex uint, qty int) string {
 	}[:qty], ", "), bufferName, byteIndex)
 }
 
-func fieldNamesArrays(fields []field, receiver string) (s []string) {
+func fieldNamesArrays(fields []*field, receiver string) (s []string) {
 	for i := range fields {
 		if fields[i].isDef {
 			if fields[i].isArray() {
@@ -130,7 +130,7 @@ func fieldNamesArrays(fields []field, receiver string) (s []string) {
 	return
 }
 
-func fieldNamesArraysUnmarshalInline(fields []field, receiver string) (s []string, u []bool) {
+func fieldNamesArraysUnmarshalInline(fields fieldList, receiver string) (s []string, u []bool) {
 	for i := range fields {
 		if fields[i].isArray() {
 			for j := 0; j < fields[i].arraySize; j++ {

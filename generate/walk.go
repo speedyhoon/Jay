@@ -31,7 +31,7 @@ type field struct {
 	isFirst    bool
 	isLast     bool
 }
-type fieldList []field
+type fieldList []*field
 
 // Visit traverses the AST File and finds all structs even if they are unexported.
 // Unexported structs can be exported if they are referenced in exported structs with exported field names.

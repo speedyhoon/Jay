@@ -9,7 +9,7 @@ import (
 
 type varSize map[uint][]string
 
-func (vs *varSize) add(f field, varName string) {
+func (vs *varSize) add(f *field, varName string) {
 	sizeOf := f.elmSize
 	if f.typ == tBoolS {
 		varName = printFunc(nameOf(jay.SizeBools, nil), varName)

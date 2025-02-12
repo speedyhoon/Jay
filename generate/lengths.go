@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func multiples(f field, lenVar string) string {
+func multiples(f *field, lenVar string) string {
 	switch {
 	case f.isSlice():
 		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()

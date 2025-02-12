@@ -95,7 +95,7 @@ func isNew(a *[]string, s string) bool {
 	return true
 }
 
-func findStruct(s []*structTyp, f field) *structTyp {
+func findStruct(s []*structTyp, f *field) *structTyp {
 	for i := range s {
 		if s[i].name == f.aliasType {
 			return s[i]
