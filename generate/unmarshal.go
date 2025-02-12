@@ -9,7 +9,7 @@ import (
 )
 
 func (s *structTyp) ReturnInline() bool {
-	return len(s.fixedLen) == 0 && len(s.single) == 0 && len(s.variableLen) == 0 && len(s.bool) == 0 && len(s.boolArray) == 0 && len(s.stringSlice) >= 1
+	return len(s.fixedLen) == 0 && len(s.single) == 0 && len(s.variableLen) == 0 && len(s.bool) == 0 && len(s.stringSlice) >= 1
 }
 
 // makeUnmarshal ...
