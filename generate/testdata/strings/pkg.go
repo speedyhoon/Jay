@@ -17,7 +17,7 @@ type Three struct {
 	Three []string
 }
 
-/*type Four struct {
+type Four struct {
 	One   []string
 	Two   []string
 	Three []string
@@ -345,4 +345,4 @@ type TwentyThree struct {
 	TwentyOne   []string
 	TwentyTwo   []string
 	TwentyThree []string
-}*/
+}

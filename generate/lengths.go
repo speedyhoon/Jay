@@ -30,28 +30,30 @@ func (s *structTyp) varLenFieldNames() (names []string) {
 	return
 }
 
-func lengths2(names []string, slices fieldList) string {
-	if len(names) == 0 && len(slices) <= 1 {
+func (s *structTyp) lengths2() string {
+	qty, sl := len(s.variableLen), len(s.stringSlice)
+	if qty == 0 && sl <= 1 {
 		return ""
 	}
 
-	qty := len(names)
+	names := s.varLenFieldNames2()
+
 	var sizes []string
 	var out string
-	if l := len(slices) - 1; l >= 1 {
+	if l := sl - 1; l >= 1 {
 		qty += l
 
 		for i := 0; i < l; i++ {
 			sizes = append(sizes, printFunc(
 				nameOf(
-					slices[i].sizeOfPick(jay.StringsSize8, jay.StringsSize16),
+					s.stringSlice[i].sizeOfPick(jay.StringsSize8, jay.StringsSize16),
 					nil,
 				),
-				slices[i].Name(),
+				s.stringSlice[i].Name(),
 			))
 		}
 		out = strings.Join(sizes, ", ")
-		if len(names) == 0 {
+		if len(s.variableLen) == 0 {
 			declarations := strings.Join(decls(qty), ", ")
 			return fmt.Sprintf("%s := %s",
 				declarations,
@@ -68,6 +70,15 @@ func lengths2(names []string, slices fieldList) string {
 		strings.Join(names, "),len("),
 		out,
 	)
+}
+
+func (s *structTyp) varLenFieldNames2() (names []string) {
+	names = make([]string, len(s.stringSlice)+len(s.variableLen))
+	for i, v := range append(s.stringSlice, s.variableLen...) {
+		v.lenVar = lenVariable(i)
+		names[i] = v.Name()
+	}
+	return
 }
 
 func decls(u int) (s []string) {

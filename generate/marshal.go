@@ -15,7 +15,7 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
-	varLengths := lengths2(s.varLenFieldNames(), s.stringSlice)
+	varLengths := s.lengths2()
 	makeSize := s.generateMakeSizes(s.calcSize())
 	s.isReturnedInline()
 
@@ -30,9 +30,16 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 		buf.WriteString("\n")
 	}
 
-	s.writeStrSlice(buf, nil, byteIndex)
+	at, end := s.defineTrackingVars2(buf, byteIndex)
+	for i, f := range s.stringSlice {
+		if i >= 1 {
+			at, end = f.track2(buf, i, len(s.stringSlice), at, end) //s.tracking(buf, i, end, byteIndex, f.typ)
+		}
+		buf.WriteString(f.marshalLine(&byteIndex, at, end, importJ, lenVariable(i)))
+		buf.WriteString("\n")
+	}
 
-	at, end := s.defineTrackingVars(buf, byteIndex)
+	at, end = s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
 		buf.WriteString(f.marshalLine(&byteIndex, at, end, importJ, lenVariable(i)))
@@ -294,7 +301,7 @@ func (f *field) sliceExpr(at, end string) string {
 		}
 	}
 
-	if f.isLast || f.typ == tStrings {
+	if f.isLast {
 		return fmt.Sprintf("%s[%s:]", f.structTyp.bufferName, at)
 	}
 	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, at, end)

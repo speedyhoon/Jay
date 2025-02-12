@@ -58,3 +58,1533 @@ func (t *Three) UnmarshalJ(b []byte) error {
 	}
 	return jay.ReadStrings8Err(b[at:], &t.Three)
 }
+
+func (f *Four) MarshalJ() (b []byte) {
+	l0, l1, l2 := jay.StringsSize8(f.One), jay.StringsSize8(f.Two), jay.StringsSize8(f.Three)
+	b = make([]byte, l0+l1+l2+jay.StringsSize8(f.Four))
+	jay.WriteStrings8(b[:l0], f.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], f.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], f.Three)
+	jay.WriteStrings8(b[end:], f.Four)
+	return
+}
+
+func (f *Four) UnmarshalJ(b []byte) error {
+	if len(b) < 4 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &f.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &f.Four)
+}
+
+func (f *Five) MarshalJ() (b []byte) {
+	l0, l1, l2, l3 := jay.StringsSize8(f.One), jay.StringsSize8(f.Two), jay.StringsSize8(f.Three), jay.StringsSize8(f.Four)
+	b = make([]byte, l0+l1+l2+l3+jay.StringsSize8(f.Five))
+	jay.WriteStrings8(b[:l0], f.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], f.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], f.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], f.Four)
+	jay.WriteStrings8(b[end:], f.Five)
+	return
+}
+
+func (f *Five) UnmarshalJ(b []byte) error {
+	if len(b) < 5 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &f.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &f.Five)
+}
+
+func (s *Six) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4 := jay.StringsSize8(s.One), jay.StringsSize8(s.Two), jay.StringsSize8(s.Three), jay.StringsSize8(s.Four), jay.StringsSize8(s.Five)
+	b = make([]byte, l0+l1+l2+l3+l4+jay.StringsSize8(s.Six))
+	jay.WriteStrings8(b[:l0], s.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], s.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], s.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], s.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], s.Five)
+	jay.WriteStrings8(b[end:], s.Six)
+	return
+}
+
+func (s *Six) UnmarshalJ(b []byte) error {
+	if len(b) < 6 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &s.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &s.Six)
+}
+
+func (s *Seven) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5 := jay.StringsSize8(s.One), jay.StringsSize8(s.Two), jay.StringsSize8(s.Three), jay.StringsSize8(s.Four), jay.StringsSize8(s.Five), jay.StringsSize8(s.Six)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+jay.StringsSize8(s.Seven))
+	jay.WriteStrings8(b[:l0], s.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], s.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], s.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], s.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], s.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], s.Six)
+	jay.WriteStrings8(b[end:], s.Seven)
+	return
+}
+
+func (s *Seven) UnmarshalJ(b []byte) error {
+	if len(b) < 7 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &s.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &s.Seven)
+}
+
+func (e *Eight) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6 := jay.StringsSize8(e.One), jay.StringsSize8(e.Two), jay.StringsSize8(e.Three), jay.StringsSize8(e.Four), jay.StringsSize8(e.Five), jay.StringsSize8(e.Six), jay.StringsSize8(e.Seven)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+jay.StringsSize8(e.Eight))
+	jay.WriteStrings8(b[:l0], e.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], e.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], e.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], e.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], e.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], e.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], e.Seven)
+	jay.WriteStrings8(b[end:], e.Eight)
+	return
+}
+
+func (e *Eight) UnmarshalJ(b []byte) error {
+	if len(b) < 8 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &e.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &e.Eight)
+}
+
+func (n *Nine) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7 := jay.StringsSize8(n.One), jay.StringsSize8(n.Two), jay.StringsSize8(n.Three), jay.StringsSize8(n.Four), jay.StringsSize8(n.Five), jay.StringsSize8(n.Six), jay.StringsSize8(n.Seven), jay.StringsSize8(n.Eight)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+jay.StringsSize8(n.Nine))
+	jay.WriteStrings8(b[:l0], n.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], n.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], n.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], n.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], n.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], n.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], n.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], n.Eight)
+	jay.WriteStrings8(b[end:], n.Nine)
+	return
+}
+
+func (n *Nine) UnmarshalJ(b []byte) error {
+	if len(b) < 9 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &n.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &n.Nine)
+}
+
+func (t *Ten) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8 := jay.StringsSize8(t.One), jay.StringsSize8(t.Two), jay.StringsSize8(t.Three), jay.StringsSize8(t.Four), jay.StringsSize8(t.Five), jay.StringsSize8(t.Six), jay.StringsSize8(t.Seven), jay.StringsSize8(t.Eight), jay.StringsSize8(t.Nine)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+jay.StringsSize8(t.Ten))
+	jay.WriteStrings8(b[:l0], t.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], t.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], t.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], t.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], t.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], t.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], t.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], t.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], t.Nine)
+	jay.WriteStrings8(b[end:], t.Ten)
+	return
+}
+
+func (t *Ten) UnmarshalJ(b []byte) error {
+	if len(b) < 10 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &t.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &t.Ten)
+}
+
+func (e *Eleven) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := jay.StringsSize8(e.One), jay.StringsSize8(e.Two), jay.StringsSize8(e.Three), jay.StringsSize8(e.Four), jay.StringsSize8(e.Five), jay.StringsSize8(e.Six), jay.StringsSize8(e.Seven), jay.StringsSize8(e.Eight), jay.StringsSize8(e.Nine), jay.StringsSize8(e.Ten)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+jay.StringsSize8(e.Eleven))
+	jay.WriteStrings8(b[:l0], e.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], e.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], e.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], e.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], e.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], e.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], e.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], e.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], e.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], e.Ten)
+	jay.WriteStrings8(b[end:], e.Eleven)
+	return
+}
+
+func (e *Eleven) UnmarshalJ(b []byte) error {
+	if len(b) < 11 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &e.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &e.Eleven)
+}
+
+func (t *Twelve) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := jay.StringsSize8(t.One), jay.StringsSize8(t.Two), jay.StringsSize8(t.Three), jay.StringsSize8(t.Four), jay.StringsSize8(t.Five), jay.StringsSize8(t.Six), jay.StringsSize8(t.Seven), jay.StringsSize8(t.Eight), jay.StringsSize8(t.Nine), jay.StringsSize8(t.Ten), jay.StringsSize8(t.Eleven)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+jay.StringsSize8(t.Twelve))
+	jay.WriteStrings8(b[:l0], t.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], t.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], t.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], t.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], t.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], t.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], t.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], t.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], t.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], t.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], t.Eleven)
+	jay.WriteStrings8(b[end:], t.Twelve)
+	return
+}
+
+func (t *Twelve) UnmarshalJ(b []byte) error {
+	if len(b) < 12 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &t.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &t.Twelve)
+}
+
+func (t *Thirteen) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := jay.StringsSize8(t.One), jay.StringsSize8(t.Two), jay.StringsSize8(t.Three), jay.StringsSize8(t.Four), jay.StringsSize8(t.Five), jay.StringsSize8(t.Six), jay.StringsSize8(t.Seven), jay.StringsSize8(t.Eight), jay.StringsSize8(t.Nine), jay.StringsSize8(t.Ten), jay.StringsSize8(t.Eleven), jay.StringsSize8(t.Twelve)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+jay.StringsSize8(t.Thirteen))
+	jay.WriteStrings8(b[:l0], t.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], t.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], t.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], t.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], t.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], t.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], t.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], t.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], t.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], t.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], t.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], t.Twelve)
+	jay.WriteStrings8(b[end:], t.Thirteen)
+	return
+}
+
+func (t *Thirteen) UnmarshalJ(b []byte) error {
+	if len(b) < 13 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &t.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &t.Thirteen)
+}
+
+func (f *Fourteen) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := jay.StringsSize8(f.One), jay.StringsSize8(f.Two), jay.StringsSize8(f.Three), jay.StringsSize8(f.Four), jay.StringsSize8(f.Five), jay.StringsSize8(f.Six), jay.StringsSize8(f.Seven), jay.StringsSize8(f.Eight), jay.StringsSize8(f.Nine), jay.StringsSize8(f.Ten), jay.StringsSize8(f.Eleven), jay.StringsSize8(f.Twelve), jay.StringsSize8(f.Thirteen)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+jay.StringsSize8(f.Fourteen))
+	jay.WriteStrings8(b[:l0], f.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], f.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], f.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], f.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], f.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], f.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], f.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], f.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], f.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], f.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], f.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], f.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], f.Thirteen)
+	jay.WriteStrings8(b[end:], f.Fourteen)
+	return
+}
+
+func (f *Fourteen) UnmarshalJ(b []byte) error {
+	if len(b) < 14 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &f.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &f.Fourteen)
+}
+
+func (f *Fifteen) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := jay.StringsSize8(f.One), jay.StringsSize8(f.Two), jay.StringsSize8(f.Three), jay.StringsSize8(f.Four), jay.StringsSize8(f.Five), jay.StringsSize8(f.Six), jay.StringsSize8(f.Seven), jay.StringsSize8(f.Eight), jay.StringsSize8(f.Nine), jay.StringsSize8(f.Ten), jay.StringsSize8(f.Eleven), jay.StringsSize8(f.Twelve), jay.StringsSize8(f.Thirteen), jay.StringsSize8(f.Fourteen)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+jay.StringsSize8(f.Fifteen))
+	jay.WriteStrings8(b[:l0], f.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], f.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], f.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], f.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], f.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], f.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], f.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], f.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], f.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], f.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], f.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], f.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], f.Thirteen)
+	at, end = end, l13+end
+	jay.WriteStrings8(b[at:end], f.Fourteen)
+	jay.WriteStrings8(b[end:], f.Fifteen)
+	return
+}
+
+func (f *Fifteen) UnmarshalJ(b []byte) error {
+	if len(b) < 15 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &f.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &f.Fourteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &f.Fifteen)
+}
+
+func (s *Sixteen) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := jay.StringsSize8(s.One), jay.StringsSize8(s.Two), jay.StringsSize8(s.Three), jay.StringsSize8(s.Four), jay.StringsSize8(s.Five), jay.StringsSize8(s.Six), jay.StringsSize8(s.Seven), jay.StringsSize8(s.Eight), jay.StringsSize8(s.Nine), jay.StringsSize8(s.Ten), jay.StringsSize8(s.Eleven), jay.StringsSize8(s.Twelve), jay.StringsSize8(s.Thirteen), jay.StringsSize8(s.Fourteen), jay.StringsSize8(s.Fifteen)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+jay.StringsSize8(s.Sixteen))
+	jay.WriteStrings8(b[:l0], s.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], s.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], s.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], s.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], s.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], s.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], s.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], s.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], s.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], s.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], s.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], s.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], s.Thirteen)
+	at, end = end, l13+end
+	jay.WriteStrings8(b[at:end], s.Fourteen)
+	at, end = end, l14+end
+	jay.WriteStrings8(b[at:end], s.Fifteen)
+	jay.WriteStrings8(b[end:], s.Sixteen)
+	return
+}
+
+func (s *Sixteen) UnmarshalJ(b []byte) error {
+	if len(b) < 16 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &s.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Fourteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Fifteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &s.Sixteen)
+}
+
+func (s *Seventeen) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := jay.StringsSize8(s.One), jay.StringsSize8(s.Two), jay.StringsSize8(s.Three), jay.StringsSize8(s.Four), jay.StringsSize8(s.Five), jay.StringsSize8(s.Six), jay.StringsSize8(s.Seven), jay.StringsSize8(s.Eight), jay.StringsSize8(s.Nine), jay.StringsSize8(s.Ten), jay.StringsSize8(s.Eleven), jay.StringsSize8(s.Twelve), jay.StringsSize8(s.Thirteen), jay.StringsSize8(s.Fourteen), jay.StringsSize8(s.Fifteen), jay.StringsSize8(s.Sixteen)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+jay.StringsSize8(s.Seventeen))
+	jay.WriteStrings8(b[:l0], s.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], s.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], s.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], s.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], s.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], s.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], s.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], s.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], s.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], s.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], s.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], s.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], s.Thirteen)
+	at, end = end, l13+end
+	jay.WriteStrings8(b[at:end], s.Fourteen)
+	at, end = end, l14+end
+	jay.WriteStrings8(b[at:end], s.Fifteen)
+	at, end = end, l15+end
+	jay.WriteStrings8(b[at:end], s.Sixteen)
+	jay.WriteStrings8(b[end:], s.Seventeen)
+	return
+}
+
+func (s *Seventeen) UnmarshalJ(b []byte) error {
+	if len(b) < 17 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &s.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Fourteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Fifteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &s.Sixteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &s.Seventeen)
+}
+
+func (e *Eighteen) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := jay.StringsSize8(e.One), jay.StringsSize8(e.Two), jay.StringsSize8(e.Three), jay.StringsSize8(e.Four), jay.StringsSize8(e.Five), jay.StringsSize8(e.Six), jay.StringsSize8(e.Seven), jay.StringsSize8(e.Eight), jay.StringsSize8(e.Nine), jay.StringsSize8(e.Ten), jay.StringsSize8(e.Eleven), jay.StringsSize8(e.Twelve), jay.StringsSize8(e.Thirteen), jay.StringsSize8(e.Fourteen), jay.StringsSize8(e.Fifteen), jay.StringsSize8(e.Sixteen), jay.StringsSize8(e.Seventeen)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+jay.StringsSize8(e.Eighteen))
+	jay.WriteStrings8(b[:l0], e.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], e.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], e.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], e.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], e.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], e.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], e.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], e.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], e.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], e.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], e.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], e.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], e.Thirteen)
+	at, end = end, l13+end
+	jay.WriteStrings8(b[at:end], e.Fourteen)
+	at, end = end, l14+end
+	jay.WriteStrings8(b[at:end], e.Fifteen)
+	at, end = end, l15+end
+	jay.WriteStrings8(b[at:end], e.Sixteen)
+	at, end = end, l16+end
+	jay.WriteStrings8(b[at:end], e.Seventeen)
+	jay.WriteStrings8(b[end:], e.Eighteen)
+	return
+}
+
+func (e *Eighteen) UnmarshalJ(b []byte) error {
+	if len(b) < 18 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &e.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Fourteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Fifteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Sixteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &e.Seventeen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &e.Eighteen)
+}
+
+func (n *Nineteen) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := jay.StringsSize8(n.One), jay.StringsSize8(n.Two), jay.StringsSize8(n.Three), jay.StringsSize8(n.Four), jay.StringsSize8(n.Five), jay.StringsSize8(n.Six), jay.StringsSize8(n.Seven), jay.StringsSize8(n.Eight), jay.StringsSize8(n.Nine), jay.StringsSize8(n.Ten), jay.StringsSize8(n.Eleven), jay.StringsSize8(n.Twelve), jay.StringsSize8(n.Thirteen), jay.StringsSize8(n.Fourteen), jay.StringsSize8(n.Fifteen), jay.StringsSize8(n.Sixteen), jay.StringsSize8(n.Seventeen), jay.StringsSize8(n.Eighteen)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+jay.StringsSize8(n.Nineteen))
+	jay.WriteStrings8(b[:l0], n.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], n.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], n.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], n.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], n.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], n.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], n.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], n.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], n.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], n.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], n.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], n.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], n.Thirteen)
+	at, end = end, l13+end
+	jay.WriteStrings8(b[at:end], n.Fourteen)
+	at, end = end, l14+end
+	jay.WriteStrings8(b[at:end], n.Fifteen)
+	at, end = end, l15+end
+	jay.WriteStrings8(b[at:end], n.Sixteen)
+	at, end = end, l16+end
+	jay.WriteStrings8(b[at:end], n.Seventeen)
+	at, end = end, l17+end
+	jay.WriteStrings8(b[at:end], n.Eighteen)
+	jay.WriteStrings8(b[end:], n.Nineteen)
+	return
+}
+
+func (n *Nineteen) UnmarshalJ(b []byte) error {
+	if len(b) < 19 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &n.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Fourteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Fifteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Sixteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Seventeen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &n.Eighteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &n.Nineteen)
+}
+
+func (t *Twenty) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := jay.StringsSize8(t.One), jay.StringsSize8(t.Two), jay.StringsSize8(t.Three), jay.StringsSize8(t.Four), jay.StringsSize8(t.Five), jay.StringsSize8(t.Six), jay.StringsSize8(t.Seven), jay.StringsSize8(t.Eight), jay.StringsSize8(t.Nine), jay.StringsSize8(t.Ten), jay.StringsSize8(t.Eleven), jay.StringsSize8(t.Twelve), jay.StringsSize8(t.Thirteen), jay.StringsSize8(t.Fourteen), jay.StringsSize8(t.Fifteen), jay.StringsSize8(t.Sixteen), jay.StringsSize8(t.Seventeen), jay.StringsSize8(t.Eighteen), jay.StringsSize8(t.Nineteen)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+jay.StringsSize8(t.Twenty))
+	jay.WriteStrings8(b[:l0], t.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], t.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], t.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], t.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], t.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], t.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], t.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], t.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], t.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], t.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], t.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], t.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], t.Thirteen)
+	at, end = end, l13+end
+	jay.WriteStrings8(b[at:end], t.Fourteen)
+	at, end = end, l14+end
+	jay.WriteStrings8(b[at:end], t.Fifteen)
+	at, end = end, l15+end
+	jay.WriteStrings8(b[at:end], t.Sixteen)
+	at, end = end, l16+end
+	jay.WriteStrings8(b[at:end], t.Seventeen)
+	at, end = end, l17+end
+	jay.WriteStrings8(b[at:end], t.Eighteen)
+	at, end = end, l18+end
+	jay.WriteStrings8(b[at:end], t.Nineteen)
+	jay.WriteStrings8(b[end:], t.Twenty)
+	return
+}
+
+func (t *Twenty) UnmarshalJ(b []byte) error {
+	if len(b) < 20 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &t.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Fourteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Fifteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Sixteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seventeen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eighteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nineteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &t.Twenty)
+}
+
+func (t *TwentyOne) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := jay.StringsSize8(t.One), jay.StringsSize8(t.Two), jay.StringsSize8(t.Three), jay.StringsSize8(t.Four), jay.StringsSize8(t.Five), jay.StringsSize8(t.Six), jay.StringsSize8(t.Seven), jay.StringsSize8(t.Eight), jay.StringsSize8(t.Nine), jay.StringsSize8(t.Ten), jay.StringsSize8(t.Eleven), jay.StringsSize8(t.Twelve), jay.StringsSize8(t.Thirteen), jay.StringsSize8(t.Fourteen), jay.StringsSize8(t.Fifteen), jay.StringsSize8(t.Sixteen), jay.StringsSize8(t.Seventeen), jay.StringsSize8(t.Eighteen), jay.StringsSize8(t.Nineteen), jay.StringsSize8(t.Twenty)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+jay.StringsSize8(t.TwentyOne))
+	jay.WriteStrings8(b[:l0], t.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], t.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], t.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], t.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], t.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], t.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], t.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], t.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], t.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], t.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], t.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], t.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], t.Thirteen)
+	at, end = end, l13+end
+	jay.WriteStrings8(b[at:end], t.Fourteen)
+	at, end = end, l14+end
+	jay.WriteStrings8(b[at:end], t.Fifteen)
+	at, end = end, l15+end
+	jay.WriteStrings8(b[at:end], t.Sixteen)
+	at, end = end, l16+end
+	jay.WriteStrings8(b[at:end], t.Seventeen)
+	at, end = end, l17+end
+	jay.WriteStrings8(b[at:end], t.Eighteen)
+	at, end = end, l18+end
+	jay.WriteStrings8(b[at:end], t.Nineteen)
+	at, end = end, l19+end
+	jay.WriteStrings8(b[at:end], t.Twenty)
+	jay.WriteStrings8(b[end:], t.TwentyOne)
+	return
+}
+
+func (t *TwentyOne) UnmarshalJ(b []byte) error {
+	if len(b) < 21 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &t.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Fourteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Fifteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Sixteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seventeen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eighteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nineteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Twenty, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &t.TwentyOne)
+}
+
+func (t *TwentyTwo) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := jay.StringsSize8(t.One), jay.StringsSize8(t.Two), jay.StringsSize8(t.Three), jay.StringsSize8(t.Four), jay.StringsSize8(t.Five), jay.StringsSize8(t.Six), jay.StringsSize8(t.Seven), jay.StringsSize8(t.Eight), jay.StringsSize8(t.Nine), jay.StringsSize8(t.Ten), jay.StringsSize8(t.Eleven), jay.StringsSize8(t.Twelve), jay.StringsSize8(t.Thirteen), jay.StringsSize8(t.Fourteen), jay.StringsSize8(t.Fifteen), jay.StringsSize8(t.Sixteen), jay.StringsSize8(t.Seventeen), jay.StringsSize8(t.Eighteen), jay.StringsSize8(t.Nineteen), jay.StringsSize8(t.Twenty), jay.StringsSize8(t.TwentyOne)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+jay.StringsSize8(t.TwentyTwo))
+	jay.WriteStrings8(b[:l0], t.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], t.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], t.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], t.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], t.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], t.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], t.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], t.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], t.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], t.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], t.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], t.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], t.Thirteen)
+	at, end = end, l13+end
+	jay.WriteStrings8(b[at:end], t.Fourteen)
+	at, end = end, l14+end
+	jay.WriteStrings8(b[at:end], t.Fifteen)
+	at, end = end, l15+end
+	jay.WriteStrings8(b[at:end], t.Sixteen)
+	at, end = end, l16+end
+	jay.WriteStrings8(b[at:end], t.Seventeen)
+	at, end = end, l17+end
+	jay.WriteStrings8(b[at:end], t.Eighteen)
+	at, end = end, l18+end
+	jay.WriteStrings8(b[at:end], t.Nineteen)
+	at, end = end, l19+end
+	jay.WriteStrings8(b[at:end], t.Twenty)
+	at, end = end, l20+end
+	jay.WriteStrings8(b[at:end], t.TwentyOne)
+	jay.WriteStrings8(b[end:], t.TwentyTwo)
+	return
+}
+
+func (t *TwentyTwo) UnmarshalJ(b []byte) error {
+	if len(b) < 22 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &t.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Fourteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Fifteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Sixteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seventeen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eighteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nineteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Twenty, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.TwentyOne, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &t.TwentyTwo)
+}
+
+func (t *TwentyThree) MarshalJ() (b []byte) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := jay.StringsSize8(t.One), jay.StringsSize8(t.Two), jay.StringsSize8(t.Three), jay.StringsSize8(t.Four), jay.StringsSize8(t.Five), jay.StringsSize8(t.Six), jay.StringsSize8(t.Seven), jay.StringsSize8(t.Eight), jay.StringsSize8(t.Nine), jay.StringsSize8(t.Ten), jay.StringsSize8(t.Eleven), jay.StringsSize8(t.Twelve), jay.StringsSize8(t.Thirteen), jay.StringsSize8(t.Fourteen), jay.StringsSize8(t.Fifteen), jay.StringsSize8(t.Sixteen), jay.StringsSize8(t.Seventeen), jay.StringsSize8(t.Eighteen), jay.StringsSize8(t.Nineteen), jay.StringsSize8(t.Twenty), jay.StringsSize8(t.TwentyOne), jay.StringsSize8(t.TwentyTwo)
+	b = make([]byte, l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+jay.StringsSize8(t.TwentyThree))
+	jay.WriteStrings8(b[:l0], t.One)
+	at, end := l0, l0+l1
+	jay.WriteStrings8(b[at:end], t.Two)
+	at, end = end, l2+end
+	jay.WriteStrings8(b[at:end], t.Three)
+	at, end = end, l3+end
+	jay.WriteStrings8(b[at:end], t.Four)
+	at, end = end, l4+end
+	jay.WriteStrings8(b[at:end], t.Five)
+	at, end = end, l5+end
+	jay.WriteStrings8(b[at:end], t.Six)
+	at, end = end, l6+end
+	jay.WriteStrings8(b[at:end], t.Seven)
+	at, end = end, l7+end
+	jay.WriteStrings8(b[at:end], t.Eight)
+	at, end = end, l8+end
+	jay.WriteStrings8(b[at:end], t.Nine)
+	at, end = end, l9+end
+	jay.WriteStrings8(b[at:end], t.Ten)
+	at, end = end, l10+end
+	jay.WriteStrings8(b[at:end], t.Eleven)
+	at, end = end, l11+end
+	jay.WriteStrings8(b[at:end], t.Twelve)
+	at, end = end, l12+end
+	jay.WriteStrings8(b[at:end], t.Thirteen)
+	at, end = end, l13+end
+	jay.WriteStrings8(b[at:end], t.Fourteen)
+	at, end = end, l14+end
+	jay.WriteStrings8(b[at:end], t.Fifteen)
+	at, end = end, l15+end
+	jay.WriteStrings8(b[at:end], t.Sixteen)
+	at, end = end, l16+end
+	jay.WriteStrings8(b[at:end], t.Seventeen)
+	at, end = end, l17+end
+	jay.WriteStrings8(b[at:end], t.Eighteen)
+	at, end = end, l18+end
+	jay.WriteStrings8(b[at:end], t.Nineteen)
+	at, end = end, l19+end
+	jay.WriteStrings8(b[at:end], t.Twenty)
+	at, end = end, l20+end
+	jay.WriteStrings8(b[at:end], t.TwentyOne)
+	at, end = end, l21+end
+	jay.WriteStrings8(b[at:end], t.TwentyTwo)
+	jay.WriteStrings8(b[end:], t.TwentyThree)
+	return
+}
+
+func (t *TwentyThree) UnmarshalJ(b []byte) error {
+	if len(b) < 23 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, ok := jay.ReadStrings8n(b, &t.One)
+	if !ok {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Two, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Three, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Four, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Five, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Six, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eight, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nine, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Ten, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eleven, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Twelve, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Thirteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Fourteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Fifteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Sixteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Seventeen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Eighteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Nineteen, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.Twenty, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.TwentyOne, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	if !jay.ReadStrings8nb(b[at:], &t.TwentyTwo, &at) {
+		return jay.ErrUnexpectedEOB
+	}
+	return jay.ReadStrings8Err(b[at:], &t.TwentyThree)
+}

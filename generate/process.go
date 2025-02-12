@@ -214,7 +214,7 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 			continue
 		}
 
-		s.addExportedFields(names, fe)
+		s.addExportedFields(names, &fe)
 		// Only increment `i` if the field was added. If the field was removed, `i` will still point to the next field.
 		i++
 	}

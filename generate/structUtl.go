@@ -287,28 +287,33 @@ func (s *structTyp) hasExportedFields() bool {
 	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1 || len(s.single) >= 1 || len(s.stringSlice) >= 1
 }
 
-func (s *structTyp) addExportedFields(names []*ast.Ident, f field) {
+func (s *structTyp) addExportedFields(names []*ast.Ident, f *field) {
 	f.structTyp = s
 	for m := range names {
 		f.name = names[m].Name
 		if f.typ == tBool || f.arrayType == tBool && f.isArray() {
-			s.bool = append(s.bool, &f)
+			f.fieldList = &s.bool
+			s.bool = append(s.bool, f)
 			continue
 		}
 		switch f.typ {
 		case tByte, tInt8:
-			s.single = append(s.single, &f)
+			f.fieldList = &s.single
+			s.single = append(s.single, f)
 			continue
 		case tStrings:
-			s.stringSlice = append(s.stringSlice, &f)
+			f.fieldList = &s.stringSlice
+			s.stringSlice = append(s.stringSlice, f)
 			continue
 		}
 		// TODO add support for adding tiny enums using <= 7 bits
 
 		if f.isFixedLen {
-			s.fixedLen = append(s.fixedLen, &f)
+			f.fieldList = &s.fixedLen
+			s.fixedLen = append(s.fixedLen, f)
 		} else {
-			s.variableLen = append(s.variableLen, &f)
+			f.fieldList = &s.variableLen
+			s.variableLen = append(s.variableLen, f)
 		}
 	}
 }
@@ -367,6 +372,35 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 	return
 }
 
+func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, end string) {
+	switch len(s.stringSlice) {
+	case 0:
+		return
+	case 1, 2:
+		if byteIndex != 0 {
+			at = utl.UtoA(byteIndex)
+			end = fmt.Sprintf("%d+%s", byteIndex, lenVariable(0))
+			bufWriteF(buf, "at, end := %s, %s\n", byteIndex, end)
+			return
+		}
+
+		at, end = "", s.stringSlice[0].lenVar
+	default:
+		if byteIndex == 0 {
+			at, end = "", s.stringSlice[0].lenVar
+			return
+		}
+
+		if s.stringSlice[0].typ == tBoolS {
+			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), lenVariable(0))
+		} else {
+			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.stringSlice[0], lenVariable(0)))
+		}
+		at, end = "at", "end"
+	}
+	return
+}
+
 func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint, varType string) (at, end string) {
 	if varType == tStrings {
 		return "at", ""
@@ -386,6 +420,23 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 			bufWriteF(buf, "at, end = end, end+%s\n", multiples(s.variableLen[i], lenVariable(i)))
 		}
 	}
+	return "at", "end"
+}
+
+func (f *field) track2(buf *bytes.Buffer, index, qty int, atVar, endVar string) (at, end string) {
+	if index == qty-1 {
+		return endVar, ""
+	}
+	if index == 1 {
+		if qty <= 3 {
+			return (*f.fieldList)[index-1].lenVar, fmt.Sprintf("%s+%s", (*f.fieldList)[index-1].lenVar, f.lenVar)
+		}
+
+		bufWriteF(buf, "at, end := %s, %[1]s+%s\n", (*f.fieldList)[index-1].lenVar, f.lenVar)
+		return "at", "end"
+	}
+
+	bufWriteF(buf, "at, end = end, %s+end\n", f.lenVar)
 	return "at", "end"
 }
 
