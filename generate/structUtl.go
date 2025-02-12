@@ -363,9 +363,9 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 		at = utl.UtoA(byteIndex)
 	default:
 		if s.variableLen[0].typ == tBoolS {
-			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), lenVariable(0))
+			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), s.variableLen[0].lenVar)
 		} else {
-			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.variableLen[0], lenVariable(0)))
+			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.variableLen[0]))
 		}
 		at, end = "at", "end"
 	}
@@ -379,8 +379,12 @@ func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, 
 	case 1, 2:
 		if byteIndex != 0 {
 			at = utl.UtoA(byteIndex)
-			end = fmt.Sprintf("%d+%s", byteIndex, lenVariable(0))
-			bufWriteF(buf, "at, end := %s, %s\n", byteIndex, end)
+			if s.stringSlice[0].lenVar != "" {
+				end = fmt.Sprintf("%d+%s", byteIndex, s.stringSlice[0].lenVar)
+			} else {
+				end = utl.UtoA(byteIndex)
+			}
+			bufWriteF(buf, "at, end := %d, %s\n", byteIndex, end)
 			return
 		}
 
@@ -392,9 +396,9 @@ func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, 
 		}
 
 		if s.stringSlice[0].typ == tBoolS {
-			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), lenVariable(0))
+			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), s.stringSlice[0].lenVar)
 		} else {
-			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.stringSlice[0], lenVariable(0)))
+			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.stringSlice[0]))
 		}
 		at, end = "at", "end"
 	}
@@ -415,9 +419,9 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 	}
 	if i >= 1 {
 		if varType == tBoolS {
-			bufWriteF(buf, "at, end = end, end+%s(%s)\n", nameOf(jay.SizeBools, nil), lenVariable(i))
+			bufWriteF(buf, "at, end = end, end+%s(%s)\n", nameOf(jay.SizeBools, nil), s.variableLen[i].lenVar)
 		} else {
-			bufWriteF(buf, "at, end = end, end+%s\n", multiples(s.variableLen[i], lenVariable(i)))
+			bufWriteF(buf, "at, end = end, end+%s\n", multiples(s.variableLen[i]))
 		}
 	}
 	return "at", "end"

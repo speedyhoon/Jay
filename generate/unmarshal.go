@@ -28,15 +28,13 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	at, end := s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.stringSlice {
 		at, _ = s.tracking(buf, i, end, byteIndex, f.typ)
-		lenVar := lenVariable(i)
-		buf.WriteString(f.unmarshalLine(&byteIndex, at, "", lenVar))
+		buf.WriteString(f.unmarshalLine(&byteIndex, at, "", f.lenVar))
 		buf.WriteString("\n")
 	}
 
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		lenVar := lenVariable(i)
-		buf.WriteString(f.unmarshalLine(&byteIndex, at, end, lenVar))
+		buf.WriteString(f.unmarshalLine(&byteIndex, at, end, f.lenVar))
 		buf.WriteString("\n")
 	}
 
@@ -101,7 +99,7 @@ func (s *structTyp) generateCheckSizes(totalSize uint) string {
 	assignments, values := make([]string, qty), make([]string, qty)
 	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
 	for i, f := range s.variableLen {
-		assignments[i] = lenVariable(i)
+		assignments[i] = f.lenVar
 		values[i] = fmt.Sprintf("int(%s[%d])", s.bufferName, i)
 		sizeChecks.add(f, assignments[i])
 	}
@@ -131,11 +129,11 @@ func (s *structTyp) generateMakeSizes(totalSize uint) string {
 			sizeChecks.add(f, printFunc(nameOf(s.stringSlice[i].sizeOfPick(jay.StringsSize8, jay.StringsSize16), nil), f.Name()))
 			continue
 		}
-		assignments[i] = lenVariable(i)
+		assignments[i] = f.lenVar
 		sizeChecks.add(f, assignments[i])
 	}
 	for i, f := range s.variableLen {
-		assignments[i] = lenVariable(i)
+		assignments[i] = f.lenVar
 		sizeChecks.add(f, assignments[i])
 	}
 

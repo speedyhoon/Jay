@@ -7,19 +7,19 @@ import (
 	"strings"
 )
 
-func multiples(f *field, lenVar string) string {
+func multiples(f *field) (lenVar string) {
 	switch {
 	case f.isSlice():
 		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
 		if itemSize >= 2 {
-			return fmt.Sprintf("%s*%d", lenVar, itemSize)
+			return fmt.Sprintf("%s*%d", f.lenVar, itemSize)
 		}
-		return lenVar
+		return f.lenVar
 	case f.isArray():
 		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
 		return utl.UtoA(uint(f.arraySize) * itemSize)
 	default: // typeNotArrayOrSlice
-		return lenVar
+		return f.lenVar
 	}
 }
 

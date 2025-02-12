@@ -35,14 +35,14 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 		if i >= 1 {
 			at, end = f.track2(buf, i, len(s.stringSlice), at, end) //s.tracking(buf, i, end, byteIndex, f.typ)
 		}
-		buf.WriteString(f.marshalLine(&byteIndex, at, end, importJ, lenVariable(i)))
+		buf.WriteString(f.marshalLine(&byteIndex, at, end, importJ, f.lenVar))
 		buf.WriteString("\n")
 	}
 
 	at, end = s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(f.marshalLine(&byteIndex, at, end, importJ, lenVariable(i)))
+		buf.WriteString(f.marshalLine(&byteIndex, at, end, importJ, f.lenVar))
 		buf.WriteString("\n")
 	}
 
@@ -90,7 +90,7 @@ func (s *structTyp) generateSizeLine() string {
 	assignments, values := make([]string, qty), make([]string, qty)
 	for i := 0; i < qty; i++ {
 		assignments[i] = fmt.Sprintf("%s[%d]", s.bufferName, i)
-		values[i] = fmt.Sprintf("byte(%s)", lenVariable(i))
+		values[i] = fmt.Sprintf("byte(%s)", s.variableLen[i].lenVar)
 	}
 	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
 }
