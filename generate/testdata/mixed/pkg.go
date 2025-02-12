@@ -1,16 +1,16 @@
 package mixed
 
 type Lion struct {
-	One   bool
-	Two   []string
-	Three bool
+	B1      bool
+	Strings []string
+	B2      bool
 }
 
 type Zebra struct {
-	One   bool
-	Two   []string
-	Three bool
-	Four  string
-	Five  []int
-	Six   uint64
+	B1      bool
+	Strings []string
+	B2      bool
+	Str     string
+	Ints    []int
+	U64     uint64
 }

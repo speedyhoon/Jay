@@ -14,14 +14,14 @@ func TestLion(t *testing.T) {
 	require.Equal(t, Lion{}, actual)
 
 	actual = Lion{
-		One:   rando.Bool(),
-		Two:   rando.Strings(),
-		Three: rando.Bool(),
+		B1:      rando.Bool(),
+		Strings: rando.Strings(),
+		B2:      rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
-	// require.NotEqual(t, Two{}, expected)
-	// require.NotEqual(t, Two{}, actual)
+	//require.NotEqual(t, Lion{}, expected)
+	//require.NotEqual(t, Lion{}, actual)
 	require.Equal(t, expected, actual)
 }
 
@@ -33,16 +33,16 @@ func TestZebra(t *testing.T) {
 	require.Equal(t, Zebra{}, actual)
 
 	actual = Zebra{
-		One:   rando.Bool(),
-		Two:   rando.Strings(),
-		Three: rando.Bool(),
-		Four:  rando.String(),
-		Five:  rando.Ints(),
-		Six:   rando.Uint64(),
+		B1:      rando.Bool(),
+		Strings: rando.Strings(),
+		B2:      rando.Bool(),
+		Str:     rando.String(),
+		Ints:    rando.Ints(),
+		U64:     rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
-	// require.NotEqual(t, Two{}, expected)
-	// require.NotEqual(t, Two{}, actual)
+	//require.NotEqual(t, Zebra{}, expected)
+	//require.NotEqual(t, Zebra{}, actual)
 	require.Equal(t, expected, actual)
 }
