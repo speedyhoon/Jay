@@ -16,7 +16,7 @@ import (
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	varLengths := lengths2(s.varLenFieldNames(), s.stringSlice, s.receiver)
-	makeSize := joinSizes(s.calcSize(), s.variableLen, s.stringSlice, importJ)
+	makeSize := s.generateMakeSizes(s.calcSize())
 	s.isReturnedInline()
 
 	var byteIndex = uint(len(s.variableLen))

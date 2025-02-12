@@ -54,7 +54,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	} else {
 		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\nif %[1]s < %[3]d {\nreturn %[4]s\n}", s.lengthName, s.bufferName, byteIndex, exportedErr)
 	}
-	variableLengthCheck := s.generateCheckSizes(exportedErr, byteIndex)
+	variableLengthCheck := s.generateCheckSizes(byteIndex)
 
 	if s.ReturnInline() {
 		bufWriteF(b,
@@ -92,7 +92,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	)
 }
 
-func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) string {
+func (s *structTyp) generateCheckSizes(totalSize uint) string {
 	qty := len(s.variableLen)
 	if qty == 0 {
 		return ""
@@ -115,6 +115,30 @@ func (s *structTyp) generateCheckSizes(exportedErr string, totalSize uint) strin
 		sizeChecks.group(),
 		exportedErr,
 	)
+}
+
+func (s *structTyp) generateMakeSizes(totalSize uint) string {
+	qty := uint(len(s.variableLen))
+	if totalSize+qty == 0 {
+		return ""
+	}
+
+	assignments := make([]string, qty)
+	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
+	for i, f := range s.variableLen {
+		assignments[i] = lenVariable(i)
+		sizeChecks.add(f, assignments[i])
+	}
+
+	if totalSize >= 1 {
+		grouped := sizeChecks.group()
+		if grouped == "" {
+			return utl.UtoA(totalSize)
+		}
+		return fmt.Sprintf("%d+%s", totalSize, grouped)
+	}
+
+	return sizeChecks.group()
 }
 
 func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {

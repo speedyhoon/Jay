@@ -7,37 +7,6 @@ import (
 	"strings"
 )
 
-func joinSizes(qty uint, variableLen, strSlices []field, importJ *bool) string {
-	var s []string
-	if qty != 0 {
-		s = []string{utl.UtoA(qty)}
-	}
-
-	for i, v := range variableLen {
-		qty += isLen(v.typ)
-		if !v.isFixedLen {
-			if v.typ == tBoolS {
-				s = append(s, printFunc(nameOf(jay.SizeBools, importJ), lenVariable(i)))
-			} else {
-				s = append(s, multiples(v, lenVariable(i)))
-			}
-		}
-	}
-
-	vl, sl := len(variableLen), len(strSlices)
-	const funcName = "StringsSize16"
-
-	for i, slice := range strSlices {
-		if i+1 == sl {
-			s = append(s, fmt.Sprintf("%s.%s(%s.%s)", pkgName, funcName, slice.structTyp.receiver, slice.name))
-		} else {
-			s = append(s, lenVariable(i+vl))
-		}
-	}
-
-	return strings.Join(s, "+")
-}
-
 func multiples(f field, lenVar string) string {
 	switch {
 	case f.isSlice():
@@ -74,7 +43,9 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 
 		for i := 0; i < l; i++ {
 			sizes = append(sizes, fmt.Sprintf(
-				"jay.StringsSize16(%s.%s)",
+				"%s.%s(%s.%s)",
+				pkgName,
+				nameOf(jay.StringsSize16, nil),
 				receiver,
 				slices[i].name,
 			))
