@@ -25,12 +25,12 @@ func multiples(f field, lenVar string) string {
 
 func (s *structTyp) varLenFieldNames() (names []string) {
 	for _, v := range s.variableLen {
-		names = append(names, v.name)
+		names = append(names, v.Name())
 	}
 	return
 }
 
-func lengths2(names []string, slices fieldList, receiver string) string {
+func lengths2(names []string, slices fieldList) string {
 	if len(names) == 0 && len(slices) <= 1 {
 		return ""
 	}
@@ -42,12 +42,9 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 		qty += l
 
 		for i := 0; i < l; i++ {
-			sizes = append(sizes, fmt.Sprintf(
-				"%s.%s(%s.%s)",
-				pkgName,
+			sizes = append(sizes, printFunc(
 				nameOf(jay.StringsSize16, nil),
-				receiver,
-				slices[i].name,
+				slices[i].Name(),
 			))
 		}
 		out = strings.Join(sizes, ", ")
@@ -62,12 +59,10 @@ func lengths2(names []string, slices fieldList, receiver string) string {
 		out = ", " + out
 	}
 
-	receiver = fmt.Sprintf("len(%s.", receiver)
 	declarations := strings.Join(decls(qty), ", ")
-	return fmt.Sprintf("%s := %s%s)%s",
+	return fmt.Sprintf("%s := len(%s)%s",
 		declarations,
-		receiver,
-		strings.Join(names, "),"+receiver),
+		strings.Join(names, "),len("),
 		out,
 	)
 }

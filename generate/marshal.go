@@ -15,7 +15,7 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
-	varLengths := lengths2(s.varLenFieldNames(), s.stringSlice, s.receiver)
+	varLengths := lengths2(s.varLenFieldNames(), s.stringSlice)
 	makeSize := s.generateMakeSizes(s.calcSize())
 	s.isReturnedInline()
 
@@ -102,7 +102,7 @@ func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenV
 	}
 
 	*byteIndex += totalSize
-	thisField := pkgSelName(f.structTyp.receiver, f.name)
+	thisField := f.Name()
 	if end == "" {
 		end = utl.UtoA(*byteIndex)
 	}

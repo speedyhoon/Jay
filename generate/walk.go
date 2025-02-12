@@ -1,6 +1,7 @@
 package generate
 
 import (
+	"fmt"
 	"go/ast"
 )
 
@@ -53,4 +54,8 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 	}
 
 	return v
+}
+
+func (f *field) Name() string {
+	return fmt.Sprintf("%s.%s", f.structTyp.receiver, f.name)
 }

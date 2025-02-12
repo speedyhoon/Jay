@@ -150,7 +150,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	if f.isFixedLen || f.typ == tStrings {
 		*byteIndex += totalSize
 	}
-	thisField := pkgSelName(f.structTyp.receiver, f.name)
+
 	if end == "" {
 		end = utl.UtoA(*byteIndex)
 	}
@@ -158,36 +158,36 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	switch template {
 	case tFunc:
 		if f.isDef && f.isNotArrayOrSlice() {
-			return fmt.Sprintf("%s = %s", thisField, printFunc(f.aliasType, printFunc(fun, f.sliceExpr(at, end))))
+			return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.aliasType, printFunc(fun, f.sliceExpr(at, end))))
 		}
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end)))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr(at, end)))
 
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, thisField, f.sliceExpr(at, end))
+		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, f.Name(), f.sliceExpr(at, end))
 
 	case tFuncLength:
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end), lenVar))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr(at, end), lenVar))
 
 	case tFuncPtr:
-		return fmt.Sprintf("%s%s(%s, &%s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr(at, end), thisField)
+		return fmt.Sprintf("%s%s(%s, &%s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr(at, end), f.Name())
 
 	case tFuncPtrCheck:
 		return fmt.Sprintf(
 			"at, ok := %s(%s, &%s)\n\tif !ok {\n\t\treturn %s\n\t}",
-			fun, f.structTyp.bufferName, thisField, exportedErr,
+			fun, f.structTyp.bufferName, f.Name(), exportedErr,
 		)
 
 	case tFuncPtrCheckAt:
 		return fmt.Sprintf(
 			"if !%s(%s, &%s, &at) {\n\t\treturn %s\n\t}",
-			fun, f.sliceExpr(at, end), thisField, exportedErr,
+			fun, f.sliceExpr(at, end), f.Name(), exportedErr,
 		)
 
 	case tByteConv:
-		return fmt.Sprintf("%s = %s", thisField, printFunc(fun, f.sliceExpr(at, end)))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr(at, end)))
 
 	case tByteAssign:
-		return fmt.Sprintf("%s = %s", thisField, printFunc(f.convertTo(), f.sliceExpr(at, end)))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.convertTo(), f.sliceExpr(at, end)))
 	}
 
 	lg.Println("unhandled template")
