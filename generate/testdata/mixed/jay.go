@@ -5,27 +5,27 @@ package mixed
 import "github.com/speedyhoon/jay"
 
 func (l *Lion) MarshalJ() (b []byte) {
-	b = make([]byte, 1+jay.StringsSize16(l.Two))
+	b = make([]byte, 1+jay.StringsSize8(l.Two))
 	b[0] = jay.Bool2(l.One, l.Three)
-	jay.WriteStrings16(b[1:], l.Two)
+	jay.WriteStrings8(b[1:], l.Two)
 	return
 }
 
 func (l *Lion) UnmarshalJ(b []byte) error {
-	if len(b) < 3 {
+	if len(b) < 2 {
 		return jay.ErrUnexpectedEOB
 	}
 	l.One, l.Three = jay.ReadBool2(b[0])
-	return jay.ReadStrings16Err(b[1:], &l.Two)
+	return jay.ReadStrings8Err(b[1:], &l.Two)
 }
 
 func (z *Zebra) MarshalJ() (b []byte) {
 	l0, l1 := len(z.Four), len(z.Five)
-	b = make([]byte, 11+l0+l1*8+jay.StringsSize16(z.Two))
+	b = make([]byte, 11+l1*8+l0+jay.StringsSize8(z.Two))
 	b[0], b[1] = byte(l0), byte(l1)
 	b[2] = jay.Bool2(z.One, z.Three)
 	jay.WriteUint64(b[3:11], z.Six)
-	jay.WriteStrings16(b[1:], z.Two)
+	jay.WriteStrings8(b[1:], z.Two)
 	at, end := 11, 11+l0
 	copy(b[at:end], z.Four)
 	jay.WriteIntsX64(b[end:13], z.Five)
@@ -34,11 +34,11 @@ func (z *Zebra) MarshalJ() (b []byte) {
 
 func (z *Zebra) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 13 {
+	if l < 12 {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1 := int(b[0]), int(b[1])
-	if l != 13+8*l1+l0 {
+	if l != 12+8*l1+l0 {
 		return jay.ErrUnexpectedEOB
 	}
 	z.One, z.Three = jay.ReadBool2(b[2])
@@ -46,5 +46,5 @@ func (z *Zebra) UnmarshalJ(b []byte) error {
 	at, end := 11, 11+l0
 	z.Four = string(b[at:end])
 	z.Five = jay.ReadIntsX64(b[end:11], l1)
-	return jay.ReadStrings16Err(b[11:], &z.Two)
+	return jay.ReadStrings8Err(b[11:], &z.Two)
 }
