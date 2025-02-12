@@ -22,10 +22,7 @@ func (s *structTyp) calcSize() (qty uint) {
 func (f field) typeFuncSize() (size uint) {
 	switch {
 	case f.isSlice():
-		if f.typ == tStrings {
-			return 2
-		}
-		return 1
+		return f.reserveSizeOf()
 	case f.isArray():
 		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
 		return uint(f.arraySize) * itemSize
@@ -59,4 +56,20 @@ func (f field) typeFuncSize() (size uint) {
 	}
 	lg.Printf("type %s unhandled in typeFuncSize()", f.typ)
 	return
+}
+
+// reserveSizeOf returns how many bytes are prefixed to a slice to describe its length.
+// Either 1-byte for 0-255 items or 2-bytes for 0-65,535 items.
+func (f *field) reserveSizeOf() (size uint) {
+	if f.tagOptions.MaxQty <= maxUint8 {
+		return 1
+	}
+	return 2
+}
+
+func (f *field) sizeOfPick(small, large any) any {
+	if f.tagOptions.MaxQty <= maxUint8 {
+		return small
+	}
+	return large
 }

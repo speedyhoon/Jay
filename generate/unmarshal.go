@@ -320,22 +320,11 @@ func (f field) unmarshalFuncs() (funcName string, template uint8, canReturnInlin
 		c, template = jay.ReadDurations, tFuncLength
 	case tStrings:
 		if f.isLast {
-			//switch {
-			//case f.tagOptions.MaxQty <= maxUint8:
-			//	c, template = jay.ReadStrings8Err, tFunc
-			//default:
-			c, template, canReturnInline = jay.ReadStrings16Err, tFuncPtr, canReturnInlined(f.isLast)
-			//}
-			//break
+			c, template, canReturnInline = f.sizeOfPick(jay.ReadStrings8Err, jay.ReadStrings16Err), tFuncPtr, canReturnInlined(f.isLast)
 		} else if f.isFirst {
-			c, template = jay.ReadStrings16n, tFuncPtrCheck
+			c, template = f.sizeOfPick(jay.ReadStrings8n, jay.ReadStrings16n), tFuncPtrCheck
 		} else {
-			//switch {
-			//case f.tagOptions.MaxQty <= maxUint8:
-			//	c, template = jay.ReadStrings8nErr, tFuncPtrCheck
-			//default:
-			c, template = jay.ReadStrings16nb, tFuncPtrCheckAt
-			//}
+			c, template = f.sizeOfPick(jay.ReadStrings8nb, jay.ReadStrings16nb), tFuncPtrCheckAt
 		}
 
 	default:

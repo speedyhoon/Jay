@@ -252,12 +252,7 @@ func (f field) marshalFunc() (fun interface{}, template uint8) {
 	case tTimeDurations:
 		return jay.WriteDurations, tFunc
 	case tStrings:
-		switch {
-		case f.tagOptions.MaxQty <= maxUint8:
-			return jay.WriteStrings8, tFunc
-		default:
-			return jay.WriteStrings16, tFunc
-		}
+		return f.sizeOfPick(jay.WriteStrings8, jay.WriteStrings16), tFunc
 
 	default:
 		lg.Printf("no function set for type %s yet in typeFuncs()", f.typ)
