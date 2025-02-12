@@ -15,7 +15,6 @@ func (s *structTyp) writeStrSlice(buf *bytes.Buffer, vars []string, byteIndex ui
 	const funcName = pkgName + ".WriteStrings16"
 
 	if qty == 1 {
-		vars = []string{"l0"}
 		bufWriteF(buf, "%s(%s, %s.%s)\n", funcName, s.stringSlice[0].sliceExpr(strconv.Itoa(qty), ""), s.receiver, s.stringSlice[0].name)
 		return
 	}
