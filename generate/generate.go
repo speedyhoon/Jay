@@ -17,7 +17,7 @@ const (
 	exportedErr           = pkgName + ".ErrUnexpectedEOB"
 	goExt                 = ".go"
 	DefaultOutputFileName = pkgName + goExt
-	IntSize               = 32 << (^uint(0) >> 63) // 32 or 64
+	IntSize               = 32 << (^uint(0) >> 63) // 32-bit or 64-bit architecture.
 	copyKeyword           = "copy"
 )
 

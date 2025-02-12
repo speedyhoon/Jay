@@ -22,7 +22,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
 	s.makeWriteBools(buf, &byteIndex, importJ)
-	s.writeSingles(buf, &byteIndex, s.receiver, importJ)
+	s.writeSingles(buf, &byteIndex, importJ)
 
 	for _, f := range s.fixedLen {
 		at := utl.UtoA(byteIndex)

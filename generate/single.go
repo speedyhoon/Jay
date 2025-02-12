@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver string, importJ *bool) {
+func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, importJ *bool) {
 	if len(s.single) == 0 {
 		return
 	}
@@ -24,10 +24,6 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, receiver stri
 	if s.returnInline {
 		b.WriteString("}")
 	}
-}
-
-func (s *structTyp) useMakeFunc() bool {
-	return len(s.variableLen) >= 1 || len(s.fixedLen) >= 1
 }
 
 func writeSingle(single field, b *bytes.Buffer, byteIndex uint, fun string, isMake, isLast bool) {
