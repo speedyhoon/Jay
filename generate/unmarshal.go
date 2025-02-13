@@ -15,23 +15,33 @@ func (s *structTyp) ReturnInline() bool {
 // makeUnmarshal ...
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	var byteIndex = uint(len(s.variableLen))
-	buf := bytes.NewBuffer(nil)
+	fixedBuf := bytes.NewBuffer(nil)
 
-	s.makeReadBools(buf, &byteIndex)
-	s.readSingles(buf, &byteIndex)
+	s.makeReadBools(fixedBuf, &byteIndex)
+	s.readSingles(fixedBuf, &byteIndex)
 
 	for _, f := range s.fixedLen {
-		buf.WriteString(f.unmarshalLine(&byteIndex, utl.UtoA(byteIndex), "", ""))
-		buf.WriteString("\n")
+		fixedBuf.WriteString(f.unmarshalLine(&byteIndex, utl.UtoA(byteIndex), "", ""))
+		fixedBuf.WriteString("\n")
 	}
 
-	at, end := s.defineTrackingVars(buf, byteIndex)
+	buf := bytes.NewBuffer(nil)
+	var at, end string
+	if len(s.stringSlice) >= 1 {
+		at, end = s.defineTrackingVars(buf, byteIndex)
+	}
 	for i, f := range s.stringSlice {
 		at, _ = s.tracking(buf, i, end, byteIndex, f.typ)
 		buf.WriteString(f.unmarshalLine(&byteIndex, at, "", f.lenVar))
 		buf.WriteString("\n")
 	}
 
+	// Place all fixed length types after stringSlice so the function can exit early
+	// if encountering any unmarshalling errors.
+	buf.Write(fixedBuf.Bytes())
+	if len(s.stringSlice) == 0 {
+		at, end = s.defineTrackingVars(buf, byteIndex)
+	}
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
 		buf.WriteString(f.unmarshalLine(&byteIndex, at, end, f.lenVar))
