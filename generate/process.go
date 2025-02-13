@@ -283,7 +283,7 @@ func isStruct(f *ast.Field) (fields []*ast.Field, ok bool) {
 
 func (s *structTyp) setFirstNLast() {
 	// lists is the order that each field list is processed.
-	lists := []fieldList{s.bool, s.single, s.fixedLen, s.variableLen, s.stringSlice}
+	lists := []fieldList{s.bool, s.single, s.fixedLen, s.stringSlice, s.variableLen}
 	for i := range lists {
 		if len(lists[i]) >= 1 {
 			lists[i][0].isFirst = true
