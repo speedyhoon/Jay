@@ -30,60 +30,44 @@ func (s *structTyp) varLenFieldNames() (names []string) {
 	return
 }
 
-func (s *structTyp) lengths2() string {
-	qty, sl := len(s.variableLen), len(s.stringSlice)
-	if qty == 0 && sl <= 1 {
+func (s *structTyp) generateLenVarLine() string {
+	var names, values []string
+	for i, f := range append(s.stringSlice, s.variableLen...) {
+		f.generateLenVar(&names, &values, i)
+	}
+
+	if len(names) == 0 {
 		return ""
 	}
 
-	names := s.varLenFieldNames2()
-
-	var sizes []string
-	var out string
-	if l := sl - 1; l >= 1 {
-		qty += l
-
-		for i := 0; i < l; i++ {
-			sizes = append(sizes, printFunc(
-				nameOf(
-					s.stringSlice[i].sizeOfPick(jay.StringsSize8, jay.StringsSize16),
-					nil,
-				),
-				s.stringSlice[i].Name(),
-			))
-		}
-		out = strings.Join(sizes, ", ")
-		if len(s.variableLen) == 0 {
-			declarations := strings.Join(decls(qty), ", ")
-			return fmt.Sprintf("%s := %s",
-				declarations,
-				out,
-			)
-		}
-
-		out = ", " + out
-	}
-
-	declarations := strings.Join(decls(qty), ", ")
-	return fmt.Sprintf("%s := len(%s)%s",
-		declarations,
-		strings.Join(names, "),len("),
-		out,
+	return fmt.Sprintf(
+		"%s:=%s",
+		strings.Join(names, ","),
+		strings.Join(values, ","),
 	)
 }
 
-func (s *structTyp) varLenFieldNames2() (names []string) {
-	names = make([]string, len(s.stringSlice)+len(s.variableLen))
-	for i, v := range append(s.stringSlice, s.variableLen...) {
-		v.lenVar = lenVariable(i)
-		names[i] = v.Name()
-	}
-	return
-}
+func (f *field) generateLenVar(list, values *[]string, index int) {
+	if f.fieldList == &f.structTyp.stringSlice {
+		lv := printFunc(
+			nameOf(
+				f.sizeOfPick(jay.StringsSize8, jay.StringsSize16),
+				nil,
+			),
+			f.Name(),
+		)
 
-func decls(u int) (s []string) {
-	for i := 0; i < u; i++ {
-		s = append(s, lenVariable(i))
+		if f.isLast {
+			f.lenVar = lv
+			return
+		}
+
+		*values = append(*values, lv)
+
+	} else {
+		*values = append(*values, printFunc("len", f.Name()))
 	}
-	return
+
+	f.lenVar = lenVariable(index)
+	*list = append(*list, f.lenVar)
 }

@@ -15,7 +15,7 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
-	varLengths := s.lengths2()
+	varLengths := s.generateLenVarLine()
 	makeSize := s.generateMakeSizes(s.calcSize())
 	s.isReturnedInline()
 
@@ -30,6 +30,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 		buf.WriteString("\n")
 	}
 
+	//at, end := s.defineTrackingVars(buf, byteIndex)
 	at, end := s.defineTrackingVars2(buf, byteIndex)
 	for i, f := range s.stringSlice {
 		if i >= 1 {
@@ -307,6 +308,39 @@ func (f *field) sliceExpr(at, end string) string {
 	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, at, end)
 }
 
+func (f *field) sliceExpr2(at, end string, byteIndex uint) string {
+	if f.typ == tStrings && f.isFirst && f.isLast {
+		return f.structTyp.bufferName
+	}
+
+	if at == "0" {
+		at = ""
+	}
+
+	if f.isFixedLen {
+		if f.isFirst && f.isLast {
+			return f.structTyp.bufferName
+		}
+
+		// `at == ""` is needed when structType contains variableLen types
+		// then `at` can't be absent because their sizes are placed before.
+		if f.isFirst && at == "" {
+			return fmt.Sprintf("%s[:%s]", f.structTyp.bufferName, end)
+		}
+	}
+
+	if f.isLast {
+		if at == "" && byteIndex == 0 {
+			return f.structTyp.bufferName
+		}
+		if at == "" && byteIndex != 0 {
+			return fmt.Sprintf("%s[%d:]", f.structTyp.bufferName, byteIndex)
+		}
+		return fmt.Sprintf("%s[%s:]", f.structTyp.bufferName, at)
+	}
+	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, at, end)
+}
+
 // Template definitions.
 const (
 	tNoTemplate uint8 = iota
@@ -325,6 +359,8 @@ const (
 
 	// tFuncPtrCheck wraps tFuncPtr with an if statement to check for any returned errors.
 	tFuncPtrCheck
+
+	tIfPtrCheck
 
 	// tFuncPtrCheckAt expands tFuncPtrCheck by adding a function parameter to update a pointer for the byte index.
 	tFuncPtrCheckAt
