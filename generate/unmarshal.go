@@ -126,36 +126,20 @@ func (s *structTyp) generateCheckSizes(totalSize uint) string {
 }
 
 func (s *structTyp) generateMakeSizes(totalSize uint) string {
-	qty := uint(len(s.variableLen))
-	sl := uint(len(s.stringSlice))
-	if totalSize+qty+sl == 0 {
-		return ""
-	}
-
-	assignments := make([]string, qty+sl)
 	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
-	for i, f := range s.stringSlice {
-		if uint(i+1) == sl {
-			sizeChecks.add(f, printFunc(nameOf(s.stringSlice[i].sizeOfPick(jay.StringsSize8, jay.StringsSize16), nil), f.Name()))
-			continue
-		}
-		assignments[i] = f.lenVar
-		sizeChecks.add(f, assignments[i])
-	}
-	for i, f := range s.variableLen {
-		assignments[i] = f.lenVar
-		sizeChecks.add(f, assignments[i])
+	for _, f := range append(s.stringSlice, s.variableLen...) {
+		sizeChecks.add(f, f.lenVar)
 	}
 
-	if totalSize >= 1 {
-		grouped := sizeChecks.group()
-		if grouped == "" {
-			return utl.UtoA(totalSize)
-		}
-		return fmt.Sprintf("%d+%s", totalSize, grouped)
+	grouped := sizeChecks.group()
+	if totalSize == 0 {
+		return grouped
+	}
+	if grouped == "" {
+		return utl.UtoA(totalSize)
 	}
 
-	return sizeChecks.group()
+	return fmt.Sprintf("%d+%s", totalSize, grouped)
 }
 
 func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
