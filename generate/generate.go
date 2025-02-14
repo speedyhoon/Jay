@@ -12,13 +12,13 @@ import (
 )
 
 const (
-	pkgName               = "jay"
-	pkgImport             = "github.com/speedyhoon/" + pkgName
-	exportedErr           = pkgName + ".ErrUnexpectedEOB"
-	goExt                 = ".go"
-	DefaultOutputFileName = pkgName + goExt
-	IntSize               = 32 << (^uint(0) >> 63) // 32-bit or 64-bit architecture.
-	copyKeyword           = "copy"
+	pkgName                 = "jay"
+	pkgImport               = "github.com/speedyhoon/" + pkgName
+	exportedErr             = pkgName + ".ErrUnexpectedEOB"
+	goExt                   = ".go"
+	DefaultOutputFileName   = pkgName + goExt
+	IntSize                 = 32 << (^uint(0) >> 63) // 32-bit or 64-bit architecture.
+	copyKeyword, lenKeyword = "copy", "len"
 )
 
 var (

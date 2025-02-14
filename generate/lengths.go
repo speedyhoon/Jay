@@ -65,7 +65,7 @@ func (f *field) generateLenVar(list, values *[]string, index int) {
 		*values = append(*values, lv)
 
 	} else {
-		*values = append(*values, printFunc("len", f.Name()))
+		*values = append(*values, printFunc(lenKeyword, f.Name()))
 	}
 
 	f.lenVar = lenVariable(index)
