@@ -20,15 +20,15 @@ func (l *Lion) UnmarshalJ(b []byte) error {
 }
 
 func (z *Zebra) MarshalJ() (b []byte) {
-	l0, l1 := len(z.Str), len(z.Ints)
-	b = make([]byte, 11+l1*8+l0+jay.StringsSize8(z.Strings))
-	b[0], b[1] = byte(l0), byte(l1)
+	l0, l1, l2 := jay.StringsSize8(z.Strings), len(z.Str), len(z.Ints)
+	b = make([]byte, 11+8*l2+l0+l1)
+	b[0], b[1] = byte(l1), byte(l2)
 	b[2] = jay.Bool2(z.B1, z.B2)
 	jay.WriteUint64(b[3:11], z.U64)
-	jay.WriteStrings8(b[1:], z.Strings)
-	at, end := 11, 11+l0
+	jay.WriteStrings8(b[11:11+l0], z.Strings)
+	at, end := 12, 12+l1
 	copy(b[at:end], z.Str)
-	jay.WriteIntsX64(b[end:13], z.Ints)
+	jay.WriteIntsX64(b[end:], z.Ints)
 	return
 }
 
@@ -37,14 +37,17 @@ func (z *Zebra) UnmarshalJ(b []byte) error {
 	if l < 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1 := int(b[0]), int(b[1])
-	if l != 12+8*l1+l0 {
+	l1, l2 := int(b[0]), int(b[1])
+	if l != 12+8*l2+l1 {
+		return jay.ErrUnexpectedEOB
+	}
+	at, end := 11, 11+l1
+	if !jay.ReadStrings8nb(b[at:], &z.Strings, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	z.B1, z.B2 = jay.ReadBool2(b[2])
 	z.U64 = jay.ReadUint64(b[3:11])
-	at, end := 11, 11+l0
 	z.Str = string(b[at:end])
-	z.Ints = jay.ReadIntsX64(b[end:11], l1)
-	return jay.ReadStrings8Err(b[11:], &z.Strings)
+	z.Ints = jay.ReadIntsX64(b[end:], l2)
+	return nil
 }

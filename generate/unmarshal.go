@@ -17,6 +17,10 @@ func (s *structTyp) ReturnInline() bool {
 	return len(s.fixedLen) == 0 && len(s.single) == 0 && len(s.variableLen) == 0 && len(s.bool) == 0 && len(s.stringSlice) >= 1
 }
 
+func (s *structTyp) placeStringsAfter(byteIndex uint) bool {
+	return len(s.stringSlice) < moveReadStringsAbove && byteIndex <= 2
+}
+
 // makeUnmarshal ...
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	var byteIndex = uint(len(s.variableLen))
@@ -31,7 +35,8 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	}
 
 	var at, end string
-	if len(s.stringSlice) < moveReadStringsAbove {
+	isAfter := s.placeStringsAfter(byteIndex)
+	if isAfter {
 		buf.Write(fixedBuf.Bytes())
 	}
 
@@ -42,7 +47,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		buf.WriteString("\n")
 	}
 
-	if len(s.stringSlice) >= moveReadStringsAbove {
+	if !isAfter {
 		// Place all fixed length types after stringSlice so the function can exit early
 		// if encountering any unmarshalling errors.
 		// The byteIndex needs to be calculated before `s.stringSlice` which is why the execution order looks odd.
@@ -158,6 +163,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 	fun, template, f.structTyp.returnInlineUnmarshal = f.unmarshalFuncs()
 	totalSize := f.typeFuncSize()
 
+	before := *byteIndex
 	if f.isFixedLen || f.typ == tStrings {
 		*byteIndex += totalSize
 	}
@@ -180,7 +186,7 @@ func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
 		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr(at, end), lenVar))
 
 	case tFuncPtr:
-		return fmt.Sprintf("%s%s(%s, &%s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr(at, end), f.Name())
+		return fmt.Sprintf("%s%s(%s, &%s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr2(at, end, before), f.Name())
 
 	case tFuncPtrCheck:
 		return fmt.Sprintf(

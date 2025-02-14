@@ -372,11 +372,29 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 	return
 }
 
+// firstVarLenField return the first field that is variable length,
+// either from s.stringSlice, otherwise s.variableLen.
+// Returns nil when none are found.
+func (s *structTyp) firstVarLenField() *field {
+	if len(s.stringSlice) >= 1 {
+		return s.stringSlice[0]
+	}
+	if len(s.variableLen) >= 1 {
+		return s.variableLen[0]
+	}
+	return nil
+}
+
 func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, end string) {
 	switch len(s.stringSlice) {
 	case 0:
 		return
-	case 1, 2:
+	case 1:
+		if byteIndex != 0 {
+			at, end = utl.UtoA(byteIndex), fmt.Sprintf("%d+%s", byteIndex, s.firstVarLenField().lenVar)
+		}
+		return
+	case 2:
 		if byteIndex != 0 {
 			at = utl.UtoA(byteIndex)
 			if s.stringSlice[0].lenVar != "" {
@@ -407,7 +425,13 @@ func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, 
 
 func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint, varType string) (at, end string) {
 	if varType == tStrings {
-		return "at", ""
+		if len(s.stringSlice) >= 2 {
+			return "at", ""
+		}
+		if byteIndex != 0 {
+			return "at", endVar
+		}
+		return "", ""
 	}
 
 	if endVar == "" {
