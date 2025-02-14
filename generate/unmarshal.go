@@ -8,6 +8,11 @@ import (
 	"strings"
 )
 
+// moveReadStringsAbove is the threshold to move all `s.stringSlice` above `s.bool`, `s.single` and `s.fixedLen`.
+// This reduces processing in generated unmarshall functions when errors occur by placing the buffer length
+// checks occur before all the assignments.
+const moveReadStringsAbove = 2
+
 func (s *structTyp) ReturnInline() bool {
 	return len(s.fixedLen) == 0 && len(s.single) == 0 && len(s.variableLen) == 0 && len(s.bool) == 0 && len(s.stringSlice) >= 1
 }
@@ -15,7 +20,7 @@ func (s *structTyp) ReturnInline() bool {
 // makeUnmarshal ...
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	var byteIndex = uint(len(s.variableLen))
-	fixedBuf := bytes.NewBuffer(nil)
+	buf, fixedBuf := bytes.NewBuffer(nil), bytes.NewBuffer(nil)
 
 	s.makeReadBools(fixedBuf, &byteIndex)
 	s.readSingles(fixedBuf, &byteIndex)
@@ -25,20 +30,25 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		fixedBuf.WriteString("\n")
 	}
 
-	buf := bytes.NewBuffer(nil)
 	var at, end string
-	if len(s.stringSlice) >= 1 {
-		at, end = s.defineTrackingVars(buf, byteIndex)
+	if len(s.stringSlice) < moveReadStringsAbove {
+		buf.Write(fixedBuf.Bytes())
 	}
+
+	at, end = s.defineTrackingVars(buf, byteIndex)
 	for i, f := range s.stringSlice {
 		at, _ = s.tracking(buf, i, end, byteIndex, f.typ)
 		buf.WriteString(f.unmarshalLine(&byteIndex, at, "", f.lenVar))
 		buf.WriteString("\n")
 	}
 
-	// Place all fixed length types after stringSlice so the function can exit early
-	// if encountering any unmarshalling errors.
-	buf.Write(fixedBuf.Bytes())
+	if len(s.stringSlice) >= moveReadStringsAbove {
+		// Place all fixed length types after stringSlice so the function can exit early
+		// if encountering any unmarshalling errors.
+		// The byteIndex needs to be calculated before `s.stringSlice` which is why the execution order looks odd.
+		buf.Write(fixedBuf.Bytes())
+	}
+
 	if len(s.stringSlice) == 0 {
 		at, end = s.defineTrackingVars(buf, byteIndex)
 	}
