@@ -24,7 +24,7 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bo
 		b.WriteString("[]byte{")
 	}
 
-	newList := fieldNamesArrays(s.bool, s.receiver)
+	newList := fieldNamesArrays(s.bool)
 	l := len(newList)
 	for i := 0; i < l; i += 8 {
 		next8Qty := min(8, len(newList[i:]))
@@ -58,7 +58,7 @@ func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint) {
 		return
 	}
 
-	newList, uList := fieldNamesArraysUnmarshalInline(s.bool, s.receiver)
+	newList, uList := fieldNamesArraysUnmarshalInline(s.bool)
 
 	l := len(newList)
 	for i := 0; i < l; i += 8 {
@@ -68,7 +68,6 @@ func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint) {
 }
 
 func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, bufferName string, uList []bool) {
-
 	if len(bools) > 8 {
 		bools = bools[:8]
 	}
@@ -107,7 +106,7 @@ func unmarshalBoolsInline(bufferName string, byteIndex uint, qty int) string {
 	}[:qty], ", "), bufferName, byteIndex)
 }
 
-func fieldNamesArrays(fields []*field, receiver string) (s []string) {
+func fieldNamesArrays(fields []*field) (s []string) {
 	for i := range fields {
 		if fields[i].isDef {
 			if fields[i].isArray() {
@@ -130,7 +129,7 @@ func fieldNamesArrays(fields []*field, receiver string) (s []string) {
 	return
 }
 
-func fieldNamesArraysUnmarshalInline(fields fieldList, receiver string) (s []string, u []bool) {
+func fieldNamesArraysUnmarshalInline(fields fieldList) (s []string, u []bool) {
 	for i := range fields {
 		if fields[i].isArray() {
 			for j := 0; j < fields[i].arraySize; j++ {
