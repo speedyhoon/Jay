@@ -21,45 +21,48 @@ func (s *structTyp) placeStringsAfter(byteIndex uint) bool {
 	return len(s.stringSlice) < moveReadStringsAbove && byteIndex <= 2
 }
 
+type varCtx struct {
+	byteIndex                 uint
+	size                      uint
+	buf                       *bytes.Buffer
+	atValue, endValue         string
+	isAtDefined, isEndDefined bool
+}
+
+const vAt, vEnd, vOk = "at", "end", "ok"
+
 // makeUnmarshal ...
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
-	var byteIndex = uint(len(s.variableLen))
 	buf, fixedBuf := bytes.NewBuffer(nil), bytes.NewBuffer(nil)
+	c := varCtx{byteIndex: uint(len(s.variableLen)), buf: buf}
 
-	s.makeReadBools(fixedBuf, &byteIndex)
-	s.readSingles(fixedBuf, &byteIndex)
+	s.makeReadBools(fixedBuf, &c.byteIndex)
+	s.readSingles(fixedBuf, &c.byteIndex)
 
 	for _, f := range s.fixedLen {
-		fixedBuf.WriteString(f.unmarshalLine(&byteIndex, utl.UtoA(byteIndex), "", ""))
+		fixedBuf.WriteString(f.unmarshalLine(&c))
 		fixedBuf.WriteString("\n")
 	}
 
-	var at, end string
-	isAfter := s.placeStringsAfter(byteIndex)
+	isAfter := s.placeStringsAfter(c.byteIndex)
 	if isAfter {
 		buf.Write(fixedBuf.Bytes())
 	}
 
-	at, end = s.defineTrackingVars(buf, byteIndex)
-	for i, f := range s.stringSlice {
-		at, _ = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(f.unmarshalLine(&byteIndex, at, "", f.lenVar))
+	for _, f := range s.stringSlice {
+		buf.WriteString(f.unmarshalLine(&c))
 		buf.WriteString("\n")
 	}
 
 	if !isAfter {
 		// Place all fixed length types after stringSlice so the function can exit early
 		// if encountering any unmarshalling errors.
-		// The byteIndex needs to be calculated before `s.stringSlice` which is why the execution order looks odd.
+		// `c.byteIndex` needs to be calculated before `s.stringSlice` which is why the execution order looks odd.
 		buf.Write(fixedBuf.Bytes())
 	}
 
-	if len(s.stringSlice) == 0 {
-		at, end = s.defineTrackingVars(buf, byteIndex)
-	}
-	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(f.unmarshalLine(&byteIndex, at, end, f.lenVar))
+	for _, f := range s.variableLen {
+		buf.WriteString(f.unmarshalLine(&c))
 		buf.WriteString("\n")
 	}
 
@@ -71,13 +74,13 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	// Prevent panic: runtime error: index out of range
 	var lengthCheck string
 	if len(s.variableLen) == 0 && len(s.stringSlice) == 0 {
-		lengthCheck = fmt.Sprintf("if len(%s) != %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("if len(%s) != %d {\nreturn %s\n}", s.bufferName, c.byteIndex, exportedErr)
 	} else if len(s.variableLen) == 0 && len(s.stringSlice) >= 1 {
-		lengthCheck = fmt.Sprintf("if len(%s) < %d {\nreturn %s\n}", s.bufferName, byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("if len(%s) < %d {\nreturn %s\n}", s.bufferName, c.byteIndex, exportedErr)
 	} else {
-		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\nif %[1]s < %[3]d {\nreturn %[4]s\n}", s.lengthName, s.bufferName, byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\nif %[1]s < %[3]d {\nreturn %[4]s\n}", s.lengthName, s.bufferName, c.byteIndex, exportedErr)
 	}
-	variableLengthCheck := s.generateCheckSizes(byteIndex)
+	variableLengthCheck := s.generateCheckSizes(c.byteIndex)
 
 	if s.ReturnInline() {
 		bufWriteF(b,
@@ -157,54 +160,126 @@ func (s *structTyp) generateMakeSizes(totalSize uint) string {
 	return fmt.Sprintf("%d+%s", totalSize, grouped)
 }
 
-func (f *field) unmarshalLine(byteIndex *uint, at, end, lenVar string) string {
+func (f *field) isStrings() bool {
+	return f.fieldList == &f.structTyp.stringSlice
+}
+func (f *field) isVarLen() bool {
+	return f.fieldList == &f.structTyp.variableLen
+}
+
+func (c *varCtx) deferAdd(f *field, size uint) {
+	if f.isFixedLen || f.typ == tStrings {
+		c.byteIndex += size
+	}
+}
+
+// trackingVars defines `at` and `end` if needed before a value is unmarshalled or updates their values.
+func (c *varCtx) trackingVars(f *field) {
+	size := f.typeFuncSize()
+	defer c.deferAdd(f, size)
+
+	if f.isFirst && f.isLast {
+		return
+	}
+
+	if f.isLast {
+		if c.endValue != "" {
+			c.atValue = c.endValue
+			return
+		}
+		if !c.isAtDefined {
+			c.atValue = utl.UtoA(c.byteIndex)
+		}
+		return
+	}
+
+	if f.isFixedLen {
+		if c.byteIndex >= 1 {
+			c.atValue = utl.UtoA(c.byteIndex)
+		}
+		c.endValue = utl.UtoA(c.byteIndex + size)
+		return
+	}
+
+	if f.isStrings() {
+		if f.isFirst {
+			c.isAtDefined, c.atValue = true, vAt
+			return
+		}
+
+		if !c.isAtDefined {
+			if len(f.structTyp.stringSlice) >= 2 || len(f.structTyp.variableLen) >= 1 {
+				c.isAtDefined = true
+				c.buf.WriteString(fmt.Sprintf("%s := %d\n", vAt, c.byteIndex))
+				c.atValue = vAt
+			}
+		}
+		return
+	}
+
+	if f.isVarLen() {
+		if !c.isAtDefined && len(f.structTyp.variableLen) >= 3 {
+			c.isAtDefined, c.isEndDefined = true, true
+			c.buf.WriteString(fmt.Sprintf("%s, %s := %d, %[3]d+%s\n", vAt, vEnd, c.byteIndex, f.lenVar))
+			c.atValue, c.endValue = vAt, vEnd
+		}
+
+		if !c.isEndDefined && len(f.structTyp.variableLen) >= 3 {
+			c.isEndDefined = true
+			c.buf.WriteString(fmt.Sprintf("%s := %s+%s\n", vEnd, vAt, f.lenVar))
+			c.endValue = vEnd
+		} else {
+			c.endValue = fmt.Sprintf("%s+%s", c.atValue, f.lenVar)
+		}
+	}
+}
+
+func (f *field) unmarshalLine(ctx *varCtx) string {
 	var fun string
 	var template uint8
 	fun, template, f.structTyp.returnInlineUnmarshal = f.unmarshalFuncs()
-	totalSize := f.typeFuncSize()
 
-	before := *byteIndex
-	if f.isFixedLen || f.typ == tStrings {
-		*byteIndex += totalSize
-	}
-
-	if end == "" && f.typ != tStrings {
-		end = utl.UtoA(*byteIndex)
-	}
+	ctx.trackingVars(f)
 
 	switch template {
 	case tFunc:
 		if f.isDef && f.isNotArrayOrSlice() {
-			return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.aliasType, printFunc(fun, f.sliceExpr(at, end))))
+			return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.aliasType, printFunc(fun, f.sliceExpr3(ctx))))
 		}
-		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr(at, end)))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr3(ctx)))
 
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", lenVar, f.Name(), f.sliceExpr(at, end))
+		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", f.lenVar, f.Name(), f.sliceExpr3(ctx))
 
 	case tFuncLength:
-		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr(at, end), lenVar))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr3(ctx), f.lenVar))
 
 	case tFuncPtr:
-		return fmt.Sprintf("%s%s(%s, &%s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr2(at, end, before), f.Name())
+		return fmt.Sprintf("%s%s(%s, &%s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr3(ctx), f.Name())
 
 	case tFuncPtrCheck:
 		return fmt.Sprintf(
-			"at, ok := %s(%s, &%s)\n\tif !ok {\n\t\treturn %s\n\t}",
-			fun, f.structTyp.bufferName, f.Name(), exportedErr,
+			"%s, %s := %s(%s, &%s)\n\tif !%[2]s {\n\t\treturn %[6]s\n\t}",
+			vAt, vOk, fun, f.structTyp.bufferName, f.Name(), exportedErr,
 		)
 
 	case tFuncPtrCheckAt:
 		return fmt.Sprintf(
-			"if !%s(%s, &%s, &at) {\n\t\treturn %s\n\t}",
-			fun, f.sliceExpr(at, end), f.Name(), exportedErr,
+			"if !%s(%s, &%s, &%s) {\n\t\treturn %s\n\t}",
+			fun, f.sliceExpr3(ctx), f.Name(), vAt, exportedErr,
+		)
+
+	case tIfPtrCheck:
+		return fmt.Sprintf(
+			"if !%s(%s, &%s) {\n\t\treturn %s\n\t}",
+			fun, f.sliceExpr3(ctx), f.Name(), exportedErr,
 		)
 
 	case tByteConv:
-		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr(at, end)))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr3(ctx)))
 
 	case tByteAssign:
-		return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.convertTo(), f.sliceExpr(at, end)))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.convertTo(), f.sliceExpr3(ctx)))
 	}
 
 	lg.Println("unhandled template")

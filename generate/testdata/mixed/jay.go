@@ -41,13 +41,13 @@ func (z *Zebra) UnmarshalJ(b []byte) error {
 	if l != 12+8*l2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 11, 11+l1
+	at := 11
 	if !jay.ReadStrings8nb(b[at:], &z.Strings, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	z.B1, z.B2 = jay.ReadBool2(b[2])
 	z.U64 = jay.ReadUint64(b[3:11])
-	z.Str = string(b[at:end])
-	z.Ints = jay.ReadIntsX64(b[end:], l2)
+	z.Str = string(b[at : at+l1])
+	z.Ints = jay.ReadIntsX64(b[at+l1:], l2)
 	return nil
 }

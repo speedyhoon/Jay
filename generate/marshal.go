@@ -341,6 +341,24 @@ func (f *field) sliceExpr2(at, end string, byteIndex uint) string {
 	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, at, end)
 }
 
+func (f *field) sliceExpr3(c *varCtx) string {
+	if f.isFirst && f.isLast {
+		return f.structTyp.bufferName
+	}
+
+	if f.isLast || !f.isFixedLen && f.isStrings() {
+		return fmt.Sprintf("%s[%s:]", f.structTyp.bufferName, c.atValue)
+	}
+
+	if f.isFixedLen {
+		if f.isFirst && c.byteIndex == 0 {
+			return fmt.Sprintf("%s[:%s]", f.structTyp.bufferName, c.endValue)
+		}
+	}
+
+	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, c.atValue, c.endValue)
+}
+
 // Template definitions.
 const (
 	tNoTemplate uint8 = iota
