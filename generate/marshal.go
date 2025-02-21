@@ -342,7 +342,7 @@ func (f *field) sliceExpr2(at, end string, byteIndex uint) string {
 }
 
 func (f *field) sliceExpr3(c *varCtx) string {
-	if f.isFirst && f.isLast {
+	if c.atValue == "" && c.endValue == "" || f.isFirst && f.isLast && c.byteIndex == 0 {
 		return f.structTyp.bufferName
 	}
 
