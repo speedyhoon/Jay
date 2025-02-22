@@ -7,6 +7,13 @@ func SizeBools(length int) int {
 	return (length + 7) >> 3
 }
 
+func SizeBools8(length uint8) int {
+	if length == 0 {
+		return 0
+	}
+	return (int(length) + 7) >> 3
+}
+
 func WriteBools(y []byte, a []bool, length int) {
 	for i, n := 0, 0; i*8 < length; i++ {
 		n = i * 8
@@ -38,6 +45,35 @@ func ReadBools(y []byte, length int) (t []bool) {
 	t = make([]bool, length)
 	for i, n := 0, 0; i*8 < length; i++ {
 		n = i * 8
+		switch length - n {
+		case 1:
+			t[n] = ReadBool1(y[i])
+		case 2:
+			t[n], t[n+1] = ReadBool2(y[i])
+		case 3:
+			t[n], t[n+1], t[n+2] = ReadBool3(y[i])
+		case 4:
+			t[n], t[n+1], t[n+2], t[n+3] = ReadBool4(y[i])
+		case 5:
+			t[n], t[n+1], t[n+2], t[n+3], t[n+4] = ReadBool5(y[i])
+		case 6:
+			t[n], t[n+1], t[n+2], t[n+3], t[n+4], t[n+5] = ReadBool6(y[i])
+		case 7:
+			t[n], t[n+1], t[n+2], t[n+3], t[n+4], t[n+5], t[n+6] = ReadBool7(y[i])
+		default:
+			t[n], t[n+1], t[n+2], t[n+3], t[n+4], t[n+5], t[n+6], t[n+7] = ReadBool8(y[i])
+		}
+	}
+	return
+}
+
+func ReadBools8(y []byte, length uint8) (t []bool) {
+	if length == 0 {
+		return
+	}
+	t = make([]bool, length)
+	var i, n uint8
+	for ; /*i, n := uint8(0), uint8(0)*/ n < length; i, n = i+1, n+8 {
 		switch length - n {
 		case 1:
 			t[n] = ReadBool1(y[i])
