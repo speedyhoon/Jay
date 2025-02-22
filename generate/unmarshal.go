@@ -237,7 +237,7 @@ func (c *varCtx) trackingVars(f *field) {
 func (f *field) unmarshalLine(ctx *varCtx) string {
 	var fun string
 	var template uint8
-	fun, template, f.structTyp.returnInlineUnmarshal = f.unmarshalFuncs()
+	fun, template, f.structTyp.returnInlineUnmarshal = f.unmarshalFunc()
 
 	ctx.trackingVars(f)
 
@@ -310,9 +310,9 @@ func (f *field) typeConvert() string {
 	return f.aliasType
 }
 
-// unmarshalFuncs returns the function name to handle unmarshalling.
+// unmarshalFunc returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
-func (f field) unmarshalFuncs() (funcName string, template uint8, canReturnInline canReturnInlined) {
+func (f field) unmarshalFunc() (funcName string, template uint8, canReturnInline canReturnInlined) {
 	var c interface{}
 	switch f.typ {
 	case tByte:
@@ -420,7 +420,7 @@ func (f field) unmarshalFuncs() (funcName string, template uint8, canReturnInlin
 		}
 
 	default:
-		lg.Printf("no function set for type %s yet in unmarshalFuncs()", f.typ)
+		lg.Printf("no function set for type %s yet in unmarshalFunc()", f.typ)
 	}
 
 	return nameOf(c, nil), template, canReturnInline
