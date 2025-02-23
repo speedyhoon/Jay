@@ -42,13 +42,11 @@ type Option struct {
 
 	outputFile string
 
+	// maxUint8 = 255 bytes (default),
 	// maxUint16 = 64 kilobytes,
 	// maxUint24 = 16 Megabytes,
-	//4 Gigabytes
-	//	// maxUint8 = 255 bytes (default),
-	//	// maxUint32 = 4 Gigabytes (maximum).
 
-	// Whether type ` int` should be a fixed length (4 bytes 32-bit, or 8 bytes 64-bit) or vary in length depending on the value provided.
+	// Whether type `int` should be a fixed length (4 bytes for 32-bit, or 8 bytes for 64-bit) or vary in length depending on the value provided.
 	FixedIntSize bool
 
 	// Whether type `uint` should be a fixed length (4 bytes 32-bit, or 8 bytes 64-bit) or vary in length depending on the value provided.
