@@ -32,7 +32,7 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bo
 		if s.returnInline {
 			b.WriteString(boolsFunc(newList, i, next8Qty))
 		} else {
-			bufWriteF(b, "%s[%d] = %s\n", s.bufferName, *byteIndex, boolsFunc(newList, i, next8Qty))
+			bufWriteLineF(b, "%s[%d] = %s", s.bufferName, *byteIndex, boolsFunc(newList, i, next8Qty))
 		}
 
 		if s.returnInline {

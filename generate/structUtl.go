@@ -355,6 +355,18 @@ func bufWriteF(b *bytes.Buffer, format string, a ...any) {
 	}
 }
 
+func bufWriteLine(b *bytes.Buffer, line string) {
+	b.WriteString("\t")
+	b.WriteString(line)
+	b.WriteString("\n")
+}
+
+func bufWriteLineF(b *bytes.Buffer, format string, a ...any) {
+	b.WriteString("\t")
+	b.WriteString(fmt.Sprintf(format, a...))
+	b.WriteString("\n")
+}
+
 func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, end string) {
 	switch len(s.variableLen) {
 	case 0:
@@ -365,7 +377,7 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 		if s.variableLen[0].typ == tBoolS {
 			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), s.variableLen[0].lenVar)
 		} else {
-			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.variableLen[0]))
+			bufWriteLineF(buf, "at, end := %d, %[1]d+%s", byteIndex, multiples(s.variableLen[0]))
 		}
 		at, end = "at", "end"
 	}
@@ -402,7 +414,7 @@ func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, 
 			} else {
 				end = utl.UtoA(byteIndex)
 			}
-			bufWriteF(buf, "at, end := %d, %s\n", byteIndex, end)
+			bufWriteLineF(buf, "at, end := %d, %s", byteIndex, end)
 			return
 		}
 
@@ -416,7 +428,7 @@ func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, 
 		if s.stringSlice[0].typ == tBoolS {
 			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), s.stringSlice[0].lenVar)
 		} else {
-			bufWriteF(buf, "at, end := %d, %[1]d+%s\n", byteIndex, multiples(s.stringSlice[0]))
+			bufWriteLineF(buf, "at, end := %d, %[1]d+%s", byteIndex, multiples(s.stringSlice[0]))
 		}
 		at, end = "at", "end"
 	}
@@ -445,7 +457,7 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 		if varType == tBoolS {
 			bufWriteF(buf, "at, end = end, end+%s(%s)\n", nameOf(jay.SizeBools, nil), s.variableLen[i].lenVar)
 		} else {
-			bufWriteF(buf, "at, end = end, end+%s\n", multiples(s.variableLen[i]))
+			bufWriteLineF(buf, "at, end = end, end+%s", multiples(s.variableLen[i]))
 		}
 	}
 	return "at", "end"

@@ -26,8 +26,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 
 	for _, f := range s.fixedLen {
 		at := utl.UtoA(byteIndex)
-		buf.WriteString(f.marshalLine(&byteIndex, at, "", importJ, ""))
-		buf.WriteString("\n")
+		bufWriteLine(buf, f.marshalLine(&byteIndex, at, "", importJ, ""))
 	}
 
 	//at, end := s.defineTrackingVars(buf, byteIndex)

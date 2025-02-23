@@ -40,8 +40,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	s.readSingles(fixedBuf, &c.byteIndex)
 
 	for _, f := range s.fixedLen {
-		fixedBuf.WriteString(f.unmarshalLine(&c))
-		fixedBuf.WriteString("\n")
+		bufWriteLine(fixedBuf, f.unmarshalLine(&c))
 	}
 
 	isAfter := s.placeStringsAfter(c.byteIndex)
@@ -50,8 +49,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	}
 
 	for _, f := range s.stringSlice {
-		buf.WriteString(f.unmarshalLine(&c))
-		buf.WriteString("\n")
+		bufWriteLine(buf, f.unmarshalLine(&c))
 	}
 
 	if !isAfter {
@@ -62,8 +60,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	}
 
 	for _, f := range s.variableLen {
-		buf.WriteString(f.unmarshalLine(&c))
-		buf.WriteString("\n")
+		bufWriteLine(buf, f.unmarshalLine(&c))
 	}
 
 	code := buf.Bytes()
