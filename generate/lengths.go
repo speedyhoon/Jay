@@ -41,9 +41,9 @@ func (s *structTyp) generateLenVarLine() string {
 	}
 
 	return fmt.Sprintf(
-		"%s:=%s",
-		strings.Join(names, ","),
-		strings.Join(values, ","),
+		"%s := %s",
+		strings.Join(names, ", "),
+		strings.Join(values, ", "),
 	)
 }
 

@@ -59,7 +59,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 
 	if s.returnInline {
 		bufWriteF(b,
-			"func (%s %s%s) MarshalJ() []byte {\n\treturn %s\n}\n",
+			"\nfunc (%s %s%s) MarshalJ() []byte {\n\treturn %s\n}\n",
 			s.receiver,
 			pointer,
 			s.name,
@@ -69,7 +69,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	}
 
 	bufWriteF(b,
-		"func (%[1]s %[2]s%[3]s) MarshalJ() (%[4]s []byte) {\n%[5]s\n%[4]s = make([]byte, %[6]s)\n%[7]s%[8]s\treturn\n}\n",
+		"\nfunc (%[1]s %[2]s%[3]s) MarshalJ() (%[4]s []byte) {\n\t%[5]s\n\t%[4]s = make([]byte, %[6]s)\n\t%[7]s%[8]s\treturn\n}\n",
 		s.receiver,
 		pointer,
 		s.name,
@@ -93,7 +93,7 @@ func (s *structTyp) generateSizeLine() string {
 		assignments[i] = fmt.Sprintf("%s[%d]", s.bufferName, i)
 		values[i] = fmt.Sprintf("byte(%s)", s.variableLen[i].lenVar)
 	}
-	return fmt.Sprintln(strings.Join(assignments, ", "), " = ", strings.Join(values, ", "))
+	return fmt.Sprintln(strings.Join(assignments, ", "), "=", strings.Join(values, ", "))
 }
 
 func (s *structTyp) isReturnedInline() {

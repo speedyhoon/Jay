@@ -74,17 +74,17 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	// Prevent panic: runtime error: index out of range
 	var lengthCheck string
 	if len(s.variableLen) == 0 && len(s.stringSlice) == 0 {
-		lengthCheck = fmt.Sprintf("if len(%s) != %d {\nreturn %s\n}", s.bufferName, c.byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("if len(%s) != %d {\n\t\treturn %s\n\t}", s.bufferName, c.byteIndex, exportedErr)
 	} else if len(s.variableLen) == 0 && len(s.stringSlice) >= 1 {
-		lengthCheck = fmt.Sprintf("if len(%s) < %d {\nreturn %s\n}", s.bufferName, c.byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("if len(%s) < %d {\n\t\treturn %s\n\t}", s.bufferName, c.byteIndex, exportedErr)
 	} else {
-		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\nif %[1]s < %[3]d {\nreturn %[4]s\n}", s.lengthName, s.bufferName, c.byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\n\tif %[1]s < %[3]d {\n\t\treturn %[4]s\n\t}", s.lengthName, s.bufferName, c.byteIndex, exportedErr)
 	}
 	variableLengthCheck := s.generateCheckSizes(c.byteIndex)
 
 	if s.ReturnInline() {
 		bufWriteF(b,
-			"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s\n}\n",
+			"\nfunc (%s *%s) UnmarshalJ(%s []byte) error {\n\t%s\n%s\n}\n",
 			s.receiver,
 			s.name,
 			s.bufferName,
@@ -96,7 +96,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 
 	if s.returnInlineUnmarshal {
 		bufWriteF(b,
-			"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%s}\n",
+			"\nfunc (%s *%s) UnmarshalJ(%s []byte) error {\n\t%s\n%s%s}\n",
 			s.receiver,
 			s.name,
 			s.bufferName,
@@ -108,7 +108,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	}
 
 	bufWriteF(b,
-		"func (%s *%s) UnmarshalJ(%s []byte) error {\n%s\n%s%sreturn nil\n}\n",
+		"\nfunc (%s *%s) UnmarshalJ(%s []byte) error {\n\t%s\n%s%s\treturn nil\n}\n",
 		s.receiver,
 		s.name,
 		s.bufferName,
