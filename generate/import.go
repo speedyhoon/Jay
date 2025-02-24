@@ -28,7 +28,7 @@ func (m *importList) join(l importList) {
 	}
 }
 
-func (m importList) Print() string {
+func (m importList) print() string {
 	switch len(m) {
 	case 0:
 		return ""

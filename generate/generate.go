@@ -56,7 +56,7 @@ func (o Option) makeFile(pkg string, s []*structTyp) ([]byte, error) {
 
 package %s
 %s
-%s`, pkgImport, pkg, imported.Print(), src))
+%s`, pkgImport, pkg, imported.print(), src))
 
 	return GoFormat(src)
 }
