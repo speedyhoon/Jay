@@ -10,13 +10,15 @@ import (
 func multiples(f *field) (lenVar string) {
 	switch {
 	case f.isSlice():
-		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
+		fe := field{typ: f.arrayType, structTyp: f.structTyp}
+		itemSize := fe.typeFuncSize()
 		if itemSize >= 2 {
 			return fmt.Sprintf("%s*%d", f.marshal.qtyVar, itemSize)
 		}
 		return string(f.marshal.qtyVar)
 	case f.isArray():
-		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
+		fe := field{typ: f.arrayType, structTyp: f.structTyp}
+		itemSize := fe.typeFuncSize()
 		return utl.UtoA(uint(f.arraySize) * itemSize)
 	default: // typeNotArrayOrSlice
 		return string(f.marshal.qtyVar)
