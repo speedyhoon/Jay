@@ -174,7 +174,7 @@ func (f *field) isVarLen() bool {
 	return f.fieldList == &f.structTyp.variableLen
 }
 
-func (c *varCtx) deferAdd(f *field, size uint) {
+func (c *varCtx) add(f *field, size uint) {
 	if f.isFixedLen || f.typ == tStrings {
 		c.byteIndex += size
 	}
@@ -183,7 +183,7 @@ func (c *varCtx) deferAdd(f *field, size uint) {
 // trackingVars defines `at` and `end` if needed before a value is unmarshalled or updates their values.
 func (c *varCtx) trackingVars(f *field) {
 	size := f.typeFuncSize()
-	defer c.deferAdd(f, size)
+	defer c.add(f, size)
 
 	if f.isFirst && f.isLast && c.byteIndex == 0 {
 		return
