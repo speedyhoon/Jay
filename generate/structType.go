@@ -28,6 +28,8 @@ type structTyp struct {
 	// When true: returns the Marshal code in a single return statement, when false: MarshalJ() method contains several lines.
 	returnInline          bool
 	returnInlineUnmarshal canReturnInlined
+
+	isImportJ *bool
 }
 
 func newStructTyp(dir, typeName string, o *Option) *structTyp {

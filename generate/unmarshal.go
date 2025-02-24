@@ -35,6 +35,9 @@ const vAt, vEnd, vOk = "at", "end", "ok"
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	buf, fixedBuf := bytes.NewBuffer(nil), bytes.NewBuffer(nil)
 	c := varCtx{byteIndex: uint(len(s.variableLen)), buf: buf}
+	for i, f := range append(s.stringSlice, s.variableLen...) {
+		f.varsUnmarshal(uint(i), uint(i))
+	}
 
 	s.makeReadBools(fixedBuf, &c.byteIndex)
 	s.readSingles(fixedBuf, &c.byteIndex)
@@ -121,18 +124,35 @@ func (s *structTyp) generateCheckSizes(totalSize uint) string {
 		return ""
 	}
 
-	assignments, values := make([]string, qty), make([]string, qty)
+	assignments, values := make([]string, 0, qty), make([]string, 0, qty)
 	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
 	for i, f := range s.variableLen {
-		assignments[i] = f.lenVar
-		values[i] = fmt.Sprintf("int(%s[%d])", s.bufferName, i)
+		if f.isLast && f.typ == tBoolS {
+			sizeChecks.add(f, printFunc(f.pickSizeFunc(jay.SizeBools8, jay.SizeBools), string(f.unmarshal.qtyVar)))
+			continue
+		}
+
+		assignments = append(assignments, string(f.unmarshal.sizeVar))
+		if f.typ == tBoolS {
+			values = append(values, printFunc(f.pickSizeFunc(jay.SizeBools8, jay.SizeBools), string(f.unmarshal.qtyVar)))
+		} else {
+			values = append(values, fmt.Sprintf("int(%s[%d])", s.bufferName, i))
+		}
 		sizeChecks.add(f, assignments[i])
 	}
 
+	var assignLine string
+	if len(assignments) >= 1 && len(values) >= 1 {
+		assignLine = fmt.Sprintf(
+			"\t%s := %s\n",
+			strings.Join(assignments, ", "),
+			strings.Join(values, ", "),
+		)
+	}
+
 	return fmt.Sprintf(
-		"%s := %s\nif %s != %d+%s {\nreturn %s\n}\n",
-		strings.Join(assignments, ", "),
-		strings.Join(values, ", "),
+		"%s\tif %s != %d+%s {\n\t\treturn %s\n\t}\n",
+		assignLine,
 		s.lengthName,
 		totalSize,
 		sizeChecks.group(),
@@ -143,7 +163,15 @@ func (s *structTyp) generateCheckSizes(totalSize uint) string {
 func (s *structTyp) generateMakeSizes(totalSize uint) string {
 	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
 	for _, f := range append(s.stringSlice, s.variableLen...) {
-		sizeChecks.add(f, f.lenVar)
+		if f.isLast && f.typ == tStrings {
+			sizeChecks.add(f, printFunc(nameOf(jay.StringsSize8, nil), f.Name()))
+		} else {
+			if f.typ == tBoolS /*&& f.isLast*/ {
+				sizeChecks.add(f, printFunc(nameOf(jay.SizeBools, nil), string(f.marshal.qtyVar)))
+			} else {
+				sizeChecks.add(f, string(f.marshal.qtyVar))
+			}
+		}
 	}
 
 	grouped := sizeChecks.group()
@@ -175,7 +203,7 @@ func (c *varCtx) trackingVars(f *field) {
 	size := f.typeFuncSize()
 	defer c.deferAdd(f, size)
 
-	if f.isFirst && f.isLast {
+	if f.isFirst && f.isLast && c.byteIndex == 0 {
 		return
 	}
 
@@ -207,7 +235,7 @@ func (c *varCtx) trackingVars(f *field) {
 		if !c.isAtDefined {
 			if len(f.structTyp.stringSlice) >= 2 || len(f.structTyp.variableLen) >= 1 {
 				c.isAtDefined = true
-				c.buf.WriteString(fmt.Sprintf("%s := %d\n", vAt, c.byteIndex))
+				bufWriteLineF(c.buf, "%s := %d", vAt, c.byteIndex)
 				c.atValue = vAt
 			}
 		}
@@ -215,18 +243,16 @@ func (c *varCtx) trackingVars(f *field) {
 	}
 
 	if f.isVarLen() {
-		if !c.isAtDefined && len(f.structTyp.variableLen) >= 3 {
-			c.isAtDefined, c.isEndDefined = true, true
-			c.buf.WriteString(fmt.Sprintf("%s, %s := %d, %[3]d+%s\n", vAt, vEnd, c.byteIndex, f.lenVar))
-			c.atValue, c.endValue = vAt, vEnd
+		if c.isAtDefined && c.isEndDefined {
+			bufWriteLineF(c.buf, "at, end = end, end+%s", f.unmarshal.sizeVar.String(f.elmSize))
+			return
 		}
 
-		if !c.isEndDefined && len(f.structTyp.variableLen) >= 3 {
-			c.isEndDefined = true
-			c.buf.WriteString(fmt.Sprintf("%s := %s+%s\n", vEnd, vAt, f.lenVar))
-			c.endValue = vEnd
-		} else {
-			c.endValue = fmt.Sprintf("%s+%s", c.atValue, f.lenVar)
+		if !c.isAtDefined /*&& len(f.structTyp.variableLen) >= 3*/ {
+			c.isAtDefined, c.isEndDefined = true, true
+			bufWriteLineF(c.buf, "%s, %s := %d, %[3]d+%s", vAt, vEnd, c.byteIndex, f.unmarshal.sizeVar.String(f.elmSize))
+			c.atValue, c.endValue = vAt, vEnd
+			return
 		}
 	}
 }
@@ -246,10 +272,10 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr3(ctx)))
 
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", f.lenVar, f.Name(), f.sliceExpr3(ctx))
+		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", f.unmarshal.qtyVar, f.Name(), f.sliceExpr3(ctx))
 
 	case tFuncLength:
-		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr3(ctx), f.lenVar))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr3(ctx), string(f.unmarshal.qtyVar)))
 
 	case tFuncPtr:
 		return fmt.Sprintf("%s%s(%s, &%s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr3(ctx), f.Name())
@@ -366,7 +392,7 @@ func (f field) unmarshalFunc() (funcName string, template uint8, canReturnInline
 	case tInt8S:
 		c, template = jay.ReadInt8s, tFuncLength
 	case tBoolS:
-		c, template = jay.ReadBools, tFuncLength
+		c, template = jay.ReadBools8, tFuncLength
 
 	case tByteS:
 		if f.isArray() {

@@ -17,11 +17,10 @@ func (o *One) UnmarshalJ(b []byte) error {
 	if l < 1 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0 := int(b[0])
-	if l != 1+jay.SizeBools(l0) {
+	if l != 1+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
-	o.One = jay.ReadBools(b[1:], l0)
+	o.One = jay.ReadBools8(b[1:], b[0])
 	return nil
 }
 
@@ -40,13 +39,13 @@ func (t *Two) UnmarshalJ(b []byte) error {
 	if l < 2 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1 := int(b[0]), int(b[1])
-	if l != 2+jay.SizeBools(l0)+jay.SizeBools(l1) {
+	l0 := jay.SizeBools8(b[0])
+	if l != 2+l0+jay.SizeBools8(b[1]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 2, 2+jay.SizeBools(l0)
-	t.One = jay.ReadBools(b[at:end], l0)
-	t.Two = jay.ReadBools(b[end:], l1)
+	at, end := 2, 2+l0
+	t.One = jay.ReadBools8(b[at:end], b[0])
+	t.Two = jay.ReadBools8(b[end:], b[1])
 	return nil
 }
 
@@ -67,15 +66,15 @@ func (t *Three) UnmarshalJ(b []byte) error {
 	if l < 3 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2 := int(b[0]), int(b[1]), int(b[2])
-	if l != 3+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2) {
+	l0, l1 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1])
+	if l != 3+l0+l1+jay.SizeBools8(b[2]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 3, 3+jay.SizeBools(l0)
-	t.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	t.Two = jay.ReadBools(b[at:end], l1)
-	t.Three = jay.ReadBools(b[end:], l2)
+	at, end := 3, 3+l0
+	t.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	t.Two = jay.ReadBools8(b[at:end], b[1])
+	t.Three = jay.ReadBools8(b[end:], b[2])
 	return nil
 }
 
@@ -98,17 +97,17 @@ func (f *Four) UnmarshalJ(b []byte) error {
 	if l < 4 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3 := int(b[0]), int(b[1]), int(b[2]), int(b[3])
-	if l != 4+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3) {
+	l0, l1, l2 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2])
+	if l != 4+l0+l1+l2+jay.SizeBools8(b[3]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 4, 4+jay.SizeBools(l0)
-	f.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	f.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	f.Three = jay.ReadBools(b[at:end], l2)
-	f.Four = jay.ReadBools(b[end:], l3)
+	at, end := 4, 4+l0
+	f.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	f.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	f.Three = jay.ReadBools8(b[at:end], b[2])
+	f.Four = jay.ReadBools8(b[end:], b[3])
 	return nil
 }
 
@@ -133,19 +132,19 @@ func (f *Five) UnmarshalJ(b []byte) error {
 	if l < 5 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4])
-	if l != 5+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4) {
+	l0, l1, l2, l3 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3])
+	if l != 5+l0+l1+l2+l3+jay.SizeBools8(b[4]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 5, 5+jay.SizeBools(l0)
-	f.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	f.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	f.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	f.Four = jay.ReadBools(b[at:end], l3)
-	f.Five = jay.ReadBools(b[end:], l4)
+	at, end := 5, 5+l0
+	f.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	f.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	f.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	f.Four = jay.ReadBools8(b[at:end], b[3])
+	f.Five = jay.ReadBools8(b[end:], b[4])
 	return nil
 }
 
@@ -172,21 +171,21 @@ func (s *Six) UnmarshalJ(b []byte) error {
 	if l < 6 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5])
-	if l != 6+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5) {
+	l0, l1, l2, l3, l4 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4])
+	if l != 6+l0+l1+l2+l3+l4+jay.SizeBools8(b[5]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 6, 6+jay.SizeBools(l0)
-	s.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	s.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	s.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	s.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	s.Five = jay.ReadBools(b[at:end], l4)
-	s.Six = jay.ReadBools(b[end:], l5)
+	at, end := 6, 6+l0
+	s.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	s.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	s.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	s.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	s.Five = jay.ReadBools8(b[at:end], b[4])
+	s.Six = jay.ReadBools8(b[end:], b[5])
 	return nil
 }
 
@@ -215,23 +214,23 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 	if l < 7 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6])
-	if l != 7+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6) {
+	l0, l1, l2, l3, l4, l5 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5])
+	if l != 7+l0+l1+l2+l3+l4+l5+jay.SizeBools8(b[6]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 7, 7+jay.SizeBools(l0)
-	s.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	s.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	s.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	s.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	s.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	s.Six = jay.ReadBools(b[at:end], l5)
-	s.Seven = jay.ReadBools(b[end:], l6)
+	at, end := 7, 7+l0
+	s.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	s.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	s.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	s.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	s.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	s.Six = jay.ReadBools8(b[at:end], b[5])
+	s.Seven = jay.ReadBools8(b[end:], b[6])
 	return nil
 }
 
@@ -262,25 +261,25 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 	if l < 8 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7])
-	if l != 8+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7) {
+	l0, l1, l2, l3, l4, l5, l6 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6])
+	if l != 8+l0+l1+l2+l3+l4+l5+l6+jay.SizeBools8(b[7]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 8, 8+jay.SizeBools(l0)
-	e.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	e.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	e.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	e.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	e.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	e.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	e.Seven = jay.ReadBools(b[at:end], l6)
-	e.Eight = jay.ReadBools(b[end:], l7)
+	at, end := 8, 8+l0
+	e.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	e.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	e.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	e.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	e.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	e.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	e.Seven = jay.ReadBools8(b[at:end], b[6])
+	e.Eight = jay.ReadBools8(b[end:], b[7])
 	return nil
 }
 
@@ -313,27 +312,27 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 	if l < 9 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8])
-	if l != 9+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8) {
+	l0, l1, l2, l3, l4, l5, l6, l7 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7])
+	if l != 9+l0+l1+l2+l3+l4+l5+l6+l7+jay.SizeBools8(b[8]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 9, 9+jay.SizeBools(l0)
-	n.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	n.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	n.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	n.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	n.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	n.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	n.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	n.Eight = jay.ReadBools(b[at:end], l7)
-	n.Nine = jay.ReadBools(b[end:], l8)
+	at, end := 9, 9+l0
+	n.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	n.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	n.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	n.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	n.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	n.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	n.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	n.Eight = jay.ReadBools8(b[at:end], b[7])
+	n.Nine = jay.ReadBools8(b[end:], b[8])
 	return nil
 }
 
@@ -368,29 +367,29 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 	if l < 10 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9])
-	if l != 10+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8])
+	if l != 10+l0+l1+l2+l3+l4+l5+l6+l7+l8+jay.SizeBools8(b[9]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 10, 10+jay.SizeBools(l0)
-	t.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	t.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	t.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	t.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	t.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	t.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	t.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	t.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	t.Nine = jay.ReadBools(b[at:end], l8)
-	t.Ten = jay.ReadBools(b[end:], l9)
+	at, end := 10, 10+l0
+	t.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	t.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	t.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	t.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	t.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	t.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	t.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	t.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	t.Nine = jay.ReadBools8(b[at:end], b[8])
+	t.Ten = jay.ReadBools8(b[end:], b[9])
 	return nil
 }
 
@@ -427,31 +426,31 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 	if l < 11 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10])
-	if l != 11+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9])
+	if l != 11+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+jay.SizeBools8(b[10]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 11, 11+jay.SizeBools(l0)
-	e.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	e.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	e.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	e.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	e.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	e.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	e.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	e.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	e.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	e.Ten = jay.ReadBools(b[at:end], l9)
-	e.Eleven = jay.ReadBools(b[end:], l10)
+	at, end := 11, 11+l0
+	e.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	e.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	e.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	e.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	e.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	e.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	e.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	e.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	e.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	e.Ten = jay.ReadBools8(b[at:end], b[9])
+	e.Eleven = jay.ReadBools8(b[end:], b[10])
 	return nil
 }
 
@@ -490,33 +489,33 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 	if l < 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11])
-	if l != 12+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10])
+	if l != 12+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+jay.SizeBools8(b[11]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 12, 12+jay.SizeBools(l0)
-	t.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	t.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	t.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	t.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	t.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	t.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	t.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	t.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	t.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	t.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	t.Eleven = jay.ReadBools(b[at:end], l10)
-	t.Twelve = jay.ReadBools(b[end:], l11)
+	at, end := 12, 12+l0
+	t.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	t.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	t.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	t.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	t.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	t.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	t.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	t.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	t.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	t.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	t.Eleven = jay.ReadBools8(b[at:end], b[10])
+	t.Twelve = jay.ReadBools8(b[end:], b[11])
 	return nil
 }
 
@@ -557,35 +556,35 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 	if l < 13 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12])
-	if l != 13+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11])
+	if l != 13+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+jay.SizeBools8(b[12]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 13, 13+jay.SizeBools(l0)
-	t.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	t.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	t.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	t.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	t.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	t.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	t.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	t.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	t.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	t.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	t.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	t.Twelve = jay.ReadBools(b[at:end], l11)
-	t.Thirteen = jay.ReadBools(b[end:], l12)
+	at, end := 13, 13+l0
+	t.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	t.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	t.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	t.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	t.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	t.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	t.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	t.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	t.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	t.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	t.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	t.Twelve = jay.ReadBools8(b[at:end], b[11])
+	t.Thirteen = jay.ReadBools8(b[end:], b[12])
 	return nil
 }
 
@@ -628,37 +627,37 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 	if l < 14 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13])
-	if l != 14+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12])
+	if l != 14+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+jay.SizeBools8(b[13]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 14, 14+jay.SizeBools(l0)
-	f.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	f.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	f.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	f.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	f.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	f.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	f.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	f.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	f.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	f.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	f.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	f.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	f.Thirteen = jay.ReadBools(b[at:end], l12)
-	f.Fourteen = jay.ReadBools(b[end:], l13)
+	at, end := 14, 14+l0
+	f.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	f.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	f.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	f.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	f.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	f.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	f.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	f.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	f.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	f.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	f.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	f.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	f.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	f.Fourteen = jay.ReadBools8(b[end:], b[13])
 	return nil
 }
 
@@ -703,39 +702,39 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 	if l < 15 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14])
-	if l != 15+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13)+jay.SizeBools(l14) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12]), jay.SizeBools8(b[13])
+	if l != 15+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+jay.SizeBools8(b[14]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 15, 15+jay.SizeBools(l0)
-	f.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	f.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	f.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	f.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	f.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	f.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	f.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	f.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	f.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	f.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	f.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	f.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	f.Thirteen = jay.ReadBools(b[at:end], l12)
-	at, end = end, end+jay.SizeBools(l13)
-	f.Fourteen = jay.ReadBools(b[at:end], l13)
-	f.Fifteen = jay.ReadBools(b[end:], l14)
+	at, end := 15, 15+l0
+	f.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	f.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	f.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	f.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	f.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	f.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	f.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	f.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	f.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	f.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	f.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	f.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	f.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	at, end = end, end+l13
+	f.Fourteen = jay.ReadBools8(b[at:end], b[13])
+	f.Fifteen = jay.ReadBools8(b[end:], b[14])
 	return nil
 }
 
@@ -782,41 +781,41 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 	if l < 16 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15])
-	if l != 16+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13)+jay.SizeBools(l14)+jay.SizeBools(l15) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12]), jay.SizeBools8(b[13]), jay.SizeBools8(b[14])
+	if l != 16+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+jay.SizeBools8(b[15]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 16, 16+jay.SizeBools(l0)
-	s.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	s.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	s.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	s.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	s.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	s.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	s.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	s.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	s.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	s.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	s.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	s.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	s.Thirteen = jay.ReadBools(b[at:end], l12)
-	at, end = end, end+jay.SizeBools(l13)
-	s.Fourteen = jay.ReadBools(b[at:end], l13)
-	at, end = end, end+jay.SizeBools(l14)
-	s.Fifteen = jay.ReadBools(b[at:end], l14)
-	s.Sixteen = jay.ReadBools(b[end:], l15)
+	at, end := 16, 16+l0
+	s.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	s.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	s.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	s.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	s.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	s.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	s.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	s.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	s.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	s.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	s.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	s.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	s.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	at, end = end, end+l13
+	s.Fourteen = jay.ReadBools8(b[at:end], b[13])
+	at, end = end, end+l14
+	s.Fifteen = jay.ReadBools8(b[at:end], b[14])
+	s.Sixteen = jay.ReadBools8(b[end:], b[15])
 	return nil
 }
 
@@ -865,43 +864,43 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 	if l < 17 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16])
-	if l != 17+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13)+jay.SizeBools(l14)+jay.SizeBools(l15)+jay.SizeBools(l16) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12]), jay.SizeBools8(b[13]), jay.SizeBools8(b[14]), jay.SizeBools8(b[15])
+	if l != 17+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+jay.SizeBools8(b[16]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 17, 17+jay.SizeBools(l0)
-	s.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	s.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	s.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	s.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	s.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	s.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	s.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	s.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	s.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	s.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	s.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	s.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	s.Thirteen = jay.ReadBools(b[at:end], l12)
-	at, end = end, end+jay.SizeBools(l13)
-	s.Fourteen = jay.ReadBools(b[at:end], l13)
-	at, end = end, end+jay.SizeBools(l14)
-	s.Fifteen = jay.ReadBools(b[at:end], l14)
-	at, end = end, end+jay.SizeBools(l15)
-	s.Sixteen = jay.ReadBools(b[at:end], l15)
-	s.Seventeen = jay.ReadBools(b[end:], l16)
+	at, end := 17, 17+l0
+	s.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	s.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	s.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	s.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	s.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	s.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	s.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	s.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	s.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	s.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	s.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	s.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	s.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	at, end = end, end+l13
+	s.Fourteen = jay.ReadBools8(b[at:end], b[13])
+	at, end = end, end+l14
+	s.Fifteen = jay.ReadBools8(b[at:end], b[14])
+	at, end = end, end+l15
+	s.Sixteen = jay.ReadBools8(b[at:end], b[15])
+	s.Seventeen = jay.ReadBools8(b[end:], b[16])
 	return nil
 }
 
@@ -952,45 +951,45 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 	if l < 18 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17])
-	if l != 18+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13)+jay.SizeBools(l14)+jay.SizeBools(l15)+jay.SizeBools(l16)+jay.SizeBools(l17) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12]), jay.SizeBools8(b[13]), jay.SizeBools8(b[14]), jay.SizeBools8(b[15]), jay.SizeBools8(b[16])
+	if l != 18+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+jay.SizeBools8(b[17]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 18, 18+jay.SizeBools(l0)
-	e.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	e.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	e.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	e.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	e.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	e.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	e.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	e.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	e.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	e.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	e.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	e.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	e.Thirteen = jay.ReadBools(b[at:end], l12)
-	at, end = end, end+jay.SizeBools(l13)
-	e.Fourteen = jay.ReadBools(b[at:end], l13)
-	at, end = end, end+jay.SizeBools(l14)
-	e.Fifteen = jay.ReadBools(b[at:end], l14)
-	at, end = end, end+jay.SizeBools(l15)
-	e.Sixteen = jay.ReadBools(b[at:end], l15)
-	at, end = end, end+jay.SizeBools(l16)
-	e.Seventeen = jay.ReadBools(b[at:end], l16)
-	e.Eighteen = jay.ReadBools(b[end:], l17)
+	at, end := 18, 18+l0
+	e.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	e.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	e.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	e.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	e.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	e.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	e.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	e.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	e.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	e.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	e.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	e.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	e.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	at, end = end, end+l13
+	e.Fourteen = jay.ReadBools8(b[at:end], b[13])
+	at, end = end, end+l14
+	e.Fifteen = jay.ReadBools8(b[at:end], b[14])
+	at, end = end, end+l15
+	e.Sixteen = jay.ReadBools8(b[at:end], b[15])
+	at, end = end, end+l16
+	e.Seventeen = jay.ReadBools8(b[at:end], b[16])
+	e.Eighteen = jay.ReadBools8(b[end:], b[17])
 	return nil
 }
 
@@ -1043,47 +1042,47 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 	if l < 19 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18])
-	if l != 19+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13)+jay.SizeBools(l14)+jay.SizeBools(l15)+jay.SizeBools(l16)+jay.SizeBools(l17)+jay.SizeBools(l18) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12]), jay.SizeBools8(b[13]), jay.SizeBools8(b[14]), jay.SizeBools8(b[15]), jay.SizeBools8(b[16]), jay.SizeBools8(b[17])
+	if l != 19+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+jay.SizeBools8(b[18]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 19, 19+jay.SizeBools(l0)
-	n.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	n.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	n.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	n.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	n.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	n.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	n.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	n.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	n.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	n.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	n.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	n.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	n.Thirteen = jay.ReadBools(b[at:end], l12)
-	at, end = end, end+jay.SizeBools(l13)
-	n.Fourteen = jay.ReadBools(b[at:end], l13)
-	at, end = end, end+jay.SizeBools(l14)
-	n.Fifteen = jay.ReadBools(b[at:end], l14)
-	at, end = end, end+jay.SizeBools(l15)
-	n.Sixteen = jay.ReadBools(b[at:end], l15)
-	at, end = end, end+jay.SizeBools(l16)
-	n.Seventeen = jay.ReadBools(b[at:end], l16)
-	at, end = end, end+jay.SizeBools(l17)
-	n.Eighteen = jay.ReadBools(b[at:end], l17)
-	n.Nineteen = jay.ReadBools(b[end:], l18)
+	at, end := 19, 19+l0
+	n.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	n.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	n.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	n.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	n.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	n.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	n.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	n.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	n.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	n.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	n.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	n.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	n.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	at, end = end, end+l13
+	n.Fourteen = jay.ReadBools8(b[at:end], b[13])
+	at, end = end, end+l14
+	n.Fifteen = jay.ReadBools8(b[at:end], b[14])
+	at, end = end, end+l15
+	n.Sixteen = jay.ReadBools8(b[at:end], b[15])
+	at, end = end, end+l16
+	n.Seventeen = jay.ReadBools8(b[at:end], b[16])
+	at, end = end, end+l17
+	n.Eighteen = jay.ReadBools8(b[at:end], b[17])
+	n.Nineteen = jay.ReadBools8(b[end:], b[18])
 	return nil
 }
 
@@ -1138,49 +1137,49 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 	if l < 20 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19])
-	if l != 20+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13)+jay.SizeBools(l14)+jay.SizeBools(l15)+jay.SizeBools(l16)+jay.SizeBools(l17)+jay.SizeBools(l18)+jay.SizeBools(l19) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12]), jay.SizeBools8(b[13]), jay.SizeBools8(b[14]), jay.SizeBools8(b[15]), jay.SizeBools8(b[16]), jay.SizeBools8(b[17]), jay.SizeBools8(b[18])
+	if l != 20+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+jay.SizeBools8(b[19]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 20, 20+jay.SizeBools(l0)
-	t.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	t.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	t.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	t.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	t.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	t.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	t.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	t.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	t.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	t.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	t.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	t.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	t.Thirteen = jay.ReadBools(b[at:end], l12)
-	at, end = end, end+jay.SizeBools(l13)
-	t.Fourteen = jay.ReadBools(b[at:end], l13)
-	at, end = end, end+jay.SizeBools(l14)
-	t.Fifteen = jay.ReadBools(b[at:end], l14)
-	at, end = end, end+jay.SizeBools(l15)
-	t.Sixteen = jay.ReadBools(b[at:end], l15)
-	at, end = end, end+jay.SizeBools(l16)
-	t.Seventeen = jay.ReadBools(b[at:end], l16)
-	at, end = end, end+jay.SizeBools(l17)
-	t.Eighteen = jay.ReadBools(b[at:end], l17)
-	at, end = end, end+jay.SizeBools(l18)
-	t.Nineteen = jay.ReadBools(b[at:end], l18)
-	t.Twenty = jay.ReadBools(b[end:], l19)
+	at, end := 20, 20+l0
+	t.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	t.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	t.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	t.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	t.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	t.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	t.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	t.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	t.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	t.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	t.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	t.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	t.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	at, end = end, end+l13
+	t.Fourteen = jay.ReadBools8(b[at:end], b[13])
+	at, end = end, end+l14
+	t.Fifteen = jay.ReadBools8(b[at:end], b[14])
+	at, end = end, end+l15
+	t.Sixteen = jay.ReadBools8(b[at:end], b[15])
+	at, end = end, end+l16
+	t.Seventeen = jay.ReadBools8(b[at:end], b[16])
+	at, end = end, end+l17
+	t.Eighteen = jay.ReadBools8(b[at:end], b[17])
+	at, end = end, end+l18
+	t.Nineteen = jay.ReadBools8(b[at:end], b[18])
+	t.Twenty = jay.ReadBools8(b[end:], b[19])
 	return nil
 }
 
@@ -1237,51 +1236,51 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 	if l < 21 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20])
-	if l != 21+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13)+jay.SizeBools(l14)+jay.SizeBools(l15)+jay.SizeBools(l16)+jay.SizeBools(l17)+jay.SizeBools(l18)+jay.SizeBools(l19)+jay.SizeBools(l20) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12]), jay.SizeBools8(b[13]), jay.SizeBools8(b[14]), jay.SizeBools8(b[15]), jay.SizeBools8(b[16]), jay.SizeBools8(b[17]), jay.SizeBools8(b[18]), jay.SizeBools8(b[19])
+	if l != 21+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+jay.SizeBools8(b[20]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 21, 21+jay.SizeBools(l0)
-	t.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	t.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	t.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	t.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	t.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	t.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	t.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	t.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	t.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	t.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	t.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	t.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	t.Thirteen = jay.ReadBools(b[at:end], l12)
-	at, end = end, end+jay.SizeBools(l13)
-	t.Fourteen = jay.ReadBools(b[at:end], l13)
-	at, end = end, end+jay.SizeBools(l14)
-	t.Fifteen = jay.ReadBools(b[at:end], l14)
-	at, end = end, end+jay.SizeBools(l15)
-	t.Sixteen = jay.ReadBools(b[at:end], l15)
-	at, end = end, end+jay.SizeBools(l16)
-	t.Seventeen = jay.ReadBools(b[at:end], l16)
-	at, end = end, end+jay.SizeBools(l17)
-	t.Eighteen = jay.ReadBools(b[at:end], l17)
-	at, end = end, end+jay.SizeBools(l18)
-	t.Nineteen = jay.ReadBools(b[at:end], l18)
-	at, end = end, end+jay.SizeBools(l19)
-	t.Twenty = jay.ReadBools(b[at:end], l19)
-	t.TwentyOne = jay.ReadBools(b[end:], l20)
+	at, end := 21, 21+l0
+	t.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	t.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	t.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	t.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	t.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	t.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	t.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	t.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	t.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	t.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	t.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	t.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	t.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	at, end = end, end+l13
+	t.Fourteen = jay.ReadBools8(b[at:end], b[13])
+	at, end = end, end+l14
+	t.Fifteen = jay.ReadBools8(b[at:end], b[14])
+	at, end = end, end+l15
+	t.Sixteen = jay.ReadBools8(b[at:end], b[15])
+	at, end = end, end+l16
+	t.Seventeen = jay.ReadBools8(b[at:end], b[16])
+	at, end = end, end+l17
+	t.Eighteen = jay.ReadBools8(b[at:end], b[17])
+	at, end = end, end+l18
+	t.Nineteen = jay.ReadBools8(b[at:end], b[18])
+	at, end = end, end+l19
+	t.Twenty = jay.ReadBools8(b[at:end], b[19])
+	t.TwentyOne = jay.ReadBools8(b[end:], b[20])
 	return nil
 }
 
@@ -1340,53 +1339,53 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 	if l < 22 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20]), int(b[21])
-	if l != 22+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13)+jay.SizeBools(l14)+jay.SizeBools(l15)+jay.SizeBools(l16)+jay.SizeBools(l17)+jay.SizeBools(l18)+jay.SizeBools(l19)+jay.SizeBools(l20)+jay.SizeBools(l21) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12]), jay.SizeBools8(b[13]), jay.SizeBools8(b[14]), jay.SizeBools8(b[15]), jay.SizeBools8(b[16]), jay.SizeBools8(b[17]), jay.SizeBools8(b[18]), jay.SizeBools8(b[19]), jay.SizeBools8(b[20])
+	if l != 22+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+jay.SizeBools8(b[21]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 22, 22+jay.SizeBools(l0)
-	t.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	t.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	t.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	t.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	t.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	t.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	t.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	t.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	t.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	t.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	t.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	t.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	t.Thirteen = jay.ReadBools(b[at:end], l12)
-	at, end = end, end+jay.SizeBools(l13)
-	t.Fourteen = jay.ReadBools(b[at:end], l13)
-	at, end = end, end+jay.SizeBools(l14)
-	t.Fifteen = jay.ReadBools(b[at:end], l14)
-	at, end = end, end+jay.SizeBools(l15)
-	t.Sixteen = jay.ReadBools(b[at:end], l15)
-	at, end = end, end+jay.SizeBools(l16)
-	t.Seventeen = jay.ReadBools(b[at:end], l16)
-	at, end = end, end+jay.SizeBools(l17)
-	t.Eighteen = jay.ReadBools(b[at:end], l17)
-	at, end = end, end+jay.SizeBools(l18)
-	t.Nineteen = jay.ReadBools(b[at:end], l18)
-	at, end = end, end+jay.SizeBools(l19)
-	t.Twenty = jay.ReadBools(b[at:end], l19)
-	at, end = end, end+jay.SizeBools(l20)
-	t.TwentyOne = jay.ReadBools(b[at:end], l20)
-	t.TwentyTwo = jay.ReadBools(b[end:], l21)
+	at, end := 22, 22+l0
+	t.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	t.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	t.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	t.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	t.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	t.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	t.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	t.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	t.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	t.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	t.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	t.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	t.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	at, end = end, end+l13
+	t.Fourteen = jay.ReadBools8(b[at:end], b[13])
+	at, end = end, end+l14
+	t.Fifteen = jay.ReadBools8(b[at:end], b[14])
+	at, end = end, end+l15
+	t.Sixteen = jay.ReadBools8(b[at:end], b[15])
+	at, end = end, end+l16
+	t.Seventeen = jay.ReadBools8(b[at:end], b[16])
+	at, end = end, end+l17
+	t.Eighteen = jay.ReadBools8(b[at:end], b[17])
+	at, end = end, end+l18
+	t.Nineteen = jay.ReadBools8(b[at:end], b[18])
+	at, end = end, end+l19
+	t.Twenty = jay.ReadBools8(b[at:end], b[19])
+	at, end = end, end+l20
+	t.TwentyOne = jay.ReadBools8(b[at:end], b[20])
+	t.TwentyTwo = jay.ReadBools8(b[end:], b[21])
 	return nil
 }
 
@@ -1447,54 +1446,54 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 	if l < 23 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20]), int(b[21]), int(b[22])
-	if l != 23+jay.SizeBools(l0)+jay.SizeBools(l1)+jay.SizeBools(l2)+jay.SizeBools(l3)+jay.SizeBools(l4)+jay.SizeBools(l5)+jay.SizeBools(l6)+jay.SizeBools(l7)+jay.SizeBools(l8)+jay.SizeBools(l9)+jay.SizeBools(l10)+jay.SizeBools(l11)+jay.SizeBools(l12)+jay.SizeBools(l13)+jay.SizeBools(l14)+jay.SizeBools(l15)+jay.SizeBools(l16)+jay.SizeBools(l17)+jay.SizeBools(l18)+jay.SizeBools(l19)+jay.SizeBools(l20)+jay.SizeBools(l21)+jay.SizeBools(l22) {
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := jay.SizeBools8(b[0]), jay.SizeBools8(b[1]), jay.SizeBools8(b[2]), jay.SizeBools8(b[3]), jay.SizeBools8(b[4]), jay.SizeBools8(b[5]), jay.SizeBools8(b[6]), jay.SizeBools8(b[7]), jay.SizeBools8(b[8]), jay.SizeBools8(b[9]), jay.SizeBools8(b[10]), jay.SizeBools8(b[11]), jay.SizeBools8(b[12]), jay.SizeBools8(b[13]), jay.SizeBools8(b[14]), jay.SizeBools8(b[15]), jay.SizeBools8(b[16]), jay.SizeBools8(b[17]), jay.SizeBools8(b[18]), jay.SizeBools8(b[19]), jay.SizeBools8(b[20]), jay.SizeBools8(b[21])
+	if l != 23+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+jay.SizeBools8(b[22]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, end := 23, 23+jay.SizeBools(l0)
-	t.One = jay.ReadBools(b[at:end], l0)
-	at, end = end, end+jay.SizeBools(l1)
-	t.Two = jay.ReadBools(b[at:end], l1)
-	at, end = end, end+jay.SizeBools(l2)
-	t.Three = jay.ReadBools(b[at:end], l2)
-	at, end = end, end+jay.SizeBools(l3)
-	t.Four = jay.ReadBools(b[at:end], l3)
-	at, end = end, end+jay.SizeBools(l4)
-	t.Five = jay.ReadBools(b[at:end], l4)
-	at, end = end, end+jay.SizeBools(l5)
-	t.Six = jay.ReadBools(b[at:end], l5)
-	at, end = end, end+jay.SizeBools(l6)
-	t.Seven = jay.ReadBools(b[at:end], l6)
-	at, end = end, end+jay.SizeBools(l7)
-	t.Eight = jay.ReadBools(b[at:end], l7)
-	at, end = end, end+jay.SizeBools(l8)
-	t.Nine = jay.ReadBools(b[at:end], l8)
-	at, end = end, end+jay.SizeBools(l9)
-	t.Ten = jay.ReadBools(b[at:end], l9)
-	at, end = end, end+jay.SizeBools(l10)
-	t.Eleven = jay.ReadBools(b[at:end], l10)
-	at, end = end, end+jay.SizeBools(l11)
-	t.Twelve = jay.ReadBools(b[at:end], l11)
-	at, end = end, end+jay.SizeBools(l12)
-	t.Thirteen = jay.ReadBools(b[at:end], l12)
-	at, end = end, end+jay.SizeBools(l13)
-	t.Fourteen = jay.ReadBools(b[at:end], l13)
-	at, end = end, end+jay.SizeBools(l14)
-	t.Fifteen = jay.ReadBools(b[at:end], l14)
-	at, end = end, end+jay.SizeBools(l15)
-	t.Sixteen = jay.ReadBools(b[at:end], l15)
-	at, end = end, end+jay.SizeBools(l16)
-	t.Seventeen = jay.ReadBools(b[at:end], l16)
-	at, end = end, end+jay.SizeBools(l17)
-	t.Eighteen = jay.ReadBools(b[at:end], l17)
-	at, end = end, end+jay.SizeBools(l18)
-	t.Nineteen = jay.ReadBools(b[at:end], l18)
-	at, end = end, end+jay.SizeBools(l19)
-	t.Twenty = jay.ReadBools(b[at:end], l19)
-	at, end = end, end+jay.SizeBools(l20)
-	t.TwentyOne = jay.ReadBools(b[at:end], l20)
-	at, end = end, end+jay.SizeBools(l21)
-	t.TwentyTwo = jay.ReadBools(b[at:end], l21)
-	t.TwentyThree = jay.ReadBools(b[end:], l22)
+	at, end := 23, 23+l0
+	t.One = jay.ReadBools8(b[at:end], b[0])
+	at, end = end, end+l1
+	t.Two = jay.ReadBools8(b[at:end], b[1])
+	at, end = end, end+l2
+	t.Three = jay.ReadBools8(b[at:end], b[2])
+	at, end = end, end+l3
+	t.Four = jay.ReadBools8(b[at:end], b[3])
+	at, end = end, end+l4
+	t.Five = jay.ReadBools8(b[at:end], b[4])
+	at, end = end, end+l5
+	t.Six = jay.ReadBools8(b[at:end], b[5])
+	at, end = end, end+l6
+	t.Seven = jay.ReadBools8(b[at:end], b[6])
+	at, end = end, end+l7
+	t.Eight = jay.ReadBools8(b[at:end], b[7])
+	at, end = end, end+l8
+	t.Nine = jay.ReadBools8(b[at:end], b[8])
+	at, end = end, end+l9
+	t.Ten = jay.ReadBools8(b[at:end], b[9])
+	at, end = end, end+l10
+	t.Eleven = jay.ReadBools8(b[at:end], b[10])
+	at, end = end, end+l11
+	t.Twelve = jay.ReadBools8(b[at:end], b[11])
+	at, end = end, end+l12
+	t.Thirteen = jay.ReadBools8(b[at:end], b[12])
+	at, end = end, end+l13
+	t.Fourteen = jay.ReadBools8(b[at:end], b[13])
+	at, end = end, end+l14
+	t.Fifteen = jay.ReadBools8(b[at:end], b[14])
+	at, end = end, end+l15
+	t.Sixteen = jay.ReadBools8(b[at:end], b[15])
+	at, end = end, end+l16
+	t.Seventeen = jay.ReadBools8(b[at:end], b[16])
+	at, end = end, end+l17
+	t.Eighteen = jay.ReadBools8(b[at:end], b[17])
+	at, end = end, end+l18
+	t.Nineteen = jay.ReadBools8(b[at:end], b[18])
+	at, end = end, end+l19
+	t.Twenty = jay.ReadBools8(b[at:end], b[19])
+	at, end = end, end+l20
+	t.TwentyOne = jay.ReadBools8(b[at:end], b[20])
+	at, end = end, end+l21
+	t.TwentyTwo = jay.ReadBools8(b[at:end], b[21])
+	t.TwentyThree = jay.ReadBools8(b[end:], b[22])
 	return nil
 }

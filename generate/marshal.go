@@ -15,6 +15,9 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
+	for i, f := range append(s.stringSlice, s.variableLen...) {
+		f.varsMarshal(uint(i), uint(i))
+	}
 	varLengths := s.generateLenVarLine()
 	makeSize := s.generateMakeSizes(s.calcSize())
 	s.isReturnedInline()
@@ -35,15 +38,15 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 		if i >= 1 {
 			at, end = f.track2(buf, i, len(s.stringSlice), at, end) //s.tracking(buf, i, end, byteIndex, f.typ)
 		}
-		buf.WriteString(f.marshalLine(&byteIndex, at, end, importJ, f.lenVar))
-		buf.WriteString("\n")
+		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, importJ, string(f.marshal.qtyVar)))
 	}
 
-	at, end = s.defineTrackingVars(buf, byteIndex)
+	if at != vAt && end != vEnd {
+		at, end = s.defineTrackingVars(buf, byteIndex)
+	}
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		buf.WriteString(f.marshalLine(&byteIndex, at, end, importJ, f.lenVar))
-		buf.WriteString("\n")
+		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, importJ, string(f.marshal.qtyVar)))
 	}
 
 	code := buf.Bytes()
@@ -90,7 +93,7 @@ func (s *structTyp) generateSizeLine() string {
 	assignments, values := make([]string, qty), make([]string, qty)
 	for i := 0; i < qty; i++ {
 		assignments[i] = fmt.Sprintf("%s[%d]", s.bufferName, i)
-		values[i] = fmt.Sprintf("byte(%s)", s.variableLen[i].lenVar)
+		values[i] = fmt.Sprintf("byte(%s)", s.variableLen[i].marshal.qtyVar)
 	}
 	return fmt.Sprintln(strings.Join(assignments, ", "), "=", strings.Join(values, ", "))
 }
@@ -156,7 +159,7 @@ func printFunc(fun string, params ...string) (code string) {
 	return
 }
 
-func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uint8) {
+func (f *field) MarshalFuncTemplate(importJ *bool) (funcName string, template uint8) {
 	switch f.typ {
 	case tByte:
 		if f.isDef {
@@ -186,7 +189,7 @@ func (f field) MarshalFuncTemplate(importJ *bool) (funcName string, template uin
 	return nameOf(fun, importJ), template
 }
 
-func (f field) marshalFunc() (fun interface{}, template uint8) {
+func (f *field) marshalFunc() (fun interface{}, template uint8) {
 	switch f.typ {
 	case tInt:
 		if f.structTyp.option.FixedIntSize {
@@ -278,6 +281,10 @@ func nameOf(f any, importJ *bool) string {
 
 	s := strings.Split(runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name(), "/")
 	return s[len(s)-1]
+}
+
+func (f *field) pickSizeFunc(small, large any) string {
+	return nameOf(f.sizeOfPick(small, large), f.structTyp.isImportJ)
 }
 
 func (f *field) sliceExpr(at, end string) string {

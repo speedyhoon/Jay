@@ -25,8 +25,9 @@ func (z *Zebra) MarshalJ() (b []byte) {
 	b[0], b[1] = byte(l1), byte(l2)
 	b[2] = jay.Bool2(z.B1, z.B2)
 	jay.WriteUint64(b[3:11], z.U64)
-	jay.WriteStrings8(b[11:11+l0], z.Strings)
-	at, end := 12, 12+l1
+	at, end := 11, 11+l0
+	jay.WriteStrings8(b[at:end], z.Strings)
+	at, end = end, end+l1
 	copy(b[at:end], z.Str)
 	jay.WriteIntsX64(b[end:], z.Ints)
 	return
@@ -47,7 +48,7 @@ func (z *Zebra) UnmarshalJ(b []byte) error {
 	}
 	z.B1, z.B2 = jay.ReadBool2(b[2])
 	z.U64 = jay.ReadUint64(b[3:11])
-	z.Str = string(b[at : at+l1])
-	z.Ints = jay.ReadIntsX64(b[at+l1:], l2)
+	z.Str = string(b[at:11])
+	z.Ints = jay.ReadIntsX64(b[11:], l2)
 	return nil
 }

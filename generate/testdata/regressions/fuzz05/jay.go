@@ -110,8 +110,7 @@ func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) UnmarshalJ(b []byte) e
 	if l < 35 {
 		return jay.ErrUnexpectedEOB
 	}
-	l0 := int(b[0])
-	if l != 35+jay.SizeBools(l0) {
+	if l != 35+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	y.IC5qlktHjoAxQ85BBL11a52LLqLNa03GvsFtx6660G0Bj78LXptHo40S737W4ro0Y27s10168Xc75kpo7, y.C11nVJCwQXED6cgc65lS0NNld6ormyMtGY42JNPP34hOA3GegJ10ObN56e = jay.ReadBool2(b[1])
@@ -120,6 +119,6 @@ func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) UnmarshalJ(b []byte) e
 	y.VY123 = jay.ReadTime(b[11:19])
 	y.N3L7V2OMyF3K5LqS0lRxe6IcMQPh5 = jay.ReadTime(b[19:27])
 	y.I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j = time.Duration(jay.ReadInt64(b[27:35]))
-	y.WkMdF1S4rr0dYq0SN4TTo3h2 = jay.ReadBools(b[35:], l0)
+	y.WkMdF1S4rr0dYq0SN4TTo3h2 = jay.ReadBools8(b[35:], b[0])
 	return nil
 }

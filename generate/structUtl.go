@@ -375,7 +375,7 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 		at = utl.UtoA(byteIndex)
 	default:
 		if s.variableLen[0].typ == tBoolS {
-			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), s.variableLen[0].lenVar)
+			bufWriteLineF(buf, "at, end := %d, %[1]d+%s(%s)", byteIndex, nameOf(jay.SizeBools, nil), s.variableLen[0].marshal.qtyVar)
 		} else {
 			bufWriteLineF(buf, "at, end := %d, %[1]d+%s", byteIndex, multiples(s.variableLen[0]))
 		}
@@ -403,14 +403,18 @@ func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, 
 		return
 	case 1:
 		if byteIndex != 0 {
-			at, end = utl.UtoA(byteIndex), fmt.Sprintf("%d+%s", byteIndex, s.firstVarLenField().lenVar)
+			at, end = utl.UtoA(byteIndex), fmt.Sprintf("%d+%s", byteIndex, s.firstVarLenField().marshal.qtyVar)
+			if len(s.variableLen) >= 2 {
+				bufWriteLineF(buf, "at, end := %s, %s", at, end)
+				return vAt, vEnd
+			}
 		}
 		return
 	case 2:
 		if byteIndex != 0 {
 			at = utl.UtoA(byteIndex)
-			if s.stringSlice[0].lenVar != "" {
-				end = fmt.Sprintf("%d+%s", byteIndex, s.stringSlice[0].lenVar)
+			if s.stringSlice[0].marshal.qtyVar != "" {
+				end = fmt.Sprintf("%d+%s", byteIndex, s.stringSlice[0].marshal.qtyVar)
 			} else {
 				end = utl.UtoA(byteIndex)
 			}
@@ -418,15 +422,15 @@ func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, 
 			return
 		}
 
-		at, end = "", s.stringSlice[0].lenVar
+		at, end = "", string(s.stringSlice[0].marshal.qtyVar)
 	default:
 		if byteIndex == 0 {
-			at, end = "", s.stringSlice[0].lenVar
+			at, end = "", string(s.stringSlice[0].marshal.qtyVar)
 			return
 		}
 
 		if s.stringSlice[0].typ == tBoolS {
-			bufWriteF(buf, "at, end := %d, %[1]d+%s(%s)\n", byteIndex, nameOf(jay.SizeBools, nil), s.stringSlice[0].lenVar)
+			bufWriteLineF(buf, "at, end := %d, %[1]d+%s(%s)", byteIndex, nameOf(jay.SizeBools, nil), s.stringSlice[0].marshal.qtyVar)
 		} else {
 			bufWriteLineF(buf, "at, end := %d, %[1]d+%s", byteIndex, multiples(s.stringSlice[0]))
 		}
@@ -453,9 +457,9 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 	if i == len(s.variableLen)-1 {
 		return "end", ""
 	}
-	if i >= 1 {
+	if i >= 1 || i == 0 && len(s.stringSlice) >= 1 {
 		if varType == tBoolS {
-			bufWriteF(buf, "at, end = end, end+%s(%s)\n", nameOf(jay.SizeBools, nil), s.variableLen[i].lenVar)
+			bufWriteLineF(buf, "at, end = end, end+%s(%s)", nameOf(jay.SizeBools, nil), s.variableLen[i].marshal.qtyVar)
 		} else {
 			bufWriteLineF(buf, "at, end = end, end+%s", multiples(s.variableLen[i]))
 		}
@@ -469,14 +473,14 @@ func (f *field) track2(buf *bytes.Buffer, index, qty int, atVar, endVar string) 
 	}
 	if index == 1 {
 		if qty <= 3 {
-			return (*f.fieldList)[index-1].lenVar, fmt.Sprintf("%s+%s", (*f.fieldList)[index-1].lenVar, f.lenVar)
+			return string((*f.fieldList)[index-1].marshal.qtyVar), fmt.Sprintf("%s+%s", (*f.fieldList)[index-1].marshal.qtyVar, f.marshal.qtyVar)
 		}
 
-		bufWriteF(buf, "at, end := %s, %[1]s+%s\n", (*f.fieldList)[index-1].lenVar, f.lenVar)
+		bufWriteLineF(buf, "at, end := %s, %[1]s+%s", (*f.fieldList)[index-1].marshal.qtyVar, f.marshal.qtyVar)
 		return "at", "end"
 	}
 
-	bufWriteF(buf, "at, end = end, %s+end\n", f.lenVar)
+	bufWriteLineF(buf, "at, end = end, %s+end", f.marshal.qtyVar)
 	return "at", "end"
 }
 

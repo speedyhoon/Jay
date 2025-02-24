@@ -12,14 +12,14 @@ func multiples(f *field) (lenVar string) {
 	case f.isSlice():
 		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
 		if itemSize >= 2 {
-			return fmt.Sprintf("%s*%d", f.lenVar, itemSize)
+			return fmt.Sprintf("%s*%d", f.marshal.qtyVar, itemSize)
 		}
-		return f.lenVar
+		return string(f.marshal.qtyVar)
 	case f.isArray():
 		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
 		return utl.UtoA(uint(f.arraySize) * itemSize)
 	default: // typeNotArrayOrSlice
-		return f.lenVar
+		return string(f.marshal.qtyVar)
 	}
 }
 
@@ -49,6 +49,10 @@ func (s *structTyp) generateLenVarLine() string {
 
 func (f *field) generateLenVar(list, values *[]string, index int) {
 	if f.fieldList == &f.structTyp.stringSlice {
+		if f.isLast {
+			return
+		}
+
 		lv := printFunc(
 			nameOf(
 				f.sizeOfPick(jay.StringsSize8, jay.StringsSize16),
@@ -56,18 +60,11 @@ func (f *field) generateLenVar(list, values *[]string, index int) {
 			),
 			f.Name(),
 		)
-
-		if f.isLast {
-			f.lenVar = lv
-			return
-		}
-
 		*values = append(*values, lv)
 
 	} else {
 		*values = append(*values, printFunc(lenKeyword, f.Name()))
 	}
 
-	f.lenVar = lenVariable(index)
-	*list = append(*list, f.lenVar)
+	*list = append(*list, string(f.marshal.qtyVar))
 }

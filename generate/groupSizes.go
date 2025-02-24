@@ -2,7 +2,6 @@ package generate
 
 import (
 	"fmt"
-	"github.com/speedyhoon/jay"
 	"sort"
 	"strings"
 )
@@ -11,10 +10,6 @@ type varSize map[uint][]string
 
 func (vs *varSize) add(f *field, varName string) {
 	sizeOf := f.elmSize
-	if f.typ == tBoolS {
-		varName = printFunc(nameOf(jay.SizeBools, nil), varName)
-		sizeOf = 0
-	}
 
 	_, ok := (*vs)[sizeOf]
 	if !ok {
