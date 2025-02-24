@@ -20,9 +20,9 @@ type field struct {
 	structTyp *structTyp // Pointer to the parent struct containing this field.
 	fieldList *fieldList
 
-	aliasType  string // Alias name assigned to the type, for example: `type Toggle bool`, field.typ = "bool", field.aliasType = "Toggle".
+	aliasType  string // Alias name assigned to the type. For example, `type Toggle bool`, field.typ = "bool", field.aliasType = "Toggle".
 	arraySize  int    // 0 = not an array or slice, -1 = slice, >=1 = array size.
-	elmSize    uint   // Quantity of bytes required to represent the type, for example: bool = 0, int8 = 1, uint16 = 2, int64 = 8, etc.
+	elmSize    uint   // Quantity of bytes required to represent the type. For example, bool = 0, int8 = 1, uint16 = 2, int64 = 8, etc.
 	pkgReq     string // The third party package required to be imported if referenced in the generated code.
 	arrayType  string // The type without the size in brackets. An empty string is not an array.
 	lenVar     string // For variable length types, this is the name of the variable that stores the length from len(b[X]) in marshal methods.
@@ -39,7 +39,7 @@ type fieldList []*field
 
 // Visit traverses the AST File and finds all structs even if they are unexported.
 // Unexported structs can be exported if they are referenced in exported structs with exported field names.
-// For example, type Cow struct { Id id }
+// For example, type Cow struct { ID id }
 func (v visitor) Visit(node ast.Node) ast.Visitor {
 	switch n := node.(type) {
 	case *ast.TypeSpec:

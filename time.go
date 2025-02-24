@@ -6,7 +6,7 @@ func ReadTime(b []byte) (t time.Time) {
 	return time.Unix(ReadInt64(b), 0).UTC()
 }
 
-// WriteTime writes 8 bytes to b with year, month, date, hour, minute & seconds precision in UTC location.
+// WriteTime writes 8 bytes to b with year, month, date, hour, minute and seconds precision in UTC location.
 // All millisecond, microsecond, nanosecond and location are lost.
 func WriteTime(b []byte, t time.Time) {
 	WriteInt64(b, t.Unix())
@@ -27,7 +27,7 @@ func ReadTimeNano(b []byte) (t time.Time) {
 	return
 }
 
-// WriteTimeNano writes 8 bytes to b with year, month, date, hour, minute & seconds precision in UTC location.
+// WriteTimeNano writes 8 bytes to b with year, month, date, hour, minute and seconds precision in UTC location.
 // All millisecond, microsecond and nanosecond are lost.
 func WriteTimeNano(b []byte, t time.Time) {
 	if t == (time.Time{}) {

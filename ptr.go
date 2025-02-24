@@ -69,7 +69,7 @@ func ReadBoolPtr(b []byte) (x []*bool) {
 	return
 }
 
-// isBitTrue checks if a single bit at index bitIndex isn't zero & increments `bitIndex`.
+// isBitTrue checks if a single bit at index bitIndex isn't zero and increments `bitIndex`.
 func isBitTrue(b byte, bitIndex *uint8) bool {
 	compareTo := off >> *bitIndex
 	*bitIndex++

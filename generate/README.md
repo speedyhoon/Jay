@@ -15,10 +15,10 @@ Traverses `.go` files to find exported Go `structs` to generate marshalling `.Ma
 
 `req`
 * Flag any string or slice field as required, indicating that it will never be empty.
-* A micro optimisation for marshalling, removing `length == 0` if statement before calling the function to convert into `[]byte`.
+* A micro optimization for marshalling, removing `length == 0` if statement before calling the function to convert into `[]byte`.
 
 ## Embedded structs
-Any private struct can be embedded into an exported struct when an exported field name is included. For example:
+Any private struct can be embedded into an exported struct when an exported field name is included. For example,
 ```go
 type Car struct {
 	gearbox         // Ignored - not an exported field name

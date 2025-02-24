@@ -2,7 +2,7 @@
 //
 // Optional flags:
 //
-//	-32	Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.
+//	-32	Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.
 //	-d	Debug mode, always write to disk.
 //	-fi	Fixed int size.
 //	-fu	Fixed uint size.
@@ -14,7 +14,7 @@
 //	-m	Don't generate MarshalJ() function.
 //	-u	Don't generate UnmarshalJ() function.
 //	-y	Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types.
-//		For example: Vet,animal.Cat,animal.Cow will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package 'animal'.
+//		For example, `Vet,animal.Cat,animal.Cow` will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package 'animal'.
 package main
 
 import (
@@ -35,7 +35,7 @@ import (
 // go run ./cmd/main.go -o boolJay.go generate/tests/
 
 // TODO fix error
-// output file is not created in same directory as filepaths
+// output file is not created in same directory as file paths
 // cd jay
 // go run cmd/main.go -o jay.go bench/byte/make.go
 // jay.go should be created in bench/byte/jay.go instead.
@@ -46,8 +46,8 @@ func main() {
 	var types flagvar.StrList
 	var verbose bool
 
-	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints. Defaults to this systems 32-bit or 64-bit architecture.")
-	flag.BoolVar(&opt.IsDebug, "d", false, "Debug mode, always write to disk.")
+	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.")
+	flag.BoolVar(&opt.IsDebug, "d", false, "Debug mode - always writes to disk.")
 	flag.BoolVar(&opt.FixedIntSize, "fi", true, "Fixed int size.")
 	flag.BoolVar(&opt.FixedUintSize, "fu", true, "Fixed uint size.")
 	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
@@ -57,7 +57,7 @@ func main() {
 	flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
-	flag.Var(&types, "y", "Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types. For example: Vet,animal.Cat,animal.Cow will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package \"animal\".")
+	flag.Var(&types, "y", "Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types. For example, `Vet,animal.Cat,animal.Cow` will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package \"animal\".")
 	flag.Parse()
 	paths := generate.RemoveDuplicates(flag.Args())
 

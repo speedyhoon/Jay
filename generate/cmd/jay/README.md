@@ -48,7 +48,7 @@ jay my_file.go
 `-u` Don't generate `UnmarshalJ()` function. _Default: `false`_
 
 `-y` Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. _Default is to process all exported types._ <br>
-         For example: `-y Vet,animal.Cat,animal.Cow` will process locally defined `Vet struct` along with `Cat` & `Cow` in imported package `animal`.
+         For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined `Vet struct` along with `Cat` and `Cow` in imported package `animal`.
 
 ## When to regenerate code
 How often does `jay` need to be executed?

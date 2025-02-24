@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-// test receiver name (b *Boat) doesn't collide with return parameter (y []byte).
+// Test receiver name (b *Boat) doesn't collide with return parameter (y []byte).
 func Test_ReceiverNameNoCollisionB(t *testing.T) {
 	input := []byte(`package main
 
@@ -46,7 +46,7 @@ func (b *Boat) UnmarshalJ(y []byte) error {
 	assert.Contains(t, string(src[0].Src), "func (b *Boat) UnmarshalJ(y []byte) error {")
 }
 
-// test receiver name (c *Car) doesn't collide with default return parameter (b []byte).
+// Test receiver name (c *Car) doesn't collide with default return parameter (b []byte).
 func Test_ReceiverNameNoCollisionC(t *testing.T) {
 	input := []byte(`package main
 
@@ -86,7 +86,7 @@ func (c *Car) UnmarshalJ(b []byte) error {
 	assert.Contains(t, string(src[0].Src), "func (c *Car) UnmarshalJ(b []byte) error {")
 }
 
-// test receiver name (y *Yacht) doesn't collide with default return parameter (b []byte).
+// Test receiver name (y *Yacht) doesn't collide with default return parameter (b []byte).
 func Test_ReceiverNameNoCollisionY(t *testing.T) {
 	input := []byte(`package main
 
