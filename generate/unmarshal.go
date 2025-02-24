@@ -29,6 +29,7 @@ type varCtx struct {
 	isAtDefined, isEndDefined bool
 }
 
+// Names of variables used in the generated code.
 const vAt, vEnd, vOk = "at", "end", "ok"
 
 // makeUnmarshal ...
@@ -233,6 +234,12 @@ func (c *varCtx) trackingVars(f *field) {
 		if !c.isAtDefined /*&& len(f.structTyp.variableLen) >= 3*/ {
 			c.atEndLineSet(c.byteIndex, f.unmarshal.sizeVar.String(f.elmSize))
 			return
+		}
+
+		if !c.isEndDefined {
+			bufWriteLineF(c.buf, "%s := %s+%s", vEnd, vAt, f.unmarshal.qtyVar)
+			c.isEndDefined = true
+			c.endValue = vEnd
 		}
 	}
 }

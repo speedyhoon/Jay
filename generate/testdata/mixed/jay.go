@@ -48,7 +48,8 @@ func (z *Zebra) UnmarshalJ(b []byte) error {
 	}
 	z.B1, z.B2 = jay.ReadBool2(b[2])
 	z.U64 = jay.ReadUint64(b[3:11])
-	z.Str = string(b[at:11])
-	z.Ints = jay.ReadIntsX64(b[11:], l2)
+	end := at + l1
+	z.Str = string(b[at:end])
+	z.Ints = jay.ReadIntsX64(b[end:], l2)
 	return nil
 }
