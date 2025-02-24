@@ -484,8 +484,8 @@ func (f *field) track2(buf *bytes.Buffer, index, qty int, atVar, endVar string) 
 	return "at", "end"
 }
 
-func lenVariable(index int) string {
-	return lengthNameDefault + utl.UtoA(uint(index))
+func lenVariable(index uint) string {
+	return lengthNameDefault + utl.UtoA(index)
 }
 
 // List of supported types.

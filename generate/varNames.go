@@ -19,26 +19,23 @@ func (v multiplier) String(elmSize uint) string {
 	return fmt.Sprintf("%s*%d", v, elmSize)
 }
 
-func (f *field) varsUnmarshal(index, byteIndex uint) {
-	if f.isFixedLen {
-		return
-	}
+func (s *structTyp) varsUnmarshal() {
+	for i, f := range append(s.stringSlice, s.variableLen...) {
+		switch f.typ {
+		case tBools:
+			f.unmarshal.qtyVar = multiplier(fmt.Sprintf("%s[%d]", f.structTyp.bufferName, uint(i)))
+		default:
+			f.unmarshal.qtyVar = multiplier(lenVariable(uint(i)))
+		}
 
-	switch f.typ {
-	case tBools:
-		f.unmarshal.qtyVar = multiplier(fmt.Sprintf("%s[%d]", f.structTyp.bufferName, byteIndex))
-	default:
-		f.unmarshal.qtyVar = multiplier(lenVariable(int(index)))
+		f.unmarshal.sizeVar = multiplier(lenVariable(uint(i)))
 	}
-
-	f.unmarshal.sizeVar = multiplier(lenVariable(int(index)))
 }
 
-func (f *field) varsMarshal(index, byteIndex uint) {
-	if f.isFixedLen {
-		return
+// varsMarshal sets the generated variable names for the quantity and size variables if needed.
+func (s *structTyp) varsMarshal() {
+	for i, f := range append(s.stringSlice, s.variableLen...) {
+		f.marshal.qtyVar = multiplier(lenVariable(uint(i)))
+		f.marshal.sizeVar = f.marshal.qtyVar
 	}
-
-	f.marshal.qtyVar = multiplier(lenVariable(int(index)))
-	f.marshal.sizeVar = multiplier(lenVariable(int(index)))
 }

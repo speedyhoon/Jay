@@ -35,9 +35,7 @@ const vAt, vEnd, vOk = "at", "end", "ok"
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	buf, fixedBuf := bytes.NewBuffer(nil), bytes.NewBuffer(nil)
 	c := varCtx{byteIndex: uint(len(s.variableLen)), buf: buf}
-	for i, f := range append(s.stringSlice, s.variableLen...) {
-		f.varsUnmarshal(uint(i), uint(i))
-	}
+	s.varsUnmarshal()
 
 	s.makeReadBools(fixedBuf, &c.byteIndex)
 	s.readSingles(fixedBuf, &c.byteIndex)

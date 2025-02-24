@@ -15,9 +15,7 @@ import (
 
 // makeMarshal ...
 func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
-	for i, f := range append(s.stringSlice, s.variableLen...) {
-		f.varsMarshal(uint(i), uint(i))
-	}
+	s.varsMarshal()
 	varLengths := s.generateLenVarLine()
 	makeSize := s.generateMakeSizes(s.calcSize())
 	s.isReturnedInline()
