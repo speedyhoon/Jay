@@ -1,5 +1,5 @@
 # generate
-Traverses `.go` files to find exported Go `structs` to generate marshalling `.MarshalJ()` and unmarshalling `.UnmarshalJ()` methods for the [Jay serialisation format](https://github.com/speedyhoon/jay).
+Traverses `.go` files to find exported Go `structs` to generate marshalling `.MarshalJ()` and unmarshalling `.UnmarshalJ()` methods for the [Jay serialization format](https://github.com/speedyhoon/jay).
 
 ## Field tag options
 `j:-` Ignore this field.

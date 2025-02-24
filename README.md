@@ -16,7 +16,7 @@ generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tre
 
 ##### Pros:
 
-* The fastest Go serialisation and deserialization message format.
+* The fastest Go serialization and deserialization message format.
 * Encoded variables use less network overhead because no schema is added to the output when marshalling (unlike JSON).
 * No custom language to learn. Jay uses Go's built in [`ast`](https://pkg.go.dev/go/ast) to find exported structs in your existing codebase.
 * No hassles between client and server. Generate the code once and share _(via a Go module or copy-paste)_.
@@ -172,7 +172,7 @@ The aim was to process external messages within
 a dozen microseconds to restore performance without upgrading the processor.
 
 ###### Name
-**Clarification:** The serialisation format is Jay, whereas `jay` is the command line tool.
+**Clarification:** The serialization format is Jay, whereas `jay` is the command line tool.
 
 Jay _(pronounced as just `J`)_ is a wordplay on [JSON](https://pkg.go.dev/encoding/json) without the `SON`, since the schema information is chopped off 🪚 and it's not human-readable.
 

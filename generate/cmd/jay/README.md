@@ -1,6 +1,6 @@
 # `jay`
 
-The `jay` command line tool scans `.go` files for exported structs and generates methods `.MarshalJ()` and `.UnmarshalJ()` to serialise structs into the [Jay serialisation format](https://github.com/speedyhoon/jay).
+The `jay` command line tool scans `.go` files for exported structs and generates methods `.MarshalJ()` and `.UnmarshalJ()` to serialize structs into the [Jay serialization format](https://github.com/speedyhoon/jay).
 `jay` is a wrapper around the [jay/generate](../../README.md) package, 
 providing optional command line flags and traverses directories in search for `.go` files.
 

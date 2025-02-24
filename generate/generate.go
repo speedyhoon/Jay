@@ -1,4 +1,5 @@
-// Package generate scans .go files for exported structs and generates methods .MarshalJ() and .UnmarshalJ() to serialise structs into the Jay serialisation format https://github.com/speedyhoon/jay.
+// Package generate scans .go files for exported structs and generates methods .MarshalJ() and .UnmarshalJ()
+// to serialize structs into the Jay serialization format https://github.com/speedyhoon/jay.
 package generate
 
 import (
