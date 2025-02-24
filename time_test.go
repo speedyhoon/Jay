@@ -2,7 +2,10 @@ package jay_test
 
 import (
 	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/rando"
+	"github.com/speedyhoon/utl/tf"
 	"github.com/stretchr/testify/assert"
+	"math"
 	"testing"
 	"time"
 )
@@ -60,4 +63,23 @@ func TestWriteTimeNanoZero(t *testing.T) {
 	b := make([]byte, 8)
 	jay.WriteTimeNano(b, input)
 	assert.Equal(t, time.Time{}.UTC().Format(time.RFC3339Nano), jay.ReadTimeNano(b).Format(time.RFC3339Nano))
+}
+
+func TestRoundTripDurations(t *testing.T) {
+	var b []byte
+	var list []time.Duration
+	t.Run("zero", func(t *testing.T) {
+		jay.WriteDurations(b, list)
+		assert.Equal(t, list, jay.ReadDurations(b, 0))
+	})
+
+	list = rando.DurationsN(math.MaxUint8)
+
+	for i := 1; i <= math.MaxUint8; i++ {
+		tf.Run(t, i, func(t *testing.T) {
+			b = make([]byte, i*8)
+			jay.WriteDurations(b, list[:i])
+			assert.Equal(t, list[:i], jay.ReadDurations(b, i))
+		})
+	}
 }
