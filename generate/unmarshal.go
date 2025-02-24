@@ -18,7 +18,7 @@ func (s *structTyp) ReturnInline() bool {
 }
 
 func (s *structTyp) placeStringsAfter(byteIndex uint) bool {
-	return len(s.stringSlice) < moveReadStringsAbove && byteIndex <= 2
+	return len(s.stringSlice) < moveReadStringsAbove && byteIndex <= 8
 }
 
 type varCtx struct {
