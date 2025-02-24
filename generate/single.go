@@ -22,13 +22,13 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, importJ *bool
 	}
 
 	if s.returnInline {
-		b.WriteString("}")
+		b.WriteByte('}')
 	}
 }
 
 func writeSingle(single *field, b *bytes.Buffer, byteIndex uint, fun string, isMake, isLast bool) {
 	if isMake {
-		bufWriteF(b, "%s[%d] = %s\n", single.structTyp.bufferName, byteIndex, printFunc(fun, single.Name()))
+		bufWriteLineF(b, "%s[%d] = %s", single.structTyp.bufferName, byteIndex, printFunc(fun, single.Name()))
 		return
 	}
 
@@ -47,5 +47,5 @@ func (s *structTyp) readSingles(b *bytes.Buffer, byteIndex *uint) {
 }
 
 func readSingle(single *field, b *bytes.Buffer, byteIndex uint, fun string) {
-	bufWriteF(b, "%s=%s\n", single.Name(), printFunc(fun, fmt.Sprintf("%s[%d]", single.structTyp.bufferName, byteIndex)))
+	bufWriteLineF(b, "%s=%s", single.Name(), printFunc(fun, fmt.Sprintf("%s[%d]", single.structTyp.bufferName, byteIndex)))
 }

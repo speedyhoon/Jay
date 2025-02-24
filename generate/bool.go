@@ -73,11 +73,11 @@ func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, bufferName stri
 	}
 
 	if isUnmarshalInline2(uList) {
-		bufWriteF(b, "%s = %s\n", strings.Join(bools, ", "), unmarshalBoolsInline(bufferName, byteIndex, len(bools)))
+		bufWriteLineF(b, "%s = %s", strings.Join(bools, ", "), unmarshalBoolsInline(bufferName, byteIndex, len(bools)))
 		return
 	}
 
-	bufWriteF(b, "%s = %s%d(%s[%d])\n", strings.Join(bools, ", "), unmarshalBoolsFuncPrefix, len(bools), bufferName, byteIndex)
+	bufWriteLineF(b, "%s = %s%d(%s[%d])", strings.Join(bools, ", "), unmarshalBoolsFuncPrefix, len(bools), bufferName, byteIndex)
 }
 
 func isUnmarshalInline2(bools []bool) bool {

@@ -356,15 +356,15 @@ func bufWriteF(b *bytes.Buffer, format string, a ...any) {
 }
 
 func bufWriteLine(b *bytes.Buffer, line string) {
-	b.WriteString("\t")
+	b.WriteByte('\t')
 	b.WriteString(line)
-	b.WriteString("\n")
+	b.WriteByte('\n')
 }
 
 func bufWriteLineF(b *bytes.Buffer, format string, a ...any) {
-	b.WriteString("\t")
+	b.WriteByte('\t')
 	b.WriteString(fmt.Sprintf(format, a...))
-	b.WriteString("\n")
+	b.WriteByte('\n')
 }
 
 func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, end string) {
