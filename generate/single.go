@@ -10,8 +10,8 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, importJ *bool
 		return
 	}
 
-	if s.returnInline {
-		bufWriteF(b, "[]%s{", tByte)
+	if s.returnInline && len(s.bool) == 0 {
+		bufWriteF(b, "%s{", tBytes)
 	}
 
 	for i, l := 0, len(s.single); i < l; i++ {

@@ -21,7 +21,7 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bo
 	*importJ = true
 
 	if s.returnInline {
-		b.WriteString("[]byte{")
+		bufWriteF(b, "%s{", tBytes)
 	}
 
 	newList := fieldNamesArrays(s.bool)
@@ -43,7 +43,7 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bo
 		*byteIndex++
 	}
 
-	if s.returnInline {
+	if s.returnInline && !hasSingles {
 		b.WriteString("}")
 	}
 }
