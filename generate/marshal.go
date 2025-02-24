@@ -100,7 +100,7 @@ func (s *structTyp) generateSizeLine() string {
 
 func (s *structTyp) isReturnedInline() {
 	s.returnInline = !(len(s.variableLen) >= 1 || len(s.fixedLen) >= 1 || len(s.stringSlice) >= 1) ||
-		len(s.fixedLen) == 1 && s.fixedLen[0].isArray() && s.fixedLen[0].typ == tByteS
+		len(s.fixedLen) == 1 && s.fixedLen[0].isArray() && s.fixedLen[0].typ == tBytes
 }
 
 func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
@@ -170,7 +170,7 @@ func (f *field) MarshalFuncTemplate(importJ *bool) (funcName string, template ui
 		return tByte, tByteConv
 	case tString:
 		return copyKeyword, tFunc
-	case tByteS:
+	case tBytes:
 		if f.isArray() {
 			if f.isFirst && f.isLast {
 				return "", tByteAssign
@@ -229,35 +229,35 @@ func (f *field) marshalFunc() (fun interface{}, template uint8) {
 		} else {
 			return jay.WriteTime, tFunc
 		}
-	case tInt8S:
+	case tInt8s:
 		return jay.WriteInt8s, tFunc
-	case tBoolS:
+	case tBools:
 		return jay.WriteBools, tFuncLength
-	case tFloat32S:
+	case tFloat32s:
 		return jay.WriteFloat32s, tFuncLength
-	case tFloat64S:
+	case tFloat64s:
 		return jay.WriteFloat64s, tFuncLength
-	case tInt16S:
+	case tInt16s:
 		return jay.WriteInt16s, tFuncLength
-	case tUintS:
+	case tUints:
 		if f.structTyp.option.Is32bit {
 			return jay.WriteUintsX32, tFunc
 		}
 		return jay.WriteUintsX64, tFunc
-	case tUint16S:
+	case tUint16s:
 		return jay.WriteUint16s, tFuncLength
-	case tIntS:
+	case tInts:
 		if f.structTyp.option.Is32bit {
 			return jay.WriteIntsX32, tFunc
 		}
 		return jay.WriteIntsX64, tFunc
-	case tInt32S:
+	case tInt32s:
 		return jay.WriteInt32s, tFunc
-	case tInt64S:
+	case tInt64s:
 		return jay.WriteInt64s, tFunc
-	case tUint32S:
+	case tUint32s:
 		return jay.WriteUint32s, tFunc
-	case tUint64S:
+	case tUint64s:
 		return jay.WriteUint64s, tFunc
 	case tTimeDurations:
 		return jay.WriteDurations, tFunc

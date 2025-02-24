@@ -25,7 +25,7 @@ func (f *field) varsUnmarshal(index, byteIndex uint) {
 	}
 
 	switch f.typ {
-	case tBoolS:
+	case tBools:
 		f.unmarshal.qtyVar = multiplier(fmt.Sprintf("%s[%d]", f.structTyp.bufferName, byteIndex))
 	default:
 		f.unmarshal.qtyVar = multiplier(lenVariable(int(index)))

@@ -127,13 +127,13 @@ func (s *structTyp) generateCheckSizes(totalSize uint) string {
 	assignments, values := make([]string, 0, qty), make([]string, 0, qty)
 	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
 	for i, f := range s.variableLen {
-		if f.isLast && f.typ == tBoolS {
+		if f.isLast && f.typ == tBools {
 			sizeChecks.add(f, printFunc(f.pickSizeFunc(jay.SizeBools8, jay.SizeBools), string(f.unmarshal.qtyVar)))
 			continue
 		}
 
 		assignments = append(assignments, string(f.unmarshal.sizeVar))
-		if f.typ == tBoolS {
+		if f.typ == tBools {
 			values = append(values, printFunc(f.pickSizeFunc(jay.SizeBools8, jay.SizeBools), string(f.unmarshal.qtyVar)))
 		} else {
 			values = append(values, fmt.Sprintf("int(%s[%d])", s.bufferName, i))
@@ -174,7 +174,7 @@ func (s *structTyp) generateMakeSizes(totalSize uint) string {
 		if f.isLast && f.typ == tStrings {
 			sizeChecks.add(f, printFunc(nameOf(jay.StringsSize8, nil), f.Name()))
 		} else {
-			if f.typ == tBoolS /*&& f.isLast*/ {
+			if f.typ == tBools {
 				sizeChecks.add(f, printFunc(nameOf(jay.SizeBools, nil), string(f.marshal.qtyVar)))
 			} else {
 				sizeChecks.add(f, string(f.marshal.qtyVar))
@@ -397,12 +397,12 @@ func (f field) unmarshalFunc() (funcName string, template uint8, canReturnInline
 		} else {
 			c, template = jay.ReadTime, tFunc
 		}
-	case tInt8S:
+	case tInt8s:
 		c, template = jay.ReadInt8s, tFuncLength
-	case tBoolS:
+	case tBools:
 		c, template = jay.ReadBools8, tFuncLength
 
-	case tByteS:
+	case tBytes:
 		if f.isArray() {
 			c, template = "", tByteAssign
 			return
@@ -413,31 +413,31 @@ func (f field) unmarshalFunc() (funcName string, template uint8, canReturnInline
 		} else {
 			c, template = copyKeyword, tFuncOpt
 		}
-	case tFloat32S:
+	case tFloat32s:
 		c, template = jay.ReadFloat32s, tFuncLength
-	case tFloat64S:
+	case tFloat64s:
 		c, template = jay.ReadFloat64s, tFuncLength
-	case tInt16S:
+	case tInt16s:
 		c, template = jay.ReadInt16s, tFuncLength
-	case tUintS:
+	case tUints:
 		if f.structTyp.option.Is32bit {
 			c, template = jay.ReadUintsX32, tFuncLength
 		}
 		c, template = jay.ReadUintsX64, tFuncLength
-	case tUint16S:
+	case tUint16s:
 		c, template = jay.ReadUint16s, tFuncLength
-	case tIntS:
+	case tInts:
 		if f.structTyp.option.Is32bit {
 			c, template = jay.ReadIntsX32, tFuncLength
 		}
 		c, template = jay.ReadIntsX64, tFuncLength
-	case tInt32S:
+	case tInt32s:
 		c, template = jay.ReadInt32s, tFuncLength
-	case tInt64S:
+	case tInt64s:
 		c, template = jay.ReadInt64s, tFuncLength
-	case tUint32S:
+	case tUint32s:
 		c, template = jay.ReadUint32s, tFuncLength
-	case tUint64S:
+	case tUint64s:
 		c, template = jay.ReadUint64s, tFuncLength
 	case tTimeDurations:
 		c, template = jay.ReadDurations, tFuncLength

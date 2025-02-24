@@ -374,7 +374,7 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 	case 1:
 		at = utl.UtoA(byteIndex)
 	default:
-		if s.variableLen[0].typ == tBoolS {
+		if s.variableLen[0].typ == tBools {
 			bufWriteLineF(buf, "at, end := %d, %[1]d+%s(%s)", byteIndex, nameOf(jay.SizeBools, nil), s.variableLen[0].marshal.qtyVar)
 		} else {
 			bufWriteLineF(buf, "at, end := %d, %[1]d+%s", byteIndex, multiples(s.variableLen[0]))
@@ -429,7 +429,7 @@ func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, 
 			return
 		}
 
-		if s.stringSlice[0].typ == tBoolS {
+		if s.stringSlice[0].typ == tBools {
 			bufWriteLineF(buf, "at, end := %d, %[1]d+%s(%s)", byteIndex, nameOf(jay.SizeBools, nil), s.stringSlice[0].marshal.qtyVar)
 		} else {
 			bufWriteLineF(buf, "at, end := %d, %[1]d+%s", byteIndex, multiples(s.stringSlice[0]))
@@ -458,7 +458,7 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 		return "end", ""
 	}
 	if i >= 1 || i == 0 && len(s.stringSlice) >= 1 {
-		if varType == tBoolS {
+		if varType == tBools {
 			bufWriteLineF(buf, "at, end = end, end+%s(%s)", nameOf(jay.SizeBools, nil), s.variableLen[i].marshal.qtyVar)
 		} else {
 			bufWriteLineF(buf, "at, end = end, end+%s", multiples(s.variableLen[i]))
@@ -490,14 +490,14 @@ func lenVariable(index int) string {
 
 // List of supported types.
 const (
-	tBool, tBoolS                            = "bool", "[]bool"
-	tByte, tByteS                            = "byte", "[]byte"
-	tFloat32, tFloat32S                      = "float32", "[]float32"
-	tFloat64, tFloat64S                      = "float64", "[]float64"
+	tBool, tBools                            = "bool", "[]bool"
+	tByte, tBytes                            = "byte", "[]byte"
+	tFloat32, tFloat32s                      = "float32", "[]float32"
+	tFloat64, tFloat64s                      = "float64", "[]float64"
 	tInt, tInt8, tInt16, tInt32, tInt64      = "int", "int8", "int16", "int32", "int64"
-	tIntS, tInt8S, tInt16S, tInt32S, tInt64S = "[]int", "[]int8", "[]int16", "[]int32", "[]int64"
+	tInts, tInt8s, tInt16s, tInt32s, tInt64s = "[]int", "[]int8", "[]int16", "[]int32", "[]int64"
 	tUint, tUint16, tUint32, tUint64         = "uint", "uint16", "uint32", "uint64"
-	tUintS, tUint16S, tUint32S, tUint64S     = "[]uint", "[]uint16", "[]uint32", "[]uint64"
+	tUints, tUint16s, tUint32s, tUint64s     = "[]uint", "[]uint16", "[]uint32", "[]uint64"
 	tString, tStrings                        = "string", "[]string"
 	tTime, tTimeDuration, tTimeDurations     = "time.Time", "time.Duration", "[]time.Duration"
 )
