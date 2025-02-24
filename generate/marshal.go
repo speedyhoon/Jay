@@ -46,8 +46,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, importJ, string(f.marshal.qtyVar)))
 	}
 
-	code := buf.Bytes()
-	if len(code) == 0 {
+	if len(buf.Bytes()) == 0 {
 		return
 	}
 
@@ -62,7 +61,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 			s.receiver,
 			pointer,
 			s.name,
-			code,
+			buf.String(),
 		)
 		return
 	}
@@ -76,7 +75,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 		varLengths,
 		makeSize,
 		s.generateSizeLine(),
-		code,
+		buf.String(),
 	)
 
 	return
