@@ -39,7 +39,7 @@ func (z *Zebra) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l1, l2 := int(b[0]), int(b[1])
-	if l != 12+8*l2+l1 {
+	if l < 12+8*l2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
 	at := 11

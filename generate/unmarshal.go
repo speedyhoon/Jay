@@ -151,13 +151,21 @@ func (s *structTyp) generateCheckSizes(totalSize uint) string {
 	}
 
 	return fmt.Sprintf(
-		"%s\tif %s != %d+%s {\n\t\treturn %s\n\t}\n",
+		"%s\tif %s %s %d+%s {\n\t\treturn %s\n\t}\n",
 		assignLine,
 		s.lengthName,
+		s.sizeCompSymbol(),
 		totalSize,
 		sizeChecks.group(),
 		exportedErr,
 	)
+}
+
+func (s *structTyp) sizeCompSymbol() string {
+	if len(s.stringSlice) >= 1 {
+		return "<"
+	}
+	return "!="
 }
 
 func (s *structTyp) generateMakeSizes(totalSize uint) string {
