@@ -32,8 +32,8 @@ func (s *structTyp) varLenFieldNames() (names []string) {
 
 func (s *structTyp) generateLenVarLine() string {
 	var names, values []string
-	for i, f := range append(s.stringSlice, s.variableLen...) {
-		f.generateLenVar(&names, &values, i)
+	for _, f := range append(s.stringSlice, s.variableLen...) {
+		f.generateLenVar(&names, &values)
 	}
 
 	if len(names) == 0 {
@@ -47,7 +47,7 @@ func (s *structTyp) generateLenVarLine() string {
 	)
 }
 
-func (f *field) generateLenVar(list, values *[]string, index int) {
+func (f *field) generateLenVar(list, values *[]string) {
 	if f.fieldList == &f.structTyp.stringSlice {
 		if f.isLast {
 			return
