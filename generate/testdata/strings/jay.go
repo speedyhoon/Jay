@@ -65,7 +65,7 @@ func (f *Four) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], f.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], f.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], f.Three)
 	jay.WriteStrings8(b[end:], f.Four)
 	return
@@ -94,9 +94,9 @@ func (f *Five) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], f.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], f.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], f.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], f.Four)
 	jay.WriteStrings8(b[end:], f.Five)
 	return
@@ -128,11 +128,11 @@ func (s *Six) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], s.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], s.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], s.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], s.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], s.Five)
 	jay.WriteStrings8(b[end:], s.Six)
 	return
@@ -167,13 +167,13 @@ func (s *Seven) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], s.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], s.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], s.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], s.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], s.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], s.Six)
 	jay.WriteStrings8(b[end:], s.Seven)
 	return
@@ -211,15 +211,15 @@ func (e *Eight) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], e.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], e.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], e.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], e.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], e.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], e.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], e.Seven)
 	jay.WriteStrings8(b[end:], e.Eight)
 	return
@@ -260,17 +260,17 @@ func (n *Nine) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], n.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], n.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], n.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], n.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], n.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], n.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], n.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], n.Eight)
 	jay.WriteStrings8(b[end:], n.Nine)
 	return
@@ -314,19 +314,19 @@ func (t *Ten) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], t.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], t.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], t.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], t.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], t.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], t.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], t.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], t.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], t.Nine)
 	jay.WriteStrings8(b[end:], t.Ten)
 	return
@@ -373,21 +373,21 @@ func (e *Eleven) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], e.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], e.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], e.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], e.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], e.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], e.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], e.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], e.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], e.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], e.Ten)
 	jay.WriteStrings8(b[end:], e.Eleven)
 	return
@@ -437,23 +437,23 @@ func (t *Twelve) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], t.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], t.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], t.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], t.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], t.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], t.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], t.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], t.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], t.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], t.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], t.Eleven)
 	jay.WriteStrings8(b[end:], t.Twelve)
 	return
@@ -506,25 +506,25 @@ func (t *Thirteen) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], t.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], t.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], t.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], t.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], t.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], t.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], t.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], t.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], t.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], t.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], t.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], t.Twelve)
 	jay.WriteStrings8(b[end:], t.Thirteen)
 	return
@@ -580,27 +580,27 @@ func (f *Fourteen) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], f.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], f.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], f.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], f.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], f.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], f.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], f.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], f.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], f.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], f.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], f.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], f.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], f.Thirteen)
 	jay.WriteStrings8(b[end:], f.Fourteen)
 	return
@@ -659,29 +659,29 @@ func (f *Fifteen) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], f.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], f.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], f.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], f.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], f.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], f.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], f.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], f.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], f.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], f.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], f.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], f.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], f.Thirteen)
-	at, end = end, l13+end
+	at, end = end, end+l13
 	jay.WriteStrings8(b[at:end], f.Fourteen)
 	jay.WriteStrings8(b[end:], f.Fifteen)
 	return
@@ -743,31 +743,31 @@ func (s *Sixteen) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], s.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], s.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], s.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], s.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], s.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], s.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], s.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], s.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], s.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], s.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], s.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], s.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], s.Thirteen)
-	at, end = end, l13+end
+	at, end = end, end+l13
 	jay.WriteStrings8(b[at:end], s.Fourteen)
-	at, end = end, l14+end
+	at, end = end, end+l14
 	jay.WriteStrings8(b[at:end], s.Fifteen)
 	jay.WriteStrings8(b[end:], s.Sixteen)
 	return
@@ -832,33 +832,33 @@ func (s *Seventeen) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], s.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], s.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], s.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], s.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], s.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], s.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], s.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], s.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], s.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], s.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], s.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], s.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], s.Thirteen)
-	at, end = end, l13+end
+	at, end = end, end+l13
 	jay.WriteStrings8(b[at:end], s.Fourteen)
-	at, end = end, l14+end
+	at, end = end, end+l14
 	jay.WriteStrings8(b[at:end], s.Fifteen)
-	at, end = end, l15+end
+	at, end = end, end+l15
 	jay.WriteStrings8(b[at:end], s.Sixteen)
 	jay.WriteStrings8(b[end:], s.Seventeen)
 	return
@@ -926,35 +926,35 @@ func (e *Eighteen) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], e.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], e.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], e.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], e.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], e.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], e.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], e.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], e.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], e.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], e.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], e.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], e.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], e.Thirteen)
-	at, end = end, l13+end
+	at, end = end, end+l13
 	jay.WriteStrings8(b[at:end], e.Fourteen)
-	at, end = end, l14+end
+	at, end = end, end+l14
 	jay.WriteStrings8(b[at:end], e.Fifteen)
-	at, end = end, l15+end
+	at, end = end, end+l15
 	jay.WriteStrings8(b[at:end], e.Sixteen)
-	at, end = end, l16+end
+	at, end = end, end+l16
 	jay.WriteStrings8(b[at:end], e.Seventeen)
 	jay.WriteStrings8(b[end:], e.Eighteen)
 	return
@@ -1025,37 +1025,37 @@ func (n *Nineteen) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], n.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], n.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], n.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], n.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], n.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], n.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], n.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], n.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], n.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], n.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], n.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], n.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], n.Thirteen)
-	at, end = end, l13+end
+	at, end = end, end+l13
 	jay.WriteStrings8(b[at:end], n.Fourteen)
-	at, end = end, l14+end
+	at, end = end, end+l14
 	jay.WriteStrings8(b[at:end], n.Fifteen)
-	at, end = end, l15+end
+	at, end = end, end+l15
 	jay.WriteStrings8(b[at:end], n.Sixteen)
-	at, end = end, l16+end
+	at, end = end, end+l16
 	jay.WriteStrings8(b[at:end], n.Seventeen)
-	at, end = end, l17+end
+	at, end = end, end+l17
 	jay.WriteStrings8(b[at:end], n.Eighteen)
 	jay.WriteStrings8(b[end:], n.Nineteen)
 	return
@@ -1129,39 +1129,39 @@ func (t *Twenty) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], t.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], t.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], t.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], t.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], t.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], t.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], t.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], t.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], t.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], t.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], t.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], t.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], t.Thirteen)
-	at, end = end, l13+end
+	at, end = end, end+l13
 	jay.WriteStrings8(b[at:end], t.Fourteen)
-	at, end = end, l14+end
+	at, end = end, end+l14
 	jay.WriteStrings8(b[at:end], t.Fifteen)
-	at, end = end, l15+end
+	at, end = end, end+l15
 	jay.WriteStrings8(b[at:end], t.Sixteen)
-	at, end = end, l16+end
+	at, end = end, end+l16
 	jay.WriteStrings8(b[at:end], t.Seventeen)
-	at, end = end, l17+end
+	at, end = end, end+l17
 	jay.WriteStrings8(b[at:end], t.Eighteen)
-	at, end = end, l18+end
+	at, end = end, end+l18
 	jay.WriteStrings8(b[at:end], t.Nineteen)
 	jay.WriteStrings8(b[end:], t.Twenty)
 	return
@@ -1238,41 +1238,41 @@ func (t *TwentyOne) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], t.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], t.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], t.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], t.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], t.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], t.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], t.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], t.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], t.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], t.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], t.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], t.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], t.Thirteen)
-	at, end = end, l13+end
+	at, end = end, end+l13
 	jay.WriteStrings8(b[at:end], t.Fourteen)
-	at, end = end, l14+end
+	at, end = end, end+l14
 	jay.WriteStrings8(b[at:end], t.Fifteen)
-	at, end = end, l15+end
+	at, end = end, end+l15
 	jay.WriteStrings8(b[at:end], t.Sixteen)
-	at, end = end, l16+end
+	at, end = end, end+l16
 	jay.WriteStrings8(b[at:end], t.Seventeen)
-	at, end = end, l17+end
+	at, end = end, end+l17
 	jay.WriteStrings8(b[at:end], t.Eighteen)
-	at, end = end, l18+end
+	at, end = end, end+l18
 	jay.WriteStrings8(b[at:end], t.Nineteen)
-	at, end = end, l19+end
+	at, end = end, end+l19
 	jay.WriteStrings8(b[at:end], t.Twenty)
 	jay.WriteStrings8(b[end:], t.TwentyOne)
 	return
@@ -1352,43 +1352,43 @@ func (t *TwentyTwo) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], t.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], t.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], t.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], t.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], t.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], t.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], t.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], t.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], t.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], t.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], t.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], t.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], t.Thirteen)
-	at, end = end, l13+end
+	at, end = end, end+l13
 	jay.WriteStrings8(b[at:end], t.Fourteen)
-	at, end = end, l14+end
+	at, end = end, end+l14
 	jay.WriteStrings8(b[at:end], t.Fifteen)
-	at, end = end, l15+end
+	at, end = end, end+l15
 	jay.WriteStrings8(b[at:end], t.Sixteen)
-	at, end = end, l16+end
+	at, end = end, end+l16
 	jay.WriteStrings8(b[at:end], t.Seventeen)
-	at, end = end, l17+end
+	at, end = end, end+l17
 	jay.WriteStrings8(b[at:end], t.Eighteen)
-	at, end = end, l18+end
+	at, end = end, end+l18
 	jay.WriteStrings8(b[at:end], t.Nineteen)
-	at, end = end, l19+end
+	at, end = end, end+l19
 	jay.WriteStrings8(b[at:end], t.Twenty)
-	at, end = end, l20+end
+	at, end = end, end+l20
 	jay.WriteStrings8(b[at:end], t.TwentyOne)
 	jay.WriteStrings8(b[end:], t.TwentyTwo)
 	return
@@ -1471,45 +1471,45 @@ func (t *TwentyThree) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[:l0], t.One)
 	at, end := l0, l0+l1
 	jay.WriteStrings8(b[at:end], t.Two)
-	at, end = end, l2+end
+	at, end = end, end+l2
 	jay.WriteStrings8(b[at:end], t.Three)
-	at, end = end, l3+end
+	at, end = end, end+l3
 	jay.WriteStrings8(b[at:end], t.Four)
-	at, end = end, l4+end
+	at, end = end, end+l4
 	jay.WriteStrings8(b[at:end], t.Five)
-	at, end = end, l5+end
+	at, end = end, end+l5
 	jay.WriteStrings8(b[at:end], t.Six)
-	at, end = end, l6+end
+	at, end = end, end+l6
 	jay.WriteStrings8(b[at:end], t.Seven)
-	at, end = end, l7+end
+	at, end = end, end+l7
 	jay.WriteStrings8(b[at:end], t.Eight)
-	at, end = end, l8+end
+	at, end = end, end+l8
 	jay.WriteStrings8(b[at:end], t.Nine)
-	at, end = end, l9+end
+	at, end = end, end+l9
 	jay.WriteStrings8(b[at:end], t.Ten)
-	at, end = end, l10+end
+	at, end = end, end+l10
 	jay.WriteStrings8(b[at:end], t.Eleven)
-	at, end = end, l11+end
+	at, end = end, end+l11
 	jay.WriteStrings8(b[at:end], t.Twelve)
-	at, end = end, l12+end
+	at, end = end, end+l12
 	jay.WriteStrings8(b[at:end], t.Thirteen)
-	at, end = end, l13+end
+	at, end = end, end+l13
 	jay.WriteStrings8(b[at:end], t.Fourteen)
-	at, end = end, l14+end
+	at, end = end, end+l14
 	jay.WriteStrings8(b[at:end], t.Fifteen)
-	at, end = end, l15+end
+	at, end = end, end+l15
 	jay.WriteStrings8(b[at:end], t.Sixteen)
-	at, end = end, l16+end
+	at, end = end, end+l16
 	jay.WriteStrings8(b[at:end], t.Seventeen)
-	at, end = end, l17+end
+	at, end = end, end+l17
 	jay.WriteStrings8(b[at:end], t.Eighteen)
-	at, end = end, l18+end
+	at, end = end, end+l18
 	jay.WriteStrings8(b[at:end], t.Nineteen)
-	at, end = end, l19+end
+	at, end = end, end+l19
 	jay.WriteStrings8(b[at:end], t.Twenty)
-	at, end = end, l20+end
+	at, end = end, end+l20
 	jay.WriteStrings8(b[at:end], t.TwentyOne)
-	at, end = end, l21+end
+	at, end = end, end+l21
 	jay.WriteStrings8(b[at:end], t.TwentyTwo)
 	jay.WriteStrings8(b[end:], t.TwentyThree)
 	return

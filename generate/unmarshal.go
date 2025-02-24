@@ -226,17 +226,33 @@ func (c *varCtx) trackingVars(f *field) {
 
 	if f.isVarLen() {
 		if c.isAtDefined && c.isEndDefined {
-			bufWriteLineF(c.buf, "at, end = end, end+%s", f.unmarshal.sizeVar.String(f.elmSize))
+			c.atEndLineInc(f.unmarshal.sizeVar.String(f.elmSize))
 			return
 		}
 
 		if !c.isAtDefined /*&& len(f.structTyp.variableLen) >= 3*/ {
-			c.isAtDefined, c.isEndDefined = true, true
-			bufWriteLineF(c.buf, "%s, %s := %d, %[3]d+%s", vAt, vEnd, c.byteIndex, f.unmarshal.sizeVar.String(f.elmSize))
-			c.atValue, c.endValue = vAt, vEnd
+			c.atEndLineSet(c.byteIndex, f.unmarshal.sizeVar.String(f.elmSize))
 			return
 		}
 	}
+}
+
+func (c *varCtx) atEndLineInc(inc any) {
+	atEndLineInc(c.buf, inc)
+}
+
+func atEndLineInc(buf *bytes.Buffer, inc any) {
+	bufWriteLineF(buf, "%s, %s = %[2]s, %[2]s+%v", vAt, vEnd, inc)
+}
+
+func (c *varCtx) atEndLineSet(byteIndex uint, lenVar string) {
+	c.isAtDefined, c.isEndDefined = true, true
+	atEndLineSet(c.buf, byteIndex, lenVar)
+	c.atValue, c.endValue = vAt, vEnd
+}
+
+func atEndLineSet(buf *bytes.Buffer, byteIndex uint, lenVar string) {
+	bufWriteLineF(buf, "%s, %s := %d, %[3]d+%v", vAt, vEnd, byteIndex, lenVar)
 }
 
 func (f *field) unmarshalLine(ctx *varCtx) string {
