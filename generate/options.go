@@ -69,14 +69,14 @@ type Option struct {
 	SkipUnmarshal bool
 }
 
-func (m *MaxSize) Set(value *uint) error {
+/*func (m *MaxSize) Set(value *uint) error {
 	if *value > 8 {
 		return fmt.Errorf("value %d is greater than 8. Expected 1 - 8", *value)
 	}
 
 	*m = MaxSize(*value)
 	return nil
-}
+}*/
 
 func LoadOptions(opts ...Option) (o Option) {
 	if len(opts) >= 1 {
