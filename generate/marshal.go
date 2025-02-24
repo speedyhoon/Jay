@@ -33,7 +33,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	at, end := s.defineTrackingVars2(buf, byteIndex)
 	for i, f := range s.stringSlice {
 		if i >= 1 {
-			at, end = f.track2(buf, i, len(s.stringSlice), at, end)
+			at, end = f.track2(buf, i, len(s.stringSlice), end)
 		}
 		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, importJ, string(f.marshal.qtyVar)))
 	}

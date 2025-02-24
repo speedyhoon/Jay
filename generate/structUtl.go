@@ -467,7 +467,7 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 	return vAt, vEnd
 }
 
-func (f *field) track2(buf *bytes.Buffer, index, qty int, atVar, endVar string) (at, end string) {
+func (f *field) track2(buf *bytes.Buffer, index, qty int, endVar string) (at, end string) {
 	if index == qty-1 {
 		return endVar, ""
 	}
