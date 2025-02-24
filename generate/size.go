@@ -19,13 +19,13 @@ func (s *structTyp) calcSize() (qty uint) {
 }
 
 // typeFuncSize returns the minimum quantity of bytes required to represent an empty or undefined value.
-func (f field) typeFuncSize() (size uint) {
+func (f *field) typeFuncSize() (size uint) {
 	switch {
 	case f.isSlice():
 		return f.reserveSizeOf()
 	case f.isArray():
-		itemSize := field{typ: f.arrayType, structTyp: f.structTyp}.typeFuncSize()
-		return uint(f.arraySize) * itemSize
+		fe := field{typ: f.arrayType, structTyp: f.structTyp}
+		return uint(f.arraySize) * fe.typeFuncSize()
 	default:
 		switch f.typ {
 		case tString, tBool, tByte, tInt8:

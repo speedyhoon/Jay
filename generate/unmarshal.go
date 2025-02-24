@@ -340,7 +340,7 @@ func (f *field) typeConvert() string {
 
 // unmarshalFunc returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
-func (f field) unmarshalFunc() (funcName string, template uint8, canReturnInline canReturnInlined) {
+func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInline canReturnInlined) {
 	var c interface{}
 	switch f.typ {
 	case tByte:
