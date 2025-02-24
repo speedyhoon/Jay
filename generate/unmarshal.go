@@ -64,12 +64,11 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		bufWriteLine(buf, f.unmarshalLine(&c))
 	}
 
-	code := buf.Bytes()
-	if len(code) == 0 {
+	if len(buf.Bytes()) == 0 {
 		return
 	}
 
-	// Prevent panic: runtime error: index out of range
+	// Generate if statement(s) to prevent panic: runtime error: index out of range
 	var lengthCheck string
 	if len(s.variableLen) == 0 {
 		lengthCheck = fmt.Sprintf("if len(%s) %s %d {\n\t\treturn %s\n\t}", s.bufferName, s.sizeCompSymbol(), c.byteIndex, exportedErr)
@@ -78,39 +77,18 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	}
 	variableLengthCheck := s.generateCheckSizes(c.byteIndex)
 
-	if s.ReturnInline() {
-		bufWriteF(b,
-			"\nfunc (%s *%s) UnmarshalJ(%s []byte) error {\n\t%s\n%s\n}\n",
-			s.receiver,
-			s.name,
-			s.bufferName,
-			lengthCheck,
-			code,
-		)
-		return
-	}
-
-	if s.returnInlineUnmarshal {
-		bufWriteF(b,
-			"\nfunc (%s *%s) UnmarshalJ(%s []byte) error {\n\t%s\n%s%s}\n",
-			s.receiver,
-			s.name,
-			s.bufferName,
-			lengthCheck,
-			variableLengthCheck,
-			code,
-		)
-		return
+	if !s.ReturnInline() && !bool(s.returnInlineUnmarshal) {
+		bufWriteLine(buf, "return nil")
 	}
 
 	bufWriteF(b,
-		"\nfunc (%s *%s) UnmarshalJ(%s []byte) error {\n\t%s\n%s%s\treturn nil\n}\n",
+		"\nfunc (%s *%s) UnmarshalJ(%s []byte) error {\n\t%s\n%s%s}\n",
 		s.receiver,
 		s.name,
 		s.bufferName,
 		lengthCheck,
 		variableLengthCheck,
-		code,
+		buf.String(),
 	)
 }
 
