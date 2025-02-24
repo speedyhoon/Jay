@@ -46,11 +46,9 @@ func (f *field) LoadTagOptions(tag string) (ok bool) {
 		case tagMaxQty:
 			f.tagOptions.MaxQty.set(d[1])
 		case tagMin:
-			f.tagOptions.Min.set(g)
+			f.tagOptions.Min.set(d[1])
 		case tagNano:
 			f.tagOptions.TimeNano = true
-		case tagRequired:
-			f.tagOptions.Required = true
 		default:
 			f.tagOptions.Required = isShortRequiredTag(g)
 		}
