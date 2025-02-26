@@ -188,6 +188,7 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f fi
 			f.pkgReq = x.Name
 			f.aliasType = tTime
 			f.isFixedLen = true
+			f.elmSize = isLen(f.typ)
 			return f, true
 		}
 	}
@@ -329,7 +330,7 @@ func isLen(typ string) uint {
 		return 4
 	case tInt64, tUint64, tFloat64:
 		return 8
-	case tInt, tUint:
+	case tInt, tUint, tTime:
 		// TODO dynamically set size for 32 or 64 bit systems
 		return 8
 	}
