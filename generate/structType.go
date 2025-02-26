@@ -19,11 +19,11 @@ type structTyp struct {
 	option     *Option
 
 	// Lists of exported fields detected during AST traversal.
-	fixedLen, // Fixed length types like int16, uint64 and some arrays etc.
-	single, // Fields represented in one byte like int8 & uint8. These have additional optimizations.
-	variableLen, // Variable length fields like string and all slice types. These are generated last and have the most processing overhead.
 	bool, // Boolean fields are joined together and represented as binary.
-	stringSlice fieldList
+	single, // Fields represented in one byte like int8 & uint8. These have additional optimizations.
+	fixedLen, // Fixed length types like int16, uint64 and some arrays etc.
+	stringSlice,
+	variableLen fieldList // Variable length fields like string and all slice types. These are generated last and have the most processing overhead.
 
 	// When true: returns the Marshal code in a single return statement, when false: MarshalJ() method contains several lines.
 	returnInline          bool
