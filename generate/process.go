@@ -220,6 +220,7 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 	}
 
 	s.setFirstNLast()
+	s.setFieldByteIndexes()
 	return s.hasExportedFields()
 }
 
@@ -299,6 +300,65 @@ setLast:
 			return
 		}
 	}
+}
+
+func (s *structTyp) setFieldByteIndexes() {
+	// lists is the order that each field list is processed.
+	lists := []fieldList{s.bool, s.single, s.fixedLen, s.stringSlice, s.variableLen}
+
+	var isFirstVarLen bool
+	var byteIndex uint
+	for _, f := range s.variableLen {
+		f.qtyIndex = []uint{byteIndex}
+		byteIndex++
+	}
+
+	for i, list := range lists {
+		var boolsQty uint
+		for n, f := range list {
+			si := byteIndex
+			switch i {
+			case 0: //bool
+				si = byteIndex + boolsQty/8
+				f.indexStart = &si
+				boolsQty += f.totalSize()
+				ei := byteIndex + (boolsQty-1)/8
+				f.indexEnd = &ei
+				if n == len(s.bool)-1 {
+					byteIndex += (boolsQty + 7) >> 3
+				}
+
+			case 1: //single
+				f.indexStart, f.indexEnd = &si, &si
+				byteIndex++
+			case 2: //fixedLen
+				f.indexStart = &si
+				byteIndex += f.totalSize()
+				ei := byteIndex
+				f.indexEnd = &ei
+			case 3: //stringSlice
+				if !isFirstVarLen {
+					f.indexStart = &si
+					isFirstVarLen = true
+				}
+				byteIndex++
+			case 4: //variableLen
+				if !isFirstVarLen {
+					f.indexStart = &si
+					isFirstVarLen = true
+				}
+			}
+		}
+	}
+
+	s.qtyBytesRequired = byteIndex
+}
+
+func (f *field) totalSize() uint {
+	if f.isArray() {
+		return uint(f.arraySize) * f.elmSize
+	}
+	return f.elmSize
 }
 
 func Remove[T any](t []T, index int) []T {

@@ -28,6 +28,9 @@ type field struct {
 	lenVar     string // For variable length types, this is the name of the variable that stores the length from len(b[X]) in marshal methods.
 	marshal    vars
 	unmarshal  vars
+	qtyIndex   []uint // Stores which byte indexes to read/write the qty as uint8, uint16 or uint24 for variable length types.
+	indexStart *uint  // Byte index to start at. Variable length fields might be separated from their qtyIndex.
+	indexEnd   *uint  // Byte index to end at if type is fixed length.
 	tag        string // The tag value within `j:""`
 	tagOptions        // Valid tag options that have been successfully parsed and loaded from the `tag` string.
 	isFixedLen bool   // Is represented by a fixed quantity of bytes (like int64) or a variable quantity of bytes (like string and slices).

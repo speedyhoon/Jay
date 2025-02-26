@@ -13,10 +13,10 @@ type structTyp struct {
 	name       string
 	receiver   string
 	bufferName string // Prefix assigned to the buffer variable.
-	lengthName string // Prefix assigned to the length variables.
+	lengthName string // The variable name for storing `len(bufferName)`. Separate to the `l` prefix assigned to the length variables.
 	dir        string
 	imports    importList // Imports required for generated code.
-	option     *Option
+	option     *Option    // Global options from commandline or API calls, different to field.tagOptions.
 
 	// Lists of exported fields detected during AST traversal.
 	bool, // Boolean fields are joined together and represented as binary.
@@ -28,6 +28,8 @@ type structTyp struct {
 	// When true: returns the Marshal code in a single return statement, when false: MarshalJ() method contains several lines.
 	returnInline          bool
 	returnInlineUnmarshal canReturnInlined
+
+	qtyBytesRequired uint
 
 	isImportJ *bool
 }

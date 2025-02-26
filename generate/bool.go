@@ -53,20 +53,21 @@ func boolsFunc(newList []string, i, next8Qty int) string {
 	return fmt.Sprintf("%s%d(%s)", marshalBoolsFuncPrefix, next8Qty, strings.Join(newList[i:i+next8Qty], ", "))
 }
 
-func (s *structTyp) makeReadBools(b *bytes.Buffer, byteIndex *uint) {
+func (s *structTyp) makeReadBools(b *bytes.Buffer) {
 	if len(s.bool) == 0 {
 		return
 	}
 
 	newList, uList := fieldNamesArraysUnmarshalInline(s.bool)
-
+	byteIndex := *s.bool[0].indexStart
 	l := len(newList)
 	for i := 0; i < l; i += 8 {
-		readBools2(newList[i:], b, *byteIndex, s.bufferName, uList[i:])
-		*byteIndex++
+		readBools2(newList[i:], b, byteIndex, s.bufferName, uList[i:])
+		byteIndex++
 	}
 }
 
+// readBools2 expects only one to eight bools.
 func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, bufferName string, uList []bool) {
 	if len(bools) > 8 {
 		bools = bools[:8]

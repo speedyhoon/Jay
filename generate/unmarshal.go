@@ -17,13 +17,12 @@ func (s *structTyp) ReturnInline() bool {
 	return len(s.fixedLen) == 0 && len(s.single) == 0 && len(s.variableLen) == 0 && len(s.bool) == 0 && len(s.stringSlice) >= 1
 }
 
-func (s *structTyp) placeStringsAfter(byteIndex uint) bool {
-	return len(s.stringSlice) < moveReadStringsAbove && byteIndex <= 8
+func (s *structTyp) putFixedLenBefore() bool {
+	first := s.firstVarLenField()
+	return len(s.stringSlice) < moveReadStringsAbove && first != nil && *first.indexStart <= 8
 }
 
 type varCtx struct {
-	byteIndex                 uint
-	size                      uint
 	buf                       *bytes.Buffer
 	atValue, endValue         string
 	isAtDefined, isEndDefined bool
@@ -35,18 +34,18 @@ const vAt, vEnd, vOk = "at", "end", "ok"
 // makeUnmarshal ...
 func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	buf, fixedBuf := bytes.NewBuffer(nil), bytes.NewBuffer(nil)
-	c := varCtx{byteIndex: uint(len(s.variableLen)), buf: buf}
+	c := varCtx{buf: buf}
 	s.varsUnmarshal()
-
-	s.makeReadBools(fixedBuf, &c.byteIndex)
-	s.readSingles(fixedBuf, &c.byteIndex)
+	variableLengthCheck := s.generateCheckSizes()
+	s.makeReadBools(fixedBuf)
+	s.readSingles(fixedBuf)
 
 	for _, f := range s.fixedLen {
 		bufWriteLine(fixedBuf, f.unmarshalLine(&c))
 	}
 
-	isAfter := s.placeStringsAfter(c.byteIndex)
-	if isAfter {
+	isBefore := s.putFixedLenBefore()
+	if isBefore {
 		buf.Write(fixedBuf.Bytes())
 	}
 
@@ -54,7 +53,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		bufWriteLine(buf, f.unmarshalLine(&c))
 	}
 
-	if !isAfter {
+	if !isBefore {
 		// Place all fixed length types after stringSlice so the function can exit early
 		// if encountering any unmarshalling errors.
 		// `c.byteIndex` needs to be calculated before `s.stringSlice` which is why the execution order looks odd.
@@ -72,11 +71,11 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	// Generate if statement(s) to prevent panic: runtime error: index out of range
 	var lengthCheck string
 	if len(s.variableLen) == 0 {
-		lengthCheck = fmt.Sprintf("if len(%s) %s %d {\n\t\treturn %s\n\t}", s.bufferName, s.sizeCompSymbol(), c.byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("if len(%s) %s %d {\n\t\treturn %s\n\t}", s.bufferName, s.sizeCompSymbol(), s.qtyBytesRequired, exportedErr)
 	} else {
-		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\n\tif %[1]s < %[3]d {\n\t\treturn %[4]s\n\t}", s.lengthName, s.bufferName, c.byteIndex, exportedErr)
+		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\n\tif %[1]s < %[3]d {\n\t\treturn %[4]s\n\t}", s.lengthName, s.bufferName, s.qtyBytesRequired, exportedErr)
 	}
-	variableLengthCheck := s.generateCheckSizes(c.byteIndex)
+	//variableLengthCheck := s.generateCheckSizes()
 
 	if !s.ReturnInline() && !bool(s.returnInlineUnmarshal) {
 		bufWriteLine(buf, "return nil")
@@ -93,7 +92,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	)
 }
 
-func (s *structTyp) generateCheckSizes(totalSize uint) string {
+func (s *structTyp) generateCheckSizes() string {
 	qty := len(s.variableLen)
 	if qty == 0 {
 		return ""
@@ -130,7 +129,7 @@ func (s *structTyp) generateCheckSizes(totalSize uint) string {
 		assignLine,
 		s.lengthName,
 		s.sizeCompSymbol(),
-		totalSize,
+		s.qtyBytesRequired,
 		sizeChecks.group(),
 		exportedErr,
 	)
@@ -175,18 +174,9 @@ func (f *field) isVarLen() bool {
 	return f.fieldList == &f.structTyp.variableLen
 }
 
-func (c *varCtx) add(f *field, size uint) {
-	if f.isFixedLen || f.typ == tStrings {
-		c.byteIndex += size
-	}
-}
-
 // trackingVars defines `at` and `end` if needed before a value is unmarshalled or updates their values.
 func (c *varCtx) trackingVars(f *field) {
-	size := f.typeFuncSize()
-	defer c.add(f, size)
-
-	if f.isFirst && f.isLast && c.byteIndex == 0 {
+	if f.isFirst && f.isLast && *f.indexStart == 0 {
 		return
 	}
 
@@ -196,16 +186,13 @@ func (c *varCtx) trackingVars(f *field) {
 			return
 		}
 		if !c.isAtDefined {
-			c.atValue = utl.UtoA(c.byteIndex)
+			c.atValue = omitZero(*f.indexStart)
 		}
 		return
 	}
 
 	if f.isFixedLen {
-		if c.byteIndex >= 1 {
-			c.atValue = utl.UtoA(c.byteIndex)
-		}
-		c.endValue = utl.UtoA(c.byteIndex + size)
+		c.atValue, c.endValue = omitZero(*f.indexStart), omitZero(*f.indexEnd)
 		return
 	}
 
@@ -218,7 +205,7 @@ func (c *varCtx) trackingVars(f *field) {
 		if !c.isAtDefined {
 			if len(f.structTyp.stringSlice) >= 2 || len(f.structTyp.variableLen) >= 1 {
 				c.isAtDefined = true
-				bufWriteLineF(c.buf, "%s := %d", vAt, c.byteIndex)
+				bufWriteLineF(c.buf, "%s := %d", vAt, *f.indexStart)
 				c.atValue = vAt
 			}
 		}
@@ -231,8 +218,8 @@ func (c *varCtx) trackingVars(f *field) {
 			return
 		}
 
-		if !c.isAtDefined /*&& len(f.structTyp.variableLen) >= 3*/ {
-			c.atEndLineSet(c.byteIndex, f.unmarshal.sizeVar.String(f.elmSize))
+		if !c.isAtDefined {
+			c.atEndLineSet(*f.indexStart, f.unmarshal.sizeVar.String(f.elmSize))
 			return
 		}
 
@@ -242,6 +229,13 @@ func (c *varCtx) trackingVars(f *field) {
 			c.endValue = vEnd
 		}
 	}
+}
+
+func omitZero(u uint) string {
+	if u == 0 {
+		return ""
+	}
+	return utl.UtoA(u)
 }
 
 func (c *varCtx) atEndLineInc(inc any) {

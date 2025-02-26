@@ -38,14 +38,13 @@ func writeSingle(single *field, b *bytes.Buffer, byteIndex uint, fun string, isM
 	}
 }
 
-func (s *structTyp) readSingles(b *bytes.Buffer, byteIndex *uint) {
+func (s *structTyp) readSingles(b *bytes.Buffer) {
 	for i, l := 0, len(s.single); i < l; i++ {
 		fun, _, _ := s.single[i].unmarshalFunc()
-		readSingle(s.single[i], b, *byteIndex, fun)
-		*byteIndex += s.single[i].typeFuncSize()
+		readSingle(s.single[i], b, fun)
 	}
 }
 
-func readSingle(single *field, b *bytes.Buffer, byteIndex uint, fun string) {
-	bufWriteLineF(b, "%s=%s", single.Name(), printFunc(fun, fmt.Sprintf("%s[%d]", single.structTyp.bufferName, byteIndex)))
+func readSingle(single *field, b *bytes.Buffer, fun string) {
+	bufWriteLineF(b, "%s=%s", single.Name(), printFunc(fun, fmt.Sprintf("%s[%d]", single.structTyp.bufferName, *single.indexStart)))
 }

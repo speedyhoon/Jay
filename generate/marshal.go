@@ -344,7 +344,7 @@ func (f *field) sliceExpr2(at, end string, byteIndex uint) string {
 }
 
 func (f *field) sliceExpr3(c *varCtx) string {
-	if c.atValue == "" && c.endValue == "" || f.isFirst && f.isLast && c.byteIndex == 0 {
+	if c.atValue == "" && c.endValue == "" || f.isFirst && f.isLast && *f.indexStart == 0 {
 		return f.structTyp.bufferName
 	}
 
@@ -353,9 +353,7 @@ func (f *field) sliceExpr3(c *varCtx) string {
 	}
 
 	if f.isFixedLen {
-		if f.isFirst && c.byteIndex == 0 {
-			return fmt.Sprintf("%s[:%s]", f.structTyp.bufferName, c.endValue)
-		}
+		return fmt.Sprintf("%s[%s:%d]", f.structTyp.bufferName, omitZero(*f.indexStart), *f.indexEnd)
 	}
 
 	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, c.atValue, c.endValue)
