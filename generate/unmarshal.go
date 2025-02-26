@@ -302,10 +302,11 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 
 	case tByteAssign:
 		return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.convertTo(), f.sliceExpr3(ctx)))
-	}
 
-	lg.Println("unhandled template")
-	return ""
+	default:
+		lg.Panicln("unhandled template")
+		return ""
+	}
 }
 
 type canReturnInlined bool
