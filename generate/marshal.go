@@ -50,16 +50,11 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 		return
 	}
 
-	var pointer string
-	if s.option.PointerMarshalFunc {
-		pointer = "*"
-	}
-
 	if s.returnInline {
 		bufWriteF(b,
 			"\nfunc (%s %s%s) MarshalJ() []byte {\n\treturn %s\n}\n",
 			s.receiver,
-			pointer,
+			s.option.pointerSymbol(),
 			s.name,
 			buf.String(),
 		)
@@ -69,7 +64,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 	bufWriteF(b,
 		"\nfunc (%[1]s %[2]s%[3]s) MarshalJ() (%[4]s []byte) {\n\t%[5]s\n\t%[4]s = make([]byte, %[6]s)\n\t%[7]s%[8]s\treturn\n}\n",
 		s.receiver,
-		pointer,
+		s.option.pointerSymbol(),
 		s.name,
 		s.bufferName,
 		varLengths,

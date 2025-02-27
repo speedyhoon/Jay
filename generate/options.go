@@ -61,12 +61,19 @@ type Option struct {
 	Verbose     *log.Logger
 	SearchTests bool
 
-	// PointerMarshalFunc changes generated MarshalJ method to a pointer receiver. true: `func (f *Foo) MarshalJ()`, false: `func (f Foo) MarshalJ()`.
-	PointerMarshalFunc bool
+	// IsMarshalMethodPtr changes generated MarshalJ method to a pointer receiver. true: `func (f *Foo) MarshalJ()`, false: `func (f Foo) MarshalJ()`.
+	IsMarshalMethodPtr bool
 
 	SkipTests     bool
 	SkipMarshal   bool
 	SkipUnmarshal bool
+}
+
+func (o Option) pointerSymbol() string {
+	if o.IsMarshalMethodPtr {
+		return "*"
+	}
+	return ""
 }
 
 /*func (m *MaxSize) Set(value *uint) error {
