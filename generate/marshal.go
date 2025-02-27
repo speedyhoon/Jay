@@ -100,7 +100,7 @@ func (s *structTyp) isReturnedInline() {
 }
 
 func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
-	fun, template := f.marshalFuncTemplate(importJ)
+	fun, template := f.marshalFuncTemplate()
 	totalSize := f.typeFuncSize()
 	if template == tNoTemplate || template > tByteConv {
 		// Unknown type, not supported yet.
@@ -155,7 +155,7 @@ func printFunc(fun string, params ...string) (code string) {
 	return
 }
 
-func (f *field) marshalFuncTemplate(importJ *bool) (funcName string, template uint8) {
+func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 	var fun any
 	switch f.typ {
 	case tBools:
@@ -260,7 +260,7 @@ func (f *field) marshalFuncTemplate(importJ *bool) (funcName string, template ui
 		lg.Printf("no function set for type %s yet in typeFuncs()", f.typ)
 		return
 	}
-	return nameOf(fun, importJ), template
+	return nameOf(fun, f.structTyp.isImportJ), template
 }
 
 func nameOf(f any, importJ *bool) string {

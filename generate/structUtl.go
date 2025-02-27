@@ -376,7 +376,7 @@ func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, e
 		at = utl.UtoA(byteIndex)
 	default:
 		if s.variableLen[0].typ == tBools {
-			atEndLineSet(buf, byteIndex, printFunc(nameOf(jay.SizeBools, nil), string(s.variableLen[0].marshal.qtyVar)))
+			atEndLineSet(buf, byteIndex, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(s.variableLen[0].marshal.qtyVar)))
 		} else {
 			atEndLineSet(buf, byteIndex, multiples(s.variableLen[0]))
 		}
@@ -431,7 +431,7 @@ func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, 
 		}
 
 		if s.stringSlice[0].typ == tBools {
-			atEndLineSet(buf, byteIndex, printFunc(nameOf(jay.SizeBools, nil), string(s.stringSlice[0].marshal.qtyVar)))
+			atEndLineSet(buf, byteIndex, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(s.stringSlice[0].marshal.qtyVar)))
 		} else {
 			atEndLineSet(buf, byteIndex, multiples(s.stringSlice[0]))
 		}
@@ -460,7 +460,7 @@ func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex 
 	}
 	if i >= 1 || i == 0 && len(s.stringSlice) >= 1 {
 		if varType == tBools {
-			atEndLineInc(buf, printFunc(nameOf(jay.SizeBools, nil), string(s.variableLen[i].marshal.qtyVar)))
+			atEndLineInc(buf, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(s.variableLen[i].marshal.qtyVar)))
 		} else {
 			atEndLineInc(buf, multiples(s.variableLen[i]))
 		}

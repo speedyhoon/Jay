@@ -146,10 +146,10 @@ func (s *structTyp) generateMakeSizes(totalSize uint) string {
 	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
 	for _, f := range append(s.stringSlice, s.variableLen...) {
 		if f.isLast && f.typ == tStrings {
-			sizeChecks.add(f, printFunc(nameOf(jay.StringsSize8, nil), f.Name()))
+			sizeChecks.add(f, printFunc(nameOf(jay.StringsSize8, s.isImportJ), f.Name()))
 		} else {
 			if f.typ == tBools {
-				sizeChecks.add(f, printFunc(nameOf(jay.SizeBools, nil), string(f.marshal.qtyVar)))
+				sizeChecks.add(f, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(f.marshal.qtyVar)))
 			} else {
 				sizeChecks.add(f, string(f.marshal.qtyVar))
 			}
@@ -449,5 +449,5 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		lg.Printf("no function set for type %s yet in unmarshalFunc()", f.typ)
 	}
 
-	return nameOf(c, nil), template, canReturnInline
+	return nameOf(c, f.structTyp.isImportJ), template, canReturnInline
 }
