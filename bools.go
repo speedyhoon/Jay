@@ -43,8 +43,7 @@ func ReadBools(y []byte, length int) (t []bool) {
 		return
 	}
 	t = make([]bool, length)
-	for i, n := 0, 0; i*8 < length; i++ {
-		n = i * 8
+	for i, n := 0, 0; n < length; i, n = i+1, n+8 {
 		switch length - n {
 		case 1:
 			t[n] = ReadBool1(y[i])
@@ -72,8 +71,7 @@ func ReadBools8(y []byte, length uint8) (t []bool) {
 		return
 	}
 	t = make([]bool, length)
-	var i, n uint8
-	for ; /*i, n := uint8(0), uint8(0)*/ n < length; i, n = i+1, n+8 {
+	for i, n := uint8(0), uint8(0); n < length; i, n = i+1, n+8 {
 		switch length - n {
 		case 1:
 			t[n] = ReadBool1(y[i])
