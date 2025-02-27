@@ -2,6 +2,7 @@ package generate
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -12,7 +13,7 @@ func (m *importList) add(pkg string) {
 		return
 	}
 
-	// Check every import doesn't already exist in the list.
+	// Check if the new import doesn't already exist in the list.
 	for i := range *m {
 		if (*m)[i] == pkg {
 			return
@@ -33,8 +34,10 @@ func (m importList) print() string {
 	case 0:
 		return ""
 	case 1:
-		return fmt.Sprintf("import \"%s\"\n", m[0])
+		return fmt.Sprintf("\nimport \"%s\"\n", m[0])
 	default:
-		return fmt.Sprintf("import (\n\t\"%s\"\n)\n", strings.Join(m, "\"\n\t\""))
+		// Sort imports by their package name.
+		sort.Strings(m)
+		return fmt.Sprintf("\nimport (\n\t\"%s\"\n)\n", strings.Join(m, "\"\n\t\""))
 	}
 }
