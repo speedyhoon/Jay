@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, importJ *bool) {
+func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint) {
 	if len(s.single) == 0 {
 		return
 	}
@@ -16,7 +16,7 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint, importJ *bool
 
 	for i, l := 0, len(s.single); i < l; i++ {
 		isLast := i+1 == l
-		fun, _ := s.single[i].marshalFuncTemplate(importJ)
+		fun, _ := s.single[i].marshalFuncTemplate()
 		writeSingle(s.single[i], b, *byteIndex, fun, !s.returnInline, isLast)
 		*byteIndex++
 	}

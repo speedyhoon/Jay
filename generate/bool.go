@@ -12,13 +12,13 @@ var (
 	unmarshalBoolsFuncPrefix = strings.TrimSuffix(nameOf(jay.ReadBool1, nil), "1")
 )
 
-func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint, importJ *bool) {
+func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint) {
 	if len(s.bool) == 0 {
 		return
 	}
 
 	hasSingles := len(s.single) != 0
-	*importJ = true
+	*s.isImportJ = true
 
 	if s.returnInline {
 		bufWriteF(b, "%s{", tBytes)

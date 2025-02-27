@@ -35,7 +35,8 @@ func (o Option) makeFile(pkg string, s []*structTyp) ([]byte, error) {
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
 		if o.IsSpecifiedType(pkg, s[i].name) {
-			s[i].makeFuncs(buf, &importJ)
+			s[i].isImportJ = &importJ
+			s[i].makeFuncs(buf)
 			imported.join(s[i].imports)
 		}
 	}
@@ -126,16 +127,17 @@ func appendEmbed(fields *fieldList, embedName string, embedded fieldList) {
 	}
 }
 
-func (s *structTyp) makeFuncs(b *bytes.Buffer, importJ *bool) {
+func (s *structTyp) makeFuncs(b *bytes.Buffer) {
 	if !ast.IsExported(s.name) || !s.hasExportedFields() {
 		return
 	}
 
 	if !s.option.SkipMarshal {
-		s.makeMarshal(b, importJ)
+		s.makeMarshal(b)
 	}
 	if !s.option.SkipUnmarshal {
-		*importJ = true
+		// Unmarshal functions always need jay imported for returning error jay.ErrUnexpectedEOB.
+		*s.isImportJ = true
 		s.makeUnmarshal(b)
 	}
 	return

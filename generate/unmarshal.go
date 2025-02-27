@@ -135,6 +135,8 @@ func (s *structTyp) generateCheckSizes() string {
 	)
 }
 
+// sizeCompSymbol returns the less than symbol `<` when structTyp contains any []string types.
+// Otherwise, a not equal to symbol `!=` is returned.
 func (s *structTyp) sizeCompSymbol() string {
 	if len(s.stringSlice) >= 1 {
 		return "<"

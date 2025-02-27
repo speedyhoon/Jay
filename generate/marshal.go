@@ -14,7 +14,7 @@ import (
 // TODO add support for enums with restricted sizes like: buf[1] = WriteEnum44(e.Enum1, e.Enum2)
 
 // makeMarshal ...
-func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
+func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 	s.varsMarshal()
 	varLengths := s.generateLenVarLine()
 	makeSize := s.generateMakeSizes(s.calcSize())
@@ -22,12 +22,12 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 
 	var byteIndex = uint(len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
-	s.makeWriteBools(buf, &byteIndex, importJ)
-	s.writeSingles(buf, &byteIndex, importJ)
+	s.makeWriteBools(buf, &byteIndex)
+	s.writeSingles(buf, &byteIndex)
 
 	for _, f := range s.fixedLen {
 		at := utl.UtoA(byteIndex)
-		bufWriteLine(buf, f.marshalLine(&byteIndex, at, "", importJ, ""))
+		bufWriteLine(buf, f.marshalLine(&byteIndex, at, "", ""))
 	}
 
 	at, end := s.defineTrackingVars2(buf, byteIndex)
@@ -35,7 +35,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 		if i >= 1 {
 			at, end = f.track2(buf, i, len(s.stringSlice), end)
 		}
-		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, importJ, string(f.marshal.qtyVar)))
+		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, string(f.marshal.qtyVar)))
 	}
 
 	if at != vAt && end != vEnd {
@@ -43,7 +43,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer, importJ *bool) {
 	}
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, importJ, string(f.marshal.qtyVar)))
+		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, string(f.marshal.qtyVar)))
 	}
 
 	if len(buf.Bytes()) == 0 {
@@ -99,7 +99,7 @@ func (s *structTyp) isReturnedInline() {
 		len(s.fixedLen) == 1 && s.fixedLen[0].isArray() && s.fixedLen[0].typ == tBytes
 }
 
-func (f *field) marshalLine(byteIndex *uint, at, end string, importJ *bool, lenVar string) string {
+func (f *field) marshalLine(byteIndex *uint, at, end, lenVar string) string {
 	fun, template := f.marshalFuncTemplate()
 	totalSize := f.typeFuncSize()
 	if template == tNoTemplate || template > tByteConv {
