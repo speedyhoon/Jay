@@ -302,39 +302,6 @@ func (f *field) sliceExpr(at, end string) string {
 	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, at, end)
 }
 
-func (f *field) sliceExpr2(at, end string, byteIndex uint) string {
-	if f.typ == tStrings && f.isFirst && f.isLast {
-		return f.structTyp.bufferName
-	}
-
-	if at == "0" {
-		at = ""
-	}
-
-	if f.isFixedLen {
-		if f.isFirst && f.isLast {
-			return f.structTyp.bufferName
-		}
-
-		// `at == ""` is needed when structType contains variableLen types
-		// then `at` can't be absent because their sizes are placed before.
-		if f.isFirst && at == "" {
-			return fmt.Sprintf("%s[:%s]", f.structTyp.bufferName, end)
-		}
-	}
-
-	if f.isLast {
-		if at == "" && byteIndex == 0 {
-			return f.structTyp.bufferName
-		}
-		if at == "" && byteIndex != 0 {
-			return fmt.Sprintf("%s[%d:]", f.structTyp.bufferName, byteIndex)
-		}
-		return fmt.Sprintf("%s[%s:]", f.structTyp.bufferName, at)
-	}
-	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, at, end)
-}
-
 func (f *field) sliceExpr3(c *varCtx) string {
 	if c.atValue == "" && c.endValue == "" || f.isFirst && f.isLast && *f.indexStart == 0 {
 		return f.structTyp.bufferName
