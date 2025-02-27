@@ -254,7 +254,7 @@ func ReadStrings16n(y []byte, s *[]string) (total int, ok bool) {
 	return total, true
 }
 
-func ReadStrings16nb(y []byte, s *[]string, at *int) ( /*total int,*/ ok bool) {
+func ReadStrings16nb(y []byte, s *[]string, at *int) (ok bool) {
 	// ReadUint16
 	qty := int(y[0]) | int(y[1])<<8
 	if qty == 0 {
@@ -304,8 +304,7 @@ func ReadStrings16nErr(y []byte, s *[]string) (total uint, err error) {
 
 	total = index
 	*s = make([]string, qty)
-	var i uint
-	for ; i < qty; i++ {
+	for i := uint(0); i < qty; i++ {
 		// ReadUint16
 		u := uint(y[2+i*2]) | uint(y[3+i*2])<<8
 		if u == 0 {

@@ -48,14 +48,14 @@ func WriteBoolPtr(x ...*bool) (b []byte) {
 
 // ReadBoolPtr converts []byte to a list of bool pointers.
 // TODO add support to jay/generate for *bool.
-func ReadBoolPtr(b []byte) (x []*bool) {
-	l := uint8(len(b))
+func ReadBoolPtr(y []byte) (x []*bool) {
+	l := uint8(len(y))
 	x = make([]*bool, l*8)
 
 	var byteIndex, bitIndex uint8
 	for c := 0; byteIndex < l; {
-		if isBitTrue(b[byteIndex], &bitIndex) {
-			val := isBitTrue(b[byteIndex], &bitIndex)
+		if isBitTrue(y[byteIndex], &bitIndex) {
+			val := isBitTrue(y[byteIndex], &bitIndex)
 			x[c] = &val
 		}
 		c++
@@ -70,8 +70,8 @@ func ReadBoolPtr(b []byte) (x []*bool) {
 }
 
 // isBitTrue checks if a single bit at index bitIndex isn't zero and increments `bitIndex`.
-func isBitTrue(b byte, bitIndex *uint8) bool {
+func isBitTrue(y byte, bitIndex *uint8) bool {
 	compareTo := off >> *bitIndex
 	*bitIndex++
-	return b&compareTo == compareTo
+	return y&compareTo == compareTo
 }

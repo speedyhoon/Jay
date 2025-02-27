@@ -1,113 +1,113 @@
 package jay
 
-func WriteIntsX32(b []byte, slice []int) {
+func WriteIntsX32(y []byte, slice []int) {
 	for i := range slice {
-		WriteIntX32(b[i*_4:i*_4+_4], slice[i])
+		WriteIntX32(y[i*_4:i*_4+_4], slice[i])
 	}
 }
 
-func ReadIntsX32(b []byte, length int) (t []int) {
+func ReadIntsX32(y []byte, length int) (t []int) {
 	if length == 0 {
 		return
 	}
 
 	t = make([]int, length)
 	for i := 0; i < length; i++ {
-		t[i] = ReadIntX32(b[i*_4 : i*_4+_4])
+		t[i] = ReadIntX32(y[i*_4 : i*_4+_4])
 	}
 	return
 }
 
-func WriteIntsX64(b []byte, slice []int) {
+func WriteIntsX64(y []byte, slice []int) {
 	for i := range slice {
-		WriteIntX64(b[i*_8:i*_8+_8], slice[i])
+		WriteIntX64(y[i*_8:i*_8+_8], slice[i])
 	}
 }
 
-func ReadIntsX64(b []byte, length int) (t []int) {
+func ReadIntsX64(y []byte, length int) (t []int) {
 	if length == 0 {
 		return
 	}
 
 	t = make([]int, length)
 	for i := 0; i < length; i++ {
-		t[i] = ReadIntX64(b[i*_8 : i*_8+_8])
+		t[i] = ReadIntX64(y[i*_8 : i*_8+_8])
 	}
 	return
 }
 
-func WriteInt64s(b []byte, slice []int64) {
+func WriteInt64s(y []byte, slice []int64) {
 	for i := range slice {
-		WriteInt64(b[i*_8:i*_8+_8], slice[i])
+		WriteInt64(y[i*_8:i*_8+_8], slice[i])
 	}
 }
 
-func ReadInt64s(b []byte, length int) (t []int64) {
+func ReadInt64s(y []byte, length int) (t []int64) {
 	if length == 0 {
 		return
 	}
 
 	t = make([]int64, length)
 	for i := 0; i < length; i++ {
-		t[i] = ReadInt64(b[i*_8 : i*_8+_8])
+		t[i] = ReadInt64(y[i*_8 : i*_8+_8])
 	}
 	return
 }
 
-func WriteInt32s(b []byte, slice []int32) {
+func WriteInt32s(y []byte, slice []int32) {
 	for i := range slice {
-		WriteInt32(b[i*_4:i*_4+_4], slice[i])
+		WriteInt32(y[i*_4:i*_4+_4], slice[i])
 	}
 }
 
-func ReadInt32s(b []byte, length int) (t []int32) {
+func ReadInt32s(y []byte, length int) (t []int32) {
 	if length == 0 {
 		return
 	}
 
 	t = make([]int32, length)
 	for i := 0; i < length; i++ {
-		t[i] = ReadInt32(b[i*_4 : i*_4+_4])
+		t[i] = ReadInt32(y[i*_4 : i*_4+_4])
 	}
 	return
 }
 
-func WriteInt8s(b []byte, slice []int8) {
+func WriteInt8s(y []byte, slice []int8) {
 	for i, v := range slice {
-		b[i] = byte(v)
+		y[i] = byte(v)
 	}
 }
 
-func ReadInt8s(b []byte, length int) (t []int8) {
+func ReadInt8s(y []byte, length int) (t []int8) {
 	if length == 0 {
 		return
 	}
 
 	t = make([]int8, length)
 	for i := 0; i < length; i++ {
-		t[i] = int8(b[i])
+		t[i] = int8(y[i])
 	}
 	return
 }
 
-func WriteInt16s(b []byte, ints []int16, length int) {
+func WriteInt16s(y []byte, slice []int16, length int) {
 	if length == 0 {
 		return
 	}
 
 	for i := 0; i < length; i++ {
-		b[i*2], b[i*2+1] = byte(ints[i]), byte(ints[i]>>_8)
+		y[i*2], y[i*2+1] = byte(slice[i]), byte(slice[i]>>_8)
 	}
 }
 
-func ReadInt16s(b []byte, length int) (t []int16) {
+func ReadInt16s(y []byte, length int) (t []int16) {
 	if length == 0 {
 		return
 	}
 
 	t = make([]int16, length)
 	for i := 0; i < length; i++ {
-		t[i] = int16(b[i*2]) | int16(b[i*2+1])<<_8
+		t[i] = int16(y[i*2]) | int16(y[i*2+1])<<_8
 	}
 	return
 }

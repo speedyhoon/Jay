@@ -53,20 +53,20 @@ func WriteStrings(ln, y []byte, s []string) {
 	}
 }
 
-/*func ReadStrings(b []byte) (h []string, size int, ok bool) {
-	l := len(b)
-	if l <= strSizeOf || b[0] == 0 {
+/*func ReadStrings(y []byte) (s []string, size int, ok bool) {
+	l := len(y)
+	if l <= strSizeOf || y[0] == 0 {
 		return
 	}
 
 	size = 1
 	var z int
-	h = make([]string, b[0])
-	for i := uint8(0); i < b[0]; i++ {
+	s = make([]string, y[0])
+	for i := uint8(0); i < y[0]; i++ {
 		if size >= l {
 			return
 		}
-		h[i], z, ok = ReadString(b[size:])
+		s[i], z, ok = ReadString(y[size:])
 		size += z
 		if !ok {
 			return
@@ -75,20 +75,20 @@ func WriteStrings(ln, y []byte, s []string) {
 
 	return
 
-	//size = int(b[0]) + strSizeOf
-	//if size == strSizeOf || len(b) < size {
+	//size = int(y[0]) + strSizeOf
+	//if size == strSizeOf || len(y) < size {
 	//	return
 	//}
 	//
-	//return string(b[strSizeOf:size]), size, true
+	//return string(y[strSizeOf:size]), size, true
 }
 
-func ReadStringPtr(b []byte, h *string) (size int, _ bool) {
-	size = int(b[0]) + strSizeOf
-	if size == strSizeOf || len(b) < size {
+func ReadStringPtr(y []byte, h *string) (size int, ok bool) {
+	size = int(y[0]) + strSizeOf
+	if size == strSizeOf || len(y) < size {
 		return
 	}
 
-	*h = string(b[strSizeOf:size])
+	*h = string(y[strSizeOf:size])
 	return size, true
 }*/
