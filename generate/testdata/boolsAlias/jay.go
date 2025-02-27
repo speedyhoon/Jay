@@ -14,10 +14,7 @@ func (o *One) MarshalJ() (b []byte) {
 
 func (o *One) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 1 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 1+jay.SizeBools8(b[0]) {
+	if l < 1 || l != 1+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	o.One = jay.ReadBools8(b[1:], b[0])

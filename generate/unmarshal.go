@@ -32,7 +32,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	buf, fixedBuf := bytes.NewBuffer(nil), bytes.NewBuffer(nil)
 	c := varCtx{buf: buf}
 	s.varsUnmarshal()
-	variableLengthCheck := s.generateCheckSizes()
+	lengthChecks := s.makeLengthChecks()
 	s.makeReadBools(fixedBuf)
 	s.readSingles(fixedBuf)
 
@@ -64,33 +64,24 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		return
 	}
 
-	// Generate if statement(s) to prevent panic: runtime error: index out of range
-	var lengthCheck string
-	if len(s.variableLen) == 0 {
-		lengthCheck = fmt.Sprintf("if len(%s) %s %d {\n\t\treturn %s\n\t}", s.bufferName, s.sizeCompSymbol(), s.qtyBytesRequired, exportedErr)
-	} else {
-		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\n\tif %[1]s < %[3]d {\n\t\treturn %[4]s\n\t}", s.lengthName, s.bufferName, s.qtyBytesRequired, exportedErr)
-	}
-
 	if !s.returnInlineUnmarshal {
 		bufWriteLine(buf, "return nil")
 	}
 
 	bufWriteF(b,
-		"\nfunc (%s *%s) UnmarshalJ(%s []byte) error {\n\t%s\n%s%s}\n",
+		"\nfunc (%s *%s) UnmarshalJ(%s []byte) error {\n\t%s\n%s}\n",
 		s.receiver,
 		s.name,
 		s.bufferName,
-		lengthCheck,
-		variableLengthCheck,
+		lengthChecks,
 		buf.String(),
 	)
 }
 
-func (s *structTyp) generateCheckSizes() string {
+func (s *structTyp) makeLengthChecks() string {
 	qty := len(s.variableLen)
 	if qty == 0 {
-		return ""
+		return fmt.Sprintf("if len(%s) %s %d {\n\t\treturn %s\n\t}", s.bufferName, s.sizeCompSymbol(), s.qtyBytesRequired, exportedErr)
 	}
 
 	assignments, values := make([]string, 0, qty), make([]string, 0, qty)
@@ -113,20 +104,43 @@ func (s *structTyp) generateCheckSizes() string {
 	var assignLine string
 	if len(assignments) >= 1 && len(values) >= 1 {
 		assignLine = fmt.Sprintf(
-			"\t%s := %s\n",
+			"%s := %s",
 			strings.Join(assignments, ", "),
 			strings.Join(values, ", "),
 		)
 	}
 
+	if assignLine == "" {
+		return fmt.Sprintf(
+			`%[1]s := len(%[2]s)
+	if %[1]s < %[3]d || %[1]s %[4]s %[3]d+%[5]s {
+		return %[6]s
+	}`,
+			s.lengthName,
+			s.bufferName,
+			s.qtyBytesRequired,
+			s.sizeCompSymbol(),
+			sizeChecks.group(),
+			exportedErr,
+		)
+	}
+
 	return fmt.Sprintf(
-		"%s\tif %s %s %d+%s {\n\t\treturn %s\n\t}\n",
-		assignLine,
+		`%[1]s := len(%[2]s)
+	if %[1]s < %[3]d {
+		return %[4]s
+	}
+	%[5]s
+	if %[1]s %[6]s %[3]d+%[7]s {
+		return %[4]s
+	}`,
 		s.lengthName,
-		s.sizeCompSymbol(),
+		s.bufferName,
 		s.qtyBytesRequired,
-		sizeChecks.group(),
 		exportedErr,
+		assignLine,
+		s.sizeCompSymbol(),
+		sizeChecks.group(),
 	)
 }
 

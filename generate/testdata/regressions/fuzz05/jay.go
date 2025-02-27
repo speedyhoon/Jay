@@ -107,10 +107,7 @@ func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) MarshalJ() (b []byte) 
 
 func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 35 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 35+jay.SizeBools8(b[0]) {
+	if l < 35 || l != 35+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	y.IC5qlktHjoAxQ85BBL11a52LLqLNa03GvsFtx6660G0Bj78LXptHo40S737W4ro0Y27s10168Xc75kpo7, y.C11nVJCwQXED6cgc65lS0NNld6ormyMtGY42JNPP34hOA3GegJ10ObN56e = jay.ReadBool2(b[1])

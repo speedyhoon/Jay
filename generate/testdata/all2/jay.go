@@ -19,10 +19,7 @@ func (f *Fuzz0) MarshalJ() (b []byte) {
 
 func (f *Fuzz0) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 2+jay.SizeBools8(b[0]) {
+	if l < 2 || l != 2+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadBool1(b[1])
@@ -629,10 +626,7 @@ func (f *Fuzz32) MarshalJ() (b []byte) {
 
 func (f *Fuzz32) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 2+jay.SizeBools8(b[0]) {
+	if l < 2 || l != 2+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadBool1(b[1])
@@ -651,10 +645,7 @@ func (f *Fuzz33) MarshalJ() (b []byte) {
 
 func (f *Fuzz33) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 2+jay.SizeBools8(b[0]) {
+	if l < 2 || l != 2+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = b[1]
@@ -702,10 +693,7 @@ func (f *Fuzz35) MarshalJ() (b []byte) {
 
 func (f *Fuzz35) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 5 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 5+jay.SizeBools8(b[0]) {
+	if l < 5 || l != 5+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadFloat32(b[1:5])
@@ -749,10 +737,7 @@ func (f *Fuzz37) MarshalJ() (b []byte) {
 
 func (f *Fuzz37) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadFloat64(b[1:9])
@@ -796,10 +781,7 @@ func (f *Fuzz39) MarshalJ() (b []byte) {
 
 func (f *Fuzz39) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadIntX64(b[1:9])
@@ -818,10 +800,7 @@ func (f *Fuzz40) MarshalJ() (b []byte) {
 
 func (f *Fuzz40) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 2+jay.SizeBools8(b[0]) {
+	if l < 2 || l != 2+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = int8(b[1])
@@ -840,10 +819,7 @@ func (f *Fuzz41) MarshalJ() (b []byte) {
 
 func (f *Fuzz41) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 3 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 3+jay.SizeBools8(b[0]) {
+	if l < 3 || l != 3+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadInt16(b[1:3])
@@ -862,10 +838,7 @@ func (f *Fuzz42) MarshalJ() (b []byte) {
 
 func (f *Fuzz42) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 5 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 5+jay.SizeBools8(b[0]) {
+	if l < 5 || l != 5+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadInt32(b[1:5])
@@ -884,10 +857,7 @@ func (f *Fuzz43) MarshalJ() (b []byte) {
 
 func (f *Fuzz43) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 5 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 5+jay.SizeBools8(b[0]) {
+	if l < 5 || l != 5+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadInt32(b[1:5])
@@ -906,10 +876,7 @@ func (f *Fuzz44) MarshalJ() (b []byte) {
 
 func (f *Fuzz44) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadInt64(b[1:9])
@@ -1053,10 +1020,7 @@ func (f *Fuzz50) MarshalJ() (b []byte) {
 
 func (f *Fuzz50) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadUintX64(b[1:9])
@@ -1075,10 +1039,7 @@ func (f *Fuzz51) MarshalJ() (b []byte) {
 
 func (f *Fuzz51) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 2+jay.SizeBools8(b[0]) {
+	if l < 2 || l != 2+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = b[1]
@@ -1097,10 +1058,7 @@ func (f *Fuzz52) MarshalJ() (b []byte) {
 
 func (f *Fuzz52) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 3 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 3+jay.SizeBools8(b[0]) {
+	if l < 3 || l != 3+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadUint16(b[1:3])
@@ -1119,10 +1077,7 @@ func (f *Fuzz53) MarshalJ() (b []byte) {
 
 func (f *Fuzz53) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 5 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 5+jay.SizeBools8(b[0]) {
+	if l < 5 || l != 5+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadUint32(b[1:5])
@@ -1141,10 +1096,7 @@ func (f *Fuzz54) MarshalJ() (b []byte) {
 
 func (f *Fuzz54) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadUint64(b[1:9])
@@ -1288,10 +1240,7 @@ func (f *Fuzz60) MarshalJ() (b []byte) {
 
 func (f *Fuzz60) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l < 2+jay.SizeBools8(b[1]) {
+	if l < 2 || l < 2+jay.SizeBools8(b[1]) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, ok := jay.ReadStrings8n(b, &f.Two)
@@ -1313,10 +1262,7 @@ func (f *Fuzz61) MarshalJ() (b []byte) {
 
 func (f *Fuzz61) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadTime(b[1:9])
@@ -1335,10 +1281,7 @@ func (f *Fuzz62) MarshalJ() (b []byte) {
 
 func (f *Fuzz62) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
@@ -1395,10 +1338,7 @@ func (f *Fuzz65) MarshalJ() (b []byte) {
 
 func (f *Fuzz65) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 2+jay.SizeBools8(b[0]) {
+	if l < 2 || l != 2+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = b[1]
@@ -2903,10 +2843,7 @@ func (f *Fuzz129) MarshalJ() (b []byte) {
 
 func (f *Fuzz129) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 5 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 5+jay.SizeBools8(b[0]) {
+	if l < 5 || l != 5+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadFloat32(b[1:5])
@@ -4293,10 +4230,7 @@ func (f *Fuzz193) MarshalJ() (b []byte) {
 
 func (f *Fuzz193) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadFloat64(b[1:9])
@@ -5683,10 +5617,7 @@ func (f *Fuzz257) MarshalJ() (b []byte) {
 
 func (f *Fuzz257) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadIntX64(b[1:9])
@@ -6299,10 +6230,7 @@ func (f *Fuzz289) MarshalJ() (b []byte) {
 
 func (f *Fuzz289) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 2+jay.SizeBools8(b[0]) {
+	if l < 2 || l != 2+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = int8(b[1])
@@ -6912,10 +6840,7 @@ func (f *Fuzz321) MarshalJ() (b []byte) {
 
 func (f *Fuzz321) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 3 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 3+jay.SizeBools8(b[0]) {
+	if l < 3 || l != 3+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt16(b[1:3])
@@ -7531,10 +7456,7 @@ func (f *Fuzz353) MarshalJ() (b []byte) {
 
 func (f *Fuzz353) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 5 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 5+jay.SizeBools8(b[0]) {
+	if l < 5 || l != 5+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt32(b[1:5])
@@ -8150,10 +8072,7 @@ func (f *Fuzz385) MarshalJ() (b []byte) {
 
 func (f *Fuzz385) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 5 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 5+jay.SizeBools8(b[0]) {
+	if l < 5 || l != 5+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt32(b[1:5])
@@ -8769,10 +8688,7 @@ func (f *Fuzz417) MarshalJ() (b []byte) {
 
 func (f *Fuzz417) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt64(b[1:9])
@@ -13243,10 +13159,7 @@ func (f *Fuzz609) MarshalJ() (b []byte) {
 
 func (f *Fuzz609) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadUintX64(b[1:9])
@@ -13859,10 +13772,7 @@ func (f *Fuzz641) MarshalJ() (b []byte) {
 
 func (f *Fuzz641) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 2+jay.SizeBools8(b[0]) {
+	if l < 2 || l != 2+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = b[1]
@@ -14472,10 +14382,7 @@ func (f *Fuzz673) MarshalJ() (b []byte) {
 
 func (f *Fuzz673) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 3 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 3+jay.SizeBools8(b[0]) {
+	if l < 3 || l != 3+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadUint16(b[1:3])
@@ -15091,10 +14998,7 @@ func (f *Fuzz705) MarshalJ() (b []byte) {
 
 func (f *Fuzz705) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 5 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 5+jay.SizeBools8(b[0]) {
+	if l < 5 || l != 5+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadUint32(b[1:5])
@@ -15710,10 +15614,7 @@ func (f *Fuzz737) MarshalJ() (b []byte) {
 
 func (f *Fuzz737) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadUint64(b[1:9])
@@ -20183,10 +20084,7 @@ func (f *Fuzz929) MarshalJ() (b []byte) {
 
 func (f *Fuzz929) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 2 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l < 2+jay.SizeBools8(b[1]) {
+	if l < 2 || l < 2+jay.SizeBools8(b[1]) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, ok := jay.ReadStrings8n(b, &f.One)
@@ -20832,10 +20730,7 @@ func (f *Fuzz961) MarshalJ() (b []byte) {
 
 func (f *Fuzz961) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadTime(b[1:9])
@@ -21451,10 +21346,7 @@ func (f *Fuzz993) MarshalJ() (b []byte) {
 
 func (f *Fuzz993) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 9 {
-		return jay.ErrUnexpectedEOB
-	}
-	if l != 9+jay.SizeBools8(b[0]) {
+	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = time.Duration(jay.ReadInt64(b[1:9]))
