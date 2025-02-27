@@ -386,17 +386,19 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		if f.structTyp.option.FixedIntSize {
 			if f.structTyp.option.Is32bit {
 				c, template = jay.ReadIntX32, tFunc
+			} else {
+				c, template = jay.ReadIntX64, tFunc
 			}
-			c, template = jay.ReadIntX64, tFunc
 			break
+		} else {
+			c, template = jay.ReadInt, tFunc
 		}
-		//c = jay.ReadIntVariable
-		c, template = jay.ReadInt, tFunc
 	case tInts:
 		if f.structTyp.option.Is32bit {
 			c, template = jay.ReadIntsX32, tFuncLength
+		} else {
+			c, template = jay.ReadIntsX64, tFuncLength
 		}
-		c, template = jay.ReadIntsX64, tFuncLength
 	case tStrings:
 		if f.isLast {
 			c, template, canReturnInline = f.sizeOfPick(jay.ReadStrings8Err, jay.ReadStrings16Err), tFuncPtr, canReturnInlined(f.isLast)
@@ -429,16 +431,19 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		if f.structTyp.option.FixedUintSize {
 			if f.structTyp.option.Is32bit {
 				c, template = jay.ReadUintX32, tFunc
+			} else {
+				c, template = jay.ReadUintX64, tFunc
 			}
-			c, template = jay.ReadUintX64, tFunc
 			break
+		} else {
+			c, template = jay.ReadUintVariable, tFunc
 		}
-		c, template = jay.ReadUintVariable, tFunc
 	case tUints:
 		if f.structTyp.option.Is32bit {
 			c, template = jay.ReadUintsX32, tFuncLength
+		} else {
+			c, template = jay.ReadUintsX64, tFuncLength
 		}
-		c, template = jay.ReadUintsX64, tFuncLength
 
 	default:
 		lg.Printf("no function set for type %s yet in unmarshalFunc()", f.typ)
