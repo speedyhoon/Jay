@@ -13,10 +13,6 @@ import (
 // checks occur before all the assignments.
 const moveReadStringsAbove = 2
 
-func (s *structTyp) ReturnInline() bool {
-	return len(s.fixedLen) == 0 && len(s.single) == 0 && len(s.variableLen) == 0 && len(s.bool) == 0 && len(s.stringSlice) >= 1
-}
-
 func (s *structTyp) putFixedLenBefore() bool {
 	first := s.firstVarLenField()
 	return len(s.stringSlice) < moveReadStringsAbove && first != nil && *first.indexStart <= 8
@@ -75,9 +71,8 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	} else {
 		lengthCheck = fmt.Sprintf("%[1]s := len(%[2]s)\n\tif %[1]s < %[3]d {\n\t\treturn %[4]s\n\t}", s.lengthName, s.bufferName, s.qtyBytesRequired, exportedErr)
 	}
-	//variableLengthCheck := s.generateCheckSizes()
 
-	if !s.ReturnInline() && !bool(s.returnInlineUnmarshal) {
+	if !s.returnInlineUnmarshal {
 		bufWriteLine(buf, "return nil")
 	}
 
