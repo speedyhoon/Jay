@@ -292,8 +292,8 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 
 	case tFuncPtrCheck:
 		return fmt.Sprintf(
-			"%s, %s := %s(%s, &%s)\n\tif !%[2]s {\n\t\treturn %[6]s\n\t}",
-			vAt, vOk, fun, f.structTyp.bufferName, f.Name(), exportedErr,
+			"%s, %s := %s(%s, &%s, %s)\n\tif !%[2]s {\n\t\treturn %[7]s\n\t}",
+			vAt, vOk, fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), exportedErr,
 		)
 
 	case tFuncPtrCheckAt:
@@ -317,6 +317,17 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 	default:
 		lg.Panicln("unhandled template")
 		return ""
+	}
+}
+
+func (f *field) qtyBytes() string {
+	switch l := len(f.qtyIndex); l {
+	case 0:
+		panic("f.qtyIndex not populated")
+	case 1:
+		return fmt.Sprintf("%s[%d]", f.structTyp.bufferName, f.qtyIndex[0])
+	default:
+		return fmt.Sprintf("%s[%d:%d]", f.structTyp.bufferName, f.qtyIndex[0], f.qtyIndex[l-1])
 	}
 }
 
@@ -414,7 +425,7 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		if f.isLast {
 			c, template, canReturnInline = f.sizeOfPick(jay.ReadStrings8Err, jay.ReadStrings16Err), tFuncPtr, canReturnInlined(f.isLast)
 		} else if f.isFirst {
-			c, template = f.sizeOfPick(jay.ReadStrings8n, jay.ReadStrings16n), tFuncPtrCheck
+			c, template = f.sizeOfPick(jay.ReadStrings8Xn, jay.ReadStrings16n), tFuncPtrCheck
 		} else {
 			c, template = f.sizeOfPick(jay.ReadStrings8nb, jay.ReadStrings16nb), tFuncPtrCheckAt
 		}

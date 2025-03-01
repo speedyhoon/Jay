@@ -308,7 +308,7 @@ func (s *structTyp) setFieldByteIndexes() {
 
 	var isFirstVarLen bool
 	var byteIndex uint
-	for _, f := range s.variableLen {
+	for _, f := range append(s.stringSlice, s.variableLen...) {
 		f.qtyIndex = []uint{byteIndex}
 		byteIndex++
 	}
@@ -336,13 +336,7 @@ func (s *structTyp) setFieldByteIndexes() {
 				byteIndex += f.totalSize()
 				ei := byteIndex
 				f.indexEnd = &ei
-			case 3: //stringSlice
-				if !isFirstVarLen {
-					f.indexStart = &si
-					isFirstVarLen = true
-				}
-				byteIndex++
-			case 4: //variableLen
+			case 3, 4: // stringSlice, variableLen
 				if !isFirstVarLen {
 					f.indexStart = &si
 					isFirstVarLen = true

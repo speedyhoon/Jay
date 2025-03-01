@@ -368,12 +368,14 @@ func bufWriteLineF(b *bytes.Buffer, format string, a ...any) {
 	b.WriteByte('\n')
 }
 
-func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint) (at, end string) {
+func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint, varAt string) (at, end string) {
 	switch len(s.variableLen) {
 	case 0:
 		return
 	case 1:
-		at = utl.UtoA(byteIndex)
+		if !strings.Contains(varAt, "+") { // TODO replace with ctx :P
+			at = utl.UtoA(byteIndex)
+		}
 	default:
 		if s.variableLen[0].typ == tBools {
 			atEndLineSet(buf, byteIndex, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(s.variableLen[0].marshal.qtyVar)))

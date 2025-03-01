@@ -20,7 +20,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 	makeSize := s.generateMakeSizes(s.calcSize())
 	s.isReturnedInline()
 
-	var byteIndex = uint(len(s.variableLen))
+	var byteIndex = uint(len(s.stringSlice) + len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
 	s.makeWriteBools(buf, &byteIndex)
 	s.writeSingles(buf, &byteIndex)
@@ -35,11 +35,11 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 		if i >= 1 {
 			at, end = f.track2(buf, i, len(s.stringSlice), end)
 		}
-		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, string(f.marshal.qtyVar)))
+		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, f.qtyBytes()))
 	}
 
 	if at != vAt && end != vEnd {
-		at, end = s.defineTrackingVars(buf, byteIndex)
+		at, end = s.defineTrackingVars(buf, byteIndex, at)
 	}
 	for i, f := range s.variableLen {
 		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
@@ -77,14 +77,18 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 }
 
 func (s *structTyp) generateSizeLine() string {
-	qty := len(s.variableLen)
+	qty := len(s.stringSlice) + len(s.variableLen)
 	if qty == 0 {
 		return ""
 	}
 	assignments, values := make([]string, qty), make([]string, qty)
-	for i := 0; i < qty; i++ {
-		assignments[i] = fmt.Sprintf("%s[%d]", s.bufferName, i)
-		values[i] = fmt.Sprintf("byte(%s)", s.variableLen[i].marshal.qtyVar)
+	for i, f := range append(s.stringSlice, s.variableLen...) {
+		assignments[i] = fmt.Sprintf("%s[%d]", s.bufferName, f.qtyIndex[0])
+		if f.isVarLen() {
+			values[i] = fmt.Sprintf("byte(%s)", f.marshal.qtyVar)
+		} else {
+			values[i] = fmt.Sprintf("byte(len(%s))", f.Name())
+		}
 	}
 	return fmt.Sprintln(strings.Join(assignments, ", "), "=", strings.Join(values, ", "))
 }
@@ -214,7 +218,7 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 	case tString:
 		return copyKeyword, tFunc
 	case tStrings:
-		fun, template = f.sizeOfPick(jay.WriteStrings8, jay.WriteStrings16), tFunc
+		fun, template = f.sizeOfPick(jay.WriteStrings8Xd, jay.WriteStrings16), tFuncLength
 	case tTime:
 		if f.tagOptions.TimeNano {
 			fun, template = jay.WriteTimeNano, tFunc
@@ -308,6 +312,9 @@ func (f *field) sliceExpr3(c *varCtx) string {
 	}
 
 	if f.isLast || !f.isFixedLen && f.isStrings() {
+		if f.indexStart != nil && f.indexEnd == nil {
+			return fmt.Sprintf("%s[%d:]", f.structTyp.bufferName, *f.indexStart)
+		}
 		return fmt.Sprintf("%s[%s:]", f.structTyp.bufferName, c.atValue)
 	}
 

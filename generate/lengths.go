@@ -57,7 +57,7 @@ func (f *field) generateLenVar(list, values *[]string) {
 
 		lv := printFunc(
 			nameOf(
-				f.sizeOfPick(jay.StringsSize8, jay.StringsSize16),
+				f.sizeOfPick(jay.StringsSize8x, jay.StringsSize16),
 				f.structTyp.isImportJ,
 			),
 			f.Name(),
