@@ -96,7 +96,7 @@ func (s *structTyp) makeLengthChecks() string {
 		if f.typ == tBools {
 			values = append(values, printFunc(f.pickSizeFunc(jay.SizeBools8, jay.SizeBools), string(f.unmarshal.qtyVar)))
 		} else {
-			values = append(values, fmt.Sprintf("int(%s[%d])", s.bufferName, i))
+			values = append(values, fmt.Sprintf("int(%s[%d])", s.bufferName, f.qtyIndex[0]))
 		}
 		sizeChecks.add(f, assignments[i])
 	}
@@ -288,18 +288,24 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr3(ctx), string(f.unmarshal.qtyVar)))
 
 	case tFuncPtr:
-		return fmt.Sprintf("%s%s(%s, &%s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr3(ctx), f.Name())
+		return fmt.Sprintf("%s%s(%s, &%s, %s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes())
 
 	case tFuncPtrCheck:
 		return fmt.Sprintf(
-			"%s, %s := %s(%s, &%s, %s)\n\tif !%[2]s {\n\t\treturn %[7]s\n\t}",
-			vAt, vOk, fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), exportedErr,
+			"%s, %s := %s(%s, &%s, %s, %d)\n\tif !%[2]s {\n\t\treturn %[8]s\n\t}",
+			vAt, vOk, fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), *f.indexStart, exportedErr,
 		)
 
 	case tFuncPtrCheckAt:
 		return fmt.Sprintf(
-			"if !%s(%s, &%s, &%s) {\n\t\treturn %s\n\t}",
-			fun, f.sliceExpr3(ctx), f.Name(), vAt, exportedErr,
+			"if !%s(%s, &%s, %s, &%s) {\n\t\treturn %s\n\t}",
+			fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), vAt, exportedErr,
+		)
+
+	case tFuncPtrCheckAtOk:
+		return fmt.Sprintf(
+			"if !%s(%s, &%s, %s) {\n\t\treturn %s\n\t}",
+			fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), exportedErr,
 		)
 
 	case tIfPtrCheck:
@@ -329,6 +335,15 @@ func (f *field) qtyBytes() string {
 	default:
 		return fmt.Sprintf("%s[%d:%d]", f.structTyp.bufferName, f.qtyIndex[0], f.qtyIndex[l-1])
 	}
+}
+
+func (f *field) qtySlice() string {
+	l := len(f.qtyIndex)
+	if l == 0 {
+		panic("f.qtyIndex not populated")
+	}
+
+	return fmt.Sprintf("%s[%d:%d]", f.structTyp.bufferName, f.qtyIndex[0], f.qtyIndex[l-1]+1)
 }
 
 type canReturnInlined bool
@@ -423,11 +438,16 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		}
 	case tStrings:
 		if f.isLast {
-			c, template, canReturnInline = f.sizeOfPick(jay.ReadStrings8Err, jay.ReadStrings16Err), tFuncPtr, canReturnInlined(f.isLast)
+			canReturnInline = canReturnInlined(f.structTyp.putFixedLenBefore())
+			if canReturnInline {
+				c, template, canReturnInline = f.sizeOfPick(jay.ReadStrings8Err, jay.ReadStrings8Err), tFuncPtr, canReturnInlined(f.structTyp.putFixedLenBefore())
+			} else {
+				c, template = f.sizeOfPick(jay.ReadStrings8Ok, jay.ReadStrings8Ok), tFuncPtrCheckAtOk
+			}
 		} else if f.isFirst {
-			c, template = f.sizeOfPick(jay.ReadStrings8Xn, jay.ReadStrings16n), tFuncPtrCheck
+			c, template = f.sizeOfPick(jay.ReadStrings8nbXt, jay.ReadStrings8nbXt), tFuncPtrCheck
 		} else {
-			c, template = f.sizeOfPick(jay.ReadStrings8nb, jay.ReadStrings16nb), tFuncPtrCheckAt
+			c, template = f.sizeOfPick(jay.ReadStrings8nbX, jay.ReadStrings8nbX), tFuncPtrCheckAt
 		}
 	case tTime:
 		if f.tagOptions.TimeNano {

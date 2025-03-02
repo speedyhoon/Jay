@@ -20,30 +20,21 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 	makeSize := s.generateMakeSizes(s.calcSize())
 	s.isReturnedInline()
 
-	var byteIndex = uint(len(s.stringSlice) + len(s.variableLen))
 	buf := bytes.NewBuffer(nil)
-	s.makeWriteBools(buf, &byteIndex)
-	s.writeSingles(buf, &byteIndex)
+	c := varCtx{buf: buf}
+	s.makeWriteBools(buf)
+	s.writeSingles(buf)
 
 	for _, f := range s.fixedLen {
-		at := utl.UtoA(byteIndex)
-		bufWriteLine(buf, f.marshalLine(&byteIndex, at, "", ""))
+		bufWriteLine(buf, f.marshalLine(&c, ""))
 	}
 
-	at, end := s.defineTrackingVars2(buf, byteIndex)
-	for i, f := range s.stringSlice {
-		if i >= 1 {
-			at, end = f.track2(buf, i, len(s.stringSlice), end)
-		}
-		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, f.qtyBytes()))
+	for _, f := range s.stringSlice {
+		bufWriteLine(buf, f.marshalLine(&c, f.qtyBytes()))
 	}
 
-	if at != vAt && end != vEnd {
-		at, end = s.defineTrackingVars(buf, byteIndex, at)
-	}
-	for i, f := range s.variableLen {
-		at, end = s.tracking(buf, i, end, byteIndex, f.typ)
-		bufWriteLine(buf, f.marshalLine(&byteIndex, at, end, string(f.marshal.qtyVar)))
+	for _, f := range s.variableLen {
+		bufWriteLine(buf, f.marshalLine(&c, string(f.marshal.qtyVar)))
 	}
 
 	if len(buf.Bytes()) == 0 {
@@ -81,14 +72,19 @@ func (s *structTyp) generateSizeLine() string {
 	if qty == 0 {
 		return ""
 	}
-	assignments, values := make([]string, qty), make([]string, qty)
-	for i, f := range append(s.stringSlice, s.variableLen...) {
-		assignments[i] = fmt.Sprintf("%s[%d]", s.bufferName, f.qtyIndex[0])
-		if f.isVarLen() {
-			values[i] = fmt.Sprintf("byte(%s)", f.marshal.qtyVar)
-		} else {
-			values[i] = fmt.Sprintf("byte(len(%s))", f.Name())
+	var assignments, values []string
+	for _, f := range append(s.stringSlice, s.variableLen...) {
+		if f.isVarLen() || f.tagOptions.Required {
+			assignments = append(assignments, fmt.Sprintf("%s[%d]", s.bufferName, f.qtyIndex[0]))
 		}
+		if f.isVarLen() {
+			values = append(values, fmt.Sprintf("byte(%s)", f.marshal.qtyVar))
+		} else if f.tagOptions.Required {
+			values = append(values, fmt.Sprintf("byte(len(%s))", f.Name()))
+		}
+	}
+	if len(assignments) == 0 {
+		return ""
 	}
 	return fmt.Sprintln(strings.Join(assignments, ", "), "=", strings.Join(values, ", "))
 }
@@ -98,19 +94,15 @@ func (s *structTyp) isReturnedInline() {
 		len(s.fixedLen) == 1 && s.fixedLen[0].isArray() && s.fixedLen[0].typ == tBytes
 }
 
-func (f *field) marshalLine(byteIndex *uint, at, end, lenVar string) string {
+func (f *field) marshalLine(ctx *varCtx, lenVar string) string {
 	fun, template := f.marshalFuncTemplate()
-	totalSize := f.typeFuncSize()
 	if template == tNoTemplate || template > tByteConv {
 		// Unknown type, not supported yet.
 		return ""
 	}
 
-	*byteIndex += totalSize
+	ctx.trackingVarsM(f)
 	thisField := f.Name()
-	if end == "" {
-		end = utl.UtoA(*byteIndex)
-	}
 
 	if f.isDef && fun != copyKeyword && f.isNotArrayOrSlice() {
 		f.structTyp.imports.add(f.pkgReq)
@@ -123,16 +115,110 @@ func (f *field) marshalLine(byteIndex *uint, at, end, lenVar string) string {
 			thisField += "[:]"
 		}
 
-		return fmt.Sprintf("%s(%s, %s)", fun, f.sliceExpr(at, end), thisField)
+		return fmt.Sprintf("%s(%s, %s)", fun, f.sliceExprM(ctx), thisField)
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, f.sliceExpr(at, end), thisField)
+		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, f.sliceExprM(ctx), thisField)
 	case tFuncLength:
-		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExpr(at, end), thisField, lenVar)
+		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExprM(ctx), thisField, lenVar)
+	case tFuncLengthSlice:
+		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExprM(ctx), f.qtySlice(), thisField)
 	case tByteAssign:
 		return fmt.Sprintf("%s[:]", thisField)
 	default:
 		lg.Printf("template %d unhandled", template)
 		return ""
+	}
+}
+
+func (f *field) sliceExprM(c *varCtx) string {
+	if f.isFirst && f.isLast && (f.indexStart == nil || *f.indexStart == 0) {
+		return f.structTyp.bufferName
+	}
+
+	if f.isLast && c.atValue != "" {
+		return fmt.Sprintf("%s[%s:]", f.structTyp.bufferName, c.atValue)
+	}
+
+	switch {
+	case f.isFixedLen:
+		if c.atValue == "" && c.endValue == "" {
+			return f.structTyp.bufferName
+		}
+		return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, c.atValue, c.endValue)
+	}
+	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, c.atValue, c.endValue)
+}
+
+func (c *varCtx) trackingVarsM(f *field) {
+	if f.isFixedLen {
+		c.atValue = omitZero(*f.indexStart)
+		if f.isLast {
+			c.endValue = ""
+		} else {
+			c.endValue = omitZero(*f.indexEnd)
+		}
+		return
+	}
+
+	if f.isLast {
+		if c.atValue == "" || c.endValue == "" { // TODO remove when done
+			if f.indexStart != nil && *f.indexStart != 0 {
+				c.atValue = utl.UtoA(*f.indexStart)
+				return
+			}
+			panic("why not defined?")
+		}
+		c.atValue, c.endValue = c.endValue, ""
+		return
+	}
+
+	if c.isAtDefined && c.isEndDefined {
+		if f.elmSize <= 1 {
+			bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s", vAt, vEnd, f.marshal.qtyVar)
+		} else {
+			bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s*%d", vAt, vEnd, f.marshal.qtyVar, f.elmSize)
+		}
+		return
+	}
+
+	if !c.isAtDefined && !c.isEndDefined {
+		if f.indexStart != nil && *f.indexStart != 0 {
+			c.atValue = utl.UtoA(*f.indexStart)
+			if f.typ == tBools {
+				c.endValue = fmt.Sprintf("%d+%s", *f.indexStart, printFunc(nameOf(jay.SizeBools, f.structTyp.isImportJ), string(f.marshal.qtyVar)))
+			} else {
+				if f.elmSize <= 1 {
+					c.endValue = fmt.Sprintf("%d+%s", *f.indexStart, f.marshal.qtyVar)
+				} else {
+					c.endValue = fmt.Sprintf("%d+%s*%d", *f.indexStart, f.marshal.qtyVar, f.elmSize)
+				}
+			}
+			bufWriteLineF(c.buf, "%s, %s := %s, %s", vAt, vEnd, c.atValue, c.endValue)
+			c.isAtDefined = true
+			c.isEndDefined = true
+			c.atValue = vAt
+			c.endValue = vEnd
+			return
+		}
+	}
+
+	switch {
+	case f.isStrings():
+		if len(*f.fieldList)+len(f.structTyp.variableLen) >= 2 {
+			c.isAtDefined = true
+			c.isEndDefined = true
+			c.atValue = vAt
+			c.endValue = vEnd
+			bufWriteLineF(c.buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, c.atValue, f.marshal.qtyVar)
+		}
+	case f.isVarLen():
+		if len(*f.fieldList) >= 2 {
+			c.isAtDefined = true
+			c.isEndDefined = true
+			c.atValue = vAt
+			c.endValue = vEnd
+			bufWriteLineF(c.buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, c.atValue, f.marshal.qtyVar)
+		}
 	}
 }
 
@@ -218,7 +304,11 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 	case tString:
 		return copyKeyword, tFunc
 	case tStrings:
-		fun, template = f.sizeOfPick(jay.WriteStrings8Xd, jay.WriteStrings16), tFuncLength
+		if f.tagOptions.Required {
+			fun, template = f.sizeOfPick(jay.WriteStrings8Req, jay.WriteStrings8Req), tFuncLength
+		} else {
+			fun, template = f.sizeOfPick(jay.WriteStrings8, jay.WriteStrings8), tFuncLengthSlice
+		}
 	case tTime:
 		if f.tagOptions.TimeNano {
 			fun, template = jay.WriteTimeNano, tFunc
@@ -337,6 +427,7 @@ const (
 
 	// tFuncLength calls a function with a length parameter, `func(b[at:end], type, int)`.
 	tFuncLength
+	tFuncLengthSlice
 
 	// tFuncPtr calls a function with the field used as a pointer in the last parameter.
 	tFuncPtr
@@ -348,6 +439,7 @@ const (
 
 	// tFuncPtrCheckAt expands tFuncPtrCheck by adding a function parameter to update a pointer for the byte index.
 	tFuncPtrCheckAt
+	tFuncPtrCheckAtOk
 
 	// tByteAssign byte assignment always populated. No function calls required, `b[0] = byte`.
 	tByteAssign

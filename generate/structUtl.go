@@ -3,7 +3,6 @@ package generate
 import (
 	"bytes"
 	"fmt"
-	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/utl"
 	"go/ast"
 	"go/token"
@@ -368,25 +367,6 @@ func bufWriteLineF(b *bytes.Buffer, format string, a ...any) {
 	b.WriteByte('\n')
 }
 
-func (s *structTyp) defineTrackingVars(buf *bytes.Buffer, byteIndex uint, varAt string) (at, end string) {
-	switch len(s.variableLen) {
-	case 0:
-		return
-	case 1:
-		if !strings.Contains(varAt, "+") { // TODO replace with ctx :P
-			at = utl.UtoA(byteIndex)
-		}
-	default:
-		if s.variableLen[0].typ == tBools {
-			atEndLineSet(buf, byteIndex, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(s.variableLen[0].marshal.qtyVar)))
-		} else {
-			atEndLineSet(buf, byteIndex, multiples(s.variableLen[0]))
-		}
-		at, end = vAt, vEnd
-	}
-	return
-}
-
 // firstVarLenField return the first field that is variable length,
 // either from s.stringSlice, otherwise s.variableLen.
 // Returns nil when none are found.
@@ -398,93 +378,6 @@ func (s *structTyp) firstVarLenField() *field {
 		return s.variableLen[0]
 	}
 	return nil
-}
-
-func (s *structTyp) defineTrackingVars2(buf *bytes.Buffer, byteIndex uint) (at, end string) {
-	switch len(s.stringSlice) {
-	case 0:
-		return
-	case 1:
-		if byteIndex != 0 {
-			at, end = utl.UtoA(byteIndex), fmt.Sprintf("%d+%s", byteIndex, s.firstVarLenField().marshal.qtyVar)
-			if len(s.variableLen) >= 2 {
-				bufWriteLineF(buf, "%s, %s := %s, %s", vAt, vEnd, at, end)
-				return vAt, vEnd
-			}
-		}
-		return
-	case 2:
-		if byteIndex != 0 {
-			at = utl.UtoA(byteIndex)
-			if s.stringSlice[0].marshal.qtyVar != "" {
-				end = fmt.Sprintf("%d+%s", byteIndex, s.stringSlice[0].marshal.qtyVar)
-			} else {
-				end = utl.UtoA(byteIndex)
-			}
-			bufWriteLineF(buf, "%s, %s := %d, %s", vAt, vEnd, byteIndex, end)
-			return
-		}
-
-		at, end = "", string(s.stringSlice[0].marshal.qtyVar)
-	default:
-		if byteIndex == 0 {
-			at, end = "", string(s.stringSlice[0].marshal.qtyVar)
-			return
-		}
-
-		if s.stringSlice[0].typ == tBools {
-			atEndLineSet(buf, byteIndex, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(s.stringSlice[0].marshal.qtyVar)))
-		} else {
-			atEndLineSet(buf, byteIndex, multiples(s.stringSlice[0]))
-		}
-		at, end = vAt, vEnd
-	}
-	return
-}
-
-func (s *structTyp) tracking(buf *bytes.Buffer, i int, endVar string, byteIndex uint, varType string) (at, end string) {
-	if varType == tStrings {
-		if len(s.stringSlice) >= 2 {
-			return vAt, ""
-		}
-		if byteIndex != 0 {
-			return vAt, endVar
-		}
-		return
-	}
-
-	if endVar == "" {
-		return utl.UtoA(byteIndex), ""
-	}
-
-	if i == len(s.variableLen)-1 {
-		return vEnd, ""
-	}
-	if i >= 1 || i == 0 && len(s.stringSlice) >= 1 {
-		if varType == tBools {
-			atEndLineInc(buf, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(s.variableLen[i].marshal.qtyVar)))
-		} else {
-			atEndLineInc(buf, multiples(s.variableLen[i]))
-		}
-	}
-	return vAt, vEnd
-}
-
-func (f *field) track2(buf *bytes.Buffer, index, qty int, endVar string) (at, end string) {
-	if index == qty-1 {
-		return endVar, ""
-	}
-	if index == 1 {
-		if qty <= 3 {
-			return string((*f.fieldList)[index-1].marshal.qtyVar), fmt.Sprintf("%s+%s", (*f.fieldList)[index-1].marshal.qtyVar, f.marshal.qtyVar)
-		}
-
-		bufWriteLineF(buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, (*f.fieldList)[index-1].marshal.qtyVar, f.marshal.qtyVar)
-		return vAt, vEnd
-	}
-
-	atEndLineInc(buf, f.marshal.qtyVar)
-	return vAt, vEnd
 }
 
 func lenVariable(index uint) string {

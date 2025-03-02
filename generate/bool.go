@@ -12,7 +12,7 @@ var (
 	unmarshalBoolsFuncPrefix = strings.TrimSuffix(nameOf(jay.ReadBool1, nil), "1")
 )
 
-func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint) {
+func (s *structTyp) makeWriteBools(b *bytes.Buffer) {
 	if len(s.bool) == 0 {
 		return
 	}
@@ -25,6 +25,7 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint) {
 	}
 
 	newList := fieldNamesArrays(s.bool)
+	byteIndex := *s.bool[0].indexStart
 	l := len(newList)
 	for i := 0; i < l; i += 8 {
 		next8Qty := min(8, len(newList[i:]))
@@ -32,7 +33,7 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint) {
 		if s.returnInline {
 			b.WriteString(boolsFunc(newList, i, next8Qty))
 		} else {
-			bufWriteLineF(b, "%s[%d] = %s", s.bufferName, *byteIndex, boolsFunc(newList, i, next8Qty))
+			bufWriteLineF(b, "%s[%d] = %s", s.bufferName, byteIndex, boolsFunc(newList, i, next8Qty))
 		}
 
 		if s.returnInline {
@@ -40,7 +41,7 @@ func (s *structTyp) makeWriteBools(b *bytes.Buffer, byteIndex *uint) {
 				b.WriteString(",")
 			}
 		}
-		*byteIndex++
+		byteIndex++
 	}
 
 	if s.returnInline && !hasSingles {

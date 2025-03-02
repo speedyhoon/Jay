@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint) {
+func (s *structTyp) writeSingles(b *bytes.Buffer) {
 	if len(s.single) == 0 {
 		return
 	}
@@ -17,8 +17,7 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint) {
 	for i, l := 0, len(s.single); i < l; i++ {
 		isLast := i+1 == l
 		fun, _ := s.single[i].marshalFuncTemplate()
-		writeSingle(s.single[i], b, *byteIndex, fun, !s.returnInline, isLast)
-		*byteIndex++
+		writeSingle(s.single[i], b, fun, !s.returnInline, isLast)
 	}
 
 	if s.returnInline {
@@ -26,9 +25,9 @@ func (s *structTyp) writeSingles(b *bytes.Buffer, byteIndex *uint) {
 	}
 }
 
-func writeSingle(single *field, b *bytes.Buffer, byteIndex uint, fun string, isMake, isLast bool) {
+func writeSingle(single *field, b *bytes.Buffer, fun string, isMake, isLast bool) {
 	if isMake {
-		bufWriteLineF(b, "%s[%d] = %s", single.structTyp.bufferName, byteIndex, printFunc(fun, single.Name()))
+		bufWriteLineF(b, "%s[%d] = %s", single.structTyp.bufferName, *single.indexStart, printFunc(fun, single.Name()))
 		return
 	}
 

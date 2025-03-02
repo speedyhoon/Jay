@@ -5,9 +5,9 @@ package mixed
 import "github.com/speedyhoon/jay"
 
 func (l *Lion) MarshalJ() (b []byte) {
-	b = make([]byte, 1+jay.StringsSize8(l.Strings))
-	b[0] = jay.Bool2(l.B1, l.B2)
-	jay.WriteStrings8(b[1:], l.Strings)
+	b = make([]byte, 2+jay.StringsSize8(l.Strings))
+	b[1] = jay.Bool2(l.B1, l.B2)
+	jay.WriteStrings8(b[2:], b[0:1], l.Strings)
 	return
 }
 
@@ -15,18 +15,18 @@ func (l *Lion) UnmarshalJ(b []byte) error {
 	if len(b) < 2 {
 		return jay.ErrUnexpectedEOB
 	}
-	l.B1, l.B2 = jay.ReadBool2(b[0])
-	return jay.ReadStrings8Err(b[1:], &l.Strings)
+	l.B1, l.B2 = jay.ReadBool2(b[1])
+	return jay.ReadStrings8Err(b[2:], &l.Strings, b[0])
 }
 
 func (z *Zebra) MarshalJ() (b []byte) {
 	l0, l1, l2 := jay.StringsSize8(z.Strings), len(z.Str), len(z.Ints)
-	b = make([]byte, 11+8*l2+l0+l1)
-	b[0], b[1] = byte(l1), byte(l2)
-	b[2] = jay.Bool2(z.B1, z.B2)
-	jay.WriteUint64(b[3:11], z.U64)
-	at, end := 11, 11+l0
-	jay.WriteStrings8(b[at:end], z.Strings)
+	b = make([]byte, 12+8*l2+l0+l1)
+	b[1], b[2] = byte(l1), byte(l2)
+	b[3] = jay.Bool2(z.B1, z.B2)
+	jay.WriteUint64(b[4:12], z.U64)
+	at, end := 12, 12+l0
+	jay.WriteStrings8(b[at:end], b[0:1], z.Strings)
 	at, end = end, end+l1
 	copy(b[at:end], z.Str)
 	jay.WriteIntsX64(b[end:], z.Ints)
@@ -38,16 +38,16 @@ func (z *Zebra) UnmarshalJ(b []byte) error {
 	if l < 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	l1, l2 := int(b[0]), int(b[1])
+	l1, l2 := int(b[1]), int(b[2])
 	if l < 12+8*l2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at := 11
-	if !jay.ReadStrings8nb(b[at:], &z.Strings, &at) {
+	at := 12
+	if !jay.ReadStrings8nbX(b[12:], &z.Strings, b[0], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	z.B1, z.B2 = jay.ReadBool2(b[2])
-	z.U64 = jay.ReadUint64(b[3:11])
+	z.B1, z.B2 = jay.ReadBool2(b[3])
+	z.U64 = jay.ReadUint64(b[4:12])
 	end := at + l1
 	z.Str = string(b[at:end])
 	z.Ints = jay.ReadIntsX64(b[end:], l2)
