@@ -173,7 +173,9 @@ func (c *varCtx) trackingVarsM(f *field) {
 	}
 
 	if c.isAtDefined && c.isEndDefined {
-		if f.elmSize <= 1 {
+		if f.typ == tBools {
+			bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s", vAt, vEnd, printFunc(nameOf(jay.SizeBools, f.structTyp.isImportJ), string(f.marshal.qtyVar)))
+		} else if f.elmSize <= 1 {
 			bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s", vAt, vEnd, f.marshal.qtyVar)
 		} else {
 			bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s*%d", vAt, vEnd, f.marshal.qtyVar, f.elmSize)
