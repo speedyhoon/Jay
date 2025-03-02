@@ -96,7 +96,7 @@ func (s *structTyp) makeLengthChecks() string {
 		if f.typ == tBools {
 			values = append(values, printFunc(f.pickSizeFunc(jay.SizeBools8, jay.SizeBools), string(f.unmarshal.qtyVar)))
 		} else {
-			values = append(values, fmt.Sprintf("int(%s[%d])", s.bufferName, f.qtyIndex[0]))
+			values = append(values, fmt.Sprintf("%s(%s)", intKeyword, f.qtyBytes()))
 		}
 		sizeChecks.add(f, assignments[i])
 	}

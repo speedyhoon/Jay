@@ -23,7 +23,7 @@ func (s *structTyp) varsUnmarshal() {
 	for i, f := range append(s.stringSlice, s.variableLen...) {
 		switch f.typ {
 		case tBools:
-			f.unmarshal.qtyVar = multiplier(fmt.Sprintf("%s[%d]", f.structTyp.bufferName, uint(i)))
+			f.unmarshal.qtyVar = multiplier(f.qtyBytes())
 		default:
 			f.unmarshal.qtyVar = multiplier(lenVariable(uint(i)))
 		}
@@ -36,6 +36,5 @@ func (s *structTyp) varsUnmarshal() {
 func (s *structTyp) varsMarshal() {
 	for i, f := range append(s.stringSlice, s.variableLen...) {
 		f.marshal.qtyVar = multiplier(lenVariable(uint(i)))
-		f.marshal.sizeVar = f.marshal.qtyVar
 	}
 }

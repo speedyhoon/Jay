@@ -20,6 +20,7 @@ const (
 	DefaultOutputFileName   = pkgName + utl.GoExt
 	IntSize                 = 32 << (^uint(0) >> 63) // 32-bit or 64-bit architecture.
 	copyKeyword, lenKeyword = "copy", "len"
+	intKeyword              = "int"
 )
 
 var (
