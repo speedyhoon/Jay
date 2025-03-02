@@ -173,29 +173,13 @@ func (c *varCtx) trackingVarsM(f *field) {
 	}
 
 	if c.isAtDefined && c.isEndDefined {
-		if f.typ == tBools {
-			bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s", vAt, vEnd, printFunc(nameOf(jay.SizeBools, f.structTyp.isImportJ), string(f.marshal.qtyVar)))
-		} else if f.elmSize <= 1 {
-			bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s", vAt, vEnd, f.marshal.qtyVar)
-		} else {
-			bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s*%d", vAt, vEnd, f.marshal.qtyVar, f.elmSize)
-		}
+		bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s", vAt, vEnd, f.ctxVarIncrementBy())
 		return
 	}
 
 	if !c.isAtDefined && !c.isEndDefined {
 		if f.indexStart != nil && *f.indexStart != 0 {
-			c.atValue = utl.UtoA(*f.indexStart)
-			if f.typ == tBools {
-				c.endValue = fmt.Sprintf("%d+%s", *f.indexStart, printFunc(nameOf(jay.SizeBools, f.structTyp.isImportJ), string(f.marshal.qtyVar)))
-			} else {
-				if f.elmSize <= 1 {
-					c.endValue = fmt.Sprintf("%d+%s", *f.indexStart, f.marshal.qtyVar)
-				} else {
-					c.endValue = fmt.Sprintf("%d+%s*%d", *f.indexStart, f.marshal.qtyVar, f.elmSize)
-				}
-			}
-			bufWriteLineF(c.buf, "%s, %s := %s, %s", vAt, vEnd, c.atValue, c.endValue)
+			bufWriteLineF(c.buf, "%s, %s := %d, %[3]d+%s", vAt, vEnd, *f.indexStart, f.ctxVarIncrementBy())
 			c.isAtDefined = true
 			c.isEndDefined = true
 			c.atValue = vAt
@@ -221,6 +205,16 @@ func (c *varCtx) trackingVarsM(f *field) {
 			c.endValue = vEnd
 			bufWriteLineF(c.buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, c.atValue, f.marshal.qtyVar)
 		}
+	}
+}
+
+func (f *field) ctxVarIncrementBy() string {
+	if f.typ == tBools {
+		return printFunc(nameOf(jay.SizeBools, f.structTyp.isImportJ), string(f.marshal.qtyVar))
+	} else if f.elmSize <= 1 {
+		return string(f.marshal.qtyVar)
+	} else {
+		return fmt.Sprintf("%s*%d", f.marshal.qtyVar, f.elmSize)
 	}
 }
 
