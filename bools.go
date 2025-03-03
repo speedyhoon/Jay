@@ -8,9 +8,6 @@ func SizeBools(length int) int {
 }
 
 func SizeBools8(length uint8) int {
-	if length == 0 {
-		return 0
-	}
 	return (int(length) + 7) >> 3
 }
 
