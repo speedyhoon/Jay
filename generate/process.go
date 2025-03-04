@@ -283,8 +283,7 @@ func isStruct(f *ast.Field) (fields []*ast.Field, ok bool) {
 }
 
 func (s *structTyp) setFirstNLast() {
-	// lists is the order that each field list is processed.
-	lists := []fieldList{s.bool, s.single, s.fixedLen, s.stringSlice, s.variableLen}
+	lists := s.processOrder()
 	for i := range lists {
 		if len(lists[i]) >= 1 {
 			lists[i][0].isFirst = true
@@ -302,10 +301,12 @@ setLast:
 	}
 }
 
-func (s *structTyp) setFieldByteIndexes() {
-	// lists is the order that each field list is processed.
-	lists := []fieldList{s.bool, s.single, s.fixedLen, s.stringSlice, s.variableLen}
+// processOrder returns is the order that fieldList's are processed in.
+func (s *structTyp) processOrder() []fieldList {
+	return []fieldList{s.bool, s.single, s.fixedLen, s.stringSlice, s.variableLen}
+}
 
+func (s *structTyp) setFieldByteIndexes() {
 	var isFirstVarLen bool
 	var byteIndex uint
 	for _, f := range append(s.stringSlice, s.variableLen...) {
@@ -313,7 +314,7 @@ func (s *structTyp) setFieldByteIndexes() {
 		byteIndex++
 	}
 
-	for i, list := range lists {
+	for i, list := range s.processOrder() {
 		var boolsQty uint
 		for n, f := range list {
 			si := byteIndex
