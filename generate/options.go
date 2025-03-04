@@ -94,8 +94,7 @@ func LoadOptions(opts ...Option) (o Option) {
 		lg = o.Verbose
 	}
 
-	o.removeInvalidTypes()
-	o.regexSearchTypes()
+	o.cleanOnlyTypes()
 
 	if o.MaxDefaultStrSize == 0 {
 		o.MaxDefaultStrSize = maxUint8
@@ -118,16 +117,6 @@ func LoadOptions(opts ...Option) (o Option) {
 		o.MaxIntSize = Bit32
 	}
 	return
-}
-
-func (o *Option) removeInvalidTypes() {
-	for i := 0; i < len(o.OnlyTypes); i++ {
-		o.OnlyTypes[i] = strings.TrimSpace(o.OnlyTypes[i])
-		if !typeNameRegex.MatchString(o.OnlyTypes[i]) {
-			lg.Println("type:", o.OnlyTypes[i], "didn't satisfy validation regex")
-			o.OnlyTypes = Remove(o.OnlyTypes, i)
-		}
-	}
 }
 
 // IsSpecifiedType checks if typeName is one of the types listed in Option.OnlyTypes.
@@ -154,9 +143,15 @@ func bytesRequired(input uint) uint8 {
 	return uint8(utl.LogBaseXUint(256, input+1))
 }
 
-func (o *Option) regexSearchTypes() {
+// cleanOnlyTypes removes invalid and duplicate types listed in o.OnyTypes.
+func (o *Option) cleanOnlyTypes() {
 	for i := 0; i < len(o.OnlyTypes); i++ {
 		o.OnlyTypes[i] = strings.TrimSpace(o.OnlyTypes[i])
+		if !typeNameRegex.MatchString(o.OnlyTypes[i]) {
+			lg.Println("type:", o.OnlyTypes[i], "didn't satisfy validation regex")
+			o.OnlyTypes = Remove(o.OnlyTypes, i)
+		}
+
 		o.OnlyTypes[i] = strings.Trim(o.OnlyTypes[i], ".")
 
 		// Remove duplicates.
@@ -177,6 +172,7 @@ func (o *Option) regexSearchTypes() {
 
 		r, err := regexp.Compile(o.OnlyTypes[i])
 		if err != nil {
+			o.OnlyTypes = Remove(o.OnlyTypes, i)
 			log.Println(err)
 			continue
 		}
