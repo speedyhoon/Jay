@@ -1,9 +1,9 @@
 package jay
 
-// StringsSize8 calculates the total size needed to represent a []string and
+/*// SizeStrings8 calculates the total size needed to represent a []string and
 // returns the quantity of strings in a slice of strings
-// StringsSize8 only supports up to 255 items.
-func StringsSize8(s []string) (total, qty int, sizes []byte) {
+// SizeStrings8 only supports up to 255 items.
+func SizeStrings8(s []string) (total, qty int, sizes []byte) {
 	qty = len(s)
 	sizes = make([]byte, qty)
 	var l int
@@ -15,8 +15,8 @@ func StringsSize8(s []string) (total, qty int, sizes []byte) {
 	return
 }
 
-// StringsSize16 only supports up to 65,535 items.
-func StringsSize16(s []string) (total, qty int, sizes []byte) {
+// SizeStrings16 only supports up to 65,535 items.
+func SizeStrings16(s []string) (total, qty int, sizes []byte) {
 	qty = len(s)
 	sizes = make([]byte, qty*2)
 	var l int
@@ -28,8 +28,8 @@ func StringsSize16(s []string) (total, qty int, sizes []byte) {
 	return
 }
 
-// StringsSize24 only supports up to 16,777,215 items.
-func StringsSize24(s []string) (total, qty int, sizes []byte) {
+// SizeStrings24 only supports up to 16,777,215 items.
+func SizeStrings24(s []string) (total, qty int, sizes []byte) {
 	qty = len(s)
 	sizes = make([]byte, qty*3)
 	var l int

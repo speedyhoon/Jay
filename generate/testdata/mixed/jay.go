@@ -5,7 +5,7 @@ package mixed
 import "github.com/speedyhoon/jay"
 
 func (l *Lion) MarshalJ() (b []byte) {
-	b = make([]byte, 2+jay.StringsSize8(l.Strings))
+	b = make([]byte, 2+jay.SizeStrings8(l.Strings))
 	b[1] = jay.Bool2(l.B1, l.B2)
 	jay.WriteStrings8(b[2:], b[0:1], l.Strings)
 	return
@@ -20,7 +20,7 @@ func (l *Lion) UnmarshalJ(b []byte) error {
 }
 
 func (z *Zebra) MarshalJ() (b []byte) {
-	l0, l1, l2 := jay.StringsSize8(z.Strings), len(z.Str), len(z.Ints)
+	l0, l1, l2 := jay.SizeStrings8(z.Strings), len(z.Str), len(z.Ints)
 	b = make([]byte, 12+8*l2+l0+l1)
 	b[1], b[2] = byte(l1), byte(l2)
 	b[3] = jay.Bool2(z.B1, z.B2)

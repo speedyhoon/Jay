@@ -157,7 +157,7 @@ func (s *structTyp) generateMakeSizes(totalSize uint) string {
 	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
 	for _, f := range append(s.stringSlice, s.variableLen...) {
 		if f.isLast && f.typ == tStrings {
-			sizeChecks.add(f, printFunc(nameOf(jay.StringsSize8, s.isImportJ), f.Name()))
+			sizeChecks.add(f, printFunc(nameOf(jay.SizeStrings8, s.isImportJ), f.Name()))
 		} else {
 			if f.typ == tBools {
 				sizeChecks.add(f, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(f.marshal.qtyVar)))

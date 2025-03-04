@@ -1,6 +1,6 @@
 package jay
 
-func StringsSize8(s []string) (total int) {
+func SizeStrings8(s []string) (total int) {
 	l := len(s)
 	if l == 0 {
 		return 1
@@ -12,7 +12,7 @@ func StringsSize8(s []string) (total int) {
 	return 1 + l + total
 }
 
-func StringsSize16(s []string) (total int) {
+func SizeStrings16(s []string) (total int) {
 	l := len(s)
 	if l == 0 {
 		return 2
