@@ -395,7 +395,8 @@ const (
 	tUint, tUint16, tUint32, tUint64         = "uint", "uint16", "uint32", "uint64"
 	tUints, tUint16s, tUint32s, tUint64s     = "[]uint", "[]uint16", "[]uint32", "[]uint64"
 	tString, tStrings                        = "string", "[]string"
-	tTime, tTimeDuration, tTimeDurations     = "time.Time", "time.Duration", "[]time.Duration"
+	tTime, tTimes                            = "time.Time", "[]time.Time"
+	tTimeDuration, tTimeDurations            = "time.Duration", "[]time.Duration"
 )
 
 // resolveBuiltinAlias replaces the built-in alias with the underlining name to reduce the quantity of types to support.

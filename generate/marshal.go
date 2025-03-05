@@ -311,6 +311,8 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 		} else {
 			fun, template = jay.WriteTime, tFunc
 		}
+	case tTimes:
+		fun, template = jay.WriteTimes, tFunc
 	case tTimeDurations:
 		fun, template = jay.WriteDurations, tFunc
 	case tUint16:

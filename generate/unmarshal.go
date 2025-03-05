@@ -455,6 +455,8 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		} else {
 			c, template = jay.ReadTime, tFunc
 		}
+	case tTimes:
+		c, template = jay.ReadTimes, tFuncLength
 	case tTimeDurations:
 		c, template = jay.ReadDurations, tFuncLength
 	case tUint16:

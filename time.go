@@ -12,6 +12,24 @@ func WriteTime(b []byte, t time.Time) {
 	WriteInt64(b, t.Unix())
 }
 
+func ReadTimes(y []byte, length int) (t []time.Time) {
+	if length == 0 {
+		return
+	}
+
+	t = make([]time.Time, length)
+	for i := 0; i < length; i++ {
+		t[i] = ReadTime(y[i*_8 : i*_8+_8])
+	}
+	return
+}
+
+func WriteTimes(y []byte, t []time.Time) {
+	for i := range t {
+		WriteInt64(y[i*_8:i*_8+_8], t[i].Unix())
+	}
+}
+
 // timeZero represents the undefined value for time.Time.
 // Zero (0) is not used to prevent errors when time.Unix(0) (1970-01-01) are converted to 0001-01-01.
 // The maximum and minimum values math.MaxInt64 and math.MinInt64 are also not used to prevent collisions

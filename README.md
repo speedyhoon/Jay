@@ -110,8 +110,10 @@ Auto & HasFuel, ID,   Make,      Model         = 15 bytes
 * `string` _(Currently limited to 255 byte lengths)_
 * `struct` _(Embedded structs aren't fully fuzz tested yet.)_
 * `time.Time`, `time.Duration`
+* `[]time.Time`, `[]time.Duration`
 * `uint`, `uint8`, `uint16`, `uint32`, `uint64`
 * `[]uint`, `[]uint8`, `[]uint16`, `[]uint32`, `[]uint64`
+* arrays for simple types _(`[5]string` limited testing so far)_
 
 Jay also supports imported types. If the exported type is in the same package or a subpackage then `jay` will automatically find it with:
 
@@ -131,8 +133,6 @@ To include an external type via the commandline, either:
 
 In order of priority:
 
-* arrays _(`[5]string`)_ <br>
-  **WIP** -- depends upon type definition work for slices.
 * Expand fuzz testing.
 * Field tag options.
 * Field tag documentation.
