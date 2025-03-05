@@ -46,7 +46,7 @@ func isBuiltIn(typ string) bool {
 	return false
 }
 
-func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f field, ok bool) {
+func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string) (ok bool) {
 	switch d := t.(type) {
 	case *ast.Ident:
 		if d.Obj == nil {
@@ -55,46 +55,46 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 				// Object might be declared in another file in the same package.
 				d.Obj = findImportedType((*dirList)[pkg].files, (*dirList)[pkg].pkg, typ)
 				if d.Obj == nil {
-					return f, false
+					return false
 				}
-				f, ok = o.isSupportedType(d.Obj, dirList, pkg)
+				ok = o.isSupportedType(f, d.Obj, dirList, pkg)
 				f.aliasType = typ
 			}
 			if f.typ == "" {
 				f.typ = typ
 			}
 			if f.elmSize == 0 {
-				f.elmSize = isLen(f.typ)
+				f.elmSize = o.isLen(f.typ)
 			}
 			f.isFixedLen = o.isLenFixed(f.typ)
-			return f, true
+			return true
 		}
 
-		f, ok = o.isSupportedType(d.Obj, dirList, pkg)
+		ok = o.isSupportedType(f, d.Obj, dirList, pkg)
 
 	case nil:
 	// Ignore.
 	case *ast.SelectorExpr:
-		f, ok = o.isSupportedSelector(d, dirList)
+		ok = o.isSupportedSelector(f, d, dirList)
 
 	case *ast.Object:
 		if d.Kind != ast.Typ || d.Name == "" {
 			lg.Println(d)
-			return f, false
+			return false
 		}
-		f, ok = o.isSupportedType(d.Decl, dirList, pkg)
+		ok = o.isSupportedType(f, d.Decl, dirList, pkg)
 
 	case *ast.ArrayType:
-		f, ok = o.isSupportedType(d.Elt, dirList, pkg)
+		ok = o.isSupportedType(f, d.Elt, dirList, pkg)
 		if !ok {
-			return f, false
+			return false
 		}
 		f.arrayType = f.typ
 		if f.isDef {
 			// f.isDef prevents types like []float where `type float float32` which can't be easily converted to []float32 in one line.
 			// However, `type float = float32`, `type floats = []float32` & `type floats []float32` can be easily converted in one line.
 			if f.aliasType != tTimeDuration {
-				return f, false
+				return false
 			}
 
 			f.typ = "[]" + f.aliasType
@@ -106,7 +106,7 @@ func (o Option) isSupportedType(t interface{}, dirList *dirList, pkg string) (f 
 		f.isFixedLen = f.isFixedLen && f.isArray()
 
 	case *ast.TypeSpec:
-		f, ok = o.isSupportedType(d.Type, dirList, pkg)
+		ok = o.isSupportedType(f, d.Type, dirList, pkg)
 		// Field is a type definition if isDef has already been set via inspecting d.Type beforehand, like time.Duration (type Duration int64),
 		// OR if TypeSpec is not an assignment (there is no equal sign).
 		f.isDef = f.isDef || d.Assign == token.NoPos
@@ -163,7 +163,7 @@ func findImportedType(files []*ast.File, pkg, typName string) *ast.Object {
 }
 
 // isSupportedSelector resolves imported types and some types within Go's standard library.
-func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f field, ok bool) {
+func (o Option) isSupportedSelector(f *field, d *ast.SelectorExpr, dirList *dirList) (ok bool) {
 	x, ok := d.X.(*ast.Ident)
 	if !ok {
 		return
@@ -180,23 +180,23 @@ func (o Option) isSupportedSelector(d *ast.SelectorExpr, dirList *dirList) (f fi
 			f.aliasType = tTimeDuration
 			f.isDef = true
 			f.isFixedLen = true
-			f.elmSize = isLen(f.typ)
-			return f, true
+			f.elmSize = o.isLen(f.typ)
+			return true
 		case "Time": // type Time struct
 			f.typ = tTime
 			f.pkgReq = x.Name
 			f.aliasType = tTime
 			f.isFixedLen = true
-			f.elmSize = isLen(f.typ)
-			return f, true
+			f.elmSize = o.isLen(f.typ)
+			return true
 		}
 	}
 
 	obj := findImportedType(dirList.allFiles(), x.Name, d.Sel.Name)
 	if obj != nil {
-		f, ok = o.isSupportedType(obj, nil, "")
+		ok = o.isSupportedType(f, obj, nil, "")
 		f.aliasType = d.Sel.Name
-		return f, f.typ != ""
+		return f.typ != ""
 	}
 
 	return
@@ -319,7 +319,7 @@ func (s *structTyp) addExportedFields(names []*ast.Ident, f *field) {
 }
 
 // isLen returns how many bytes each type requires.
-func isLen(typ string) uint {
+func (o Option) isLen(typ string) uint {
 	switch typ {
 	case tBool, tByte, tInt8, tString:
 		return 1
@@ -327,10 +327,12 @@ func isLen(typ string) uint {
 		return 2
 	case tInt32, tUint32, tFloat32:
 		return 4
-	case tInt64, tUint64, tFloat64:
+	case tInt64, tUint64, tFloat64, tTime:
 		return 8
-	case tInt, tUint, tTime:
-		// TODO dynamically set size for 32 or 64 bit systems
+	case tInt, tUint:
+		if o.Is32bit {
+			return 4
+		}
 		return 8
 	}
 	return 0

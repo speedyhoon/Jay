@@ -203,13 +203,9 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 			continue
 		}
 
-		fe, ok := s.option.isSupportedType(t.Type, dirList, s.dir)
+		fe := newField(tag)
+		ok := s.option.isSupportedType(&fe, t.Type, dirList, s.dir)
 		if !ok {
-			fields = Remove(fields, i)
-			continue
-		}
-
-		if !fe.LoadTagOptions(tag) {
 			fields = Remove(fields, i)
 			continue
 		}

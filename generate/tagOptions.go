@@ -31,10 +31,10 @@ type (
 	tagSize16 uint
 )
 
-func (f *field) LoadTagOptions(tag string) (ok bool) {
-	f.tag = strings.TrimSpace(tag)
+func newField(fieldTag string) (f field) {
+	f.tag = strings.TrimSpace(fieldTag)
 	if f.tag == "" {
-		return true
+		return
 	}
 
 	for _, c := range strings.Split(f.tag, ",") {
@@ -53,7 +53,7 @@ func (f *field) LoadTagOptions(tag string) (ok bool) {
 			f.tagOptions.Required = isShortRequiredTag(g)
 		}
 	}
-	return true
+	return
 }
 
 // isShortRequiredTag returns true if the tag starts with "r", "req", "require" or "required".
