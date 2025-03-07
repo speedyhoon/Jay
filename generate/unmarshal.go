@@ -235,7 +235,7 @@ func (c *varCtx) trackingVars(f *field) {
 		}
 
 		if !c.isEndDefined {
-			bufWriteLineF(c.buf, "%s := %s+%s", vEnd, vAt, f.unmarshal.qtyVar)
+			bufWriteLineF(c.buf, "%s := %s+%s", vEnd, vAt, f.unmarshal.sizeVar)
 			c.isEndDefined = true
 			c.endValue = vEnd
 		}
@@ -253,6 +253,7 @@ func (c *varCtx) atEndLineInc(inc any) {
 	atEndLineInc(c.buf, inc)
 }
 
+// atEndLineInc increments existing `at` and `end` variables.
 func atEndLineInc(buf *bytes.Buffer, inc any) {
 	bufWriteLineF(buf, "%s, %s = %[2]s, %[2]s+%v", vAt, vEnd, inc)
 }
