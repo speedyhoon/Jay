@@ -365,7 +365,7 @@ func bufWriteLine(b *bytes.Buffer, line string) {
 
 func bufWriteLineF(b *bytes.Buffer, format string, a ...any) {
 	b.WriteByte('\t')
-	b.WriteString(fmt.Sprintf(format, a...))
+	bufWriteF(b, format, a...)
 	b.WriteByte('\n')
 }
 
