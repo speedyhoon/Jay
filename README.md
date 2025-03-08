@@ -21,7 +21,7 @@ generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tre
 * No custom language to learn. Jay uses Go's built in [`ast`](https://pkg.go.dev/go/ast) to find exported structs in your existing codebase.
 * No hassles between client and server. Generate the code once and share _(via a Go module or copy-paste)_.
 * Options to generate code optimized for:
-	* Processing more requests per second _(higher CPU throughput)_ **OR**.
+	* Processing more requests per second _(higher CPU throughput)_ **OR**,
 	* Least network bandwidth used _(10/100 networks)_.
 * Doesn't introduce extra dependencies.
 * Output could be compressed with `gzip`, `brotli`, [`zstd`](https://facebook.github.io/zstd/) or others.
