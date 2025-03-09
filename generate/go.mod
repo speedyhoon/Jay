@@ -7,7 +7,7 @@ require (
 	github.com/speedyhoon/rando v0.0.0-20241207060149-59900bd5e51c
 	github.com/speedyhoon/rando/types v0.0.0-20241207060149-59900bd5e51c
 	github.com/speedyhoon/utl v0.0.0-20241130025530-32e046ad4edf
-	github.com/speedyhoon/utl/flagvar v0.0.0-20241130025530-32e046ad4edf
+	github.com/speedyhoon/utl/flagvar v0.0.0-20241219005249-023dba03978b
 	github.com/stretchr/testify v1.10.0
 	mvdan.cc/gofumpt v0.6.0
 )

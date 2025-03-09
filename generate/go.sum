@@ -22,10 +22,10 @@ github.com/speedyhoon/rando/types v0.0.0-20241207060149-59900bd5e51c h1:rgfzOXrM
 github.com/speedyhoon/rando/types v0.0.0-20241207060149-59900bd5e51c/go.mod h1:8xAoTF9FUVXZkpa+/oVsFYCAijz5Ffs405JVUQ132VY=
 github.com/speedyhoon/utl v0.0.0-20241130025530-32e046ad4edf h1:vQNpWqPWCyaa5EHcNaEJbaVHCjqyRh45bbnM80Ze/o8=
 github.com/speedyhoon/utl v0.0.0-20241130025530-32e046ad4edf/go.mod h1:RWVaO7s3mq/sV1cx/nTu9e/JeOgnktbcqGfzj+VcJ1s=
-github.com/speedyhoon/utl/flagvar v0.0.0-20241130025530-32e046ad4edf h1:8lOV0OAEJysRnrNY8M0K5PWqjypa4iDdRqM0zCsUjc4=
-github.com/speedyhoon/utl/flagvar v0.0.0-20241130025530-32e046ad4edf/go.mod h1:0hr9o8sgiD7rub1GU0nM4whOLGfN8s8yO7uzTowBxsk=
-github.com/speedyhoon/utl/tf v0.0.0-20240404234419-3a81ac44337a h1:G06deqBWeA92aDyPpUxwvYAN3R+q+fdXll4ChKdddB0=
-github.com/speedyhoon/utl/tf v0.0.0-20240404234419-3a81ac44337a/go.mod h1:F7pya3IfvPjg9EMkJ/YNS8pr1bCGzkCqzLb6Jw+6aJ4=
+github.com/speedyhoon/utl/flagvar v0.0.0-20241219005249-023dba03978b h1:/wyY1q0sRvYis+z4FQ52t0k+nhppl/oX9CxIH4pnjM8=
+github.com/speedyhoon/utl/flagvar v0.0.0-20241219005249-023dba03978b/go.mod h1:DaRDsmgLLCh5Mogm2rB/U0/Tlq4NP8bgGDEn05ace34=
+github.com/speedyhoon/utl/tf v0.0.0-20241219003927-c59b3c3a2c12 h1:W75p9QsLijTr539wiPLSL2Grqy3Yh5ka91uQ0XttvPs=
+github.com/speedyhoon/utl/tf v0.0.0-20241219003927-c59b3c3a2c12/go.mod h1:F7pya3IfvPjg9EMkJ/YNS8pr1bCGzkCqzLb6Jw+6aJ4=
 github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOfJA=
 github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 golang.org/x/mod v0.18.0 h1:5+9lSbEzPSdWkH32vYPBwEpX8KwDbM52Ud9xBUvNlb0=
