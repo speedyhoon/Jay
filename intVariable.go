@@ -10,7 +10,7 @@ const (
 // ReadInt24 ...
 func ReadInt24(y []byte) int {
 	// Check if the negative bit is on.
-	if y[2]&_128 == _128 {
+	if y[2] >= _128 {
 		return neg24Mask | int(y[0]) | int(y[1])<<_8 | int(y[2])<<_16
 	}
 	return int(y[0]) | int(y[1])<<_8 | int(y[2])<<_16
@@ -19,7 +19,7 @@ func ReadInt24(y []byte) int {
 // ReadInt40 ...
 func ReadInt40(y []byte) int {
 	// Check if the negative bit is on.
-	if y[4]&_128 == _128 {
+	if y[4] >= _128 {
 		return neg40Mask | int(y[0]) | int(y[1])<<_8 | int(y[2])<<_16 | int(y[3])<<_24 | int(y[4])<<_32
 	}
 	return int(y[0]) | int(y[1])<<_8 | int(y[2])<<_16 | int(y[3])<<_24 | int(y[4])<<_32
@@ -28,7 +28,7 @@ func ReadInt40(y []byte) int {
 // ReadInt48 ...
 func ReadInt48(y []byte) int {
 	// Check if the negative bit is on.
-	if y[5]&_128 == _128 {
+	if y[5] >= _128 {
 		return neg48Mask | int(y[0]) | int(y[1])<<_8 | int(y[2])<<_16 | int(y[3])<<_24 |
 			int(y[4])<<_32 | int(y[5])<<_40
 	}
@@ -39,7 +39,7 @@ func ReadInt48(y []byte) int {
 // ReadInt56 ...
 func ReadInt56(y []byte) int {
 	// Check if the negative bit is on.
-	if y[6]&_128 == _128 {
+	if y[6] >= _128 {
 		return neg56Mask | int(y[0]) | int(y[1])<<_8 | int(y[2])<<_16 | int(y[3])<<_24 |
 			int(y[4])<<_32 | int(y[5])<<_40 | int(y[6])<<_48
 	}
