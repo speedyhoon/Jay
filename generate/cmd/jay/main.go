@@ -4,8 +4,8 @@
 //
 //	-32	Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.
 //	-d	Debug mode, always write to disk.
-//	-fi	Fixed int size.
-//	-fu	Fixed uint size.
+//	-vi	Variable int size.
+//	-vu	Variable uint size.
 //	-o	Output file.
 //	-v	Verbose output.
 //	-p	Pointer MarshalJ()  method.
@@ -48,8 +48,8 @@ func main() {
 
 	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.")
 	flag.BoolVar(&opt.IsDebug, "d", false, "Debug mode - always writes to disk.")
-	flag.BoolVar(&opt.FixedIntSize, "fi", true, "Fixed int size.")
-	flag.BoolVar(&opt.FixedUintSize, "fu", true, "Fixed uint size.")
+	flag.BoolVar(&opt.VariableIntSize, "vi", false, "Variable int size.")
+	flag.BoolVar(&opt.VariableUintSize, "vu", false, "Variable uint size.")
 	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
 	flag.BoolVar(&verbose, "v", false, "Verbose output.")
 	flag.BoolVar(&opt.IsMarshalMethodPtr, "p", false, "Pointer MarshalJ() method.")

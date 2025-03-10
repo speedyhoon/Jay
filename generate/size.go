@@ -38,21 +38,21 @@ func (f *field) typeFuncSize() (size uint) {
 		case tFloat64, tInt64, tUint64, tTime:
 			return 8
 		case tInt:
-			if f.structTyp.option.FixedIntSize {
-				if f.structTyp.option.Is32bit {
-					return 4
-				}
-				return 8
+			if f.structTyp.option.VariableIntSize {
+				return 1
 			}
-			return 1
+			if f.structTyp.option.Is32bit {
+				return 4
+			}
+			return 8
 		case tUint:
-			if f.structTyp.option.FixedUintSize {
-				if f.structTyp.option.Is32bit {
-					return 4
-				}
-				return 8
+			if f.structTyp.option.VariableUintSize {
+				return 1
 			}
-			return 1
+			if f.structTyp.option.Is32bit {
+				return 4
+			}
+			return 8
 		}
 	}
 	lg.Printf("type %s unhandled in typeFuncSize()", f.typ)

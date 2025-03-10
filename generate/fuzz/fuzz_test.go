@@ -29,7 +29,7 @@ func TestFuzz(t *testing.T) {
 	pathTest := filepath.Join(tempPath, "jay_test.go")
 	pathJay := filepath.Join(tempPath, generate.DefaultOutputFileName)
 
-	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
+	var opt generate.Option
 
 	pkg, tests, err := types.Package(tempPath)
 	// Ensure both files are saved before processing. But if pathPkg fails to save, at least try to save pathTest too.

@@ -47,12 +47,12 @@ type Option struct {
 	// maxUint24 = 16 Megabytes,
 
 	// Whether type `int` should be a fixed length (4 bytes for 32-bit, or 8 bytes for 64-bit) or vary in length depending on the value provided.
-	FixedIntSize bool
+	VariableIntSize bool
 
 	// Whether type `uint` should be a fixed length (4 bytes 32-bit, or 8 bytes 64-bit) or vary in length depending on the value provided.
 	// True = Highest CPU serialization/deserialization throughput,
 	// false = Least bandwidth used.
-	FixedUintSize bool
+	VariableUintSize bool
 
 	// TODO add option to check if a struct or map is nil/empty by appending an extra null byte \0x0 ?
 	// If the null byte wasn't there - how would the Read functions know if there was an unexpected

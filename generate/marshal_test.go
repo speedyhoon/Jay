@@ -37,7 +37,7 @@ func (b *Boat) UnmarshalJ(y []byte) error {
 }
 `
 
-	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
+	var opt generate.Option
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)
@@ -77,7 +77,7 @@ func (c *Car) UnmarshalJ(b []byte) error {
 }
 `
 
-	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
+	var opt generate.Option
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)
@@ -117,7 +117,7 @@ func (y *Yacht) UnmarshalJ(b []byte) error {
 }
 `
 
-	opt := generate.Option{FixedIntSize: true, FixedUintSize: true}
+	var opt generate.Option
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)

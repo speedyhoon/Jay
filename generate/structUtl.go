@@ -341,11 +341,11 @@ func (o Option) isLen(typ string) uint {
 func (o Option) isLenFixed(typ string) bool {
 	switch typ {
 	case tInt:
-		return o.FixedIntSize
+		return !o.VariableIntSize
 	case tString:
 		return false
 	case tUint:
-		return o.FixedUintSize
+		return !o.VariableUintSize
 	}
 	return true
 }

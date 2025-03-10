@@ -29,9 +29,9 @@ jay my_file.go
 
 `-d` Debug mode, always write to disk. _Default: `false`_
 
-`-fi` Fixed int size. _Default: `true`_
+`-vi` Variable int size. _Default: `false`_
 
-`-fu` Fixed uint size. _Default: `true`_
+`-vu` Variable uint size. _Default: `false`_
 
 `-o` Output file.  _Default: `jay.go`_
 

@@ -421,15 +421,14 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 	case tInt8s:
 		c, template = jay.ReadInt8s, tFuncLength
 	case tInt:
-		if f.structTyp.option.FixedIntSize {
+		if f.structTyp.option.VariableIntSize {
+			c, template = jay.ReadInt, tFunc
+		} else {
 			if f.structTyp.option.Is32bit {
 				c, template = jay.ReadIntX32, tFunc
 			} else {
 				c, template = jay.ReadIntX64, tFunc
 			}
-			break
-		} else {
-			c, template = jay.ReadInt, tFunc
 		}
 	case tInts:
 		if f.structTyp.option.Is32bit {
@@ -473,15 +472,14 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 	case tUint64s:
 		c, template = jay.ReadUint64s, tFuncLength
 	case tUint:
-		if f.structTyp.option.FixedUintSize {
+		if f.structTyp.option.VariableUintSize {
+			c, template = jay.ReadUintVariable, tFunc
+		} else {
 			if f.structTyp.option.Is32bit {
 				c, template = jay.ReadUintX32, tFunc
 			} else {
 				c, template = jay.ReadUintX64, tFunc
 			}
-			break
-		} else {
-			c, template = jay.ReadUintVariable, tFunc
 		}
 	case tUints:
 		if f.structTyp.option.Is32bit {
