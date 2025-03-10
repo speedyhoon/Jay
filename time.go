@@ -2,14 +2,14 @@ package jay
 
 import "time"
 
-func ReadTime(b []byte) (t time.Time) {
-	return time.Unix(ReadInt64(b), 0).UTC()
+func ReadTime(y []byte) (t time.Time) {
+	return time.Unix(ReadInt64(y), 0).UTC()
 }
 
 // WriteTime writes 8 bytes to b with year, month, date, hour, minute and seconds precision in UTC location.
 // All millisecond, microsecond, nanosecond and location are lost.
-func WriteTime(b []byte, t time.Time) {
-	WriteInt64(b, t.Unix())
+func WriteTime(y []byte, t time.Time) {
+	WriteInt64(y, t.Unix())
 }
 
 func ReadTimes(y []byte, length int) (t []time.Time) {
@@ -37,8 +37,8 @@ func WriteTimes(y []byte, t []time.Time) {
 // Seven nanoseconds are deducted from math.MaxInt64 to provide sufficient buffer against the maximum.
 const timeZero = 1<<63 - 8 // (math.MaxInt64-7) 9223372036854775800
 
-func ReadTimeNano(b []byte) (t time.Time) {
-	if i := ReadInt64(b); i != timeZero {
+func ReadTimeNano(y []byte) (t time.Time) {
+	if i := ReadInt64(y); i != timeZero {
 		return time.Unix(0, i).UTC()
 	}
 
@@ -47,31 +47,31 @@ func ReadTimeNano(b []byte) (t time.Time) {
 
 // WriteTimeNano writes 8 bytes to b with year, month, date, hour, minute and seconds precision in UTC location.
 // All millisecond, microsecond and nanosecond are lost.
-func WriteTimeNano(b []byte, t time.Time) {
+func WriteTimeNano(y []byte, t time.Time) {
 	if t == (time.Time{}) {
-		b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = 248, 255, 255, 255, 255, 255, 255, 127 // WriteInt64(b, timeZero)
+		y[0], y[1], y[2], y[3], y[4], y[5], y[6], y[7] = 248, 255, 255, 255, 255, 255, 255, 127 // WriteInt64(y, timeZero)
 		return
 	}
 
-	WriteInt64(b, t.UnixNano())
+	WriteInt64(y, t.UnixNano())
 }
 
 // ReadDurations ...
-func ReadDurations(b []byte, length int) (t []time.Duration) {
+func ReadDurations(y []byte, length int) (t []time.Duration) {
 	if length == 0 {
 		return
 	}
 
 	t = make([]time.Duration, length)
 	for i := 0; i < length; i++ {
-		t[i] = time.Duration(ReadInt64(b[i*_8 : i*_8+_8]))
+		t[i] = time.Duration(ReadInt64(y[i*_8 : i*_8+_8]))
 	}
 	return
 }
 
 // WriteDurations ...
-func WriteDurations(b []byte, t []time.Duration) {
+func WriteDurations(y []byte, t []time.Duration) {
 	for i, dur := range t {
-		WriteInt64(b[i*_8:i*_8+_8], int64(dur))
+		WriteInt64(y[i*_8:i*_8+_8], int64(dur))
 	}
 }
