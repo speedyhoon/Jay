@@ -10,7 +10,6 @@
 //	-v	Verbose output.
 //	-p	Pointer MarshalJ()  method.
 //	-s	Search Go test files for exported structs too.
-//	-t	Don't generate Go test files.
 //	-m	Don't generate MarshalJ() function.
 //	-u	Don't generate UnmarshalJ() function.
 //	-y	Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types.
@@ -54,7 +53,7 @@ func main() {
 	flag.BoolVar(&verbose, "v", false, "Verbose output.")
 	flag.BoolVar(&opt.IsMarshalMethodPtr, "p", false, "Pointer MarshalJ() method.")
 	flag.BoolVar(&opt.SearchTests, "s", false, "Search Go test files for exported structs too.")
-	flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
+	// Not yet implemented: flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
 	flag.Var(&types, "y", "Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types. For example, `Vet,animal.Cat,animal.Cow` will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package \"animal\".")

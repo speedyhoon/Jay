@@ -41,8 +41,6 @@ jay my_file.go
 
 `-s` Search Go test files for exported structs too. _Default: `false`_
 
-`-t` Don't generate Go test files. _Default: `false`_
-
 `-m` Don't generate `MarshalJ()` functions or methods. _Default: `false`_
 
 `-u` Don't generate `UnmarshalJ()` function. _Default: `false`_
