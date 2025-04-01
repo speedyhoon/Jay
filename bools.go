@@ -35,6 +35,30 @@ func WriteBools(y []byte, a []bool, length int) {
 	}
 }
 
+func WriteBools8(y []byte, a []bool, length uint8) {
+	var i, n uint8
+	for ; n < length; i, n = i+1, n+8 {
+		switch length - n {
+		case 1:
+			y[i] = Bool1(a[n])
+		case 2:
+			y[i] = Bool2(a[n], a[n+1])
+		case 3:
+			y[i] = Bool3(a[n], a[n+1], a[n+2])
+		case 4:
+			y[i] = Bool4(a[n], a[n+1], a[n+2], a[n+3])
+		case 5:
+			y[i] = Bool5(a[n], a[n+1], a[n+2], a[n+3], a[n+4])
+		case 6:
+			y[i] = Bool6(a[n], a[n+1], a[n+2], a[n+3], a[n+4], a[n+5])
+		case 7:
+			y[i] = Bool7(a[n], a[n+1], a[n+2], a[n+3], a[n+4], a[n+5], a[n+6])
+		default:
+			y[i] = Bool8(a[n], a[n+1], a[n+2], a[n+3], a[n+4], a[n+5], a[n+6], a[n+7])
+		}
+	}
+}
+
 func ReadBools(y []byte, length int) (t []bool) {
 	if length == 0 {
 		return
