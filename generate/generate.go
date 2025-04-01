@@ -10,7 +10,6 @@ import (
 	"go/ast"
 	"mvdan.cc/gofumpt/format"
 	"runtime"
-	"strings"
 )
 
 const (
@@ -60,7 +59,7 @@ package %s
 %s
 %s`, pkgImport, pkg, imported.print(), src))
 
-	return GoFormat(src)
+	return goFormat(src)
 }
 
 func mergeEmbeddedStructs(structs []*structTyp) {
@@ -144,10 +143,10 @@ func (s *structTyp) makeFuncs(b *bytes.Buffer) {
 	return
 }
 
-// GoFormat nicely formats the generated Go code.
-func GoFormat(src []byte) (code []byte, err error) {
+// goFormat nicely formats the generated Go code.
+func goFormat(src []byte) (code []byte, err error) {
 	code, err = format.Source(src, format.Options{
-		LangVersion: strings.TrimPrefix(runtime.Version(), "go"),
+		LangVersion: runtime.Version(),
 		ExtraRules:  true,
 	})
 	if err != nil {
