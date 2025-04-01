@@ -1,162 +1,177 @@
 package jay
 
+const maxUint8 = 255
+
 func SizeStrings8(s []string) (total int) {
-	l := len(s)
+	l := len(s) & maxUint8 // Truncate lengths > 255.
 	if l == 0 {
-		return 1
+		return
 	}
 
-	for i := range s {
-		total += len(s[i])
+	for i := 0; i < l; i++ {
+		total += len(s[i]) & maxUint8
 	}
-	return 1 + l + total
+	return l + total
 }
 
-func ReadStrings8(y []byte, s *[]string) (ok bool) {
-	if y[0] == 0 {
+func ReadStrings8nbX(y []byte, s *[]string, qty uint8, at *int) (ok bool) {
+	if qty == 0 {
 		return true
 	}
 
-	l := len(y)
-	qty := int(y[0])
-	index := qty + 1
+	l, index := len(y), int(qty)
 	if l < index {
 		return false
 	}
 
-	total := index
+	end := index
 	*s = make([]string, qty)
-	for i := 0; i < qty; i++ {
-		u := int(y[1+i])
-		if u == 0 {
+	for i := uint8(0); i < qty; i, index = i+1, end {
+		end += int(y[i])
+		if index == end {
 			continue
 		}
 
-		total += u
-		if l < total {
+		if l < end {
 			return false
 		}
 
-		(*s)[i] = string(y[index:total])
-		index = total
+		(*s)[i] = string(y[index:end])
 	}
+	*at += end
 
 	return true
 }
 
-func ReadStrings8Err(y []byte, s *[]string) error {
-	if y[0] == 0 {
-		return nil
-	}
-
-	l := len(y)
-	qty := int(y[0])
-	index := qty + 1
-	if l < index {
-		return ErrUnexpectedEOB
-	}
-
-	total := index
-	*s = make([]string, qty)
-	for i := 0; i < qty; i++ {
-		u := int(y[1+i])
-		if u == 0 {
-			continue
-		}
-
-		total += u
-		if l < total {
-			return ErrUnexpectedEOB
-		}
-
-		(*s)[i] = string(y[index:total])
-		index = total
-	}
-
-	return nil
-}
-
-func ReadStrings8n(y []byte, s *[]string) (total int, ok bool) {
-	if y[0] == 0 {
-		return 0, true
-	}
-
-	l := len(y)
-	qty := int(y[0])
-	index := qty + 1
-	if l < index {
-		return 0, false
-	}
-
-	total = index
-	*s = make([]string, qty)
-	for i := 0; i < qty; i++ {
-		u := int(y[1+i])
-		if u == 0 {
-			continue
-		}
-
-		total += u
-		if l < total {
-			return 0, false
-		}
-
-		(*s)[i] = string(y[index:total])
-		index = total
-	}
-
-	return total, true
-}
-
-func ReadStrings8nErr(y []byte, s *[]string) (total int, err error) {
-	if y[0] == 0 {
+func ReadStrings8Err(y []byte, s *[]string, qty uint8) (err error) {
+	if qty == 0 {
 		return
 	}
 
-	l := len(y)
-	qty := int(y[0])
-	index := qty + 1
-	if l < index {
-		return 0, ErrUnexpectedEOB
+	l, at := len(y), int(qty)
+	if l < at {
+		return ErrUnexpectedEOB
 	}
 
-	total = index
 	*s = make([]string, qty)
-	for i := 0; i < qty; i++ {
-		u := int(y[1+i])
-		if u == 0 {
+	for i, end := uint8(0), at; i < qty; i, at = i+1, end {
+		end += int(y[i])
+		if at == end {
 			continue
 		}
 
-		total += u
-		if l < total {
-			return 0, ErrUnexpectedEOB
+		if l < end {
+			return ErrUnexpectedEOB
 		}
 
-		(*s)[i] = string(y[index:total])
-		index = total
+		(*s)[i] = string(y[at:end])
 	}
 
 	return
 }
 
-func WriteStrings8(y []byte, s []string) {
-	qty := len(s)
+func ReadStrings8nbXt(y []byte, s *[]string, qty uint8, at int) (end int, ok bool) {
 	if qty == 0 {
-		return
+		return at, true
 	}
 
-	y[0] = byte(qty)
-	qty++
+	l, index := len(y), int(qty)
+	if l < index {
+		return at, false
+	}
 
-	var l, end int
-	for i := range s {
-		l = len(s[i])
-		if l != 0 {
-			y[1+i] = byte(l)
-			end = qty + l
-			copy(y[qty:end], s[i])
-			qty = end
+	end = index
+	*s = make([]string, qty)
+	for i := uint8(0); i < qty; i, index = i+1, end {
+		end += int(y[i])
+		if index == end {
+			continue
+		}
+
+		if l < end {
+			return at, false
+		}
+		(*s)[i] = string(y[index:end])
+	}
+
+	return at + end, true
+}
+
+func ReadStrings8Ok(y []byte, s *[]string, qty uint8) (ok bool) {
+	if qty == 0 {
+		return true
+	}
+
+	l, at := len(y), int(qty)
+	if l < at {
+		return false
+	}
+
+	*s = make([]string, qty)
+	for i, end := uint8(0), at; i < qty; i, at = i+1, end {
+		end += int(y[i])
+		if at == end {
+			continue
+		}
+
+		if l < end {
+			return false
+		}
+
+		(*s)[i] = string(y[at:end])
+	}
+
+	return true
+}
+
+// WriteStrings8Req is tagged as required - so should never be 0 or null
+func WriteStrings8Req(y /*, qty*/ []byte, s []string, qty uint8) {
+	length := len(s)
+	if length >= 256 || length != int(byte(length)) {
+		panic("dif size lengths")
+	}
+
+	for i, at, end := 0, int(qty), int(qty); i < int(qty); i++ {
+		y[i] = byte(len(s[i]))
+
+		length = len(s[i])
+		if length >= 256 || length != int(byte(length)) || len([]byte(s[i])) != length {
+			panic("dif rune lengths")
+		}
+
+		if y[i] != 0 {
+			end += int(y[i])
+			copy(y[at:end], s[i])
+			at = end
+		}
+	}
+}
+
+// WriteStrings8 no tag (default) - may have nil or zero length slices.
+func WriteStrings8(y, qty []byte, s []string) {
+	length := len(s)
+	if length >= 256 || length != int(byte(length)) {
+		panic("dif size lengths")
+	}
+
+	l := len(s) & maxUint8
+	if l == 0 {
+		return
+	}
+	qty[0] = byte(l)
+
+	for i, at, end := 0, l, l; i < l; i++ {
+		y[i] = byte(len(s[i]))
+
+		length = len(s[i])
+		if length >= 256 || length != int(byte(length)) || len([]byte(s[i])) != length {
+			panic("dif rune lengths")
+		}
+
+		if y[i] != 0 {
+			end += int(y[i])
+			copy(y[at:end], s[i])
+			at = end
 		}
 	}
 }
