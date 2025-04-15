@@ -74,9 +74,11 @@ func main() {
 		opt.OnlyTypes = types
 	}
 
-	paths := generate.RemoveDuplicates(flag.Args())
+	paths := flag.Args()
 	if len(paths) == 0 {
 		paths = []string{"."}
+	} else {
+		utl.DelDup(&paths)
 	}
 
 	var filePaths []string

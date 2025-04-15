@@ -24,8 +24,8 @@ github.com/speedyhoon/rando v0.0.0-20250401034015-034a285a0059 h1:icIRlF3vqdycSZ
 github.com/speedyhoon/rando v0.0.0-20250401034015-034a285a0059/go.mod h1:W1LIYdkjUN6zRVnp3JDkw4fQLfd2Ht7n97X8LUGpxgc=
 github.com/speedyhoon/rando/types v0.0.0-20250401034015-034a285a0059 h1:Mnz7bc6CIxi4w1AvkhPUxHkweizw6pY7TTXm6psqc94=
 github.com/speedyhoon/rando/types v0.0.0-20250401034015-034a285a0059/go.mod h1:I6r1nXzdLTX9Tx+4RF6j571MZ1SUyuJfG/PMcMcf+h0=
-github.com/speedyhoon/utl v0.0.0-20241219005249-023dba03978b h1:APUaKM2Gwdek1GRdSl4wuoi/2TQTztLIgqfZUZjpZNE=
-github.com/speedyhoon/utl v0.0.0-20241219005249-023dba03978b/go.mod h1:wfbkfK278UxeIC0hmDMExrrBoBSNbFOFjUpmqJ9v/og=
+github.com/speedyhoon/utl v0.0.0-20250415014227-c856732454cc h1:VGGg+8Ee8VtUxIvHM/YSAbPkoTleH33eGohmu2jfT3o=
+github.com/speedyhoon/utl v0.0.0-20250415014227-c856732454cc/go.mod h1:wfbkfK278UxeIC0hmDMExrrBoBSNbFOFjUpmqJ9v/og=
 github.com/speedyhoon/utl/flagvar v0.0.0-20241219005249-023dba03978b h1:/wyY1q0sRvYis+z4FQ52t0k+nhppl/oX9CxIH4pnjM8=
 github.com/speedyhoon/utl/flagvar v0.0.0-20241219005249-023dba03978b/go.mod h1:DaRDsmgLLCh5Mogm2rB/U0/Tlq4NP8bgGDEn05ace34=
 github.com/speedyhoon/utl/tf v0.0.0-20241219003927-c59b3c3a2c12 h1:W75p9QsLijTr539wiPLSL2Grqy3Yh5ka91uQ0XttvPs=

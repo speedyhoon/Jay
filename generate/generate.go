@@ -73,8 +73,9 @@ func mergeEmbeddedStructs(structs []*structTyp) {
 }
 
 func (f *fieldList) mergeFields(structs []*structTyp, structNames []string, structIndex int) {
-	for i := 0; i < len(*f); i++ {
+	for i := uint(0); i < utl.Len(*f); {
 		if (*f)[i].typ != "struct" || !isNew(&structNames, (*f)[i].name) {
+			i++
 			continue
 		}
 
@@ -82,8 +83,7 @@ func (f *fieldList) mergeFields(structs []*structTyp, structNames []string, stru
 		structs[structIndex].join(embedded, (*f)[i].name)
 
 		// Remove the struct field so its contents are not referenced twice.
-		*f = Remove(*f, i)
-		i--
+		utl.Del((*[]*field)(f), i) // Converting from *fieldList to *[]*field to satisfy function parameter type *[]any.
 	}
 }
 

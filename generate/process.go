@@ -35,7 +35,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 		}
 	}
 
-	filenames = RemoveDuplicates(filenames)
+	utl.DelDup(&filenames)
 	for i := range filenames {
 		if filenames[i] == o.outputFile {
 			// Don't bother parsing the output file, as it will be overwritten anyway.
@@ -182,12 +182,12 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 }
 
 func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedFields bool) {
-	for i := 0; i < len(fields); {
+	for i := uint(0); i < utl.Len(fields); {
 		t := fields[i]
 
 		tag := getTag(t.Tag)
 		if tag == IgnoreFlag {
-			fields = Remove(fields, i)
+			utl.Del(&fields, i)
 			continue
 		}
 
@@ -199,14 +199,14 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 
 		names := getNames(t)
 		if len(names) == 0 {
-			fields = Remove(fields, i)
+			utl.Del(&fields, i)
 			continue
 		}
 
 		fe := newField(tag)
 		ok := s.option.isSupportedType(&fe, t.Type, dirList, s.dir)
 		if !ok {
-			fields = Remove(fields, i)
+			utl.Del(&fields, i)
 			continue
 		}
 
@@ -352,26 +352,6 @@ func (f *field) totalSize() uint {
 	return f.elmSize
 }
 
-func Remove[T any](t []T, index int) []T {
-	if index < 0 {
-		return t
-	}
-
-	l := len(t)
-	if l == 0 || index >= l {
-		return t
-	}
-
-	switch index {
-	case 0:
-		return t[1:]
-	case l - 1:
-		return t[:index]
-	default:
-		return append(t[:index], t[index+1:]...)
-	}
-}
-
 func getNames(f *ast.Field) (names []*ast.Ident) {
 	if len(f.Names) == 0 {
 		idt, ok := f.Type.(*ast.Ident)
@@ -391,7 +371,7 @@ func getNames(f *ast.Field) (names []*ast.Ident) {
 func onlyExportedNames(names ...*ast.Ident) []*ast.Ident {
 	for i := 0; i < len(names); {
 		if !ast.IsExported(names[i].Name) {
-			names = Remove(names, i)
+			utl.Del(&names, uint(i))
 			continue
 		}
 		i++

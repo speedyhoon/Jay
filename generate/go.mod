@@ -8,7 +8,7 @@ require (
 	github.com/speedyhoon/jay v0.0.0-20250401065516-1afa03ade6bd
 	github.com/speedyhoon/rando v0.0.0-20250401034015-034a285a0059
 	github.com/speedyhoon/rando/types v0.0.0-20250401034015-034a285a0059
-	github.com/speedyhoon/utl v0.0.0-20241219005249-023dba03978b
+	github.com/speedyhoon/utl v0.0.0-20250415014227-c856732454cc
 	github.com/speedyhoon/utl/flagvar v0.0.0-20241219005249-023dba03978b
 	github.com/stretchr/testify v1.10.0
 	mvdan.cc/gofumpt v0.7.0
