@@ -155,13 +155,12 @@ func (o *Option) cleanOnlyTypes() {
 		o.OnlyTypes[i] = strings.Trim(o.OnlyTypes[i], ".")
 
 		// Remove duplicates.
-		for j := uint(1); j < utl.Len(o.OnlyTypes); j++ {
-			if i == j {
-				continue
-			}
+		for j := i + 1; j < utl.Len(o.OnlyTypes); {
 			if o.OnlyTypes[i] == o.OnlyTypes[j] {
 				utl.Del(&o.OnlyTypes, j)
+				continue
 			}
+			j++
 		}
 
 		if strings.Contains(o.OnlyTypes[i], ".") {
