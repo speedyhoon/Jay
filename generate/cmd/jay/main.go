@@ -5,14 +5,14 @@
 //
 //	-32	Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.
 //	-d	Debug mode - always writes to disk.
-//	-vi	Variable int size.
-//	-vu	Variable uint size.
+//	-m	Don't generate MarshalJ() function.
 //	-o	Output file. (default "jay.go")
-//	-v	Verbose output.
 //	-p	Pointer MarshalJ() method.
 //	-s	Search Go test files for exported structs too.
-//	-m	Don't generate MarshalJ() function.
 //	-u	Don't generate UnmarshalJ() function.
+//	-v	Verbose output.
+//	-vi	Variable int size.
+//	-vu	Variable uint size.
 //	-y	Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for. (default: Process all exported types)
 //		For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`.
 package main
