@@ -1,19 +1,20 @@
-// Command jay is the command line tool. See jay/generate for the internals.
+// Command jay is the command line tool to generate Jay serialization code.
+// See jay/generate for the internals.
 //
 // Optional flags:
 //
 //	-32	Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.
-//	-d	Debug mode, always write to disk.
+//	-d	Debug mode - always writes to disk.
 //	-vi	Variable int size.
 //	-vu	Variable uint size.
-//	-o	Output file.
+//	-o	Output file. (default "jay.go")
 //	-v	Verbose output.
-//	-p	Pointer MarshalJ()  method.
+//	-p	Pointer MarshalJ() method.
 //	-s	Search Go test files for exported structs too.
 //	-m	Don't generate MarshalJ() function.
 //	-u	Don't generate UnmarshalJ() function.
-//	-y	Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types.
-//		For example, `Vet,animal.Cat,animal.Cow` will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package 'animal'.
+//	-y	Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for. (default: Process all exported types)
+//		For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`.
 package main
 
 import (
@@ -56,7 +57,7 @@ func main() {
 	// Not yet implemented: flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
-	flag.Var(&types, "y", "Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. Default is to process all exported types. For example, `Vet,animal.Cat,animal.Cow` will process locally defined 'Vet' along with 'Cat' & 'Cow' in imported package \"animal\".")
+	flag.Var(&types, "y", "`Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for.` For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`. (default: Process all exported types)")
 	flag.Parse()
 
 	if opt.SkipMarshal && opt.SkipUnmarshal {
