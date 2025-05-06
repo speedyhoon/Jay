@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"github.com/speedyhoon/rando"
 	"log"
+	"testing"
 )
-import "testing"
 
 var to23 TwentyThree
 var from23 = TwentyThree{
@@ -51,40 +51,40 @@ func init() {
 	bytes23Gob = buf.Bytes()
 }
 
-func Benchmark_Marshal23_Gob(b *testing.B) {
+func Benchmark23_Marshal_Gob(b *testing.B) {
 	var buf bytes.Buffer
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = gob.NewEncoder(&buf).Encode(from23)
 		output = buf.Bytes()
 	}
 }
 
-func Benchmark_Unmarshal23_Gob(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+func Benchmark23_Unmarshal_Gob(b *testing.B) {
+	for b.Loop() {
 		err = gob.NewDecoder(bytes.NewBuffer(bytes23Gob)).Decode(&to23)
 	}
 }
 
-func Benchmark_Marshal23_J(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+func Benchmark23_Marshal_Jay(b *testing.B) {
+	for b.Loop() {
 		output = from23.MarshalJ()
 	}
 }
 
-func Benchmark_Unmarshal23_J(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+func Benchmark23_Unmarshal_Jay(b *testing.B) {
+	for b.Loop() {
 		err = to23.UnmarshalJ(bytes23)
 	}
 }
 
-func Benchmark_Marshal23_JSON(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		output, err = json.Marshal(&from23)
+func Benchmark23_Marshal_JSON(b *testing.B) {
+	for b.Loop() {
+		output, err = json.Marshal(from23)
 	}
 }
 
-func Benchmark_Unmarshal23_JSON(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+func Benchmark23_Unmarshal_JSON(b *testing.B) {
+	for b.Loop() {
 		err = json.Unmarshal(bytes23Json, &to23)
 	}
 }
