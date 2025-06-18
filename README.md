@@ -16,7 +16,7 @@ generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tre
 
 ##### Pros:
 
-* The fastest Go serialization and deserialization message format.
+* The fastest Go serialization and deserialization message format (some types use zero memory allocations).
 * Encoded variables use less network overhead because no schema is added to the output when marshalling (unlike JSON).
 * No custom language to learn. Jay uses Go's built in [`ast`](https://pkg.go.dev/go/ast) to find exported structs in your existing codebase.
 * No hassles between client and server. Generate the code once and share _(via a Go module or copy-paste)_.
@@ -134,16 +134,17 @@ To include an external type via the commandline, either:
 In order of priority:
 
 * Expand fuzz testing.
-* Field tag options.
-* Field tag documentation.
+* Field tag options and documentation.
 * `string` _(Increase supported length from 255 bytes to 16 MB)_
 * slices _(including `[]string`, `[]time.Time`, `[]time.Duration`)_ <br>
   **WIP** -- type aliases are working (`type strs = []string`), undecided upon type definitions (`type strs []string`),
-* pointers _(`*uint64`)_ <br>
-  **R&D** -- have a working prototype for `bool` and all integer types, undecided on `string`, slices, arrays and struct slices.
 * Performance benchmarks.
 * Low-bandwidth mode.
-* Definition types like `[]float` where `float` is defined as `type float float32`.
+* Aliased definition types like `[]float` where `float` is defined as `type float float32`.<br>
+  _(Already supported: `type float = float32`, `type floats = []float32` & `type floats []float32`)_.
+###### Undecided
+* pointers _(`*uint64`)_ <br>
+  _**R&D** -- have a working prototype for `bool` and all integer types, undecided on `string`, slices, arrays and struct slices_.
 * multi-dimensional arrays & slices? _(`[][]string`)_
 * maps? _(`map[string]uint`)_
 
@@ -152,6 +153,7 @@ In order of priority:
 * Specify which struct types to process in a large project directory. E.g.: ```-y Animal,settings.Config,engine.Specs```
 * Aliased types like `type float = float32` and `type floats = []float32`.
 * Simple definition types for built-ins only like `type floats []float32`.
+* Slices with lengths 0–255 _(`[]string`)_
 
 ## Not Supported
 
@@ -161,7 +163,7 @@ In order of priority:
 * Double nested pointers (`**string`).
 * Generics (`any`).
 * Functions.
-* complex, use `[]byte` instead.
+* `complex64` and `complex128`, use `[]byte` instead.
 
 ## Why
 
