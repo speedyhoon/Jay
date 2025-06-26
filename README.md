@@ -144,7 +144,7 @@ In order of priority:
   _(Already supported: `type float = float32`, `type floats = []float32` & `type floats []float32`)_.
 ###### Undecided
 * pointers _(`*uint64`)_ <br>
-  _**R&D** -- have a working prototype for `bool` and all integer types, undecided on `string`, slices, arrays and struct slices_.
+  _**R&D** -- have a working prototype for `*bool` and all integer types, undecided on `*string`, slices, arrays and struct slices_.
 * multi-dimensional arrays & slices? _(`[][]string`)_
 * maps? _(`map[string]uint`)_
 
@@ -153,7 +153,7 @@ In order of priority:
 * Specify which struct types to process in a large project directory. E.g.: ```-y Animal,settings.Config,engine.Specs```
 * Aliased types like `type float = float32` and `type floats = []float32`.
 * Simple definition types for built-ins only like `type floats []float32`.
-* Slices with lengths 0–255 _(`[]string`)_
+* Slices with lengths 0–255 _(`[]string`)_.
 
 ## Not Supported
 
