@@ -40,7 +40,7 @@ func unwrapTagValue(str string) string {
 
 func isBuiltIn(typ string) bool {
 	switch typ {
-	case tBool, tByte, tFloat32, tFloat64, tInt, tInt8, tInt16, tInt32, tInt64, tString, tUint, tUint16, tUint32, tUint64:
+	case tBool, tByte, tFloat32, tFloat64, tInt, tInt8, tInt16, tInt32, tInt64, tString, tUint, tUint16, tUint32, tUint64, tComplex64, tComplex128:
 		return true
 	}
 	return false
@@ -327,8 +327,10 @@ func (o Option) isLen(typ string) uint {
 		return 2
 	case tInt32, tUint32, tFloat32:
 		return 4
-	case tInt64, tUint64, tFloat64, tTime:
+	case tInt64, tUint64, tFloat64, tTime, tComplex64:
 		return 8
+	case tComplex128:
+		return 16
 	case tInt, tUint:
 		if o.Is32bit {
 			return 4
@@ -390,6 +392,7 @@ func lenVariable(index uint) string {
 const (
 	tBool, tBools                            = "bool", "[]bool"
 	tByte, tBytes                            = "byte", "[]byte"
+	tComplex64, tComplex128                  = "complex64", "complex128"
 	tFloat32, tFloat32s                      = "float32", "[]float32"
 	tFloat64, tFloat64s                      = "float64", "[]float64"
 	tInt, tInt8, tInt16, tInt32, tInt64      = "int", "int8", "int16", "int32", "int64"

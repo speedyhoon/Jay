@@ -16,8 +16,8 @@ github.com/speedyhoon/clr v0.0.0-20250405054240-6301f9f6b608 h1:cC4ZoTyNwVInv15r
 github.com/speedyhoon/clr v0.0.0-20250405054240-6301f9f6b608/go.mod h1:2s+mJmRgMOL/taSuexLi/+YGIiOc9ULa3NU7KSnmvzQ=
 github.com/speedyhoon/cnst/clrn v0.0.0-20250502153641-20575b9123ba h1:4x0uFlqjywG8IvCfR1dRah4fxLfVLdf2wAG0UcujOcQ=
 github.com/speedyhoon/cnst/clrn v0.0.0-20250502153641-20575b9123ba/go.mod h1:gsJNF+/77GZ+QOyuKoUtRTpGoA/cMB4tpCR/s/VR/Gk=
-github.com/speedyhoon/jay v0.0.0-20250401065516-1afa03ade6bd h1:HdALYAoYmURUZ59PgnW3iLS4LTJIhfGtXVhhXT/AFD4=
-github.com/speedyhoon/jay v0.0.0-20250401065516-1afa03ade6bd/go.mod h1:8k+Ex3LVgb8jozLAdFR7OoXLUZJqg6ZUD74gtWFNaR8=
+github.com/speedyhoon/jay v0.0.0-20250702170832-aa8efbe99ef7 h1:Nqhj+STYGYbjbTJQR7vXjuyQ/2KgnT/OOjVC8RLzzIU=
+github.com/speedyhoon/jay v0.0.0-20250702170832-aa8efbe99ef7/go.mod h1:YwcPFcpd+CiOX9qEFSeuEp+oBziTWORxyVe5cTi9ykA=
 github.com/speedyhoon/numnam v0.0.0-20250423012847-2f079c7dedab h1:DWVbudwjq+W9s6zdJwj2BuIRXhi5g90v9hBkydDEUnI=
 github.com/speedyhoon/numnam v0.0.0-20250423012847-2f079c7dedab/go.mod h1:yStEt6i5jVB9vGyLrY8MTVIERIBL3jF6xxqCGKjnHaE=
 github.com/speedyhoon/rando v0.0.0-20250702161626-b53b3a796031 h1:B80yrgtoUieJKMsCBqjmdrFDZdeKGmqqlixkuGIOCaY=
@@ -28,8 +28,8 @@ github.com/speedyhoon/utl v0.0.0-20250416234816-20f7a523763c h1:etUtAyOBOZh8JxnA
 github.com/speedyhoon/utl v0.0.0-20250416234816-20f7a523763c/go.mod h1:wfbkfK278UxeIC0hmDMExrrBoBSNbFOFjUpmqJ9v/og=
 github.com/speedyhoon/utl/flagvar v0.0.0-20250416234816-20f7a523763c h1:3drABNXojV6BRrzJXOReItWevfjJbmsc3b6u3lnwxh4=
 github.com/speedyhoon/utl/flagvar v0.0.0-20250416234816-20f7a523763c/go.mod h1:DaRDsmgLLCh5Mogm2rB/U0/Tlq4NP8bgGDEn05ace34=
-github.com/speedyhoon/utl/tf v0.0.0-20241219005249-023dba03978b h1:P1GSwFC5zOxkAPLmBeIoORtDQtgl8t/ylne9f+uN0C8=
-github.com/speedyhoon/utl/tf v0.0.0-20241219005249-023dba03978b/go.mod h1:F7pya3IfvPjg9EMkJ/YNS8pr1bCGzkCqzLb6Jw+6aJ4=
+github.com/speedyhoon/utl/tf v0.0.0-20250416234816-20f7a523763c h1:lsnAoa9LIzDP3LGEjrTo0bvY8LDhG1unZrYB5nKTZxs=
+github.com/speedyhoon/utl/tf v0.0.0-20250416234816-20f7a523763c/go.mod h1:F7pya3IfvPjg9EMkJ/YNS8pr1bCGzkCqzLb6Jw+6aJ4=
 github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOfJA=
 github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 golang.org/x/mod v0.25.0 h1:n7a+ZbQKQA/Ysbyb0/6IbB1H/X41mKgbhfv7AfG/44w=

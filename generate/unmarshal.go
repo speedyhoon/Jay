@@ -398,6 +398,10 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		} else {
 			c, template = copyKeyword, tFuncOpt
 		}
+	case tComplex64:
+		c, template = jay.ReadComplex64, tFunc
+	case tComplex128:
+		c, template = jay.ReadComplex128, tFunc
 	case tFloat32:
 		c, template = jay.ReadFloat32, tFunc
 	case tFloat32s:

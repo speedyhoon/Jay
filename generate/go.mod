@@ -5,7 +5,7 @@ go 1.23.0
 toolchain go1.24.1
 
 require (
-	github.com/speedyhoon/jay v0.0.0-20250401065516-1afa03ade6bd
+	github.com/speedyhoon/jay v0.0.0-20250702170832-aa8efbe99ef7
 	github.com/speedyhoon/rando v0.0.0-20250702161626-b53b3a796031
 	github.com/speedyhoon/rando/types v0.0.0-20250702161626-b53b3a796031
 	github.com/speedyhoon/utl v0.0.0-20250416234816-20f7a523763c
