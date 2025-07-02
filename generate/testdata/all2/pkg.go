@@ -6,17 +6,17 @@ import "time"
 
 type Fuzz0 struct {
 	One bool
-	Two []bool
+	Two byte
 }
 
 type Fuzz1 struct {
 	One bool
-	Two byte
+	Two complex64
 }
 
 type Fuzz2 struct {
 	One bool
-	Two []byte
+	Two complex128
 }
 
 type Fuzz3 struct {
@@ -26,1002 +26,1002 @@ type Fuzz3 struct {
 
 type Fuzz4 struct {
 	One bool
-	Two []float32
+	Two float64
 }
 
 type Fuzz5 struct {
 	One bool
-	Two float64
+	Two int
 }
 
 type Fuzz6 struct {
 	One bool
-	Two []float64
+	Two int8
 }
 
 type Fuzz7 struct {
 	One bool
-	Two int
+	Two int16
 }
 
 type Fuzz8 struct {
 	One bool
-	Two int8
+	Two int32
 }
 
 type Fuzz9 struct {
 	One bool
-	Two int16
+	Two int64
 }
 
 type Fuzz10 struct {
 	One bool
-	Two int32
+	Two rune
 }
 
 type Fuzz11 struct {
 	One bool
-	Two rune
+	Two string
 }
 
 type Fuzz12 struct {
 	One bool
-	Two int64
+	Two time.Duration
 }
 
 type Fuzz13 struct {
 	One bool
-	Two []int
+	Two time.Time
 }
 
 type Fuzz14 struct {
 	One bool
-	Two []int8
+	Two uint
 }
 
 type Fuzz15 struct {
 	One bool
-	Two []int16
+	Two uint8
 }
 
 type Fuzz16 struct {
 	One bool
-	Two []int32
+	Two uint16
 }
 
 type Fuzz17 struct {
 	One bool
-	Two []int64
+	Two uint32
 }
 
 type Fuzz18 struct {
 	One bool
-	Two uint
+	Two uint64
 }
 
 type Fuzz19 struct {
 	One bool
-	Two uint8
+	Two []bool
 }
 
 type Fuzz20 struct {
 	One bool
-	Two uint16
+	Two []byte
 }
 
 type Fuzz21 struct {
 	One bool
-	Two uint32
+	Two []complex64
 }
 
 type Fuzz22 struct {
 	One bool
-	Two uint64
+	Two []complex128
 }
 
 type Fuzz23 struct {
 	One bool
-	Two []uint
+	Two []float32
 }
 
 type Fuzz24 struct {
 	One bool
-	Two []uint16
+	Two []float64
 }
 
 type Fuzz25 struct {
 	One bool
-	Two []uint32
+	Two []int
 }
 
 type Fuzz26 struct {
 	One bool
-	Two []uint64
+	Two []int8
 }
 
 type Fuzz27 struct {
 	One bool
-	Two string
+	Two []int16
 }
 
 type Fuzz28 struct {
 	One bool
-	Two []string
+	Two []int32
 }
 
 type Fuzz29 struct {
 	One bool
-	Two time.Time
+	Two []int64
 }
 
 type Fuzz30 struct {
 	One bool
-	Two time.Duration
+	Two []rune
 }
 
 type Fuzz31 struct {
 	One bool
-	Two []time.Duration
-}
-
-type Fuzz32 struct {
-	One []bool
-	Two bool
-}
-
-type Fuzz33 struct {
-	One []bool
-	Two byte
-}
-
-type Fuzz34 struct {
-	One []bool
-	Two []byte
-}
-
-type Fuzz35 struct {
-	One []bool
-	Two float32
-}
-
-type Fuzz36 struct {
-	One []bool
-	Two []float32
-}
-
-type Fuzz37 struct {
-	One []bool
-	Two float64
-}
-
-type Fuzz38 struct {
-	One []bool
-	Two []float64
-}
-
-type Fuzz39 struct {
-	One []bool
-	Two int
-}
-
-type Fuzz40 struct {
-	One []bool
-	Two int8
-}
-
-type Fuzz41 struct {
-	One []bool
-	Two int16
-}
-
-type Fuzz42 struct {
-	One []bool
-	Two int32
-}
-
-type Fuzz43 struct {
-	One []bool
-	Two rune
-}
-
-type Fuzz44 struct {
-	One []bool
-	Two int64
-}
-
-type Fuzz45 struct {
-	One []bool
-	Two []int
-}
-
-type Fuzz46 struct {
-	One []bool
-	Two []int8
-}
-
-type Fuzz47 struct {
-	One []bool
-	Two []int16
-}
-
-type Fuzz48 struct {
-	One []bool
-	Two []int32
-}
-
-type Fuzz49 struct {
-	One []bool
-	Two []int64
-}
-
-type Fuzz50 struct {
-	One []bool
-	Two uint
-}
-
-type Fuzz51 struct {
-	One []bool
-	Two uint8
-}
-
-type Fuzz52 struct {
-	One []bool
-	Two uint16
-}
-
-type Fuzz53 struct {
-	One []bool
-	Two uint32
-}
-
-type Fuzz54 struct {
-	One []bool
-	Two uint64
-}
-
-type Fuzz55 struct {
-	One []bool
-	Two []uint
-}
-
-type Fuzz56 struct {
-	One []bool
-	Two []uint16
-}
-
-type Fuzz57 struct {
-	One []bool
-	Two []uint32
-}
-
-type Fuzz58 struct {
-	One []bool
-	Two []uint64
-}
-
-type Fuzz59 struct {
-	One []bool
-	Two string
-}
-
-type Fuzz60 struct {
-	One []bool
 	Two []string
 }
 
-type Fuzz61 struct {
-	One []bool
-	Two time.Time
+type Fuzz32 struct {
+	One bool
+	Two []time.Duration
 }
 
-type Fuzz62 struct {
-	One []bool
+type Fuzz33 struct {
+	One bool
+	Two []time.Time
+}
+
+type Fuzz34 struct {
+	One bool
+	Two []uint
+}
+
+type Fuzz35 struct {
+	One bool
+	Two []uint8
+}
+
+type Fuzz36 struct {
+	One bool
+	Two []uint16
+}
+
+type Fuzz37 struct {
+	One bool
+	Two []uint32
+}
+
+type Fuzz38 struct {
+	One bool
+	Two []uint64
+}
+
+type Fuzz39 struct {
+	One byte
+	Two bool
+}
+
+type Fuzz40 struct {
+	One byte
+	Two complex64
+}
+
+type Fuzz41 struct {
+	One byte
+	Two complex128
+}
+
+type Fuzz42 struct {
+	One byte
+	Two float32
+}
+
+type Fuzz43 struct {
+	One byte
+	Two float64
+}
+
+type Fuzz44 struct {
+	One byte
+	Two int
+}
+
+type Fuzz45 struct {
+	One byte
+	Two int8
+}
+
+type Fuzz46 struct {
+	One byte
+	Two int16
+}
+
+type Fuzz47 struct {
+	One byte
+	Two int32
+}
+
+type Fuzz48 struct {
+	One byte
+	Two int64
+}
+
+type Fuzz49 struct {
+	One byte
+	Two rune
+}
+
+type Fuzz50 struct {
+	One byte
+	Two string
+}
+
+type Fuzz51 struct {
+	One byte
 	Two time.Duration
 }
 
+type Fuzz52 struct {
+	One byte
+	Two time.Time
+}
+
+type Fuzz53 struct {
+	One byte
+	Two uint
+}
+
+type Fuzz54 struct {
+	One byte
+	Two uint8
+}
+
+type Fuzz55 struct {
+	One byte
+	Two uint16
+}
+
+type Fuzz56 struct {
+	One byte
+	Two uint32
+}
+
+type Fuzz57 struct {
+	One byte
+	Two uint64
+}
+
+type Fuzz58 struct {
+	One byte
+	Two []bool
+}
+
+type Fuzz59 struct {
+	One byte
+	Two []byte
+}
+
+type Fuzz60 struct {
+	One byte
+	Two []complex64
+}
+
+type Fuzz61 struct {
+	One byte
+	Two []complex128
+}
+
+type Fuzz62 struct {
+	One byte
+	Two []float32
+}
+
 type Fuzz63 struct {
-	One []bool
-	Two []time.Duration
+	One byte
+	Two []float64
 }
 
 type Fuzz64 struct {
 	One byte
-	Two bool
+	Two []int
 }
 
 type Fuzz65 struct {
 	One byte
-	Two []bool
+	Two []int8
 }
 
 type Fuzz66 struct {
 	One byte
-	Two []byte
+	Two []int16
 }
 
 type Fuzz67 struct {
 	One byte
-	Two float32
+	Two []int32
 }
 
 type Fuzz68 struct {
 	One byte
-	Two []float32
+	Two []int64
 }
 
 type Fuzz69 struct {
 	One byte
-	Two float64
+	Two []rune
 }
 
 type Fuzz70 struct {
 	One byte
-	Two []float64
+	Two []string
 }
 
 type Fuzz71 struct {
 	One byte
-	Two int
+	Two []time.Duration
 }
 
 type Fuzz72 struct {
 	One byte
-	Two int8
+	Two []time.Time
 }
 
 type Fuzz73 struct {
 	One byte
-	Two int16
+	Two []uint
 }
 
 type Fuzz74 struct {
 	One byte
-	Two int32
+	Two []uint8
 }
 
 type Fuzz75 struct {
 	One byte
-	Two rune
+	Two []uint16
 }
 
 type Fuzz76 struct {
 	One byte
-	Two int64
+	Two []uint32
 }
 
 type Fuzz77 struct {
 	One byte
-	Two []int
-}
-
-type Fuzz78 struct {
-	One byte
-	Two []int8
-}
-
-type Fuzz79 struct {
-	One byte
-	Two []int16
-}
-
-type Fuzz80 struct {
-	One byte
-	Two []int32
-}
-
-type Fuzz81 struct {
-	One byte
-	Two []int64
-}
-
-type Fuzz82 struct {
-	One byte
-	Two uint
-}
-
-type Fuzz83 struct {
-	One byte
-	Two uint8
-}
-
-type Fuzz84 struct {
-	One byte
-	Two uint16
-}
-
-type Fuzz85 struct {
-	One byte
-	Two uint32
-}
-
-type Fuzz86 struct {
-	One byte
-	Two uint64
-}
-
-type Fuzz87 struct {
-	One byte
-	Two []uint
-}
-
-type Fuzz88 struct {
-	One byte
-	Two []uint16
-}
-
-type Fuzz89 struct {
-	One byte
-	Two []uint32
-}
-
-type Fuzz90 struct {
-	One byte
 	Two []uint64
 }
 
-type Fuzz91 struct {
-	One byte
-	Two string
-}
-
-type Fuzz92 struct {
-	One byte
-	Two []string
-}
-
-type Fuzz93 struct {
-	One byte
-	Two time.Time
-}
-
-type Fuzz94 struct {
-	One byte
-	Two time.Duration
-}
-
-type Fuzz95 struct {
-	One byte
-	Two []time.Duration
-}
-
-type Fuzz96 struct {
-	One []byte
+type Fuzz78 struct {
+	One complex64
 	Two bool
 }
 
+type Fuzz79 struct {
+	One complex64
+	Two byte
+}
+
+type Fuzz80 struct {
+	One complex64
+	Two complex128
+}
+
+type Fuzz81 struct {
+	One complex64
+	Two float32
+}
+
+type Fuzz82 struct {
+	One complex64
+	Two float64
+}
+
+type Fuzz83 struct {
+	One complex64
+	Two int
+}
+
+type Fuzz84 struct {
+	One complex64
+	Two int8
+}
+
+type Fuzz85 struct {
+	One complex64
+	Two int16
+}
+
+type Fuzz86 struct {
+	One complex64
+	Two int32
+}
+
+type Fuzz87 struct {
+	One complex64
+	Two int64
+}
+
+type Fuzz88 struct {
+	One complex64
+	Two rune
+}
+
+type Fuzz89 struct {
+	One complex64
+	Two string
+}
+
+type Fuzz90 struct {
+	One complex64
+	Two time.Duration
+}
+
+type Fuzz91 struct {
+	One complex64
+	Two time.Time
+}
+
+type Fuzz92 struct {
+	One complex64
+	Two uint
+}
+
+type Fuzz93 struct {
+	One complex64
+	Two uint8
+}
+
+type Fuzz94 struct {
+	One complex64
+	Two uint16
+}
+
+type Fuzz95 struct {
+	One complex64
+	Two uint32
+}
+
+type Fuzz96 struct {
+	One complex64
+	Two uint64
+}
+
 type Fuzz97 struct {
-	One []byte
+	One complex64
 	Two []bool
 }
 
 type Fuzz98 struct {
-	One []byte
-	Two byte
+	One complex64
+	Two []byte
 }
 
 type Fuzz99 struct {
-	One []byte
-	Two float32
+	One complex64
+	Two []complex64
 }
 
 type Fuzz100 struct {
-	One []byte
-	Two []float32
+	One complex64
+	Two []complex128
 }
 
 type Fuzz101 struct {
-	One []byte
-	Two float64
+	One complex64
+	Two []float32
 }
 
 type Fuzz102 struct {
-	One []byte
+	One complex64
 	Two []float64
 }
 
 type Fuzz103 struct {
-	One []byte
-	Two int
+	One complex64
+	Two []int
 }
 
 type Fuzz104 struct {
-	One []byte
-	Two int8
+	One complex64
+	Two []int8
 }
 
 type Fuzz105 struct {
-	One []byte
-	Two int16
+	One complex64
+	Two []int16
 }
 
 type Fuzz106 struct {
-	One []byte
-	Two int32
+	One complex64
+	Two []int32
 }
 
 type Fuzz107 struct {
-	One []byte
-	Two rune
+	One complex64
+	Two []int64
 }
 
 type Fuzz108 struct {
-	One []byte
-	Two int64
+	One complex64
+	Two []rune
 }
 
 type Fuzz109 struct {
-	One []byte
-	Two []int
-}
-
-type Fuzz110 struct {
-	One []byte
-	Two []int8
-}
-
-type Fuzz111 struct {
-	One []byte
-	Two []int16
-}
-
-type Fuzz112 struct {
-	One []byte
-	Two []int32
-}
-
-type Fuzz113 struct {
-	One []byte
-	Two []int64
-}
-
-type Fuzz114 struct {
-	One []byte
-	Two uint
-}
-
-type Fuzz115 struct {
-	One []byte
-	Two uint8
-}
-
-type Fuzz116 struct {
-	One []byte
-	Two uint16
-}
-
-type Fuzz117 struct {
-	One []byte
-	Two uint32
-}
-
-type Fuzz118 struct {
-	One []byte
-	Two uint64
-}
-
-type Fuzz119 struct {
-	One []byte
-	Two []uint
-}
-
-type Fuzz120 struct {
-	One []byte
-	Two []uint16
-}
-
-type Fuzz121 struct {
-	One []byte
-	Two []uint32
-}
-
-type Fuzz122 struct {
-	One []byte
-	Two []uint64
-}
-
-type Fuzz123 struct {
-	One []byte
-	Two string
-}
-
-type Fuzz124 struct {
-	One []byte
+	One complex64
 	Two []string
 }
 
-type Fuzz125 struct {
-	One []byte
-	Two time.Time
-}
-
-type Fuzz126 struct {
-	One []byte
-	Two time.Duration
-}
-
-type Fuzz127 struct {
-	One []byte
+type Fuzz110 struct {
+	One complex64
 	Two []time.Duration
 }
 
-type Fuzz128 struct {
-	One float32
+type Fuzz111 struct {
+	One complex64
+	Two []time.Time
+}
+
+type Fuzz112 struct {
+	One complex64
+	Two []uint
+}
+
+type Fuzz113 struct {
+	One complex64
+	Two []uint8
+}
+
+type Fuzz114 struct {
+	One complex64
+	Two []uint16
+}
+
+type Fuzz115 struct {
+	One complex64
+	Two []uint32
+}
+
+type Fuzz116 struct {
+	One complex64
+	Two []uint64
+}
+
+type Fuzz117 struct {
+	One complex128
 	Two bool
 }
 
-type Fuzz129 struct {
-	One float32
-	Two []bool
-}
-
-type Fuzz130 struct {
-	One float32
+type Fuzz118 struct {
+	One complex128
 	Two byte
 }
 
-type Fuzz131 struct {
-	One float32
-	Two []byte
+type Fuzz119 struct {
+	One complex128
+	Two complex64
 }
 
-type Fuzz132 struct {
-	One float32
-	Two []float32
+type Fuzz120 struct {
+	One complex128
+	Two float32
 }
 
-type Fuzz133 struct {
-	One float32
+type Fuzz121 struct {
+	One complex128
 	Two float64
 }
 
-type Fuzz134 struct {
-	One float32
-	Two []float64
-}
-
-type Fuzz135 struct {
-	One float32
+type Fuzz122 struct {
+	One complex128
 	Two int
 }
 
-type Fuzz136 struct {
-	One float32
+type Fuzz123 struct {
+	One complex128
 	Two int8
 }
 
-type Fuzz137 struct {
-	One float32
+type Fuzz124 struct {
+	One complex128
 	Two int16
 }
 
-type Fuzz138 struct {
-	One float32
+type Fuzz125 struct {
+	One complex128
 	Two int32
 }
 
-type Fuzz139 struct {
-	One float32
-	Two rune
-}
-
-type Fuzz140 struct {
-	One float32
+type Fuzz126 struct {
+	One complex128
 	Two int64
 }
 
-type Fuzz141 struct {
-	One float32
-	Two []int
+type Fuzz127 struct {
+	One complex128
+	Two rune
 }
 
-type Fuzz142 struct {
-	One float32
-	Two []int8
+type Fuzz128 struct {
+	One complex128
+	Two string
 }
 
-type Fuzz143 struct {
-	One float32
-	Two []int16
+type Fuzz129 struct {
+	One complex128
+	Two time.Duration
 }
 
-type Fuzz144 struct {
-	One float32
-	Two []int32
+type Fuzz130 struct {
+	One complex128
+	Two time.Time
 }
 
-type Fuzz145 struct {
-	One float32
-	Two []int64
-}
-
-type Fuzz146 struct {
-	One float32
+type Fuzz131 struct {
+	One complex128
 	Two uint
 }
 
-type Fuzz147 struct {
-	One float32
+type Fuzz132 struct {
+	One complex128
 	Two uint8
 }
 
-type Fuzz148 struct {
-	One float32
+type Fuzz133 struct {
+	One complex128
 	Two uint16
 }
 
-type Fuzz149 struct {
-	One float32
+type Fuzz134 struct {
+	One complex128
 	Two uint32
 }
 
-type Fuzz150 struct {
-	One float32
+type Fuzz135 struct {
+	One complex128
 	Two uint64
 }
 
+type Fuzz136 struct {
+	One complex128
+	Two []bool
+}
+
+type Fuzz137 struct {
+	One complex128
+	Two []byte
+}
+
+type Fuzz138 struct {
+	One complex128
+	Two []complex64
+}
+
+type Fuzz139 struct {
+	One complex128
+	Two []complex128
+}
+
+type Fuzz140 struct {
+	One complex128
+	Two []float32
+}
+
+type Fuzz141 struct {
+	One complex128
+	Two []float64
+}
+
+type Fuzz142 struct {
+	One complex128
+	Two []int
+}
+
+type Fuzz143 struct {
+	One complex128
+	Two []int8
+}
+
+type Fuzz144 struct {
+	One complex128
+	Two []int16
+}
+
+type Fuzz145 struct {
+	One complex128
+	Two []int32
+}
+
+type Fuzz146 struct {
+	One complex128
+	Two []int64
+}
+
+type Fuzz147 struct {
+	One complex128
+	Two []rune
+}
+
+type Fuzz148 struct {
+	One complex128
+	Two []string
+}
+
+type Fuzz149 struct {
+	One complex128
+	Two []time.Duration
+}
+
+type Fuzz150 struct {
+	One complex128
+	Two []time.Time
+}
+
 type Fuzz151 struct {
-	One float32
+	One complex128
 	Two []uint
 }
 
 type Fuzz152 struct {
-	One float32
-	Two []uint16
+	One complex128
+	Two []uint8
 }
 
 type Fuzz153 struct {
-	One float32
-	Two []uint32
+	One complex128
+	Two []uint16
 }
 
 type Fuzz154 struct {
-	One float32
-	Two []uint64
+	One complex128
+	Two []uint32
 }
 
 type Fuzz155 struct {
-	One float32
-	Two string
+	One complex128
+	Two []uint64
 }
 
 type Fuzz156 struct {
 	One float32
-	Two []string
+	Two bool
 }
 
 type Fuzz157 struct {
 	One float32
-	Two time.Time
+	Two byte
 }
 
 type Fuzz158 struct {
 	One float32
-	Two time.Duration
+	Two complex64
 }
 
 type Fuzz159 struct {
 	One float32
-	Two []time.Duration
+	Two complex128
 }
 
 type Fuzz160 struct {
-	One []float32
-	Two bool
-}
-
-type Fuzz161 struct {
-	One []float32
-	Two []bool
-}
-
-type Fuzz162 struct {
-	One []float32
-	Two byte
-}
-
-type Fuzz163 struct {
-	One []float32
-	Two []byte
-}
-
-type Fuzz164 struct {
-	One []float32
-	Two float32
-}
-
-type Fuzz165 struct {
-	One []float32
+	One float32
 	Two float64
 }
 
-type Fuzz166 struct {
-	One []float32
-	Two []float64
-}
-
-type Fuzz167 struct {
-	One []float32
+type Fuzz161 struct {
+	One float32
 	Two int
 }
 
-type Fuzz168 struct {
-	One []float32
+type Fuzz162 struct {
+	One float32
 	Two int8
 }
 
-type Fuzz169 struct {
-	One []float32
+type Fuzz163 struct {
+	One float32
 	Two int16
 }
 
-type Fuzz170 struct {
-	One []float32
+type Fuzz164 struct {
+	One float32
 	Two int32
 }
 
-type Fuzz171 struct {
-	One []float32
-	Two rune
-}
-
-type Fuzz172 struct {
-	One []float32
+type Fuzz165 struct {
+	One float32
 	Two int64
 }
 
-type Fuzz173 struct {
-	One []float32
-	Two []int
+type Fuzz166 struct {
+	One float32
+	Two rune
 }
 
-type Fuzz174 struct {
-	One []float32
-	Two []int8
-}
-
-type Fuzz175 struct {
-	One []float32
-	Two []int16
-}
-
-type Fuzz176 struct {
-	One []float32
-	Two []int32
-}
-
-type Fuzz177 struct {
-	One []float32
-	Two []int64
-}
-
-type Fuzz178 struct {
-	One []float32
-	Two uint
-}
-
-type Fuzz179 struct {
-	One []float32
-	Two uint8
-}
-
-type Fuzz180 struct {
-	One []float32
-	Two uint16
-}
-
-type Fuzz181 struct {
-	One []float32
-	Two uint32
-}
-
-type Fuzz182 struct {
-	One []float32
-	Two uint64
-}
-
-type Fuzz183 struct {
-	One []float32
-	Two []uint
-}
-
-type Fuzz184 struct {
-	One []float32
-	Two []uint16
-}
-
-type Fuzz185 struct {
-	One []float32
-	Two []uint32
-}
-
-type Fuzz186 struct {
-	One []float32
-	Two []uint64
-}
-
-type Fuzz187 struct {
-	One []float32
+type Fuzz167 struct {
+	One float32
 	Two string
 }
 
-type Fuzz188 struct {
-	One []float32
-	Two []string
-}
-
-type Fuzz189 struct {
-	One []float32
-	Two time.Time
-}
-
-type Fuzz190 struct {
-	One []float32
+type Fuzz168 struct {
+	One float32
 	Two time.Duration
 }
 
-type Fuzz191 struct {
-	One []float32
-	Two []time.Duration
+type Fuzz169 struct {
+	One float32
+	Two time.Time
 }
 
-type Fuzz192 struct {
-	One float64
-	Two bool
+type Fuzz170 struct {
+	One float32
+	Two uint
 }
 
-type Fuzz193 struct {
-	One float64
+type Fuzz171 struct {
+	One float32
+	Two uint8
+}
+
+type Fuzz172 struct {
+	One float32
+	Two uint16
+}
+
+type Fuzz173 struct {
+	One float32
+	Two uint32
+}
+
+type Fuzz174 struct {
+	One float32
+	Two uint64
+}
+
+type Fuzz175 struct {
+	One float32
 	Two []bool
 }
 
+type Fuzz176 struct {
+	One float32
+	Two []byte
+}
+
+type Fuzz177 struct {
+	One float32
+	Two []complex64
+}
+
+type Fuzz178 struct {
+	One float32
+	Two []complex128
+}
+
+type Fuzz179 struct {
+	One float32
+	Two []float32
+}
+
+type Fuzz180 struct {
+	One float32
+	Two []float64
+}
+
+type Fuzz181 struct {
+	One float32
+	Two []int
+}
+
+type Fuzz182 struct {
+	One float32
+	Two []int8
+}
+
+type Fuzz183 struct {
+	One float32
+	Two []int16
+}
+
+type Fuzz184 struct {
+	One float32
+	Two []int32
+}
+
+type Fuzz185 struct {
+	One float32
+	Two []int64
+}
+
+type Fuzz186 struct {
+	One float32
+	Two []rune
+}
+
+type Fuzz187 struct {
+	One float32
+	Two []string
+}
+
+type Fuzz188 struct {
+	One float32
+	Two []time.Duration
+}
+
+type Fuzz189 struct {
+	One float32
+	Two []time.Time
+}
+
+type Fuzz190 struct {
+	One float32
+	Two []uint
+}
+
+type Fuzz191 struct {
+	One float32
+	Two []uint8
+}
+
+type Fuzz192 struct {
+	One float32
+	Two []uint16
+}
+
+type Fuzz193 struct {
+	One float32
+	Two []uint32
+}
+
 type Fuzz194 struct {
-	One float64
-	Two byte
+	One float32
+	Two []uint64
 }
 
 type Fuzz195 struct {
 	One float64
-	Two []byte
+	Two bool
 }
 
 type Fuzz196 struct {
 	One float64
-	Two float32
+	Two byte
 }
 
 type Fuzz197 struct {
 	One float64
-	Two []float32
+	Two complex64
 }
 
 type Fuzz198 struct {
 	One float64
-	Two []float64
+	Two complex128
 }
 
 type Fuzz199 struct {
 	One float64
-	Two int
+	Two float32
 }
 
 type Fuzz200 struct {
 	One float64
-	Two int8
+	Two int
 }
 
 type Fuzz201 struct {
 	One float64
-	Two int16
+	Two int8
 }
 
 type Fuzz202 struct {
 	One float64
-	Two int32
+	Two int16
 }
 
 type Fuzz203 struct {
 	One float64
-	Two rune
+	Two int32
 }
 
 type Fuzz204 struct {
@@ -1031,892 +1031,892 @@ type Fuzz204 struct {
 
 type Fuzz205 struct {
 	One float64
-	Two []int
+	Two rune
 }
 
 type Fuzz206 struct {
 	One float64
-	Two []int8
+	Two string
 }
 
 type Fuzz207 struct {
 	One float64
-	Two []int16
+	Two time.Duration
 }
 
 type Fuzz208 struct {
 	One float64
-	Two []int32
+	Two time.Time
 }
 
 type Fuzz209 struct {
 	One float64
-	Two []int64
+	Two uint
 }
 
 type Fuzz210 struct {
 	One float64
-	Two uint
+	Two uint8
 }
 
 type Fuzz211 struct {
 	One float64
-	Two uint8
+	Two uint16
 }
 
 type Fuzz212 struct {
 	One float64
-	Two uint16
+	Two uint32
 }
 
 type Fuzz213 struct {
 	One float64
-	Two uint32
+	Two uint64
 }
 
 type Fuzz214 struct {
 	One float64
-	Two uint64
+	Two []bool
 }
 
 type Fuzz215 struct {
 	One float64
-	Two []uint
+	Two []byte
 }
 
 type Fuzz216 struct {
 	One float64
-	Two []uint16
+	Two []complex64
 }
 
 type Fuzz217 struct {
 	One float64
-	Two []uint32
+	Two []complex128
 }
 
 type Fuzz218 struct {
 	One float64
-	Two []uint64
+	Two []float32
 }
 
 type Fuzz219 struct {
 	One float64
-	Two string
+	Two []float64
 }
 
 type Fuzz220 struct {
 	One float64
-	Two []string
+	Two []int
 }
 
 type Fuzz221 struct {
 	One float64
-	Two time.Time
+	Two []int8
 }
 
 type Fuzz222 struct {
 	One float64
-	Two time.Duration
+	Two []int16
 }
 
 type Fuzz223 struct {
 	One float64
-	Two []time.Duration
-}
-
-type Fuzz224 struct {
-	One []float64
-	Two bool
-}
-
-type Fuzz225 struct {
-	One []float64
-	Two []bool
-}
-
-type Fuzz226 struct {
-	One []float64
-	Two byte
-}
-
-type Fuzz227 struct {
-	One []float64
-	Two []byte
-}
-
-type Fuzz228 struct {
-	One []float64
-	Two float32
-}
-
-type Fuzz229 struct {
-	One []float64
-	Two []float32
-}
-
-type Fuzz230 struct {
-	One []float64
-	Two float64
-}
-
-type Fuzz231 struct {
-	One []float64
-	Two int
-}
-
-type Fuzz232 struct {
-	One []float64
-	Two int8
-}
-
-type Fuzz233 struct {
-	One []float64
-	Two int16
-}
-
-type Fuzz234 struct {
-	One []float64
-	Two int32
-}
-
-type Fuzz235 struct {
-	One []float64
-	Two rune
-}
-
-type Fuzz236 struct {
-	One []float64
-	Two int64
-}
-
-type Fuzz237 struct {
-	One []float64
-	Two []int
-}
-
-type Fuzz238 struct {
-	One []float64
-	Two []int8
-}
-
-type Fuzz239 struct {
-	One []float64
-	Two []int16
-}
-
-type Fuzz240 struct {
-	One []float64
 	Two []int32
 }
 
-type Fuzz241 struct {
-	One []float64
+type Fuzz224 struct {
+	One float64
 	Two []int64
 }
 
-type Fuzz242 struct {
-	One []float64
-	Two uint
+type Fuzz225 struct {
+	One float64
+	Two []rune
 }
 
-type Fuzz243 struct {
-	One []float64
-	Two uint8
-}
-
-type Fuzz244 struct {
-	One []float64
-	Two uint16
-}
-
-type Fuzz245 struct {
-	One []float64
-	Two uint32
-}
-
-type Fuzz246 struct {
-	One []float64
-	Two uint64
-}
-
-type Fuzz247 struct {
-	One []float64
-	Two []uint
-}
-
-type Fuzz248 struct {
-	One []float64
-	Two []uint16
-}
-
-type Fuzz249 struct {
-	One []float64
-	Two []uint32
-}
-
-type Fuzz250 struct {
-	One []float64
-	Two []uint64
-}
-
-type Fuzz251 struct {
-	One []float64
-	Two string
-}
-
-type Fuzz252 struct {
-	One []float64
+type Fuzz226 struct {
+	One float64
 	Two []string
 }
 
-type Fuzz253 struct {
-	One []float64
-	Two time.Time
+type Fuzz227 struct {
+	One float64
+	Two []time.Duration
 }
 
-type Fuzz254 struct {
-	One []float64
+type Fuzz228 struct {
+	One float64
+	Two []time.Time
+}
+
+type Fuzz229 struct {
+	One float64
+	Two []uint
+}
+
+type Fuzz230 struct {
+	One float64
+	Two []uint8
+}
+
+type Fuzz231 struct {
+	One float64
+	Two []uint16
+}
+
+type Fuzz232 struct {
+	One float64
+	Two []uint32
+}
+
+type Fuzz233 struct {
+	One float64
+	Two []uint64
+}
+
+type Fuzz234 struct {
+	One int
+	Two bool
+}
+
+type Fuzz235 struct {
+	One int
+	Two byte
+}
+
+type Fuzz236 struct {
+	One int
+	Two complex64
+}
+
+type Fuzz237 struct {
+	One int
+	Two complex128
+}
+
+type Fuzz238 struct {
+	One int
+	Two float32
+}
+
+type Fuzz239 struct {
+	One int
+	Two float64
+}
+
+type Fuzz240 struct {
+	One int
+	Two int8
+}
+
+type Fuzz241 struct {
+	One int
+	Two int16
+}
+
+type Fuzz242 struct {
+	One int
+	Two int32
+}
+
+type Fuzz243 struct {
+	One int
+	Two int64
+}
+
+type Fuzz244 struct {
+	One int
+	Two rune
+}
+
+type Fuzz245 struct {
+	One int
+	Two string
+}
+
+type Fuzz246 struct {
+	One int
 	Two time.Duration
 }
 
+type Fuzz247 struct {
+	One int
+	Two time.Time
+}
+
+type Fuzz248 struct {
+	One int
+	Two uint
+}
+
+type Fuzz249 struct {
+	One int
+	Two uint8
+}
+
+type Fuzz250 struct {
+	One int
+	Two uint16
+}
+
+type Fuzz251 struct {
+	One int
+	Two uint32
+}
+
+type Fuzz252 struct {
+	One int
+	Two uint64
+}
+
+type Fuzz253 struct {
+	One int
+	Two []bool
+}
+
+type Fuzz254 struct {
+	One int
+	Two []byte
+}
+
 type Fuzz255 struct {
-	One []float64
-	Two []time.Duration
+	One int
+	Two []complex64
 }
 
 type Fuzz256 struct {
 	One int
-	Two bool
+	Two []complex128
 }
 
 type Fuzz257 struct {
 	One int
-	Two []bool
+	Two []float32
 }
 
 type Fuzz258 struct {
 	One int
-	Two byte
+	Two []float64
 }
 
 type Fuzz259 struct {
 	One int
-	Two []byte
+	Two []int
 }
 
 type Fuzz260 struct {
 	One int
-	Two float32
+	Two []int8
 }
 
 type Fuzz261 struct {
 	One int
-	Two []float32
+	Two []int16
 }
 
 type Fuzz262 struct {
 	One int
-	Two float64
+	Two []int32
 }
 
 type Fuzz263 struct {
 	One int
-	Two []float64
+	Two []int64
 }
 
 type Fuzz264 struct {
 	One int
-	Two int8
+	Two []rune
 }
 
 type Fuzz265 struct {
 	One int
-	Two int16
+	Two []string
 }
 
 type Fuzz266 struct {
 	One int
-	Two int32
+	Two []time.Duration
 }
 
 type Fuzz267 struct {
 	One int
-	Two rune
+	Two []time.Time
 }
 
 type Fuzz268 struct {
 	One int
-	Two int64
+	Two []uint
 }
 
 type Fuzz269 struct {
 	One int
-	Two []int
+	Two []uint8
 }
 
 type Fuzz270 struct {
 	One int
-	Two []int8
+	Two []uint16
 }
 
 type Fuzz271 struct {
 	One int
-	Two []int16
+	Two []uint32
 }
 
 type Fuzz272 struct {
 	One int
-	Two []int32
-}
-
-type Fuzz273 struct {
-	One int
-	Two []int64
-}
-
-type Fuzz274 struct {
-	One int
-	Two uint
-}
-
-type Fuzz275 struct {
-	One int
-	Two uint8
-}
-
-type Fuzz276 struct {
-	One int
-	Two uint16
-}
-
-type Fuzz277 struct {
-	One int
-	Two uint32
-}
-
-type Fuzz278 struct {
-	One int
-	Two uint64
-}
-
-type Fuzz279 struct {
-	One int
-	Two []uint
-}
-
-type Fuzz280 struct {
-	One int
-	Two []uint16
-}
-
-type Fuzz281 struct {
-	One int
-	Two []uint32
-}
-
-type Fuzz282 struct {
-	One int
 	Two []uint64
 }
 
+type Fuzz273 struct {
+	One int8
+	Two bool
+}
+
+type Fuzz274 struct {
+	One int8
+	Two byte
+}
+
+type Fuzz275 struct {
+	One int8
+	Two complex64
+}
+
+type Fuzz276 struct {
+	One int8
+	Two complex128
+}
+
+type Fuzz277 struct {
+	One int8
+	Two float32
+}
+
+type Fuzz278 struct {
+	One int8
+	Two float64
+}
+
+type Fuzz279 struct {
+	One int8
+	Two int
+}
+
+type Fuzz280 struct {
+	One int8
+	Two int16
+}
+
+type Fuzz281 struct {
+	One int8
+	Two int32
+}
+
+type Fuzz282 struct {
+	One int8
+	Two int64
+}
+
 type Fuzz283 struct {
-	One int
-	Two string
+	One int8
+	Two rune
 }
 
 type Fuzz284 struct {
-	One int
-	Two []string
+	One int8
+	Two string
 }
 
 type Fuzz285 struct {
-	One int
-	Two time.Time
-}
-
-type Fuzz286 struct {
-	One int
+	One int8
 	Two time.Duration
 }
 
+type Fuzz286 struct {
+	One int8
+	Two time.Time
+}
+
 type Fuzz287 struct {
-	One int
-	Two []time.Duration
+	One int8
+	Two uint
 }
 
 type Fuzz288 struct {
 	One int8
-	Two bool
+	Two uint8
 }
 
 type Fuzz289 struct {
 	One int8
-	Two []bool
+	Two uint16
 }
 
 type Fuzz290 struct {
 	One int8
-	Two byte
+	Two uint32
 }
 
 type Fuzz291 struct {
 	One int8
-	Two []byte
+	Two uint64
 }
 
 type Fuzz292 struct {
 	One int8
-	Two float32
+	Two []bool
 }
 
 type Fuzz293 struct {
 	One int8
-	Two []float32
+	Two []byte
 }
 
 type Fuzz294 struct {
 	One int8
-	Two float64
+	Two []complex64
 }
 
 type Fuzz295 struct {
 	One int8
-	Two []float64
+	Two []complex128
 }
 
 type Fuzz296 struct {
 	One int8
-	Two int
+	Two []float32
 }
 
 type Fuzz297 struct {
 	One int8
-	Two int16
+	Two []float64
 }
 
 type Fuzz298 struct {
 	One int8
-	Two int32
+	Two []int
 }
 
 type Fuzz299 struct {
 	One int8
-	Two rune
+	Two []int8
 }
 
 type Fuzz300 struct {
 	One int8
-	Two int64
+	Two []int16
 }
 
 type Fuzz301 struct {
 	One int8
-	Two []int
+	Two []int32
 }
 
 type Fuzz302 struct {
 	One int8
-	Two []int8
+	Two []int64
 }
 
 type Fuzz303 struct {
 	One int8
-	Two []int16
+	Two []rune
 }
 
 type Fuzz304 struct {
 	One int8
-	Two []int32
+	Two []string
 }
 
 type Fuzz305 struct {
 	One int8
-	Two []int64
+	Two []time.Duration
 }
 
 type Fuzz306 struct {
 	One int8
-	Two uint
+	Two []time.Time
 }
 
 type Fuzz307 struct {
 	One int8
-	Two uint8
+	Two []uint
 }
 
 type Fuzz308 struct {
 	One int8
-	Two uint16
+	Two []uint8
 }
 
 type Fuzz309 struct {
 	One int8
-	Two uint32
+	Two []uint16
 }
 
 type Fuzz310 struct {
 	One int8
-	Two uint64
+	Two []uint32
 }
 
 type Fuzz311 struct {
 	One int8
-	Two []uint
-}
-
-type Fuzz312 struct {
-	One int8
-	Two []uint16
-}
-
-type Fuzz313 struct {
-	One int8
-	Two []uint32
-}
-
-type Fuzz314 struct {
-	One int8
 	Two []uint64
 }
 
+type Fuzz312 struct {
+	One int16
+	Two bool
+}
+
+type Fuzz313 struct {
+	One int16
+	Two byte
+}
+
+type Fuzz314 struct {
+	One int16
+	Two complex64
+}
+
 type Fuzz315 struct {
-	One int8
-	Two string
+	One int16
+	Two complex128
 }
 
 type Fuzz316 struct {
-	One int8
-	Two []string
+	One int16
+	Two float32
 }
 
 type Fuzz317 struct {
-	One int8
-	Two time.Time
+	One int16
+	Two float64
 }
 
 type Fuzz318 struct {
-	One int8
-	Two time.Duration
+	One int16
+	Two int
 }
 
 type Fuzz319 struct {
-	One int8
-	Two []time.Duration
+	One int16
+	Two int8
 }
 
 type Fuzz320 struct {
 	One int16
-	Two bool
+	Two int32
 }
 
 type Fuzz321 struct {
 	One int16
-	Two []bool
+	Two int64
 }
 
 type Fuzz322 struct {
 	One int16
-	Two byte
+	Two rune
 }
 
 type Fuzz323 struct {
 	One int16
-	Two []byte
+	Two string
 }
 
 type Fuzz324 struct {
 	One int16
-	Two float32
+	Two time.Duration
 }
 
 type Fuzz325 struct {
 	One int16
-	Two []float32
+	Two time.Time
 }
 
 type Fuzz326 struct {
 	One int16
-	Two float64
+	Two uint
 }
 
 type Fuzz327 struct {
 	One int16
-	Two []float64
+	Two uint8
 }
 
 type Fuzz328 struct {
 	One int16
-	Two int
+	Two uint16
 }
 
 type Fuzz329 struct {
 	One int16
-	Two int8
+	Two uint32
 }
 
 type Fuzz330 struct {
 	One int16
-	Two int32
+	Two uint64
 }
 
 type Fuzz331 struct {
 	One int16
-	Two rune
+	Two []bool
 }
 
 type Fuzz332 struct {
 	One int16
-	Two int64
+	Two []byte
 }
 
 type Fuzz333 struct {
 	One int16
-	Two []int
+	Two []complex64
 }
 
 type Fuzz334 struct {
 	One int16
-	Two []int8
+	Two []complex128
 }
 
 type Fuzz335 struct {
 	One int16
-	Two []int16
+	Two []float32
 }
 
 type Fuzz336 struct {
 	One int16
-	Two []int32
+	Two []float64
 }
 
 type Fuzz337 struct {
 	One int16
-	Two []int64
+	Two []int
 }
 
 type Fuzz338 struct {
 	One int16
-	Two uint
+	Two []int8
 }
 
 type Fuzz339 struct {
 	One int16
-	Two uint8
+	Two []int16
 }
 
 type Fuzz340 struct {
 	One int16
-	Two uint16
+	Two []int32
 }
 
 type Fuzz341 struct {
 	One int16
-	Two uint32
+	Two []int64
 }
 
 type Fuzz342 struct {
 	One int16
-	Two uint64
+	Two []rune
 }
 
 type Fuzz343 struct {
 	One int16
-	Two []uint
+	Two []string
 }
 
 type Fuzz344 struct {
 	One int16
-	Two []uint16
+	Two []time.Duration
 }
 
 type Fuzz345 struct {
 	One int16
-	Two []uint32
+	Two []time.Time
 }
 
 type Fuzz346 struct {
 	One int16
-	Two []uint64
+	Two []uint
 }
 
 type Fuzz347 struct {
 	One int16
-	Two string
+	Two []uint8
 }
 
 type Fuzz348 struct {
 	One int16
-	Two []string
+	Two []uint16
 }
 
 type Fuzz349 struct {
 	One int16
-	Two time.Time
+	Two []uint32
 }
 
 type Fuzz350 struct {
 	One int16
-	Two time.Duration
+	Two []uint64
 }
 
 type Fuzz351 struct {
-	One int16
-	Two []time.Duration
-}
-
-type Fuzz352 struct {
 	One int32
 	Two bool
 }
 
-type Fuzz353 struct {
-	One int32
-	Two []bool
-}
-
-type Fuzz354 struct {
+type Fuzz352 struct {
 	One int32
 	Two byte
 }
 
-type Fuzz355 struct {
+type Fuzz353 struct {
 	One int32
-	Two []byte
+	Two complex64
 }
 
-type Fuzz356 struct {
+type Fuzz354 struct {
+	One int32
+	Two complex128
+}
+
+type Fuzz355 struct {
 	One int32
 	Two float32
 }
 
-type Fuzz357 struct {
-	One int32
-	Two []float32
-}
-
-type Fuzz358 struct {
+type Fuzz356 struct {
 	One int32
 	Two float64
 }
 
-type Fuzz359 struct {
-	One int32
-	Two []float64
-}
-
-type Fuzz360 struct {
+type Fuzz357 struct {
 	One int32
 	Two int
 }
 
-type Fuzz361 struct {
+type Fuzz358 struct {
 	One int32
 	Two int8
 }
 
-type Fuzz362 struct {
+type Fuzz359 struct {
 	One int32
 	Two int16
 }
 
-type Fuzz363 struct {
-	One int32
-	Two rune
-}
-
-type Fuzz364 struct {
+type Fuzz360 struct {
 	One int32
 	Two int64
 }
 
-type Fuzz365 struct {
+type Fuzz361 struct {
 	One int32
-	Two []int
+	Two rune
 }
 
-type Fuzz366 struct {
-	One int32
-	Two []int8
-}
-
-type Fuzz367 struct {
-	One int32
-	Two []int16
-}
-
-type Fuzz368 struct {
-	One int32
-	Two []int32
-}
-
-type Fuzz369 struct {
-	One int32
-	Two []int64
-}
-
-type Fuzz370 struct {
-	One int32
-	Two uint
-}
-
-type Fuzz371 struct {
-	One int32
-	Two uint8
-}
-
-type Fuzz372 struct {
-	One int32
-	Two uint16
-}
-
-type Fuzz373 struct {
-	One int32
-	Two uint32
-}
-
-type Fuzz374 struct {
-	One int32
-	Two uint64
-}
-
-type Fuzz375 struct {
-	One int32
-	Two []uint
-}
-
-type Fuzz376 struct {
-	One int32
-	Two []uint16
-}
-
-type Fuzz377 struct {
-	One int32
-	Two []uint32
-}
-
-type Fuzz378 struct {
-	One int32
-	Two []uint64
-}
-
-type Fuzz379 struct {
+type Fuzz362 struct {
 	One int32
 	Two string
 }
 
-type Fuzz380 struct {
+type Fuzz363 struct {
 	One int32
-	Two []string
+	Two time.Duration
 }
 
-type Fuzz381 struct {
+type Fuzz364 struct {
 	One int32
 	Two time.Time
 }
 
+type Fuzz365 struct {
+	One int32
+	Two uint
+}
+
+type Fuzz366 struct {
+	One int32
+	Two uint8
+}
+
+type Fuzz367 struct {
+	One int32
+	Two uint16
+}
+
+type Fuzz368 struct {
+	One int32
+	Two uint32
+}
+
+type Fuzz369 struct {
+	One int32
+	Two uint64
+}
+
+type Fuzz370 struct {
+	One int32
+	Two []bool
+}
+
+type Fuzz371 struct {
+	One int32
+	Two []byte
+}
+
+type Fuzz372 struct {
+	One int32
+	Two []complex64
+}
+
+type Fuzz373 struct {
+	One int32
+	Two []complex128
+}
+
+type Fuzz374 struct {
+	One int32
+	Two []float32
+}
+
+type Fuzz375 struct {
+	One int32
+	Two []float64
+}
+
+type Fuzz376 struct {
+	One int32
+	Two []int
+}
+
+type Fuzz377 struct {
+	One int32
+	Two []int8
+}
+
+type Fuzz378 struct {
+	One int32
+	Two []int16
+}
+
+type Fuzz379 struct {
+	One int32
+	Two []int32
+}
+
+type Fuzz380 struct {
+	One int32
+	Two []int64
+}
+
+type Fuzz381 struct {
+	One int32
+	Two []rune
+}
+
 type Fuzz382 struct {
 	One int32
-	Two time.Duration
+	Two []string
 }
 
 type Fuzz383 struct {
@@ -1925,3361 +1925,5881 @@ type Fuzz383 struct {
 }
 
 type Fuzz384 struct {
-	One rune
-	Two bool
+	One int32
+	Two []time.Time
 }
 
 type Fuzz385 struct {
-	One rune
-	Two []bool
-}
-
-type Fuzz386 struct {
-	One rune
-	Two byte
-}
-
-type Fuzz387 struct {
-	One rune
-	Two []byte
-}
-
-type Fuzz388 struct {
-	One rune
-	Two float32
-}
-
-type Fuzz389 struct {
-	One rune
-	Two []float32
-}
-
-type Fuzz390 struct {
-	One rune
-	Two float64
-}
-
-type Fuzz391 struct {
-	One rune
-	Two []float64
-}
-
-type Fuzz392 struct {
-	One rune
-	Two int
-}
-
-type Fuzz393 struct {
-	One rune
-	Two int8
-}
-
-type Fuzz394 struct {
-	One rune
-	Two int16
-}
-
-type Fuzz395 struct {
-	One rune
-	Two int32
-}
-
-type Fuzz396 struct {
-	One rune
-	Two int64
-}
-
-type Fuzz397 struct {
-	One rune
-	Two []int
-}
-
-type Fuzz398 struct {
-	One rune
-	Two []int8
-}
-
-type Fuzz399 struct {
-	One rune
-	Two []int16
-}
-
-type Fuzz400 struct {
-	One rune
-	Two []int32
-}
-
-type Fuzz401 struct {
-	One rune
-	Two []int64
-}
-
-type Fuzz402 struct {
-	One rune
-	Two uint
-}
-
-type Fuzz403 struct {
-	One rune
-	Two uint8
-}
-
-type Fuzz404 struct {
-	One rune
-	Two uint16
-}
-
-type Fuzz405 struct {
-	One rune
-	Two uint32
-}
-
-type Fuzz406 struct {
-	One rune
-	Two uint64
-}
-
-type Fuzz407 struct {
-	One rune
+	One int32
 	Two []uint
 }
 
-type Fuzz408 struct {
-	One rune
+type Fuzz386 struct {
+	One int32
+	Two []uint8
+}
+
+type Fuzz387 struct {
+	One int32
 	Two []uint16
 }
 
-type Fuzz409 struct {
-	One rune
+type Fuzz388 struct {
+	One int32
 	Two []uint32
 }
 
-type Fuzz410 struct {
-	One rune
+type Fuzz389 struct {
+	One int32
 	Two []uint64
 }
 
-type Fuzz411 struct {
-	One rune
+type Fuzz390 struct {
+	One int64
+	Two bool
+}
+
+type Fuzz391 struct {
+	One int64
+	Two byte
+}
+
+type Fuzz392 struct {
+	One int64
+	Two complex64
+}
+
+type Fuzz393 struct {
+	One int64
+	Two complex128
+}
+
+type Fuzz394 struct {
+	One int64
+	Two float32
+}
+
+type Fuzz395 struct {
+	One int64
+	Two float64
+}
+
+type Fuzz396 struct {
+	One int64
+	Two int
+}
+
+type Fuzz397 struct {
+	One int64
+	Two int8
+}
+
+type Fuzz398 struct {
+	One int64
+	Two int16
+}
+
+type Fuzz399 struct {
+	One int64
+	Two int32
+}
+
+type Fuzz400 struct {
+	One int64
+	Two rune
+}
+
+type Fuzz401 struct {
+	One int64
 	Two string
 }
 
-type Fuzz412 struct {
-	One rune
-	Two []string
-}
-
-type Fuzz413 struct {
-	One rune
-	Two time.Time
-}
-
-type Fuzz414 struct {
-	One rune
+type Fuzz402 struct {
+	One int64
 	Two time.Duration
 }
 
+type Fuzz403 struct {
+	One int64
+	Two time.Time
+}
+
+type Fuzz404 struct {
+	One int64
+	Two uint
+}
+
+type Fuzz405 struct {
+	One int64
+	Two uint8
+}
+
+type Fuzz406 struct {
+	One int64
+	Two uint16
+}
+
+type Fuzz407 struct {
+	One int64
+	Two uint32
+}
+
+type Fuzz408 struct {
+	One int64
+	Two uint64
+}
+
+type Fuzz409 struct {
+	One int64
+	Two []bool
+}
+
+type Fuzz410 struct {
+	One int64
+	Two []byte
+}
+
+type Fuzz411 struct {
+	One int64
+	Two []complex64
+}
+
+type Fuzz412 struct {
+	One int64
+	Two []complex128
+}
+
+type Fuzz413 struct {
+	One int64
+	Two []float32
+}
+
+type Fuzz414 struct {
+	One int64
+	Two []float64
+}
+
 type Fuzz415 struct {
-	One rune
-	Two []time.Duration
+	One int64
+	Two []int
 }
 
 type Fuzz416 struct {
 	One int64
-	Two bool
+	Two []int8
 }
 
 type Fuzz417 struct {
 	One int64
-	Two []bool
+	Two []int16
 }
 
 type Fuzz418 struct {
 	One int64
-	Two byte
+	Two []int32
 }
 
 type Fuzz419 struct {
 	One int64
-	Two []byte
+	Two []int64
 }
 
 type Fuzz420 struct {
 	One int64
-	Two float32
+	Two []rune
 }
 
 type Fuzz421 struct {
 	One int64
-	Two []float32
+	Two []string
 }
 
 type Fuzz422 struct {
 	One int64
-	Two float64
+	Two []time.Duration
 }
 
 type Fuzz423 struct {
 	One int64
-	Two []float64
+	Two []time.Time
 }
 
 type Fuzz424 struct {
 	One int64
-	Two int
+	Two []uint
 }
 
 type Fuzz425 struct {
 	One int64
-	Two int8
+	Two []uint8
 }
 
 type Fuzz426 struct {
 	One int64
-	Two int16
+	Two []uint16
 }
 
 type Fuzz427 struct {
 	One int64
-	Two int32
+	Two []uint32
 }
 
 type Fuzz428 struct {
 	One int64
-	Two rune
+	Two []uint64
 }
 
 type Fuzz429 struct {
-	One int64
-	Two []int
+	One rune
+	Two bool
 }
 
 type Fuzz430 struct {
-	One int64
-	Two []int8
+	One rune
+	Two byte
 }
 
 type Fuzz431 struct {
-	One int64
-	Two []int16
+	One rune
+	Two complex64
 }
 
 type Fuzz432 struct {
-	One int64
-	Two []int32
+	One rune
+	Two complex128
 }
 
 type Fuzz433 struct {
-	One int64
-	Two []int64
+	One rune
+	Two float32
 }
 
 type Fuzz434 struct {
-	One int64
-	Two uint
+	One rune
+	Two float64
 }
 
 type Fuzz435 struct {
-	One int64
-	Two uint8
+	One rune
+	Two int
 }
 
 type Fuzz436 struct {
-	One int64
-	Two uint16
+	One rune
+	Two int8
 }
 
 type Fuzz437 struct {
-	One int64
-	Two uint32
+	One rune
+	Two int16
 }
 
 type Fuzz438 struct {
-	One int64
-	Two uint64
+	One rune
+	Two int32
 }
 
 type Fuzz439 struct {
-	One int64
-	Two []uint
+	One rune
+	Two int64
 }
 
 type Fuzz440 struct {
-	One int64
-	Two []uint16
+	One rune
+	Two string
 }
 
 type Fuzz441 struct {
-	One int64
-	Two []uint32
+	One rune
+	Two time.Duration
 }
 
 type Fuzz442 struct {
-	One int64
-	Two []uint64
+	One rune
+	Two time.Time
 }
 
 type Fuzz443 struct {
-	One int64
-	Two string
-}
-
-type Fuzz444 struct {
-	One int64
-	Two []string
-}
-
-type Fuzz445 struct {
-	One int64
-	Two time.Time
-}
-
-type Fuzz446 struct {
-	One int64
-	Two time.Duration
-}
-
-type Fuzz447 struct {
-	One int64
-	Two []time.Duration
-}
-
-type Fuzz448 struct {
-	One []int
-	Two bool
-}
-
-type Fuzz449 struct {
-	One []int
-	Two []bool
-}
-
-type Fuzz450 struct {
-	One []int
-	Two byte
-}
-
-type Fuzz451 struct {
-	One []int
-	Two []byte
-}
-
-type Fuzz452 struct {
-	One []int
-	Two float32
-}
-
-type Fuzz453 struct {
-	One []int
-	Two []float32
-}
-
-type Fuzz454 struct {
-	One []int
-	Two float64
-}
-
-type Fuzz455 struct {
-	One []int
-	Two []float64
-}
-
-type Fuzz456 struct {
-	One []int
-	Two int
-}
-
-type Fuzz457 struct {
-	One []int
-	Two int8
-}
-
-type Fuzz458 struct {
-	One []int
-	Two int16
-}
-
-type Fuzz459 struct {
-	One []int
-	Two int32
-}
-
-type Fuzz460 struct {
-	One []int
-	Two rune
-}
-
-type Fuzz461 struct {
-	One []int
-	Two int64
-}
-
-type Fuzz462 struct {
-	One []int
-	Two []int8
-}
-
-type Fuzz463 struct {
-	One []int
-	Two []int16
-}
-
-type Fuzz464 struct {
-	One []int
-	Two []int32
-}
-
-type Fuzz465 struct {
-	One []int
-	Two []int64
-}
-
-type Fuzz466 struct {
-	One []int
+	One rune
 	Two uint
 }
 
-type Fuzz467 struct {
-	One []int
+type Fuzz444 struct {
+	One rune
 	Two uint8
 }
 
-type Fuzz468 struct {
-	One []int
+type Fuzz445 struct {
+	One rune
 	Two uint16
 }
 
-type Fuzz469 struct {
-	One []int
+type Fuzz446 struct {
+	One rune
 	Two uint32
 }
 
-type Fuzz470 struct {
-	One []int
+type Fuzz447 struct {
+	One rune
 	Two uint64
 }
 
-type Fuzz471 struct {
-	One []int
-	Two []uint
-}
-
-type Fuzz472 struct {
-	One []int
-	Two []uint16
-}
-
-type Fuzz473 struct {
-	One []int
-	Two []uint32
-}
-
-type Fuzz474 struct {
-	One []int
-	Two []uint64
-}
-
-type Fuzz475 struct {
-	One []int
-	Two string
-}
-
-type Fuzz476 struct {
-	One []int
-	Two []string
-}
-
-type Fuzz477 struct {
-	One []int
-	Two time.Time
-}
-
-type Fuzz478 struct {
-	One []int
-	Two time.Duration
-}
-
-type Fuzz479 struct {
-	One []int
-	Two []time.Duration
-}
-
-type Fuzz480 struct {
-	One []int8
-	Two bool
-}
-
-type Fuzz481 struct {
-	One []int8
+type Fuzz448 struct {
+	One rune
 	Two []bool
 }
 
-type Fuzz482 struct {
-	One []int8
-	Two byte
-}
-
-type Fuzz483 struct {
-	One []int8
+type Fuzz449 struct {
+	One rune
 	Two []byte
 }
 
-type Fuzz484 struct {
-	One []int8
-	Two float32
+type Fuzz450 struct {
+	One rune
+	Two []complex64
 }
 
-type Fuzz485 struct {
-	One []int8
+type Fuzz451 struct {
+	One rune
+	Two []complex128
+}
+
+type Fuzz452 struct {
+	One rune
 	Two []float32
 }
 
-type Fuzz486 struct {
-	One []int8
-	Two float64
-}
-
-type Fuzz487 struct {
-	One []int8
+type Fuzz453 struct {
+	One rune
 	Two []float64
 }
 
-type Fuzz488 struct {
-	One []int8
-	Two int
-}
-
-type Fuzz489 struct {
-	One []int8
-	Two int8
-}
-
-type Fuzz490 struct {
-	One []int8
-	Two int16
-}
-
-type Fuzz491 struct {
-	One []int8
-	Two int32
-}
-
-type Fuzz492 struct {
-	One []int8
-	Two rune
-}
-
-type Fuzz493 struct {
-	One []int8
-	Two int64
-}
-
-type Fuzz494 struct {
-	One []int8
+type Fuzz454 struct {
+	One rune
 	Two []int
 }
 
+type Fuzz455 struct {
+	One rune
+	Two []int8
+}
+
+type Fuzz456 struct {
+	One rune
+	Two []int16
+}
+
+type Fuzz457 struct {
+	One rune
+	Two []int32
+}
+
+type Fuzz458 struct {
+	One rune
+	Two []int64
+}
+
+type Fuzz459 struct {
+	One rune
+	Two []rune
+}
+
+type Fuzz460 struct {
+	One rune
+	Two []string
+}
+
+type Fuzz461 struct {
+	One rune
+	Two []time.Duration
+}
+
+type Fuzz462 struct {
+	One rune
+	Two []time.Time
+}
+
+type Fuzz463 struct {
+	One rune
+	Two []uint
+}
+
+type Fuzz464 struct {
+	One rune
+	Two []uint8
+}
+
+type Fuzz465 struct {
+	One rune
+	Two []uint16
+}
+
+type Fuzz466 struct {
+	One rune
+	Two []uint32
+}
+
+type Fuzz467 struct {
+	One rune
+	Two []uint64
+}
+
+type Fuzz468 struct {
+	One string
+	Two bool
+}
+
+type Fuzz469 struct {
+	One string
+	Two byte
+}
+
+type Fuzz470 struct {
+	One string
+	Two complex64
+}
+
+type Fuzz471 struct {
+	One string
+	Two complex128
+}
+
+type Fuzz472 struct {
+	One string
+	Two float32
+}
+
+type Fuzz473 struct {
+	One string
+	Two float64
+}
+
+type Fuzz474 struct {
+	One string
+	Two int
+}
+
+type Fuzz475 struct {
+	One string
+	Two int8
+}
+
+type Fuzz476 struct {
+	One string
+	Two int16
+}
+
+type Fuzz477 struct {
+	One string
+	Two int32
+}
+
+type Fuzz478 struct {
+	One string
+	Two int64
+}
+
+type Fuzz479 struct {
+	One string
+	Two rune
+}
+
+type Fuzz480 struct {
+	One string
+	Two time.Duration
+}
+
+type Fuzz481 struct {
+	One string
+	Two time.Time
+}
+
+type Fuzz482 struct {
+	One string
+	Two uint
+}
+
+type Fuzz483 struct {
+	One string
+	Two uint8
+}
+
+type Fuzz484 struct {
+	One string
+	Two uint16
+}
+
+type Fuzz485 struct {
+	One string
+	Two uint32
+}
+
+type Fuzz486 struct {
+	One string
+	Two uint64
+}
+
+type Fuzz487 struct {
+	One string
+	Two []bool
+}
+
+type Fuzz488 struct {
+	One string
+	Two []byte
+}
+
+type Fuzz489 struct {
+	One string
+	Two []complex64
+}
+
+type Fuzz490 struct {
+	One string
+	Two []complex128
+}
+
+type Fuzz491 struct {
+	One string
+	Two []float32
+}
+
+type Fuzz492 struct {
+	One string
+	Two []float64
+}
+
+type Fuzz493 struct {
+	One string
+	Two []int
+}
+
+type Fuzz494 struct {
+	One string
+	Two []int8
+}
+
 type Fuzz495 struct {
-	One []int8
+	One string
 	Two []int16
 }
 
 type Fuzz496 struct {
-	One []int8
+	One string
 	Two []int32
 }
 
 type Fuzz497 struct {
-	One []int8
+	One string
 	Two []int64
 }
 
 type Fuzz498 struct {
-	One []int8
-	Two uint
+	One string
+	Two []rune
 }
 
 type Fuzz499 struct {
-	One []int8
-	Two uint8
+	One string
+	Two []string
 }
 
 type Fuzz500 struct {
-	One []int8
-	Two uint16
+	One string
+	Two []time.Duration
 }
 
 type Fuzz501 struct {
-	One []int8
-	Two uint32
+	One string
+	Two []time.Time
 }
 
 type Fuzz502 struct {
-	One []int8
-	Two uint64
-}
-
-type Fuzz503 struct {
-	One []int8
+	One string
 	Two []uint
 }
 
+type Fuzz503 struct {
+	One string
+	Two []uint8
+}
+
 type Fuzz504 struct {
-	One []int8
+	One string
 	Two []uint16
 }
 
 type Fuzz505 struct {
-	One []int8
+	One string
 	Two []uint32
 }
 
 type Fuzz506 struct {
-	One []int8
+	One string
 	Two []uint64
 }
 
 type Fuzz507 struct {
-	One []int8
-	Two string
+	One time.Duration
+	Two bool
 }
 
 type Fuzz508 struct {
-	One []int8
-	Two []string
+	One time.Duration
+	Two byte
 }
 
 type Fuzz509 struct {
-	One []int8
-	Two time.Time
+	One time.Duration
+	Two complex64
 }
 
 type Fuzz510 struct {
-	One []int8
-	Two time.Duration
+	One time.Duration
+	Two complex128
 }
 
 type Fuzz511 struct {
-	One []int8
-	Two []time.Duration
+	One time.Duration
+	Two float32
 }
 
 type Fuzz512 struct {
-	One []int16
-	Two bool
+	One time.Duration
+	Two float64
 }
 
 type Fuzz513 struct {
-	One []int16
-	Two []bool
-}
-
-type Fuzz514 struct {
-	One []int16
-	Two byte
-}
-
-type Fuzz515 struct {
-	One []int16
-	Two []byte
-}
-
-type Fuzz516 struct {
-	One []int16
-	Two float32
-}
-
-type Fuzz517 struct {
-	One []int16
-	Two []float32
-}
-
-type Fuzz518 struct {
-	One []int16
-	Two float64
-}
-
-type Fuzz519 struct {
-	One []int16
-	Two []float64
-}
-
-type Fuzz520 struct {
-	One []int16
+	One time.Duration
 	Two int
 }
 
-type Fuzz521 struct {
-	One []int16
+type Fuzz514 struct {
+	One time.Duration
 	Two int8
 }
 
-type Fuzz522 struct {
-	One []int16
+type Fuzz515 struct {
+	One time.Duration
 	Two int16
 }
 
-type Fuzz523 struct {
-	One []int16
+type Fuzz516 struct {
+	One time.Duration
 	Two int32
 }
 
-type Fuzz524 struct {
-	One []int16
-	Two rune
-}
-
-type Fuzz525 struct {
-	One []int16
+type Fuzz517 struct {
+	One time.Duration
 	Two int64
 }
 
-type Fuzz526 struct {
-	One []int16
-	Two []int
+type Fuzz518 struct {
+	One time.Duration
+	Two rune
 }
 
-type Fuzz527 struct {
-	One []int16
-	Two []int8
-}
-
-type Fuzz528 struct {
-	One []int16
-	Two []int32
-}
-
-type Fuzz529 struct {
-	One []int16
-	Two []int64
-}
-
-type Fuzz530 struct {
-	One []int16
-	Two uint
-}
-
-type Fuzz531 struct {
-	One []int16
-	Two uint8
-}
-
-type Fuzz532 struct {
-	One []int16
-	Two uint16
-}
-
-type Fuzz533 struct {
-	One []int16
-	Two uint32
-}
-
-type Fuzz534 struct {
-	One []int16
-	Two uint64
-}
-
-type Fuzz535 struct {
-	One []int16
-	Two []uint
-}
-
-type Fuzz536 struct {
-	One []int16
-	Two []uint16
-}
-
-type Fuzz537 struct {
-	One []int16
-	Two []uint32
-}
-
-type Fuzz538 struct {
-	One []int16
-	Two []uint64
-}
-
-type Fuzz539 struct {
-	One []int16
+type Fuzz519 struct {
+	One time.Duration
 	Two string
 }
 
-type Fuzz540 struct {
-	One []int16
-	Two []string
-}
-
-type Fuzz541 struct {
-	One []int16
+type Fuzz520 struct {
+	One time.Duration
 	Two time.Time
 }
 
-type Fuzz542 struct {
-	One []int16
-	Two time.Duration
+type Fuzz521 struct {
+	One time.Duration
+	Two uint
 }
 
-type Fuzz543 struct {
-	One []int16
-	Two []time.Duration
+type Fuzz522 struct {
+	One time.Duration
+	Two uint8
 }
 
-type Fuzz544 struct {
-	One []int32
-	Two bool
+type Fuzz523 struct {
+	One time.Duration
+	Two uint16
 }
 
-type Fuzz545 struct {
-	One []int32
+type Fuzz524 struct {
+	One time.Duration
+	Two uint32
+}
+
+type Fuzz525 struct {
+	One time.Duration
+	Two uint64
+}
+
+type Fuzz526 struct {
+	One time.Duration
 	Two []bool
 }
 
-type Fuzz546 struct {
-	One []int32
-	Two byte
-}
-
-type Fuzz547 struct {
-	One []int32
+type Fuzz527 struct {
+	One time.Duration
 	Two []byte
 }
 
-type Fuzz548 struct {
-	One []int32
-	Two float32
+type Fuzz528 struct {
+	One time.Duration
+	Two []complex64
 }
 
-type Fuzz549 struct {
-	One []int32
+type Fuzz529 struct {
+	One time.Duration
+	Two []complex128
+}
+
+type Fuzz530 struct {
+	One time.Duration
 	Two []float32
 }
 
-type Fuzz550 struct {
-	One []int32
-	Two float64
-}
-
-type Fuzz551 struct {
-	One []int32
+type Fuzz531 struct {
+	One time.Duration
 	Two []float64
 }
 
+type Fuzz532 struct {
+	One time.Duration
+	Two []int
+}
+
+type Fuzz533 struct {
+	One time.Duration
+	Two []int8
+}
+
+type Fuzz534 struct {
+	One time.Duration
+	Two []int16
+}
+
+type Fuzz535 struct {
+	One time.Duration
+	Two []int32
+}
+
+type Fuzz536 struct {
+	One time.Duration
+	Two []int64
+}
+
+type Fuzz537 struct {
+	One time.Duration
+	Two []rune
+}
+
+type Fuzz538 struct {
+	One time.Duration
+	Two []string
+}
+
+type Fuzz539 struct {
+	One time.Duration
+	Two []time.Duration
+}
+
+type Fuzz540 struct {
+	One time.Duration
+	Two []time.Time
+}
+
+type Fuzz541 struct {
+	One time.Duration
+	Two []uint
+}
+
+type Fuzz542 struct {
+	One time.Duration
+	Two []uint8
+}
+
+type Fuzz543 struct {
+	One time.Duration
+	Two []uint16
+}
+
+type Fuzz544 struct {
+	One time.Duration
+	Two []uint32
+}
+
+type Fuzz545 struct {
+	One time.Duration
+	Two []uint64
+}
+
+type Fuzz546 struct {
+	One time.Time
+	Two bool
+}
+
+type Fuzz547 struct {
+	One time.Time
+	Two byte
+}
+
+type Fuzz548 struct {
+	One time.Time
+	Two complex64
+}
+
+type Fuzz549 struct {
+	One time.Time
+	Two complex128
+}
+
+type Fuzz550 struct {
+	One time.Time
+	Two float32
+}
+
+type Fuzz551 struct {
+	One time.Time
+	Two float64
+}
+
 type Fuzz552 struct {
-	One []int32
+	One time.Time
 	Two int
 }
 
 type Fuzz553 struct {
-	One []int32
+	One time.Time
 	Two int8
 }
 
 type Fuzz554 struct {
-	One []int32
+	One time.Time
 	Two int16
 }
 
 type Fuzz555 struct {
-	One []int32
+	One time.Time
 	Two int32
 }
 
 type Fuzz556 struct {
-	One []int32
-	Two rune
+	One time.Time
+	Two int64
 }
 
 type Fuzz557 struct {
-	One []int32
-	Two int64
-}
-
-type Fuzz558 struct {
-	One []int32
-	Two []int
-}
-
-type Fuzz559 struct {
-	One []int32
-	Two []int8
-}
-
-type Fuzz560 struct {
-	One []int32
-	Two []int16
-}
-
-type Fuzz561 struct {
-	One []int32
-	Two []int64
-}
-
-type Fuzz562 struct {
-	One []int32
-	Two uint
-}
-
-type Fuzz563 struct {
-	One []int32
-	Two uint8
-}
-
-type Fuzz564 struct {
-	One []int32
-	Two uint16
-}
-
-type Fuzz565 struct {
-	One []int32
-	Two uint32
-}
-
-type Fuzz566 struct {
-	One []int32
-	Two uint64
-}
-
-type Fuzz567 struct {
-	One []int32
-	Two []uint
-}
-
-type Fuzz568 struct {
-	One []int32
-	Two []uint16
-}
-
-type Fuzz569 struct {
-	One []int32
-	Two []uint32
-}
-
-type Fuzz570 struct {
-	One []int32
-	Two []uint64
-}
-
-type Fuzz571 struct {
-	One []int32
-	Two string
-}
-
-type Fuzz572 struct {
-	One []int32
-	Two []string
-}
-
-type Fuzz573 struct {
-	One []int32
-	Two time.Time
-}
-
-type Fuzz574 struct {
-	One []int32
-	Two time.Duration
-}
-
-type Fuzz575 struct {
-	One []int32
-	Two []time.Duration
-}
-
-type Fuzz576 struct {
-	One []int64
-	Two bool
-}
-
-type Fuzz577 struct {
-	One []int64
-	Two []bool
-}
-
-type Fuzz578 struct {
-	One []int64
-	Two byte
-}
-
-type Fuzz579 struct {
-	One []int64
-	Two []byte
-}
-
-type Fuzz580 struct {
-	One []int64
-	Two float32
-}
-
-type Fuzz581 struct {
-	One []int64
-	Two []float32
-}
-
-type Fuzz582 struct {
-	One []int64
-	Two float64
-}
-
-type Fuzz583 struct {
-	One []int64
-	Two []float64
-}
-
-type Fuzz584 struct {
-	One []int64
-	Two int
-}
-
-type Fuzz585 struct {
-	One []int64
-	Two int8
-}
-
-type Fuzz586 struct {
-	One []int64
-	Two int16
-}
-
-type Fuzz587 struct {
-	One []int64
-	Two int32
-}
-
-type Fuzz588 struct {
-	One []int64
+	One time.Time
 	Two rune
 }
 
-type Fuzz589 struct {
-	One []int64
-	Two int64
-}
-
-type Fuzz590 struct {
-	One []int64
-	Two []int
-}
-
-type Fuzz591 struct {
-	One []int64
-	Two []int8
-}
-
-type Fuzz592 struct {
-	One []int64
-	Two []int16
-}
-
-type Fuzz593 struct {
-	One []int64
-	Two []int32
-}
-
-type Fuzz594 struct {
-	One []int64
-	Two uint
-}
-
-type Fuzz595 struct {
-	One []int64
-	Two uint8
-}
-
-type Fuzz596 struct {
-	One []int64
-	Two uint16
-}
-
-type Fuzz597 struct {
-	One []int64
-	Two uint32
-}
-
-type Fuzz598 struct {
-	One []int64
-	Two uint64
-}
-
-type Fuzz599 struct {
-	One []int64
-	Two []uint
-}
-
-type Fuzz600 struct {
-	One []int64
-	Two []uint16
-}
-
-type Fuzz601 struct {
-	One []int64
-	Two []uint32
-}
-
-type Fuzz602 struct {
-	One []int64
-	Two []uint64
-}
-
-type Fuzz603 struct {
-	One []int64
+type Fuzz558 struct {
+	One time.Time
 	Two string
 }
 
-type Fuzz604 struct {
-	One []int64
-	Two []string
-}
-
-type Fuzz605 struct {
-	One []int64
-	Two time.Time
-}
-
-type Fuzz606 struct {
-	One []int64
+type Fuzz559 struct {
+	One time.Time
 	Two time.Duration
 }
 
-type Fuzz607 struct {
-	One []int64
+type Fuzz560 struct {
+	One time.Time
+	Two uint
+}
+
+type Fuzz561 struct {
+	One time.Time
+	Two uint8
+}
+
+type Fuzz562 struct {
+	One time.Time
+	Two uint16
+}
+
+type Fuzz563 struct {
+	One time.Time
+	Two uint32
+}
+
+type Fuzz564 struct {
+	One time.Time
+	Two uint64
+}
+
+type Fuzz565 struct {
+	One time.Time
+	Two []bool
+}
+
+type Fuzz566 struct {
+	One time.Time
+	Two []byte
+}
+
+type Fuzz567 struct {
+	One time.Time
+	Two []complex64
+}
+
+type Fuzz568 struct {
+	One time.Time
+	Two []complex128
+}
+
+type Fuzz569 struct {
+	One time.Time
+	Two []float32
+}
+
+type Fuzz570 struct {
+	One time.Time
+	Two []float64
+}
+
+type Fuzz571 struct {
+	One time.Time
+	Two []int
+}
+
+type Fuzz572 struct {
+	One time.Time
+	Two []int8
+}
+
+type Fuzz573 struct {
+	One time.Time
+	Two []int16
+}
+
+type Fuzz574 struct {
+	One time.Time
+	Two []int32
+}
+
+type Fuzz575 struct {
+	One time.Time
+	Two []int64
+}
+
+type Fuzz576 struct {
+	One time.Time
+	Two []rune
+}
+
+type Fuzz577 struct {
+	One time.Time
+	Two []string
+}
+
+type Fuzz578 struct {
+	One time.Time
 	Two []time.Duration
+}
+
+type Fuzz579 struct {
+	One time.Time
+	Two []time.Time
+}
+
+type Fuzz580 struct {
+	One time.Time
+	Two []uint
+}
+
+type Fuzz581 struct {
+	One time.Time
+	Two []uint8
+}
+
+type Fuzz582 struct {
+	One time.Time
+	Two []uint16
+}
+
+type Fuzz583 struct {
+	One time.Time
+	Two []uint32
+}
+
+type Fuzz584 struct {
+	One time.Time
+	Two []uint64
+}
+
+type Fuzz585 struct {
+	One uint
+	Two bool
+}
+
+type Fuzz586 struct {
+	One uint
+	Two byte
+}
+
+type Fuzz587 struct {
+	One uint
+	Two complex64
+}
+
+type Fuzz588 struct {
+	One uint
+	Two complex128
+}
+
+type Fuzz589 struct {
+	One uint
+	Two float32
+}
+
+type Fuzz590 struct {
+	One uint
+	Two float64
+}
+
+type Fuzz591 struct {
+	One uint
+	Two int
+}
+
+type Fuzz592 struct {
+	One uint
+	Two int8
+}
+
+type Fuzz593 struct {
+	One uint
+	Two int16
+}
+
+type Fuzz594 struct {
+	One uint
+	Two int32
+}
+
+type Fuzz595 struct {
+	One uint
+	Two int64
+}
+
+type Fuzz596 struct {
+	One uint
+	Two rune
+}
+
+type Fuzz597 struct {
+	One uint
+	Two string
+}
+
+type Fuzz598 struct {
+	One uint
+	Two time.Duration
+}
+
+type Fuzz599 struct {
+	One uint
+	Two time.Time
+}
+
+type Fuzz600 struct {
+	One uint
+	Two uint8
+}
+
+type Fuzz601 struct {
+	One uint
+	Two uint16
+}
+
+type Fuzz602 struct {
+	One uint
+	Two uint32
+}
+
+type Fuzz603 struct {
+	One uint
+	Two uint64
+}
+
+type Fuzz604 struct {
+	One uint
+	Two []bool
+}
+
+type Fuzz605 struct {
+	One uint
+	Two []byte
+}
+
+type Fuzz606 struct {
+	One uint
+	Two []complex64
+}
+
+type Fuzz607 struct {
+	One uint
+	Two []complex128
 }
 
 type Fuzz608 struct {
 	One uint
-	Two bool
+	Two []float32
 }
 
 type Fuzz609 struct {
 	One uint
-	Two []bool
+	Two []float64
 }
 
 type Fuzz610 struct {
 	One uint
-	Two byte
+	Two []int
 }
 
 type Fuzz611 struct {
 	One uint
-	Two []byte
+	Two []int8
 }
 
 type Fuzz612 struct {
 	One uint
-	Two float32
+	Two []int16
 }
 
 type Fuzz613 struct {
 	One uint
-	Two []float32
+	Two []int32
 }
 
 type Fuzz614 struct {
 	One uint
-	Two float64
+	Two []int64
 }
 
 type Fuzz615 struct {
 	One uint
-	Two []float64
+	Two []rune
 }
 
 type Fuzz616 struct {
 	One uint
-	Two int
+	Two []string
 }
 
 type Fuzz617 struct {
 	One uint
-	Two int8
+	Two []time.Duration
 }
 
 type Fuzz618 struct {
 	One uint
-	Two int16
+	Two []time.Time
 }
 
 type Fuzz619 struct {
 	One uint
-	Two int32
+	Two []uint
 }
 
 type Fuzz620 struct {
 	One uint
-	Two rune
+	Two []uint8
 }
 
 type Fuzz621 struct {
 	One uint
-	Two int64
+	Two []uint16
 }
 
 type Fuzz622 struct {
 	One uint
-	Two []int
+	Two []uint32
 }
 
 type Fuzz623 struct {
 	One uint
-	Two []int8
-}
-
-type Fuzz624 struct {
-	One uint
-	Two []int16
-}
-
-type Fuzz625 struct {
-	One uint
-	Two []int32
-}
-
-type Fuzz626 struct {
-	One uint
-	Two []int64
-}
-
-type Fuzz627 struct {
-	One uint
-	Two uint8
-}
-
-type Fuzz628 struct {
-	One uint
-	Two uint16
-}
-
-type Fuzz629 struct {
-	One uint
-	Two uint32
-}
-
-type Fuzz630 struct {
-	One uint
-	Two uint64
-}
-
-type Fuzz631 struct {
-	One uint
-	Two []uint
-}
-
-type Fuzz632 struct {
-	One uint
-	Two []uint16
-}
-
-type Fuzz633 struct {
-	One uint
-	Two []uint32
-}
-
-type Fuzz634 struct {
-	One uint
 	Two []uint64
 }
 
+type Fuzz624 struct {
+	One uint8
+	Two bool
+}
+
+type Fuzz625 struct {
+	One uint8
+	Two byte
+}
+
+type Fuzz626 struct {
+	One uint8
+	Two complex64
+}
+
+type Fuzz627 struct {
+	One uint8
+	Two complex128
+}
+
+type Fuzz628 struct {
+	One uint8
+	Two float32
+}
+
+type Fuzz629 struct {
+	One uint8
+	Two float64
+}
+
+type Fuzz630 struct {
+	One uint8
+	Two int
+}
+
+type Fuzz631 struct {
+	One uint8
+	Two int8
+}
+
+type Fuzz632 struct {
+	One uint8
+	Two int16
+}
+
+type Fuzz633 struct {
+	One uint8
+	Two int32
+}
+
+type Fuzz634 struct {
+	One uint8
+	Two int64
+}
+
 type Fuzz635 struct {
-	One uint
-	Two string
+	One uint8
+	Two rune
 }
 
 type Fuzz636 struct {
-	One uint
-	Two []string
+	One uint8
+	Two string
 }
 
 type Fuzz637 struct {
-	One uint
-	Two time.Time
-}
-
-type Fuzz638 struct {
-	One uint
+	One uint8
 	Two time.Duration
 }
 
+type Fuzz638 struct {
+	One uint8
+	Two time.Time
+}
+
 type Fuzz639 struct {
-	One uint
-	Two []time.Duration
+	One uint8
+	Two uint
 }
 
 type Fuzz640 struct {
 	One uint8
-	Two bool
+	Two uint16
 }
 
 type Fuzz641 struct {
 	One uint8
-	Two []bool
+	Two uint32
 }
 
 type Fuzz642 struct {
 	One uint8
-	Two byte
+	Two uint64
 }
 
 type Fuzz643 struct {
 	One uint8
-	Two []byte
+	Two []bool
 }
 
 type Fuzz644 struct {
 	One uint8
-	Two float32
+	Two []byte
 }
 
 type Fuzz645 struct {
 	One uint8
-	Two []float32
+	Two []complex64
 }
 
 type Fuzz646 struct {
 	One uint8
-	Two float64
+	Two []complex128
 }
 
 type Fuzz647 struct {
 	One uint8
-	Two []float64
+	Two []float32
 }
 
 type Fuzz648 struct {
 	One uint8
-	Two int
+	Two []float64
 }
 
 type Fuzz649 struct {
 	One uint8
-	Two int8
+	Two []int
 }
 
 type Fuzz650 struct {
 	One uint8
-	Two int16
+	Two []int8
 }
 
 type Fuzz651 struct {
 	One uint8
-	Two int32
+	Two []int16
 }
 
 type Fuzz652 struct {
 	One uint8
-	Two rune
+	Two []int32
 }
 
 type Fuzz653 struct {
 	One uint8
-	Two int64
+	Two []int64
 }
 
 type Fuzz654 struct {
 	One uint8
-	Two []int
+	Two []rune
 }
 
 type Fuzz655 struct {
 	One uint8
-	Two []int8
+	Two []string
 }
 
 type Fuzz656 struct {
 	One uint8
-	Two []int16
+	Two []time.Duration
 }
 
 type Fuzz657 struct {
 	One uint8
-	Two []int32
+	Two []time.Time
 }
 
 type Fuzz658 struct {
 	One uint8
-	Two []int64
+	Two []uint
 }
 
 type Fuzz659 struct {
 	One uint8
-	Two uint
+	Two []uint8
 }
 
 type Fuzz660 struct {
 	One uint8
-	Two uint16
+	Two []uint16
 }
 
 type Fuzz661 struct {
 	One uint8
-	Two uint32
+	Two []uint32
 }
 
 type Fuzz662 struct {
 	One uint8
-	Two uint64
-}
-
-type Fuzz663 struct {
-	One uint8
-	Two []uint
-}
-
-type Fuzz664 struct {
-	One uint8
-	Two []uint16
-}
-
-type Fuzz665 struct {
-	One uint8
-	Two []uint32
-}
-
-type Fuzz666 struct {
-	One uint8
 	Two []uint64
 }
 
+type Fuzz663 struct {
+	One uint16
+	Two bool
+}
+
+type Fuzz664 struct {
+	One uint16
+	Two byte
+}
+
+type Fuzz665 struct {
+	One uint16
+	Two complex64
+}
+
+type Fuzz666 struct {
+	One uint16
+	Two complex128
+}
+
 type Fuzz667 struct {
-	One uint8
-	Two string
+	One uint16
+	Two float32
 }
 
 type Fuzz668 struct {
-	One uint8
-	Two []string
+	One uint16
+	Two float64
 }
 
 type Fuzz669 struct {
-	One uint8
-	Two time.Time
+	One uint16
+	Two int
 }
 
 type Fuzz670 struct {
-	One uint8
-	Two time.Duration
+	One uint16
+	Two int8
 }
 
 type Fuzz671 struct {
-	One uint8
-	Two []time.Duration
+	One uint16
+	Two int16
 }
 
 type Fuzz672 struct {
 	One uint16
-	Two bool
+	Two int32
 }
 
 type Fuzz673 struct {
 	One uint16
-	Two []bool
+	Two int64
 }
 
 type Fuzz674 struct {
 	One uint16
-	Two byte
+	Two rune
 }
 
 type Fuzz675 struct {
 	One uint16
-	Two []byte
+	Two string
 }
 
 type Fuzz676 struct {
 	One uint16
-	Two float32
+	Two time.Duration
 }
 
 type Fuzz677 struct {
 	One uint16
-	Two []float32
+	Two time.Time
 }
 
 type Fuzz678 struct {
 	One uint16
-	Two float64
+	Two uint
 }
 
 type Fuzz679 struct {
 	One uint16
-	Two []float64
+	Two uint8
 }
 
 type Fuzz680 struct {
 	One uint16
-	Two int
+	Two uint32
 }
 
 type Fuzz681 struct {
 	One uint16
-	Two int8
+	Two uint64
 }
 
 type Fuzz682 struct {
 	One uint16
-	Two int16
+	Two []bool
 }
 
 type Fuzz683 struct {
 	One uint16
-	Two int32
+	Two []byte
 }
 
 type Fuzz684 struct {
 	One uint16
-	Two rune
+	Two []complex64
 }
 
 type Fuzz685 struct {
 	One uint16
-	Two int64
+	Two []complex128
 }
 
 type Fuzz686 struct {
 	One uint16
-	Two []int
+	Two []float32
 }
 
 type Fuzz687 struct {
 	One uint16
-	Two []int8
+	Two []float64
 }
 
 type Fuzz688 struct {
 	One uint16
-	Two []int16
+	Two []int
 }
 
 type Fuzz689 struct {
 	One uint16
-	Two []int32
+	Two []int8
 }
 
 type Fuzz690 struct {
 	One uint16
-	Two []int64
+	Two []int16
 }
 
 type Fuzz691 struct {
 	One uint16
-	Two uint
+	Two []int32
 }
 
 type Fuzz692 struct {
 	One uint16
-	Two uint8
+	Two []int64
 }
 
 type Fuzz693 struct {
 	One uint16
-	Two uint32
+	Two []rune
 }
 
 type Fuzz694 struct {
 	One uint16
-	Two uint64
+	Two []string
 }
 
 type Fuzz695 struct {
 	One uint16
-	Two []uint
+	Two []time.Duration
 }
 
 type Fuzz696 struct {
 	One uint16
-	Two []uint16
+	Two []time.Time
 }
 
 type Fuzz697 struct {
 	One uint16
-	Two []uint32
+	Two []uint
 }
 
 type Fuzz698 struct {
 	One uint16
-	Two []uint64
+	Two []uint8
 }
 
 type Fuzz699 struct {
 	One uint16
-	Two string
+	Two []uint16
 }
 
 type Fuzz700 struct {
 	One uint16
-	Two []string
+	Two []uint32
 }
 
 type Fuzz701 struct {
 	One uint16
-	Two time.Time
+	Two []uint64
 }
 
 type Fuzz702 struct {
-	One uint16
-	Two time.Duration
+	One uint32
+	Two bool
 }
 
 type Fuzz703 struct {
-	One uint16
-	Two []time.Duration
+	One uint32
+	Two byte
 }
 
 type Fuzz704 struct {
 	One uint32
-	Two bool
+	Two complex64
 }
 
 type Fuzz705 struct {
 	One uint32
-	Two []bool
+	Two complex128
 }
 
 type Fuzz706 struct {
 	One uint32
-	Two byte
+	Two float32
 }
 
 type Fuzz707 struct {
 	One uint32
-	Two []byte
+	Two float64
 }
 
 type Fuzz708 struct {
 	One uint32
-	Two float32
+	Two int
 }
 
 type Fuzz709 struct {
 	One uint32
-	Two []float32
+	Two int8
 }
 
 type Fuzz710 struct {
 	One uint32
-	Two float64
+	Two int16
 }
 
 type Fuzz711 struct {
 	One uint32
-	Two []float64
+	Two int32
 }
 
 type Fuzz712 struct {
 	One uint32
-	Two int
+	Two int64
 }
 
 type Fuzz713 struct {
 	One uint32
-	Two int8
+	Two rune
 }
 
 type Fuzz714 struct {
 	One uint32
-	Two int16
+	Two string
 }
 
 type Fuzz715 struct {
 	One uint32
-	Two int32
+	Two time.Duration
 }
 
 type Fuzz716 struct {
 	One uint32
-	Two rune
+	Two time.Time
 }
 
 type Fuzz717 struct {
 	One uint32
-	Two int64
+	Two uint
 }
 
 type Fuzz718 struct {
 	One uint32
-	Two []int
+	Two uint8
 }
 
 type Fuzz719 struct {
 	One uint32
-	Two []int8
+	Two uint16
 }
 
 type Fuzz720 struct {
 	One uint32
-	Two []int16
+	Two uint64
 }
 
 type Fuzz721 struct {
 	One uint32
-	Two []int32
+	Two []bool
 }
 
 type Fuzz722 struct {
 	One uint32
-	Two []int64
+	Two []byte
 }
 
 type Fuzz723 struct {
 	One uint32
-	Two uint
+	Two []complex64
 }
 
 type Fuzz724 struct {
 	One uint32
-	Two uint8
+	Two []complex128
 }
 
 type Fuzz725 struct {
 	One uint32
-	Two uint16
+	Two []float32
 }
 
 type Fuzz726 struct {
 	One uint32
-	Two uint64
+	Two []float64
 }
 
 type Fuzz727 struct {
 	One uint32
-	Two []uint
+	Two []int
 }
 
 type Fuzz728 struct {
 	One uint32
-	Two []uint16
+	Two []int8
 }
 
 type Fuzz729 struct {
 	One uint32
-	Two []uint32
+	Two []int16
 }
 
 type Fuzz730 struct {
 	One uint32
-	Two []uint64
+	Two []int32
 }
 
 type Fuzz731 struct {
 	One uint32
-	Two string
+	Two []int64
 }
 
 type Fuzz732 struct {
 	One uint32
-	Two []string
+	Two []rune
 }
 
 type Fuzz733 struct {
 	One uint32
-	Two time.Time
+	Two []string
 }
 
 type Fuzz734 struct {
 	One uint32
-	Two time.Duration
+	Two []time.Duration
 }
 
 type Fuzz735 struct {
 	One uint32
-	Two []time.Duration
+	Two []time.Time
 }
 
 type Fuzz736 struct {
-	One uint64
-	Two bool
+	One uint32
+	Two []uint
 }
 
 type Fuzz737 struct {
-	One uint64
-	Two []bool
+	One uint32
+	Two []uint8
 }
 
 type Fuzz738 struct {
-	One uint64
-	Two byte
+	One uint32
+	Two []uint16
 }
 
 type Fuzz739 struct {
-	One uint64
-	Two []byte
+	One uint32
+	Two []uint32
 }
 
 type Fuzz740 struct {
-	One uint64
-	Two float32
+	One uint32
+	Two []uint64
 }
 
 type Fuzz741 struct {
 	One uint64
-	Two []float32
+	Two bool
 }
 
 type Fuzz742 struct {
 	One uint64
-	Two float64
+	Two byte
 }
 
 type Fuzz743 struct {
 	One uint64
-	Two []float64
+	Two complex64
 }
 
 type Fuzz744 struct {
 	One uint64
-	Two int
+	Two complex128
 }
 
 type Fuzz745 struct {
 	One uint64
-	Two int8
+	Two float32
 }
 
 type Fuzz746 struct {
 	One uint64
-	Two int16
+	Two float64
 }
 
 type Fuzz747 struct {
 	One uint64
-	Two int32
+	Two int
 }
 
 type Fuzz748 struct {
 	One uint64
-	Two rune
+	Two int8
 }
 
 type Fuzz749 struct {
 	One uint64
-	Two int64
+	Two int16
 }
 
 type Fuzz750 struct {
 	One uint64
-	Two []int
+	Two int32
 }
 
 type Fuzz751 struct {
 	One uint64
-	Two []int8
+	Two int64
 }
 
 type Fuzz752 struct {
 	One uint64
-	Two []int16
+	Two rune
 }
 
 type Fuzz753 struct {
 	One uint64
-	Two []int32
+	Two string
 }
 
 type Fuzz754 struct {
 	One uint64
-	Two []int64
+	Two time.Duration
 }
 
 type Fuzz755 struct {
 	One uint64
-	Two uint
+	Two time.Time
 }
 
 type Fuzz756 struct {
 	One uint64
-	Two uint8
+	Two uint
 }
 
 type Fuzz757 struct {
 	One uint64
-	Two uint16
+	Two uint8
 }
 
 type Fuzz758 struct {
 	One uint64
-	Two uint32
+	Two uint16
 }
 
 type Fuzz759 struct {
 	One uint64
-	Two []uint
+	Two uint32
 }
 
 type Fuzz760 struct {
 	One uint64
-	Two []uint16
+	Two []bool
 }
 
 type Fuzz761 struct {
 	One uint64
-	Two []uint32
+	Two []byte
 }
 
 type Fuzz762 struct {
 	One uint64
-	Two []uint64
+	Two []complex64
 }
 
 type Fuzz763 struct {
 	One uint64
-	Two string
+	Two []complex128
 }
 
 type Fuzz764 struct {
 	One uint64
-	Two []string
+	Two []float32
 }
 
 type Fuzz765 struct {
 	One uint64
-	Two time.Time
+	Two []float64
 }
 
 type Fuzz766 struct {
 	One uint64
-	Two time.Duration
+	Two []int
 }
 
 type Fuzz767 struct {
 	One uint64
-	Two []time.Duration
+	Two []int8
 }
 
 type Fuzz768 struct {
-	One []uint
-	Two bool
+	One uint64
+	Two []int16
 }
 
 type Fuzz769 struct {
-	One []uint
-	Two []bool
+	One uint64
+	Two []int32
 }
 
 type Fuzz770 struct {
-	One []uint
-	Two byte
+	One uint64
+	Two []int64
 }
 
 type Fuzz771 struct {
-	One []uint
-	Two []byte
+	One uint64
+	Two []rune
 }
 
 type Fuzz772 struct {
-	One []uint
-	Two float32
+	One uint64
+	Two []string
 }
 
 type Fuzz773 struct {
-	One []uint
-	Two []float32
+	One uint64
+	Two []time.Duration
 }
 
 type Fuzz774 struct {
-	One []uint
-	Two float64
+	One uint64
+	Two []time.Time
 }
 
 type Fuzz775 struct {
-	One []uint
-	Two []float64
+	One uint64
+	Two []uint
 }
 
 type Fuzz776 struct {
-	One []uint
-	Two int
+	One uint64
+	Two []uint8
 }
 
 type Fuzz777 struct {
-	One []uint
-	Two int8
+	One uint64
+	Two []uint16
 }
 
 type Fuzz778 struct {
-	One []uint
-	Two int16
+	One uint64
+	Two []uint32
 }
 
 type Fuzz779 struct {
-	One []uint
-	Two int32
+	One uint64
+	Two []uint64
 }
 
 type Fuzz780 struct {
-	One []uint
-	Two rune
+	One []bool
+	Two bool
 }
 
 type Fuzz781 struct {
-	One []uint
-	Two int64
+	One []bool
+	Two byte
 }
 
 type Fuzz782 struct {
-	One []uint
-	Two []int
+	One []bool
+	Two complex64
 }
 
 type Fuzz783 struct {
-	One []uint
-	Two []int8
+	One []bool
+	Two complex128
 }
 
 type Fuzz784 struct {
-	One []uint
-	Two []int16
+	One []bool
+	Two float32
 }
 
 type Fuzz785 struct {
-	One []uint
-	Two []int32
+	One []bool
+	Two float64
 }
 
 type Fuzz786 struct {
-	One []uint
-	Two []int64
+	One []bool
+	Two int
 }
 
 type Fuzz787 struct {
-	One []uint
-	Two uint
+	One []bool
+	Two int8
 }
 
 type Fuzz788 struct {
-	One []uint
-	Two uint8
+	One []bool
+	Two int16
 }
 
 type Fuzz789 struct {
-	One []uint
-	Two uint16
+	One []bool
+	Two int32
 }
 
 type Fuzz790 struct {
-	One []uint
-	Two uint32
+	One []bool
+	Two int64
 }
 
 type Fuzz791 struct {
-	One []uint
-	Two uint64
+	One []bool
+	Two rune
 }
 
 type Fuzz792 struct {
-	One []uint
-	Two []uint16
+	One []bool
+	Two string
 }
 
 type Fuzz793 struct {
-	One []uint
-	Two []uint32
+	One []bool
+	Two time.Duration
 }
 
 type Fuzz794 struct {
-	One []uint
-	Two []uint64
+	One []bool
+	Two time.Time
 }
 
 type Fuzz795 struct {
-	One []uint
-	Two string
+	One []bool
+	Two uint
 }
 
 type Fuzz796 struct {
-	One []uint
-	Two []string
+	One []bool
+	Two uint8
 }
 
 type Fuzz797 struct {
-	One []uint
-	Two time.Time
+	One []bool
+	Two uint16
 }
 
 type Fuzz798 struct {
-	One []uint
-	Two time.Duration
+	One []bool
+	Two uint32
 }
 
 type Fuzz799 struct {
-	One []uint
-	Two []time.Duration
+	One []bool
+	Two uint64
 }
 
 type Fuzz800 struct {
-	One []uint16
-	Two bool
+	One []bool
+	Two []byte
 }
 
 type Fuzz801 struct {
-	One []uint16
-	Two []bool
+	One []bool
+	Two []complex64
 }
 
 type Fuzz802 struct {
-	One []uint16
-	Two byte
+	One []bool
+	Two []complex128
 }
 
 type Fuzz803 struct {
-	One []uint16
-	Two []byte
+	One []bool
+	Two []float32
 }
 
 type Fuzz804 struct {
-	One []uint16
-	Two float32
+	One []bool
+	Two []float64
 }
 
 type Fuzz805 struct {
-	One []uint16
-	Two []float32
+	One []bool
+	Two []int
 }
 
 type Fuzz806 struct {
-	One []uint16
-	Two float64
+	One []bool
+	Two []int8
 }
 
 type Fuzz807 struct {
-	One []uint16
-	Two []float64
+	One []bool
+	Two []int16
 }
 
 type Fuzz808 struct {
-	One []uint16
-	Two int
+	One []bool
+	Two []int32
 }
 
 type Fuzz809 struct {
-	One []uint16
-	Two int8
+	One []bool
+	Two []int64
 }
 
 type Fuzz810 struct {
-	One []uint16
-	Two int16
+	One []bool
+	Two []rune
 }
 
 type Fuzz811 struct {
-	One []uint16
-	Two int32
+	One []bool
+	Two []string
 }
 
 type Fuzz812 struct {
-	One []uint16
-	Two rune
+	One []bool
+	Two []time.Duration
 }
 
 type Fuzz813 struct {
-	One []uint16
-	Two int64
+	One []bool
+	Two []time.Time
 }
 
 type Fuzz814 struct {
-	One []uint16
-	Two []int
+	One []bool
+	Two []uint
 }
 
 type Fuzz815 struct {
-	One []uint16
-	Two []int8
+	One []bool
+	Two []uint8
 }
 
 type Fuzz816 struct {
-	One []uint16
-	Two []int16
+	One []bool
+	Two []uint16
 }
 
 type Fuzz817 struct {
-	One []uint16
-	Two []int32
+	One []bool
+	Two []uint32
 }
 
 type Fuzz818 struct {
-	One []uint16
-	Two []int64
+	One []bool
+	Two []uint64
 }
 
 type Fuzz819 struct {
-	One []uint16
-	Two uint
+	One []byte
+	Two bool
 }
 
 type Fuzz820 struct {
-	One []uint16
-	Two uint8
+	One []byte
+	Two byte
 }
 
 type Fuzz821 struct {
-	One []uint16
-	Two uint16
+	One []byte
+	Two complex64
 }
 
 type Fuzz822 struct {
-	One []uint16
-	Two uint32
+	One []byte
+	Two complex128
 }
 
 type Fuzz823 struct {
-	One []uint16
-	Two uint64
+	One []byte
+	Two float32
 }
 
 type Fuzz824 struct {
-	One []uint16
-	Two []uint
+	One []byte
+	Two float64
 }
 
 type Fuzz825 struct {
-	One []uint16
-	Two []uint32
+	One []byte
+	Two int
 }
 
 type Fuzz826 struct {
-	One []uint16
-	Two []uint64
+	One []byte
+	Two int8
 }
 
 type Fuzz827 struct {
-	One []uint16
-	Two string
+	One []byte
+	Two int16
 }
 
 type Fuzz828 struct {
-	One []uint16
-	Two []string
+	One []byte
+	Two int32
 }
 
 type Fuzz829 struct {
-	One []uint16
-	Two time.Time
+	One []byte
+	Two int64
 }
 
 type Fuzz830 struct {
-	One []uint16
-	Two time.Duration
+	One []byte
+	Two rune
 }
 
 type Fuzz831 struct {
-	One []uint16
-	Two []time.Duration
+	One []byte
+	Two string
 }
 
 type Fuzz832 struct {
-	One []uint32
-	Two bool
+	One []byte
+	Two time.Duration
 }
 
 type Fuzz833 struct {
-	One []uint32
-	Two []bool
+	One []byte
+	Two time.Time
 }
 
 type Fuzz834 struct {
-	One []uint32
-	Two byte
+	One []byte
+	Two uint
 }
 
 type Fuzz835 struct {
-	One []uint32
-	Two []byte
+	One []byte
+	Two uint8
 }
 
 type Fuzz836 struct {
-	One []uint32
-	Two float32
+	One []byte
+	Two uint16
 }
 
 type Fuzz837 struct {
-	One []uint32
-	Two []float32
+	One []byte
+	Two uint32
 }
 
 type Fuzz838 struct {
-	One []uint32
-	Two float64
+	One []byte
+	Two uint64
 }
 
 type Fuzz839 struct {
-	One []uint32
-	Two []float64
+	One []byte
+	Two []bool
 }
 
 type Fuzz840 struct {
-	One []uint32
-	Two int
+	One []byte
+	Two []complex64
 }
 
 type Fuzz841 struct {
-	One []uint32
-	Two int8
+	One []byte
+	Two []complex128
 }
 
 type Fuzz842 struct {
-	One []uint32
-	Two int16
-}
-
-type Fuzz843 struct {
-	One []uint32
-	Two int32
-}
-
-type Fuzz844 struct {
-	One []uint32
-	Two rune
-}
-
-type Fuzz845 struct {
-	One []uint32
-	Two int64
-}
-
-type Fuzz846 struct {
-	One []uint32
-	Two []int
-}
-
-type Fuzz847 struct {
-	One []uint32
-	Two []int8
-}
-
-type Fuzz848 struct {
-	One []uint32
-	Two []int16
-}
-
-type Fuzz849 struct {
-	One []uint32
-	Two []int32
-}
-
-type Fuzz850 struct {
-	One []uint32
-	Two []int64
-}
-
-type Fuzz851 struct {
-	One []uint32
-	Two uint
-}
-
-type Fuzz852 struct {
-	One []uint32
-	Two uint8
-}
-
-type Fuzz853 struct {
-	One []uint32
-	Two uint16
-}
-
-type Fuzz854 struct {
-	One []uint32
-	Two uint32
-}
-
-type Fuzz855 struct {
-	One []uint32
-	Two uint64
-}
-
-type Fuzz856 struct {
-	One []uint32
-	Two []uint
-}
-
-type Fuzz857 struct {
-	One []uint32
-	Two []uint16
-}
-
-type Fuzz858 struct {
-	One []uint32
-	Two []uint64
-}
-
-type Fuzz859 struct {
-	One []uint32
-	Two string
-}
-
-type Fuzz860 struct {
-	One []uint32
-	Two []string
-}
-
-type Fuzz861 struct {
-	One []uint32
-	Two time.Time
-}
-
-type Fuzz862 struct {
-	One []uint32
-	Two time.Duration
-}
-
-type Fuzz863 struct {
-	One []uint32
-	Two []time.Duration
-}
-
-type Fuzz864 struct {
-	One []uint64
-	Two bool
-}
-
-type Fuzz865 struct {
-	One []uint64
-	Two []bool
-}
-
-type Fuzz866 struct {
-	One []uint64
-	Two byte
-}
-
-type Fuzz867 struct {
-	One []uint64
-	Two []byte
-}
-
-type Fuzz868 struct {
-	One []uint64
-	Two float32
-}
-
-type Fuzz869 struct {
-	One []uint64
+	One []byte
 	Two []float32
 }
 
-type Fuzz870 struct {
-	One []uint64
-	Two float64
-}
-
-type Fuzz871 struct {
-	One []uint64
+type Fuzz843 struct {
+	One []byte
 	Two []float64
 }
 
-type Fuzz872 struct {
-	One []uint64
-	Two int
-}
-
-type Fuzz873 struct {
-	One []uint64
-	Two int8
-}
-
-type Fuzz874 struct {
-	One []uint64
-	Two int16
-}
-
-type Fuzz875 struct {
-	One []uint64
-	Two int32
-}
-
-type Fuzz876 struct {
-	One []uint64
-	Two rune
-}
-
-type Fuzz877 struct {
-	One []uint64
-	Two int64
-}
-
-type Fuzz878 struct {
-	One []uint64
+type Fuzz844 struct {
+	One []byte
 	Two []int
 }
 
-type Fuzz879 struct {
-	One []uint64
+type Fuzz845 struct {
+	One []byte
 	Two []int8
 }
 
-type Fuzz880 struct {
-	One []uint64
+type Fuzz846 struct {
+	One []byte
 	Two []int16
 }
 
-type Fuzz881 struct {
-	One []uint64
+type Fuzz847 struct {
+	One []byte
 	Two []int32
 }
 
-type Fuzz882 struct {
-	One []uint64
+type Fuzz848 struct {
+	One []byte
 	Two []int64
 }
 
-type Fuzz883 struct {
-	One []uint64
-	Two uint
+type Fuzz849 struct {
+	One []byte
+	Two []rune
 }
 
-type Fuzz884 struct {
-	One []uint64
-	Two uint8
-}
-
-type Fuzz885 struct {
-	One []uint64
-	Two uint16
-}
-
-type Fuzz886 struct {
-	One []uint64
-	Two uint32
-}
-
-type Fuzz887 struct {
-	One []uint64
-	Two uint64
-}
-
-type Fuzz888 struct {
-	One []uint64
-	Two []uint
-}
-
-type Fuzz889 struct {
-	One []uint64
-	Two []uint16
-}
-
-type Fuzz890 struct {
-	One []uint64
-	Two []uint32
-}
-
-type Fuzz891 struct {
-	One []uint64
-	Two string
-}
-
-type Fuzz892 struct {
-	One []uint64
+type Fuzz850 struct {
+	One []byte
 	Two []string
 }
 
-type Fuzz893 struct {
-	One []uint64
-	Two time.Time
-}
-
-type Fuzz894 struct {
-	One []uint64
-	Two time.Duration
-}
-
-type Fuzz895 struct {
-	One []uint64
+type Fuzz851 struct {
+	One []byte
 	Two []time.Duration
 }
 
-type Fuzz896 struct {
-	One string
+type Fuzz852 struct {
+	One []byte
+	Two []time.Time
+}
+
+type Fuzz853 struct {
+	One []byte
+	Two []uint
+}
+
+type Fuzz854 struct {
+	One []byte
+	Two []uint8
+}
+
+type Fuzz855 struct {
+	One []byte
+	Two []uint16
+}
+
+type Fuzz856 struct {
+	One []byte
+	Two []uint32
+}
+
+type Fuzz857 struct {
+	One []byte
+	Two []uint64
+}
+
+type Fuzz858 struct {
+	One []complex64
 	Two bool
 }
 
-type Fuzz897 struct {
-	One string
+type Fuzz859 struct {
+	One []complex64
+	Two byte
+}
+
+type Fuzz860 struct {
+	One []complex64
+	Two complex64
+}
+
+type Fuzz861 struct {
+	One []complex64
+	Two complex128
+}
+
+type Fuzz862 struct {
+	One []complex64
+	Two float32
+}
+
+type Fuzz863 struct {
+	One []complex64
+	Two float64
+}
+
+type Fuzz864 struct {
+	One []complex64
+	Two int
+}
+
+type Fuzz865 struct {
+	One []complex64
+	Two int8
+}
+
+type Fuzz866 struct {
+	One []complex64
+	Two int16
+}
+
+type Fuzz867 struct {
+	One []complex64
+	Two int32
+}
+
+type Fuzz868 struct {
+	One []complex64
+	Two int64
+}
+
+type Fuzz869 struct {
+	One []complex64
+	Two rune
+}
+
+type Fuzz870 struct {
+	One []complex64
+	Two string
+}
+
+type Fuzz871 struct {
+	One []complex64
+	Two time.Duration
+}
+
+type Fuzz872 struct {
+	One []complex64
+	Two time.Time
+}
+
+type Fuzz873 struct {
+	One []complex64
+	Two uint
+}
+
+type Fuzz874 struct {
+	One []complex64
+	Two uint8
+}
+
+type Fuzz875 struct {
+	One []complex64
+	Two uint16
+}
+
+type Fuzz876 struct {
+	One []complex64
+	Two uint32
+}
+
+type Fuzz877 struct {
+	One []complex64
+	Two uint64
+}
+
+type Fuzz878 struct {
+	One []complex64
 	Two []bool
 }
 
+type Fuzz879 struct {
+	One []complex64
+	Two []byte
+}
+
+type Fuzz880 struct {
+	One []complex64
+	Two []complex128
+}
+
+type Fuzz881 struct {
+	One []complex64
+	Two []float32
+}
+
+type Fuzz882 struct {
+	One []complex64
+	Two []float64
+}
+
+type Fuzz883 struct {
+	One []complex64
+	Two []int
+}
+
+type Fuzz884 struct {
+	One []complex64
+	Two []int8
+}
+
+type Fuzz885 struct {
+	One []complex64
+	Two []int16
+}
+
+type Fuzz886 struct {
+	One []complex64
+	Two []int32
+}
+
+type Fuzz887 struct {
+	One []complex64
+	Two []int64
+}
+
+type Fuzz888 struct {
+	One []complex64
+	Two []rune
+}
+
+type Fuzz889 struct {
+	One []complex64
+	Two []string
+}
+
+type Fuzz890 struct {
+	One []complex64
+	Two []time.Duration
+}
+
+type Fuzz891 struct {
+	One []complex64
+	Two []time.Time
+}
+
+type Fuzz892 struct {
+	One []complex64
+	Two []uint
+}
+
+type Fuzz893 struct {
+	One []complex64
+	Two []uint8
+}
+
+type Fuzz894 struct {
+	One []complex64
+	Two []uint16
+}
+
+type Fuzz895 struct {
+	One []complex64
+	Two []uint32
+}
+
+type Fuzz896 struct {
+	One []complex64
+	Two []uint64
+}
+
+type Fuzz897 struct {
+	One []complex128
+	Two bool
+}
+
 type Fuzz898 struct {
-	One string
+	One []complex128
 	Two byte
 }
 
 type Fuzz899 struct {
-	One string
-	Two []byte
+	One []complex128
+	Two complex64
 }
 
 type Fuzz900 struct {
-	One string
-	Two float32
+	One []complex128
+	Two complex128
 }
 
 type Fuzz901 struct {
-	One string
-	Two []float32
+	One []complex128
+	Two float32
 }
 
 type Fuzz902 struct {
-	One string
+	One []complex128
 	Two float64
 }
 
 type Fuzz903 struct {
-	One string
-	Two []float64
-}
-
-type Fuzz904 struct {
-	One string
+	One []complex128
 	Two int
 }
 
-type Fuzz905 struct {
-	One string
+type Fuzz904 struct {
+	One []complex128
 	Two int8
 }
 
-type Fuzz906 struct {
-	One string
+type Fuzz905 struct {
+	One []complex128
 	Two int16
 }
 
-type Fuzz907 struct {
-	One string
+type Fuzz906 struct {
+	One []complex128
 	Two int32
 }
 
+type Fuzz907 struct {
+	One []complex128
+	Two int64
+}
+
 type Fuzz908 struct {
-	One string
+	One []complex128
 	Two rune
 }
 
 type Fuzz909 struct {
-	One string
-	Two int64
+	One []complex128
+	Two string
 }
 
 type Fuzz910 struct {
-	One string
-	Two []int
+	One []complex128
+	Two time.Duration
 }
 
 type Fuzz911 struct {
-	One string
-	Two []int8
+	One []complex128
+	Two time.Time
 }
 
 type Fuzz912 struct {
-	One string
-	Two []int16
+	One []complex128
+	Two uint
 }
 
 type Fuzz913 struct {
-	One string
-	Two []int32
+	One []complex128
+	Two uint8
 }
 
 type Fuzz914 struct {
-	One string
-	Two []int64
+	One []complex128
+	Two uint16
 }
 
 type Fuzz915 struct {
-	One string
-	Two uint
+	One []complex128
+	Two uint32
 }
 
 type Fuzz916 struct {
-	One string
-	Two uint8
+	One []complex128
+	Two uint64
 }
 
 type Fuzz917 struct {
-	One string
-	Two uint16
+	One []complex128
+	Two []bool
 }
 
 type Fuzz918 struct {
-	One string
-	Two uint32
+	One []complex128
+	Two []byte
 }
 
 type Fuzz919 struct {
-	One string
-	Two uint64
+	One []complex128
+	Two []complex64
 }
 
 type Fuzz920 struct {
-	One string
-	Two []uint
+	One []complex128
+	Two []float32
 }
 
 type Fuzz921 struct {
-	One string
-	Two []uint16
+	One []complex128
+	Two []float64
 }
 
 type Fuzz922 struct {
-	One string
-	Two []uint32
+	One []complex128
+	Two []int
 }
 
 type Fuzz923 struct {
-	One string
-	Two []uint64
+	One []complex128
+	Two []int8
 }
 
 type Fuzz924 struct {
-	One string
-	Two []string
+	One []complex128
+	Two []int16
 }
 
 type Fuzz925 struct {
-	One string
-	Two time.Time
+	One []complex128
+	Two []int32
 }
 
 type Fuzz926 struct {
-	One string
-	Two time.Duration
+	One []complex128
+	Two []int64
 }
 
 type Fuzz927 struct {
-	One string
-	Two []time.Duration
+	One []complex128
+	Two []rune
 }
 
 type Fuzz928 struct {
-	One []string
-	Two bool
+	One []complex128
+	Two []string
 }
 
 type Fuzz929 struct {
-	One []string
-	Two []bool
+	One []complex128
+	Two []time.Duration
 }
 
 type Fuzz930 struct {
-	One []string
-	Two byte
+	One []complex128
+	Two []time.Time
 }
 
 type Fuzz931 struct {
-	One []string
-	Two []byte
+	One []complex128
+	Two []uint
 }
 
 type Fuzz932 struct {
-	One []string
-	Two float32
+	One []complex128
+	Two []uint8
 }
 
 type Fuzz933 struct {
-	One []string
-	Two []float32
+	One []complex128
+	Two []uint16
 }
 
 type Fuzz934 struct {
-	One []string
-	Two float64
+	One []complex128
+	Two []uint32
 }
 
 type Fuzz935 struct {
-	One []string
-	Two []float64
+	One []complex128
+	Two []uint64
 }
 
 type Fuzz936 struct {
-	One []string
-	Two int
+	One []float32
+	Two bool
 }
 
 type Fuzz937 struct {
-	One []string
-	Two int8
+	One []float32
+	Two byte
 }
 
 type Fuzz938 struct {
-	One []string
-	Two int16
+	One []float32
+	Two complex64
 }
 
 type Fuzz939 struct {
-	One []string
-	Two int32
+	One []float32
+	Two complex128
 }
 
 type Fuzz940 struct {
-	One []string
-	Two rune
+	One []float32
+	Two float32
 }
 
 type Fuzz941 struct {
-	One []string
-	Two int64
+	One []float32
+	Two float64
 }
 
 type Fuzz942 struct {
-	One []string
-	Two []int
+	One []float32
+	Two int
 }
 
 type Fuzz943 struct {
-	One []string
-	Two []int8
+	One []float32
+	Two int8
 }
 
 type Fuzz944 struct {
-	One []string
-	Two []int16
+	One []float32
+	Two int16
 }
 
 type Fuzz945 struct {
-	One []string
-	Two []int32
+	One []float32
+	Two int32
 }
 
 type Fuzz946 struct {
-	One []string
-	Two []int64
+	One []float32
+	Two int64
 }
 
 type Fuzz947 struct {
-	One []string
-	Two uint
+	One []float32
+	Two rune
 }
 
 type Fuzz948 struct {
-	One []string
-	Two uint8
+	One []float32
+	Two string
 }
 
 type Fuzz949 struct {
-	One []string
-	Two uint16
+	One []float32
+	Two time.Duration
 }
 
 type Fuzz950 struct {
-	One []string
-	Two uint32
+	One []float32
+	Two time.Time
 }
 
 type Fuzz951 struct {
-	One []string
-	Two uint64
+	One []float32
+	Two uint
 }
 
 type Fuzz952 struct {
-	One []string
-	Two []uint
+	One []float32
+	Two uint8
 }
 
 type Fuzz953 struct {
-	One []string
-	Two []uint16
+	One []float32
+	Two uint16
 }
 
 type Fuzz954 struct {
-	One []string
-	Two []uint32
+	One []float32
+	Two uint32
 }
 
 type Fuzz955 struct {
-	One []string
-	Two []uint64
+	One []float32
+	Two uint64
 }
 
 type Fuzz956 struct {
-	One []string
-	Two string
+	One []float32
+	Two []bool
 }
 
 type Fuzz957 struct {
-	One []string
-	Two time.Time
+	One []float32
+	Two []byte
 }
 
 type Fuzz958 struct {
-	One []string
-	Two time.Duration
+	One []float32
+	Two []complex64
 }
 
 type Fuzz959 struct {
-	One []string
-	Two []time.Duration
+	One []float32
+	Two []complex128
 }
 
 type Fuzz960 struct {
-	One time.Time
-	Two bool
+	One []float32
+	Two []float64
 }
 
 type Fuzz961 struct {
-	One time.Time
-	Two []bool
+	One []float32
+	Two []int
 }
 
 type Fuzz962 struct {
-	One time.Time
-	Two byte
+	One []float32
+	Two []int8
 }
 
 type Fuzz963 struct {
-	One time.Time
-	Two []byte
+	One []float32
+	Two []int16
 }
 
 type Fuzz964 struct {
-	One time.Time
-	Two float32
+	One []float32
+	Two []int32
 }
 
 type Fuzz965 struct {
-	One time.Time
-	Two []float32
+	One []float32
+	Two []int64
 }
 
 type Fuzz966 struct {
-	One time.Time
-	Two float64
+	One []float32
+	Two []rune
 }
 
 type Fuzz967 struct {
-	One time.Time
-	Two []float64
+	One []float32
+	Two []string
 }
 
 type Fuzz968 struct {
-	One time.Time
-	Two int
+	One []float32
+	Two []time.Duration
 }
 
 type Fuzz969 struct {
-	One time.Time
-	Two int8
+	One []float32
+	Two []time.Time
 }
 
 type Fuzz970 struct {
-	One time.Time
-	Two int16
+	One []float32
+	Two []uint
 }
 
 type Fuzz971 struct {
-	One time.Time
-	Two int32
+	One []float32
+	Two []uint8
 }
 
 type Fuzz972 struct {
-	One time.Time
-	Two rune
+	One []float32
+	Two []uint16
 }
 
 type Fuzz973 struct {
-	One time.Time
-	Two int64
+	One []float32
+	Two []uint32
 }
 
 type Fuzz974 struct {
-	One time.Time
-	Two []int
+	One []float32
+	Two []uint64
 }
 
 type Fuzz975 struct {
-	One time.Time
-	Two []int8
+	One []float64
+	Two bool
 }
 
 type Fuzz976 struct {
-	One time.Time
-	Two []int16
+	One []float64
+	Two byte
 }
 
 type Fuzz977 struct {
-	One time.Time
-	Two []int32
+	One []float64
+	Two complex64
 }
 
 type Fuzz978 struct {
-	One time.Time
-	Two []int64
+	One []float64
+	Two complex128
 }
 
 type Fuzz979 struct {
-	One time.Time
-	Two uint
+	One []float64
+	Two float32
 }
 
 type Fuzz980 struct {
-	One time.Time
-	Two uint8
+	One []float64
+	Two float64
 }
 
 type Fuzz981 struct {
-	One time.Time
-	Two uint16
+	One []float64
+	Two int
 }
 
 type Fuzz982 struct {
-	One time.Time
-	Two uint32
+	One []float64
+	Two int8
 }
 
 type Fuzz983 struct {
-	One time.Time
-	Two uint64
+	One []float64
+	Two int16
 }
 
 type Fuzz984 struct {
-	One time.Time
-	Two []uint
+	One []float64
+	Two int32
 }
 
 type Fuzz985 struct {
-	One time.Time
-	Two []uint16
+	One []float64
+	Two int64
 }
 
 type Fuzz986 struct {
-	One time.Time
-	Two []uint32
+	One []float64
+	Two rune
 }
 
 type Fuzz987 struct {
-	One time.Time
-	Two []uint64
+	One []float64
+	Two string
 }
 
 type Fuzz988 struct {
-	One time.Time
-	Two string
-}
-
-type Fuzz989 struct {
-	One time.Time
-	Two []string
-}
-
-type Fuzz990 struct {
-	One time.Time
+	One []float64
 	Two time.Duration
 }
 
-type Fuzz991 struct {
-	One time.Time
-	Two []time.Duration
-}
-
-type Fuzz992 struct {
-	One time.Duration
-	Two bool
-}
-
-type Fuzz993 struct {
-	One time.Duration
-	Two []bool
-}
-
-type Fuzz994 struct {
-	One time.Duration
-	Two byte
-}
-
-type Fuzz995 struct {
-	One time.Duration
-	Two []byte
-}
-
-type Fuzz996 struct {
-	One time.Duration
-	Two float32
-}
-
-type Fuzz997 struct {
-	One time.Duration
-	Two []float32
-}
-
-type Fuzz998 struct {
-	One time.Duration
-	Two float64
-}
-
-type Fuzz999 struct {
-	One time.Duration
-	Two []float64
-}
-
-type Fuzz1000 struct {
-	One time.Duration
-	Two int
-}
-
-type Fuzz1001 struct {
-	One time.Duration
-	Two int8
-}
-
-type Fuzz1002 struct {
-	One time.Duration
-	Two int16
-}
-
-type Fuzz1003 struct {
-	One time.Duration
-	Two int32
-}
-
-type Fuzz1004 struct {
-	One time.Duration
-	Two rune
-}
-
-type Fuzz1005 struct {
-	One time.Duration
-	Two int64
-}
-
-type Fuzz1006 struct {
-	One time.Duration
-	Two []int
-}
-
-type Fuzz1007 struct {
-	One time.Duration
-	Two []int8
-}
-
-type Fuzz1008 struct {
-	One time.Duration
-	Two []int16
-}
-
-type Fuzz1009 struct {
-	One time.Duration
-	Two []int32
-}
-
-type Fuzz1010 struct {
-	One time.Duration
-	Two []int64
-}
-
-type Fuzz1011 struct {
-	One time.Duration
-	Two uint
-}
-
-type Fuzz1012 struct {
-	One time.Duration
-	Two uint8
-}
-
-type Fuzz1013 struct {
-	One time.Duration
-	Two uint16
-}
-
-type Fuzz1014 struct {
-	One time.Duration
-	Two uint32
-}
-
-type Fuzz1015 struct {
-	One time.Duration
-	Two uint64
-}
-
-type Fuzz1016 struct {
-	One time.Duration
-	Two []uint
-}
-
-type Fuzz1017 struct {
-	One time.Duration
-	Two []uint16
-}
-
-type Fuzz1018 struct {
-	One time.Duration
-	Two []uint32
-}
-
-type Fuzz1019 struct {
-	One time.Duration
-	Two []uint64
-}
-
-type Fuzz1020 struct {
-	One time.Duration
-	Two string
-}
-
-type Fuzz1021 struct {
-	One time.Duration
-	Two []string
-}
-
-type Fuzz1022 struct {
-	One time.Duration
+type Fuzz989 struct {
+	One []float64
 	Two time.Time
 }
 
-type Fuzz1023 struct {
-	One time.Duration
-	Two []time.Duration
-}
-
-type Fuzz1024 struct {
-	One []time.Duration
-	Two bool
-}
-
-type Fuzz1025 struct {
-	One []time.Duration
-	Two []bool
-}
-
-type Fuzz1026 struct {
-	One []time.Duration
-	Two byte
-}
-
-type Fuzz1027 struct {
-	One []time.Duration
-	Two []byte
-}
-
-type Fuzz1028 struct {
-	One []time.Duration
-	Two float32
-}
-
-type Fuzz1029 struct {
-	One []time.Duration
-	Two []float32
-}
-
-type Fuzz1030 struct {
-	One []time.Duration
-	Two float64
-}
-
-type Fuzz1031 struct {
-	One []time.Duration
-	Two []float64
-}
-
-type Fuzz1032 struct {
-	One []time.Duration
-	Two int
-}
-
-type Fuzz1033 struct {
-	One []time.Duration
-	Two int8
-}
-
-type Fuzz1034 struct {
-	One []time.Duration
-	Two int16
-}
-
-type Fuzz1035 struct {
-	One []time.Duration
-	Two int32
-}
-
-type Fuzz1036 struct {
-	One []time.Duration
-	Two rune
-}
-
-type Fuzz1037 struct {
-	One []time.Duration
-	Two int64
-}
-
-type Fuzz1038 struct {
-	One []time.Duration
-	Two []int
-}
-
-type Fuzz1039 struct {
-	One []time.Duration
-	Two []int8
-}
-
-type Fuzz1040 struct {
-	One []time.Duration
-	Two []int16
-}
-
-type Fuzz1041 struct {
-	One []time.Duration
-	Two []int32
-}
-
-type Fuzz1042 struct {
-	One []time.Duration
-	Two []int64
-}
-
-type Fuzz1043 struct {
-	One []time.Duration
+type Fuzz990 struct {
+	One []float64
 	Two uint
 }
 
-type Fuzz1044 struct {
-	One []time.Duration
+type Fuzz991 struct {
+	One []float64
 	Two uint8
 }
 
-type Fuzz1045 struct {
-	One []time.Duration
+type Fuzz992 struct {
+	One []float64
 	Two uint16
 }
 
-type Fuzz1046 struct {
-	One []time.Duration
+type Fuzz993 struct {
+	One []float64
 	Two uint32
 }
 
-type Fuzz1047 struct {
-	One []time.Duration
+type Fuzz994 struct {
+	One []float64
 	Two uint64
 }
 
+type Fuzz995 struct {
+	One []float64
+	Two []bool
+}
+
+type Fuzz996 struct {
+	One []float64
+	Two []byte
+}
+
+type Fuzz997 struct {
+	One []float64
+	Two []complex64
+}
+
+type Fuzz998 struct {
+	One []float64
+	Two []complex128
+}
+
+type Fuzz999 struct {
+	One []float64
+	Two []float32
+}
+
+type Fuzz1000 struct {
+	One []float64
+	Two []int
+}
+
+type Fuzz1001 struct {
+	One []float64
+	Two []int8
+}
+
+type Fuzz1002 struct {
+	One []float64
+	Two []int16
+}
+
+type Fuzz1003 struct {
+	One []float64
+	Two []int32
+}
+
+type Fuzz1004 struct {
+	One []float64
+	Two []int64
+}
+
+type Fuzz1005 struct {
+	One []float64
+	Two []rune
+}
+
+type Fuzz1006 struct {
+	One []float64
+	Two []string
+}
+
+type Fuzz1007 struct {
+	One []float64
+	Two []time.Duration
+}
+
+type Fuzz1008 struct {
+	One []float64
+	Two []time.Time
+}
+
+type Fuzz1009 struct {
+	One []float64
+	Two []uint
+}
+
+type Fuzz1010 struct {
+	One []float64
+	Two []uint8
+}
+
+type Fuzz1011 struct {
+	One []float64
+	Two []uint16
+}
+
+type Fuzz1012 struct {
+	One []float64
+	Two []uint32
+}
+
+type Fuzz1013 struct {
+	One []float64
+	Two []uint64
+}
+
+type Fuzz1014 struct {
+	One []int
+	Two bool
+}
+
+type Fuzz1015 struct {
+	One []int
+	Two byte
+}
+
+type Fuzz1016 struct {
+	One []int
+	Two complex64
+}
+
+type Fuzz1017 struct {
+	One []int
+	Two complex128
+}
+
+type Fuzz1018 struct {
+	One []int
+	Two float32
+}
+
+type Fuzz1019 struct {
+	One []int
+	Two float64
+}
+
+type Fuzz1020 struct {
+	One []int
+	Two int
+}
+
+type Fuzz1021 struct {
+	One []int
+	Two int8
+}
+
+type Fuzz1022 struct {
+	One []int
+	Two int16
+}
+
+type Fuzz1023 struct {
+	One []int
+	Two int32
+}
+
+type Fuzz1024 struct {
+	One []int
+	Two int64
+}
+
+type Fuzz1025 struct {
+	One []int
+	Two rune
+}
+
+type Fuzz1026 struct {
+	One []int
+	Two string
+}
+
+type Fuzz1027 struct {
+	One []int
+	Two time.Duration
+}
+
+type Fuzz1028 struct {
+	One []int
+	Two time.Time
+}
+
+type Fuzz1029 struct {
+	One []int
+	Two uint
+}
+
+type Fuzz1030 struct {
+	One []int
+	Two uint8
+}
+
+type Fuzz1031 struct {
+	One []int
+	Two uint16
+}
+
+type Fuzz1032 struct {
+	One []int
+	Two uint32
+}
+
+type Fuzz1033 struct {
+	One []int
+	Two uint64
+}
+
+type Fuzz1034 struct {
+	One []int
+	Two []bool
+}
+
+type Fuzz1035 struct {
+	One []int
+	Two []byte
+}
+
+type Fuzz1036 struct {
+	One []int
+	Two []complex64
+}
+
+type Fuzz1037 struct {
+	One []int
+	Two []complex128
+}
+
+type Fuzz1038 struct {
+	One []int
+	Two []float32
+}
+
+type Fuzz1039 struct {
+	One []int
+	Two []float64
+}
+
+type Fuzz1040 struct {
+	One []int
+	Two []int8
+}
+
+type Fuzz1041 struct {
+	One []int
+	Two []int16
+}
+
+type Fuzz1042 struct {
+	One []int
+	Two []int32
+}
+
+type Fuzz1043 struct {
+	One []int
+	Two []int64
+}
+
+type Fuzz1044 struct {
+	One []int
+	Two []rune
+}
+
+type Fuzz1045 struct {
+	One []int
+	Two []string
+}
+
+type Fuzz1046 struct {
+	One []int
+	Two []time.Duration
+}
+
+type Fuzz1047 struct {
+	One []int
+	Two []time.Time
+}
+
 type Fuzz1048 struct {
-	One []time.Duration
+	One []int
 	Two []uint
 }
 
 type Fuzz1049 struct {
-	One []time.Duration
-	Two []uint16
+	One []int
+	Two []uint8
 }
 
 type Fuzz1050 struct {
-	One []time.Duration
-	Two []uint32
+	One []int
+	Two []uint16
 }
 
 type Fuzz1051 struct {
-	One []time.Duration
-	Two []uint64
+	One []int
+	Two []uint32
 }
 
 type Fuzz1052 struct {
+	One []int
+	Two []uint64
+}
+
+type Fuzz1053 struct {
+	One []int8
+	Two bool
+}
+
+type Fuzz1054 struct {
+	One []int8
+	Two byte
+}
+
+type Fuzz1055 struct {
+	One []int8
+	Two complex64
+}
+
+type Fuzz1056 struct {
+	One []int8
+	Two complex128
+}
+
+type Fuzz1057 struct {
+	One []int8
+	Two float32
+}
+
+type Fuzz1058 struct {
+	One []int8
+	Two float64
+}
+
+type Fuzz1059 struct {
+	One []int8
+	Two int
+}
+
+type Fuzz1060 struct {
+	One []int8
+	Two int8
+}
+
+type Fuzz1061 struct {
+	One []int8
+	Two int16
+}
+
+type Fuzz1062 struct {
+	One []int8
+	Two int32
+}
+
+type Fuzz1063 struct {
+	One []int8
+	Two int64
+}
+
+type Fuzz1064 struct {
+	One []int8
+	Two rune
+}
+
+type Fuzz1065 struct {
+	One []int8
+	Two string
+}
+
+type Fuzz1066 struct {
+	One []int8
+	Two time.Duration
+}
+
+type Fuzz1067 struct {
+	One []int8
+	Two time.Time
+}
+
+type Fuzz1068 struct {
+	One []int8
+	Two uint
+}
+
+type Fuzz1069 struct {
+	One []int8
+	Two uint8
+}
+
+type Fuzz1070 struct {
+	One []int8
+	Two uint16
+}
+
+type Fuzz1071 struct {
+	One []int8
+	Two uint32
+}
+
+type Fuzz1072 struct {
+	One []int8
+	Two uint64
+}
+
+type Fuzz1073 struct {
+	One []int8
+	Two []bool
+}
+
+type Fuzz1074 struct {
+	One []int8
+	Two []byte
+}
+
+type Fuzz1075 struct {
+	One []int8
+	Two []complex64
+}
+
+type Fuzz1076 struct {
+	One []int8
+	Two []complex128
+}
+
+type Fuzz1077 struct {
+	One []int8
+	Two []float32
+}
+
+type Fuzz1078 struct {
+	One []int8
+	Two []float64
+}
+
+type Fuzz1079 struct {
+	One []int8
+	Two []int
+}
+
+type Fuzz1080 struct {
+	One []int8
+	Two []int16
+}
+
+type Fuzz1081 struct {
+	One []int8
+	Two []int32
+}
+
+type Fuzz1082 struct {
+	One []int8
+	Two []int64
+}
+
+type Fuzz1083 struct {
+	One []int8
+	Two []rune
+}
+
+type Fuzz1084 struct {
+	One []int8
+	Two []string
+}
+
+type Fuzz1085 struct {
+	One []int8
+	Two []time.Duration
+}
+
+type Fuzz1086 struct {
+	One []int8
+	Two []time.Time
+}
+
+type Fuzz1087 struct {
+	One []int8
+	Two []uint
+}
+
+type Fuzz1088 struct {
+	One []int8
+	Two []uint8
+}
+
+type Fuzz1089 struct {
+	One []int8
+	Two []uint16
+}
+
+type Fuzz1090 struct {
+	One []int8
+	Two []uint32
+}
+
+type Fuzz1091 struct {
+	One []int8
+	Two []uint64
+}
+
+type Fuzz1092 struct {
+	One []int16
+	Two bool
+}
+
+type Fuzz1093 struct {
+	One []int16
+	Two byte
+}
+
+type Fuzz1094 struct {
+	One []int16
+	Two complex64
+}
+
+type Fuzz1095 struct {
+	One []int16
+	Two complex128
+}
+
+type Fuzz1096 struct {
+	One []int16
+	Two float32
+}
+
+type Fuzz1097 struct {
+	One []int16
+	Two float64
+}
+
+type Fuzz1098 struct {
+	One []int16
+	Two int
+}
+
+type Fuzz1099 struct {
+	One []int16
+	Two int8
+}
+
+type Fuzz1100 struct {
+	One []int16
+	Two int16
+}
+
+type Fuzz1101 struct {
+	One []int16
+	Two int32
+}
+
+type Fuzz1102 struct {
+	One []int16
+	Two int64
+}
+
+type Fuzz1103 struct {
+	One []int16
+	Two rune
+}
+
+type Fuzz1104 struct {
+	One []int16
+	Two string
+}
+
+type Fuzz1105 struct {
+	One []int16
+	Two time.Duration
+}
+
+type Fuzz1106 struct {
+	One []int16
+	Two time.Time
+}
+
+type Fuzz1107 struct {
+	One []int16
+	Two uint
+}
+
+type Fuzz1108 struct {
+	One []int16
+	Two uint8
+}
+
+type Fuzz1109 struct {
+	One []int16
+	Two uint16
+}
+
+type Fuzz1110 struct {
+	One []int16
+	Two uint32
+}
+
+type Fuzz1111 struct {
+	One []int16
+	Two uint64
+}
+
+type Fuzz1112 struct {
+	One []int16
+	Two []bool
+}
+
+type Fuzz1113 struct {
+	One []int16
+	Two []byte
+}
+
+type Fuzz1114 struct {
+	One []int16
+	Two []complex64
+}
+
+type Fuzz1115 struct {
+	One []int16
+	Two []complex128
+}
+
+type Fuzz1116 struct {
+	One []int16
+	Two []float32
+}
+
+type Fuzz1117 struct {
+	One []int16
+	Two []float64
+}
+
+type Fuzz1118 struct {
+	One []int16
+	Two []int
+}
+
+type Fuzz1119 struct {
+	One []int16
+	Two []int8
+}
+
+type Fuzz1120 struct {
+	One []int16
+	Two []int32
+}
+
+type Fuzz1121 struct {
+	One []int16
+	Two []int64
+}
+
+type Fuzz1122 struct {
+	One []int16
+	Two []rune
+}
+
+type Fuzz1123 struct {
+	One []int16
+	Two []string
+}
+
+type Fuzz1124 struct {
+	One []int16
+	Two []time.Duration
+}
+
+type Fuzz1125 struct {
+	One []int16
+	Two []time.Time
+}
+
+type Fuzz1126 struct {
+	One []int16
+	Two []uint
+}
+
+type Fuzz1127 struct {
+	One []int16
+	Two []uint8
+}
+
+type Fuzz1128 struct {
+	One []int16
+	Two []uint16
+}
+
+type Fuzz1129 struct {
+	One []int16
+	Two []uint32
+}
+
+type Fuzz1130 struct {
+	One []int16
+	Two []uint64
+}
+
+type Fuzz1131 struct {
+	One []int32
+	Two bool
+}
+
+type Fuzz1132 struct {
+	One []int32
+	Two byte
+}
+
+type Fuzz1133 struct {
+	One []int32
+	Two complex64
+}
+
+type Fuzz1134 struct {
+	One []int32
+	Two complex128
+}
+
+type Fuzz1135 struct {
+	One []int32
+	Two float32
+}
+
+type Fuzz1136 struct {
+	One []int32
+	Two float64
+}
+
+type Fuzz1137 struct {
+	One []int32
+	Two int
+}
+
+type Fuzz1138 struct {
+	One []int32
+	Two int8
+}
+
+type Fuzz1139 struct {
+	One []int32
+	Two int16
+}
+
+type Fuzz1140 struct {
+	One []int32
+	Two int32
+}
+
+type Fuzz1141 struct {
+	One []int32
+	Two int64
+}
+
+type Fuzz1142 struct {
+	One []int32
+	Two rune
+}
+
+type Fuzz1143 struct {
+	One []int32
+	Two string
+}
+
+type Fuzz1144 struct {
+	One []int32
+	Two time.Duration
+}
+
+type Fuzz1145 struct {
+	One []int32
+	Two time.Time
+}
+
+type Fuzz1146 struct {
+	One []int32
+	Two uint
+}
+
+type Fuzz1147 struct {
+	One []int32
+	Two uint8
+}
+
+type Fuzz1148 struct {
+	One []int32
+	Two uint16
+}
+
+type Fuzz1149 struct {
+	One []int32
+	Two uint32
+}
+
+type Fuzz1150 struct {
+	One []int32
+	Two uint64
+}
+
+type Fuzz1151 struct {
+	One []int32
+	Two []bool
+}
+
+type Fuzz1152 struct {
+	One []int32
+	Two []byte
+}
+
+type Fuzz1153 struct {
+	One []int32
+	Two []complex64
+}
+
+type Fuzz1154 struct {
+	One []int32
+	Two []complex128
+}
+
+type Fuzz1155 struct {
+	One []int32
+	Two []float32
+}
+
+type Fuzz1156 struct {
+	One []int32
+	Two []float64
+}
+
+type Fuzz1157 struct {
+	One []int32
+	Two []int
+}
+
+type Fuzz1158 struct {
+	One []int32
+	Two []int8
+}
+
+type Fuzz1159 struct {
+	One []int32
+	Two []int16
+}
+
+type Fuzz1160 struct {
+	One []int32
+	Two []int64
+}
+
+type Fuzz1161 struct {
+	One []int32
+	Two []rune
+}
+
+type Fuzz1162 struct {
+	One []int32
+	Two []string
+}
+
+type Fuzz1163 struct {
+	One []int32
+	Two []time.Duration
+}
+
+type Fuzz1164 struct {
+	One []int32
+	Two []time.Time
+}
+
+type Fuzz1165 struct {
+	One []int32
+	Two []uint
+}
+
+type Fuzz1166 struct {
+	One []int32
+	Two []uint8
+}
+
+type Fuzz1167 struct {
+	One []int32
+	Two []uint16
+}
+
+type Fuzz1168 struct {
+	One []int32
+	Two []uint32
+}
+
+type Fuzz1169 struct {
+	One []int32
+	Two []uint64
+}
+
+type Fuzz1170 struct {
+	One []int64
+	Two bool
+}
+
+type Fuzz1171 struct {
+	One []int64
+	Two byte
+}
+
+type Fuzz1172 struct {
+	One []int64
+	Two complex64
+}
+
+type Fuzz1173 struct {
+	One []int64
+	Two complex128
+}
+
+type Fuzz1174 struct {
+	One []int64
+	Two float32
+}
+
+type Fuzz1175 struct {
+	One []int64
+	Two float64
+}
+
+type Fuzz1176 struct {
+	One []int64
+	Two int
+}
+
+type Fuzz1177 struct {
+	One []int64
+	Two int8
+}
+
+type Fuzz1178 struct {
+	One []int64
+	Two int16
+}
+
+type Fuzz1179 struct {
+	One []int64
+	Two int32
+}
+
+type Fuzz1180 struct {
+	One []int64
+	Two int64
+}
+
+type Fuzz1181 struct {
+	One []int64
+	Two rune
+}
+
+type Fuzz1182 struct {
+	One []int64
+	Two string
+}
+
+type Fuzz1183 struct {
+	One []int64
+	Two time.Duration
+}
+
+type Fuzz1184 struct {
+	One []int64
+	Two time.Time
+}
+
+type Fuzz1185 struct {
+	One []int64
+	Two uint
+}
+
+type Fuzz1186 struct {
+	One []int64
+	Two uint8
+}
+
+type Fuzz1187 struct {
+	One []int64
+	Two uint16
+}
+
+type Fuzz1188 struct {
+	One []int64
+	Two uint32
+}
+
+type Fuzz1189 struct {
+	One []int64
+	Two uint64
+}
+
+type Fuzz1190 struct {
+	One []int64
+	Two []bool
+}
+
+type Fuzz1191 struct {
+	One []int64
+	Two []byte
+}
+
+type Fuzz1192 struct {
+	One []int64
+	Two []complex64
+}
+
+type Fuzz1193 struct {
+	One []int64
+	Two []complex128
+}
+
+type Fuzz1194 struct {
+	One []int64
+	Two []float32
+}
+
+type Fuzz1195 struct {
+	One []int64
+	Two []float64
+}
+
+type Fuzz1196 struct {
+	One []int64
+	Two []int
+}
+
+type Fuzz1197 struct {
+	One []int64
+	Two []int8
+}
+
+type Fuzz1198 struct {
+	One []int64
+	Two []int16
+}
+
+type Fuzz1199 struct {
+	One []int64
+	Two []int32
+}
+
+type Fuzz1200 struct {
+	One []int64
+	Two []rune
+}
+
+type Fuzz1201 struct {
+	One []int64
+	Two []string
+}
+
+type Fuzz1202 struct {
+	One []int64
+	Two []time.Duration
+}
+
+type Fuzz1203 struct {
+	One []int64
+	Two []time.Time
+}
+
+type Fuzz1204 struct {
+	One []int64
+	Two []uint
+}
+
+type Fuzz1205 struct {
+	One []int64
+	Two []uint8
+}
+
+type Fuzz1206 struct {
+	One []int64
+	Two []uint16
+}
+
+type Fuzz1207 struct {
+	One []int64
+	Two []uint32
+}
+
+type Fuzz1208 struct {
+	One []int64
+	Two []uint64
+}
+
+type Fuzz1209 struct {
+	One []rune
+	Two bool
+}
+
+type Fuzz1210 struct {
+	One []rune
+	Two byte
+}
+
+type Fuzz1211 struct {
+	One []rune
+	Two complex64
+}
+
+type Fuzz1212 struct {
+	One []rune
+	Two complex128
+}
+
+type Fuzz1213 struct {
+	One []rune
+	Two float32
+}
+
+type Fuzz1214 struct {
+	One []rune
+	Two float64
+}
+
+type Fuzz1215 struct {
+	One []rune
+	Two int
+}
+
+type Fuzz1216 struct {
+	One []rune
+	Two int8
+}
+
+type Fuzz1217 struct {
+	One []rune
+	Two int16
+}
+
+type Fuzz1218 struct {
+	One []rune
+	Two int32
+}
+
+type Fuzz1219 struct {
+	One []rune
+	Two int64
+}
+
+type Fuzz1220 struct {
+	One []rune
+	Two rune
+}
+
+type Fuzz1221 struct {
+	One []rune
+	Two string
+}
+
+type Fuzz1222 struct {
+	One []rune
+	Two time.Duration
+}
+
+type Fuzz1223 struct {
+	One []rune
+	Two time.Time
+}
+
+type Fuzz1224 struct {
+	One []rune
+	Two uint
+}
+
+type Fuzz1225 struct {
+	One []rune
+	Two uint8
+}
+
+type Fuzz1226 struct {
+	One []rune
+	Two uint16
+}
+
+type Fuzz1227 struct {
+	One []rune
+	Two uint32
+}
+
+type Fuzz1228 struct {
+	One []rune
+	Two uint64
+}
+
+type Fuzz1229 struct {
+	One []rune
+	Two []bool
+}
+
+type Fuzz1230 struct {
+	One []rune
+	Two []byte
+}
+
+type Fuzz1231 struct {
+	One []rune
+	Two []complex64
+}
+
+type Fuzz1232 struct {
+	One []rune
+	Two []complex128
+}
+
+type Fuzz1233 struct {
+	One []rune
+	Two []float32
+}
+
+type Fuzz1234 struct {
+	One []rune
+	Two []float64
+}
+
+type Fuzz1235 struct {
+	One []rune
+	Two []int
+}
+
+type Fuzz1236 struct {
+	One []rune
+	Two []int8
+}
+
+type Fuzz1237 struct {
+	One []rune
+	Two []int16
+}
+
+type Fuzz1238 struct {
+	One []rune
+	Two []int32
+}
+
+type Fuzz1239 struct {
+	One []rune
+	Two []int64
+}
+
+type Fuzz1240 struct {
+	One []rune
+	Two []string
+}
+
+type Fuzz1241 struct {
+	One []rune
+	Two []time.Duration
+}
+
+type Fuzz1242 struct {
+	One []rune
+	Two []time.Time
+}
+
+type Fuzz1243 struct {
+	One []rune
+	Two []uint
+}
+
+type Fuzz1244 struct {
+	One []rune
+	Two []uint8
+}
+
+type Fuzz1245 struct {
+	One []rune
+	Two []uint16
+}
+
+type Fuzz1246 struct {
+	One []rune
+	Two []uint32
+}
+
+type Fuzz1247 struct {
+	One []rune
+	Two []uint64
+}
+
+type Fuzz1248 struct {
+	One []string
+	Two bool
+}
+
+type Fuzz1249 struct {
+	One []string
+	Two byte
+}
+
+type Fuzz1250 struct {
+	One []string
+	Two complex64
+}
+
+type Fuzz1251 struct {
+	One []string
+	Two complex128
+}
+
+type Fuzz1252 struct {
+	One []string
+	Two float32
+}
+
+type Fuzz1253 struct {
+	One []string
+	Two float64
+}
+
+type Fuzz1254 struct {
+	One []string
+	Two int
+}
+
+type Fuzz1255 struct {
+	One []string
+	Two int8
+}
+
+type Fuzz1256 struct {
+	One []string
+	Two int16
+}
+
+type Fuzz1257 struct {
+	One []string
+	Two int32
+}
+
+type Fuzz1258 struct {
+	One []string
+	Two int64
+}
+
+type Fuzz1259 struct {
+	One []string
+	Two rune
+}
+
+type Fuzz1260 struct {
+	One []string
+	Two string
+}
+
+type Fuzz1261 struct {
+	One []string
+	Two time.Duration
+}
+
+type Fuzz1262 struct {
+	One []string
+	Two time.Time
+}
+
+type Fuzz1263 struct {
+	One []string
+	Two uint
+}
+
+type Fuzz1264 struct {
+	One []string
+	Two uint8
+}
+
+type Fuzz1265 struct {
+	One []string
+	Two uint16
+}
+
+type Fuzz1266 struct {
+	One []string
+	Two uint32
+}
+
+type Fuzz1267 struct {
+	One []string
+	Two uint64
+}
+
+type Fuzz1268 struct {
+	One []string
+	Two []bool
+}
+
+type Fuzz1269 struct {
+	One []string
+	Two []byte
+}
+
+type Fuzz1270 struct {
+	One []string
+	Two []complex64
+}
+
+type Fuzz1271 struct {
+	One []string
+	Two []complex128
+}
+
+type Fuzz1272 struct {
+	One []string
+	Two []float32
+}
+
+type Fuzz1273 struct {
+	One []string
+	Two []float64
+}
+
+type Fuzz1274 struct {
+	One []string
+	Two []int
+}
+
+type Fuzz1275 struct {
+	One []string
+	Two []int8
+}
+
+type Fuzz1276 struct {
+	One []string
+	Two []int16
+}
+
+type Fuzz1277 struct {
+	One []string
+	Two []int32
+}
+
+type Fuzz1278 struct {
+	One []string
+	Two []int64
+}
+
+type Fuzz1279 struct {
+	One []string
+	Two []rune
+}
+
+type Fuzz1280 struct {
+	One []string
+	Two []time.Duration
+}
+
+type Fuzz1281 struct {
+	One []string
+	Two []time.Time
+}
+
+type Fuzz1282 struct {
+	One []string
+	Two []uint
+}
+
+type Fuzz1283 struct {
+	One []string
+	Two []uint8
+}
+
+type Fuzz1284 struct {
+	One []string
+	Two []uint16
+}
+
+type Fuzz1285 struct {
+	One []string
+	Two []uint32
+}
+
+type Fuzz1286 struct {
+	One []string
+	Two []uint64
+}
+
+type Fuzz1287 struct {
+	One []time.Duration
+	Two bool
+}
+
+type Fuzz1288 struct {
+	One []time.Duration
+	Two byte
+}
+
+type Fuzz1289 struct {
+	One []time.Duration
+	Two complex64
+}
+
+type Fuzz1290 struct {
+	One []time.Duration
+	Two complex128
+}
+
+type Fuzz1291 struct {
+	One []time.Duration
+	Two float32
+}
+
+type Fuzz1292 struct {
+	One []time.Duration
+	Two float64
+}
+
+type Fuzz1293 struct {
+	One []time.Duration
+	Two int
+}
+
+type Fuzz1294 struct {
+	One []time.Duration
+	Two int8
+}
+
+type Fuzz1295 struct {
+	One []time.Duration
+	Two int16
+}
+
+type Fuzz1296 struct {
+	One []time.Duration
+	Two int32
+}
+
+type Fuzz1297 struct {
+	One []time.Duration
+	Two int64
+}
+
+type Fuzz1298 struct {
+	One []time.Duration
+	Two rune
+}
+
+type Fuzz1299 struct {
 	One []time.Duration
 	Two string
 }
 
-type Fuzz1053 struct {
+type Fuzz1300 struct {
 	One []time.Duration
-	Two []string
+	Two time.Duration
 }
 
-type Fuzz1054 struct {
+type Fuzz1301 struct {
 	One []time.Duration
 	Two time.Time
 }
 
-type Fuzz1055 struct {
+type Fuzz1302 struct {
 	One []time.Duration
+	Two uint
+}
+
+type Fuzz1303 struct {
+	One []time.Duration
+	Two uint8
+}
+
+type Fuzz1304 struct {
+	One []time.Duration
+	Two uint16
+}
+
+type Fuzz1305 struct {
+	One []time.Duration
+	Two uint32
+}
+
+type Fuzz1306 struct {
+	One []time.Duration
+	Two uint64
+}
+
+type Fuzz1307 struct {
+	One []time.Duration
+	Two []bool
+}
+
+type Fuzz1308 struct {
+	One []time.Duration
+	Two []byte
+}
+
+type Fuzz1309 struct {
+	One []time.Duration
+	Two []complex64
+}
+
+type Fuzz1310 struct {
+	One []time.Duration
+	Two []complex128
+}
+
+type Fuzz1311 struct {
+	One []time.Duration
+	Two []float32
+}
+
+type Fuzz1312 struct {
+	One []time.Duration
+	Two []float64
+}
+
+type Fuzz1313 struct {
+	One []time.Duration
+	Two []int
+}
+
+type Fuzz1314 struct {
+	One []time.Duration
+	Two []int8
+}
+
+type Fuzz1315 struct {
+	One []time.Duration
+	Two []int16
+}
+
+type Fuzz1316 struct {
+	One []time.Duration
+	Two []int32
+}
+
+type Fuzz1317 struct {
+	One []time.Duration
+	Two []int64
+}
+
+type Fuzz1318 struct {
+	One []time.Duration
+	Two []rune
+}
+
+type Fuzz1319 struct {
+	One []time.Duration
+	Two []string
+}
+
+type Fuzz1320 struct {
+	One []time.Duration
+	Two []time.Time
+}
+
+type Fuzz1321 struct {
+	One []time.Duration
+	Two []uint
+}
+
+type Fuzz1322 struct {
+	One []time.Duration
+	Two []uint8
+}
+
+type Fuzz1323 struct {
+	One []time.Duration
+	Two []uint16
+}
+
+type Fuzz1324 struct {
+	One []time.Duration
+	Two []uint32
+}
+
+type Fuzz1325 struct {
+	One []time.Duration
+	Two []uint64
+}
+
+type Fuzz1326 struct {
+	One []time.Time
+	Two bool
+}
+
+type Fuzz1327 struct {
+	One []time.Time
+	Two byte
+}
+
+type Fuzz1328 struct {
+	One []time.Time
+	Two complex64
+}
+
+type Fuzz1329 struct {
+	One []time.Time
+	Two complex128
+}
+
+type Fuzz1330 struct {
+	One []time.Time
+	Two float32
+}
+
+type Fuzz1331 struct {
+	One []time.Time
+	Two float64
+}
+
+type Fuzz1332 struct {
+	One []time.Time
+	Two int
+}
+
+type Fuzz1333 struct {
+	One []time.Time
+	Two int8
+}
+
+type Fuzz1334 struct {
+	One []time.Time
+	Two int16
+}
+
+type Fuzz1335 struct {
+	One []time.Time
+	Two int32
+}
+
+type Fuzz1336 struct {
+	One []time.Time
+	Two int64
+}
+
+type Fuzz1337 struct {
+	One []time.Time
+	Two rune
+}
+
+type Fuzz1338 struct {
+	One []time.Time
+	Two string
+}
+
+type Fuzz1339 struct {
+	One []time.Time
 	Two time.Duration
+}
+
+type Fuzz1340 struct {
+	One []time.Time
+	Two time.Time
+}
+
+type Fuzz1341 struct {
+	One []time.Time
+	Two uint
+}
+
+type Fuzz1342 struct {
+	One []time.Time
+	Two uint8
+}
+
+type Fuzz1343 struct {
+	One []time.Time
+	Two uint16
+}
+
+type Fuzz1344 struct {
+	One []time.Time
+	Two uint32
+}
+
+type Fuzz1345 struct {
+	One []time.Time
+	Two uint64
+}
+
+type Fuzz1346 struct {
+	One []time.Time
+	Two []bool
+}
+
+type Fuzz1347 struct {
+	One []time.Time
+	Two []byte
+}
+
+type Fuzz1348 struct {
+	One []time.Time
+	Two []complex64
+}
+
+type Fuzz1349 struct {
+	One []time.Time
+	Two []complex128
+}
+
+type Fuzz1350 struct {
+	One []time.Time
+	Two []float32
+}
+
+type Fuzz1351 struct {
+	One []time.Time
+	Two []float64
+}
+
+type Fuzz1352 struct {
+	One []time.Time
+	Two []int
+}
+
+type Fuzz1353 struct {
+	One []time.Time
+	Two []int8
+}
+
+type Fuzz1354 struct {
+	One []time.Time
+	Two []int16
+}
+
+type Fuzz1355 struct {
+	One []time.Time
+	Two []int32
+}
+
+type Fuzz1356 struct {
+	One []time.Time
+	Two []int64
+}
+
+type Fuzz1357 struct {
+	One []time.Time
+	Two []rune
+}
+
+type Fuzz1358 struct {
+	One []time.Time
+	Two []string
+}
+
+type Fuzz1359 struct {
+	One []time.Time
+	Two []time.Duration
+}
+
+type Fuzz1360 struct {
+	One []time.Time
+	Two []uint
+}
+
+type Fuzz1361 struct {
+	One []time.Time
+	Two []uint8
+}
+
+type Fuzz1362 struct {
+	One []time.Time
+	Two []uint16
+}
+
+type Fuzz1363 struct {
+	One []time.Time
+	Two []uint32
+}
+
+type Fuzz1364 struct {
+	One []time.Time
+	Two []uint64
+}
+
+type Fuzz1365 struct {
+	One []uint
+	Two bool
+}
+
+type Fuzz1366 struct {
+	One []uint
+	Two byte
+}
+
+type Fuzz1367 struct {
+	One []uint
+	Two complex64
+}
+
+type Fuzz1368 struct {
+	One []uint
+	Two complex128
+}
+
+type Fuzz1369 struct {
+	One []uint
+	Two float32
+}
+
+type Fuzz1370 struct {
+	One []uint
+	Two float64
+}
+
+type Fuzz1371 struct {
+	One []uint
+	Two int
+}
+
+type Fuzz1372 struct {
+	One []uint
+	Two int8
+}
+
+type Fuzz1373 struct {
+	One []uint
+	Two int16
+}
+
+type Fuzz1374 struct {
+	One []uint
+	Two int32
+}
+
+type Fuzz1375 struct {
+	One []uint
+	Two int64
+}
+
+type Fuzz1376 struct {
+	One []uint
+	Two rune
+}
+
+type Fuzz1377 struct {
+	One []uint
+	Two string
+}
+
+type Fuzz1378 struct {
+	One []uint
+	Two time.Duration
+}
+
+type Fuzz1379 struct {
+	One []uint
+	Two time.Time
+}
+
+type Fuzz1380 struct {
+	One []uint
+	Two uint
+}
+
+type Fuzz1381 struct {
+	One []uint
+	Two uint8
+}
+
+type Fuzz1382 struct {
+	One []uint
+	Two uint16
+}
+
+type Fuzz1383 struct {
+	One []uint
+	Two uint32
+}
+
+type Fuzz1384 struct {
+	One []uint
+	Two uint64
+}
+
+type Fuzz1385 struct {
+	One []uint
+	Two []bool
+}
+
+type Fuzz1386 struct {
+	One []uint
+	Two []byte
+}
+
+type Fuzz1387 struct {
+	One []uint
+	Two []complex64
+}
+
+type Fuzz1388 struct {
+	One []uint
+	Two []complex128
+}
+
+type Fuzz1389 struct {
+	One []uint
+	Two []float32
+}
+
+type Fuzz1390 struct {
+	One []uint
+	Two []float64
+}
+
+type Fuzz1391 struct {
+	One []uint
+	Two []int
+}
+
+type Fuzz1392 struct {
+	One []uint
+	Two []int8
+}
+
+type Fuzz1393 struct {
+	One []uint
+	Two []int16
+}
+
+type Fuzz1394 struct {
+	One []uint
+	Two []int32
+}
+
+type Fuzz1395 struct {
+	One []uint
+	Two []int64
+}
+
+type Fuzz1396 struct {
+	One []uint
+	Two []rune
+}
+
+type Fuzz1397 struct {
+	One []uint
+	Two []string
+}
+
+type Fuzz1398 struct {
+	One []uint
+	Two []time.Duration
+}
+
+type Fuzz1399 struct {
+	One []uint
+	Two []time.Time
+}
+
+type Fuzz1400 struct {
+	One []uint
+	Two []uint8
+}
+
+type Fuzz1401 struct {
+	One []uint
+	Two []uint16
+}
+
+type Fuzz1402 struct {
+	One []uint
+	Two []uint32
+}
+
+type Fuzz1403 struct {
+	One []uint
+	Two []uint64
+}
+
+type Fuzz1404 struct {
+	One []uint8
+	Two bool
+}
+
+type Fuzz1405 struct {
+	One []uint8
+	Two byte
+}
+
+type Fuzz1406 struct {
+	One []uint8
+	Two complex64
+}
+
+type Fuzz1407 struct {
+	One []uint8
+	Two complex128
+}
+
+type Fuzz1408 struct {
+	One []uint8
+	Two float32
+}
+
+type Fuzz1409 struct {
+	One []uint8
+	Two float64
+}
+
+type Fuzz1410 struct {
+	One []uint8
+	Two int
+}
+
+type Fuzz1411 struct {
+	One []uint8
+	Two int8
+}
+
+type Fuzz1412 struct {
+	One []uint8
+	Two int16
+}
+
+type Fuzz1413 struct {
+	One []uint8
+	Two int32
+}
+
+type Fuzz1414 struct {
+	One []uint8
+	Two int64
+}
+
+type Fuzz1415 struct {
+	One []uint8
+	Two rune
+}
+
+type Fuzz1416 struct {
+	One []uint8
+	Two string
+}
+
+type Fuzz1417 struct {
+	One []uint8
+	Two time.Duration
+}
+
+type Fuzz1418 struct {
+	One []uint8
+	Two time.Time
+}
+
+type Fuzz1419 struct {
+	One []uint8
+	Two uint
+}
+
+type Fuzz1420 struct {
+	One []uint8
+	Two uint8
+}
+
+type Fuzz1421 struct {
+	One []uint8
+	Two uint16
+}
+
+type Fuzz1422 struct {
+	One []uint8
+	Two uint32
+}
+
+type Fuzz1423 struct {
+	One []uint8
+	Two uint64
+}
+
+type Fuzz1424 struct {
+	One []uint8
+	Two []bool
+}
+
+type Fuzz1425 struct {
+	One []uint8
+	Two []byte
+}
+
+type Fuzz1426 struct {
+	One []uint8
+	Two []complex64
+}
+
+type Fuzz1427 struct {
+	One []uint8
+	Two []complex128
+}
+
+type Fuzz1428 struct {
+	One []uint8
+	Two []float32
+}
+
+type Fuzz1429 struct {
+	One []uint8
+	Two []float64
+}
+
+type Fuzz1430 struct {
+	One []uint8
+	Two []int
+}
+
+type Fuzz1431 struct {
+	One []uint8
+	Two []int8
+}
+
+type Fuzz1432 struct {
+	One []uint8
+	Two []int16
+}
+
+type Fuzz1433 struct {
+	One []uint8
+	Two []int32
+}
+
+type Fuzz1434 struct {
+	One []uint8
+	Two []int64
+}
+
+type Fuzz1435 struct {
+	One []uint8
+	Two []rune
+}
+
+type Fuzz1436 struct {
+	One []uint8
+	Two []string
+}
+
+type Fuzz1437 struct {
+	One []uint8
+	Two []time.Duration
+}
+
+type Fuzz1438 struct {
+	One []uint8
+	Two []time.Time
+}
+
+type Fuzz1439 struct {
+	One []uint8
+	Two []uint
+}
+
+type Fuzz1440 struct {
+	One []uint8
+	Two []uint16
+}
+
+type Fuzz1441 struct {
+	One []uint8
+	Two []uint32
+}
+
+type Fuzz1442 struct {
+	One []uint8
+	Two []uint64
+}
+
+type Fuzz1443 struct {
+	One []uint16
+	Two bool
+}
+
+type Fuzz1444 struct {
+	One []uint16
+	Two byte
+}
+
+type Fuzz1445 struct {
+	One []uint16
+	Two complex64
+}
+
+type Fuzz1446 struct {
+	One []uint16
+	Two complex128
+}
+
+type Fuzz1447 struct {
+	One []uint16
+	Two float32
+}
+
+type Fuzz1448 struct {
+	One []uint16
+	Two float64
+}
+
+type Fuzz1449 struct {
+	One []uint16
+	Two int
+}
+
+type Fuzz1450 struct {
+	One []uint16
+	Two int8
+}
+
+type Fuzz1451 struct {
+	One []uint16
+	Two int16
+}
+
+type Fuzz1452 struct {
+	One []uint16
+	Two int32
+}
+
+type Fuzz1453 struct {
+	One []uint16
+	Two int64
+}
+
+type Fuzz1454 struct {
+	One []uint16
+	Two rune
+}
+
+type Fuzz1455 struct {
+	One []uint16
+	Two string
+}
+
+type Fuzz1456 struct {
+	One []uint16
+	Two time.Duration
+}
+
+type Fuzz1457 struct {
+	One []uint16
+	Two time.Time
+}
+
+type Fuzz1458 struct {
+	One []uint16
+	Two uint
+}
+
+type Fuzz1459 struct {
+	One []uint16
+	Two uint8
+}
+
+type Fuzz1460 struct {
+	One []uint16
+	Two uint16
+}
+
+type Fuzz1461 struct {
+	One []uint16
+	Two uint32
+}
+
+type Fuzz1462 struct {
+	One []uint16
+	Two uint64
+}
+
+type Fuzz1463 struct {
+	One []uint16
+	Two []bool
+}
+
+type Fuzz1464 struct {
+	One []uint16
+	Two []byte
+}
+
+type Fuzz1465 struct {
+	One []uint16
+	Two []complex64
+}
+
+type Fuzz1466 struct {
+	One []uint16
+	Two []complex128
+}
+
+type Fuzz1467 struct {
+	One []uint16
+	Two []float32
+}
+
+type Fuzz1468 struct {
+	One []uint16
+	Two []float64
+}
+
+type Fuzz1469 struct {
+	One []uint16
+	Two []int
+}
+
+type Fuzz1470 struct {
+	One []uint16
+	Two []int8
+}
+
+type Fuzz1471 struct {
+	One []uint16
+	Two []int16
+}
+
+type Fuzz1472 struct {
+	One []uint16
+	Two []int32
+}
+
+type Fuzz1473 struct {
+	One []uint16
+	Two []int64
+}
+
+type Fuzz1474 struct {
+	One []uint16
+	Two []rune
+}
+
+type Fuzz1475 struct {
+	One []uint16
+	Two []string
+}
+
+type Fuzz1476 struct {
+	One []uint16
+	Two []time.Duration
+}
+
+type Fuzz1477 struct {
+	One []uint16
+	Two []time.Time
+}
+
+type Fuzz1478 struct {
+	One []uint16
+	Two []uint
+}
+
+type Fuzz1479 struct {
+	One []uint16
+	Two []uint8
+}
+
+type Fuzz1480 struct {
+	One []uint16
+	Two []uint32
+}
+
+type Fuzz1481 struct {
+	One []uint16
+	Two []uint64
+}
+
+type Fuzz1482 struct {
+	One []uint32
+	Two bool
+}
+
+type Fuzz1483 struct {
+	One []uint32
+	Two byte
+}
+
+type Fuzz1484 struct {
+	One []uint32
+	Two complex64
+}
+
+type Fuzz1485 struct {
+	One []uint32
+	Two complex128
+}
+
+type Fuzz1486 struct {
+	One []uint32
+	Two float32
+}
+
+type Fuzz1487 struct {
+	One []uint32
+	Two float64
+}
+
+type Fuzz1488 struct {
+	One []uint32
+	Two int
+}
+
+type Fuzz1489 struct {
+	One []uint32
+	Two int8
+}
+
+type Fuzz1490 struct {
+	One []uint32
+	Two int16
+}
+
+type Fuzz1491 struct {
+	One []uint32
+	Two int32
+}
+
+type Fuzz1492 struct {
+	One []uint32
+	Two int64
+}
+
+type Fuzz1493 struct {
+	One []uint32
+	Two rune
+}
+
+type Fuzz1494 struct {
+	One []uint32
+	Two string
+}
+
+type Fuzz1495 struct {
+	One []uint32
+	Two time.Duration
+}
+
+type Fuzz1496 struct {
+	One []uint32
+	Two time.Time
+}
+
+type Fuzz1497 struct {
+	One []uint32
+	Two uint
+}
+
+type Fuzz1498 struct {
+	One []uint32
+	Two uint8
+}
+
+type Fuzz1499 struct {
+	One []uint32
+	Two uint16
+}
+
+type Fuzz1500 struct {
+	One []uint32
+	Two uint32
+}
+
+type Fuzz1501 struct {
+	One []uint32
+	Two uint64
+}
+
+type Fuzz1502 struct {
+	One []uint32
+	Two []bool
+}
+
+type Fuzz1503 struct {
+	One []uint32
+	Two []byte
+}
+
+type Fuzz1504 struct {
+	One []uint32
+	Two []complex64
+}
+
+type Fuzz1505 struct {
+	One []uint32
+	Two []complex128
+}
+
+type Fuzz1506 struct {
+	One []uint32
+	Two []float32
+}
+
+type Fuzz1507 struct {
+	One []uint32
+	Two []float64
+}
+
+type Fuzz1508 struct {
+	One []uint32
+	Two []int
+}
+
+type Fuzz1509 struct {
+	One []uint32
+	Two []int8
+}
+
+type Fuzz1510 struct {
+	One []uint32
+	Two []int16
+}
+
+type Fuzz1511 struct {
+	One []uint32
+	Two []int32
+}
+
+type Fuzz1512 struct {
+	One []uint32
+	Two []int64
+}
+
+type Fuzz1513 struct {
+	One []uint32
+	Two []rune
+}
+
+type Fuzz1514 struct {
+	One []uint32
+	Two []string
+}
+
+type Fuzz1515 struct {
+	One []uint32
+	Two []time.Duration
+}
+
+type Fuzz1516 struct {
+	One []uint32
+	Two []time.Time
+}
+
+type Fuzz1517 struct {
+	One []uint32
+	Two []uint
+}
+
+type Fuzz1518 struct {
+	One []uint32
+	Two []uint8
+}
+
+type Fuzz1519 struct {
+	One []uint32
+	Two []uint16
+}
+
+type Fuzz1520 struct {
+	One []uint32
+	Two []uint64
+}
+
+type Fuzz1521 struct {
+	One []uint64
+	Two bool
+}
+
+type Fuzz1522 struct {
+	One []uint64
+	Two byte
+}
+
+type Fuzz1523 struct {
+	One []uint64
+	Two complex64
+}
+
+type Fuzz1524 struct {
+	One []uint64
+	Two complex128
+}
+
+type Fuzz1525 struct {
+	One []uint64
+	Two float32
+}
+
+type Fuzz1526 struct {
+	One []uint64
+	Two float64
+}
+
+type Fuzz1527 struct {
+	One []uint64
+	Two int
+}
+
+type Fuzz1528 struct {
+	One []uint64
+	Two int8
+}
+
+type Fuzz1529 struct {
+	One []uint64
+	Two int16
+}
+
+type Fuzz1530 struct {
+	One []uint64
+	Two int32
+}
+
+type Fuzz1531 struct {
+	One []uint64
+	Two int64
+}
+
+type Fuzz1532 struct {
+	One []uint64
+	Two rune
+}
+
+type Fuzz1533 struct {
+	One []uint64
+	Two string
+}
+
+type Fuzz1534 struct {
+	One []uint64
+	Two time.Duration
+}
+
+type Fuzz1535 struct {
+	One []uint64
+	Two time.Time
+}
+
+type Fuzz1536 struct {
+	One []uint64
+	Two uint
+}
+
+type Fuzz1537 struct {
+	One []uint64
+	Two uint8
+}
+
+type Fuzz1538 struct {
+	One []uint64
+	Two uint16
+}
+
+type Fuzz1539 struct {
+	One []uint64
+	Two uint32
+}
+
+type Fuzz1540 struct {
+	One []uint64
+	Two uint64
+}
+
+type Fuzz1541 struct {
+	One []uint64
+	Two []bool
+}
+
+type Fuzz1542 struct {
+	One []uint64
+	Two []byte
+}
+
+type Fuzz1543 struct {
+	One []uint64
+	Two []complex64
+}
+
+type Fuzz1544 struct {
+	One []uint64
+	Two []complex128
+}
+
+type Fuzz1545 struct {
+	One []uint64
+	Two []float32
+}
+
+type Fuzz1546 struct {
+	One []uint64
+	Two []float64
+}
+
+type Fuzz1547 struct {
+	One []uint64
+	Two []int
+}
+
+type Fuzz1548 struct {
+	One []uint64
+	Two []int8
+}
+
+type Fuzz1549 struct {
+	One []uint64
+	Two []int16
+}
+
+type Fuzz1550 struct {
+	One []uint64
+	Two []int32
+}
+
+type Fuzz1551 struct {
+	One []uint64
+	Two []int64
+}
+
+type Fuzz1552 struct {
+	One []uint64
+	Two []rune
+}
+
+type Fuzz1553 struct {
+	One []uint64
+	Two []string
+}
+
+type Fuzz1554 struct {
+	One []uint64
+	Two []time.Duration
+}
+
+type Fuzz1555 struct {
+	One []uint64
+	Two []time.Time
+}
+
+type Fuzz1556 struct {
+	One []uint64
+	Two []uint
+}
+
+type Fuzz1557 struct {
+	One []uint64
+	Two []uint8
+}
+
+type Fuzz1558 struct {
+	One []uint64
+	Two []uint16
+}
+
+type Fuzz1559 struct {
+	One []uint64
+	Two []uint32
 }

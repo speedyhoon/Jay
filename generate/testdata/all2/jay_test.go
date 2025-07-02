@@ -18,7 +18,7 @@ func TestFuzz0(t *testing.T) {
 
 	actual = Fuzz0{
 		One: rando.Bool(),
-		Two: rando.Bools(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -34,7 +34,7 @@ func TestFuzz1(t *testing.T) {
 
 	actual = Fuzz1{
 		One: rando.Bool(),
-		Two: rando.Byte(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -50,7 +50,7 @@ func TestFuzz2(t *testing.T) {
 
 	actual = Fuzz2{
 		One: rando.Bool(),
-		Two: rando.Bytes(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -82,7 +82,7 @@ func TestFuzz4(t *testing.T) {
 
 	actual = Fuzz4{
 		One: rando.Bool(),
-		Two: rando.Float32s(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -98,7 +98,7 @@ func TestFuzz5(t *testing.T) {
 
 	actual = Fuzz5{
 		One: rando.Bool(),
-		Two: rando.Float64(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -114,7 +114,7 @@ func TestFuzz6(t *testing.T) {
 
 	actual = Fuzz6{
 		One: rando.Bool(),
-		Two: rando.Float64s(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -130,7 +130,7 @@ func TestFuzz7(t *testing.T) {
 
 	actual = Fuzz7{
 		One: rando.Bool(),
-		Two: rando.Int(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -146,7 +146,7 @@ func TestFuzz8(t *testing.T) {
 
 	actual = Fuzz8{
 		One: rando.Bool(),
-		Two: rando.Int8(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -162,7 +162,7 @@ func TestFuzz9(t *testing.T) {
 
 	actual = Fuzz9{
 		One: rando.Bool(),
-		Two: rando.Int16(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -178,7 +178,7 @@ func TestFuzz10(t *testing.T) {
 
 	actual = Fuzz10{
 		One: rando.Bool(),
-		Two: rando.Int32(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -194,7 +194,7 @@ func TestFuzz11(t *testing.T) {
 
 	actual = Fuzz11{
 		One: rando.Bool(),
-		Two: rando.Rune(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -210,7 +210,7 @@ func TestFuzz12(t *testing.T) {
 
 	actual = Fuzz12{
 		One: rando.Bool(),
-		Two: rando.Int64(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -226,7 +226,7 @@ func TestFuzz13(t *testing.T) {
 
 	actual = Fuzz13{
 		One: rando.Bool(),
-		Two: rando.Ints(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -242,7 +242,7 @@ func TestFuzz14(t *testing.T) {
 
 	actual = Fuzz14{
 		One: rando.Bool(),
-		Two: rando.Int8s(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -258,7 +258,7 @@ func TestFuzz15(t *testing.T) {
 
 	actual = Fuzz15{
 		One: rando.Bool(),
-		Two: rando.Int16s(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -274,7 +274,7 @@ func TestFuzz16(t *testing.T) {
 
 	actual = Fuzz16{
 		One: rando.Bool(),
-		Two: rando.Int32s(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -290,7 +290,7 @@ func TestFuzz17(t *testing.T) {
 
 	actual = Fuzz17{
 		One: rando.Bool(),
-		Two: rando.Int64s(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -306,7 +306,7 @@ func TestFuzz18(t *testing.T) {
 
 	actual = Fuzz18{
 		One: rando.Bool(),
-		Two: rando.Uint(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -322,7 +322,7 @@ func TestFuzz19(t *testing.T) {
 
 	actual = Fuzz19{
 		One: rando.Bool(),
-		Two: rando.Uint8(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -338,7 +338,7 @@ func TestFuzz20(t *testing.T) {
 
 	actual = Fuzz20{
 		One: rando.Bool(),
-		Two: rando.Uint16(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -354,7 +354,7 @@ func TestFuzz21(t *testing.T) {
 
 	actual = Fuzz21{
 		One: rando.Bool(),
-		Two: rando.Uint32(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -370,7 +370,7 @@ func TestFuzz22(t *testing.T) {
 
 	actual = Fuzz22{
 		One: rando.Bool(),
-		Two: rando.Uint64(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -386,7 +386,7 @@ func TestFuzz23(t *testing.T) {
 
 	actual = Fuzz23{
 		One: rando.Bool(),
-		Two: rando.Uints(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -402,7 +402,7 @@ func TestFuzz24(t *testing.T) {
 
 	actual = Fuzz24{
 		One: rando.Bool(),
-		Two: rando.Uint16s(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -418,7 +418,7 @@ func TestFuzz25(t *testing.T) {
 
 	actual = Fuzz25{
 		One: rando.Bool(),
-		Two: rando.Uint32s(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -434,7 +434,7 @@ func TestFuzz26(t *testing.T) {
 
 	actual = Fuzz26{
 		One: rando.Bool(),
-		Two: rando.Uint64s(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -450,7 +450,7 @@ func TestFuzz27(t *testing.T) {
 
 	actual = Fuzz27{
 		One: rando.Bool(),
-		Two: rando.String(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -466,7 +466,7 @@ func TestFuzz28(t *testing.T) {
 
 	actual = Fuzz28{
 		One: rando.Bool(),
-		Two: rando.Strings(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -482,7 +482,7 @@ func TestFuzz29(t *testing.T) {
 
 	actual = Fuzz29{
 		One: rando.Bool(),
-		Two: rando.Time(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -498,7 +498,7 @@ func TestFuzz30(t *testing.T) {
 
 	actual = Fuzz30{
 		One: rando.Bool(),
-		Two: rando.Duration(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -514,7 +514,7 @@ func TestFuzz31(t *testing.T) {
 
 	actual = Fuzz31{
 		One: rando.Bool(),
-		Two: rando.Durations(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -529,8 +529,8 @@ func TestFuzz32(t *testing.T) {
 	require.Equal(t, Fuzz32{}, actual)
 
 	actual = Fuzz32{
-		One: rando.Bools(),
-		Two: rando.Bool(),
+		One: rando.Bool(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -545,8 +545,8 @@ func TestFuzz33(t *testing.T) {
 	require.Equal(t, Fuzz33{}, actual)
 
 	actual = Fuzz33{
-		One: rando.Bools(),
-		Two: rando.Byte(),
+		One: rando.Bool(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -561,8 +561,8 @@ func TestFuzz34(t *testing.T) {
 	require.Equal(t, Fuzz34{}, actual)
 
 	actual = Fuzz34{
-		One: rando.Bools(),
-		Two: rando.Bytes(),
+		One: rando.Bool(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -577,8 +577,8 @@ func TestFuzz35(t *testing.T) {
 	require.Equal(t, Fuzz35{}, actual)
 
 	actual = Fuzz35{
-		One: rando.Bools(),
-		Two: rando.Float32(),
+		One: rando.Bool(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -593,8 +593,8 @@ func TestFuzz36(t *testing.T) {
 	require.Equal(t, Fuzz36{}, actual)
 
 	actual = Fuzz36{
-		One: rando.Bools(),
-		Two: rando.Float32s(),
+		One: rando.Bool(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -609,8 +609,8 @@ func TestFuzz37(t *testing.T) {
 	require.Equal(t, Fuzz37{}, actual)
 
 	actual = Fuzz37{
-		One: rando.Bools(),
-		Two: rando.Float64(),
+		One: rando.Bool(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -625,8 +625,8 @@ func TestFuzz38(t *testing.T) {
 	require.Equal(t, Fuzz38{}, actual)
 
 	actual = Fuzz38{
-		One: rando.Bools(),
-		Two: rando.Float64s(),
+		One: rando.Bool(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -641,8 +641,8 @@ func TestFuzz39(t *testing.T) {
 	require.Equal(t, Fuzz39{}, actual)
 
 	actual = Fuzz39{
-		One: rando.Bools(),
-		Two: rando.Int(),
+		One: rando.Byte(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -657,8 +657,8 @@ func TestFuzz40(t *testing.T) {
 	require.Equal(t, Fuzz40{}, actual)
 
 	actual = Fuzz40{
-		One: rando.Bools(),
-		Two: rando.Int8(),
+		One: rando.Byte(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -673,8 +673,8 @@ func TestFuzz41(t *testing.T) {
 	require.Equal(t, Fuzz41{}, actual)
 
 	actual = Fuzz41{
-		One: rando.Bools(),
-		Two: rando.Int16(),
+		One: rando.Byte(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -689,8 +689,8 @@ func TestFuzz42(t *testing.T) {
 	require.Equal(t, Fuzz42{}, actual)
 
 	actual = Fuzz42{
-		One: rando.Bools(),
-		Two: rando.Int32(),
+		One: rando.Byte(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -705,8 +705,8 @@ func TestFuzz43(t *testing.T) {
 	require.Equal(t, Fuzz43{}, actual)
 
 	actual = Fuzz43{
-		One: rando.Bools(),
-		Two: rando.Rune(),
+		One: rando.Byte(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -721,8 +721,8 @@ func TestFuzz44(t *testing.T) {
 	require.Equal(t, Fuzz44{}, actual)
 
 	actual = Fuzz44{
-		One: rando.Bools(),
-		Two: rando.Int64(),
+		One: rando.Byte(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -737,8 +737,8 @@ func TestFuzz45(t *testing.T) {
 	require.Equal(t, Fuzz45{}, actual)
 
 	actual = Fuzz45{
-		One: rando.Bools(),
-		Two: rando.Ints(),
+		One: rando.Byte(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -753,8 +753,8 @@ func TestFuzz46(t *testing.T) {
 	require.Equal(t, Fuzz46{}, actual)
 
 	actual = Fuzz46{
-		One: rando.Bools(),
-		Two: rando.Int8s(),
+		One: rando.Byte(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -769,8 +769,8 @@ func TestFuzz47(t *testing.T) {
 	require.Equal(t, Fuzz47{}, actual)
 
 	actual = Fuzz47{
-		One: rando.Bools(),
-		Two: rando.Int16s(),
+		One: rando.Byte(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -785,8 +785,8 @@ func TestFuzz48(t *testing.T) {
 	require.Equal(t, Fuzz48{}, actual)
 
 	actual = Fuzz48{
-		One: rando.Bools(),
-		Two: rando.Int32s(),
+		One: rando.Byte(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -801,8 +801,8 @@ func TestFuzz49(t *testing.T) {
 	require.Equal(t, Fuzz49{}, actual)
 
 	actual = Fuzz49{
-		One: rando.Bools(),
-		Two: rando.Int64s(),
+		One: rando.Byte(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -817,8 +817,8 @@ func TestFuzz50(t *testing.T) {
 	require.Equal(t, Fuzz50{}, actual)
 
 	actual = Fuzz50{
-		One: rando.Bools(),
-		Two: rando.Uint(),
+		One: rando.Byte(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -833,8 +833,8 @@ func TestFuzz51(t *testing.T) {
 	require.Equal(t, Fuzz51{}, actual)
 
 	actual = Fuzz51{
-		One: rando.Bools(),
-		Two: rando.Uint8(),
+		One: rando.Byte(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -849,8 +849,8 @@ func TestFuzz52(t *testing.T) {
 	require.Equal(t, Fuzz52{}, actual)
 
 	actual = Fuzz52{
-		One: rando.Bools(),
-		Two: rando.Uint16(),
+		One: rando.Byte(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -865,8 +865,8 @@ func TestFuzz53(t *testing.T) {
 	require.Equal(t, Fuzz53{}, actual)
 
 	actual = Fuzz53{
-		One: rando.Bools(),
-		Two: rando.Uint32(),
+		One: rando.Byte(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -881,8 +881,8 @@ func TestFuzz54(t *testing.T) {
 	require.Equal(t, Fuzz54{}, actual)
 
 	actual = Fuzz54{
-		One: rando.Bools(),
-		Two: rando.Uint64(),
+		One: rando.Byte(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -897,8 +897,8 @@ func TestFuzz55(t *testing.T) {
 	require.Equal(t, Fuzz55{}, actual)
 
 	actual = Fuzz55{
-		One: rando.Bools(),
-		Two: rando.Uints(),
+		One: rando.Byte(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -913,8 +913,8 @@ func TestFuzz56(t *testing.T) {
 	require.Equal(t, Fuzz56{}, actual)
 
 	actual = Fuzz56{
-		One: rando.Bools(),
-		Two: rando.Uint16s(),
+		One: rando.Byte(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -929,8 +929,8 @@ func TestFuzz57(t *testing.T) {
 	require.Equal(t, Fuzz57{}, actual)
 
 	actual = Fuzz57{
-		One: rando.Bools(),
-		Two: rando.Uint32s(),
+		One: rando.Byte(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -945,8 +945,8 @@ func TestFuzz58(t *testing.T) {
 	require.Equal(t, Fuzz58{}, actual)
 
 	actual = Fuzz58{
-		One: rando.Bools(),
-		Two: rando.Uint64s(),
+		One: rando.Byte(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -961,8 +961,8 @@ func TestFuzz59(t *testing.T) {
 	require.Equal(t, Fuzz59{}, actual)
 
 	actual = Fuzz59{
-		One: rando.Bools(),
-		Two: rando.String(),
+		One: rando.Byte(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -977,8 +977,8 @@ func TestFuzz60(t *testing.T) {
 	require.Equal(t, Fuzz60{}, actual)
 
 	actual = Fuzz60{
-		One: rando.Bools(),
-		Two: rando.Strings(),
+		One: rando.Byte(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -993,8 +993,8 @@ func TestFuzz61(t *testing.T) {
 	require.Equal(t, Fuzz61{}, actual)
 
 	actual = Fuzz61{
-		One: rando.Bools(),
-		Two: rando.Time(),
+		One: rando.Byte(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1009,8 +1009,8 @@ func TestFuzz62(t *testing.T) {
 	require.Equal(t, Fuzz62{}, actual)
 
 	actual = Fuzz62{
-		One: rando.Bools(),
-		Two: rando.Duration(),
+		One: rando.Byte(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1025,15 +1025,14 @@ func TestFuzz63(t *testing.T) {
 	require.Equal(t, Fuzz63{}, actual)
 
 	actual = Fuzz63{
-		One: rando.Bools(),
-		Two: rando.Durations(),
+		One: rando.Byte(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
 	require.Equal(t, expected, actual)
 }
 
-/*
 func TestFuzz64(t *testing.T) {
 	var expected, actual Fuzz64
 	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
@@ -1043,7 +1042,7 @@ func TestFuzz64(t *testing.T) {
 
 	actual = Fuzz64{
 		One: rando.Byte(),
-		Two: rando.Bool(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1059,7 +1058,7 @@ func TestFuzz65(t *testing.T) {
 
 	actual = Fuzz65{
 		One: rando.Byte(),
-		Two: rando.Bools(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1075,7 +1074,7 @@ func TestFuzz66(t *testing.T) {
 
 	actual = Fuzz66{
 		One: rando.Byte(),
-		Two: rando.Bytes(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1091,7 +1090,7 @@ func TestFuzz67(t *testing.T) {
 
 	actual = Fuzz67{
 		One: rando.Byte(),
-		Two: rando.Float32(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1107,7 +1106,7 @@ func TestFuzz68(t *testing.T) {
 
 	actual = Fuzz68{
 		One: rando.Byte(),
-		Two: rando.Float32s(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1123,7 +1122,7 @@ func TestFuzz69(t *testing.T) {
 
 	actual = Fuzz69{
 		One: rando.Byte(),
-		Two: rando.Float64(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1139,7 +1138,7 @@ func TestFuzz70(t *testing.T) {
 
 	actual = Fuzz70{
 		One: rando.Byte(),
-		Two: rando.Float64s(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1155,7 +1154,7 @@ func TestFuzz71(t *testing.T) {
 
 	actual = Fuzz71{
 		One: rando.Byte(),
-		Two: rando.Int(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1171,7 +1170,7 @@ func TestFuzz72(t *testing.T) {
 
 	actual = Fuzz72{
 		One: rando.Byte(),
-		Two: rando.Int8(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1187,7 +1186,7 @@ func TestFuzz73(t *testing.T) {
 
 	actual = Fuzz73{
 		One: rando.Byte(),
-		Two: rando.Int16(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1203,7 +1202,7 @@ func TestFuzz74(t *testing.T) {
 
 	actual = Fuzz74{
 		One: rando.Byte(),
-		Two: rando.Int32(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1219,7 +1218,7 @@ func TestFuzz75(t *testing.T) {
 
 	actual = Fuzz75{
 		One: rando.Byte(),
-		Two: rando.Rune(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1235,7 +1234,7 @@ func TestFuzz76(t *testing.T) {
 
 	actual = Fuzz76{
 		One: rando.Byte(),
-		Two: rando.Int64(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1251,7 +1250,7 @@ func TestFuzz77(t *testing.T) {
 
 	actual = Fuzz77{
 		One: rando.Byte(),
-		Two: rando.Ints(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1266,8 +1265,8 @@ func TestFuzz78(t *testing.T) {
 	require.Equal(t, Fuzz78{}, actual)
 
 	actual = Fuzz78{
-		One: rando.Byte(),
-		Two: rando.Int8s(),
+		One: rando.Complex64(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1282,8 +1281,8 @@ func TestFuzz79(t *testing.T) {
 	require.Equal(t, Fuzz79{}, actual)
 
 	actual = Fuzz79{
-		One: rando.Byte(),
-		Two: rando.Int16s(),
+		One: rando.Complex64(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1298,8 +1297,8 @@ func TestFuzz80(t *testing.T) {
 	require.Equal(t, Fuzz80{}, actual)
 
 	actual = Fuzz80{
-		One: rando.Byte(),
-		Two: rando.Int32s(),
+		One: rando.Complex64(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1314,8 +1313,8 @@ func TestFuzz81(t *testing.T) {
 	require.Equal(t, Fuzz81{}, actual)
 
 	actual = Fuzz81{
-		One: rando.Byte(),
-		Two: rando.Int64s(),
+		One: rando.Complex64(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1330,8 +1329,8 @@ func TestFuzz82(t *testing.T) {
 	require.Equal(t, Fuzz82{}, actual)
 
 	actual = Fuzz82{
-		One: rando.Byte(),
-		Two: rando.Uint(),
+		One: rando.Complex64(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1346,8 +1345,8 @@ func TestFuzz83(t *testing.T) {
 	require.Equal(t, Fuzz83{}, actual)
 
 	actual = Fuzz83{
-		One: rando.Byte(),
-		Two: rando.Uint8(),
+		One: rando.Complex64(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1362,8 +1361,8 @@ func TestFuzz84(t *testing.T) {
 	require.Equal(t, Fuzz84{}, actual)
 
 	actual = Fuzz84{
-		One: rando.Byte(),
-		Two: rando.Uint16(),
+		One: rando.Complex64(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1378,8 +1377,8 @@ func TestFuzz85(t *testing.T) {
 	require.Equal(t, Fuzz85{}, actual)
 
 	actual = Fuzz85{
-		One: rando.Byte(),
-		Two: rando.Uint32(),
+		One: rando.Complex64(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1394,8 +1393,8 @@ func TestFuzz86(t *testing.T) {
 	require.Equal(t, Fuzz86{}, actual)
 
 	actual = Fuzz86{
-		One: rando.Byte(),
-		Two: rando.Uint64(),
+		One: rando.Complex64(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1410,8 +1409,8 @@ func TestFuzz87(t *testing.T) {
 	require.Equal(t, Fuzz87{}, actual)
 
 	actual = Fuzz87{
-		One: rando.Byte(),
-		Two: rando.Uints(),
+		One: rando.Complex64(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1426,8 +1425,8 @@ func TestFuzz88(t *testing.T) {
 	require.Equal(t, Fuzz88{}, actual)
 
 	actual = Fuzz88{
-		One: rando.Byte(),
-		Two: rando.Uint16s(),
+		One: rando.Complex64(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1442,8 +1441,8 @@ func TestFuzz89(t *testing.T) {
 	require.Equal(t, Fuzz89{}, actual)
 
 	actual = Fuzz89{
-		One: rando.Byte(),
-		Two: rando.Uint32s(),
+		One: rando.Complex64(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1458,8 +1457,8 @@ func TestFuzz90(t *testing.T) {
 	require.Equal(t, Fuzz90{}, actual)
 
 	actual = Fuzz90{
-		One: rando.Byte(),
-		Two: rando.Uint64s(),
+		One: rando.Complex64(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1474,8 +1473,8 @@ func TestFuzz91(t *testing.T) {
 	require.Equal(t, Fuzz91{}, actual)
 
 	actual = Fuzz91{
-		One: rando.Byte(),
-		Two: rando.String(),
+		One: rando.Complex64(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1490,8 +1489,8 @@ func TestFuzz92(t *testing.T) {
 	require.Equal(t, Fuzz92{}, actual)
 
 	actual = Fuzz92{
-		One: rando.Byte(),
-		Two: rando.Strings(),
+		One: rando.Complex64(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1506,8 +1505,8 @@ func TestFuzz93(t *testing.T) {
 	require.Equal(t, Fuzz93{}, actual)
 
 	actual = Fuzz93{
-		One: rando.Byte(),
-		Two: rando.Time(),
+		One: rando.Complex64(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1522,8 +1521,8 @@ func TestFuzz94(t *testing.T) {
 	require.Equal(t, Fuzz94{}, actual)
 
 	actual = Fuzz94{
-		One: rando.Byte(),
-		Two: rando.Duration(),
+		One: rando.Complex64(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1538,8 +1537,8 @@ func TestFuzz95(t *testing.T) {
 	require.Equal(t, Fuzz95{}, actual)
 
 	actual = Fuzz95{
-		One: rando.Byte(),
-		Two: rando.Durations(),
+		One: rando.Complex64(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1554,8 +1553,8 @@ func TestFuzz96(t *testing.T) {
 	require.Equal(t, Fuzz96{}, actual)
 
 	actual = Fuzz96{
-		One: rando.Bytes(),
-		Two: rando.Bool(),
+		One: rando.Complex64(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1570,7 +1569,7 @@ func TestFuzz97(t *testing.T) {
 	require.Equal(t, Fuzz97{}, actual)
 
 	actual = Fuzz97{
-		One: rando.Bytes(),
+		One: rando.Complex64(),
 		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
@@ -1586,8 +1585,8 @@ func TestFuzz98(t *testing.T) {
 	require.Equal(t, Fuzz98{}, actual)
 
 	actual = Fuzz98{
-		One: rando.Bytes(),
-		Two: rando.Byte(),
+		One: rando.Complex64(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1602,8 +1601,8 @@ func TestFuzz99(t *testing.T) {
 	require.Equal(t, Fuzz99{}, actual)
 
 	actual = Fuzz99{
-		One: rando.Bytes(),
-		Two: rando.Float32(),
+		One: rando.Complex64(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1618,8 +1617,8 @@ func TestFuzz100(t *testing.T) {
 	require.Equal(t, Fuzz100{}, actual)
 
 	actual = Fuzz100{
-		One: rando.Bytes(),
-		Two: rando.Float32s(),
+		One: rando.Complex64(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1634,8 +1633,8 @@ func TestFuzz101(t *testing.T) {
 	require.Equal(t, Fuzz101{}, actual)
 
 	actual = Fuzz101{
-		One: rando.Bytes(),
-		Two: rando.Float64(),
+		One: rando.Complex64(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1650,7 +1649,7 @@ func TestFuzz102(t *testing.T) {
 	require.Equal(t, Fuzz102{}, actual)
 
 	actual = Fuzz102{
-		One: rando.Bytes(),
+		One: rando.Complex64(),
 		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
@@ -1666,8 +1665,8 @@ func TestFuzz103(t *testing.T) {
 	require.Equal(t, Fuzz103{}, actual)
 
 	actual = Fuzz103{
-		One: rando.Bytes(),
-		Two: rando.Int(),
+		One: rando.Complex64(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1682,8 +1681,8 @@ func TestFuzz104(t *testing.T) {
 	require.Equal(t, Fuzz104{}, actual)
 
 	actual = Fuzz104{
-		One: rando.Bytes(),
-		Two: rando.Int8(),
+		One: rando.Complex64(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1698,8 +1697,8 @@ func TestFuzz105(t *testing.T) {
 	require.Equal(t, Fuzz105{}, actual)
 
 	actual = Fuzz105{
-		One: rando.Bytes(),
-		Two: rando.Int16(),
+		One: rando.Complex64(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1714,8 +1713,8 @@ func TestFuzz106(t *testing.T) {
 	require.Equal(t, Fuzz106{}, actual)
 
 	actual = Fuzz106{
-		One: rando.Bytes(),
-		Two: rando.Int32(),
+		One: rando.Complex64(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1730,8 +1729,8 @@ func TestFuzz107(t *testing.T) {
 	require.Equal(t, Fuzz107{}, actual)
 
 	actual = Fuzz107{
-		One: rando.Bytes(),
-		Two: rando.Rune(),
+		One: rando.Complex64(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1746,8 +1745,8 @@ func TestFuzz108(t *testing.T) {
 	require.Equal(t, Fuzz108{}, actual)
 
 	actual = Fuzz108{
-		One: rando.Bytes(),
-		Two: rando.Int64(),
+		One: rando.Complex64(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1762,8 +1761,8 @@ func TestFuzz109(t *testing.T) {
 	require.Equal(t, Fuzz109{}, actual)
 
 	actual = Fuzz109{
-		One: rando.Bytes(),
-		Two: rando.Ints(),
+		One: rando.Complex64(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1778,8 +1777,8 @@ func TestFuzz110(t *testing.T) {
 	require.Equal(t, Fuzz110{}, actual)
 
 	actual = Fuzz110{
-		One: rando.Bytes(),
-		Two: rando.Int8s(),
+		One: rando.Complex64(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1794,8 +1793,8 @@ func TestFuzz111(t *testing.T) {
 	require.Equal(t, Fuzz111{}, actual)
 
 	actual = Fuzz111{
-		One: rando.Bytes(),
-		Two: rando.Int16s(),
+		One: rando.Complex64(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1810,8 +1809,8 @@ func TestFuzz112(t *testing.T) {
 	require.Equal(t, Fuzz112{}, actual)
 
 	actual = Fuzz112{
-		One: rando.Bytes(),
-		Two: rando.Int32s(),
+		One: rando.Complex64(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1826,8 +1825,8 @@ func TestFuzz113(t *testing.T) {
 	require.Equal(t, Fuzz113{}, actual)
 
 	actual = Fuzz113{
-		One: rando.Bytes(),
-		Two: rando.Int64s(),
+		One: rando.Complex64(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1842,8 +1841,8 @@ func TestFuzz114(t *testing.T) {
 	require.Equal(t, Fuzz114{}, actual)
 
 	actual = Fuzz114{
-		One: rando.Bytes(),
-		Two: rando.Uint(),
+		One: rando.Complex64(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1858,8 +1857,8 @@ func TestFuzz115(t *testing.T) {
 	require.Equal(t, Fuzz115{}, actual)
 
 	actual = Fuzz115{
-		One: rando.Bytes(),
-		Two: rando.Uint8(),
+		One: rando.Complex64(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1874,8 +1873,8 @@ func TestFuzz116(t *testing.T) {
 	require.Equal(t, Fuzz116{}, actual)
 
 	actual = Fuzz116{
-		One: rando.Bytes(),
-		Two: rando.Uint16(),
+		One: rando.Complex64(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1890,8 +1889,8 @@ func TestFuzz117(t *testing.T) {
 	require.Equal(t, Fuzz117{}, actual)
 
 	actual = Fuzz117{
-		One: rando.Bytes(),
-		Two: rando.Uint32(),
+		One: rando.Complex128(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1906,8 +1905,8 @@ func TestFuzz118(t *testing.T) {
 	require.Equal(t, Fuzz118{}, actual)
 
 	actual = Fuzz118{
-		One: rando.Bytes(),
-		Two: rando.Uint64(),
+		One: rando.Complex128(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1922,8 +1921,8 @@ func TestFuzz119(t *testing.T) {
 	require.Equal(t, Fuzz119{}, actual)
 
 	actual = Fuzz119{
-		One: rando.Bytes(),
-		Two: rando.Uints(),
+		One: rando.Complex128(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1938,8 +1937,8 @@ func TestFuzz120(t *testing.T) {
 	require.Equal(t, Fuzz120{}, actual)
 
 	actual = Fuzz120{
-		One: rando.Bytes(),
-		Two: rando.Uint16s(),
+		One: rando.Complex128(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1954,8 +1953,8 @@ func TestFuzz121(t *testing.T) {
 	require.Equal(t, Fuzz121{}, actual)
 
 	actual = Fuzz121{
-		One: rando.Bytes(),
-		Two: rando.Uint32s(),
+		One: rando.Complex128(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1970,8 +1969,8 @@ func TestFuzz122(t *testing.T) {
 	require.Equal(t, Fuzz122{}, actual)
 
 	actual = Fuzz122{
-		One: rando.Bytes(),
-		Two: rando.Uint64s(),
+		One: rando.Complex128(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -1986,8 +1985,8 @@ func TestFuzz123(t *testing.T) {
 	require.Equal(t, Fuzz123{}, actual)
 
 	actual = Fuzz123{
-		One: rando.Bytes(),
-		Two: rando.String(),
+		One: rando.Complex128(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2002,8 +2001,8 @@ func TestFuzz124(t *testing.T) {
 	require.Equal(t, Fuzz124{}, actual)
 
 	actual = Fuzz124{
-		One: rando.Bytes(),
-		Two: rando.Strings(),
+		One: rando.Complex128(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2018,8 +2017,8 @@ func TestFuzz125(t *testing.T) {
 	require.Equal(t, Fuzz125{}, actual)
 
 	actual = Fuzz125{
-		One: rando.Bytes(),
-		Two: rando.Time(),
+		One: rando.Complex128(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2034,8 +2033,8 @@ func TestFuzz126(t *testing.T) {
 	require.Equal(t, Fuzz126{}, actual)
 
 	actual = Fuzz126{
-		One: rando.Bytes(),
-		Two: rando.Duration(),
+		One: rando.Complex128(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2050,8 +2049,8 @@ func TestFuzz127(t *testing.T) {
 	require.Equal(t, Fuzz127{}, actual)
 
 	actual = Fuzz127{
-		One: rando.Bytes(),
-		Two: rando.Durations(),
+		One: rando.Complex128(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2066,8 +2065,8 @@ func TestFuzz128(t *testing.T) {
 	require.Equal(t, Fuzz128{}, actual)
 
 	actual = Fuzz128{
-		One: rando.Float32(),
-		Two: rando.Bool(),
+		One: rando.Complex128(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2082,8 +2081,8 @@ func TestFuzz129(t *testing.T) {
 	require.Equal(t, Fuzz129{}, actual)
 
 	actual = Fuzz129{
-		One: rando.Float32(),
-		Two: rando.Bools(),
+		One: rando.Complex128(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2098,8 +2097,8 @@ func TestFuzz130(t *testing.T) {
 	require.Equal(t, Fuzz130{}, actual)
 
 	actual = Fuzz130{
-		One: rando.Float32(),
-		Two: rando.Byte(),
+		One: rando.Complex128(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2114,8 +2113,8 @@ func TestFuzz131(t *testing.T) {
 	require.Equal(t, Fuzz131{}, actual)
 
 	actual = Fuzz131{
-		One: rando.Float32(),
-		Two: rando.Bytes(),
+		One: rando.Complex128(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2130,8 +2129,8 @@ func TestFuzz132(t *testing.T) {
 	require.Equal(t, Fuzz132{}, actual)
 
 	actual = Fuzz132{
-		One: rando.Float32(),
-		Two: rando.Float32s(),
+		One: rando.Complex128(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2146,8 +2145,8 @@ func TestFuzz133(t *testing.T) {
 	require.Equal(t, Fuzz133{}, actual)
 
 	actual = Fuzz133{
-		One: rando.Float32(),
-		Two: rando.Float64(),
+		One: rando.Complex128(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2162,8 +2161,8 @@ func TestFuzz134(t *testing.T) {
 	require.Equal(t, Fuzz134{}, actual)
 
 	actual = Fuzz134{
-		One: rando.Float32(),
-		Two: rando.Float64s(),
+		One: rando.Complex128(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2178,8 +2177,8 @@ func TestFuzz135(t *testing.T) {
 	require.Equal(t, Fuzz135{}, actual)
 
 	actual = Fuzz135{
-		One: rando.Float32(),
-		Two: rando.Int(),
+		One: rando.Complex128(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2194,8 +2193,8 @@ func TestFuzz136(t *testing.T) {
 	require.Equal(t, Fuzz136{}, actual)
 
 	actual = Fuzz136{
-		One: rando.Float32(),
-		Two: rando.Int8(),
+		One: rando.Complex128(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2210,8 +2209,8 @@ func TestFuzz137(t *testing.T) {
 	require.Equal(t, Fuzz137{}, actual)
 
 	actual = Fuzz137{
-		One: rando.Float32(),
-		Two: rando.Int16(),
+		One: rando.Complex128(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2226,8 +2225,8 @@ func TestFuzz138(t *testing.T) {
 	require.Equal(t, Fuzz138{}, actual)
 
 	actual = Fuzz138{
-		One: rando.Float32(),
-		Two: rando.Int32(),
+		One: rando.Complex128(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2242,8 +2241,8 @@ func TestFuzz139(t *testing.T) {
 	require.Equal(t, Fuzz139{}, actual)
 
 	actual = Fuzz139{
-		One: rando.Float32(),
-		Two: rando.Rune(),
+		One: rando.Complex128(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2258,8 +2257,8 @@ func TestFuzz140(t *testing.T) {
 	require.Equal(t, Fuzz140{}, actual)
 
 	actual = Fuzz140{
-		One: rando.Float32(),
-		Two: rando.Int64(),
+		One: rando.Complex128(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2274,8 +2273,8 @@ func TestFuzz141(t *testing.T) {
 	require.Equal(t, Fuzz141{}, actual)
 
 	actual = Fuzz141{
-		One: rando.Float32(),
-		Two: rando.Ints(),
+		One: rando.Complex128(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2290,8 +2289,8 @@ func TestFuzz142(t *testing.T) {
 	require.Equal(t, Fuzz142{}, actual)
 
 	actual = Fuzz142{
-		One: rando.Float32(),
-		Two: rando.Int8s(),
+		One: rando.Complex128(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2306,8 +2305,8 @@ func TestFuzz143(t *testing.T) {
 	require.Equal(t, Fuzz143{}, actual)
 
 	actual = Fuzz143{
-		One: rando.Float32(),
-		Two: rando.Int16s(),
+		One: rando.Complex128(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2322,8 +2321,8 @@ func TestFuzz144(t *testing.T) {
 	require.Equal(t, Fuzz144{}, actual)
 
 	actual = Fuzz144{
-		One: rando.Float32(),
-		Two: rando.Int32s(),
+		One: rando.Complex128(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2338,8 +2337,8 @@ func TestFuzz145(t *testing.T) {
 	require.Equal(t, Fuzz145{}, actual)
 
 	actual = Fuzz145{
-		One: rando.Float32(),
-		Two: rando.Int64s(),
+		One: rando.Complex128(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2354,8 +2353,8 @@ func TestFuzz146(t *testing.T) {
 	require.Equal(t, Fuzz146{}, actual)
 
 	actual = Fuzz146{
-		One: rando.Float32(),
-		Two: rando.Uint(),
+		One: rando.Complex128(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2370,8 +2369,8 @@ func TestFuzz147(t *testing.T) {
 	require.Equal(t, Fuzz147{}, actual)
 
 	actual = Fuzz147{
-		One: rando.Float32(),
-		Two: rando.Uint8(),
+		One: rando.Complex128(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2386,8 +2385,8 @@ func TestFuzz148(t *testing.T) {
 	require.Equal(t, Fuzz148{}, actual)
 
 	actual = Fuzz148{
-		One: rando.Float32(),
-		Two: rando.Uint16(),
+		One: rando.Complex128(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2402,8 +2401,8 @@ func TestFuzz149(t *testing.T) {
 	require.Equal(t, Fuzz149{}, actual)
 
 	actual = Fuzz149{
-		One: rando.Float32(),
-		Two: rando.Uint32(),
+		One: rando.Complex128(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2418,8 +2417,8 @@ func TestFuzz150(t *testing.T) {
 	require.Equal(t, Fuzz150{}, actual)
 
 	actual = Fuzz150{
-		One: rando.Float32(),
-		Two: rando.Uint64(),
+		One: rando.Complex128(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2434,7 +2433,7 @@ func TestFuzz151(t *testing.T) {
 	require.Equal(t, Fuzz151{}, actual)
 
 	actual = Fuzz151{
-		One: rando.Float32(),
+		One: rando.Complex128(),
 		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
@@ -2450,8 +2449,8 @@ func TestFuzz152(t *testing.T) {
 	require.Equal(t, Fuzz152{}, actual)
 
 	actual = Fuzz152{
-		One: rando.Float32(),
-		Two: rando.Uint16s(),
+		One: rando.Complex128(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2466,8 +2465,8 @@ func TestFuzz153(t *testing.T) {
 	require.Equal(t, Fuzz153{}, actual)
 
 	actual = Fuzz153{
-		One: rando.Float32(),
-		Two: rando.Uint32s(),
+		One: rando.Complex128(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2482,8 +2481,8 @@ func TestFuzz154(t *testing.T) {
 	require.Equal(t, Fuzz154{}, actual)
 
 	actual = Fuzz154{
-		One: rando.Float32(),
-		Two: rando.Uint64s(),
+		One: rando.Complex128(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2498,8 +2497,8 @@ func TestFuzz155(t *testing.T) {
 	require.Equal(t, Fuzz155{}, actual)
 
 	actual = Fuzz155{
-		One: rando.Float32(),
-		Two: rando.String(),
+		One: rando.Complex128(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2515,7 +2514,7 @@ func TestFuzz156(t *testing.T) {
 
 	actual = Fuzz156{
 		One: rando.Float32(),
-		Two: rando.Strings(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2531,7 +2530,7 @@ func TestFuzz157(t *testing.T) {
 
 	actual = Fuzz157{
 		One: rando.Float32(),
-		Two: rando.Time(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2547,7 +2546,7 @@ func TestFuzz158(t *testing.T) {
 
 	actual = Fuzz158{
 		One: rando.Float32(),
-		Two: rando.Duration(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2563,7 +2562,7 @@ func TestFuzz159(t *testing.T) {
 
 	actual = Fuzz159{
 		One: rando.Float32(),
-		Two: rando.Durations(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2578,8 +2577,8 @@ func TestFuzz160(t *testing.T) {
 	require.Equal(t, Fuzz160{}, actual)
 
 	actual = Fuzz160{
-		One: rando.Float32s(),
-		Two: rando.Bool(),
+		One: rando.Float32(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2594,8 +2593,8 @@ func TestFuzz161(t *testing.T) {
 	require.Equal(t, Fuzz161{}, actual)
 
 	actual = Fuzz161{
-		One: rando.Float32s(),
-		Two: rando.Bools(),
+		One: rando.Float32(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2610,8 +2609,8 @@ func TestFuzz162(t *testing.T) {
 	require.Equal(t, Fuzz162{}, actual)
 
 	actual = Fuzz162{
-		One: rando.Float32s(),
-		Two: rando.Byte(),
+		One: rando.Float32(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2626,8 +2625,8 @@ func TestFuzz163(t *testing.T) {
 	require.Equal(t, Fuzz163{}, actual)
 
 	actual = Fuzz163{
-		One: rando.Float32s(),
-		Two: rando.Bytes(),
+		One: rando.Float32(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2642,8 +2641,8 @@ func TestFuzz164(t *testing.T) {
 	require.Equal(t, Fuzz164{}, actual)
 
 	actual = Fuzz164{
-		One: rando.Float32s(),
-		Two: rando.Float32(),
+		One: rando.Float32(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2658,8 +2657,8 @@ func TestFuzz165(t *testing.T) {
 	require.Equal(t, Fuzz165{}, actual)
 
 	actual = Fuzz165{
-		One: rando.Float32s(),
-		Two: rando.Float64(),
+		One: rando.Float32(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2674,8 +2673,8 @@ func TestFuzz166(t *testing.T) {
 	require.Equal(t, Fuzz166{}, actual)
 
 	actual = Fuzz166{
-		One: rando.Float32s(),
-		Two: rando.Float64s(),
+		One: rando.Float32(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2690,8 +2689,8 @@ func TestFuzz167(t *testing.T) {
 	require.Equal(t, Fuzz167{}, actual)
 
 	actual = Fuzz167{
-		One: rando.Float32s(),
-		Two: rando.Int(),
+		One: rando.Float32(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2706,8 +2705,8 @@ func TestFuzz168(t *testing.T) {
 	require.Equal(t, Fuzz168{}, actual)
 
 	actual = Fuzz168{
-		One: rando.Float32s(),
-		Two: rando.Int8(),
+		One: rando.Float32(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2722,8 +2721,8 @@ func TestFuzz169(t *testing.T) {
 	require.Equal(t, Fuzz169{}, actual)
 
 	actual = Fuzz169{
-		One: rando.Float32s(),
-		Two: rando.Int16(),
+		One: rando.Float32(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2738,8 +2737,8 @@ func TestFuzz170(t *testing.T) {
 	require.Equal(t, Fuzz170{}, actual)
 
 	actual = Fuzz170{
-		One: rando.Float32s(),
-		Two: rando.Int32(),
+		One: rando.Float32(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2754,8 +2753,8 @@ func TestFuzz171(t *testing.T) {
 	require.Equal(t, Fuzz171{}, actual)
 
 	actual = Fuzz171{
-		One: rando.Float32s(),
-		Two: rando.Rune(),
+		One: rando.Float32(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2770,8 +2769,8 @@ func TestFuzz172(t *testing.T) {
 	require.Equal(t, Fuzz172{}, actual)
 
 	actual = Fuzz172{
-		One: rando.Float32s(),
-		Two: rando.Int64(),
+		One: rando.Float32(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2786,8 +2785,8 @@ func TestFuzz173(t *testing.T) {
 	require.Equal(t, Fuzz173{}, actual)
 
 	actual = Fuzz173{
-		One: rando.Float32s(),
-		Two: rando.Ints(),
+		One: rando.Float32(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2802,8 +2801,8 @@ func TestFuzz174(t *testing.T) {
 	require.Equal(t, Fuzz174{}, actual)
 
 	actual = Fuzz174{
-		One: rando.Float32s(),
-		Two: rando.Int8s(),
+		One: rando.Float32(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2818,8 +2817,8 @@ func TestFuzz175(t *testing.T) {
 	require.Equal(t, Fuzz175{}, actual)
 
 	actual = Fuzz175{
-		One: rando.Float32s(),
-		Two: rando.Int16s(),
+		One: rando.Float32(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2834,8 +2833,8 @@ func TestFuzz176(t *testing.T) {
 	require.Equal(t, Fuzz176{}, actual)
 
 	actual = Fuzz176{
-		One: rando.Float32s(),
-		Two: rando.Int32s(),
+		One: rando.Float32(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2850,8 +2849,8 @@ func TestFuzz177(t *testing.T) {
 	require.Equal(t, Fuzz177{}, actual)
 
 	actual = Fuzz177{
-		One: rando.Float32s(),
-		Two: rando.Int64s(),
+		One: rando.Float32(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2866,8 +2865,8 @@ func TestFuzz178(t *testing.T) {
 	require.Equal(t, Fuzz178{}, actual)
 
 	actual = Fuzz178{
-		One: rando.Float32s(),
-		Two: rando.Uint(),
+		One: rando.Float32(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2882,8 +2881,8 @@ func TestFuzz179(t *testing.T) {
 	require.Equal(t, Fuzz179{}, actual)
 
 	actual = Fuzz179{
-		One: rando.Float32s(),
-		Two: rando.Uint8(),
+		One: rando.Float32(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2898,8 +2897,8 @@ func TestFuzz180(t *testing.T) {
 	require.Equal(t, Fuzz180{}, actual)
 
 	actual = Fuzz180{
-		One: rando.Float32s(),
-		Two: rando.Uint16(),
+		One: rando.Float32(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2914,8 +2913,8 @@ func TestFuzz181(t *testing.T) {
 	require.Equal(t, Fuzz181{}, actual)
 
 	actual = Fuzz181{
-		One: rando.Float32s(),
-		Two: rando.Uint32(),
+		One: rando.Float32(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2930,8 +2929,8 @@ func TestFuzz182(t *testing.T) {
 	require.Equal(t, Fuzz182{}, actual)
 
 	actual = Fuzz182{
-		One: rando.Float32s(),
-		Two: rando.Uint64(),
+		One: rando.Float32(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2946,8 +2945,8 @@ func TestFuzz183(t *testing.T) {
 	require.Equal(t, Fuzz183{}, actual)
 
 	actual = Fuzz183{
-		One: rando.Float32s(),
-		Two: rando.Uints(),
+		One: rando.Float32(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2962,8 +2961,8 @@ func TestFuzz184(t *testing.T) {
 	require.Equal(t, Fuzz184{}, actual)
 
 	actual = Fuzz184{
-		One: rando.Float32s(),
-		Two: rando.Uint16s(),
+		One: rando.Float32(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2978,8 +2977,8 @@ func TestFuzz185(t *testing.T) {
 	require.Equal(t, Fuzz185{}, actual)
 
 	actual = Fuzz185{
-		One: rando.Float32s(),
-		Two: rando.Uint32s(),
+		One: rando.Float32(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -2994,8 +2993,8 @@ func TestFuzz186(t *testing.T) {
 	require.Equal(t, Fuzz186{}, actual)
 
 	actual = Fuzz186{
-		One: rando.Float32s(),
-		Two: rando.Uint64s(),
+		One: rando.Float32(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3010,8 +3009,8 @@ func TestFuzz187(t *testing.T) {
 	require.Equal(t, Fuzz187{}, actual)
 
 	actual = Fuzz187{
-		One: rando.Float32s(),
-		Two: rando.String(),
+		One: rando.Float32(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3026,8 +3025,8 @@ func TestFuzz188(t *testing.T) {
 	require.Equal(t, Fuzz188{}, actual)
 
 	actual = Fuzz188{
-		One: rando.Float32s(),
-		Two: rando.Strings(),
+		One: rando.Float32(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3042,8 +3041,8 @@ func TestFuzz189(t *testing.T) {
 	require.Equal(t, Fuzz189{}, actual)
 
 	actual = Fuzz189{
-		One: rando.Float32s(),
-		Two: rando.Time(),
+		One: rando.Float32(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3058,8 +3057,8 @@ func TestFuzz190(t *testing.T) {
 	require.Equal(t, Fuzz190{}, actual)
 
 	actual = Fuzz190{
-		One: rando.Float32s(),
-		Two: rando.Duration(),
+		One: rando.Float32(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3074,8 +3073,8 @@ func TestFuzz191(t *testing.T) {
 	require.Equal(t, Fuzz191{}, actual)
 
 	actual = Fuzz191{
-		One: rando.Float32s(),
-		Two: rando.Durations(),
+		One: rando.Float32(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3090,8 +3089,8 @@ func TestFuzz192(t *testing.T) {
 	require.Equal(t, Fuzz192{}, actual)
 
 	actual = Fuzz192{
-		One: rando.Float64(),
-		Two: rando.Bool(),
+		One: rando.Float32(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3106,8 +3105,8 @@ func TestFuzz193(t *testing.T) {
 	require.Equal(t, Fuzz193{}, actual)
 
 	actual = Fuzz193{
-		One: rando.Float64(),
-		Two: rando.Bools(),
+		One: rando.Float32(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3122,8 +3121,8 @@ func TestFuzz194(t *testing.T) {
 	require.Equal(t, Fuzz194{}, actual)
 
 	actual = Fuzz194{
-		One: rando.Float64(),
-		Two: rando.Byte(),
+		One: rando.Float32(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3139,7 +3138,7 @@ func TestFuzz195(t *testing.T) {
 
 	actual = Fuzz195{
 		One: rando.Float64(),
-		Two: rando.Bytes(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3155,7 +3154,7 @@ func TestFuzz196(t *testing.T) {
 
 	actual = Fuzz196{
 		One: rando.Float64(),
-		Two: rando.Float32(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3171,7 +3170,7 @@ func TestFuzz197(t *testing.T) {
 
 	actual = Fuzz197{
 		One: rando.Float64(),
-		Two: rando.Float32s(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3187,7 +3186,7 @@ func TestFuzz198(t *testing.T) {
 
 	actual = Fuzz198{
 		One: rando.Float64(),
-		Two: rando.Float64s(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3203,7 +3202,7 @@ func TestFuzz199(t *testing.T) {
 
 	actual = Fuzz199{
 		One: rando.Float64(),
-		Two: rando.Int(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3219,7 +3218,7 @@ func TestFuzz200(t *testing.T) {
 
 	actual = Fuzz200{
 		One: rando.Float64(),
-		Two: rando.Int8(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3235,7 +3234,7 @@ func TestFuzz201(t *testing.T) {
 
 	actual = Fuzz201{
 		One: rando.Float64(),
-		Two: rando.Int16(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3251,7 +3250,7 @@ func TestFuzz202(t *testing.T) {
 
 	actual = Fuzz202{
 		One: rando.Float64(),
-		Two: rando.Int32(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3267,7 +3266,7 @@ func TestFuzz203(t *testing.T) {
 
 	actual = Fuzz203{
 		One: rando.Float64(),
-		Two: rando.Rune(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3299,7 +3298,7 @@ func TestFuzz205(t *testing.T) {
 
 	actual = Fuzz205{
 		One: rando.Float64(),
-		Two: rando.Ints(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3315,7 +3314,7 @@ func TestFuzz206(t *testing.T) {
 
 	actual = Fuzz206{
 		One: rando.Float64(),
-		Two: rando.Int8s(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3331,7 +3330,7 @@ func TestFuzz207(t *testing.T) {
 
 	actual = Fuzz207{
 		One: rando.Float64(),
-		Two: rando.Int16s(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3347,7 +3346,7 @@ func TestFuzz208(t *testing.T) {
 
 	actual = Fuzz208{
 		One: rando.Float64(),
-		Two: rando.Int32s(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3363,7 +3362,7 @@ func TestFuzz209(t *testing.T) {
 
 	actual = Fuzz209{
 		One: rando.Float64(),
-		Two: rando.Int64s(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3379,7 +3378,7 @@ func TestFuzz210(t *testing.T) {
 
 	actual = Fuzz210{
 		One: rando.Float64(),
-		Two: rando.Uint(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3395,7 +3394,7 @@ func TestFuzz211(t *testing.T) {
 
 	actual = Fuzz211{
 		One: rando.Float64(),
-		Two: rando.Uint8(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3411,7 +3410,7 @@ func TestFuzz212(t *testing.T) {
 
 	actual = Fuzz212{
 		One: rando.Float64(),
-		Two: rando.Uint16(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3427,7 +3426,7 @@ func TestFuzz213(t *testing.T) {
 
 	actual = Fuzz213{
 		One: rando.Float64(),
-		Two: rando.Uint32(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3443,7 +3442,7 @@ func TestFuzz214(t *testing.T) {
 
 	actual = Fuzz214{
 		One: rando.Float64(),
-		Two: rando.Uint64(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3459,7 +3458,7 @@ func TestFuzz215(t *testing.T) {
 
 	actual = Fuzz215{
 		One: rando.Float64(),
-		Two: rando.Uints(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3475,7 +3474,7 @@ func TestFuzz216(t *testing.T) {
 
 	actual = Fuzz216{
 		One: rando.Float64(),
-		Two: rando.Uint16s(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3491,7 +3490,7 @@ func TestFuzz217(t *testing.T) {
 
 	actual = Fuzz217{
 		One: rando.Float64(),
-		Two: rando.Uint32s(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3507,7 +3506,7 @@ func TestFuzz218(t *testing.T) {
 
 	actual = Fuzz218{
 		One: rando.Float64(),
-		Two: rando.Uint64s(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3523,7 +3522,7 @@ func TestFuzz219(t *testing.T) {
 
 	actual = Fuzz219{
 		One: rando.Float64(),
-		Two: rando.String(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3539,7 +3538,7 @@ func TestFuzz220(t *testing.T) {
 
 	actual = Fuzz220{
 		One: rando.Float64(),
-		Two: rando.Strings(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3555,7 +3554,7 @@ func TestFuzz221(t *testing.T) {
 
 	actual = Fuzz221{
 		One: rando.Float64(),
-		Two: rando.Time(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3571,7 +3570,7 @@ func TestFuzz222(t *testing.T) {
 
 	actual = Fuzz222{
 		One: rando.Float64(),
-		Two: rando.Duration(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3587,7 +3586,7 @@ func TestFuzz223(t *testing.T) {
 
 	actual = Fuzz223{
 		One: rando.Float64(),
-		Two: rando.Durations(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3602,8 +3601,8 @@ func TestFuzz224(t *testing.T) {
 	require.Equal(t, Fuzz224{}, actual)
 
 	actual = Fuzz224{
-		One: rando.Float64s(),
-		Two: rando.Bool(),
+		One: rando.Float64(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3618,8 +3617,8 @@ func TestFuzz225(t *testing.T) {
 	require.Equal(t, Fuzz225{}, actual)
 
 	actual = Fuzz225{
-		One: rando.Float64s(),
-		Two: rando.Bools(),
+		One: rando.Float64(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3634,8 +3633,8 @@ func TestFuzz226(t *testing.T) {
 	require.Equal(t, Fuzz226{}, actual)
 
 	actual = Fuzz226{
-		One: rando.Float64s(),
-		Two: rando.Byte(),
+		One: rando.Float64(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3650,8 +3649,8 @@ func TestFuzz227(t *testing.T) {
 	require.Equal(t, Fuzz227{}, actual)
 
 	actual = Fuzz227{
-		One: rando.Float64s(),
-		Two: rando.Bytes(),
+		One: rando.Float64(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3666,8 +3665,8 @@ func TestFuzz228(t *testing.T) {
 	require.Equal(t, Fuzz228{}, actual)
 
 	actual = Fuzz228{
-		One: rando.Float64s(),
-		Two: rando.Float32(),
+		One: rando.Float64(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3682,8 +3681,8 @@ func TestFuzz229(t *testing.T) {
 	require.Equal(t, Fuzz229{}, actual)
 
 	actual = Fuzz229{
-		One: rando.Float64s(),
-		Two: rando.Float32s(),
+		One: rando.Float64(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3698,8 +3697,8 @@ func TestFuzz230(t *testing.T) {
 	require.Equal(t, Fuzz230{}, actual)
 
 	actual = Fuzz230{
-		One: rando.Float64s(),
-		Two: rando.Float64(),
+		One: rando.Float64(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3714,8 +3713,8 @@ func TestFuzz231(t *testing.T) {
 	require.Equal(t, Fuzz231{}, actual)
 
 	actual = Fuzz231{
-		One: rando.Float64s(),
-		Two: rando.Int(),
+		One: rando.Float64(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3730,8 +3729,8 @@ func TestFuzz232(t *testing.T) {
 	require.Equal(t, Fuzz232{}, actual)
 
 	actual = Fuzz232{
-		One: rando.Float64s(),
-		Two: rando.Int8(),
+		One: rando.Float64(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3746,8 +3745,8 @@ func TestFuzz233(t *testing.T) {
 	require.Equal(t, Fuzz233{}, actual)
 
 	actual = Fuzz233{
-		One: rando.Float64s(),
-		Two: rando.Int16(),
+		One: rando.Float64(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3762,8 +3761,8 @@ func TestFuzz234(t *testing.T) {
 	require.Equal(t, Fuzz234{}, actual)
 
 	actual = Fuzz234{
-		One: rando.Float64s(),
-		Two: rando.Int32(),
+		One: rando.Int(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3778,8 +3777,8 @@ func TestFuzz235(t *testing.T) {
 	require.Equal(t, Fuzz235{}, actual)
 
 	actual = Fuzz235{
-		One: rando.Float64s(),
-		Two: rando.Rune(),
+		One: rando.Int(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3794,8 +3793,8 @@ func TestFuzz236(t *testing.T) {
 	require.Equal(t, Fuzz236{}, actual)
 
 	actual = Fuzz236{
-		One: rando.Float64s(),
-		Two: rando.Int64(),
+		One: rando.Int(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3810,8 +3809,8 @@ func TestFuzz237(t *testing.T) {
 	require.Equal(t, Fuzz237{}, actual)
 
 	actual = Fuzz237{
-		One: rando.Float64s(),
-		Two: rando.Ints(),
+		One: rando.Int(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3826,8 +3825,8 @@ func TestFuzz238(t *testing.T) {
 	require.Equal(t, Fuzz238{}, actual)
 
 	actual = Fuzz238{
-		One: rando.Float64s(),
-		Two: rando.Int8s(),
+		One: rando.Int(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3842,8 +3841,8 @@ func TestFuzz239(t *testing.T) {
 	require.Equal(t, Fuzz239{}, actual)
 
 	actual = Fuzz239{
-		One: rando.Float64s(),
-		Two: rando.Int16s(),
+		One: rando.Int(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3858,8 +3857,8 @@ func TestFuzz240(t *testing.T) {
 	require.Equal(t, Fuzz240{}, actual)
 
 	actual = Fuzz240{
-		One: rando.Float64s(),
-		Two: rando.Int32s(),
+		One: rando.Int(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3874,8 +3873,8 @@ func TestFuzz241(t *testing.T) {
 	require.Equal(t, Fuzz241{}, actual)
 
 	actual = Fuzz241{
-		One: rando.Float64s(),
-		Two: rando.Int64s(),
+		One: rando.Int(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3890,8 +3889,8 @@ func TestFuzz242(t *testing.T) {
 	require.Equal(t, Fuzz242{}, actual)
 
 	actual = Fuzz242{
-		One: rando.Float64s(),
-		Two: rando.Uint(),
+		One: rando.Int(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3906,8 +3905,8 @@ func TestFuzz243(t *testing.T) {
 	require.Equal(t, Fuzz243{}, actual)
 
 	actual = Fuzz243{
-		One: rando.Float64s(),
-		Two: rando.Uint8(),
+		One: rando.Int(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3922,8 +3921,8 @@ func TestFuzz244(t *testing.T) {
 	require.Equal(t, Fuzz244{}, actual)
 
 	actual = Fuzz244{
-		One: rando.Float64s(),
-		Two: rando.Uint16(),
+		One: rando.Int(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3938,8 +3937,8 @@ func TestFuzz245(t *testing.T) {
 	require.Equal(t, Fuzz245{}, actual)
 
 	actual = Fuzz245{
-		One: rando.Float64s(),
-		Two: rando.Uint32(),
+		One: rando.Int(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3954,8 +3953,8 @@ func TestFuzz246(t *testing.T) {
 	require.Equal(t, Fuzz246{}, actual)
 
 	actual = Fuzz246{
-		One: rando.Float64s(),
-		Two: rando.Uint64(),
+		One: rando.Int(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3970,8 +3969,8 @@ func TestFuzz247(t *testing.T) {
 	require.Equal(t, Fuzz247{}, actual)
 
 	actual = Fuzz247{
-		One: rando.Float64s(),
-		Two: rando.Uints(),
+		One: rando.Int(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -3986,8 +3985,8 @@ func TestFuzz248(t *testing.T) {
 	require.Equal(t, Fuzz248{}, actual)
 
 	actual = Fuzz248{
-		One: rando.Float64s(),
-		Two: rando.Uint16s(),
+		One: rando.Int(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4002,8 +4001,8 @@ func TestFuzz249(t *testing.T) {
 	require.Equal(t, Fuzz249{}, actual)
 
 	actual = Fuzz249{
-		One: rando.Float64s(),
-		Two: rando.Uint32s(),
+		One: rando.Int(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4018,8 +4017,8 @@ func TestFuzz250(t *testing.T) {
 	require.Equal(t, Fuzz250{}, actual)
 
 	actual = Fuzz250{
-		One: rando.Float64s(),
-		Two: rando.Uint64s(),
+		One: rando.Int(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4034,8 +4033,8 @@ func TestFuzz251(t *testing.T) {
 	require.Equal(t, Fuzz251{}, actual)
 
 	actual = Fuzz251{
-		One: rando.Float64s(),
-		Two: rando.String(),
+		One: rando.Int(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4050,8 +4049,8 @@ func TestFuzz252(t *testing.T) {
 	require.Equal(t, Fuzz252{}, actual)
 
 	actual = Fuzz252{
-		One: rando.Float64s(),
-		Two: rando.Strings(),
+		One: rando.Int(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4066,8 +4065,8 @@ func TestFuzz253(t *testing.T) {
 	require.Equal(t, Fuzz253{}, actual)
 
 	actual = Fuzz253{
-		One: rando.Float64s(),
-		Two: rando.Time(),
+		One: rando.Int(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4082,8 +4081,8 @@ func TestFuzz254(t *testing.T) {
 	require.Equal(t, Fuzz254{}, actual)
 
 	actual = Fuzz254{
-		One: rando.Float64s(),
-		Two: rando.Duration(),
+		One: rando.Int(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4098,8 +4097,8 @@ func TestFuzz255(t *testing.T) {
 	require.Equal(t, Fuzz255{}, actual)
 
 	actual = Fuzz255{
-		One: rando.Float64s(),
-		Two: rando.Durations(),
+		One: rando.Int(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4115,7 +4114,7 @@ func TestFuzz256(t *testing.T) {
 
 	actual = Fuzz256{
 		One: rando.Int(),
-		Two: rando.Bool(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4131,7 +4130,7 @@ func TestFuzz257(t *testing.T) {
 
 	actual = Fuzz257{
 		One: rando.Int(),
-		Two: rando.Bools(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4147,7 +4146,7 @@ func TestFuzz258(t *testing.T) {
 
 	actual = Fuzz258{
 		One: rando.Int(),
-		Two: rando.Byte(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4163,7 +4162,7 @@ func TestFuzz259(t *testing.T) {
 
 	actual = Fuzz259{
 		One: rando.Int(),
-		Two: rando.Bytes(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4179,7 +4178,7 @@ func TestFuzz260(t *testing.T) {
 
 	actual = Fuzz260{
 		One: rando.Int(),
-		Two: rando.Float32(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4195,7 +4194,7 @@ func TestFuzz261(t *testing.T) {
 
 	actual = Fuzz261{
 		One: rando.Int(),
-		Two: rando.Float32s(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4211,7 +4210,7 @@ func TestFuzz262(t *testing.T) {
 
 	actual = Fuzz262{
 		One: rando.Int(),
-		Two: rando.Float64(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4227,7 +4226,7 @@ func TestFuzz263(t *testing.T) {
 
 	actual = Fuzz263{
 		One: rando.Int(),
-		Two: rando.Float64s(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4243,7 +4242,7 @@ func TestFuzz264(t *testing.T) {
 
 	actual = Fuzz264{
 		One: rando.Int(),
-		Two: rando.Int8(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4259,7 +4258,7 @@ func TestFuzz265(t *testing.T) {
 
 	actual = Fuzz265{
 		One: rando.Int(),
-		Two: rando.Int16(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4275,7 +4274,7 @@ func TestFuzz266(t *testing.T) {
 
 	actual = Fuzz266{
 		One: rando.Int(),
-		Two: rando.Int32(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4291,7 +4290,7 @@ func TestFuzz267(t *testing.T) {
 
 	actual = Fuzz267{
 		One: rando.Int(),
-		Two: rando.Rune(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4307,7 +4306,7 @@ func TestFuzz268(t *testing.T) {
 
 	actual = Fuzz268{
 		One: rando.Int(),
-		Two: rando.Int64(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4323,7 +4322,7 @@ func TestFuzz269(t *testing.T) {
 
 	actual = Fuzz269{
 		One: rando.Int(),
-		Two: rando.Ints(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4339,7 +4338,7 @@ func TestFuzz270(t *testing.T) {
 
 	actual = Fuzz270{
 		One: rando.Int(),
-		Two: rando.Int8s(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4355,7 +4354,7 @@ func TestFuzz271(t *testing.T) {
 
 	actual = Fuzz271{
 		One: rando.Int(),
-		Two: rando.Int16s(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4371,7 +4370,7 @@ func TestFuzz272(t *testing.T) {
 
 	actual = Fuzz272{
 		One: rando.Int(),
-		Two: rando.Int32s(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4386,8 +4385,8 @@ func TestFuzz273(t *testing.T) {
 	require.Equal(t, Fuzz273{}, actual)
 
 	actual = Fuzz273{
-		One: rando.Int(),
-		Two: rando.Int64s(),
+		One: rando.Int8(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4402,8 +4401,8 @@ func TestFuzz274(t *testing.T) {
 	require.Equal(t, Fuzz274{}, actual)
 
 	actual = Fuzz274{
-		One: rando.Int(),
-		Two: rando.Uint(),
+		One: rando.Int8(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4418,8 +4417,8 @@ func TestFuzz275(t *testing.T) {
 	require.Equal(t, Fuzz275{}, actual)
 
 	actual = Fuzz275{
-		One: rando.Int(),
-		Two: rando.Uint8(),
+		One: rando.Int8(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4434,8 +4433,8 @@ func TestFuzz276(t *testing.T) {
 	require.Equal(t, Fuzz276{}, actual)
 
 	actual = Fuzz276{
-		One: rando.Int(),
-		Two: rando.Uint16(),
+		One: rando.Int8(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4450,8 +4449,8 @@ func TestFuzz277(t *testing.T) {
 	require.Equal(t, Fuzz277{}, actual)
 
 	actual = Fuzz277{
-		One: rando.Int(),
-		Two: rando.Uint32(),
+		One: rando.Int8(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4466,8 +4465,8 @@ func TestFuzz278(t *testing.T) {
 	require.Equal(t, Fuzz278{}, actual)
 
 	actual = Fuzz278{
-		One: rando.Int(),
-		Two: rando.Uint64(),
+		One: rando.Int8(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4482,8 +4481,8 @@ func TestFuzz279(t *testing.T) {
 	require.Equal(t, Fuzz279{}, actual)
 
 	actual = Fuzz279{
-		One: rando.Int(),
-		Two: rando.Uints(),
+		One: rando.Int8(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4498,8 +4497,8 @@ func TestFuzz280(t *testing.T) {
 	require.Equal(t, Fuzz280{}, actual)
 
 	actual = Fuzz280{
-		One: rando.Int(),
-		Two: rando.Uint16s(),
+		One: rando.Int8(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4514,8 +4513,8 @@ func TestFuzz281(t *testing.T) {
 	require.Equal(t, Fuzz281{}, actual)
 
 	actual = Fuzz281{
-		One: rando.Int(),
-		Two: rando.Uint32s(),
+		One: rando.Int8(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4530,8 +4529,8 @@ func TestFuzz282(t *testing.T) {
 	require.Equal(t, Fuzz282{}, actual)
 
 	actual = Fuzz282{
-		One: rando.Int(),
-		Two: rando.Uint64s(),
+		One: rando.Int8(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4546,8 +4545,8 @@ func TestFuzz283(t *testing.T) {
 	require.Equal(t, Fuzz283{}, actual)
 
 	actual = Fuzz283{
-		One: rando.Int(),
-		Two: rando.String(),
+		One: rando.Int8(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4562,8 +4561,8 @@ func TestFuzz284(t *testing.T) {
 	require.Equal(t, Fuzz284{}, actual)
 
 	actual = Fuzz284{
-		One: rando.Int(),
-		Two: rando.Strings(),
+		One: rando.Int8(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4578,8 +4577,8 @@ func TestFuzz285(t *testing.T) {
 	require.Equal(t, Fuzz285{}, actual)
 
 	actual = Fuzz285{
-		One: rando.Int(),
-		Two: rando.Time(),
+		One: rando.Int8(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4594,8 +4593,8 @@ func TestFuzz286(t *testing.T) {
 	require.Equal(t, Fuzz286{}, actual)
 
 	actual = Fuzz286{
-		One: rando.Int(),
-		Two: rando.Duration(),
+		One: rando.Int8(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4610,8 +4609,8 @@ func TestFuzz287(t *testing.T) {
 	require.Equal(t, Fuzz287{}, actual)
 
 	actual = Fuzz287{
-		One: rando.Int(),
-		Two: rando.Durations(),
+		One: rando.Int8(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4627,7 +4626,7 @@ func TestFuzz288(t *testing.T) {
 
 	actual = Fuzz288{
 		One: rando.Int8(),
-		Two: rando.Bool(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4643,7 +4642,7 @@ func TestFuzz289(t *testing.T) {
 
 	actual = Fuzz289{
 		One: rando.Int8(),
-		Two: rando.Bools(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4659,7 +4658,7 @@ func TestFuzz290(t *testing.T) {
 
 	actual = Fuzz290{
 		One: rando.Int8(),
-		Two: rando.Byte(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4675,7 +4674,7 @@ func TestFuzz291(t *testing.T) {
 
 	actual = Fuzz291{
 		One: rando.Int8(),
-		Two: rando.Bytes(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4691,7 +4690,7 @@ func TestFuzz292(t *testing.T) {
 
 	actual = Fuzz292{
 		One: rando.Int8(),
-		Two: rando.Float32(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4707,7 +4706,7 @@ func TestFuzz293(t *testing.T) {
 
 	actual = Fuzz293{
 		One: rando.Int8(),
-		Two: rando.Float32s(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4723,7 +4722,7 @@ func TestFuzz294(t *testing.T) {
 
 	actual = Fuzz294{
 		One: rando.Int8(),
-		Two: rando.Float64(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4739,7 +4738,7 @@ func TestFuzz295(t *testing.T) {
 
 	actual = Fuzz295{
 		One: rando.Int8(),
-		Two: rando.Float64s(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4755,7 +4754,7 @@ func TestFuzz296(t *testing.T) {
 
 	actual = Fuzz296{
 		One: rando.Int8(),
-		Two: rando.Int(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4771,7 +4770,7 @@ func TestFuzz297(t *testing.T) {
 
 	actual = Fuzz297{
 		One: rando.Int8(),
-		Two: rando.Int16(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4787,7 +4786,7 @@ func TestFuzz298(t *testing.T) {
 
 	actual = Fuzz298{
 		One: rando.Int8(),
-		Two: rando.Int32(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4803,7 +4802,7 @@ func TestFuzz299(t *testing.T) {
 
 	actual = Fuzz299{
 		One: rando.Int8(),
-		Two: rando.Rune(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4819,7 +4818,7 @@ func TestFuzz300(t *testing.T) {
 
 	actual = Fuzz300{
 		One: rando.Int8(),
-		Two: rando.Int64(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4835,7 +4834,7 @@ func TestFuzz301(t *testing.T) {
 
 	actual = Fuzz301{
 		One: rando.Int8(),
-		Two: rando.Ints(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4851,7 +4850,7 @@ func TestFuzz302(t *testing.T) {
 
 	actual = Fuzz302{
 		One: rando.Int8(),
-		Two: rando.Int8s(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4867,7 +4866,7 @@ func TestFuzz303(t *testing.T) {
 
 	actual = Fuzz303{
 		One: rando.Int8(),
-		Two: rando.Int16s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4883,7 +4882,7 @@ func TestFuzz304(t *testing.T) {
 
 	actual = Fuzz304{
 		One: rando.Int8(),
-		Two: rando.Int32s(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4899,7 +4898,7 @@ func TestFuzz305(t *testing.T) {
 
 	actual = Fuzz305{
 		One: rando.Int8(),
-		Two: rando.Int64s(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4915,7 +4914,7 @@ func TestFuzz306(t *testing.T) {
 
 	actual = Fuzz306{
 		One: rando.Int8(),
-		Two: rando.Uint(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4931,7 +4930,7 @@ func TestFuzz307(t *testing.T) {
 
 	actual = Fuzz307{
 		One: rando.Int8(),
-		Two: rando.Uint8(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4947,7 +4946,7 @@ func TestFuzz308(t *testing.T) {
 
 	actual = Fuzz308{
 		One: rando.Int8(),
-		Two: rando.Uint16(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4963,7 +4962,7 @@ func TestFuzz309(t *testing.T) {
 
 	actual = Fuzz309{
 		One: rando.Int8(),
-		Two: rando.Uint32(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4979,7 +4978,7 @@ func TestFuzz310(t *testing.T) {
 
 	actual = Fuzz310{
 		One: rando.Int8(),
-		Two: rando.Uint64(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -4995,7 +4994,7 @@ func TestFuzz311(t *testing.T) {
 
 	actual = Fuzz311{
 		One: rando.Int8(),
-		Two: rando.Uints(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5010,8 +5009,8 @@ func TestFuzz312(t *testing.T) {
 	require.Equal(t, Fuzz312{}, actual)
 
 	actual = Fuzz312{
-		One: rando.Int8(),
-		Two: rando.Uint16s(),
+		One: rando.Int16(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5026,8 +5025,8 @@ func TestFuzz313(t *testing.T) {
 	require.Equal(t, Fuzz313{}, actual)
 
 	actual = Fuzz313{
-		One: rando.Int8(),
-		Two: rando.Uint32s(),
+		One: rando.Int16(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5042,8 +5041,8 @@ func TestFuzz314(t *testing.T) {
 	require.Equal(t, Fuzz314{}, actual)
 
 	actual = Fuzz314{
-		One: rando.Int8(),
-		Two: rando.Uint64s(),
+		One: rando.Int16(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5058,8 +5057,8 @@ func TestFuzz315(t *testing.T) {
 	require.Equal(t, Fuzz315{}, actual)
 
 	actual = Fuzz315{
-		One: rando.Int8(),
-		Two: rando.String(),
+		One: rando.Int16(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5074,8 +5073,8 @@ func TestFuzz316(t *testing.T) {
 	require.Equal(t, Fuzz316{}, actual)
 
 	actual = Fuzz316{
-		One: rando.Int8(),
-		Two: rando.Strings(),
+		One: rando.Int16(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5090,8 +5089,8 @@ func TestFuzz317(t *testing.T) {
 	require.Equal(t, Fuzz317{}, actual)
 
 	actual = Fuzz317{
-		One: rando.Int8(),
-		Two: rando.Time(),
+		One: rando.Int16(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5106,8 +5105,8 @@ func TestFuzz318(t *testing.T) {
 	require.Equal(t, Fuzz318{}, actual)
 
 	actual = Fuzz318{
-		One: rando.Int8(),
-		Two: rando.Duration(),
+		One: rando.Int16(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5122,8 +5121,8 @@ func TestFuzz319(t *testing.T) {
 	require.Equal(t, Fuzz319{}, actual)
 
 	actual = Fuzz319{
-		One: rando.Int8(),
-		Two: rando.Durations(),
+		One: rando.Int16(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5139,7 +5138,7 @@ func TestFuzz320(t *testing.T) {
 
 	actual = Fuzz320{
 		One: rando.Int16(),
-		Two: rando.Bool(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5155,7 +5154,7 @@ func TestFuzz321(t *testing.T) {
 
 	actual = Fuzz321{
 		One: rando.Int16(),
-		Two: rando.Bools(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5171,7 +5170,7 @@ func TestFuzz322(t *testing.T) {
 
 	actual = Fuzz322{
 		One: rando.Int16(),
-		Two: rando.Byte(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5187,7 +5186,7 @@ func TestFuzz323(t *testing.T) {
 
 	actual = Fuzz323{
 		One: rando.Int16(),
-		Two: rando.Bytes(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5203,7 +5202,7 @@ func TestFuzz324(t *testing.T) {
 
 	actual = Fuzz324{
 		One: rando.Int16(),
-		Two: rando.Float32(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5219,7 +5218,7 @@ func TestFuzz325(t *testing.T) {
 
 	actual = Fuzz325{
 		One: rando.Int16(),
-		Two: rando.Float32s(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5235,7 +5234,7 @@ func TestFuzz326(t *testing.T) {
 
 	actual = Fuzz326{
 		One: rando.Int16(),
-		Two: rando.Float64(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5251,7 +5250,7 @@ func TestFuzz327(t *testing.T) {
 
 	actual = Fuzz327{
 		One: rando.Int16(),
-		Two: rando.Float64s(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5267,7 +5266,7 @@ func TestFuzz328(t *testing.T) {
 
 	actual = Fuzz328{
 		One: rando.Int16(),
-		Two: rando.Int(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5283,7 +5282,7 @@ func TestFuzz329(t *testing.T) {
 
 	actual = Fuzz329{
 		One: rando.Int16(),
-		Two: rando.Int8(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5299,7 +5298,7 @@ func TestFuzz330(t *testing.T) {
 
 	actual = Fuzz330{
 		One: rando.Int16(),
-		Two: rando.Int32(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5315,7 +5314,7 @@ func TestFuzz331(t *testing.T) {
 
 	actual = Fuzz331{
 		One: rando.Int16(),
-		Two: rando.Rune(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5331,7 +5330,7 @@ func TestFuzz332(t *testing.T) {
 
 	actual = Fuzz332{
 		One: rando.Int16(),
-		Two: rando.Int64(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5347,7 +5346,7 @@ func TestFuzz333(t *testing.T) {
 
 	actual = Fuzz333{
 		One: rando.Int16(),
-		Two: rando.Ints(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5363,7 +5362,7 @@ func TestFuzz334(t *testing.T) {
 
 	actual = Fuzz334{
 		One: rando.Int16(),
-		Two: rando.Int8s(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5379,7 +5378,7 @@ func TestFuzz335(t *testing.T) {
 
 	actual = Fuzz335{
 		One: rando.Int16(),
-		Two: rando.Int16s(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5395,7 +5394,7 @@ func TestFuzz336(t *testing.T) {
 
 	actual = Fuzz336{
 		One: rando.Int16(),
-		Two: rando.Int32s(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5411,7 +5410,7 @@ func TestFuzz337(t *testing.T) {
 
 	actual = Fuzz337{
 		One: rando.Int16(),
-		Two: rando.Int64s(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5427,7 +5426,7 @@ func TestFuzz338(t *testing.T) {
 
 	actual = Fuzz338{
 		One: rando.Int16(),
-		Two: rando.Uint(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5443,7 +5442,7 @@ func TestFuzz339(t *testing.T) {
 
 	actual = Fuzz339{
 		One: rando.Int16(),
-		Two: rando.Uint8(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5459,7 +5458,7 @@ func TestFuzz340(t *testing.T) {
 
 	actual = Fuzz340{
 		One: rando.Int16(),
-		Two: rando.Uint16(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5475,7 +5474,7 @@ func TestFuzz341(t *testing.T) {
 
 	actual = Fuzz341{
 		One: rando.Int16(),
-		Two: rando.Uint32(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5491,7 +5490,7 @@ func TestFuzz342(t *testing.T) {
 
 	actual = Fuzz342{
 		One: rando.Int16(),
-		Two: rando.Uint64(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5507,7 +5506,7 @@ func TestFuzz343(t *testing.T) {
 
 	actual = Fuzz343{
 		One: rando.Int16(),
-		Two: rando.Uints(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5523,7 +5522,7 @@ func TestFuzz344(t *testing.T) {
 
 	actual = Fuzz344{
 		One: rando.Int16(),
-		Two: rando.Uint16s(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5539,7 +5538,7 @@ func TestFuzz345(t *testing.T) {
 
 	actual = Fuzz345{
 		One: rando.Int16(),
-		Two: rando.Uint32s(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5555,7 +5554,7 @@ func TestFuzz346(t *testing.T) {
 
 	actual = Fuzz346{
 		One: rando.Int16(),
-		Two: rando.Uint64s(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5571,7 +5570,7 @@ func TestFuzz347(t *testing.T) {
 
 	actual = Fuzz347{
 		One: rando.Int16(),
-		Two: rando.String(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5587,7 +5586,7 @@ func TestFuzz348(t *testing.T) {
 
 	actual = Fuzz348{
 		One: rando.Int16(),
-		Two: rando.Strings(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5603,7 +5602,7 @@ func TestFuzz349(t *testing.T) {
 
 	actual = Fuzz349{
 		One: rando.Int16(),
-		Two: rando.Time(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5619,7 +5618,7 @@ func TestFuzz350(t *testing.T) {
 
 	actual = Fuzz350{
 		One: rando.Int16(),
-		Two: rando.Duration(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5634,8 +5633,8 @@ func TestFuzz351(t *testing.T) {
 	require.Equal(t, Fuzz351{}, actual)
 
 	actual = Fuzz351{
-		One: rando.Int16(),
-		Two: rando.Durations(),
+		One: rando.Int32(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5651,7 +5650,7 @@ func TestFuzz352(t *testing.T) {
 
 	actual = Fuzz352{
 		One: rando.Int32(),
-		Two: rando.Bool(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5667,7 +5666,7 @@ func TestFuzz353(t *testing.T) {
 
 	actual = Fuzz353{
 		One: rando.Int32(),
-		Two: rando.Bools(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5683,7 +5682,7 @@ func TestFuzz354(t *testing.T) {
 
 	actual = Fuzz354{
 		One: rando.Int32(),
-		Two: rando.Byte(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5699,7 +5698,7 @@ func TestFuzz355(t *testing.T) {
 
 	actual = Fuzz355{
 		One: rando.Int32(),
-		Two: rando.Bytes(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5715,7 +5714,7 @@ func TestFuzz356(t *testing.T) {
 
 	actual = Fuzz356{
 		One: rando.Int32(),
-		Two: rando.Float32(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5731,7 +5730,7 @@ func TestFuzz357(t *testing.T) {
 
 	actual = Fuzz357{
 		One: rando.Int32(),
-		Two: rando.Float32s(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5747,7 +5746,7 @@ func TestFuzz358(t *testing.T) {
 
 	actual = Fuzz358{
 		One: rando.Int32(),
-		Two: rando.Float64(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5763,7 +5762,7 @@ func TestFuzz359(t *testing.T) {
 
 	actual = Fuzz359{
 		One: rando.Int32(),
-		Two: rando.Float64s(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5779,7 +5778,7 @@ func TestFuzz360(t *testing.T) {
 
 	actual = Fuzz360{
 		One: rando.Int32(),
-		Two: rando.Int(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5795,7 +5794,7 @@ func TestFuzz361(t *testing.T) {
 
 	actual = Fuzz361{
 		One: rando.Int32(),
-		Two: rando.Int8(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5811,7 +5810,7 @@ func TestFuzz362(t *testing.T) {
 
 	actual = Fuzz362{
 		One: rando.Int32(),
-		Two: rando.Int16(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5827,7 +5826,7 @@ func TestFuzz363(t *testing.T) {
 
 	actual = Fuzz363{
 		One: rando.Int32(),
-		Two: rando.Rune(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5843,7 +5842,7 @@ func TestFuzz364(t *testing.T) {
 
 	actual = Fuzz364{
 		One: rando.Int32(),
-		Two: rando.Int64(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5859,7 +5858,7 @@ func TestFuzz365(t *testing.T) {
 
 	actual = Fuzz365{
 		One: rando.Int32(),
-		Two: rando.Ints(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5875,7 +5874,7 @@ func TestFuzz366(t *testing.T) {
 
 	actual = Fuzz366{
 		One: rando.Int32(),
-		Two: rando.Int8s(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5891,7 +5890,7 @@ func TestFuzz367(t *testing.T) {
 
 	actual = Fuzz367{
 		One: rando.Int32(),
-		Two: rando.Int16s(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5907,7 +5906,7 @@ func TestFuzz368(t *testing.T) {
 
 	actual = Fuzz368{
 		One: rando.Int32(),
-		Two: rando.Int32s(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5923,7 +5922,7 @@ func TestFuzz369(t *testing.T) {
 
 	actual = Fuzz369{
 		One: rando.Int32(),
-		Two: rando.Int64s(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5939,7 +5938,7 @@ func TestFuzz370(t *testing.T) {
 
 	actual = Fuzz370{
 		One: rando.Int32(),
-		Two: rando.Uint(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5955,7 +5954,7 @@ func TestFuzz371(t *testing.T) {
 
 	actual = Fuzz371{
 		One: rando.Int32(),
-		Two: rando.Uint8(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5971,7 +5970,7 @@ func TestFuzz372(t *testing.T) {
 
 	actual = Fuzz372{
 		One: rando.Int32(),
-		Two: rando.Uint16(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -5987,7 +5986,7 @@ func TestFuzz373(t *testing.T) {
 
 	actual = Fuzz373{
 		One: rando.Int32(),
-		Two: rando.Uint32(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6003,7 +6002,7 @@ func TestFuzz374(t *testing.T) {
 
 	actual = Fuzz374{
 		One: rando.Int32(),
-		Two: rando.Uint64(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6019,7 +6018,7 @@ func TestFuzz375(t *testing.T) {
 
 	actual = Fuzz375{
 		One: rando.Int32(),
-		Two: rando.Uints(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6035,7 +6034,7 @@ func TestFuzz376(t *testing.T) {
 
 	actual = Fuzz376{
 		One: rando.Int32(),
-		Two: rando.Uint16s(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6051,7 +6050,7 @@ func TestFuzz377(t *testing.T) {
 
 	actual = Fuzz377{
 		One: rando.Int32(),
-		Two: rando.Uint32s(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6067,7 +6066,7 @@ func TestFuzz378(t *testing.T) {
 
 	actual = Fuzz378{
 		One: rando.Int32(),
-		Two: rando.Uint64s(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6083,7 +6082,7 @@ func TestFuzz379(t *testing.T) {
 
 	actual = Fuzz379{
 		One: rando.Int32(),
-		Two: rando.String(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6099,7 +6098,7 @@ func TestFuzz380(t *testing.T) {
 
 	actual = Fuzz380{
 		One: rando.Int32(),
-		Two: rando.Strings(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6115,7 +6114,7 @@ func TestFuzz381(t *testing.T) {
 
 	actual = Fuzz381{
 		One: rando.Int32(),
-		Two: rando.Time(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6131,7 +6130,7 @@ func TestFuzz382(t *testing.T) {
 
 	actual = Fuzz382{
 		One: rando.Int32(),
-		Two: rando.Duration(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6162,8 +6161,8 @@ func TestFuzz384(t *testing.T) {
 	require.Equal(t, Fuzz384{}, actual)
 
 	actual = Fuzz384{
-		One: rando.Rune(),
-		Two: rando.Bool(),
+		One: rando.Int32(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6178,8 +6177,8 @@ func TestFuzz385(t *testing.T) {
 	require.Equal(t, Fuzz385{}, actual)
 
 	actual = Fuzz385{
-		One: rando.Rune(),
-		Two: rando.Bools(),
+		One: rando.Int32(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6194,8 +6193,8 @@ func TestFuzz386(t *testing.T) {
 	require.Equal(t, Fuzz386{}, actual)
 
 	actual = Fuzz386{
-		One: rando.Rune(),
-		Two: rando.Byte(),
+		One: rando.Int32(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6210,8 +6209,8 @@ func TestFuzz387(t *testing.T) {
 	require.Equal(t, Fuzz387{}, actual)
 
 	actual = Fuzz387{
-		One: rando.Rune(),
-		Two: rando.Bytes(),
+		One: rando.Int32(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6226,8 +6225,8 @@ func TestFuzz388(t *testing.T) {
 	require.Equal(t, Fuzz388{}, actual)
 
 	actual = Fuzz388{
-		One: rando.Rune(),
-		Two: rando.Float32(),
+		One: rando.Int32(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6242,8 +6241,8 @@ func TestFuzz389(t *testing.T) {
 	require.Equal(t, Fuzz389{}, actual)
 
 	actual = Fuzz389{
-		One: rando.Rune(),
-		Two: rando.Float32s(),
+		One: rando.Int32(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6258,8 +6257,8 @@ func TestFuzz390(t *testing.T) {
 	require.Equal(t, Fuzz390{}, actual)
 
 	actual = Fuzz390{
-		One: rando.Rune(),
-		Two: rando.Float64(),
+		One: rando.Int64(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6274,8 +6273,8 @@ func TestFuzz391(t *testing.T) {
 	require.Equal(t, Fuzz391{}, actual)
 
 	actual = Fuzz391{
-		One: rando.Rune(),
-		Two: rando.Float64s(),
+		One: rando.Int64(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6290,8 +6289,8 @@ func TestFuzz392(t *testing.T) {
 	require.Equal(t, Fuzz392{}, actual)
 
 	actual = Fuzz392{
-		One: rando.Rune(),
-		Two: rando.Int(),
+		One: rando.Int64(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6306,8 +6305,8 @@ func TestFuzz393(t *testing.T) {
 	require.Equal(t, Fuzz393{}, actual)
 
 	actual = Fuzz393{
-		One: rando.Rune(),
-		Two: rando.Int8(),
+		One: rando.Int64(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6322,8 +6321,8 @@ func TestFuzz394(t *testing.T) {
 	require.Equal(t, Fuzz394{}, actual)
 
 	actual = Fuzz394{
-		One: rando.Rune(),
-		Two: rando.Int16(),
+		One: rando.Int64(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6338,8 +6337,8 @@ func TestFuzz395(t *testing.T) {
 	require.Equal(t, Fuzz395{}, actual)
 
 	actual = Fuzz395{
-		One: rando.Rune(),
-		Two: rando.Int32(),
+		One: rando.Int64(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6354,8 +6353,8 @@ func TestFuzz396(t *testing.T) {
 	require.Equal(t, Fuzz396{}, actual)
 
 	actual = Fuzz396{
-		One: rando.Rune(),
-		Two: rando.Int64(),
+		One: rando.Int64(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6370,8 +6369,8 @@ func TestFuzz397(t *testing.T) {
 	require.Equal(t, Fuzz397{}, actual)
 
 	actual = Fuzz397{
-		One: rando.Rune(),
-		Two: rando.Ints(),
+		One: rando.Int64(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6386,8 +6385,8 @@ func TestFuzz398(t *testing.T) {
 	require.Equal(t, Fuzz398{}, actual)
 
 	actual = Fuzz398{
-		One: rando.Rune(),
-		Two: rando.Int8s(),
+		One: rando.Int64(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6402,8 +6401,8 @@ func TestFuzz399(t *testing.T) {
 	require.Equal(t, Fuzz399{}, actual)
 
 	actual = Fuzz399{
-		One: rando.Rune(),
-		Two: rando.Int16s(),
+		One: rando.Int64(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6418,8 +6417,8 @@ func TestFuzz400(t *testing.T) {
 	require.Equal(t, Fuzz400{}, actual)
 
 	actual = Fuzz400{
-		One: rando.Rune(),
-		Two: rando.Int32s(),
+		One: rando.Int64(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6434,8 +6433,8 @@ func TestFuzz401(t *testing.T) {
 	require.Equal(t, Fuzz401{}, actual)
 
 	actual = Fuzz401{
-		One: rando.Rune(),
-		Two: rando.Int64s(),
+		One: rando.Int64(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6450,8 +6449,8 @@ func TestFuzz402(t *testing.T) {
 	require.Equal(t, Fuzz402{}, actual)
 
 	actual = Fuzz402{
-		One: rando.Rune(),
-		Two: rando.Uint(),
+		One: rando.Int64(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6466,8 +6465,8 @@ func TestFuzz403(t *testing.T) {
 	require.Equal(t, Fuzz403{}, actual)
 
 	actual = Fuzz403{
-		One: rando.Rune(),
-		Two: rando.Uint8(),
+		One: rando.Int64(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6482,8 +6481,8 @@ func TestFuzz404(t *testing.T) {
 	require.Equal(t, Fuzz404{}, actual)
 
 	actual = Fuzz404{
-		One: rando.Rune(),
-		Two: rando.Uint16(),
+		One: rando.Int64(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6498,8 +6497,8 @@ func TestFuzz405(t *testing.T) {
 	require.Equal(t, Fuzz405{}, actual)
 
 	actual = Fuzz405{
-		One: rando.Rune(),
-		Two: rando.Uint32(),
+		One: rando.Int64(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6514,8 +6513,8 @@ func TestFuzz406(t *testing.T) {
 	require.Equal(t, Fuzz406{}, actual)
 
 	actual = Fuzz406{
-		One: rando.Rune(),
-		Two: rando.Uint64(),
+		One: rando.Int64(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6530,8 +6529,8 @@ func TestFuzz407(t *testing.T) {
 	require.Equal(t, Fuzz407{}, actual)
 
 	actual = Fuzz407{
-		One: rando.Rune(),
-		Two: rando.Uints(),
+		One: rando.Int64(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6546,8 +6545,8 @@ func TestFuzz408(t *testing.T) {
 	require.Equal(t, Fuzz408{}, actual)
 
 	actual = Fuzz408{
-		One: rando.Rune(),
-		Two: rando.Uint16s(),
+		One: rando.Int64(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6562,8 +6561,8 @@ func TestFuzz409(t *testing.T) {
 	require.Equal(t, Fuzz409{}, actual)
 
 	actual = Fuzz409{
-		One: rando.Rune(),
-		Two: rando.Uint32s(),
+		One: rando.Int64(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6578,8 +6577,8 @@ func TestFuzz410(t *testing.T) {
 	require.Equal(t, Fuzz410{}, actual)
 
 	actual = Fuzz410{
-		One: rando.Rune(),
-		Two: rando.Uint64s(),
+		One: rando.Int64(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6594,8 +6593,8 @@ func TestFuzz411(t *testing.T) {
 	require.Equal(t, Fuzz411{}, actual)
 
 	actual = Fuzz411{
-		One: rando.Rune(),
-		Two: rando.String(),
+		One: rando.Int64(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6610,8 +6609,8 @@ func TestFuzz412(t *testing.T) {
 	require.Equal(t, Fuzz412{}, actual)
 
 	actual = Fuzz412{
-		One: rando.Rune(),
-		Two: rando.Strings(),
+		One: rando.Int64(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6626,8 +6625,8 @@ func TestFuzz413(t *testing.T) {
 	require.Equal(t, Fuzz413{}, actual)
 
 	actual = Fuzz413{
-		One: rando.Rune(),
-		Two: rando.Time(),
+		One: rando.Int64(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6642,8 +6641,8 @@ func TestFuzz414(t *testing.T) {
 	require.Equal(t, Fuzz414{}, actual)
 
 	actual = Fuzz414{
-		One: rando.Rune(),
-		Two: rando.Duration(),
+		One: rando.Int64(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6658,8 +6657,8 @@ func TestFuzz415(t *testing.T) {
 	require.Equal(t, Fuzz415{}, actual)
 
 	actual = Fuzz415{
-		One: rando.Rune(),
-		Two: rando.Durations(),
+		One: rando.Int64(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6675,7 +6674,7 @@ func TestFuzz416(t *testing.T) {
 
 	actual = Fuzz416{
 		One: rando.Int64(),
-		Two: rando.Bool(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6691,7 +6690,7 @@ func TestFuzz417(t *testing.T) {
 
 	actual = Fuzz417{
 		One: rando.Int64(),
-		Two: rando.Bools(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6707,7 +6706,7 @@ func TestFuzz418(t *testing.T) {
 
 	actual = Fuzz418{
 		One: rando.Int64(),
-		Two: rando.Byte(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6723,7 +6722,7 @@ func TestFuzz419(t *testing.T) {
 
 	actual = Fuzz419{
 		One: rando.Int64(),
-		Two: rando.Bytes(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6739,7 +6738,7 @@ func TestFuzz420(t *testing.T) {
 
 	actual = Fuzz420{
 		One: rando.Int64(),
-		Two: rando.Float32(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6755,7 +6754,7 @@ func TestFuzz421(t *testing.T) {
 
 	actual = Fuzz421{
 		One: rando.Int64(),
-		Two: rando.Float32s(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6771,7 +6770,7 @@ func TestFuzz422(t *testing.T) {
 
 	actual = Fuzz422{
 		One: rando.Int64(),
-		Two: rando.Float64(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6787,7 +6786,7 @@ func TestFuzz423(t *testing.T) {
 
 	actual = Fuzz423{
 		One: rando.Int64(),
-		Two: rando.Float64s(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6803,7 +6802,7 @@ func TestFuzz424(t *testing.T) {
 
 	actual = Fuzz424{
 		One: rando.Int64(),
-		Two: rando.Int(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6819,7 +6818,7 @@ func TestFuzz425(t *testing.T) {
 
 	actual = Fuzz425{
 		One: rando.Int64(),
-		Two: rando.Int8(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6835,7 +6834,7 @@ func TestFuzz426(t *testing.T) {
 
 	actual = Fuzz426{
 		One: rando.Int64(),
-		Two: rando.Int16(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6851,7 +6850,7 @@ func TestFuzz427(t *testing.T) {
 
 	actual = Fuzz427{
 		One: rando.Int64(),
-		Two: rando.Int32(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6867,7 +6866,7 @@ func TestFuzz428(t *testing.T) {
 
 	actual = Fuzz428{
 		One: rando.Int64(),
-		Two: rando.Rune(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6882,8 +6881,8 @@ func TestFuzz429(t *testing.T) {
 	require.Equal(t, Fuzz429{}, actual)
 
 	actual = Fuzz429{
-		One: rando.Int64(),
-		Two: rando.Ints(),
+		One: rando.Rune(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6898,8 +6897,8 @@ func TestFuzz430(t *testing.T) {
 	require.Equal(t, Fuzz430{}, actual)
 
 	actual = Fuzz430{
-		One: rando.Int64(),
-		Two: rando.Int8s(),
+		One: rando.Rune(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6914,8 +6913,8 @@ func TestFuzz431(t *testing.T) {
 	require.Equal(t, Fuzz431{}, actual)
 
 	actual = Fuzz431{
-		One: rando.Int64(),
-		Two: rando.Int16s(),
+		One: rando.Rune(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6930,8 +6929,8 @@ func TestFuzz432(t *testing.T) {
 	require.Equal(t, Fuzz432{}, actual)
 
 	actual = Fuzz432{
-		One: rando.Int64(),
-		Two: rando.Int32s(),
+		One: rando.Rune(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6946,8 +6945,8 @@ func TestFuzz433(t *testing.T) {
 	require.Equal(t, Fuzz433{}, actual)
 
 	actual = Fuzz433{
-		One: rando.Int64(),
-		Two: rando.Int64s(),
+		One: rando.Rune(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6962,8 +6961,8 @@ func TestFuzz434(t *testing.T) {
 	require.Equal(t, Fuzz434{}, actual)
 
 	actual = Fuzz434{
-		One: rando.Int64(),
-		Two: rando.Uint(),
+		One: rando.Rune(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6978,8 +6977,8 @@ func TestFuzz435(t *testing.T) {
 	require.Equal(t, Fuzz435{}, actual)
 
 	actual = Fuzz435{
-		One: rando.Int64(),
-		Two: rando.Uint8(),
+		One: rando.Rune(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -6994,8 +6993,8 @@ func TestFuzz436(t *testing.T) {
 	require.Equal(t, Fuzz436{}, actual)
 
 	actual = Fuzz436{
-		One: rando.Int64(),
-		Two: rando.Uint16(),
+		One: rando.Rune(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7010,8 +7009,8 @@ func TestFuzz437(t *testing.T) {
 	require.Equal(t, Fuzz437{}, actual)
 
 	actual = Fuzz437{
-		One: rando.Int64(),
-		Two: rando.Uint32(),
+		One: rando.Rune(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7026,8 +7025,8 @@ func TestFuzz438(t *testing.T) {
 	require.Equal(t, Fuzz438{}, actual)
 
 	actual = Fuzz438{
-		One: rando.Int64(),
-		Two: rando.Uint64(),
+		One: rando.Rune(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7042,8 +7041,8 @@ func TestFuzz439(t *testing.T) {
 	require.Equal(t, Fuzz439{}, actual)
 
 	actual = Fuzz439{
-		One: rando.Int64(),
-		Two: rando.Uints(),
+		One: rando.Rune(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7058,8 +7057,8 @@ func TestFuzz440(t *testing.T) {
 	require.Equal(t, Fuzz440{}, actual)
 
 	actual = Fuzz440{
-		One: rando.Int64(),
-		Two: rando.Uint16s(),
+		One: rando.Rune(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7074,8 +7073,8 @@ func TestFuzz441(t *testing.T) {
 	require.Equal(t, Fuzz441{}, actual)
 
 	actual = Fuzz441{
-		One: rando.Int64(),
-		Two: rando.Uint32s(),
+		One: rando.Rune(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7090,8 +7089,8 @@ func TestFuzz442(t *testing.T) {
 	require.Equal(t, Fuzz442{}, actual)
 
 	actual = Fuzz442{
-		One: rando.Int64(),
-		Two: rando.Uint64s(),
+		One: rando.Rune(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7106,8 +7105,8 @@ func TestFuzz443(t *testing.T) {
 	require.Equal(t, Fuzz443{}, actual)
 
 	actual = Fuzz443{
-		One: rando.Int64(),
-		Two: rando.String(),
+		One: rando.Rune(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7122,8 +7121,8 @@ func TestFuzz444(t *testing.T) {
 	require.Equal(t, Fuzz444{}, actual)
 
 	actual = Fuzz444{
-		One: rando.Int64(),
-		Two: rando.Strings(),
+		One: rando.Rune(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7138,8 +7137,8 @@ func TestFuzz445(t *testing.T) {
 	require.Equal(t, Fuzz445{}, actual)
 
 	actual = Fuzz445{
-		One: rando.Int64(),
-		Two: rando.Time(),
+		One: rando.Rune(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7154,8 +7153,8 @@ func TestFuzz446(t *testing.T) {
 	require.Equal(t, Fuzz446{}, actual)
 
 	actual = Fuzz446{
-		One: rando.Int64(),
-		Two: rando.Duration(),
+		One: rando.Rune(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7170,8 +7169,8 @@ func TestFuzz447(t *testing.T) {
 	require.Equal(t, Fuzz447{}, actual)
 
 	actual = Fuzz447{
-		One: rando.Int64(),
-		Two: rando.Durations(),
+		One: rando.Rune(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7186,8 +7185,8 @@ func TestFuzz448(t *testing.T) {
 	require.Equal(t, Fuzz448{}, actual)
 
 	actual = Fuzz448{
-		One: rando.Ints(),
-		Two: rando.Bool(),
+		One: rando.Rune(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7202,8 +7201,8 @@ func TestFuzz449(t *testing.T) {
 	require.Equal(t, Fuzz449{}, actual)
 
 	actual = Fuzz449{
-		One: rando.Ints(),
-		Two: rando.Bools(),
+		One: rando.Rune(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7218,8 +7217,8 @@ func TestFuzz450(t *testing.T) {
 	require.Equal(t, Fuzz450{}, actual)
 
 	actual = Fuzz450{
-		One: rando.Ints(),
-		Two: rando.Byte(),
+		One: rando.Rune(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7234,8 +7233,8 @@ func TestFuzz451(t *testing.T) {
 	require.Equal(t, Fuzz451{}, actual)
 
 	actual = Fuzz451{
-		One: rando.Ints(),
-		Two: rando.Bytes(),
+		One: rando.Rune(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7250,8 +7249,8 @@ func TestFuzz452(t *testing.T) {
 	require.Equal(t, Fuzz452{}, actual)
 
 	actual = Fuzz452{
-		One: rando.Ints(),
-		Two: rando.Float32(),
+		One: rando.Rune(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7266,8 +7265,8 @@ func TestFuzz453(t *testing.T) {
 	require.Equal(t, Fuzz453{}, actual)
 
 	actual = Fuzz453{
-		One: rando.Ints(),
-		Two: rando.Float32s(),
+		One: rando.Rune(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7282,8 +7281,8 @@ func TestFuzz454(t *testing.T) {
 	require.Equal(t, Fuzz454{}, actual)
 
 	actual = Fuzz454{
-		One: rando.Ints(),
-		Two: rando.Float64(),
+		One: rando.Rune(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7298,8 +7297,8 @@ func TestFuzz455(t *testing.T) {
 	require.Equal(t, Fuzz455{}, actual)
 
 	actual = Fuzz455{
-		One: rando.Ints(),
-		Two: rando.Float64s(),
+		One: rando.Rune(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7314,8 +7313,8 @@ func TestFuzz456(t *testing.T) {
 	require.Equal(t, Fuzz456{}, actual)
 
 	actual = Fuzz456{
-		One: rando.Ints(),
-		Two: rando.Int(),
+		One: rando.Rune(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7330,8 +7329,8 @@ func TestFuzz457(t *testing.T) {
 	require.Equal(t, Fuzz457{}, actual)
 
 	actual = Fuzz457{
-		One: rando.Ints(),
-		Two: rando.Int8(),
+		One: rando.Rune(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7346,8 +7345,8 @@ func TestFuzz458(t *testing.T) {
 	require.Equal(t, Fuzz458{}, actual)
 
 	actual = Fuzz458{
-		One: rando.Ints(),
-		Two: rando.Int16(),
+		One: rando.Rune(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7362,8 +7361,8 @@ func TestFuzz459(t *testing.T) {
 	require.Equal(t, Fuzz459{}, actual)
 
 	actual = Fuzz459{
-		One: rando.Ints(),
-		Two: rando.Int32(),
+		One: rando.Rune(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7378,8 +7377,8 @@ func TestFuzz460(t *testing.T) {
 	require.Equal(t, Fuzz460{}, actual)
 
 	actual = Fuzz460{
-		One: rando.Ints(),
-		Two: rando.Rune(),
+		One: rando.Rune(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7394,8 +7393,8 @@ func TestFuzz461(t *testing.T) {
 	require.Equal(t, Fuzz461{}, actual)
 
 	actual = Fuzz461{
-		One: rando.Ints(),
-		Two: rando.Int64(),
+		One: rando.Rune(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7410,8 +7409,8 @@ func TestFuzz462(t *testing.T) {
 	require.Equal(t, Fuzz462{}, actual)
 
 	actual = Fuzz462{
-		One: rando.Ints(),
-		Two: rando.Int8s(),
+		One: rando.Rune(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7426,8 +7425,8 @@ func TestFuzz463(t *testing.T) {
 	require.Equal(t, Fuzz463{}, actual)
 
 	actual = Fuzz463{
-		One: rando.Ints(),
-		Two: rando.Int16s(),
+		One: rando.Rune(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7442,8 +7441,8 @@ func TestFuzz464(t *testing.T) {
 	require.Equal(t, Fuzz464{}, actual)
 
 	actual = Fuzz464{
-		One: rando.Ints(),
-		Two: rando.Int32s(),
+		One: rando.Rune(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7458,8 +7457,8 @@ func TestFuzz465(t *testing.T) {
 	require.Equal(t, Fuzz465{}, actual)
 
 	actual = Fuzz465{
-		One: rando.Ints(),
-		Two: rando.Int64s(),
+		One: rando.Rune(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7474,8 +7473,8 @@ func TestFuzz466(t *testing.T) {
 	require.Equal(t, Fuzz466{}, actual)
 
 	actual = Fuzz466{
-		One: rando.Ints(),
-		Two: rando.Uint(),
+		One: rando.Rune(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7490,8 +7489,8 @@ func TestFuzz467(t *testing.T) {
 	require.Equal(t, Fuzz467{}, actual)
 
 	actual = Fuzz467{
-		One: rando.Ints(),
-		Two: rando.Uint8(),
+		One: rando.Rune(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7506,8 +7505,8 @@ func TestFuzz468(t *testing.T) {
 	require.Equal(t, Fuzz468{}, actual)
 
 	actual = Fuzz468{
-		One: rando.Ints(),
-		Two: rando.Uint16(),
+		One: rando.String(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7522,8 +7521,8 @@ func TestFuzz469(t *testing.T) {
 	require.Equal(t, Fuzz469{}, actual)
 
 	actual = Fuzz469{
-		One: rando.Ints(),
-		Two: rando.Uint32(),
+		One: rando.String(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7538,8 +7537,8 @@ func TestFuzz470(t *testing.T) {
 	require.Equal(t, Fuzz470{}, actual)
 
 	actual = Fuzz470{
-		One: rando.Ints(),
-		Two: rando.Uint64(),
+		One: rando.String(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7554,8 +7553,8 @@ func TestFuzz471(t *testing.T) {
 	require.Equal(t, Fuzz471{}, actual)
 
 	actual = Fuzz471{
-		One: rando.Ints(),
-		Two: rando.Uints(),
+		One: rando.String(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7570,8 +7569,8 @@ func TestFuzz472(t *testing.T) {
 	require.Equal(t, Fuzz472{}, actual)
 
 	actual = Fuzz472{
-		One: rando.Ints(),
-		Two: rando.Uint16s(),
+		One: rando.String(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7586,8 +7585,8 @@ func TestFuzz473(t *testing.T) {
 	require.Equal(t, Fuzz473{}, actual)
 
 	actual = Fuzz473{
-		One: rando.Ints(),
-		Two: rando.Uint32s(),
+		One: rando.String(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7602,8 +7601,8 @@ func TestFuzz474(t *testing.T) {
 	require.Equal(t, Fuzz474{}, actual)
 
 	actual = Fuzz474{
-		One: rando.Ints(),
-		Two: rando.Uint64s(),
+		One: rando.String(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7618,8 +7617,8 @@ func TestFuzz475(t *testing.T) {
 	require.Equal(t, Fuzz475{}, actual)
 
 	actual = Fuzz475{
-		One: rando.Ints(),
-		Two: rando.String(),
+		One: rando.String(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7634,8 +7633,8 @@ func TestFuzz476(t *testing.T) {
 	require.Equal(t, Fuzz476{}, actual)
 
 	actual = Fuzz476{
-		One: rando.Ints(),
-		Two: rando.Strings(),
+		One: rando.String(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7650,8 +7649,8 @@ func TestFuzz477(t *testing.T) {
 	require.Equal(t, Fuzz477{}, actual)
 
 	actual = Fuzz477{
-		One: rando.Ints(),
-		Two: rando.Time(),
+		One: rando.String(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7666,8 +7665,8 @@ func TestFuzz478(t *testing.T) {
 	require.Equal(t, Fuzz478{}, actual)
 
 	actual = Fuzz478{
-		One: rando.Ints(),
-		Two: rando.Duration(),
+		One: rando.String(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7682,8 +7681,8 @@ func TestFuzz479(t *testing.T) {
 	require.Equal(t, Fuzz479{}, actual)
 
 	actual = Fuzz479{
-		One: rando.Ints(),
-		Two: rando.Durations(),
+		One: rando.String(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7698,8 +7697,8 @@ func TestFuzz480(t *testing.T) {
 	require.Equal(t, Fuzz480{}, actual)
 
 	actual = Fuzz480{
-		One: rando.Int8s(),
-		Two: rando.Bool(),
+		One: rando.String(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7714,8 +7713,8 @@ func TestFuzz481(t *testing.T) {
 	require.Equal(t, Fuzz481{}, actual)
 
 	actual = Fuzz481{
-		One: rando.Int8s(),
-		Two: rando.Bools(),
+		One: rando.String(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7730,8 +7729,8 @@ func TestFuzz482(t *testing.T) {
 	require.Equal(t, Fuzz482{}, actual)
 
 	actual = Fuzz482{
-		One: rando.Int8s(),
-		Two: rando.Byte(),
+		One: rando.String(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7746,8 +7745,8 @@ func TestFuzz483(t *testing.T) {
 	require.Equal(t, Fuzz483{}, actual)
 
 	actual = Fuzz483{
-		One: rando.Int8s(),
-		Two: rando.Bytes(),
+		One: rando.String(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7762,8 +7761,8 @@ func TestFuzz484(t *testing.T) {
 	require.Equal(t, Fuzz484{}, actual)
 
 	actual = Fuzz484{
-		One: rando.Int8s(),
-		Two: rando.Float32(),
+		One: rando.String(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7778,8 +7777,8 @@ func TestFuzz485(t *testing.T) {
 	require.Equal(t, Fuzz485{}, actual)
 
 	actual = Fuzz485{
-		One: rando.Int8s(),
-		Two: rando.Float32s(),
+		One: rando.String(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7794,8 +7793,8 @@ func TestFuzz486(t *testing.T) {
 	require.Equal(t, Fuzz486{}, actual)
 
 	actual = Fuzz486{
-		One: rando.Int8s(),
-		Two: rando.Float64(),
+		One: rando.String(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7810,8 +7809,8 @@ func TestFuzz487(t *testing.T) {
 	require.Equal(t, Fuzz487{}, actual)
 
 	actual = Fuzz487{
-		One: rando.Int8s(),
-		Two: rando.Float64s(),
+		One: rando.String(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7826,8 +7825,8 @@ func TestFuzz488(t *testing.T) {
 	require.Equal(t, Fuzz488{}, actual)
 
 	actual = Fuzz488{
-		One: rando.Int8s(),
-		Two: rando.Int(),
+		One: rando.String(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7842,8 +7841,8 @@ func TestFuzz489(t *testing.T) {
 	require.Equal(t, Fuzz489{}, actual)
 
 	actual = Fuzz489{
-		One: rando.Int8s(),
-		Two: rando.Int8(),
+		One: rando.String(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7858,8 +7857,8 @@ func TestFuzz490(t *testing.T) {
 	require.Equal(t, Fuzz490{}, actual)
 
 	actual = Fuzz490{
-		One: rando.Int8s(),
-		Two: rando.Int16(),
+		One: rando.String(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7874,8 +7873,8 @@ func TestFuzz491(t *testing.T) {
 	require.Equal(t, Fuzz491{}, actual)
 
 	actual = Fuzz491{
-		One: rando.Int8s(),
-		Two: rando.Int32(),
+		One: rando.String(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7890,8 +7889,8 @@ func TestFuzz492(t *testing.T) {
 	require.Equal(t, Fuzz492{}, actual)
 
 	actual = Fuzz492{
-		One: rando.Int8s(),
-		Two: rando.Rune(),
+		One: rando.String(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7906,8 +7905,8 @@ func TestFuzz493(t *testing.T) {
 	require.Equal(t, Fuzz493{}, actual)
 
 	actual = Fuzz493{
-		One: rando.Int8s(),
-		Two: rando.Int64(),
+		One: rando.String(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7922,8 +7921,8 @@ func TestFuzz494(t *testing.T) {
 	require.Equal(t, Fuzz494{}, actual)
 
 	actual = Fuzz494{
-		One: rando.Int8s(),
-		Two: rando.Ints(),
+		One: rando.String(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -7938,7 +7937,7 @@ func TestFuzz495(t *testing.T) {
 	require.Equal(t, Fuzz495{}, actual)
 
 	actual = Fuzz495{
-		One: rando.Int8s(),
+		One: rando.String(),
 		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
@@ -7954,7 +7953,7 @@ func TestFuzz496(t *testing.T) {
 	require.Equal(t, Fuzz496{}, actual)
 
 	actual = Fuzz496{
-		One: rando.Int8s(),
+		One: rando.String(),
 		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
@@ -7970,7 +7969,7 @@ func TestFuzz497(t *testing.T) {
 	require.Equal(t, Fuzz497{}, actual)
 
 	actual = Fuzz497{
-		One: rando.Int8s(),
+		One: rando.String(),
 		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
@@ -7986,8 +7985,8 @@ func TestFuzz498(t *testing.T) {
 	require.Equal(t, Fuzz498{}, actual)
 
 	actual = Fuzz498{
-		One: rando.Int8s(),
-		Two: rando.Uint(),
+		One: rando.String(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8002,8 +8001,8 @@ func TestFuzz499(t *testing.T) {
 	require.Equal(t, Fuzz499{}, actual)
 
 	actual = Fuzz499{
-		One: rando.Int8s(),
-		Two: rando.Uint8(),
+		One: rando.String(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8018,8 +8017,8 @@ func TestFuzz500(t *testing.T) {
 	require.Equal(t, Fuzz500{}, actual)
 
 	actual = Fuzz500{
-		One: rando.Int8s(),
-		Two: rando.Uint16(),
+		One: rando.String(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8034,8 +8033,8 @@ func TestFuzz501(t *testing.T) {
 	require.Equal(t, Fuzz501{}, actual)
 
 	actual = Fuzz501{
-		One: rando.Int8s(),
-		Two: rando.Uint32(),
+		One: rando.String(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8050,8 +8049,8 @@ func TestFuzz502(t *testing.T) {
 	require.Equal(t, Fuzz502{}, actual)
 
 	actual = Fuzz502{
-		One: rando.Int8s(),
-		Two: rando.Uint64(),
+		One: rando.String(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8066,8 +8065,8 @@ func TestFuzz503(t *testing.T) {
 	require.Equal(t, Fuzz503{}, actual)
 
 	actual = Fuzz503{
-		One: rando.Int8s(),
-		Two: rando.Uints(),
+		One: rando.String(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8082,7 +8081,7 @@ func TestFuzz504(t *testing.T) {
 	require.Equal(t, Fuzz504{}, actual)
 
 	actual = Fuzz504{
-		One: rando.Int8s(),
+		One: rando.String(),
 		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
@@ -8098,7 +8097,7 @@ func TestFuzz505(t *testing.T) {
 	require.Equal(t, Fuzz505{}, actual)
 
 	actual = Fuzz505{
-		One: rando.Int8s(),
+		One: rando.String(),
 		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
@@ -8114,7 +8113,7 @@ func TestFuzz506(t *testing.T) {
 	require.Equal(t, Fuzz506{}, actual)
 
 	actual = Fuzz506{
-		One: rando.Int8s(),
+		One: rando.String(),
 		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
@@ -8130,8 +8129,8 @@ func TestFuzz507(t *testing.T) {
 	require.Equal(t, Fuzz507{}, actual)
 
 	actual = Fuzz507{
-		One: rando.Int8s(),
-		Two: rando.String(),
+		One: rando.Duration(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8146,8 +8145,8 @@ func TestFuzz508(t *testing.T) {
 	require.Equal(t, Fuzz508{}, actual)
 
 	actual = Fuzz508{
-		One: rando.Int8s(),
-		Two: rando.Strings(),
+		One: rando.Duration(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8162,8 +8161,8 @@ func TestFuzz509(t *testing.T) {
 	require.Equal(t, Fuzz509{}, actual)
 
 	actual = Fuzz509{
-		One: rando.Int8s(),
-		Two: rando.Time(),
+		One: rando.Duration(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8178,8 +8177,8 @@ func TestFuzz510(t *testing.T) {
 	require.Equal(t, Fuzz510{}, actual)
 
 	actual = Fuzz510{
-		One: rando.Int8s(),
-		Two: rando.Duration(),
+		One: rando.Duration(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8194,8 +8193,8 @@ func TestFuzz511(t *testing.T) {
 	require.Equal(t, Fuzz511{}, actual)
 
 	actual = Fuzz511{
-		One: rando.Int8s(),
-		Two: rando.Durations(),
+		One: rando.Duration(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8210,8 +8209,8 @@ func TestFuzz512(t *testing.T) {
 	require.Equal(t, Fuzz512{}, actual)
 
 	actual = Fuzz512{
-		One: rando.Int16s(),
-		Two: rando.Bool(),
+		One: rando.Duration(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8226,8 +8225,8 @@ func TestFuzz513(t *testing.T) {
 	require.Equal(t, Fuzz513{}, actual)
 
 	actual = Fuzz513{
-		One: rando.Int16s(),
-		Two: rando.Bools(),
+		One: rando.Duration(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8242,8 +8241,8 @@ func TestFuzz514(t *testing.T) {
 	require.Equal(t, Fuzz514{}, actual)
 
 	actual = Fuzz514{
-		One: rando.Int16s(),
-		Two: rando.Byte(),
+		One: rando.Duration(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8258,8 +8257,8 @@ func TestFuzz515(t *testing.T) {
 	require.Equal(t, Fuzz515{}, actual)
 
 	actual = Fuzz515{
-		One: rando.Int16s(),
-		Two: rando.Bytes(),
+		One: rando.Duration(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8274,8 +8273,8 @@ func TestFuzz516(t *testing.T) {
 	require.Equal(t, Fuzz516{}, actual)
 
 	actual = Fuzz516{
-		One: rando.Int16s(),
-		Two: rando.Float32(),
+		One: rando.Duration(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8290,8 +8289,8 @@ func TestFuzz517(t *testing.T) {
 	require.Equal(t, Fuzz517{}, actual)
 
 	actual = Fuzz517{
-		One: rando.Int16s(),
-		Two: rando.Float32s(),
+		One: rando.Duration(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8306,8 +8305,8 @@ func TestFuzz518(t *testing.T) {
 	require.Equal(t, Fuzz518{}, actual)
 
 	actual = Fuzz518{
-		One: rando.Int16s(),
-		Two: rando.Float64(),
+		One: rando.Duration(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8322,8 +8321,8 @@ func TestFuzz519(t *testing.T) {
 	require.Equal(t, Fuzz519{}, actual)
 
 	actual = Fuzz519{
-		One: rando.Int16s(),
-		Two: rando.Float64s(),
+		One: rando.Duration(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8338,8 +8337,8 @@ func TestFuzz520(t *testing.T) {
 	require.Equal(t, Fuzz520{}, actual)
 
 	actual = Fuzz520{
-		One: rando.Int16s(),
-		Two: rando.Int(),
+		One: rando.Duration(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8354,8 +8353,8 @@ func TestFuzz521(t *testing.T) {
 	require.Equal(t, Fuzz521{}, actual)
 
 	actual = Fuzz521{
-		One: rando.Int16s(),
-		Two: rando.Int8(),
+		One: rando.Duration(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8370,8 +8369,8 @@ func TestFuzz522(t *testing.T) {
 	require.Equal(t, Fuzz522{}, actual)
 
 	actual = Fuzz522{
-		One: rando.Int16s(),
-		Two: rando.Int16(),
+		One: rando.Duration(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8386,8 +8385,8 @@ func TestFuzz523(t *testing.T) {
 	require.Equal(t, Fuzz523{}, actual)
 
 	actual = Fuzz523{
-		One: rando.Int16s(),
-		Two: rando.Int32(),
+		One: rando.Duration(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8402,8 +8401,8 @@ func TestFuzz524(t *testing.T) {
 	require.Equal(t, Fuzz524{}, actual)
 
 	actual = Fuzz524{
-		One: rando.Int16s(),
-		Two: rando.Rune(),
+		One: rando.Duration(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8418,8 +8417,8 @@ func TestFuzz525(t *testing.T) {
 	require.Equal(t, Fuzz525{}, actual)
 
 	actual = Fuzz525{
-		One: rando.Int16s(),
-		Two: rando.Int64(),
+		One: rando.Duration(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8434,8 +8433,8 @@ func TestFuzz526(t *testing.T) {
 	require.Equal(t, Fuzz526{}, actual)
 
 	actual = Fuzz526{
-		One: rando.Int16s(),
-		Two: rando.Ints(),
+		One: rando.Duration(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8450,8 +8449,8 @@ func TestFuzz527(t *testing.T) {
 	require.Equal(t, Fuzz527{}, actual)
 
 	actual = Fuzz527{
-		One: rando.Int16s(),
-		Two: rando.Int8s(),
+		One: rando.Duration(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8466,8 +8465,8 @@ func TestFuzz528(t *testing.T) {
 	require.Equal(t, Fuzz528{}, actual)
 
 	actual = Fuzz528{
-		One: rando.Int16s(),
-		Two: rando.Int32s(),
+		One: rando.Duration(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8482,8 +8481,8 @@ func TestFuzz529(t *testing.T) {
 	require.Equal(t, Fuzz529{}, actual)
 
 	actual = Fuzz529{
-		One: rando.Int16s(),
-		Two: rando.Int64s(),
+		One: rando.Duration(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8498,8 +8497,8 @@ func TestFuzz530(t *testing.T) {
 	require.Equal(t, Fuzz530{}, actual)
 
 	actual = Fuzz530{
-		One: rando.Int16s(),
-		Two: rando.Uint(),
+		One: rando.Duration(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8514,8 +8513,8 @@ func TestFuzz531(t *testing.T) {
 	require.Equal(t, Fuzz531{}, actual)
 
 	actual = Fuzz531{
-		One: rando.Int16s(),
-		Two: rando.Uint8(),
+		One: rando.Duration(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8530,8 +8529,8 @@ func TestFuzz532(t *testing.T) {
 	require.Equal(t, Fuzz532{}, actual)
 
 	actual = Fuzz532{
-		One: rando.Int16s(),
-		Two: rando.Uint16(),
+		One: rando.Duration(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8546,8 +8545,8 @@ func TestFuzz533(t *testing.T) {
 	require.Equal(t, Fuzz533{}, actual)
 
 	actual = Fuzz533{
-		One: rando.Int16s(),
-		Two: rando.Uint32(),
+		One: rando.Duration(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8562,8 +8561,8 @@ func TestFuzz534(t *testing.T) {
 	require.Equal(t, Fuzz534{}, actual)
 
 	actual = Fuzz534{
-		One: rando.Int16s(),
-		Two: rando.Uint64(),
+		One: rando.Duration(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8578,8 +8577,8 @@ func TestFuzz535(t *testing.T) {
 	require.Equal(t, Fuzz535{}, actual)
 
 	actual = Fuzz535{
-		One: rando.Int16s(),
-		Two: rando.Uints(),
+		One: rando.Duration(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8594,8 +8593,8 @@ func TestFuzz536(t *testing.T) {
 	require.Equal(t, Fuzz536{}, actual)
 
 	actual = Fuzz536{
-		One: rando.Int16s(),
-		Two: rando.Uint16s(),
+		One: rando.Duration(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8610,8 +8609,8 @@ func TestFuzz537(t *testing.T) {
 	require.Equal(t, Fuzz537{}, actual)
 
 	actual = Fuzz537{
-		One: rando.Int16s(),
-		Two: rando.Uint32s(),
+		One: rando.Duration(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8626,8 +8625,8 @@ func TestFuzz538(t *testing.T) {
 	require.Equal(t, Fuzz538{}, actual)
 
 	actual = Fuzz538{
-		One: rando.Int16s(),
-		Two: rando.Uint64s(),
+		One: rando.Duration(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8642,8 +8641,8 @@ func TestFuzz539(t *testing.T) {
 	require.Equal(t, Fuzz539{}, actual)
 
 	actual = Fuzz539{
-		One: rando.Int16s(),
-		Two: rando.String(),
+		One: rando.Duration(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8658,8 +8657,8 @@ func TestFuzz540(t *testing.T) {
 	require.Equal(t, Fuzz540{}, actual)
 
 	actual = Fuzz540{
-		One: rando.Int16s(),
-		Two: rando.Strings(),
+		One: rando.Duration(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8674,8 +8673,8 @@ func TestFuzz541(t *testing.T) {
 	require.Equal(t, Fuzz541{}, actual)
 
 	actual = Fuzz541{
-		One: rando.Int16s(),
-		Two: rando.Time(),
+		One: rando.Duration(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8690,8 +8689,8 @@ func TestFuzz542(t *testing.T) {
 	require.Equal(t, Fuzz542{}, actual)
 
 	actual = Fuzz542{
-		One: rando.Int16s(),
-		Two: rando.Duration(),
+		One: rando.Duration(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8706,8 +8705,8 @@ func TestFuzz543(t *testing.T) {
 	require.Equal(t, Fuzz543{}, actual)
 
 	actual = Fuzz543{
-		One: rando.Int16s(),
-		Two: rando.Durations(),
+		One: rando.Duration(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8722,8 +8721,8 @@ func TestFuzz544(t *testing.T) {
 	require.Equal(t, Fuzz544{}, actual)
 
 	actual = Fuzz544{
-		One: rando.Int32s(),
-		Two: rando.Bool(),
+		One: rando.Duration(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8738,8 +8737,8 @@ func TestFuzz545(t *testing.T) {
 	require.Equal(t, Fuzz545{}, actual)
 
 	actual = Fuzz545{
-		One: rando.Int32s(),
-		Two: rando.Bools(),
+		One: rando.Duration(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8754,8 +8753,8 @@ func TestFuzz546(t *testing.T) {
 	require.Equal(t, Fuzz546{}, actual)
 
 	actual = Fuzz546{
-		One: rando.Int32s(),
-		Two: rando.Byte(),
+		One: rando.Time(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8770,8 +8769,8 @@ func TestFuzz547(t *testing.T) {
 	require.Equal(t, Fuzz547{}, actual)
 
 	actual = Fuzz547{
-		One: rando.Int32s(),
-		Two: rando.Bytes(),
+		One: rando.Time(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8786,8 +8785,8 @@ func TestFuzz548(t *testing.T) {
 	require.Equal(t, Fuzz548{}, actual)
 
 	actual = Fuzz548{
-		One: rando.Int32s(),
-		Two: rando.Float32(),
+		One: rando.Time(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8802,8 +8801,8 @@ func TestFuzz549(t *testing.T) {
 	require.Equal(t, Fuzz549{}, actual)
 
 	actual = Fuzz549{
-		One: rando.Int32s(),
-		Two: rando.Float32s(),
+		One: rando.Time(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8818,8 +8817,8 @@ func TestFuzz550(t *testing.T) {
 	require.Equal(t, Fuzz550{}, actual)
 
 	actual = Fuzz550{
-		One: rando.Int32s(),
-		Two: rando.Float64(),
+		One: rando.Time(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8834,8 +8833,8 @@ func TestFuzz551(t *testing.T) {
 	require.Equal(t, Fuzz551{}, actual)
 
 	actual = Fuzz551{
-		One: rando.Int32s(),
-		Two: rando.Float64s(),
+		One: rando.Time(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8850,7 +8849,7 @@ func TestFuzz552(t *testing.T) {
 	require.Equal(t, Fuzz552{}, actual)
 
 	actual = Fuzz552{
-		One: rando.Int32s(),
+		One: rando.Time(),
 		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
@@ -8866,7 +8865,7 @@ func TestFuzz553(t *testing.T) {
 	require.Equal(t, Fuzz553{}, actual)
 
 	actual = Fuzz553{
-		One: rando.Int32s(),
+		One: rando.Time(),
 		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
@@ -8882,7 +8881,7 @@ func TestFuzz554(t *testing.T) {
 	require.Equal(t, Fuzz554{}, actual)
 
 	actual = Fuzz554{
-		One: rando.Int32s(),
+		One: rando.Time(),
 		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
@@ -8898,7 +8897,7 @@ func TestFuzz555(t *testing.T) {
 	require.Equal(t, Fuzz555{}, actual)
 
 	actual = Fuzz555{
-		One: rando.Int32s(),
+		One: rando.Time(),
 		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
@@ -8914,8 +8913,8 @@ func TestFuzz556(t *testing.T) {
 	require.Equal(t, Fuzz556{}, actual)
 
 	actual = Fuzz556{
-		One: rando.Int32s(),
-		Two: rando.Rune(),
+		One: rando.Time(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8930,8 +8929,8 @@ func TestFuzz557(t *testing.T) {
 	require.Equal(t, Fuzz557{}, actual)
 
 	actual = Fuzz557{
-		One: rando.Int32s(),
-		Two: rando.Int64(),
+		One: rando.Time(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8946,8 +8945,8 @@ func TestFuzz558(t *testing.T) {
 	require.Equal(t, Fuzz558{}, actual)
 
 	actual = Fuzz558{
-		One: rando.Int32s(),
-		Two: rando.Ints(),
+		One: rando.Time(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8962,8 +8961,8 @@ func TestFuzz559(t *testing.T) {
 	require.Equal(t, Fuzz559{}, actual)
 
 	actual = Fuzz559{
-		One: rando.Int32s(),
-		Two: rando.Int8s(),
+		One: rando.Time(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8978,8 +8977,8 @@ func TestFuzz560(t *testing.T) {
 	require.Equal(t, Fuzz560{}, actual)
 
 	actual = Fuzz560{
-		One: rando.Int32s(),
-		Two: rando.Int16s(),
+		One: rando.Time(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -8994,8 +8993,8 @@ func TestFuzz561(t *testing.T) {
 	require.Equal(t, Fuzz561{}, actual)
 
 	actual = Fuzz561{
-		One: rando.Int32s(),
-		Two: rando.Int64s(),
+		One: rando.Time(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9010,8 +9009,8 @@ func TestFuzz562(t *testing.T) {
 	require.Equal(t, Fuzz562{}, actual)
 
 	actual = Fuzz562{
-		One: rando.Int32s(),
-		Two: rando.Uint(),
+		One: rando.Time(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9026,8 +9025,8 @@ func TestFuzz563(t *testing.T) {
 	require.Equal(t, Fuzz563{}, actual)
 
 	actual = Fuzz563{
-		One: rando.Int32s(),
-		Two: rando.Uint8(),
+		One: rando.Time(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9042,8 +9041,8 @@ func TestFuzz564(t *testing.T) {
 	require.Equal(t, Fuzz564{}, actual)
 
 	actual = Fuzz564{
-		One: rando.Int32s(),
-		Two: rando.Uint16(),
+		One: rando.Time(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9058,8 +9057,8 @@ func TestFuzz565(t *testing.T) {
 	require.Equal(t, Fuzz565{}, actual)
 
 	actual = Fuzz565{
-		One: rando.Int32s(),
-		Two: rando.Uint32(),
+		One: rando.Time(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9074,8 +9073,8 @@ func TestFuzz566(t *testing.T) {
 	require.Equal(t, Fuzz566{}, actual)
 
 	actual = Fuzz566{
-		One: rando.Int32s(),
-		Two: rando.Uint64(),
+		One: rando.Time(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9090,8 +9089,8 @@ func TestFuzz567(t *testing.T) {
 	require.Equal(t, Fuzz567{}, actual)
 
 	actual = Fuzz567{
-		One: rando.Int32s(),
-		Two: rando.Uints(),
+		One: rando.Time(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9106,8 +9105,8 @@ func TestFuzz568(t *testing.T) {
 	require.Equal(t, Fuzz568{}, actual)
 
 	actual = Fuzz568{
-		One: rando.Int32s(),
-		Two: rando.Uint16s(),
+		One: rando.Time(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9122,8 +9121,8 @@ func TestFuzz569(t *testing.T) {
 	require.Equal(t, Fuzz569{}, actual)
 
 	actual = Fuzz569{
-		One: rando.Int32s(),
-		Two: rando.Uint32s(),
+		One: rando.Time(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9138,8 +9137,8 @@ func TestFuzz570(t *testing.T) {
 	require.Equal(t, Fuzz570{}, actual)
 
 	actual = Fuzz570{
-		One: rando.Int32s(),
-		Two: rando.Uint64s(),
+		One: rando.Time(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9154,8 +9153,8 @@ func TestFuzz571(t *testing.T) {
 	require.Equal(t, Fuzz571{}, actual)
 
 	actual = Fuzz571{
-		One: rando.Int32s(),
-		Two: rando.String(),
+		One: rando.Time(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9170,8 +9169,8 @@ func TestFuzz572(t *testing.T) {
 	require.Equal(t, Fuzz572{}, actual)
 
 	actual = Fuzz572{
-		One: rando.Int32s(),
-		Two: rando.Strings(),
+		One: rando.Time(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9186,8 +9185,8 @@ func TestFuzz573(t *testing.T) {
 	require.Equal(t, Fuzz573{}, actual)
 
 	actual = Fuzz573{
-		One: rando.Int32s(),
-		Two: rando.Time(),
+		One: rando.Time(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9202,8 +9201,8 @@ func TestFuzz574(t *testing.T) {
 	require.Equal(t, Fuzz574{}, actual)
 
 	actual = Fuzz574{
-		One: rando.Int32s(),
-		Two: rando.Duration(),
+		One: rando.Time(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9218,8 +9217,8 @@ func TestFuzz575(t *testing.T) {
 	require.Equal(t, Fuzz575{}, actual)
 
 	actual = Fuzz575{
-		One: rando.Int32s(),
-		Two: rando.Durations(),
+		One: rando.Time(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9234,8 +9233,8 @@ func TestFuzz576(t *testing.T) {
 	require.Equal(t, Fuzz576{}, actual)
 
 	actual = Fuzz576{
-		One: rando.Int64s(),
-		Two: rando.Bool(),
+		One: rando.Time(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9250,8 +9249,8 @@ func TestFuzz577(t *testing.T) {
 	require.Equal(t, Fuzz577{}, actual)
 
 	actual = Fuzz577{
-		One: rando.Int64s(),
-		Two: rando.Bools(),
+		One: rando.Time(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9266,8 +9265,8 @@ func TestFuzz578(t *testing.T) {
 	require.Equal(t, Fuzz578{}, actual)
 
 	actual = Fuzz578{
-		One: rando.Int64s(),
-		Two: rando.Byte(),
+		One: rando.Time(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9282,8 +9281,8 @@ func TestFuzz579(t *testing.T) {
 	require.Equal(t, Fuzz579{}, actual)
 
 	actual = Fuzz579{
-		One: rando.Int64s(),
-		Two: rando.Bytes(),
+		One: rando.Time(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9298,8 +9297,8 @@ func TestFuzz580(t *testing.T) {
 	require.Equal(t, Fuzz580{}, actual)
 
 	actual = Fuzz580{
-		One: rando.Int64s(),
-		Two: rando.Float32(),
+		One: rando.Time(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9314,8 +9313,8 @@ func TestFuzz581(t *testing.T) {
 	require.Equal(t, Fuzz581{}, actual)
 
 	actual = Fuzz581{
-		One: rando.Int64s(),
-		Two: rando.Float32s(),
+		One: rando.Time(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9330,8 +9329,8 @@ func TestFuzz582(t *testing.T) {
 	require.Equal(t, Fuzz582{}, actual)
 
 	actual = Fuzz582{
-		One: rando.Int64s(),
-		Two: rando.Float64(),
+		One: rando.Time(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9346,8 +9345,8 @@ func TestFuzz583(t *testing.T) {
 	require.Equal(t, Fuzz583{}, actual)
 
 	actual = Fuzz583{
-		One: rando.Int64s(),
-		Two: rando.Float64s(),
+		One: rando.Time(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9362,8 +9361,8 @@ func TestFuzz584(t *testing.T) {
 	require.Equal(t, Fuzz584{}, actual)
 
 	actual = Fuzz584{
-		One: rando.Int64s(),
-		Two: rando.Int(),
+		One: rando.Time(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9378,8 +9377,8 @@ func TestFuzz585(t *testing.T) {
 	require.Equal(t, Fuzz585{}, actual)
 
 	actual = Fuzz585{
-		One: rando.Int64s(),
-		Two: rando.Int8(),
+		One: rando.Uint(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9394,8 +9393,8 @@ func TestFuzz586(t *testing.T) {
 	require.Equal(t, Fuzz586{}, actual)
 
 	actual = Fuzz586{
-		One: rando.Int64s(),
-		Two: rando.Int16(),
+		One: rando.Uint(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9410,8 +9409,8 @@ func TestFuzz587(t *testing.T) {
 	require.Equal(t, Fuzz587{}, actual)
 
 	actual = Fuzz587{
-		One: rando.Int64s(),
-		Two: rando.Int32(),
+		One: rando.Uint(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9426,8 +9425,8 @@ func TestFuzz588(t *testing.T) {
 	require.Equal(t, Fuzz588{}, actual)
 
 	actual = Fuzz588{
-		One: rando.Int64s(),
-		Two: rando.Rune(),
+		One: rando.Uint(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9442,8 +9441,8 @@ func TestFuzz589(t *testing.T) {
 	require.Equal(t, Fuzz589{}, actual)
 
 	actual = Fuzz589{
-		One: rando.Int64s(),
-		Two: rando.Int64(),
+		One: rando.Uint(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9458,8 +9457,8 @@ func TestFuzz590(t *testing.T) {
 	require.Equal(t, Fuzz590{}, actual)
 
 	actual = Fuzz590{
-		One: rando.Int64s(),
-		Two: rando.Ints(),
+		One: rando.Uint(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9474,8 +9473,8 @@ func TestFuzz591(t *testing.T) {
 	require.Equal(t, Fuzz591{}, actual)
 
 	actual = Fuzz591{
-		One: rando.Int64s(),
-		Two: rando.Int8s(),
+		One: rando.Uint(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9490,8 +9489,8 @@ func TestFuzz592(t *testing.T) {
 	require.Equal(t, Fuzz592{}, actual)
 
 	actual = Fuzz592{
-		One: rando.Int64s(),
-		Two: rando.Int16s(),
+		One: rando.Uint(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9506,8 +9505,8 @@ func TestFuzz593(t *testing.T) {
 	require.Equal(t, Fuzz593{}, actual)
 
 	actual = Fuzz593{
-		One: rando.Int64s(),
-		Two: rando.Int32s(),
+		One: rando.Uint(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9522,8 +9521,8 @@ func TestFuzz594(t *testing.T) {
 	require.Equal(t, Fuzz594{}, actual)
 
 	actual = Fuzz594{
-		One: rando.Int64s(),
-		Two: rando.Uint(),
+		One: rando.Uint(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9538,8 +9537,8 @@ func TestFuzz595(t *testing.T) {
 	require.Equal(t, Fuzz595{}, actual)
 
 	actual = Fuzz595{
-		One: rando.Int64s(),
-		Two: rando.Uint8(),
+		One: rando.Uint(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9554,8 +9553,8 @@ func TestFuzz596(t *testing.T) {
 	require.Equal(t, Fuzz596{}, actual)
 
 	actual = Fuzz596{
-		One: rando.Int64s(),
-		Two: rando.Uint16(),
+		One: rando.Uint(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9570,8 +9569,8 @@ func TestFuzz597(t *testing.T) {
 	require.Equal(t, Fuzz597{}, actual)
 
 	actual = Fuzz597{
-		One: rando.Int64s(),
-		Two: rando.Uint32(),
+		One: rando.Uint(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9586,8 +9585,8 @@ func TestFuzz598(t *testing.T) {
 	require.Equal(t, Fuzz598{}, actual)
 
 	actual = Fuzz598{
-		One: rando.Int64s(),
-		Two: rando.Uint64(),
+		One: rando.Uint(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9602,8 +9601,8 @@ func TestFuzz599(t *testing.T) {
 	require.Equal(t, Fuzz599{}, actual)
 
 	actual = Fuzz599{
-		One: rando.Int64s(),
-		Two: rando.Uints(),
+		One: rando.Uint(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9618,8 +9617,8 @@ func TestFuzz600(t *testing.T) {
 	require.Equal(t, Fuzz600{}, actual)
 
 	actual = Fuzz600{
-		One: rando.Int64s(),
-		Two: rando.Uint16s(),
+		One: rando.Uint(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9634,8 +9633,8 @@ func TestFuzz601(t *testing.T) {
 	require.Equal(t, Fuzz601{}, actual)
 
 	actual = Fuzz601{
-		One: rando.Int64s(),
-		Two: rando.Uint32s(),
+		One: rando.Uint(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9650,8 +9649,8 @@ func TestFuzz602(t *testing.T) {
 	require.Equal(t, Fuzz602{}, actual)
 
 	actual = Fuzz602{
-		One: rando.Int64s(),
-		Two: rando.Uint64s(),
+		One: rando.Uint(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9666,8 +9665,8 @@ func TestFuzz603(t *testing.T) {
 	require.Equal(t, Fuzz603{}, actual)
 
 	actual = Fuzz603{
-		One: rando.Int64s(),
-		Two: rando.String(),
+		One: rando.Uint(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9682,8 +9681,8 @@ func TestFuzz604(t *testing.T) {
 	require.Equal(t, Fuzz604{}, actual)
 
 	actual = Fuzz604{
-		One: rando.Int64s(),
-		Two: rando.Strings(),
+		One: rando.Uint(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9698,8 +9697,8 @@ func TestFuzz605(t *testing.T) {
 	require.Equal(t, Fuzz605{}, actual)
 
 	actual = Fuzz605{
-		One: rando.Int64s(),
-		Two: rando.Time(),
+		One: rando.Uint(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9714,8 +9713,8 @@ func TestFuzz606(t *testing.T) {
 	require.Equal(t, Fuzz606{}, actual)
 
 	actual = Fuzz606{
-		One: rando.Int64s(),
-		Two: rando.Duration(),
+		One: rando.Uint(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9730,8 +9729,8 @@ func TestFuzz607(t *testing.T) {
 	require.Equal(t, Fuzz607{}, actual)
 
 	actual = Fuzz607{
-		One: rando.Int64s(),
-		Two: rando.Durations(),
+		One: rando.Uint(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9747,7 +9746,7 @@ func TestFuzz608(t *testing.T) {
 
 	actual = Fuzz608{
 		One: rando.Uint(),
-		Two: rando.Bool(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9763,7 +9762,7 @@ func TestFuzz609(t *testing.T) {
 
 	actual = Fuzz609{
 		One: rando.Uint(),
-		Two: rando.Bools(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9779,7 +9778,7 @@ func TestFuzz610(t *testing.T) {
 
 	actual = Fuzz610{
 		One: rando.Uint(),
-		Two: rando.Byte(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9795,7 +9794,7 @@ func TestFuzz611(t *testing.T) {
 
 	actual = Fuzz611{
 		One: rando.Uint(),
-		Two: rando.Bytes(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9811,7 +9810,7 @@ func TestFuzz612(t *testing.T) {
 
 	actual = Fuzz612{
 		One: rando.Uint(),
-		Two: rando.Float32(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9827,7 +9826,7 @@ func TestFuzz613(t *testing.T) {
 
 	actual = Fuzz613{
 		One: rando.Uint(),
-		Two: rando.Float32s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9843,7 +9842,7 @@ func TestFuzz614(t *testing.T) {
 
 	actual = Fuzz614{
 		One: rando.Uint(),
-		Two: rando.Float64(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9859,7 +9858,7 @@ func TestFuzz615(t *testing.T) {
 
 	actual = Fuzz615{
 		One: rando.Uint(),
-		Two: rando.Float64s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9875,7 +9874,7 @@ func TestFuzz616(t *testing.T) {
 
 	actual = Fuzz616{
 		One: rando.Uint(),
-		Two: rando.Int(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9891,7 +9890,7 @@ func TestFuzz617(t *testing.T) {
 
 	actual = Fuzz617{
 		One: rando.Uint(),
-		Two: rando.Int8(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9907,7 +9906,7 @@ func TestFuzz618(t *testing.T) {
 
 	actual = Fuzz618{
 		One: rando.Uint(),
-		Two: rando.Int16(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9923,7 +9922,7 @@ func TestFuzz619(t *testing.T) {
 
 	actual = Fuzz619{
 		One: rando.Uint(),
-		Two: rando.Int32(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9939,7 +9938,7 @@ func TestFuzz620(t *testing.T) {
 
 	actual = Fuzz620{
 		One: rando.Uint(),
-		Two: rando.Rune(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9955,7 +9954,7 @@ func TestFuzz621(t *testing.T) {
 
 	actual = Fuzz621{
 		One: rando.Uint(),
-		Two: rando.Int64(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9971,7 +9970,7 @@ func TestFuzz622(t *testing.T) {
 
 	actual = Fuzz622{
 		One: rando.Uint(),
-		Two: rando.Ints(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -9987,7 +9986,7 @@ func TestFuzz623(t *testing.T) {
 
 	actual = Fuzz623{
 		One: rando.Uint(),
-		Two: rando.Int8s(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10002,8 +10001,8 @@ func TestFuzz624(t *testing.T) {
 	require.Equal(t, Fuzz624{}, actual)
 
 	actual = Fuzz624{
-		One: rando.Uint(),
-		Two: rando.Int16s(),
+		One: rando.Uint8(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10018,8 +10017,8 @@ func TestFuzz625(t *testing.T) {
 	require.Equal(t, Fuzz625{}, actual)
 
 	actual = Fuzz625{
-		One: rando.Uint(),
-		Two: rando.Int32s(),
+		One: rando.Uint8(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10034,8 +10033,8 @@ func TestFuzz626(t *testing.T) {
 	require.Equal(t, Fuzz626{}, actual)
 
 	actual = Fuzz626{
-		One: rando.Uint(),
-		Two: rando.Int64s(),
+		One: rando.Uint8(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10050,8 +10049,8 @@ func TestFuzz627(t *testing.T) {
 	require.Equal(t, Fuzz627{}, actual)
 
 	actual = Fuzz627{
-		One: rando.Uint(),
-		Two: rando.Uint8(),
+		One: rando.Uint8(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10066,8 +10065,8 @@ func TestFuzz628(t *testing.T) {
 	require.Equal(t, Fuzz628{}, actual)
 
 	actual = Fuzz628{
-		One: rando.Uint(),
-		Two: rando.Uint16(),
+		One: rando.Uint8(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10082,8 +10081,8 @@ func TestFuzz629(t *testing.T) {
 	require.Equal(t, Fuzz629{}, actual)
 
 	actual = Fuzz629{
-		One: rando.Uint(),
-		Two: rando.Uint32(),
+		One: rando.Uint8(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10098,8 +10097,8 @@ func TestFuzz630(t *testing.T) {
 	require.Equal(t, Fuzz630{}, actual)
 
 	actual = Fuzz630{
-		One: rando.Uint(),
-		Two: rando.Uint64(),
+		One: rando.Uint8(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10114,8 +10113,8 @@ func TestFuzz631(t *testing.T) {
 	require.Equal(t, Fuzz631{}, actual)
 
 	actual = Fuzz631{
-		One: rando.Uint(),
-		Two: rando.Uints(),
+		One: rando.Uint8(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10130,8 +10129,8 @@ func TestFuzz632(t *testing.T) {
 	require.Equal(t, Fuzz632{}, actual)
 
 	actual = Fuzz632{
-		One: rando.Uint(),
-		Two: rando.Uint16s(),
+		One: rando.Uint8(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10146,8 +10145,8 @@ func TestFuzz633(t *testing.T) {
 	require.Equal(t, Fuzz633{}, actual)
 
 	actual = Fuzz633{
-		One: rando.Uint(),
-		Two: rando.Uint32s(),
+		One: rando.Uint8(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10162,8 +10161,8 @@ func TestFuzz634(t *testing.T) {
 	require.Equal(t, Fuzz634{}, actual)
 
 	actual = Fuzz634{
-		One: rando.Uint(),
-		Two: rando.Uint64s(),
+		One: rando.Uint8(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10178,8 +10177,8 @@ func TestFuzz635(t *testing.T) {
 	require.Equal(t, Fuzz635{}, actual)
 
 	actual = Fuzz635{
-		One: rando.Uint(),
-		Two: rando.String(),
+		One: rando.Uint8(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10194,8 +10193,8 @@ func TestFuzz636(t *testing.T) {
 	require.Equal(t, Fuzz636{}, actual)
 
 	actual = Fuzz636{
-		One: rando.Uint(),
-		Two: rando.Strings(),
+		One: rando.Uint8(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10210,8 +10209,8 @@ func TestFuzz637(t *testing.T) {
 	require.Equal(t, Fuzz637{}, actual)
 
 	actual = Fuzz637{
-		One: rando.Uint(),
-		Two: rando.Time(),
+		One: rando.Uint8(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10226,8 +10225,8 @@ func TestFuzz638(t *testing.T) {
 	require.Equal(t, Fuzz638{}, actual)
 
 	actual = Fuzz638{
-		One: rando.Uint(),
-		Two: rando.Duration(),
+		One: rando.Uint8(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10242,8 +10241,8 @@ func TestFuzz639(t *testing.T) {
 	require.Equal(t, Fuzz639{}, actual)
 
 	actual = Fuzz639{
-		One: rando.Uint(),
-		Two: rando.Durations(),
+		One: rando.Uint8(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10259,7 +10258,7 @@ func TestFuzz640(t *testing.T) {
 
 	actual = Fuzz640{
 		One: rando.Uint8(),
-		Two: rando.Bool(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10275,7 +10274,7 @@ func TestFuzz641(t *testing.T) {
 
 	actual = Fuzz641{
 		One: rando.Uint8(),
-		Two: rando.Bools(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10291,7 +10290,7 @@ func TestFuzz642(t *testing.T) {
 
 	actual = Fuzz642{
 		One: rando.Uint8(),
-		Two: rando.Byte(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10307,7 +10306,7 @@ func TestFuzz643(t *testing.T) {
 
 	actual = Fuzz643{
 		One: rando.Uint8(),
-		Two: rando.Bytes(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10323,7 +10322,7 @@ func TestFuzz644(t *testing.T) {
 
 	actual = Fuzz644{
 		One: rando.Uint8(),
-		Two: rando.Float32(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10339,7 +10338,7 @@ func TestFuzz645(t *testing.T) {
 
 	actual = Fuzz645{
 		One: rando.Uint8(),
-		Two: rando.Float32s(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10355,7 +10354,7 @@ func TestFuzz646(t *testing.T) {
 
 	actual = Fuzz646{
 		One: rando.Uint8(),
-		Two: rando.Float64(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10371,7 +10370,7 @@ func TestFuzz647(t *testing.T) {
 
 	actual = Fuzz647{
 		One: rando.Uint8(),
-		Two: rando.Float64s(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10387,7 +10386,7 @@ func TestFuzz648(t *testing.T) {
 
 	actual = Fuzz648{
 		One: rando.Uint8(),
-		Two: rando.Int(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10403,7 +10402,7 @@ func TestFuzz649(t *testing.T) {
 
 	actual = Fuzz649{
 		One: rando.Uint8(),
-		Two: rando.Int8(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10419,7 +10418,7 @@ func TestFuzz650(t *testing.T) {
 
 	actual = Fuzz650{
 		One: rando.Uint8(),
-		Two: rando.Int16(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10435,7 +10434,7 @@ func TestFuzz651(t *testing.T) {
 
 	actual = Fuzz651{
 		One: rando.Uint8(),
-		Two: rando.Int32(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10451,7 +10450,7 @@ func TestFuzz652(t *testing.T) {
 
 	actual = Fuzz652{
 		One: rando.Uint8(),
-		Two: rando.Rune(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10467,7 +10466,7 @@ func TestFuzz653(t *testing.T) {
 
 	actual = Fuzz653{
 		One: rando.Uint8(),
-		Two: rando.Int64(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10483,7 +10482,7 @@ func TestFuzz654(t *testing.T) {
 
 	actual = Fuzz654{
 		One: rando.Uint8(),
-		Two: rando.Ints(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10499,7 +10498,7 @@ func TestFuzz655(t *testing.T) {
 
 	actual = Fuzz655{
 		One: rando.Uint8(),
-		Two: rando.Int8s(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10515,7 +10514,7 @@ func TestFuzz656(t *testing.T) {
 
 	actual = Fuzz656{
 		One: rando.Uint8(),
-		Two: rando.Int16s(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10531,7 +10530,7 @@ func TestFuzz657(t *testing.T) {
 
 	actual = Fuzz657{
 		One: rando.Uint8(),
-		Two: rando.Int32s(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10547,7 +10546,7 @@ func TestFuzz658(t *testing.T) {
 
 	actual = Fuzz658{
 		One: rando.Uint8(),
-		Two: rando.Int64s(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10563,7 +10562,7 @@ func TestFuzz659(t *testing.T) {
 
 	actual = Fuzz659{
 		One: rando.Uint8(),
-		Two: rando.Uint(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10579,7 +10578,7 @@ func TestFuzz660(t *testing.T) {
 
 	actual = Fuzz660{
 		One: rando.Uint8(),
-		Two: rando.Uint16(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10595,7 +10594,7 @@ func TestFuzz661(t *testing.T) {
 
 	actual = Fuzz661{
 		One: rando.Uint8(),
-		Two: rando.Uint32(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10611,7 +10610,7 @@ func TestFuzz662(t *testing.T) {
 
 	actual = Fuzz662{
 		One: rando.Uint8(),
-		Two: rando.Uint64(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10626,8 +10625,8 @@ func TestFuzz663(t *testing.T) {
 	require.Equal(t, Fuzz663{}, actual)
 
 	actual = Fuzz663{
-		One: rando.Uint8(),
-		Two: rando.Uints(),
+		One: rando.Uint16(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10642,8 +10641,8 @@ func TestFuzz664(t *testing.T) {
 	require.Equal(t, Fuzz664{}, actual)
 
 	actual = Fuzz664{
-		One: rando.Uint8(),
-		Two: rando.Uint16s(),
+		One: rando.Uint16(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10658,8 +10657,8 @@ func TestFuzz665(t *testing.T) {
 	require.Equal(t, Fuzz665{}, actual)
 
 	actual = Fuzz665{
-		One: rando.Uint8(),
-		Two: rando.Uint32s(),
+		One: rando.Uint16(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10674,8 +10673,8 @@ func TestFuzz666(t *testing.T) {
 	require.Equal(t, Fuzz666{}, actual)
 
 	actual = Fuzz666{
-		One: rando.Uint8(),
-		Two: rando.Uint64s(),
+		One: rando.Uint16(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10690,8 +10689,8 @@ func TestFuzz667(t *testing.T) {
 	require.Equal(t, Fuzz667{}, actual)
 
 	actual = Fuzz667{
-		One: rando.Uint8(),
-		Two: rando.String(),
+		One: rando.Uint16(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10706,8 +10705,8 @@ func TestFuzz668(t *testing.T) {
 	require.Equal(t, Fuzz668{}, actual)
 
 	actual = Fuzz668{
-		One: rando.Uint8(),
-		Two: rando.Strings(),
+		One: rando.Uint16(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10722,8 +10721,8 @@ func TestFuzz669(t *testing.T) {
 	require.Equal(t, Fuzz669{}, actual)
 
 	actual = Fuzz669{
-		One: rando.Uint8(),
-		Two: rando.Time(),
+		One: rando.Uint16(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10738,8 +10737,8 @@ func TestFuzz670(t *testing.T) {
 	require.Equal(t, Fuzz670{}, actual)
 
 	actual = Fuzz670{
-		One: rando.Uint8(),
-		Two: rando.Duration(),
+		One: rando.Uint16(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10754,8 +10753,8 @@ func TestFuzz671(t *testing.T) {
 	require.Equal(t, Fuzz671{}, actual)
 
 	actual = Fuzz671{
-		One: rando.Uint8(),
-		Two: rando.Durations(),
+		One: rando.Uint16(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10771,7 +10770,7 @@ func TestFuzz672(t *testing.T) {
 
 	actual = Fuzz672{
 		One: rando.Uint16(),
-		Two: rando.Bool(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10787,7 +10786,7 @@ func TestFuzz673(t *testing.T) {
 
 	actual = Fuzz673{
 		One: rando.Uint16(),
-		Two: rando.Bools(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10803,7 +10802,7 @@ func TestFuzz674(t *testing.T) {
 
 	actual = Fuzz674{
 		One: rando.Uint16(),
-		Two: rando.Byte(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10819,7 +10818,7 @@ func TestFuzz675(t *testing.T) {
 
 	actual = Fuzz675{
 		One: rando.Uint16(),
-		Two: rando.Bytes(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10835,7 +10834,7 @@ func TestFuzz676(t *testing.T) {
 
 	actual = Fuzz676{
 		One: rando.Uint16(),
-		Two: rando.Float32(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10851,7 +10850,7 @@ func TestFuzz677(t *testing.T) {
 
 	actual = Fuzz677{
 		One: rando.Uint16(),
-		Two: rando.Float32s(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10867,7 +10866,7 @@ func TestFuzz678(t *testing.T) {
 
 	actual = Fuzz678{
 		One: rando.Uint16(),
-		Two: rando.Float64(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10883,7 +10882,7 @@ func TestFuzz679(t *testing.T) {
 
 	actual = Fuzz679{
 		One: rando.Uint16(),
-		Two: rando.Float64s(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10899,7 +10898,7 @@ func TestFuzz680(t *testing.T) {
 
 	actual = Fuzz680{
 		One: rando.Uint16(),
-		Two: rando.Int(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10915,7 +10914,7 @@ func TestFuzz681(t *testing.T) {
 
 	actual = Fuzz681{
 		One: rando.Uint16(),
-		Two: rando.Int8(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10931,7 +10930,7 @@ func TestFuzz682(t *testing.T) {
 
 	actual = Fuzz682{
 		One: rando.Uint16(),
-		Two: rando.Int16(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10947,7 +10946,7 @@ func TestFuzz683(t *testing.T) {
 
 	actual = Fuzz683{
 		One: rando.Uint16(),
-		Two: rando.Int32(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10963,7 +10962,7 @@ func TestFuzz684(t *testing.T) {
 
 	actual = Fuzz684{
 		One: rando.Uint16(),
-		Two: rando.Rune(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10979,7 +10978,7 @@ func TestFuzz685(t *testing.T) {
 
 	actual = Fuzz685{
 		One: rando.Uint16(),
-		Two: rando.Int64(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -10995,7 +10994,7 @@ func TestFuzz686(t *testing.T) {
 
 	actual = Fuzz686{
 		One: rando.Uint16(),
-		Two: rando.Ints(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11011,7 +11010,7 @@ func TestFuzz687(t *testing.T) {
 
 	actual = Fuzz687{
 		One: rando.Uint16(),
-		Two: rando.Int8s(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11027,7 +11026,7 @@ func TestFuzz688(t *testing.T) {
 
 	actual = Fuzz688{
 		One: rando.Uint16(),
-		Two: rando.Int16s(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11043,7 +11042,7 @@ func TestFuzz689(t *testing.T) {
 
 	actual = Fuzz689{
 		One: rando.Uint16(),
-		Two: rando.Int32s(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11059,7 +11058,7 @@ func TestFuzz690(t *testing.T) {
 
 	actual = Fuzz690{
 		One: rando.Uint16(),
-		Two: rando.Int64s(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11075,7 +11074,7 @@ func TestFuzz691(t *testing.T) {
 
 	actual = Fuzz691{
 		One: rando.Uint16(),
-		Two: rando.Uint(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11091,7 +11090,7 @@ func TestFuzz692(t *testing.T) {
 
 	actual = Fuzz692{
 		One: rando.Uint16(),
-		Two: rando.Uint8(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11107,7 +11106,7 @@ func TestFuzz693(t *testing.T) {
 
 	actual = Fuzz693{
 		One: rando.Uint16(),
-		Two: rando.Uint32(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11123,7 +11122,7 @@ func TestFuzz694(t *testing.T) {
 
 	actual = Fuzz694{
 		One: rando.Uint16(),
-		Two: rando.Uint64(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11139,7 +11138,7 @@ func TestFuzz695(t *testing.T) {
 
 	actual = Fuzz695{
 		One: rando.Uint16(),
-		Two: rando.Uints(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11155,7 +11154,7 @@ func TestFuzz696(t *testing.T) {
 
 	actual = Fuzz696{
 		One: rando.Uint16(),
-		Two: rando.Uint16s(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11171,7 +11170,7 @@ func TestFuzz697(t *testing.T) {
 
 	actual = Fuzz697{
 		One: rando.Uint16(),
-		Two: rando.Uint32s(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11187,7 +11186,7 @@ func TestFuzz698(t *testing.T) {
 
 	actual = Fuzz698{
 		One: rando.Uint16(),
-		Two: rando.Uint64s(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11203,7 +11202,7 @@ func TestFuzz699(t *testing.T) {
 
 	actual = Fuzz699{
 		One: rando.Uint16(),
-		Two: rando.String(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11219,7 +11218,7 @@ func TestFuzz700(t *testing.T) {
 
 	actual = Fuzz700{
 		One: rando.Uint16(),
-		Two: rando.Strings(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11235,7 +11234,7 @@ func TestFuzz701(t *testing.T) {
 
 	actual = Fuzz701{
 		One: rando.Uint16(),
-		Two: rando.Time(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11250,8 +11249,8 @@ func TestFuzz702(t *testing.T) {
 	require.Equal(t, Fuzz702{}, actual)
 
 	actual = Fuzz702{
-		One: rando.Uint16(),
-		Two: rando.Duration(),
+		One: rando.Uint32(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11266,8 +11265,8 @@ func TestFuzz703(t *testing.T) {
 	require.Equal(t, Fuzz703{}, actual)
 
 	actual = Fuzz703{
-		One: rando.Uint16(),
-		Two: rando.Durations(),
+		One: rando.Uint32(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11283,7 +11282,7 @@ func TestFuzz704(t *testing.T) {
 
 	actual = Fuzz704{
 		One: rando.Uint32(),
-		Two: rando.Bool(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11299,7 +11298,7 @@ func TestFuzz705(t *testing.T) {
 
 	actual = Fuzz705{
 		One: rando.Uint32(),
-		Two: rando.Bools(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11315,7 +11314,7 @@ func TestFuzz706(t *testing.T) {
 
 	actual = Fuzz706{
 		One: rando.Uint32(),
-		Two: rando.Byte(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11331,7 +11330,7 @@ func TestFuzz707(t *testing.T) {
 
 	actual = Fuzz707{
 		One: rando.Uint32(),
-		Two: rando.Bytes(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11347,7 +11346,7 @@ func TestFuzz708(t *testing.T) {
 
 	actual = Fuzz708{
 		One: rando.Uint32(),
-		Two: rando.Float32(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11363,7 +11362,7 @@ func TestFuzz709(t *testing.T) {
 
 	actual = Fuzz709{
 		One: rando.Uint32(),
-		Two: rando.Float32s(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11379,7 +11378,7 @@ func TestFuzz710(t *testing.T) {
 
 	actual = Fuzz710{
 		One: rando.Uint32(),
-		Two: rando.Float64(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11395,7 +11394,7 @@ func TestFuzz711(t *testing.T) {
 
 	actual = Fuzz711{
 		One: rando.Uint32(),
-		Two: rando.Float64s(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11411,7 +11410,7 @@ func TestFuzz712(t *testing.T) {
 
 	actual = Fuzz712{
 		One: rando.Uint32(),
-		Two: rando.Int(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11427,7 +11426,7 @@ func TestFuzz713(t *testing.T) {
 
 	actual = Fuzz713{
 		One: rando.Uint32(),
-		Two: rando.Int8(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11443,7 +11442,7 @@ func TestFuzz714(t *testing.T) {
 
 	actual = Fuzz714{
 		One: rando.Uint32(),
-		Two: rando.Int16(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11459,7 +11458,7 @@ func TestFuzz715(t *testing.T) {
 
 	actual = Fuzz715{
 		One: rando.Uint32(),
-		Two: rando.Int32(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11475,7 +11474,7 @@ func TestFuzz716(t *testing.T) {
 
 	actual = Fuzz716{
 		One: rando.Uint32(),
-		Two: rando.Rune(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11491,7 +11490,7 @@ func TestFuzz717(t *testing.T) {
 
 	actual = Fuzz717{
 		One: rando.Uint32(),
-		Two: rando.Int64(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11507,7 +11506,7 @@ func TestFuzz718(t *testing.T) {
 
 	actual = Fuzz718{
 		One: rando.Uint32(),
-		Two: rando.Ints(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11523,7 +11522,7 @@ func TestFuzz719(t *testing.T) {
 
 	actual = Fuzz719{
 		One: rando.Uint32(),
-		Two: rando.Int8s(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11539,7 +11538,7 @@ func TestFuzz720(t *testing.T) {
 
 	actual = Fuzz720{
 		One: rando.Uint32(),
-		Two: rando.Int16s(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11555,7 +11554,7 @@ func TestFuzz721(t *testing.T) {
 
 	actual = Fuzz721{
 		One: rando.Uint32(),
-		Two: rando.Int32s(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11571,7 +11570,7 @@ func TestFuzz722(t *testing.T) {
 
 	actual = Fuzz722{
 		One: rando.Uint32(),
-		Two: rando.Int64s(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11587,7 +11586,7 @@ func TestFuzz723(t *testing.T) {
 
 	actual = Fuzz723{
 		One: rando.Uint32(),
-		Two: rando.Uint(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11603,7 +11602,7 @@ func TestFuzz724(t *testing.T) {
 
 	actual = Fuzz724{
 		One: rando.Uint32(),
-		Two: rando.Uint8(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11619,7 +11618,7 @@ func TestFuzz725(t *testing.T) {
 
 	actual = Fuzz725{
 		One: rando.Uint32(),
-		Two: rando.Uint16(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11635,7 +11634,7 @@ func TestFuzz726(t *testing.T) {
 
 	actual = Fuzz726{
 		One: rando.Uint32(),
-		Two: rando.Uint64(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11651,7 +11650,7 @@ func TestFuzz727(t *testing.T) {
 
 	actual = Fuzz727{
 		One: rando.Uint32(),
-		Two: rando.Uints(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11667,7 +11666,7 @@ func TestFuzz728(t *testing.T) {
 
 	actual = Fuzz728{
 		One: rando.Uint32(),
-		Two: rando.Uint16s(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11683,7 +11682,7 @@ func TestFuzz729(t *testing.T) {
 
 	actual = Fuzz729{
 		One: rando.Uint32(),
-		Two: rando.Uint32s(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11699,7 +11698,7 @@ func TestFuzz730(t *testing.T) {
 
 	actual = Fuzz730{
 		One: rando.Uint32(),
-		Two: rando.Uint64s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11715,7 +11714,7 @@ func TestFuzz731(t *testing.T) {
 
 	actual = Fuzz731{
 		One: rando.Uint32(),
-		Two: rando.String(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11731,7 +11730,7 @@ func TestFuzz732(t *testing.T) {
 
 	actual = Fuzz732{
 		One: rando.Uint32(),
-		Two: rando.Strings(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11747,7 +11746,7 @@ func TestFuzz733(t *testing.T) {
 
 	actual = Fuzz733{
 		One: rando.Uint32(),
-		Two: rando.Time(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11763,7 +11762,7 @@ func TestFuzz734(t *testing.T) {
 
 	actual = Fuzz734{
 		One: rando.Uint32(),
-		Two: rando.Duration(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11779,7 +11778,7 @@ func TestFuzz735(t *testing.T) {
 
 	actual = Fuzz735{
 		One: rando.Uint32(),
-		Two: rando.Durations(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11794,8 +11793,8 @@ func TestFuzz736(t *testing.T) {
 	require.Equal(t, Fuzz736{}, actual)
 
 	actual = Fuzz736{
-		One: rando.Uint64(),
-		Two: rando.Bool(),
+		One: rando.Uint32(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11810,8 +11809,8 @@ func TestFuzz737(t *testing.T) {
 	require.Equal(t, Fuzz737{}, actual)
 
 	actual = Fuzz737{
-		One: rando.Uint64(),
-		Two: rando.Bools(),
+		One: rando.Uint32(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11826,8 +11825,8 @@ func TestFuzz738(t *testing.T) {
 	require.Equal(t, Fuzz738{}, actual)
 
 	actual = Fuzz738{
-		One: rando.Uint64(),
-		Two: rando.Byte(),
+		One: rando.Uint32(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11842,8 +11841,8 @@ func TestFuzz739(t *testing.T) {
 	require.Equal(t, Fuzz739{}, actual)
 
 	actual = Fuzz739{
-		One: rando.Uint64(),
-		Two: rando.Bytes(),
+		One: rando.Uint32(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11858,8 +11857,8 @@ func TestFuzz740(t *testing.T) {
 	require.Equal(t, Fuzz740{}, actual)
 
 	actual = Fuzz740{
-		One: rando.Uint64(),
-		Two: rando.Float32(),
+		One: rando.Uint32(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11875,7 +11874,7 @@ func TestFuzz741(t *testing.T) {
 
 	actual = Fuzz741{
 		One: rando.Uint64(),
-		Two: rando.Float32s(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11891,7 +11890,7 @@ func TestFuzz742(t *testing.T) {
 
 	actual = Fuzz742{
 		One: rando.Uint64(),
-		Two: rando.Float64(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11907,7 +11906,7 @@ func TestFuzz743(t *testing.T) {
 
 	actual = Fuzz743{
 		One: rando.Uint64(),
-		Two: rando.Float64s(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11923,7 +11922,7 @@ func TestFuzz744(t *testing.T) {
 
 	actual = Fuzz744{
 		One: rando.Uint64(),
-		Two: rando.Int(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11939,7 +11938,7 @@ func TestFuzz745(t *testing.T) {
 
 	actual = Fuzz745{
 		One: rando.Uint64(),
-		Two: rando.Int8(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11955,7 +11954,7 @@ func TestFuzz746(t *testing.T) {
 
 	actual = Fuzz746{
 		One: rando.Uint64(),
-		Two: rando.Int16(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11971,7 +11970,7 @@ func TestFuzz747(t *testing.T) {
 
 	actual = Fuzz747{
 		One: rando.Uint64(),
-		Two: rando.Int32(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -11987,7 +11986,7 @@ func TestFuzz748(t *testing.T) {
 
 	actual = Fuzz748{
 		One: rando.Uint64(),
-		Two: rando.Rune(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12003,7 +12002,7 @@ func TestFuzz749(t *testing.T) {
 
 	actual = Fuzz749{
 		One: rando.Uint64(),
-		Two: rando.Int64(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12019,7 +12018,7 @@ func TestFuzz750(t *testing.T) {
 
 	actual = Fuzz750{
 		One: rando.Uint64(),
-		Two: rando.Ints(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12035,7 +12034,7 @@ func TestFuzz751(t *testing.T) {
 
 	actual = Fuzz751{
 		One: rando.Uint64(),
-		Two: rando.Int8s(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12051,7 +12050,7 @@ func TestFuzz752(t *testing.T) {
 
 	actual = Fuzz752{
 		One: rando.Uint64(),
-		Two: rando.Int16s(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12067,7 +12066,7 @@ func TestFuzz753(t *testing.T) {
 
 	actual = Fuzz753{
 		One: rando.Uint64(),
-		Two: rando.Int32s(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12083,7 +12082,7 @@ func TestFuzz754(t *testing.T) {
 
 	actual = Fuzz754{
 		One: rando.Uint64(),
-		Two: rando.Int64s(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12099,7 +12098,7 @@ func TestFuzz755(t *testing.T) {
 
 	actual = Fuzz755{
 		One: rando.Uint64(),
-		Two: rando.Uint(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12115,7 +12114,7 @@ func TestFuzz756(t *testing.T) {
 
 	actual = Fuzz756{
 		One: rando.Uint64(),
-		Two: rando.Uint8(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12131,7 +12130,7 @@ func TestFuzz757(t *testing.T) {
 
 	actual = Fuzz757{
 		One: rando.Uint64(),
-		Two: rando.Uint16(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12147,7 +12146,7 @@ func TestFuzz758(t *testing.T) {
 
 	actual = Fuzz758{
 		One: rando.Uint64(),
-		Two: rando.Uint32(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12163,7 +12162,7 @@ func TestFuzz759(t *testing.T) {
 
 	actual = Fuzz759{
 		One: rando.Uint64(),
-		Two: rando.Uints(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12179,7 +12178,7 @@ func TestFuzz760(t *testing.T) {
 
 	actual = Fuzz760{
 		One: rando.Uint64(),
-		Two: rando.Uint16s(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12195,7 +12194,7 @@ func TestFuzz761(t *testing.T) {
 
 	actual = Fuzz761{
 		One: rando.Uint64(),
-		Two: rando.Uint32s(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12211,7 +12210,7 @@ func TestFuzz762(t *testing.T) {
 
 	actual = Fuzz762{
 		One: rando.Uint64(),
-		Two: rando.Uint64s(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12227,7 +12226,7 @@ func TestFuzz763(t *testing.T) {
 
 	actual = Fuzz763{
 		One: rando.Uint64(),
-		Two: rando.String(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12243,7 +12242,7 @@ func TestFuzz764(t *testing.T) {
 
 	actual = Fuzz764{
 		One: rando.Uint64(),
-		Two: rando.Strings(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12259,7 +12258,7 @@ func TestFuzz765(t *testing.T) {
 
 	actual = Fuzz765{
 		One: rando.Uint64(),
-		Two: rando.Time(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12275,7 +12274,7 @@ func TestFuzz766(t *testing.T) {
 
 	actual = Fuzz766{
 		One: rando.Uint64(),
-		Two: rando.Duration(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12291,7 +12290,7 @@ func TestFuzz767(t *testing.T) {
 
 	actual = Fuzz767{
 		One: rando.Uint64(),
-		Two: rando.Durations(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12306,8 +12305,8 @@ func TestFuzz768(t *testing.T) {
 	require.Equal(t, Fuzz768{}, actual)
 
 	actual = Fuzz768{
-		One: rando.Uints(),
-		Two: rando.Bool(),
+		One: rando.Uint64(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12322,8 +12321,8 @@ func TestFuzz769(t *testing.T) {
 	require.Equal(t, Fuzz769{}, actual)
 
 	actual = Fuzz769{
-		One: rando.Uints(),
-		Two: rando.Bools(),
+		One: rando.Uint64(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12338,8 +12337,8 @@ func TestFuzz770(t *testing.T) {
 	require.Equal(t, Fuzz770{}, actual)
 
 	actual = Fuzz770{
-		One: rando.Uints(),
-		Two: rando.Byte(),
+		One: rando.Uint64(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12354,8 +12353,8 @@ func TestFuzz771(t *testing.T) {
 	require.Equal(t, Fuzz771{}, actual)
 
 	actual = Fuzz771{
-		One: rando.Uints(),
-		Two: rando.Bytes(),
+		One: rando.Uint64(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12370,8 +12369,8 @@ func TestFuzz772(t *testing.T) {
 	require.Equal(t, Fuzz772{}, actual)
 
 	actual = Fuzz772{
-		One: rando.Uints(),
-		Two: rando.Float32(),
+		One: rando.Uint64(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12386,8 +12385,8 @@ func TestFuzz773(t *testing.T) {
 	require.Equal(t, Fuzz773{}, actual)
 
 	actual = Fuzz773{
-		One: rando.Uints(),
-		Two: rando.Float32s(),
+		One: rando.Uint64(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12402,8 +12401,8 @@ func TestFuzz774(t *testing.T) {
 	require.Equal(t, Fuzz774{}, actual)
 
 	actual = Fuzz774{
-		One: rando.Uints(),
-		Two: rando.Float64(),
+		One: rando.Uint64(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12418,8 +12417,8 @@ func TestFuzz775(t *testing.T) {
 	require.Equal(t, Fuzz775{}, actual)
 
 	actual = Fuzz775{
-		One: rando.Uints(),
-		Two: rando.Float64s(),
+		One: rando.Uint64(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12434,8 +12433,8 @@ func TestFuzz776(t *testing.T) {
 	require.Equal(t, Fuzz776{}, actual)
 
 	actual = Fuzz776{
-		One: rando.Uints(),
-		Two: rando.Int(),
+		One: rando.Uint64(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12450,8 +12449,8 @@ func TestFuzz777(t *testing.T) {
 	require.Equal(t, Fuzz777{}, actual)
 
 	actual = Fuzz777{
-		One: rando.Uints(),
-		Two: rando.Int8(),
+		One: rando.Uint64(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12466,8 +12465,8 @@ func TestFuzz778(t *testing.T) {
 	require.Equal(t, Fuzz778{}, actual)
 
 	actual = Fuzz778{
-		One: rando.Uints(),
-		Two: rando.Int16(),
+		One: rando.Uint64(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12482,8 +12481,8 @@ func TestFuzz779(t *testing.T) {
 	require.Equal(t, Fuzz779{}, actual)
 
 	actual = Fuzz779{
-		One: rando.Uints(),
-		Two: rando.Int32(),
+		One: rando.Uint64(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12498,8 +12497,8 @@ func TestFuzz780(t *testing.T) {
 	require.Equal(t, Fuzz780{}, actual)
 
 	actual = Fuzz780{
-		One: rando.Uints(),
-		Two: rando.Rune(),
+		One: rando.Bools(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12514,8 +12513,8 @@ func TestFuzz781(t *testing.T) {
 	require.Equal(t, Fuzz781{}, actual)
 
 	actual = Fuzz781{
-		One: rando.Uints(),
-		Two: rando.Int64(),
+		One: rando.Bools(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12530,8 +12529,8 @@ func TestFuzz782(t *testing.T) {
 	require.Equal(t, Fuzz782{}, actual)
 
 	actual = Fuzz782{
-		One: rando.Uints(),
-		Two: rando.Ints(),
+		One: rando.Bools(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12546,8 +12545,8 @@ func TestFuzz783(t *testing.T) {
 	require.Equal(t, Fuzz783{}, actual)
 
 	actual = Fuzz783{
-		One: rando.Uints(),
-		Two: rando.Int8s(),
+		One: rando.Bools(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12562,8 +12561,8 @@ func TestFuzz784(t *testing.T) {
 	require.Equal(t, Fuzz784{}, actual)
 
 	actual = Fuzz784{
-		One: rando.Uints(),
-		Two: rando.Int16s(),
+		One: rando.Bools(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12578,8 +12577,8 @@ func TestFuzz785(t *testing.T) {
 	require.Equal(t, Fuzz785{}, actual)
 
 	actual = Fuzz785{
-		One: rando.Uints(),
-		Two: rando.Int32s(),
+		One: rando.Bools(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12594,8 +12593,8 @@ func TestFuzz786(t *testing.T) {
 	require.Equal(t, Fuzz786{}, actual)
 
 	actual = Fuzz786{
-		One: rando.Uints(),
-		Two: rando.Int64s(),
+		One: rando.Bools(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12610,8 +12609,8 @@ func TestFuzz787(t *testing.T) {
 	require.Equal(t, Fuzz787{}, actual)
 
 	actual = Fuzz787{
-		One: rando.Uints(),
-		Two: rando.Uint(),
+		One: rando.Bools(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12626,8 +12625,8 @@ func TestFuzz788(t *testing.T) {
 	require.Equal(t, Fuzz788{}, actual)
 
 	actual = Fuzz788{
-		One: rando.Uints(),
-		Two: rando.Uint8(),
+		One: rando.Bools(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12642,8 +12641,8 @@ func TestFuzz789(t *testing.T) {
 	require.Equal(t, Fuzz789{}, actual)
 
 	actual = Fuzz789{
-		One: rando.Uints(),
-		Two: rando.Uint16(),
+		One: rando.Bools(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12658,8 +12657,8 @@ func TestFuzz790(t *testing.T) {
 	require.Equal(t, Fuzz790{}, actual)
 
 	actual = Fuzz790{
-		One: rando.Uints(),
-		Two: rando.Uint32(),
+		One: rando.Bools(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12674,8 +12673,8 @@ func TestFuzz791(t *testing.T) {
 	require.Equal(t, Fuzz791{}, actual)
 
 	actual = Fuzz791{
-		One: rando.Uints(),
-		Two: rando.Uint64(),
+		One: rando.Bools(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12690,8 +12689,8 @@ func TestFuzz792(t *testing.T) {
 	require.Equal(t, Fuzz792{}, actual)
 
 	actual = Fuzz792{
-		One: rando.Uints(),
-		Two: rando.Uint16s(),
+		One: rando.Bools(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12706,8 +12705,8 @@ func TestFuzz793(t *testing.T) {
 	require.Equal(t, Fuzz793{}, actual)
 
 	actual = Fuzz793{
-		One: rando.Uints(),
-		Two: rando.Uint32s(),
+		One: rando.Bools(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12722,8 +12721,8 @@ func TestFuzz794(t *testing.T) {
 	require.Equal(t, Fuzz794{}, actual)
 
 	actual = Fuzz794{
-		One: rando.Uints(),
-		Two: rando.Uint64s(),
+		One: rando.Bools(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12738,8 +12737,8 @@ func TestFuzz795(t *testing.T) {
 	require.Equal(t, Fuzz795{}, actual)
 
 	actual = Fuzz795{
-		One: rando.Uints(),
-		Two: rando.String(),
+		One: rando.Bools(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12754,8 +12753,8 @@ func TestFuzz796(t *testing.T) {
 	require.Equal(t, Fuzz796{}, actual)
 
 	actual = Fuzz796{
-		One: rando.Uints(),
-		Two: rando.Strings(),
+		One: rando.Bools(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12770,8 +12769,8 @@ func TestFuzz797(t *testing.T) {
 	require.Equal(t, Fuzz797{}, actual)
 
 	actual = Fuzz797{
-		One: rando.Uints(),
-		Two: rando.Time(),
+		One: rando.Bools(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12786,8 +12785,8 @@ func TestFuzz798(t *testing.T) {
 	require.Equal(t, Fuzz798{}, actual)
 
 	actual = Fuzz798{
-		One: rando.Uints(),
-		Two: rando.Duration(),
+		One: rando.Bools(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12802,8 +12801,8 @@ func TestFuzz799(t *testing.T) {
 	require.Equal(t, Fuzz799{}, actual)
 
 	actual = Fuzz799{
-		One: rando.Uints(),
-		Two: rando.Durations(),
+		One: rando.Bools(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12818,8 +12817,8 @@ func TestFuzz800(t *testing.T) {
 	require.Equal(t, Fuzz800{}, actual)
 
 	actual = Fuzz800{
-		One: rando.Uint16s(),
-		Two: rando.Bool(),
+		One: rando.Bools(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12834,8 +12833,8 @@ func TestFuzz801(t *testing.T) {
 	require.Equal(t, Fuzz801{}, actual)
 
 	actual = Fuzz801{
-		One: rando.Uint16s(),
-		Two: rando.Bools(),
+		One: rando.Bools(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12850,8 +12849,8 @@ func TestFuzz802(t *testing.T) {
 	require.Equal(t, Fuzz802{}, actual)
 
 	actual = Fuzz802{
-		One: rando.Uint16s(),
-		Two: rando.Byte(),
+		One: rando.Bools(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12866,8 +12865,8 @@ func TestFuzz803(t *testing.T) {
 	require.Equal(t, Fuzz803{}, actual)
 
 	actual = Fuzz803{
-		One: rando.Uint16s(),
-		Two: rando.Bytes(),
+		One: rando.Bools(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12882,8 +12881,8 @@ func TestFuzz804(t *testing.T) {
 	require.Equal(t, Fuzz804{}, actual)
 
 	actual = Fuzz804{
-		One: rando.Uint16s(),
-		Two: rando.Float32(),
+		One: rando.Bools(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12898,8 +12897,8 @@ func TestFuzz805(t *testing.T) {
 	require.Equal(t, Fuzz805{}, actual)
 
 	actual = Fuzz805{
-		One: rando.Uint16s(),
-		Two: rando.Float32s(),
+		One: rando.Bools(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12914,8 +12913,8 @@ func TestFuzz806(t *testing.T) {
 	require.Equal(t, Fuzz806{}, actual)
 
 	actual = Fuzz806{
-		One: rando.Uint16s(),
-		Two: rando.Float64(),
+		One: rando.Bools(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12930,8 +12929,8 @@ func TestFuzz807(t *testing.T) {
 	require.Equal(t, Fuzz807{}, actual)
 
 	actual = Fuzz807{
-		One: rando.Uint16s(),
-		Two: rando.Float64s(),
+		One: rando.Bools(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12946,8 +12945,8 @@ func TestFuzz808(t *testing.T) {
 	require.Equal(t, Fuzz808{}, actual)
 
 	actual = Fuzz808{
-		One: rando.Uint16s(),
-		Two: rando.Int(),
+		One: rando.Bools(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12962,8 +12961,8 @@ func TestFuzz809(t *testing.T) {
 	require.Equal(t, Fuzz809{}, actual)
 
 	actual = Fuzz809{
-		One: rando.Uint16s(),
-		Two: rando.Int8(),
+		One: rando.Bools(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12978,8 +12977,8 @@ func TestFuzz810(t *testing.T) {
 	require.Equal(t, Fuzz810{}, actual)
 
 	actual = Fuzz810{
-		One: rando.Uint16s(),
-		Two: rando.Int16(),
+		One: rando.Bools(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -12994,8 +12993,8 @@ func TestFuzz811(t *testing.T) {
 	require.Equal(t, Fuzz811{}, actual)
 
 	actual = Fuzz811{
-		One: rando.Uint16s(),
-		Two: rando.Int32(),
+		One: rando.Bools(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13010,8 +13009,8 @@ func TestFuzz812(t *testing.T) {
 	require.Equal(t, Fuzz812{}, actual)
 
 	actual = Fuzz812{
-		One: rando.Uint16s(),
-		Two: rando.Rune(),
+		One: rando.Bools(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13026,8 +13025,8 @@ func TestFuzz813(t *testing.T) {
 	require.Equal(t, Fuzz813{}, actual)
 
 	actual = Fuzz813{
-		One: rando.Uint16s(),
-		Two: rando.Int64(),
+		One: rando.Bools(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13042,8 +13041,8 @@ func TestFuzz814(t *testing.T) {
 	require.Equal(t, Fuzz814{}, actual)
 
 	actual = Fuzz814{
-		One: rando.Uint16s(),
-		Two: rando.Ints(),
+		One: rando.Bools(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13058,8 +13057,8 @@ func TestFuzz815(t *testing.T) {
 	require.Equal(t, Fuzz815{}, actual)
 
 	actual = Fuzz815{
-		One: rando.Uint16s(),
-		Two: rando.Int8s(),
+		One: rando.Bools(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13074,8 +13073,8 @@ func TestFuzz816(t *testing.T) {
 	require.Equal(t, Fuzz816{}, actual)
 
 	actual = Fuzz816{
-		One: rando.Uint16s(),
-		Two: rando.Int16s(),
+		One: rando.Bools(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13090,8 +13089,8 @@ func TestFuzz817(t *testing.T) {
 	require.Equal(t, Fuzz817{}, actual)
 
 	actual = Fuzz817{
-		One: rando.Uint16s(),
-		Two: rando.Int32s(),
+		One: rando.Bools(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13106,8 +13105,8 @@ func TestFuzz818(t *testing.T) {
 	require.Equal(t, Fuzz818{}, actual)
 
 	actual = Fuzz818{
-		One: rando.Uint16s(),
-		Two: rando.Int64s(),
+		One: rando.Bools(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13122,8 +13121,8 @@ func TestFuzz819(t *testing.T) {
 	require.Equal(t, Fuzz819{}, actual)
 
 	actual = Fuzz819{
-		One: rando.Uint16s(),
-		Two: rando.Uint(),
+		One: rando.BytesNil(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13138,8 +13137,8 @@ func TestFuzz820(t *testing.T) {
 	require.Equal(t, Fuzz820{}, actual)
 
 	actual = Fuzz820{
-		One: rando.Uint16s(),
-		Two: rando.Uint8(),
+		One: rando.BytesNil(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13154,8 +13153,8 @@ func TestFuzz821(t *testing.T) {
 	require.Equal(t, Fuzz821{}, actual)
 
 	actual = Fuzz821{
-		One: rando.Uint16s(),
-		Two: rando.Uint16(),
+		One: rando.BytesNil(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13170,8 +13169,8 @@ func TestFuzz822(t *testing.T) {
 	require.Equal(t, Fuzz822{}, actual)
 
 	actual = Fuzz822{
-		One: rando.Uint16s(),
-		Two: rando.Uint32(),
+		One: rando.BytesNil(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13186,8 +13185,8 @@ func TestFuzz823(t *testing.T) {
 	require.Equal(t, Fuzz823{}, actual)
 
 	actual = Fuzz823{
-		One: rando.Uint16s(),
-		Two: rando.Uint64(),
+		One: rando.BytesNil(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13202,8 +13201,8 @@ func TestFuzz824(t *testing.T) {
 	require.Equal(t, Fuzz824{}, actual)
 
 	actual = Fuzz824{
-		One: rando.Uint16s(),
-		Two: rando.Uints(),
+		One: rando.BytesNil(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13218,8 +13217,8 @@ func TestFuzz825(t *testing.T) {
 	require.Equal(t, Fuzz825{}, actual)
 
 	actual = Fuzz825{
-		One: rando.Uint16s(),
-		Two: rando.Uint32s(),
+		One: rando.BytesNil(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13234,8 +13233,8 @@ func TestFuzz826(t *testing.T) {
 	require.Equal(t, Fuzz826{}, actual)
 
 	actual = Fuzz826{
-		One: rando.Uint16s(),
-		Two: rando.Uint64s(),
+		One: rando.BytesNil(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13250,8 +13249,8 @@ func TestFuzz827(t *testing.T) {
 	require.Equal(t, Fuzz827{}, actual)
 
 	actual = Fuzz827{
-		One: rando.Uint16s(),
-		Two: rando.String(),
+		One: rando.BytesNil(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13266,8 +13265,8 @@ func TestFuzz828(t *testing.T) {
 	require.Equal(t, Fuzz828{}, actual)
 
 	actual = Fuzz828{
-		One: rando.Uint16s(),
-		Two: rando.Strings(),
+		One: rando.BytesNil(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13282,8 +13281,8 @@ func TestFuzz829(t *testing.T) {
 	require.Equal(t, Fuzz829{}, actual)
 
 	actual = Fuzz829{
-		One: rando.Uint16s(),
-		Two: rando.Time(),
+		One: rando.BytesNil(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13298,8 +13297,8 @@ func TestFuzz830(t *testing.T) {
 	require.Equal(t, Fuzz830{}, actual)
 
 	actual = Fuzz830{
-		One: rando.Uint16s(),
-		Two: rando.Duration(),
+		One: rando.BytesNil(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13314,8 +13313,8 @@ func TestFuzz831(t *testing.T) {
 	require.Equal(t, Fuzz831{}, actual)
 
 	actual = Fuzz831{
-		One: rando.Uint16s(),
-		Two: rando.Durations(),
+		One: rando.BytesNil(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13330,8 +13329,8 @@ func TestFuzz832(t *testing.T) {
 	require.Equal(t, Fuzz832{}, actual)
 
 	actual = Fuzz832{
-		One: rando.Uint32s(),
-		Two: rando.Bool(),
+		One: rando.BytesNil(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13346,8 +13345,8 @@ func TestFuzz833(t *testing.T) {
 	require.Equal(t, Fuzz833{}, actual)
 
 	actual = Fuzz833{
-		One: rando.Uint32s(),
-		Two: rando.Bools(),
+		One: rando.BytesNil(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13362,8 +13361,8 @@ func TestFuzz834(t *testing.T) {
 	require.Equal(t, Fuzz834{}, actual)
 
 	actual = Fuzz834{
-		One: rando.Uint32s(),
-		Two: rando.Byte(),
+		One: rando.BytesNil(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13378,8 +13377,8 @@ func TestFuzz835(t *testing.T) {
 	require.Equal(t, Fuzz835{}, actual)
 
 	actual = Fuzz835{
-		One: rando.Uint32s(),
-		Two: rando.Bytes(),
+		One: rando.BytesNil(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13394,8 +13393,8 @@ func TestFuzz836(t *testing.T) {
 	require.Equal(t, Fuzz836{}, actual)
 
 	actual = Fuzz836{
-		One: rando.Uint32s(),
-		Two: rando.Float32(),
+		One: rando.BytesNil(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13410,8 +13409,8 @@ func TestFuzz837(t *testing.T) {
 	require.Equal(t, Fuzz837{}, actual)
 
 	actual = Fuzz837{
-		One: rando.Uint32s(),
-		Two: rando.Float32s(),
+		One: rando.BytesNil(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13426,8 +13425,8 @@ func TestFuzz838(t *testing.T) {
 	require.Equal(t, Fuzz838{}, actual)
 
 	actual = Fuzz838{
-		One: rando.Uint32s(),
-		Two: rando.Float64(),
+		One: rando.BytesNil(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13442,8 +13441,8 @@ func TestFuzz839(t *testing.T) {
 	require.Equal(t, Fuzz839{}, actual)
 
 	actual = Fuzz839{
-		One: rando.Uint32s(),
-		Two: rando.Float64s(),
+		One: rando.BytesNil(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13458,8 +13457,8 @@ func TestFuzz840(t *testing.T) {
 	require.Equal(t, Fuzz840{}, actual)
 
 	actual = Fuzz840{
-		One: rando.Uint32s(),
-		Two: rando.Int(),
+		One: rando.BytesNil(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13474,8 +13473,8 @@ func TestFuzz841(t *testing.T) {
 	require.Equal(t, Fuzz841{}, actual)
 
 	actual = Fuzz841{
-		One: rando.Uint32s(),
-		Two: rando.Int8(),
+		One: rando.BytesNil(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13490,8 +13489,8 @@ func TestFuzz842(t *testing.T) {
 	require.Equal(t, Fuzz842{}, actual)
 
 	actual = Fuzz842{
-		One: rando.Uint32s(),
-		Two: rando.Int16(),
+		One: rando.BytesNil(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13506,8 +13505,8 @@ func TestFuzz843(t *testing.T) {
 	require.Equal(t, Fuzz843{}, actual)
 
 	actual = Fuzz843{
-		One: rando.Uint32s(),
-		Two: rando.Int32(),
+		One: rando.BytesNil(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13522,8 +13521,8 @@ func TestFuzz844(t *testing.T) {
 	require.Equal(t, Fuzz844{}, actual)
 
 	actual = Fuzz844{
-		One: rando.Uint32s(),
-		Two: rando.Rune(),
+		One: rando.BytesNil(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13538,8 +13537,8 @@ func TestFuzz845(t *testing.T) {
 	require.Equal(t, Fuzz845{}, actual)
 
 	actual = Fuzz845{
-		One: rando.Uint32s(),
-		Two: rando.Int64(),
+		One: rando.BytesNil(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13554,8 +13553,8 @@ func TestFuzz846(t *testing.T) {
 	require.Equal(t, Fuzz846{}, actual)
 
 	actual = Fuzz846{
-		One: rando.Uint32s(),
-		Two: rando.Ints(),
+		One: rando.BytesNil(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13570,8 +13569,8 @@ func TestFuzz847(t *testing.T) {
 	require.Equal(t, Fuzz847{}, actual)
 
 	actual = Fuzz847{
-		One: rando.Uint32s(),
-		Two: rando.Int8s(),
+		One: rando.BytesNil(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13586,8 +13585,8 @@ func TestFuzz848(t *testing.T) {
 	require.Equal(t, Fuzz848{}, actual)
 
 	actual = Fuzz848{
-		One: rando.Uint32s(),
-		Two: rando.Int16s(),
+		One: rando.BytesNil(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13602,7 +13601,7 @@ func TestFuzz849(t *testing.T) {
 	require.Equal(t, Fuzz849{}, actual)
 
 	actual = Fuzz849{
-		One: rando.Uint32s(),
+		One: rando.BytesNil(),
 		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
@@ -13618,8 +13617,8 @@ func TestFuzz850(t *testing.T) {
 	require.Equal(t, Fuzz850{}, actual)
 
 	actual = Fuzz850{
-		One: rando.Uint32s(),
-		Two: rando.Int64s(),
+		One: rando.BytesNil(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13634,8 +13633,8 @@ func TestFuzz851(t *testing.T) {
 	require.Equal(t, Fuzz851{}, actual)
 
 	actual = Fuzz851{
-		One: rando.Uint32s(),
-		Two: rando.Uint(),
+		One: rando.BytesNil(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13650,8 +13649,8 @@ func TestFuzz852(t *testing.T) {
 	require.Equal(t, Fuzz852{}, actual)
 
 	actual = Fuzz852{
-		One: rando.Uint32s(),
-		Two: rando.Uint8(),
+		One: rando.BytesNil(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13666,8 +13665,8 @@ func TestFuzz853(t *testing.T) {
 	require.Equal(t, Fuzz853{}, actual)
 
 	actual = Fuzz853{
-		One: rando.Uint32s(),
-		Two: rando.Uint16(),
+		One: rando.BytesNil(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13682,8 +13681,8 @@ func TestFuzz854(t *testing.T) {
 	require.Equal(t, Fuzz854{}, actual)
 
 	actual = Fuzz854{
-		One: rando.Uint32s(),
-		Two: rando.Uint32(),
+		One: rando.BytesNil(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13698,8 +13697,8 @@ func TestFuzz855(t *testing.T) {
 	require.Equal(t, Fuzz855{}, actual)
 
 	actual = Fuzz855{
-		One: rando.Uint32s(),
-		Two: rando.Uint64(),
+		One: rando.BytesNil(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13714,8 +13713,8 @@ func TestFuzz856(t *testing.T) {
 	require.Equal(t, Fuzz856{}, actual)
 
 	actual = Fuzz856{
-		One: rando.Uint32s(),
-		Two: rando.Uints(),
+		One: rando.BytesNil(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13730,8 +13729,8 @@ func TestFuzz857(t *testing.T) {
 	require.Equal(t, Fuzz857{}, actual)
 
 	actual = Fuzz857{
-		One: rando.Uint32s(),
-		Two: rando.Uint16s(),
+		One: rando.BytesNil(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13746,8 +13745,8 @@ func TestFuzz858(t *testing.T) {
 	require.Equal(t, Fuzz858{}, actual)
 
 	actual = Fuzz858{
-		One: rando.Uint32s(),
-		Two: rando.Uint64s(),
+		One: rando.Complex64s(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13762,8 +13761,8 @@ func TestFuzz859(t *testing.T) {
 	require.Equal(t, Fuzz859{}, actual)
 
 	actual = Fuzz859{
-		One: rando.Uint32s(),
-		Two: rando.String(),
+		One: rando.Complex64s(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13778,8 +13777,8 @@ func TestFuzz860(t *testing.T) {
 	require.Equal(t, Fuzz860{}, actual)
 
 	actual = Fuzz860{
-		One: rando.Uint32s(),
-		Two: rando.Strings(),
+		One: rando.Complex64s(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13794,8 +13793,8 @@ func TestFuzz861(t *testing.T) {
 	require.Equal(t, Fuzz861{}, actual)
 
 	actual = Fuzz861{
-		One: rando.Uint32s(),
-		Two: rando.Time(),
+		One: rando.Complex64s(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13810,8 +13809,8 @@ func TestFuzz862(t *testing.T) {
 	require.Equal(t, Fuzz862{}, actual)
 
 	actual = Fuzz862{
-		One: rando.Uint32s(),
-		Two: rando.Duration(),
+		One: rando.Complex64s(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13826,8 +13825,8 @@ func TestFuzz863(t *testing.T) {
 	require.Equal(t, Fuzz863{}, actual)
 
 	actual = Fuzz863{
-		One: rando.Uint32s(),
-		Two: rando.Durations(),
+		One: rando.Complex64s(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13842,8 +13841,8 @@ func TestFuzz864(t *testing.T) {
 	require.Equal(t, Fuzz864{}, actual)
 
 	actual = Fuzz864{
-		One: rando.Uint64s(),
-		Two: rando.Bool(),
+		One: rando.Complex64s(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13858,8 +13857,8 @@ func TestFuzz865(t *testing.T) {
 	require.Equal(t, Fuzz865{}, actual)
 
 	actual = Fuzz865{
-		One: rando.Uint64s(),
-		Two: rando.Bools(),
+		One: rando.Complex64s(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13874,8 +13873,8 @@ func TestFuzz866(t *testing.T) {
 	require.Equal(t, Fuzz866{}, actual)
 
 	actual = Fuzz866{
-		One: rando.Uint64s(),
-		Two: rando.Byte(),
+		One: rando.Complex64s(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13890,8 +13889,8 @@ func TestFuzz867(t *testing.T) {
 	require.Equal(t, Fuzz867{}, actual)
 
 	actual = Fuzz867{
-		One: rando.Uint64s(),
-		Two: rando.Bytes(),
+		One: rando.Complex64s(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13906,8 +13905,8 @@ func TestFuzz868(t *testing.T) {
 	require.Equal(t, Fuzz868{}, actual)
 
 	actual = Fuzz868{
-		One: rando.Uint64s(),
-		Two: rando.Float32(),
+		One: rando.Complex64s(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13922,8 +13921,8 @@ func TestFuzz869(t *testing.T) {
 	require.Equal(t, Fuzz869{}, actual)
 
 	actual = Fuzz869{
-		One: rando.Uint64s(),
-		Two: rando.Float32s(),
+		One: rando.Complex64s(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13938,8 +13937,8 @@ func TestFuzz870(t *testing.T) {
 	require.Equal(t, Fuzz870{}, actual)
 
 	actual = Fuzz870{
-		One: rando.Uint64s(),
-		Two: rando.Float64(),
+		One: rando.Complex64s(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13954,8 +13953,8 @@ func TestFuzz871(t *testing.T) {
 	require.Equal(t, Fuzz871{}, actual)
 
 	actual = Fuzz871{
-		One: rando.Uint64s(),
-		Two: rando.Float64s(),
+		One: rando.Complex64s(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13970,8 +13969,8 @@ func TestFuzz872(t *testing.T) {
 	require.Equal(t, Fuzz872{}, actual)
 
 	actual = Fuzz872{
-		One: rando.Uint64s(),
-		Two: rando.Int(),
+		One: rando.Complex64s(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -13986,8 +13985,8 @@ func TestFuzz873(t *testing.T) {
 	require.Equal(t, Fuzz873{}, actual)
 
 	actual = Fuzz873{
-		One: rando.Uint64s(),
-		Two: rando.Int8(),
+		One: rando.Complex64s(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14002,8 +14001,8 @@ func TestFuzz874(t *testing.T) {
 	require.Equal(t, Fuzz874{}, actual)
 
 	actual = Fuzz874{
-		One: rando.Uint64s(),
-		Two: rando.Int16(),
+		One: rando.Complex64s(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14018,8 +14017,8 @@ func TestFuzz875(t *testing.T) {
 	require.Equal(t, Fuzz875{}, actual)
 
 	actual = Fuzz875{
-		One: rando.Uint64s(),
-		Two: rando.Int32(),
+		One: rando.Complex64s(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14034,8 +14033,8 @@ func TestFuzz876(t *testing.T) {
 	require.Equal(t, Fuzz876{}, actual)
 
 	actual = Fuzz876{
-		One: rando.Uint64s(),
-		Two: rando.Rune(),
+		One: rando.Complex64s(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14050,8 +14049,8 @@ func TestFuzz877(t *testing.T) {
 	require.Equal(t, Fuzz877{}, actual)
 
 	actual = Fuzz877{
-		One: rando.Uint64s(),
-		Two: rando.Int64(),
+		One: rando.Complex64s(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14066,8 +14065,8 @@ func TestFuzz878(t *testing.T) {
 	require.Equal(t, Fuzz878{}, actual)
 
 	actual = Fuzz878{
-		One: rando.Uint64s(),
-		Two: rando.Ints(),
+		One: rando.Complex64s(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14082,8 +14081,8 @@ func TestFuzz879(t *testing.T) {
 	require.Equal(t, Fuzz879{}, actual)
 
 	actual = Fuzz879{
-		One: rando.Uint64s(),
-		Two: rando.Int8s(),
+		One: rando.Complex64s(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14098,8 +14097,8 @@ func TestFuzz880(t *testing.T) {
 	require.Equal(t, Fuzz880{}, actual)
 
 	actual = Fuzz880{
-		One: rando.Uint64s(),
-		Two: rando.Int16s(),
+		One: rando.Complex64s(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14114,8 +14113,8 @@ func TestFuzz881(t *testing.T) {
 	require.Equal(t, Fuzz881{}, actual)
 
 	actual = Fuzz881{
-		One: rando.Uint64s(),
-		Two: rando.Int32s(),
+		One: rando.Complex64s(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14130,8 +14129,8 @@ func TestFuzz882(t *testing.T) {
 	require.Equal(t, Fuzz882{}, actual)
 
 	actual = Fuzz882{
-		One: rando.Uint64s(),
-		Two: rando.Int64s(),
+		One: rando.Complex64s(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14146,8 +14145,8 @@ func TestFuzz883(t *testing.T) {
 	require.Equal(t, Fuzz883{}, actual)
 
 	actual = Fuzz883{
-		One: rando.Uint64s(),
-		Two: rando.Uint(),
+		One: rando.Complex64s(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14162,8 +14161,8 @@ func TestFuzz884(t *testing.T) {
 	require.Equal(t, Fuzz884{}, actual)
 
 	actual = Fuzz884{
-		One: rando.Uint64s(),
-		Two: rando.Uint8(),
+		One: rando.Complex64s(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14178,8 +14177,8 @@ func TestFuzz885(t *testing.T) {
 	require.Equal(t, Fuzz885{}, actual)
 
 	actual = Fuzz885{
-		One: rando.Uint64s(),
-		Two: rando.Uint16(),
+		One: rando.Complex64s(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14194,8 +14193,8 @@ func TestFuzz886(t *testing.T) {
 	require.Equal(t, Fuzz886{}, actual)
 
 	actual = Fuzz886{
-		One: rando.Uint64s(),
-		Two: rando.Uint32(),
+		One: rando.Complex64s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14210,8 +14209,8 @@ func TestFuzz887(t *testing.T) {
 	require.Equal(t, Fuzz887{}, actual)
 
 	actual = Fuzz887{
-		One: rando.Uint64s(),
-		Two: rando.Uint64(),
+		One: rando.Complex64s(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14226,8 +14225,8 @@ func TestFuzz888(t *testing.T) {
 	require.Equal(t, Fuzz888{}, actual)
 
 	actual = Fuzz888{
-		One: rando.Uint64s(),
-		Two: rando.Uints(),
+		One: rando.Complex64s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14242,8 +14241,8 @@ func TestFuzz889(t *testing.T) {
 	require.Equal(t, Fuzz889{}, actual)
 
 	actual = Fuzz889{
-		One: rando.Uint64s(),
-		Two: rando.Uint16s(),
+		One: rando.Complex64s(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14258,8 +14257,8 @@ func TestFuzz890(t *testing.T) {
 	require.Equal(t, Fuzz890{}, actual)
 
 	actual = Fuzz890{
-		One: rando.Uint64s(),
-		Two: rando.Uint32s(),
+		One: rando.Complex64s(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14274,8 +14273,8 @@ func TestFuzz891(t *testing.T) {
 	require.Equal(t, Fuzz891{}, actual)
 
 	actual = Fuzz891{
-		One: rando.Uint64s(),
-		Two: rando.String(),
+		One: rando.Complex64s(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14290,8 +14289,8 @@ func TestFuzz892(t *testing.T) {
 	require.Equal(t, Fuzz892{}, actual)
 
 	actual = Fuzz892{
-		One: rando.Uint64s(),
-		Two: rando.Strings(),
+		One: rando.Complex64s(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14306,8 +14305,8 @@ func TestFuzz893(t *testing.T) {
 	require.Equal(t, Fuzz893{}, actual)
 
 	actual = Fuzz893{
-		One: rando.Uint64s(),
-		Two: rando.Time(),
+		One: rando.Complex64s(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14322,8 +14321,8 @@ func TestFuzz894(t *testing.T) {
 	require.Equal(t, Fuzz894{}, actual)
 
 	actual = Fuzz894{
-		One: rando.Uint64s(),
-		Two: rando.Duration(),
+		One: rando.Complex64s(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14338,8 +14337,8 @@ func TestFuzz895(t *testing.T) {
 	require.Equal(t, Fuzz895{}, actual)
 
 	actual = Fuzz895{
-		One: rando.Uint64s(),
-		Two: rando.Durations(),
+		One: rando.Complex64s(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14354,8 +14353,8 @@ func TestFuzz896(t *testing.T) {
 	require.Equal(t, Fuzz896{}, actual)
 
 	actual = Fuzz896{
-		One: rando.String(),
-		Two: rando.Bool(),
+		One: rando.Complex64s(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14370,8 +14369,8 @@ func TestFuzz897(t *testing.T) {
 	require.Equal(t, Fuzz897{}, actual)
 
 	actual = Fuzz897{
-		One: rando.String(),
-		Two: rando.Bools(),
+		One: rando.Complex128s(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14386,7 +14385,7 @@ func TestFuzz898(t *testing.T) {
 	require.Equal(t, Fuzz898{}, actual)
 
 	actual = Fuzz898{
-		One: rando.String(),
+		One: rando.Complex128s(),
 		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
@@ -14402,8 +14401,8 @@ func TestFuzz899(t *testing.T) {
 	require.Equal(t, Fuzz899{}, actual)
 
 	actual = Fuzz899{
-		One: rando.String(),
-		Two: rando.Bytes(),
+		One: rando.Complex128s(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14418,8 +14417,8 @@ func TestFuzz900(t *testing.T) {
 	require.Equal(t, Fuzz900{}, actual)
 
 	actual = Fuzz900{
-		One: rando.String(),
-		Two: rando.Float32(),
+		One: rando.Complex128s(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14434,8 +14433,8 @@ func TestFuzz901(t *testing.T) {
 	require.Equal(t, Fuzz901{}, actual)
 
 	actual = Fuzz901{
-		One: rando.String(),
-		Two: rando.Float32s(),
+		One: rando.Complex128s(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14450,7 +14449,7 @@ func TestFuzz902(t *testing.T) {
 	require.Equal(t, Fuzz902{}, actual)
 
 	actual = Fuzz902{
-		One: rando.String(),
+		One: rando.Complex128s(),
 		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
@@ -14466,8 +14465,8 @@ func TestFuzz903(t *testing.T) {
 	require.Equal(t, Fuzz903{}, actual)
 
 	actual = Fuzz903{
-		One: rando.String(),
-		Two: rando.Float64s(),
+		One: rando.Complex128s(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14482,8 +14481,8 @@ func TestFuzz904(t *testing.T) {
 	require.Equal(t, Fuzz904{}, actual)
 
 	actual = Fuzz904{
-		One: rando.String(),
-		Two: rando.Int(),
+		One: rando.Complex128s(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14498,8 +14497,8 @@ func TestFuzz905(t *testing.T) {
 	require.Equal(t, Fuzz905{}, actual)
 
 	actual = Fuzz905{
-		One: rando.String(),
-		Two: rando.Int8(),
+		One: rando.Complex128s(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14514,8 +14513,8 @@ func TestFuzz906(t *testing.T) {
 	require.Equal(t, Fuzz906{}, actual)
 
 	actual = Fuzz906{
-		One: rando.String(),
-		Two: rando.Int16(),
+		One: rando.Complex128s(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14530,8 +14529,8 @@ func TestFuzz907(t *testing.T) {
 	require.Equal(t, Fuzz907{}, actual)
 
 	actual = Fuzz907{
-		One: rando.String(),
-		Two: rando.Int32(),
+		One: rando.Complex128s(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14546,7 +14545,7 @@ func TestFuzz908(t *testing.T) {
 	require.Equal(t, Fuzz908{}, actual)
 
 	actual = Fuzz908{
-		One: rando.String(),
+		One: rando.Complex128s(),
 		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
@@ -14562,8 +14561,8 @@ func TestFuzz909(t *testing.T) {
 	require.Equal(t, Fuzz909{}, actual)
 
 	actual = Fuzz909{
-		One: rando.String(),
-		Two: rando.Int64(),
+		One: rando.Complex128s(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14578,8 +14577,8 @@ func TestFuzz910(t *testing.T) {
 	require.Equal(t, Fuzz910{}, actual)
 
 	actual = Fuzz910{
-		One: rando.String(),
-		Two: rando.Ints(),
+		One: rando.Complex128s(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14594,8 +14593,8 @@ func TestFuzz911(t *testing.T) {
 	require.Equal(t, Fuzz911{}, actual)
 
 	actual = Fuzz911{
-		One: rando.String(),
-		Two: rando.Int8s(),
+		One: rando.Complex128s(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14610,8 +14609,8 @@ func TestFuzz912(t *testing.T) {
 	require.Equal(t, Fuzz912{}, actual)
 
 	actual = Fuzz912{
-		One: rando.String(),
-		Two: rando.Int16s(),
+		One: rando.Complex128s(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14626,8 +14625,8 @@ func TestFuzz913(t *testing.T) {
 	require.Equal(t, Fuzz913{}, actual)
 
 	actual = Fuzz913{
-		One: rando.String(),
-		Two: rando.Int32s(),
+		One: rando.Complex128s(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14642,8 +14641,8 @@ func TestFuzz914(t *testing.T) {
 	require.Equal(t, Fuzz914{}, actual)
 
 	actual = Fuzz914{
-		One: rando.String(),
-		Two: rando.Int64s(),
+		One: rando.Complex128s(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14658,8 +14657,8 @@ func TestFuzz915(t *testing.T) {
 	require.Equal(t, Fuzz915{}, actual)
 
 	actual = Fuzz915{
-		One: rando.String(),
-		Two: rando.Uint(),
+		One: rando.Complex128s(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14674,8 +14673,8 @@ func TestFuzz916(t *testing.T) {
 	require.Equal(t, Fuzz916{}, actual)
 
 	actual = Fuzz916{
-		One: rando.String(),
-		Two: rando.Uint8(),
+		One: rando.Complex128s(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14690,8 +14689,8 @@ func TestFuzz917(t *testing.T) {
 	require.Equal(t, Fuzz917{}, actual)
 
 	actual = Fuzz917{
-		One: rando.String(),
-		Two: rando.Uint16(),
+		One: rando.Complex128s(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14706,8 +14705,8 @@ func TestFuzz918(t *testing.T) {
 	require.Equal(t, Fuzz918{}, actual)
 
 	actual = Fuzz918{
-		One: rando.String(),
-		Two: rando.Uint32(),
+		One: rando.Complex128s(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14722,8 +14721,8 @@ func TestFuzz919(t *testing.T) {
 	require.Equal(t, Fuzz919{}, actual)
 
 	actual = Fuzz919{
-		One: rando.String(),
-		Two: rando.Uint64(),
+		One: rando.Complex128s(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14738,8 +14737,8 @@ func TestFuzz920(t *testing.T) {
 	require.Equal(t, Fuzz920{}, actual)
 
 	actual = Fuzz920{
-		One: rando.String(),
-		Two: rando.Uints(),
+		One: rando.Complex128s(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14754,8 +14753,8 @@ func TestFuzz921(t *testing.T) {
 	require.Equal(t, Fuzz921{}, actual)
 
 	actual = Fuzz921{
-		One: rando.String(),
-		Two: rando.Uint16s(),
+		One: rando.Complex128s(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14770,8 +14769,8 @@ func TestFuzz922(t *testing.T) {
 	require.Equal(t, Fuzz922{}, actual)
 
 	actual = Fuzz922{
-		One: rando.String(),
-		Two: rando.Uint32s(),
+		One: rando.Complex128s(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14786,8 +14785,8 @@ func TestFuzz923(t *testing.T) {
 	require.Equal(t, Fuzz923{}, actual)
 
 	actual = Fuzz923{
-		One: rando.String(),
-		Two: rando.Uint64s(),
+		One: rando.Complex128s(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14802,8 +14801,8 @@ func TestFuzz924(t *testing.T) {
 	require.Equal(t, Fuzz924{}, actual)
 
 	actual = Fuzz924{
-		One: rando.String(),
-		Two: rando.Strings(),
+		One: rando.Complex128s(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14818,8 +14817,8 @@ func TestFuzz925(t *testing.T) {
 	require.Equal(t, Fuzz925{}, actual)
 
 	actual = Fuzz925{
-		One: rando.String(),
-		Two: rando.Time(),
+		One: rando.Complex128s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14834,8 +14833,8 @@ func TestFuzz926(t *testing.T) {
 	require.Equal(t, Fuzz926{}, actual)
 
 	actual = Fuzz926{
-		One: rando.String(),
-		Two: rando.Duration(),
+		One: rando.Complex128s(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14850,8 +14849,8 @@ func TestFuzz927(t *testing.T) {
 	require.Equal(t, Fuzz927{}, actual)
 
 	actual = Fuzz927{
-		One: rando.String(),
-		Two: rando.Durations(),
+		One: rando.Complex128s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14866,8 +14865,8 @@ func TestFuzz928(t *testing.T) {
 	require.Equal(t, Fuzz928{}, actual)
 
 	actual = Fuzz928{
-		One: rando.Strings(),
-		Two: rando.Bool(),
+		One: rando.Complex128s(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14882,8 +14881,8 @@ func TestFuzz929(t *testing.T) {
 	require.Equal(t, Fuzz929{}, actual)
 
 	actual = Fuzz929{
-		One: rando.Strings(),
-		Two: rando.Bools(),
+		One: rando.Complex128s(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14898,8 +14897,8 @@ func TestFuzz930(t *testing.T) {
 	require.Equal(t, Fuzz930{}, actual)
 
 	actual = Fuzz930{
-		One: rando.Strings(),
-		Two: rando.Byte(),
+		One: rando.Complex128s(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14914,8 +14913,8 @@ func TestFuzz931(t *testing.T) {
 	require.Equal(t, Fuzz931{}, actual)
 
 	actual = Fuzz931{
-		One: rando.Strings(),
-		Two: rando.Bytes(),
+		One: rando.Complex128s(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14930,8 +14929,8 @@ func TestFuzz932(t *testing.T) {
 	require.Equal(t, Fuzz932{}, actual)
 
 	actual = Fuzz932{
-		One: rando.Strings(),
-		Two: rando.Float32(),
+		One: rando.Complex128s(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14946,8 +14945,8 @@ func TestFuzz933(t *testing.T) {
 	require.Equal(t, Fuzz933{}, actual)
 
 	actual = Fuzz933{
-		One: rando.Strings(),
-		Two: rando.Float32s(),
+		One: rando.Complex128s(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14962,8 +14961,8 @@ func TestFuzz934(t *testing.T) {
 	require.Equal(t, Fuzz934{}, actual)
 
 	actual = Fuzz934{
-		One: rando.Strings(),
-		Two: rando.Float64(),
+		One: rando.Complex128s(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14978,8 +14977,8 @@ func TestFuzz935(t *testing.T) {
 	require.Equal(t, Fuzz935{}, actual)
 
 	actual = Fuzz935{
-		One: rando.Strings(),
-		Two: rando.Float64s(),
+		One: rando.Complex128s(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -14994,8 +14993,8 @@ func TestFuzz936(t *testing.T) {
 	require.Equal(t, Fuzz936{}, actual)
 
 	actual = Fuzz936{
-		One: rando.Strings(),
-		Two: rando.Int(),
+		One: rando.Float32s(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15010,8 +15009,8 @@ func TestFuzz937(t *testing.T) {
 	require.Equal(t, Fuzz937{}, actual)
 
 	actual = Fuzz937{
-		One: rando.Strings(),
-		Two: rando.Int8(),
+		One: rando.Float32s(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15026,8 +15025,8 @@ func TestFuzz938(t *testing.T) {
 	require.Equal(t, Fuzz938{}, actual)
 
 	actual = Fuzz938{
-		One: rando.Strings(),
-		Two: rando.Int16(),
+		One: rando.Float32s(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15042,8 +15041,8 @@ func TestFuzz939(t *testing.T) {
 	require.Equal(t, Fuzz939{}, actual)
 
 	actual = Fuzz939{
-		One: rando.Strings(),
-		Two: rando.Int32(),
+		One: rando.Float32s(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15058,8 +15057,8 @@ func TestFuzz940(t *testing.T) {
 	require.Equal(t, Fuzz940{}, actual)
 
 	actual = Fuzz940{
-		One: rando.Strings(),
-		Two: rando.Rune(),
+		One: rando.Float32s(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15074,8 +15073,8 @@ func TestFuzz941(t *testing.T) {
 	require.Equal(t, Fuzz941{}, actual)
 
 	actual = Fuzz941{
-		One: rando.Strings(),
-		Two: rando.Int64(),
+		One: rando.Float32s(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15090,8 +15089,8 @@ func TestFuzz942(t *testing.T) {
 	require.Equal(t, Fuzz942{}, actual)
 
 	actual = Fuzz942{
-		One: rando.Strings(),
-		Two: rando.Ints(),
+		One: rando.Float32s(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15106,8 +15105,8 @@ func TestFuzz943(t *testing.T) {
 	require.Equal(t, Fuzz943{}, actual)
 
 	actual = Fuzz943{
-		One: rando.Strings(),
-		Two: rando.Int8s(),
+		One: rando.Float32s(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15122,8 +15121,8 @@ func TestFuzz944(t *testing.T) {
 	require.Equal(t, Fuzz944{}, actual)
 
 	actual = Fuzz944{
-		One: rando.Strings(),
-		Two: rando.Int16s(),
+		One: rando.Float32s(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15138,8 +15137,8 @@ func TestFuzz945(t *testing.T) {
 	require.Equal(t, Fuzz945{}, actual)
 
 	actual = Fuzz945{
-		One: rando.Strings(),
-		Two: rando.Int32s(),
+		One: rando.Float32s(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15154,8 +15153,8 @@ func TestFuzz946(t *testing.T) {
 	require.Equal(t, Fuzz946{}, actual)
 
 	actual = Fuzz946{
-		One: rando.Strings(),
-		Two: rando.Int64s(),
+		One: rando.Float32s(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15170,8 +15169,8 @@ func TestFuzz947(t *testing.T) {
 	require.Equal(t, Fuzz947{}, actual)
 
 	actual = Fuzz947{
-		One: rando.Strings(),
-		Two: rando.Uint(),
+		One: rando.Float32s(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15186,8 +15185,8 @@ func TestFuzz948(t *testing.T) {
 	require.Equal(t, Fuzz948{}, actual)
 
 	actual = Fuzz948{
-		One: rando.Strings(),
-		Two: rando.Uint8(),
+		One: rando.Float32s(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15202,8 +15201,8 @@ func TestFuzz949(t *testing.T) {
 	require.Equal(t, Fuzz949{}, actual)
 
 	actual = Fuzz949{
-		One: rando.Strings(),
-		Two: rando.Uint16(),
+		One: rando.Float32s(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15218,8 +15217,8 @@ func TestFuzz950(t *testing.T) {
 	require.Equal(t, Fuzz950{}, actual)
 
 	actual = Fuzz950{
-		One: rando.Strings(),
-		Two: rando.Uint32(),
+		One: rando.Float32s(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15234,8 +15233,8 @@ func TestFuzz951(t *testing.T) {
 	require.Equal(t, Fuzz951{}, actual)
 
 	actual = Fuzz951{
-		One: rando.Strings(),
-		Two: rando.Uint64(),
+		One: rando.Float32s(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15250,8 +15249,8 @@ func TestFuzz952(t *testing.T) {
 	require.Equal(t, Fuzz952{}, actual)
 
 	actual = Fuzz952{
-		One: rando.Strings(),
-		Two: rando.Uints(),
+		One: rando.Float32s(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15266,8 +15265,8 @@ func TestFuzz953(t *testing.T) {
 	require.Equal(t, Fuzz953{}, actual)
 
 	actual = Fuzz953{
-		One: rando.Strings(),
-		Two: rando.Uint16s(),
+		One: rando.Float32s(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15282,8 +15281,8 @@ func TestFuzz954(t *testing.T) {
 	require.Equal(t, Fuzz954{}, actual)
 
 	actual = Fuzz954{
-		One: rando.Strings(),
-		Two: rando.Uint32s(),
+		One: rando.Float32s(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15298,8 +15297,8 @@ func TestFuzz955(t *testing.T) {
 	require.Equal(t, Fuzz955{}, actual)
 
 	actual = Fuzz955{
-		One: rando.Strings(),
-		Two: rando.Uint64s(),
+		One: rando.Float32s(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15314,8 +15313,8 @@ func TestFuzz956(t *testing.T) {
 	require.Equal(t, Fuzz956{}, actual)
 
 	actual = Fuzz956{
-		One: rando.Strings(),
-		Two: rando.String(),
+		One: rando.Float32s(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15330,8 +15329,8 @@ func TestFuzz957(t *testing.T) {
 	require.Equal(t, Fuzz957{}, actual)
 
 	actual = Fuzz957{
-		One: rando.Strings(),
-		Two: rando.Time(),
+		One: rando.Float32s(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15346,8 +15345,8 @@ func TestFuzz958(t *testing.T) {
 	require.Equal(t, Fuzz958{}, actual)
 
 	actual = Fuzz958{
-		One: rando.Strings(),
-		Two: rando.Duration(),
+		One: rando.Float32s(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15362,8 +15361,8 @@ func TestFuzz959(t *testing.T) {
 	require.Equal(t, Fuzz959{}, actual)
 
 	actual = Fuzz959{
-		One: rando.Strings(),
-		Two: rando.Durations(),
+		One: rando.Float32s(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15378,8 +15377,8 @@ func TestFuzz960(t *testing.T) {
 	require.Equal(t, Fuzz960{}, actual)
 
 	actual = Fuzz960{
-		One: rando.Time(),
-		Two: rando.Bool(),
+		One: rando.Float32s(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15394,8 +15393,8 @@ func TestFuzz961(t *testing.T) {
 	require.Equal(t, Fuzz961{}, actual)
 
 	actual = Fuzz961{
-		One: rando.Time(),
-		Two: rando.Bools(),
+		One: rando.Float32s(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15410,8 +15409,8 @@ func TestFuzz962(t *testing.T) {
 	require.Equal(t, Fuzz962{}, actual)
 
 	actual = Fuzz962{
-		One: rando.Time(),
-		Two: rando.Byte(),
+		One: rando.Float32s(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15426,8 +15425,8 @@ func TestFuzz963(t *testing.T) {
 	require.Equal(t, Fuzz963{}, actual)
 
 	actual = Fuzz963{
-		One: rando.Time(),
-		Two: rando.Bytes(),
+		One: rando.Float32s(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15442,8 +15441,8 @@ func TestFuzz964(t *testing.T) {
 	require.Equal(t, Fuzz964{}, actual)
 
 	actual = Fuzz964{
-		One: rando.Time(),
-		Two: rando.Float32(),
+		One: rando.Float32s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15458,8 +15457,8 @@ func TestFuzz965(t *testing.T) {
 	require.Equal(t, Fuzz965{}, actual)
 
 	actual = Fuzz965{
-		One: rando.Time(),
-		Two: rando.Float32s(),
+		One: rando.Float32s(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15474,8 +15473,8 @@ func TestFuzz966(t *testing.T) {
 	require.Equal(t, Fuzz966{}, actual)
 
 	actual = Fuzz966{
-		One: rando.Time(),
-		Two: rando.Float64(),
+		One: rando.Float32s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15490,8 +15489,8 @@ func TestFuzz967(t *testing.T) {
 	require.Equal(t, Fuzz967{}, actual)
 
 	actual = Fuzz967{
-		One: rando.Time(),
-		Two: rando.Float64s(),
+		One: rando.Float32s(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15506,8 +15505,8 @@ func TestFuzz968(t *testing.T) {
 	require.Equal(t, Fuzz968{}, actual)
 
 	actual = Fuzz968{
-		One: rando.Time(),
-		Two: rando.Int(),
+		One: rando.Float32s(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15522,8 +15521,8 @@ func TestFuzz969(t *testing.T) {
 	require.Equal(t, Fuzz969{}, actual)
 
 	actual = Fuzz969{
-		One: rando.Time(),
-		Two: rando.Int8(),
+		One: rando.Float32s(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15538,8 +15537,8 @@ func TestFuzz970(t *testing.T) {
 	require.Equal(t, Fuzz970{}, actual)
 
 	actual = Fuzz970{
-		One: rando.Time(),
-		Two: rando.Int16(),
+		One: rando.Float32s(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15554,8 +15553,8 @@ func TestFuzz971(t *testing.T) {
 	require.Equal(t, Fuzz971{}, actual)
 
 	actual = Fuzz971{
-		One: rando.Time(),
-		Two: rando.Int32(),
+		One: rando.Float32s(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15570,8 +15569,8 @@ func TestFuzz972(t *testing.T) {
 	require.Equal(t, Fuzz972{}, actual)
 
 	actual = Fuzz972{
-		One: rando.Time(),
-		Two: rando.Rune(),
+		One: rando.Float32s(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15586,8 +15585,8 @@ func TestFuzz973(t *testing.T) {
 	require.Equal(t, Fuzz973{}, actual)
 
 	actual = Fuzz973{
-		One: rando.Time(),
-		Two: rando.Int64(),
+		One: rando.Float32s(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15602,8 +15601,8 @@ func TestFuzz974(t *testing.T) {
 	require.Equal(t, Fuzz974{}, actual)
 
 	actual = Fuzz974{
-		One: rando.Time(),
-		Two: rando.Ints(),
+		One: rando.Float32s(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15618,8 +15617,8 @@ func TestFuzz975(t *testing.T) {
 	require.Equal(t, Fuzz975{}, actual)
 
 	actual = Fuzz975{
-		One: rando.Time(),
-		Two: rando.Int8s(),
+		One: rando.Float64s(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15634,8 +15633,8 @@ func TestFuzz976(t *testing.T) {
 	require.Equal(t, Fuzz976{}, actual)
 
 	actual = Fuzz976{
-		One: rando.Time(),
-		Two: rando.Int16s(),
+		One: rando.Float64s(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15650,8 +15649,8 @@ func TestFuzz977(t *testing.T) {
 	require.Equal(t, Fuzz977{}, actual)
 
 	actual = Fuzz977{
-		One: rando.Time(),
-		Two: rando.Int32s(),
+		One: rando.Float64s(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15666,8 +15665,8 @@ func TestFuzz978(t *testing.T) {
 	require.Equal(t, Fuzz978{}, actual)
 
 	actual = Fuzz978{
-		One: rando.Time(),
-		Two: rando.Int64s(),
+		One: rando.Float64s(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15682,8 +15681,8 @@ func TestFuzz979(t *testing.T) {
 	require.Equal(t, Fuzz979{}, actual)
 
 	actual = Fuzz979{
-		One: rando.Time(),
-		Two: rando.Uint(),
+		One: rando.Float64s(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15698,8 +15697,8 @@ func TestFuzz980(t *testing.T) {
 	require.Equal(t, Fuzz980{}, actual)
 
 	actual = Fuzz980{
-		One: rando.Time(),
-		Two: rando.Uint8(),
+		One: rando.Float64s(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15714,8 +15713,8 @@ func TestFuzz981(t *testing.T) {
 	require.Equal(t, Fuzz981{}, actual)
 
 	actual = Fuzz981{
-		One: rando.Time(),
-		Two: rando.Uint16(),
+		One: rando.Float64s(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15730,8 +15729,8 @@ func TestFuzz982(t *testing.T) {
 	require.Equal(t, Fuzz982{}, actual)
 
 	actual = Fuzz982{
-		One: rando.Time(),
-		Two: rando.Uint32(),
+		One: rando.Float64s(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15746,8 +15745,8 @@ func TestFuzz983(t *testing.T) {
 	require.Equal(t, Fuzz983{}, actual)
 
 	actual = Fuzz983{
-		One: rando.Time(),
-		Two: rando.Uint64(),
+		One: rando.Float64s(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15762,8 +15761,8 @@ func TestFuzz984(t *testing.T) {
 	require.Equal(t, Fuzz984{}, actual)
 
 	actual = Fuzz984{
-		One: rando.Time(),
-		Two: rando.Uints(),
+		One: rando.Float64s(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15778,8 +15777,8 @@ func TestFuzz985(t *testing.T) {
 	require.Equal(t, Fuzz985{}, actual)
 
 	actual = Fuzz985{
-		One: rando.Time(),
-		Two: rando.Uint16s(),
+		One: rando.Float64s(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15794,8 +15793,8 @@ func TestFuzz986(t *testing.T) {
 	require.Equal(t, Fuzz986{}, actual)
 
 	actual = Fuzz986{
-		One: rando.Time(),
-		Two: rando.Uint32s(),
+		One: rando.Float64s(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15810,8 +15809,8 @@ func TestFuzz987(t *testing.T) {
 	require.Equal(t, Fuzz987{}, actual)
 
 	actual = Fuzz987{
-		One: rando.Time(),
-		Two: rando.Uint64s(),
+		One: rando.Float64s(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15826,8 +15825,8 @@ func TestFuzz988(t *testing.T) {
 	require.Equal(t, Fuzz988{}, actual)
 
 	actual = Fuzz988{
-		One: rando.Time(),
-		Two: rando.String(),
+		One: rando.Float64s(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15842,8 +15841,8 @@ func TestFuzz989(t *testing.T) {
 	require.Equal(t, Fuzz989{}, actual)
 
 	actual = Fuzz989{
-		One: rando.Time(),
-		Two: rando.Strings(),
+		One: rando.Float64s(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15858,8 +15857,8 @@ func TestFuzz990(t *testing.T) {
 	require.Equal(t, Fuzz990{}, actual)
 
 	actual = Fuzz990{
-		One: rando.Time(),
-		Two: rando.Duration(),
+		One: rando.Float64s(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15874,8 +15873,8 @@ func TestFuzz991(t *testing.T) {
 	require.Equal(t, Fuzz991{}, actual)
 
 	actual = Fuzz991{
-		One: rando.Time(),
-		Two: rando.Durations(),
+		One: rando.Float64s(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15890,8 +15889,8 @@ func TestFuzz992(t *testing.T) {
 	require.Equal(t, Fuzz992{}, actual)
 
 	actual = Fuzz992{
-		One: rando.Duration(),
-		Two: rando.Bool(),
+		One: rando.Float64s(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15906,8 +15905,8 @@ func TestFuzz993(t *testing.T) {
 	require.Equal(t, Fuzz993{}, actual)
 
 	actual = Fuzz993{
-		One: rando.Duration(),
-		Two: rando.Bools(),
+		One: rando.Float64s(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15922,8 +15921,8 @@ func TestFuzz994(t *testing.T) {
 	require.Equal(t, Fuzz994{}, actual)
 
 	actual = Fuzz994{
-		One: rando.Duration(),
-		Two: rando.Byte(),
+		One: rando.Float64s(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15938,8 +15937,8 @@ func TestFuzz995(t *testing.T) {
 	require.Equal(t, Fuzz995{}, actual)
 
 	actual = Fuzz995{
-		One: rando.Duration(),
-		Two: rando.Bytes(),
+		One: rando.Float64s(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15954,8 +15953,8 @@ func TestFuzz996(t *testing.T) {
 	require.Equal(t, Fuzz996{}, actual)
 
 	actual = Fuzz996{
-		One: rando.Duration(),
-		Two: rando.Float32(),
+		One: rando.Float64s(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15970,8 +15969,8 @@ func TestFuzz997(t *testing.T) {
 	require.Equal(t, Fuzz997{}, actual)
 
 	actual = Fuzz997{
-		One: rando.Duration(),
-		Two: rando.Float32s(),
+		One: rando.Float64s(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -15986,8 +15985,8 @@ func TestFuzz998(t *testing.T) {
 	require.Equal(t, Fuzz998{}, actual)
 
 	actual = Fuzz998{
-		One: rando.Duration(),
-		Two: rando.Float64(),
+		One: rando.Float64s(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16002,8 +16001,8 @@ func TestFuzz999(t *testing.T) {
 	require.Equal(t, Fuzz999{}, actual)
 
 	actual = Fuzz999{
-		One: rando.Duration(),
-		Two: rando.Float64s(),
+		One: rando.Float64s(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16018,8 +16017,8 @@ func TestFuzz1000(t *testing.T) {
 	require.Equal(t, Fuzz1000{}, actual)
 
 	actual = Fuzz1000{
-		One: rando.Duration(),
-		Two: rando.Int(),
+		One: rando.Float64s(),
+		Two: rando.Ints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16034,8 +16033,8 @@ func TestFuzz1001(t *testing.T) {
 	require.Equal(t, Fuzz1001{}, actual)
 
 	actual = Fuzz1001{
-		One: rando.Duration(),
-		Two: rando.Int8(),
+		One: rando.Float64s(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16050,8 +16049,8 @@ func TestFuzz1002(t *testing.T) {
 	require.Equal(t, Fuzz1002{}, actual)
 
 	actual = Fuzz1002{
-		One: rando.Duration(),
-		Two: rando.Int16(),
+		One: rando.Float64s(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16066,8 +16065,8 @@ func TestFuzz1003(t *testing.T) {
 	require.Equal(t, Fuzz1003{}, actual)
 
 	actual = Fuzz1003{
-		One: rando.Duration(),
-		Two: rando.Int32(),
+		One: rando.Float64s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16082,8 +16081,8 @@ func TestFuzz1004(t *testing.T) {
 	require.Equal(t, Fuzz1004{}, actual)
 
 	actual = Fuzz1004{
-		One: rando.Duration(),
-		Two: rando.Rune(),
+		One: rando.Float64s(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16098,8 +16097,8 @@ func TestFuzz1005(t *testing.T) {
 	require.Equal(t, Fuzz1005{}, actual)
 
 	actual = Fuzz1005{
-		One: rando.Duration(),
-		Two: rando.Int64(),
+		One: rando.Float64s(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16114,8 +16113,8 @@ func TestFuzz1006(t *testing.T) {
 	require.Equal(t, Fuzz1006{}, actual)
 
 	actual = Fuzz1006{
-		One: rando.Duration(),
-		Two: rando.Ints(),
+		One: rando.Float64s(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16130,8 +16129,8 @@ func TestFuzz1007(t *testing.T) {
 	require.Equal(t, Fuzz1007{}, actual)
 
 	actual = Fuzz1007{
-		One: rando.Duration(),
-		Two: rando.Int8s(),
+		One: rando.Float64s(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16146,8 +16145,8 @@ func TestFuzz1008(t *testing.T) {
 	require.Equal(t, Fuzz1008{}, actual)
 
 	actual = Fuzz1008{
-		One: rando.Duration(),
-		Two: rando.Int16s(),
+		One: rando.Float64s(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16162,8 +16161,8 @@ func TestFuzz1009(t *testing.T) {
 	require.Equal(t, Fuzz1009{}, actual)
 
 	actual = Fuzz1009{
-		One: rando.Duration(),
-		Two: rando.Int32s(),
+		One: rando.Float64s(),
+		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16178,8 +16177,8 @@ func TestFuzz1010(t *testing.T) {
 	require.Equal(t, Fuzz1010{}, actual)
 
 	actual = Fuzz1010{
-		One: rando.Duration(),
-		Two: rando.Int64s(),
+		One: rando.Float64s(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16194,8 +16193,8 @@ func TestFuzz1011(t *testing.T) {
 	require.Equal(t, Fuzz1011{}, actual)
 
 	actual = Fuzz1011{
-		One: rando.Duration(),
-		Two: rando.Uint(),
+		One: rando.Float64s(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16210,8 +16209,8 @@ func TestFuzz1012(t *testing.T) {
 	require.Equal(t, Fuzz1012{}, actual)
 
 	actual = Fuzz1012{
-		One: rando.Duration(),
-		Two: rando.Uint8(),
+		One: rando.Float64s(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16226,8 +16225,8 @@ func TestFuzz1013(t *testing.T) {
 	require.Equal(t, Fuzz1013{}, actual)
 
 	actual = Fuzz1013{
-		One: rando.Duration(),
-		Two: rando.Uint16(),
+		One: rando.Float64s(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16242,8 +16241,8 @@ func TestFuzz1014(t *testing.T) {
 	require.Equal(t, Fuzz1014{}, actual)
 
 	actual = Fuzz1014{
-		One: rando.Duration(),
-		Two: rando.Uint32(),
+		One: rando.Ints(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16258,8 +16257,8 @@ func TestFuzz1015(t *testing.T) {
 	require.Equal(t, Fuzz1015{}, actual)
 
 	actual = Fuzz1015{
-		One: rando.Duration(),
-		Two: rando.Uint64(),
+		One: rando.Ints(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16274,8 +16273,8 @@ func TestFuzz1016(t *testing.T) {
 	require.Equal(t, Fuzz1016{}, actual)
 
 	actual = Fuzz1016{
-		One: rando.Duration(),
-		Two: rando.Uints(),
+		One: rando.Ints(),
+		Two: rando.Complex64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16290,8 +16289,8 @@ func TestFuzz1017(t *testing.T) {
 	require.Equal(t, Fuzz1017{}, actual)
 
 	actual = Fuzz1017{
-		One: rando.Duration(),
-		Two: rando.Uint16s(),
+		One: rando.Ints(),
+		Two: rando.Complex128(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16306,8 +16305,8 @@ func TestFuzz1018(t *testing.T) {
 	require.Equal(t, Fuzz1018{}, actual)
 
 	actual = Fuzz1018{
-		One: rando.Duration(),
-		Two: rando.Uint32s(),
+		One: rando.Ints(),
+		Two: rando.Float32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16322,8 +16321,8 @@ func TestFuzz1019(t *testing.T) {
 	require.Equal(t, Fuzz1019{}, actual)
 
 	actual = Fuzz1019{
-		One: rando.Duration(),
-		Two: rando.Uint64s(),
+		One: rando.Ints(),
+		Two: rando.Float64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16338,8 +16337,8 @@ func TestFuzz1020(t *testing.T) {
 	require.Equal(t, Fuzz1020{}, actual)
 
 	actual = Fuzz1020{
-		One: rando.Duration(),
-		Two: rando.String(),
+		One: rando.Ints(),
+		Two: rando.Int(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16354,8 +16353,8 @@ func TestFuzz1021(t *testing.T) {
 	require.Equal(t, Fuzz1021{}, actual)
 
 	actual = Fuzz1021{
-		One: rando.Duration(),
-		Two: rando.Strings(),
+		One: rando.Ints(),
+		Two: rando.Int8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16370,8 +16369,8 @@ func TestFuzz1022(t *testing.T) {
 	require.Equal(t, Fuzz1022{}, actual)
 
 	actual = Fuzz1022{
-		One: rando.Duration(),
-		Two: rando.Time(),
+		One: rando.Ints(),
+		Two: rando.Int16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16386,8 +16385,8 @@ func TestFuzz1023(t *testing.T) {
 	require.Equal(t, Fuzz1023{}, actual)
 
 	actual = Fuzz1023{
-		One: rando.Duration(),
-		Two: rando.Durations(),
+		One: rando.Ints(),
+		Two: rando.Int32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16402,8 +16401,8 @@ func TestFuzz1024(t *testing.T) {
 	require.Equal(t, Fuzz1024{}, actual)
 
 	actual = Fuzz1024{
-		One: rando.Durations(),
-		Two: rando.Bool(),
+		One: rando.Ints(),
+		Two: rando.Int64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16418,8 +16417,8 @@ func TestFuzz1025(t *testing.T) {
 	require.Equal(t, Fuzz1025{}, actual)
 
 	actual = Fuzz1025{
-		One: rando.Durations(),
-		Two: rando.Bools(),
+		One: rando.Ints(),
+		Two: rando.Rune(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16434,8 +16433,8 @@ func TestFuzz1026(t *testing.T) {
 	require.Equal(t, Fuzz1026{}, actual)
 
 	actual = Fuzz1026{
-		One: rando.Durations(),
-		Two: rando.Byte(),
+		One: rando.Ints(),
+		Two: rando.String(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16450,8 +16449,8 @@ func TestFuzz1027(t *testing.T) {
 	require.Equal(t, Fuzz1027{}, actual)
 
 	actual = Fuzz1027{
-		One: rando.Durations(),
-		Two: rando.Bytes(),
+		One: rando.Ints(),
+		Two: rando.Duration(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16466,8 +16465,8 @@ func TestFuzz1028(t *testing.T) {
 	require.Equal(t, Fuzz1028{}, actual)
 
 	actual = Fuzz1028{
-		One: rando.Durations(),
-		Two: rando.Float32(),
+		One: rando.Ints(),
+		Two: rando.Time(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16482,8 +16481,8 @@ func TestFuzz1029(t *testing.T) {
 	require.Equal(t, Fuzz1029{}, actual)
 
 	actual = Fuzz1029{
-		One: rando.Durations(),
-		Two: rando.Float32s(),
+		One: rando.Ints(),
+		Two: rando.Uint(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16498,8 +16497,8 @@ func TestFuzz1030(t *testing.T) {
 	require.Equal(t, Fuzz1030{}, actual)
 
 	actual = Fuzz1030{
-		One: rando.Durations(),
-		Two: rando.Float64(),
+		One: rando.Ints(),
+		Two: rando.Uint8(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16514,8 +16513,8 @@ func TestFuzz1031(t *testing.T) {
 	require.Equal(t, Fuzz1031{}, actual)
 
 	actual = Fuzz1031{
-		One: rando.Durations(),
-		Two: rando.Float64s(),
+		One: rando.Ints(),
+		Two: rando.Uint16(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16530,8 +16529,8 @@ func TestFuzz1032(t *testing.T) {
 	require.Equal(t, Fuzz1032{}, actual)
 
 	actual = Fuzz1032{
-		One: rando.Durations(),
-		Two: rando.Int(),
+		One: rando.Ints(),
+		Two: rando.Uint32(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16546,8 +16545,8 @@ func TestFuzz1033(t *testing.T) {
 	require.Equal(t, Fuzz1033{}, actual)
 
 	actual = Fuzz1033{
-		One: rando.Durations(),
-		Two: rando.Int8(),
+		One: rando.Ints(),
+		Two: rando.Uint64(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16562,8 +16561,8 @@ func TestFuzz1034(t *testing.T) {
 	require.Equal(t, Fuzz1034{}, actual)
 
 	actual = Fuzz1034{
-		One: rando.Durations(),
-		Two: rando.Int16(),
+		One: rando.Ints(),
+		Two: rando.Bools(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16578,8 +16577,8 @@ func TestFuzz1035(t *testing.T) {
 	require.Equal(t, Fuzz1035{}, actual)
 
 	actual = Fuzz1035{
-		One: rando.Durations(),
-		Two: rando.Int32(),
+		One: rando.Ints(),
+		Two: rando.BytesNil(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16594,8 +16593,8 @@ func TestFuzz1036(t *testing.T) {
 	require.Equal(t, Fuzz1036{}, actual)
 
 	actual = Fuzz1036{
-		One: rando.Durations(),
-		Two: rando.Rune(),
+		One: rando.Ints(),
+		Two: rando.Complex64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16610,8 +16609,8 @@ func TestFuzz1037(t *testing.T) {
 	require.Equal(t, Fuzz1037{}, actual)
 
 	actual = Fuzz1037{
-		One: rando.Durations(),
-		Two: rando.Int64(),
+		One: rando.Ints(),
+		Two: rando.Complex128s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16626,8 +16625,8 @@ func TestFuzz1038(t *testing.T) {
 	require.Equal(t, Fuzz1038{}, actual)
 
 	actual = Fuzz1038{
-		One: rando.Durations(),
-		Two: rando.Ints(),
+		One: rando.Ints(),
+		Two: rando.Float32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16642,8 +16641,8 @@ func TestFuzz1039(t *testing.T) {
 	require.Equal(t, Fuzz1039{}, actual)
 
 	actual = Fuzz1039{
-		One: rando.Durations(),
-		Two: rando.Int8s(),
+		One: rando.Ints(),
+		Two: rando.Float64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16658,8 +16657,8 @@ func TestFuzz1040(t *testing.T) {
 	require.Equal(t, Fuzz1040{}, actual)
 
 	actual = Fuzz1040{
-		One: rando.Durations(),
-		Two: rando.Int16s(),
+		One: rando.Ints(),
+		Two: rando.Int8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16674,8 +16673,8 @@ func TestFuzz1041(t *testing.T) {
 	require.Equal(t, Fuzz1041{}, actual)
 
 	actual = Fuzz1041{
-		One: rando.Durations(),
-		Two: rando.Int32s(),
+		One: rando.Ints(),
+		Two: rando.Int16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16690,8 +16689,8 @@ func TestFuzz1042(t *testing.T) {
 	require.Equal(t, Fuzz1042{}, actual)
 
 	actual = Fuzz1042{
-		One: rando.Durations(),
-		Two: rando.Int64s(),
+		One: rando.Ints(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16706,8 +16705,8 @@ func TestFuzz1043(t *testing.T) {
 	require.Equal(t, Fuzz1043{}, actual)
 
 	actual = Fuzz1043{
-		One: rando.Durations(),
-		Two: rando.Uint(),
+		One: rando.Ints(),
+		Two: rando.Int64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16722,8 +16721,8 @@ func TestFuzz1044(t *testing.T) {
 	require.Equal(t, Fuzz1044{}, actual)
 
 	actual = Fuzz1044{
-		One: rando.Durations(),
-		Two: rando.Uint8(),
+		One: rando.Ints(),
+		Two: rando.Int32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16738,8 +16737,8 @@ func TestFuzz1045(t *testing.T) {
 	require.Equal(t, Fuzz1045{}, actual)
 
 	actual = Fuzz1045{
-		One: rando.Durations(),
-		Two: rando.Uint16(),
+		One: rando.Ints(),
+		Two: rando.Strings(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16754,8 +16753,8 @@ func TestFuzz1046(t *testing.T) {
 	require.Equal(t, Fuzz1046{}, actual)
 
 	actual = Fuzz1046{
-		One: rando.Durations(),
-		Two: rando.Uint32(),
+		One: rando.Ints(),
+		Two: rando.Durations(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16770,8 +16769,8 @@ func TestFuzz1047(t *testing.T) {
 	require.Equal(t, Fuzz1047{}, actual)
 
 	actual = Fuzz1047{
-		One: rando.Durations(),
-		Two: rando.Uint64(),
+		One: rando.Ints(),
+		Two: rando.Times(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16786,7 +16785,7 @@ func TestFuzz1048(t *testing.T) {
 	require.Equal(t, Fuzz1048{}, actual)
 
 	actual = Fuzz1048{
-		One: rando.Durations(),
+		One: rando.Ints(),
 		Two: rando.Uints(),
 	}
 	src := actual.MarshalJ()
@@ -16802,8 +16801,8 @@ func TestFuzz1049(t *testing.T) {
 	require.Equal(t, Fuzz1049{}, actual)
 
 	actual = Fuzz1049{
-		One: rando.Durations(),
-		Two: rando.Uint16s(),
+		One: rando.Ints(),
+		Two: rando.Uint8s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16818,8 +16817,8 @@ func TestFuzz1050(t *testing.T) {
 	require.Equal(t, Fuzz1050{}, actual)
 
 	actual = Fuzz1050{
-		One: rando.Durations(),
-		Two: rando.Uint32s(),
+		One: rando.Ints(),
+		Two: rando.Uint16s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16834,8 +16833,8 @@ func TestFuzz1051(t *testing.T) {
 	require.Equal(t, Fuzz1051{}, actual)
 
 	actual = Fuzz1051{
-		One: rando.Durations(),
-		Two: rando.Uint64s(),
+		One: rando.Ints(),
+		Two: rando.Uint32s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16850,8 +16849,8 @@ func TestFuzz1052(t *testing.T) {
 	require.Equal(t, Fuzz1052{}, actual)
 
 	actual = Fuzz1052{
-		One: rando.Durations(),
-		Two: rando.String(),
+		One: rando.Ints(),
+		Two: rando.Uint64s(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16866,8 +16865,8 @@ func TestFuzz1053(t *testing.T) {
 	require.Equal(t, Fuzz1053{}, actual)
 
 	actual = Fuzz1053{
-		One: rando.Durations(),
-		Two: rando.Strings(),
+		One: rando.Int8s(),
+		Two: rando.Bool(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16882,8 +16881,8 @@ func TestFuzz1054(t *testing.T) {
 	require.Equal(t, Fuzz1054{}, actual)
 
 	actual = Fuzz1054{
-		One: rando.Durations(),
-		Two: rando.Time(),
+		One: rando.Int8s(),
+		Two: rando.Byte(),
 	}
 	src := actual.MarshalJ()
 	require.NoError(t, expected.UnmarshalJ(src))
@@ -16898,6 +16897,3926 @@ func TestFuzz1055(t *testing.T) {
 	require.Equal(t, Fuzz1055{}, actual)
 
 	actual = Fuzz1055{
+		One: rando.Int8s(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1056(t *testing.T) {
+	var expected, actual Fuzz1056
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1056{}, expected)
+	require.Equal(t, Fuzz1056{}, actual)
+
+	actual = Fuzz1056{
+		One: rando.Int8s(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1057(t *testing.T) {
+	var expected, actual Fuzz1057
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1057{}, expected)
+	require.Equal(t, Fuzz1057{}, actual)
+
+	actual = Fuzz1057{
+		One: rando.Int8s(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1058(t *testing.T) {
+	var expected, actual Fuzz1058
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1058{}, expected)
+	require.Equal(t, Fuzz1058{}, actual)
+
+	actual = Fuzz1058{
+		One: rando.Int8s(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1059(t *testing.T) {
+	var expected, actual Fuzz1059
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1059{}, expected)
+	require.Equal(t, Fuzz1059{}, actual)
+
+	actual = Fuzz1059{
+		One: rando.Int8s(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1060(t *testing.T) {
+	var expected, actual Fuzz1060
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1060{}, expected)
+	require.Equal(t, Fuzz1060{}, actual)
+
+	actual = Fuzz1060{
+		One: rando.Int8s(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1061(t *testing.T) {
+	var expected, actual Fuzz1061
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1061{}, expected)
+	require.Equal(t, Fuzz1061{}, actual)
+
+	actual = Fuzz1061{
+		One: rando.Int8s(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1062(t *testing.T) {
+	var expected, actual Fuzz1062
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1062{}, expected)
+	require.Equal(t, Fuzz1062{}, actual)
+
+	actual = Fuzz1062{
+		One: rando.Int8s(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1063(t *testing.T) {
+	var expected, actual Fuzz1063
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1063{}, expected)
+	require.Equal(t, Fuzz1063{}, actual)
+
+	actual = Fuzz1063{
+		One: rando.Int8s(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1064(t *testing.T) {
+	var expected, actual Fuzz1064
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1064{}, expected)
+	require.Equal(t, Fuzz1064{}, actual)
+
+	actual = Fuzz1064{
+		One: rando.Int8s(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1065(t *testing.T) {
+	var expected, actual Fuzz1065
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1065{}, expected)
+	require.Equal(t, Fuzz1065{}, actual)
+
+	actual = Fuzz1065{
+		One: rando.Int8s(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1066(t *testing.T) {
+	var expected, actual Fuzz1066
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1066{}, expected)
+	require.Equal(t, Fuzz1066{}, actual)
+
+	actual = Fuzz1066{
+		One: rando.Int8s(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1067(t *testing.T) {
+	var expected, actual Fuzz1067
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1067{}, expected)
+	require.Equal(t, Fuzz1067{}, actual)
+
+	actual = Fuzz1067{
+		One: rando.Int8s(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1068(t *testing.T) {
+	var expected, actual Fuzz1068
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1068{}, expected)
+	require.Equal(t, Fuzz1068{}, actual)
+
+	actual = Fuzz1068{
+		One: rando.Int8s(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1069(t *testing.T) {
+	var expected, actual Fuzz1069
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1069{}, expected)
+	require.Equal(t, Fuzz1069{}, actual)
+
+	actual = Fuzz1069{
+		One: rando.Int8s(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1070(t *testing.T) {
+	var expected, actual Fuzz1070
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1070{}, expected)
+	require.Equal(t, Fuzz1070{}, actual)
+
+	actual = Fuzz1070{
+		One: rando.Int8s(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1071(t *testing.T) {
+	var expected, actual Fuzz1071
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1071{}, expected)
+	require.Equal(t, Fuzz1071{}, actual)
+
+	actual = Fuzz1071{
+		One: rando.Int8s(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1072(t *testing.T) {
+	var expected, actual Fuzz1072
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1072{}, expected)
+	require.Equal(t, Fuzz1072{}, actual)
+
+	actual = Fuzz1072{
+		One: rando.Int8s(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1073(t *testing.T) {
+	var expected, actual Fuzz1073
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1073{}, expected)
+	require.Equal(t, Fuzz1073{}, actual)
+
+	actual = Fuzz1073{
+		One: rando.Int8s(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1074(t *testing.T) {
+	var expected, actual Fuzz1074
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1074{}, expected)
+	require.Equal(t, Fuzz1074{}, actual)
+
+	actual = Fuzz1074{
+		One: rando.Int8s(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1075(t *testing.T) {
+	var expected, actual Fuzz1075
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1075{}, expected)
+	require.Equal(t, Fuzz1075{}, actual)
+
+	actual = Fuzz1075{
+		One: rando.Int8s(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1076(t *testing.T) {
+	var expected, actual Fuzz1076
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1076{}, expected)
+	require.Equal(t, Fuzz1076{}, actual)
+
+	actual = Fuzz1076{
+		One: rando.Int8s(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1077(t *testing.T) {
+	var expected, actual Fuzz1077
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1077{}, expected)
+	require.Equal(t, Fuzz1077{}, actual)
+
+	actual = Fuzz1077{
+		One: rando.Int8s(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1078(t *testing.T) {
+	var expected, actual Fuzz1078
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1078{}, expected)
+	require.Equal(t, Fuzz1078{}, actual)
+
+	actual = Fuzz1078{
+		One: rando.Int8s(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1079(t *testing.T) {
+	var expected, actual Fuzz1079
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1079{}, expected)
+	require.Equal(t, Fuzz1079{}, actual)
+
+	actual = Fuzz1079{
+		One: rando.Int8s(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1080(t *testing.T) {
+	var expected, actual Fuzz1080
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1080{}, expected)
+	require.Equal(t, Fuzz1080{}, actual)
+
+	actual = Fuzz1080{
+		One: rando.Int8s(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1081(t *testing.T) {
+	var expected, actual Fuzz1081
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1081{}, expected)
+	require.Equal(t, Fuzz1081{}, actual)
+
+	actual = Fuzz1081{
+		One: rando.Int8s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1082(t *testing.T) {
+	var expected, actual Fuzz1082
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1082{}, expected)
+	require.Equal(t, Fuzz1082{}, actual)
+
+	actual = Fuzz1082{
+		One: rando.Int8s(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1083(t *testing.T) {
+	var expected, actual Fuzz1083
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1083{}, expected)
+	require.Equal(t, Fuzz1083{}, actual)
+
+	actual = Fuzz1083{
+		One: rando.Int8s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1084(t *testing.T) {
+	var expected, actual Fuzz1084
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1084{}, expected)
+	require.Equal(t, Fuzz1084{}, actual)
+
+	actual = Fuzz1084{
+		One: rando.Int8s(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1085(t *testing.T) {
+	var expected, actual Fuzz1085
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1085{}, expected)
+	require.Equal(t, Fuzz1085{}, actual)
+
+	actual = Fuzz1085{
+		One: rando.Int8s(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1086(t *testing.T) {
+	var expected, actual Fuzz1086
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1086{}, expected)
+	require.Equal(t, Fuzz1086{}, actual)
+
+	actual = Fuzz1086{
+		One: rando.Int8s(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1087(t *testing.T) {
+	var expected, actual Fuzz1087
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1087{}, expected)
+	require.Equal(t, Fuzz1087{}, actual)
+
+	actual = Fuzz1087{
+		One: rando.Int8s(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1088(t *testing.T) {
+	var expected, actual Fuzz1088
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1088{}, expected)
+	require.Equal(t, Fuzz1088{}, actual)
+
+	actual = Fuzz1088{
+		One: rando.Int8s(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1089(t *testing.T) {
+	var expected, actual Fuzz1089
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1089{}, expected)
+	require.Equal(t, Fuzz1089{}, actual)
+
+	actual = Fuzz1089{
+		One: rando.Int8s(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1090(t *testing.T) {
+	var expected, actual Fuzz1090
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1090{}, expected)
+	require.Equal(t, Fuzz1090{}, actual)
+
+	actual = Fuzz1090{
+		One: rando.Int8s(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1091(t *testing.T) {
+	var expected, actual Fuzz1091
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1091{}, expected)
+	require.Equal(t, Fuzz1091{}, actual)
+
+	actual = Fuzz1091{
+		One: rando.Int8s(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1092(t *testing.T) {
+	var expected, actual Fuzz1092
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1092{}, expected)
+	require.Equal(t, Fuzz1092{}, actual)
+
+	actual = Fuzz1092{
+		One: rando.Int16s(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1093(t *testing.T) {
+	var expected, actual Fuzz1093
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1093{}, expected)
+	require.Equal(t, Fuzz1093{}, actual)
+
+	actual = Fuzz1093{
+		One: rando.Int16s(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1094(t *testing.T) {
+	var expected, actual Fuzz1094
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1094{}, expected)
+	require.Equal(t, Fuzz1094{}, actual)
+
+	actual = Fuzz1094{
+		One: rando.Int16s(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1095(t *testing.T) {
+	var expected, actual Fuzz1095
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1095{}, expected)
+	require.Equal(t, Fuzz1095{}, actual)
+
+	actual = Fuzz1095{
+		One: rando.Int16s(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1096(t *testing.T) {
+	var expected, actual Fuzz1096
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1096{}, expected)
+	require.Equal(t, Fuzz1096{}, actual)
+
+	actual = Fuzz1096{
+		One: rando.Int16s(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1097(t *testing.T) {
+	var expected, actual Fuzz1097
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1097{}, expected)
+	require.Equal(t, Fuzz1097{}, actual)
+
+	actual = Fuzz1097{
+		One: rando.Int16s(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1098(t *testing.T) {
+	var expected, actual Fuzz1098
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1098{}, expected)
+	require.Equal(t, Fuzz1098{}, actual)
+
+	actual = Fuzz1098{
+		One: rando.Int16s(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1099(t *testing.T) {
+	var expected, actual Fuzz1099
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1099{}, expected)
+	require.Equal(t, Fuzz1099{}, actual)
+
+	actual = Fuzz1099{
+		One: rando.Int16s(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1100(t *testing.T) {
+	var expected, actual Fuzz1100
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1100{}, expected)
+	require.Equal(t, Fuzz1100{}, actual)
+
+	actual = Fuzz1100{
+		One: rando.Int16s(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1101(t *testing.T) {
+	var expected, actual Fuzz1101
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1101{}, expected)
+	require.Equal(t, Fuzz1101{}, actual)
+
+	actual = Fuzz1101{
+		One: rando.Int16s(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1102(t *testing.T) {
+	var expected, actual Fuzz1102
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1102{}, expected)
+	require.Equal(t, Fuzz1102{}, actual)
+
+	actual = Fuzz1102{
+		One: rando.Int16s(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1103(t *testing.T) {
+	var expected, actual Fuzz1103
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1103{}, expected)
+	require.Equal(t, Fuzz1103{}, actual)
+
+	actual = Fuzz1103{
+		One: rando.Int16s(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1104(t *testing.T) {
+	var expected, actual Fuzz1104
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1104{}, expected)
+	require.Equal(t, Fuzz1104{}, actual)
+
+	actual = Fuzz1104{
+		One: rando.Int16s(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1105(t *testing.T) {
+	var expected, actual Fuzz1105
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1105{}, expected)
+	require.Equal(t, Fuzz1105{}, actual)
+
+	actual = Fuzz1105{
+		One: rando.Int16s(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1106(t *testing.T) {
+	var expected, actual Fuzz1106
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1106{}, expected)
+	require.Equal(t, Fuzz1106{}, actual)
+
+	actual = Fuzz1106{
+		One: rando.Int16s(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1107(t *testing.T) {
+	var expected, actual Fuzz1107
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1107{}, expected)
+	require.Equal(t, Fuzz1107{}, actual)
+
+	actual = Fuzz1107{
+		One: rando.Int16s(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1108(t *testing.T) {
+	var expected, actual Fuzz1108
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1108{}, expected)
+	require.Equal(t, Fuzz1108{}, actual)
+
+	actual = Fuzz1108{
+		One: rando.Int16s(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1109(t *testing.T) {
+	var expected, actual Fuzz1109
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1109{}, expected)
+	require.Equal(t, Fuzz1109{}, actual)
+
+	actual = Fuzz1109{
+		One: rando.Int16s(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1110(t *testing.T) {
+	var expected, actual Fuzz1110
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1110{}, expected)
+	require.Equal(t, Fuzz1110{}, actual)
+
+	actual = Fuzz1110{
+		One: rando.Int16s(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1111(t *testing.T) {
+	var expected, actual Fuzz1111
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1111{}, expected)
+	require.Equal(t, Fuzz1111{}, actual)
+
+	actual = Fuzz1111{
+		One: rando.Int16s(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1112(t *testing.T) {
+	var expected, actual Fuzz1112
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1112{}, expected)
+	require.Equal(t, Fuzz1112{}, actual)
+
+	actual = Fuzz1112{
+		One: rando.Int16s(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1113(t *testing.T) {
+	var expected, actual Fuzz1113
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1113{}, expected)
+	require.Equal(t, Fuzz1113{}, actual)
+
+	actual = Fuzz1113{
+		One: rando.Int16s(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1114(t *testing.T) {
+	var expected, actual Fuzz1114
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1114{}, expected)
+	require.Equal(t, Fuzz1114{}, actual)
+
+	actual = Fuzz1114{
+		One: rando.Int16s(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1115(t *testing.T) {
+	var expected, actual Fuzz1115
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1115{}, expected)
+	require.Equal(t, Fuzz1115{}, actual)
+
+	actual = Fuzz1115{
+		One: rando.Int16s(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1116(t *testing.T) {
+	var expected, actual Fuzz1116
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1116{}, expected)
+	require.Equal(t, Fuzz1116{}, actual)
+
+	actual = Fuzz1116{
+		One: rando.Int16s(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1117(t *testing.T) {
+	var expected, actual Fuzz1117
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1117{}, expected)
+	require.Equal(t, Fuzz1117{}, actual)
+
+	actual = Fuzz1117{
+		One: rando.Int16s(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1118(t *testing.T) {
+	var expected, actual Fuzz1118
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1118{}, expected)
+	require.Equal(t, Fuzz1118{}, actual)
+
+	actual = Fuzz1118{
+		One: rando.Int16s(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1119(t *testing.T) {
+	var expected, actual Fuzz1119
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1119{}, expected)
+	require.Equal(t, Fuzz1119{}, actual)
+
+	actual = Fuzz1119{
+		One: rando.Int16s(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1120(t *testing.T) {
+	var expected, actual Fuzz1120
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1120{}, expected)
+	require.Equal(t, Fuzz1120{}, actual)
+
+	actual = Fuzz1120{
+		One: rando.Int16s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1121(t *testing.T) {
+	var expected, actual Fuzz1121
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1121{}, expected)
+	require.Equal(t, Fuzz1121{}, actual)
+
+	actual = Fuzz1121{
+		One: rando.Int16s(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1122(t *testing.T) {
+	var expected, actual Fuzz1122
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1122{}, expected)
+	require.Equal(t, Fuzz1122{}, actual)
+
+	actual = Fuzz1122{
+		One: rando.Int16s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1123(t *testing.T) {
+	var expected, actual Fuzz1123
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1123{}, expected)
+	require.Equal(t, Fuzz1123{}, actual)
+
+	actual = Fuzz1123{
+		One: rando.Int16s(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1124(t *testing.T) {
+	var expected, actual Fuzz1124
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1124{}, expected)
+	require.Equal(t, Fuzz1124{}, actual)
+
+	actual = Fuzz1124{
+		One: rando.Int16s(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1125(t *testing.T) {
+	var expected, actual Fuzz1125
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1125{}, expected)
+	require.Equal(t, Fuzz1125{}, actual)
+
+	actual = Fuzz1125{
+		One: rando.Int16s(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1126(t *testing.T) {
+	var expected, actual Fuzz1126
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1126{}, expected)
+	require.Equal(t, Fuzz1126{}, actual)
+
+	actual = Fuzz1126{
+		One: rando.Int16s(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1127(t *testing.T) {
+	var expected, actual Fuzz1127
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1127{}, expected)
+	require.Equal(t, Fuzz1127{}, actual)
+
+	actual = Fuzz1127{
+		One: rando.Int16s(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1128(t *testing.T) {
+	var expected, actual Fuzz1128
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1128{}, expected)
+	require.Equal(t, Fuzz1128{}, actual)
+
+	actual = Fuzz1128{
+		One: rando.Int16s(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1129(t *testing.T) {
+	var expected, actual Fuzz1129
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1129{}, expected)
+	require.Equal(t, Fuzz1129{}, actual)
+
+	actual = Fuzz1129{
+		One: rando.Int16s(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1130(t *testing.T) {
+	var expected, actual Fuzz1130
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1130{}, expected)
+	require.Equal(t, Fuzz1130{}, actual)
+
+	actual = Fuzz1130{
+		One: rando.Int16s(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1131(t *testing.T) {
+	var expected, actual Fuzz1131
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1131{}, expected)
+	require.Equal(t, Fuzz1131{}, actual)
+
+	actual = Fuzz1131{
+		One: rando.Int32s(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1132(t *testing.T) {
+	var expected, actual Fuzz1132
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1132{}, expected)
+	require.Equal(t, Fuzz1132{}, actual)
+
+	actual = Fuzz1132{
+		One: rando.Int32s(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1133(t *testing.T) {
+	var expected, actual Fuzz1133
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1133{}, expected)
+	require.Equal(t, Fuzz1133{}, actual)
+
+	actual = Fuzz1133{
+		One: rando.Int32s(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1134(t *testing.T) {
+	var expected, actual Fuzz1134
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1134{}, expected)
+	require.Equal(t, Fuzz1134{}, actual)
+
+	actual = Fuzz1134{
+		One: rando.Int32s(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1135(t *testing.T) {
+	var expected, actual Fuzz1135
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1135{}, expected)
+	require.Equal(t, Fuzz1135{}, actual)
+
+	actual = Fuzz1135{
+		One: rando.Int32s(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1136(t *testing.T) {
+	var expected, actual Fuzz1136
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1136{}, expected)
+	require.Equal(t, Fuzz1136{}, actual)
+
+	actual = Fuzz1136{
+		One: rando.Int32s(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1137(t *testing.T) {
+	var expected, actual Fuzz1137
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1137{}, expected)
+	require.Equal(t, Fuzz1137{}, actual)
+
+	actual = Fuzz1137{
+		One: rando.Int32s(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1138(t *testing.T) {
+	var expected, actual Fuzz1138
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1138{}, expected)
+	require.Equal(t, Fuzz1138{}, actual)
+
+	actual = Fuzz1138{
+		One: rando.Int32s(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1139(t *testing.T) {
+	var expected, actual Fuzz1139
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1139{}, expected)
+	require.Equal(t, Fuzz1139{}, actual)
+
+	actual = Fuzz1139{
+		One: rando.Int32s(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1140(t *testing.T) {
+	var expected, actual Fuzz1140
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1140{}, expected)
+	require.Equal(t, Fuzz1140{}, actual)
+
+	actual = Fuzz1140{
+		One: rando.Int32s(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1141(t *testing.T) {
+	var expected, actual Fuzz1141
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1141{}, expected)
+	require.Equal(t, Fuzz1141{}, actual)
+
+	actual = Fuzz1141{
+		One: rando.Int32s(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1142(t *testing.T) {
+	var expected, actual Fuzz1142
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1142{}, expected)
+	require.Equal(t, Fuzz1142{}, actual)
+
+	actual = Fuzz1142{
+		One: rando.Int32s(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1143(t *testing.T) {
+	var expected, actual Fuzz1143
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1143{}, expected)
+	require.Equal(t, Fuzz1143{}, actual)
+
+	actual = Fuzz1143{
+		One: rando.Int32s(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1144(t *testing.T) {
+	var expected, actual Fuzz1144
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1144{}, expected)
+	require.Equal(t, Fuzz1144{}, actual)
+
+	actual = Fuzz1144{
+		One: rando.Int32s(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1145(t *testing.T) {
+	var expected, actual Fuzz1145
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1145{}, expected)
+	require.Equal(t, Fuzz1145{}, actual)
+
+	actual = Fuzz1145{
+		One: rando.Int32s(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1146(t *testing.T) {
+	var expected, actual Fuzz1146
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1146{}, expected)
+	require.Equal(t, Fuzz1146{}, actual)
+
+	actual = Fuzz1146{
+		One: rando.Int32s(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1147(t *testing.T) {
+	var expected, actual Fuzz1147
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1147{}, expected)
+	require.Equal(t, Fuzz1147{}, actual)
+
+	actual = Fuzz1147{
+		One: rando.Int32s(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1148(t *testing.T) {
+	var expected, actual Fuzz1148
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1148{}, expected)
+	require.Equal(t, Fuzz1148{}, actual)
+
+	actual = Fuzz1148{
+		One: rando.Int32s(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1149(t *testing.T) {
+	var expected, actual Fuzz1149
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1149{}, expected)
+	require.Equal(t, Fuzz1149{}, actual)
+
+	actual = Fuzz1149{
+		One: rando.Int32s(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1150(t *testing.T) {
+	var expected, actual Fuzz1150
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1150{}, expected)
+	require.Equal(t, Fuzz1150{}, actual)
+
+	actual = Fuzz1150{
+		One: rando.Int32s(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1151(t *testing.T) {
+	var expected, actual Fuzz1151
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1151{}, expected)
+	require.Equal(t, Fuzz1151{}, actual)
+
+	actual = Fuzz1151{
+		One: rando.Int32s(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1152(t *testing.T) {
+	var expected, actual Fuzz1152
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1152{}, expected)
+	require.Equal(t, Fuzz1152{}, actual)
+
+	actual = Fuzz1152{
+		One: rando.Int32s(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1153(t *testing.T) {
+	var expected, actual Fuzz1153
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1153{}, expected)
+	require.Equal(t, Fuzz1153{}, actual)
+
+	actual = Fuzz1153{
+		One: rando.Int32s(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1154(t *testing.T) {
+	var expected, actual Fuzz1154
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1154{}, expected)
+	require.Equal(t, Fuzz1154{}, actual)
+
+	actual = Fuzz1154{
+		One: rando.Int32s(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1155(t *testing.T) {
+	var expected, actual Fuzz1155
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1155{}, expected)
+	require.Equal(t, Fuzz1155{}, actual)
+
+	actual = Fuzz1155{
+		One: rando.Int32s(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1156(t *testing.T) {
+	var expected, actual Fuzz1156
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1156{}, expected)
+	require.Equal(t, Fuzz1156{}, actual)
+
+	actual = Fuzz1156{
+		One: rando.Int32s(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1157(t *testing.T) {
+	var expected, actual Fuzz1157
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1157{}, expected)
+	require.Equal(t, Fuzz1157{}, actual)
+
+	actual = Fuzz1157{
+		One: rando.Int32s(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1158(t *testing.T) {
+	var expected, actual Fuzz1158
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1158{}, expected)
+	require.Equal(t, Fuzz1158{}, actual)
+
+	actual = Fuzz1158{
+		One: rando.Int32s(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1159(t *testing.T) {
+	var expected, actual Fuzz1159
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1159{}, expected)
+	require.Equal(t, Fuzz1159{}, actual)
+
+	actual = Fuzz1159{
+		One: rando.Int32s(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1160(t *testing.T) {
+	var expected, actual Fuzz1160
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1160{}, expected)
+	require.Equal(t, Fuzz1160{}, actual)
+
+	actual = Fuzz1160{
+		One: rando.Int32s(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1161(t *testing.T) {
+	var expected, actual Fuzz1161
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1161{}, expected)
+	require.Equal(t, Fuzz1161{}, actual)
+
+	actual = Fuzz1161{
+		One: rando.Int32s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1162(t *testing.T) {
+	var expected, actual Fuzz1162
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1162{}, expected)
+	require.Equal(t, Fuzz1162{}, actual)
+
+	actual = Fuzz1162{
+		One: rando.Int32s(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1163(t *testing.T) {
+	var expected, actual Fuzz1163
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1163{}, expected)
+	require.Equal(t, Fuzz1163{}, actual)
+
+	actual = Fuzz1163{
+		One: rando.Int32s(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1164(t *testing.T) {
+	var expected, actual Fuzz1164
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1164{}, expected)
+	require.Equal(t, Fuzz1164{}, actual)
+
+	actual = Fuzz1164{
+		One: rando.Int32s(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1165(t *testing.T) {
+	var expected, actual Fuzz1165
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1165{}, expected)
+	require.Equal(t, Fuzz1165{}, actual)
+
+	actual = Fuzz1165{
+		One: rando.Int32s(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1166(t *testing.T) {
+	var expected, actual Fuzz1166
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1166{}, expected)
+	require.Equal(t, Fuzz1166{}, actual)
+
+	actual = Fuzz1166{
+		One: rando.Int32s(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1167(t *testing.T) {
+	var expected, actual Fuzz1167
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1167{}, expected)
+	require.Equal(t, Fuzz1167{}, actual)
+
+	actual = Fuzz1167{
+		One: rando.Int32s(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1168(t *testing.T) {
+	var expected, actual Fuzz1168
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1168{}, expected)
+	require.Equal(t, Fuzz1168{}, actual)
+
+	actual = Fuzz1168{
+		One: rando.Int32s(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1169(t *testing.T) {
+	var expected, actual Fuzz1169
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1169{}, expected)
+	require.Equal(t, Fuzz1169{}, actual)
+
+	actual = Fuzz1169{
+		One: rando.Int32s(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1170(t *testing.T) {
+	var expected, actual Fuzz1170
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1170{}, expected)
+	require.Equal(t, Fuzz1170{}, actual)
+
+	actual = Fuzz1170{
+		One: rando.Int64s(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1171(t *testing.T) {
+	var expected, actual Fuzz1171
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1171{}, expected)
+	require.Equal(t, Fuzz1171{}, actual)
+
+	actual = Fuzz1171{
+		One: rando.Int64s(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1172(t *testing.T) {
+	var expected, actual Fuzz1172
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1172{}, expected)
+	require.Equal(t, Fuzz1172{}, actual)
+
+	actual = Fuzz1172{
+		One: rando.Int64s(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1173(t *testing.T) {
+	var expected, actual Fuzz1173
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1173{}, expected)
+	require.Equal(t, Fuzz1173{}, actual)
+
+	actual = Fuzz1173{
+		One: rando.Int64s(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1174(t *testing.T) {
+	var expected, actual Fuzz1174
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1174{}, expected)
+	require.Equal(t, Fuzz1174{}, actual)
+
+	actual = Fuzz1174{
+		One: rando.Int64s(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1175(t *testing.T) {
+	var expected, actual Fuzz1175
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1175{}, expected)
+	require.Equal(t, Fuzz1175{}, actual)
+
+	actual = Fuzz1175{
+		One: rando.Int64s(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1176(t *testing.T) {
+	var expected, actual Fuzz1176
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1176{}, expected)
+	require.Equal(t, Fuzz1176{}, actual)
+
+	actual = Fuzz1176{
+		One: rando.Int64s(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1177(t *testing.T) {
+	var expected, actual Fuzz1177
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1177{}, expected)
+	require.Equal(t, Fuzz1177{}, actual)
+
+	actual = Fuzz1177{
+		One: rando.Int64s(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1178(t *testing.T) {
+	var expected, actual Fuzz1178
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1178{}, expected)
+	require.Equal(t, Fuzz1178{}, actual)
+
+	actual = Fuzz1178{
+		One: rando.Int64s(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1179(t *testing.T) {
+	var expected, actual Fuzz1179
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1179{}, expected)
+	require.Equal(t, Fuzz1179{}, actual)
+
+	actual = Fuzz1179{
+		One: rando.Int64s(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1180(t *testing.T) {
+	var expected, actual Fuzz1180
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1180{}, expected)
+	require.Equal(t, Fuzz1180{}, actual)
+
+	actual = Fuzz1180{
+		One: rando.Int64s(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1181(t *testing.T) {
+	var expected, actual Fuzz1181
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1181{}, expected)
+	require.Equal(t, Fuzz1181{}, actual)
+
+	actual = Fuzz1181{
+		One: rando.Int64s(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1182(t *testing.T) {
+	var expected, actual Fuzz1182
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1182{}, expected)
+	require.Equal(t, Fuzz1182{}, actual)
+
+	actual = Fuzz1182{
+		One: rando.Int64s(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1183(t *testing.T) {
+	var expected, actual Fuzz1183
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1183{}, expected)
+	require.Equal(t, Fuzz1183{}, actual)
+
+	actual = Fuzz1183{
+		One: rando.Int64s(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1184(t *testing.T) {
+	var expected, actual Fuzz1184
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1184{}, expected)
+	require.Equal(t, Fuzz1184{}, actual)
+
+	actual = Fuzz1184{
+		One: rando.Int64s(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1185(t *testing.T) {
+	var expected, actual Fuzz1185
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1185{}, expected)
+	require.Equal(t, Fuzz1185{}, actual)
+
+	actual = Fuzz1185{
+		One: rando.Int64s(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1186(t *testing.T) {
+	var expected, actual Fuzz1186
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1186{}, expected)
+	require.Equal(t, Fuzz1186{}, actual)
+
+	actual = Fuzz1186{
+		One: rando.Int64s(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1187(t *testing.T) {
+	var expected, actual Fuzz1187
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1187{}, expected)
+	require.Equal(t, Fuzz1187{}, actual)
+
+	actual = Fuzz1187{
+		One: rando.Int64s(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1188(t *testing.T) {
+	var expected, actual Fuzz1188
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1188{}, expected)
+	require.Equal(t, Fuzz1188{}, actual)
+
+	actual = Fuzz1188{
+		One: rando.Int64s(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1189(t *testing.T) {
+	var expected, actual Fuzz1189
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1189{}, expected)
+	require.Equal(t, Fuzz1189{}, actual)
+
+	actual = Fuzz1189{
+		One: rando.Int64s(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1190(t *testing.T) {
+	var expected, actual Fuzz1190
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1190{}, expected)
+	require.Equal(t, Fuzz1190{}, actual)
+
+	actual = Fuzz1190{
+		One: rando.Int64s(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1191(t *testing.T) {
+	var expected, actual Fuzz1191
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1191{}, expected)
+	require.Equal(t, Fuzz1191{}, actual)
+
+	actual = Fuzz1191{
+		One: rando.Int64s(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1192(t *testing.T) {
+	var expected, actual Fuzz1192
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1192{}, expected)
+	require.Equal(t, Fuzz1192{}, actual)
+
+	actual = Fuzz1192{
+		One: rando.Int64s(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1193(t *testing.T) {
+	var expected, actual Fuzz1193
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1193{}, expected)
+	require.Equal(t, Fuzz1193{}, actual)
+
+	actual = Fuzz1193{
+		One: rando.Int64s(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1194(t *testing.T) {
+	var expected, actual Fuzz1194
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1194{}, expected)
+	require.Equal(t, Fuzz1194{}, actual)
+
+	actual = Fuzz1194{
+		One: rando.Int64s(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1195(t *testing.T) {
+	var expected, actual Fuzz1195
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1195{}, expected)
+	require.Equal(t, Fuzz1195{}, actual)
+
+	actual = Fuzz1195{
+		One: rando.Int64s(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1196(t *testing.T) {
+	var expected, actual Fuzz1196
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1196{}, expected)
+	require.Equal(t, Fuzz1196{}, actual)
+
+	actual = Fuzz1196{
+		One: rando.Int64s(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1197(t *testing.T) {
+	var expected, actual Fuzz1197
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1197{}, expected)
+	require.Equal(t, Fuzz1197{}, actual)
+
+	actual = Fuzz1197{
+		One: rando.Int64s(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1198(t *testing.T) {
+	var expected, actual Fuzz1198
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1198{}, expected)
+	require.Equal(t, Fuzz1198{}, actual)
+
+	actual = Fuzz1198{
+		One: rando.Int64s(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1199(t *testing.T) {
+	var expected, actual Fuzz1199
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1199{}, expected)
+	require.Equal(t, Fuzz1199{}, actual)
+
+	actual = Fuzz1199{
+		One: rando.Int64s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1200(t *testing.T) {
+	var expected, actual Fuzz1200
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1200{}, expected)
+	require.Equal(t, Fuzz1200{}, actual)
+
+	actual = Fuzz1200{
+		One: rando.Int64s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1201(t *testing.T) {
+	var expected, actual Fuzz1201
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1201{}, expected)
+	require.Equal(t, Fuzz1201{}, actual)
+
+	actual = Fuzz1201{
+		One: rando.Int64s(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1202(t *testing.T) {
+	var expected, actual Fuzz1202
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1202{}, expected)
+	require.Equal(t, Fuzz1202{}, actual)
+
+	actual = Fuzz1202{
+		One: rando.Int64s(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1203(t *testing.T) {
+	var expected, actual Fuzz1203
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1203{}, expected)
+	require.Equal(t, Fuzz1203{}, actual)
+
+	actual = Fuzz1203{
+		One: rando.Int64s(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1204(t *testing.T) {
+	var expected, actual Fuzz1204
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1204{}, expected)
+	require.Equal(t, Fuzz1204{}, actual)
+
+	actual = Fuzz1204{
+		One: rando.Int64s(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1205(t *testing.T) {
+	var expected, actual Fuzz1205
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1205{}, expected)
+	require.Equal(t, Fuzz1205{}, actual)
+
+	actual = Fuzz1205{
+		One: rando.Int64s(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1206(t *testing.T) {
+	var expected, actual Fuzz1206
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1206{}, expected)
+	require.Equal(t, Fuzz1206{}, actual)
+
+	actual = Fuzz1206{
+		One: rando.Int64s(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1207(t *testing.T) {
+	var expected, actual Fuzz1207
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1207{}, expected)
+	require.Equal(t, Fuzz1207{}, actual)
+
+	actual = Fuzz1207{
+		One: rando.Int64s(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1208(t *testing.T) {
+	var expected, actual Fuzz1208
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1208{}, expected)
+	require.Equal(t, Fuzz1208{}, actual)
+
+	actual = Fuzz1208{
+		One: rando.Int64s(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1209(t *testing.T) {
+	var expected, actual Fuzz1209
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1209{}, expected)
+	require.Equal(t, Fuzz1209{}, actual)
+
+	actual = Fuzz1209{
+		One: rando.Int32s(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1210(t *testing.T) {
+	var expected, actual Fuzz1210
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1210{}, expected)
+	require.Equal(t, Fuzz1210{}, actual)
+
+	actual = Fuzz1210{
+		One: rando.Int32s(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1211(t *testing.T) {
+	var expected, actual Fuzz1211
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1211{}, expected)
+	require.Equal(t, Fuzz1211{}, actual)
+
+	actual = Fuzz1211{
+		One: rando.Int32s(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1212(t *testing.T) {
+	var expected, actual Fuzz1212
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1212{}, expected)
+	require.Equal(t, Fuzz1212{}, actual)
+
+	actual = Fuzz1212{
+		One: rando.Int32s(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1213(t *testing.T) {
+	var expected, actual Fuzz1213
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1213{}, expected)
+	require.Equal(t, Fuzz1213{}, actual)
+
+	actual = Fuzz1213{
+		One: rando.Int32s(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1214(t *testing.T) {
+	var expected, actual Fuzz1214
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1214{}, expected)
+	require.Equal(t, Fuzz1214{}, actual)
+
+	actual = Fuzz1214{
+		One: rando.Int32s(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1215(t *testing.T) {
+	var expected, actual Fuzz1215
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1215{}, expected)
+	require.Equal(t, Fuzz1215{}, actual)
+
+	actual = Fuzz1215{
+		One: rando.Int32s(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1216(t *testing.T) {
+	var expected, actual Fuzz1216
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1216{}, expected)
+	require.Equal(t, Fuzz1216{}, actual)
+
+	actual = Fuzz1216{
+		One: rando.Int32s(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1217(t *testing.T) {
+	var expected, actual Fuzz1217
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1217{}, expected)
+	require.Equal(t, Fuzz1217{}, actual)
+
+	actual = Fuzz1217{
+		One: rando.Int32s(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1218(t *testing.T) {
+	var expected, actual Fuzz1218
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1218{}, expected)
+	require.Equal(t, Fuzz1218{}, actual)
+
+	actual = Fuzz1218{
+		One: rando.Int32s(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1219(t *testing.T) {
+	var expected, actual Fuzz1219
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1219{}, expected)
+	require.Equal(t, Fuzz1219{}, actual)
+
+	actual = Fuzz1219{
+		One: rando.Int32s(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1220(t *testing.T) {
+	var expected, actual Fuzz1220
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1220{}, expected)
+	require.Equal(t, Fuzz1220{}, actual)
+
+	actual = Fuzz1220{
+		One: rando.Int32s(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1221(t *testing.T) {
+	var expected, actual Fuzz1221
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1221{}, expected)
+	require.Equal(t, Fuzz1221{}, actual)
+
+	actual = Fuzz1221{
+		One: rando.Int32s(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1222(t *testing.T) {
+	var expected, actual Fuzz1222
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1222{}, expected)
+	require.Equal(t, Fuzz1222{}, actual)
+
+	actual = Fuzz1222{
+		One: rando.Int32s(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1223(t *testing.T) {
+	var expected, actual Fuzz1223
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1223{}, expected)
+	require.Equal(t, Fuzz1223{}, actual)
+
+	actual = Fuzz1223{
+		One: rando.Int32s(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1224(t *testing.T) {
+	var expected, actual Fuzz1224
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1224{}, expected)
+	require.Equal(t, Fuzz1224{}, actual)
+
+	actual = Fuzz1224{
+		One: rando.Int32s(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1225(t *testing.T) {
+	var expected, actual Fuzz1225
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1225{}, expected)
+	require.Equal(t, Fuzz1225{}, actual)
+
+	actual = Fuzz1225{
+		One: rando.Int32s(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1226(t *testing.T) {
+	var expected, actual Fuzz1226
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1226{}, expected)
+	require.Equal(t, Fuzz1226{}, actual)
+
+	actual = Fuzz1226{
+		One: rando.Int32s(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1227(t *testing.T) {
+	var expected, actual Fuzz1227
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1227{}, expected)
+	require.Equal(t, Fuzz1227{}, actual)
+
+	actual = Fuzz1227{
+		One: rando.Int32s(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1228(t *testing.T) {
+	var expected, actual Fuzz1228
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1228{}, expected)
+	require.Equal(t, Fuzz1228{}, actual)
+
+	actual = Fuzz1228{
+		One: rando.Int32s(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1229(t *testing.T) {
+	var expected, actual Fuzz1229
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1229{}, expected)
+	require.Equal(t, Fuzz1229{}, actual)
+
+	actual = Fuzz1229{
+		One: rando.Int32s(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1230(t *testing.T) {
+	var expected, actual Fuzz1230
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1230{}, expected)
+	require.Equal(t, Fuzz1230{}, actual)
+
+	actual = Fuzz1230{
+		One: rando.Int32s(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1231(t *testing.T) {
+	var expected, actual Fuzz1231
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1231{}, expected)
+	require.Equal(t, Fuzz1231{}, actual)
+
+	actual = Fuzz1231{
+		One: rando.Int32s(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1232(t *testing.T) {
+	var expected, actual Fuzz1232
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1232{}, expected)
+	require.Equal(t, Fuzz1232{}, actual)
+
+	actual = Fuzz1232{
+		One: rando.Int32s(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1233(t *testing.T) {
+	var expected, actual Fuzz1233
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1233{}, expected)
+	require.Equal(t, Fuzz1233{}, actual)
+
+	actual = Fuzz1233{
+		One: rando.Int32s(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1234(t *testing.T) {
+	var expected, actual Fuzz1234
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1234{}, expected)
+	require.Equal(t, Fuzz1234{}, actual)
+
+	actual = Fuzz1234{
+		One: rando.Int32s(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1235(t *testing.T) {
+	var expected, actual Fuzz1235
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1235{}, expected)
+	require.Equal(t, Fuzz1235{}, actual)
+
+	actual = Fuzz1235{
+		One: rando.Int32s(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1236(t *testing.T) {
+	var expected, actual Fuzz1236
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1236{}, expected)
+	require.Equal(t, Fuzz1236{}, actual)
+
+	actual = Fuzz1236{
+		One: rando.Int32s(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1237(t *testing.T) {
+	var expected, actual Fuzz1237
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1237{}, expected)
+	require.Equal(t, Fuzz1237{}, actual)
+
+	actual = Fuzz1237{
+		One: rando.Int32s(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1238(t *testing.T) {
+	var expected, actual Fuzz1238
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1238{}, expected)
+	require.Equal(t, Fuzz1238{}, actual)
+
+	actual = Fuzz1238{
+		One: rando.Int32s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1239(t *testing.T) {
+	var expected, actual Fuzz1239
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1239{}, expected)
+	require.Equal(t, Fuzz1239{}, actual)
+
+	actual = Fuzz1239{
+		One: rando.Int32s(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1240(t *testing.T) {
+	var expected, actual Fuzz1240
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1240{}, expected)
+	require.Equal(t, Fuzz1240{}, actual)
+
+	actual = Fuzz1240{
+		One: rando.Int32s(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1241(t *testing.T) {
+	var expected, actual Fuzz1241
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1241{}, expected)
+	require.Equal(t, Fuzz1241{}, actual)
+
+	actual = Fuzz1241{
+		One: rando.Int32s(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1242(t *testing.T) {
+	var expected, actual Fuzz1242
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1242{}, expected)
+	require.Equal(t, Fuzz1242{}, actual)
+
+	actual = Fuzz1242{
+		One: rando.Int32s(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1243(t *testing.T) {
+	var expected, actual Fuzz1243
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1243{}, expected)
+	require.Equal(t, Fuzz1243{}, actual)
+
+	actual = Fuzz1243{
+		One: rando.Int32s(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1244(t *testing.T) {
+	var expected, actual Fuzz1244
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1244{}, expected)
+	require.Equal(t, Fuzz1244{}, actual)
+
+	actual = Fuzz1244{
+		One: rando.Int32s(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1245(t *testing.T) {
+	var expected, actual Fuzz1245
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1245{}, expected)
+	require.Equal(t, Fuzz1245{}, actual)
+
+	actual = Fuzz1245{
+		One: rando.Int32s(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1246(t *testing.T) {
+	var expected, actual Fuzz1246
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1246{}, expected)
+	require.Equal(t, Fuzz1246{}, actual)
+
+	actual = Fuzz1246{
+		One: rando.Int32s(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1247(t *testing.T) {
+	var expected, actual Fuzz1247
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1247{}, expected)
+	require.Equal(t, Fuzz1247{}, actual)
+
+	actual = Fuzz1247{
+		One: rando.Int32s(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1248(t *testing.T) {
+	var expected, actual Fuzz1248
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1248{}, expected)
+	require.Equal(t, Fuzz1248{}, actual)
+
+	actual = Fuzz1248{
+		One: rando.Strings(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1249(t *testing.T) {
+	var expected, actual Fuzz1249
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1249{}, expected)
+	require.Equal(t, Fuzz1249{}, actual)
+
+	actual = Fuzz1249{
+		One: rando.Strings(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1250(t *testing.T) {
+	var expected, actual Fuzz1250
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1250{}, expected)
+	require.Equal(t, Fuzz1250{}, actual)
+
+	actual = Fuzz1250{
+		One: rando.Strings(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1251(t *testing.T) {
+	var expected, actual Fuzz1251
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1251{}, expected)
+	require.Equal(t, Fuzz1251{}, actual)
+
+	actual = Fuzz1251{
+		One: rando.Strings(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1252(t *testing.T) {
+	var expected, actual Fuzz1252
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1252{}, expected)
+	require.Equal(t, Fuzz1252{}, actual)
+
+	actual = Fuzz1252{
+		One: rando.Strings(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1253(t *testing.T) {
+	var expected, actual Fuzz1253
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1253{}, expected)
+	require.Equal(t, Fuzz1253{}, actual)
+
+	actual = Fuzz1253{
+		One: rando.Strings(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1254(t *testing.T) {
+	var expected, actual Fuzz1254
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1254{}, expected)
+	require.Equal(t, Fuzz1254{}, actual)
+
+	actual = Fuzz1254{
+		One: rando.Strings(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1255(t *testing.T) {
+	var expected, actual Fuzz1255
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1255{}, expected)
+	require.Equal(t, Fuzz1255{}, actual)
+
+	actual = Fuzz1255{
+		One: rando.Strings(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1256(t *testing.T) {
+	var expected, actual Fuzz1256
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1256{}, expected)
+	require.Equal(t, Fuzz1256{}, actual)
+
+	actual = Fuzz1256{
+		One: rando.Strings(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1257(t *testing.T) {
+	var expected, actual Fuzz1257
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1257{}, expected)
+	require.Equal(t, Fuzz1257{}, actual)
+
+	actual = Fuzz1257{
+		One: rando.Strings(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1258(t *testing.T) {
+	var expected, actual Fuzz1258
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1258{}, expected)
+	require.Equal(t, Fuzz1258{}, actual)
+
+	actual = Fuzz1258{
+		One: rando.Strings(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1259(t *testing.T) {
+	var expected, actual Fuzz1259
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1259{}, expected)
+	require.Equal(t, Fuzz1259{}, actual)
+
+	actual = Fuzz1259{
+		One: rando.Strings(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1260(t *testing.T) {
+	var expected, actual Fuzz1260
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1260{}, expected)
+	require.Equal(t, Fuzz1260{}, actual)
+
+	actual = Fuzz1260{
+		One: rando.Strings(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1261(t *testing.T) {
+	var expected, actual Fuzz1261
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1261{}, expected)
+	require.Equal(t, Fuzz1261{}, actual)
+
+	actual = Fuzz1261{
+		One: rando.Strings(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1262(t *testing.T) {
+	var expected, actual Fuzz1262
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1262{}, expected)
+	require.Equal(t, Fuzz1262{}, actual)
+
+	actual = Fuzz1262{
+		One: rando.Strings(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1263(t *testing.T) {
+	var expected, actual Fuzz1263
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1263{}, expected)
+	require.Equal(t, Fuzz1263{}, actual)
+
+	actual = Fuzz1263{
+		One: rando.Strings(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1264(t *testing.T) {
+	var expected, actual Fuzz1264
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1264{}, expected)
+	require.Equal(t, Fuzz1264{}, actual)
+
+	actual = Fuzz1264{
+		One: rando.Strings(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1265(t *testing.T) {
+	var expected, actual Fuzz1265
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1265{}, expected)
+	require.Equal(t, Fuzz1265{}, actual)
+
+	actual = Fuzz1265{
+		One: rando.Strings(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1266(t *testing.T) {
+	var expected, actual Fuzz1266
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1266{}, expected)
+	require.Equal(t, Fuzz1266{}, actual)
+
+	actual = Fuzz1266{
+		One: rando.Strings(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1267(t *testing.T) {
+	var expected, actual Fuzz1267
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1267{}, expected)
+	require.Equal(t, Fuzz1267{}, actual)
+
+	actual = Fuzz1267{
+		One: rando.Strings(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1268(t *testing.T) {
+	var expected, actual Fuzz1268
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1268{}, expected)
+	require.Equal(t, Fuzz1268{}, actual)
+
+	actual = Fuzz1268{
+		One: rando.Strings(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1269(t *testing.T) {
+	var expected, actual Fuzz1269
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1269{}, expected)
+	require.Equal(t, Fuzz1269{}, actual)
+
+	actual = Fuzz1269{
+		One: rando.Strings(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1270(t *testing.T) {
+	var expected, actual Fuzz1270
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1270{}, expected)
+	require.Equal(t, Fuzz1270{}, actual)
+
+	actual = Fuzz1270{
+		One: rando.Strings(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1271(t *testing.T) {
+	var expected, actual Fuzz1271
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1271{}, expected)
+	require.Equal(t, Fuzz1271{}, actual)
+
+	actual = Fuzz1271{
+		One: rando.Strings(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1272(t *testing.T) {
+	var expected, actual Fuzz1272
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1272{}, expected)
+	require.Equal(t, Fuzz1272{}, actual)
+
+	actual = Fuzz1272{
+		One: rando.Strings(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1273(t *testing.T) {
+	var expected, actual Fuzz1273
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1273{}, expected)
+	require.Equal(t, Fuzz1273{}, actual)
+
+	actual = Fuzz1273{
+		One: rando.Strings(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1274(t *testing.T) {
+	var expected, actual Fuzz1274
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1274{}, expected)
+	require.Equal(t, Fuzz1274{}, actual)
+
+	actual = Fuzz1274{
+		One: rando.Strings(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1275(t *testing.T) {
+	var expected, actual Fuzz1275
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1275{}, expected)
+	require.Equal(t, Fuzz1275{}, actual)
+
+	actual = Fuzz1275{
+		One: rando.Strings(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1276(t *testing.T) {
+	var expected, actual Fuzz1276
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1276{}, expected)
+	require.Equal(t, Fuzz1276{}, actual)
+
+	actual = Fuzz1276{
+		One: rando.Strings(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1277(t *testing.T) {
+	var expected, actual Fuzz1277
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1277{}, expected)
+	require.Equal(t, Fuzz1277{}, actual)
+
+	actual = Fuzz1277{
+		One: rando.Strings(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1278(t *testing.T) {
+	var expected, actual Fuzz1278
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1278{}, expected)
+	require.Equal(t, Fuzz1278{}, actual)
+
+	actual = Fuzz1278{
+		One: rando.Strings(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1279(t *testing.T) {
+	var expected, actual Fuzz1279
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1279{}, expected)
+	require.Equal(t, Fuzz1279{}, actual)
+
+	actual = Fuzz1279{
+		One: rando.Strings(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1280(t *testing.T) {
+	var expected, actual Fuzz1280
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1280{}, expected)
+	require.Equal(t, Fuzz1280{}, actual)
+
+	actual = Fuzz1280{
+		One: rando.Strings(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1281(t *testing.T) {
+	var expected, actual Fuzz1281
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1281{}, expected)
+	require.Equal(t, Fuzz1281{}, actual)
+
+	actual = Fuzz1281{
+		One: rando.Strings(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1282(t *testing.T) {
+	var expected, actual Fuzz1282
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1282{}, expected)
+	require.Equal(t, Fuzz1282{}, actual)
+
+	actual = Fuzz1282{
+		One: rando.Strings(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1283(t *testing.T) {
+	var expected, actual Fuzz1283
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1283{}, expected)
+	require.Equal(t, Fuzz1283{}, actual)
+
+	actual = Fuzz1283{
+		One: rando.Strings(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1284(t *testing.T) {
+	var expected, actual Fuzz1284
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1284{}, expected)
+	require.Equal(t, Fuzz1284{}, actual)
+
+	actual = Fuzz1284{
+		One: rando.Strings(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1285(t *testing.T) {
+	var expected, actual Fuzz1285
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1285{}, expected)
+	require.Equal(t, Fuzz1285{}, actual)
+
+	actual = Fuzz1285{
+		One: rando.Strings(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1286(t *testing.T) {
+	var expected, actual Fuzz1286
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1286{}, expected)
+	require.Equal(t, Fuzz1286{}, actual)
+
+	actual = Fuzz1286{
+		One: rando.Strings(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1287(t *testing.T) {
+	var expected, actual Fuzz1287
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1287{}, expected)
+	require.Equal(t, Fuzz1287{}, actual)
+
+	actual = Fuzz1287{
+		One: rando.Durations(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1288(t *testing.T) {
+	var expected, actual Fuzz1288
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1288{}, expected)
+	require.Equal(t, Fuzz1288{}, actual)
+
+	actual = Fuzz1288{
+		One: rando.Durations(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1289(t *testing.T) {
+	var expected, actual Fuzz1289
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1289{}, expected)
+	require.Equal(t, Fuzz1289{}, actual)
+
+	actual = Fuzz1289{
+		One: rando.Durations(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1290(t *testing.T) {
+	var expected, actual Fuzz1290
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1290{}, expected)
+	require.Equal(t, Fuzz1290{}, actual)
+
+	actual = Fuzz1290{
+		One: rando.Durations(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1291(t *testing.T) {
+	var expected, actual Fuzz1291
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1291{}, expected)
+	require.Equal(t, Fuzz1291{}, actual)
+
+	actual = Fuzz1291{
+		One: rando.Durations(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1292(t *testing.T) {
+	var expected, actual Fuzz1292
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1292{}, expected)
+	require.Equal(t, Fuzz1292{}, actual)
+
+	actual = Fuzz1292{
+		One: rando.Durations(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1293(t *testing.T) {
+	var expected, actual Fuzz1293
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1293{}, expected)
+	require.Equal(t, Fuzz1293{}, actual)
+
+	actual = Fuzz1293{
+		One: rando.Durations(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1294(t *testing.T) {
+	var expected, actual Fuzz1294
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1294{}, expected)
+	require.Equal(t, Fuzz1294{}, actual)
+
+	actual = Fuzz1294{
+		One: rando.Durations(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1295(t *testing.T) {
+	var expected, actual Fuzz1295
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1295{}, expected)
+	require.Equal(t, Fuzz1295{}, actual)
+
+	actual = Fuzz1295{
+		One: rando.Durations(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1296(t *testing.T) {
+	var expected, actual Fuzz1296
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1296{}, expected)
+	require.Equal(t, Fuzz1296{}, actual)
+
+	actual = Fuzz1296{
+		One: rando.Durations(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1297(t *testing.T) {
+	var expected, actual Fuzz1297
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1297{}, expected)
+	require.Equal(t, Fuzz1297{}, actual)
+
+	actual = Fuzz1297{
+		One: rando.Durations(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1298(t *testing.T) {
+	var expected, actual Fuzz1298
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1298{}, expected)
+	require.Equal(t, Fuzz1298{}, actual)
+
+	actual = Fuzz1298{
+		One: rando.Durations(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1299(t *testing.T) {
+	var expected, actual Fuzz1299
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1299{}, expected)
+	require.Equal(t, Fuzz1299{}, actual)
+
+	actual = Fuzz1299{
+		One: rando.Durations(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1300(t *testing.T) {
+	var expected, actual Fuzz1300
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1300{}, expected)
+	require.Equal(t, Fuzz1300{}, actual)
+
+	actual = Fuzz1300{
 		One: rando.Durations(),
 		Two: rando.Duration(),
 	}
@@ -16905,4 +20824,4147 @@ func TestFuzz1055(t *testing.T) {
 	require.NoError(t, expected.UnmarshalJ(src))
 	require.Equal(t, expected, actual)
 }
-*/
+
+func TestFuzz1301(t *testing.T) {
+	var expected, actual Fuzz1301
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1301{}, expected)
+	require.Equal(t, Fuzz1301{}, actual)
+
+	actual = Fuzz1301{
+		One: rando.Durations(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1302(t *testing.T) {
+	var expected, actual Fuzz1302
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1302{}, expected)
+	require.Equal(t, Fuzz1302{}, actual)
+
+	actual = Fuzz1302{
+		One: rando.Durations(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1303(t *testing.T) {
+	var expected, actual Fuzz1303
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1303{}, expected)
+	require.Equal(t, Fuzz1303{}, actual)
+
+	actual = Fuzz1303{
+		One: rando.Durations(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1304(t *testing.T) {
+	var expected, actual Fuzz1304
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1304{}, expected)
+	require.Equal(t, Fuzz1304{}, actual)
+
+	actual = Fuzz1304{
+		One: rando.Durations(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1305(t *testing.T) {
+	var expected, actual Fuzz1305
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1305{}, expected)
+	require.Equal(t, Fuzz1305{}, actual)
+
+	actual = Fuzz1305{
+		One: rando.Durations(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1306(t *testing.T) {
+	var expected, actual Fuzz1306
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1306{}, expected)
+	require.Equal(t, Fuzz1306{}, actual)
+
+	actual = Fuzz1306{
+		One: rando.Durations(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1307(t *testing.T) {
+	var expected, actual Fuzz1307
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1307{}, expected)
+	require.Equal(t, Fuzz1307{}, actual)
+
+	actual = Fuzz1307{
+		One: rando.Durations(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1308(t *testing.T) {
+	var expected, actual Fuzz1308
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1308{}, expected)
+	require.Equal(t, Fuzz1308{}, actual)
+
+	actual = Fuzz1308{
+		One: rando.Durations(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1309(t *testing.T) {
+	var expected, actual Fuzz1309
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1309{}, expected)
+	require.Equal(t, Fuzz1309{}, actual)
+
+	actual = Fuzz1309{
+		One: rando.Durations(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1310(t *testing.T) {
+	var expected, actual Fuzz1310
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1310{}, expected)
+	require.Equal(t, Fuzz1310{}, actual)
+
+	actual = Fuzz1310{
+		One: rando.Durations(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1311(t *testing.T) {
+	var expected, actual Fuzz1311
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1311{}, expected)
+	require.Equal(t, Fuzz1311{}, actual)
+
+	actual = Fuzz1311{
+		One: rando.Durations(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1312(t *testing.T) {
+	var expected, actual Fuzz1312
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1312{}, expected)
+	require.Equal(t, Fuzz1312{}, actual)
+
+	actual = Fuzz1312{
+		One: rando.Durations(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1313(t *testing.T) {
+	var expected, actual Fuzz1313
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1313{}, expected)
+	require.Equal(t, Fuzz1313{}, actual)
+
+	actual = Fuzz1313{
+		One: rando.Durations(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1314(t *testing.T) {
+	var expected, actual Fuzz1314
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1314{}, expected)
+	require.Equal(t, Fuzz1314{}, actual)
+
+	actual = Fuzz1314{
+		One: rando.Durations(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1315(t *testing.T) {
+	var expected, actual Fuzz1315
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1315{}, expected)
+	require.Equal(t, Fuzz1315{}, actual)
+
+	actual = Fuzz1315{
+		One: rando.Durations(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1316(t *testing.T) {
+	var expected, actual Fuzz1316
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1316{}, expected)
+	require.Equal(t, Fuzz1316{}, actual)
+
+	actual = Fuzz1316{
+		One: rando.Durations(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1317(t *testing.T) {
+	var expected, actual Fuzz1317
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1317{}, expected)
+	require.Equal(t, Fuzz1317{}, actual)
+
+	actual = Fuzz1317{
+		One: rando.Durations(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1318(t *testing.T) {
+	var expected, actual Fuzz1318
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1318{}, expected)
+	require.Equal(t, Fuzz1318{}, actual)
+
+	actual = Fuzz1318{
+		One: rando.Durations(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1319(t *testing.T) {
+	var expected, actual Fuzz1319
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1319{}, expected)
+	require.Equal(t, Fuzz1319{}, actual)
+
+	actual = Fuzz1319{
+		One: rando.Durations(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1320(t *testing.T) {
+	var expected, actual Fuzz1320
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1320{}, expected)
+	require.Equal(t, Fuzz1320{}, actual)
+
+	actual = Fuzz1320{
+		One: rando.Durations(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1321(t *testing.T) {
+	var expected, actual Fuzz1321
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1321{}, expected)
+	require.Equal(t, Fuzz1321{}, actual)
+
+	actual = Fuzz1321{
+		One: rando.Durations(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1322(t *testing.T) {
+	var expected, actual Fuzz1322
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1322{}, expected)
+	require.Equal(t, Fuzz1322{}, actual)
+
+	actual = Fuzz1322{
+		One: rando.Durations(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1323(t *testing.T) {
+	var expected, actual Fuzz1323
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1323{}, expected)
+	require.Equal(t, Fuzz1323{}, actual)
+
+	actual = Fuzz1323{
+		One: rando.Durations(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1324(t *testing.T) {
+	var expected, actual Fuzz1324
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1324{}, expected)
+	require.Equal(t, Fuzz1324{}, actual)
+
+	actual = Fuzz1324{
+		One: rando.Durations(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1325(t *testing.T) {
+	var expected, actual Fuzz1325
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1325{}, expected)
+	require.Equal(t, Fuzz1325{}, actual)
+
+	actual = Fuzz1325{
+		One: rando.Durations(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1326(t *testing.T) {
+	var expected, actual Fuzz1326
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1326{}, expected)
+	require.Equal(t, Fuzz1326{}, actual)
+
+	actual = Fuzz1326{
+		One: rando.Times(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1327(t *testing.T) {
+	var expected, actual Fuzz1327
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1327{}, expected)
+	require.Equal(t, Fuzz1327{}, actual)
+
+	actual = Fuzz1327{
+		One: rando.Times(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1328(t *testing.T) {
+	var expected, actual Fuzz1328
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1328{}, expected)
+	require.Equal(t, Fuzz1328{}, actual)
+
+	actual = Fuzz1328{
+		One: rando.Times(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1329(t *testing.T) {
+	var expected, actual Fuzz1329
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1329{}, expected)
+	require.Equal(t, Fuzz1329{}, actual)
+
+	actual = Fuzz1329{
+		One: rando.Times(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1330(t *testing.T) {
+	var expected, actual Fuzz1330
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1330{}, expected)
+	require.Equal(t, Fuzz1330{}, actual)
+
+	actual = Fuzz1330{
+		One: rando.Times(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1331(t *testing.T) {
+	var expected, actual Fuzz1331
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1331{}, expected)
+	require.Equal(t, Fuzz1331{}, actual)
+
+	actual = Fuzz1331{
+		One: rando.Times(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1332(t *testing.T) {
+	var expected, actual Fuzz1332
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1332{}, expected)
+	require.Equal(t, Fuzz1332{}, actual)
+
+	actual = Fuzz1332{
+		One: rando.Times(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1333(t *testing.T) {
+	var expected, actual Fuzz1333
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1333{}, expected)
+	require.Equal(t, Fuzz1333{}, actual)
+
+	actual = Fuzz1333{
+		One: rando.Times(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1334(t *testing.T) {
+	var expected, actual Fuzz1334
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1334{}, expected)
+	require.Equal(t, Fuzz1334{}, actual)
+
+	actual = Fuzz1334{
+		One: rando.Times(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1335(t *testing.T) {
+	var expected, actual Fuzz1335
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1335{}, expected)
+	require.Equal(t, Fuzz1335{}, actual)
+
+	actual = Fuzz1335{
+		One: rando.Times(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1336(t *testing.T) {
+	var expected, actual Fuzz1336
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1336{}, expected)
+	require.Equal(t, Fuzz1336{}, actual)
+
+	actual = Fuzz1336{
+		One: rando.Times(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1337(t *testing.T) {
+	var expected, actual Fuzz1337
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1337{}, expected)
+	require.Equal(t, Fuzz1337{}, actual)
+
+	actual = Fuzz1337{
+		One: rando.Times(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1338(t *testing.T) {
+	var expected, actual Fuzz1338
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1338{}, expected)
+	require.Equal(t, Fuzz1338{}, actual)
+
+	actual = Fuzz1338{
+		One: rando.Times(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1339(t *testing.T) {
+	var expected, actual Fuzz1339
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1339{}, expected)
+	require.Equal(t, Fuzz1339{}, actual)
+
+	actual = Fuzz1339{
+		One: rando.Times(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1340(t *testing.T) {
+	var expected, actual Fuzz1340
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1340{}, expected)
+	require.Equal(t, Fuzz1340{}, actual)
+
+	actual = Fuzz1340{
+		One: rando.Times(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1341(t *testing.T) {
+	var expected, actual Fuzz1341
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1341{}, expected)
+	require.Equal(t, Fuzz1341{}, actual)
+
+	actual = Fuzz1341{
+		One: rando.Times(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1342(t *testing.T) {
+	var expected, actual Fuzz1342
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1342{}, expected)
+	require.Equal(t, Fuzz1342{}, actual)
+
+	actual = Fuzz1342{
+		One: rando.Times(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1343(t *testing.T) {
+	var expected, actual Fuzz1343
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1343{}, expected)
+	require.Equal(t, Fuzz1343{}, actual)
+
+	actual = Fuzz1343{
+		One: rando.Times(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1344(t *testing.T) {
+	var expected, actual Fuzz1344
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1344{}, expected)
+	require.Equal(t, Fuzz1344{}, actual)
+
+	actual = Fuzz1344{
+		One: rando.Times(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1345(t *testing.T) {
+	var expected, actual Fuzz1345
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1345{}, expected)
+	require.Equal(t, Fuzz1345{}, actual)
+
+	actual = Fuzz1345{
+		One: rando.Times(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1346(t *testing.T) {
+	var expected, actual Fuzz1346
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1346{}, expected)
+	require.Equal(t, Fuzz1346{}, actual)
+
+	actual = Fuzz1346{
+		One: rando.Times(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1347(t *testing.T) {
+	var expected, actual Fuzz1347
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1347{}, expected)
+	require.Equal(t, Fuzz1347{}, actual)
+
+	actual = Fuzz1347{
+		One: rando.Times(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1348(t *testing.T) {
+	var expected, actual Fuzz1348
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1348{}, expected)
+	require.Equal(t, Fuzz1348{}, actual)
+
+	actual = Fuzz1348{
+		One: rando.Times(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1349(t *testing.T) {
+	var expected, actual Fuzz1349
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1349{}, expected)
+	require.Equal(t, Fuzz1349{}, actual)
+
+	actual = Fuzz1349{
+		One: rando.Times(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1350(t *testing.T) {
+	var expected, actual Fuzz1350
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1350{}, expected)
+	require.Equal(t, Fuzz1350{}, actual)
+
+	actual = Fuzz1350{
+		One: rando.Times(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1351(t *testing.T) {
+	var expected, actual Fuzz1351
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1351{}, expected)
+	require.Equal(t, Fuzz1351{}, actual)
+
+	actual = Fuzz1351{
+		One: rando.Times(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1352(t *testing.T) {
+	var expected, actual Fuzz1352
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1352{}, expected)
+	require.Equal(t, Fuzz1352{}, actual)
+
+	actual = Fuzz1352{
+		One: rando.Times(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1353(t *testing.T) {
+	var expected, actual Fuzz1353
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1353{}, expected)
+	require.Equal(t, Fuzz1353{}, actual)
+
+	actual = Fuzz1353{
+		One: rando.Times(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1354(t *testing.T) {
+	var expected, actual Fuzz1354
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1354{}, expected)
+	require.Equal(t, Fuzz1354{}, actual)
+
+	actual = Fuzz1354{
+		One: rando.Times(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1355(t *testing.T) {
+	var expected, actual Fuzz1355
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1355{}, expected)
+	require.Equal(t, Fuzz1355{}, actual)
+
+	actual = Fuzz1355{
+		One: rando.Times(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1356(t *testing.T) {
+	var expected, actual Fuzz1356
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1356{}, expected)
+	require.Equal(t, Fuzz1356{}, actual)
+
+	actual = Fuzz1356{
+		One: rando.Times(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1357(t *testing.T) {
+	var expected, actual Fuzz1357
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1357{}, expected)
+	require.Equal(t, Fuzz1357{}, actual)
+
+	actual = Fuzz1357{
+		One: rando.Times(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1358(t *testing.T) {
+	var expected, actual Fuzz1358
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1358{}, expected)
+	require.Equal(t, Fuzz1358{}, actual)
+
+	actual = Fuzz1358{
+		One: rando.Times(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1359(t *testing.T) {
+	var expected, actual Fuzz1359
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1359{}, expected)
+	require.Equal(t, Fuzz1359{}, actual)
+
+	actual = Fuzz1359{
+		One: rando.Times(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1360(t *testing.T) {
+	var expected, actual Fuzz1360
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1360{}, expected)
+	require.Equal(t, Fuzz1360{}, actual)
+
+	actual = Fuzz1360{
+		One: rando.Times(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1361(t *testing.T) {
+	var expected, actual Fuzz1361
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1361{}, expected)
+	require.Equal(t, Fuzz1361{}, actual)
+
+	actual = Fuzz1361{
+		One: rando.Times(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1362(t *testing.T) {
+	var expected, actual Fuzz1362
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1362{}, expected)
+	require.Equal(t, Fuzz1362{}, actual)
+
+	actual = Fuzz1362{
+		One: rando.Times(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1363(t *testing.T) {
+	var expected, actual Fuzz1363
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1363{}, expected)
+	require.Equal(t, Fuzz1363{}, actual)
+
+	actual = Fuzz1363{
+		One: rando.Times(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1364(t *testing.T) {
+	var expected, actual Fuzz1364
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1364{}, expected)
+	require.Equal(t, Fuzz1364{}, actual)
+
+	actual = Fuzz1364{
+		One: rando.Times(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1365(t *testing.T) {
+	var expected, actual Fuzz1365
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1365{}, expected)
+	require.Equal(t, Fuzz1365{}, actual)
+
+	actual = Fuzz1365{
+		One: rando.Uints(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1366(t *testing.T) {
+	var expected, actual Fuzz1366
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1366{}, expected)
+	require.Equal(t, Fuzz1366{}, actual)
+
+	actual = Fuzz1366{
+		One: rando.Uints(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1367(t *testing.T) {
+	var expected, actual Fuzz1367
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1367{}, expected)
+	require.Equal(t, Fuzz1367{}, actual)
+
+	actual = Fuzz1367{
+		One: rando.Uints(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1368(t *testing.T) {
+	var expected, actual Fuzz1368
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1368{}, expected)
+	require.Equal(t, Fuzz1368{}, actual)
+
+	actual = Fuzz1368{
+		One: rando.Uints(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1369(t *testing.T) {
+	var expected, actual Fuzz1369
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1369{}, expected)
+	require.Equal(t, Fuzz1369{}, actual)
+
+	actual = Fuzz1369{
+		One: rando.Uints(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1370(t *testing.T) {
+	var expected, actual Fuzz1370
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1370{}, expected)
+	require.Equal(t, Fuzz1370{}, actual)
+
+	actual = Fuzz1370{
+		One: rando.Uints(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1371(t *testing.T) {
+	var expected, actual Fuzz1371
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1371{}, expected)
+	require.Equal(t, Fuzz1371{}, actual)
+
+	actual = Fuzz1371{
+		One: rando.Uints(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1372(t *testing.T) {
+	var expected, actual Fuzz1372
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1372{}, expected)
+	require.Equal(t, Fuzz1372{}, actual)
+
+	actual = Fuzz1372{
+		One: rando.Uints(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1373(t *testing.T) {
+	var expected, actual Fuzz1373
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1373{}, expected)
+	require.Equal(t, Fuzz1373{}, actual)
+
+	actual = Fuzz1373{
+		One: rando.Uints(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1374(t *testing.T) {
+	var expected, actual Fuzz1374
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1374{}, expected)
+	require.Equal(t, Fuzz1374{}, actual)
+
+	actual = Fuzz1374{
+		One: rando.Uints(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1375(t *testing.T) {
+	var expected, actual Fuzz1375
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1375{}, expected)
+	require.Equal(t, Fuzz1375{}, actual)
+
+	actual = Fuzz1375{
+		One: rando.Uints(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1376(t *testing.T) {
+	var expected, actual Fuzz1376
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1376{}, expected)
+	require.Equal(t, Fuzz1376{}, actual)
+
+	actual = Fuzz1376{
+		One: rando.Uints(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1377(t *testing.T) {
+	var expected, actual Fuzz1377
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1377{}, expected)
+	require.Equal(t, Fuzz1377{}, actual)
+
+	actual = Fuzz1377{
+		One: rando.Uints(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1378(t *testing.T) {
+	var expected, actual Fuzz1378
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1378{}, expected)
+	require.Equal(t, Fuzz1378{}, actual)
+
+	actual = Fuzz1378{
+		One: rando.Uints(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1379(t *testing.T) {
+	var expected, actual Fuzz1379
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1379{}, expected)
+	require.Equal(t, Fuzz1379{}, actual)
+
+	actual = Fuzz1379{
+		One: rando.Uints(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1380(t *testing.T) {
+	var expected, actual Fuzz1380
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1380{}, expected)
+	require.Equal(t, Fuzz1380{}, actual)
+
+	actual = Fuzz1380{
+		One: rando.Uints(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1381(t *testing.T) {
+	var expected, actual Fuzz1381
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1381{}, expected)
+	require.Equal(t, Fuzz1381{}, actual)
+
+	actual = Fuzz1381{
+		One: rando.Uints(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1382(t *testing.T) {
+	var expected, actual Fuzz1382
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1382{}, expected)
+	require.Equal(t, Fuzz1382{}, actual)
+
+	actual = Fuzz1382{
+		One: rando.Uints(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1383(t *testing.T) {
+	var expected, actual Fuzz1383
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1383{}, expected)
+	require.Equal(t, Fuzz1383{}, actual)
+
+	actual = Fuzz1383{
+		One: rando.Uints(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1384(t *testing.T) {
+	var expected, actual Fuzz1384
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1384{}, expected)
+	require.Equal(t, Fuzz1384{}, actual)
+
+	actual = Fuzz1384{
+		One: rando.Uints(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1385(t *testing.T) {
+	var expected, actual Fuzz1385
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1385{}, expected)
+	require.Equal(t, Fuzz1385{}, actual)
+
+	actual = Fuzz1385{
+		One: rando.Uints(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1386(t *testing.T) {
+	var expected, actual Fuzz1386
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1386{}, expected)
+	require.Equal(t, Fuzz1386{}, actual)
+
+	actual = Fuzz1386{
+		One: rando.Uints(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1387(t *testing.T) {
+	var expected, actual Fuzz1387
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1387{}, expected)
+	require.Equal(t, Fuzz1387{}, actual)
+
+	actual = Fuzz1387{
+		One: rando.Uints(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1388(t *testing.T) {
+	var expected, actual Fuzz1388
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1388{}, expected)
+	require.Equal(t, Fuzz1388{}, actual)
+
+	actual = Fuzz1388{
+		One: rando.Uints(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1389(t *testing.T) {
+	var expected, actual Fuzz1389
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1389{}, expected)
+	require.Equal(t, Fuzz1389{}, actual)
+
+	actual = Fuzz1389{
+		One: rando.Uints(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1390(t *testing.T) {
+	var expected, actual Fuzz1390
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1390{}, expected)
+	require.Equal(t, Fuzz1390{}, actual)
+
+	actual = Fuzz1390{
+		One: rando.Uints(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1391(t *testing.T) {
+	var expected, actual Fuzz1391
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1391{}, expected)
+	require.Equal(t, Fuzz1391{}, actual)
+
+	actual = Fuzz1391{
+		One: rando.Uints(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1392(t *testing.T) {
+	var expected, actual Fuzz1392
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1392{}, expected)
+	require.Equal(t, Fuzz1392{}, actual)
+
+	actual = Fuzz1392{
+		One: rando.Uints(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1393(t *testing.T) {
+	var expected, actual Fuzz1393
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1393{}, expected)
+	require.Equal(t, Fuzz1393{}, actual)
+
+	actual = Fuzz1393{
+		One: rando.Uints(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1394(t *testing.T) {
+	var expected, actual Fuzz1394
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1394{}, expected)
+	require.Equal(t, Fuzz1394{}, actual)
+
+	actual = Fuzz1394{
+		One: rando.Uints(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1395(t *testing.T) {
+	var expected, actual Fuzz1395
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1395{}, expected)
+	require.Equal(t, Fuzz1395{}, actual)
+
+	actual = Fuzz1395{
+		One: rando.Uints(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1396(t *testing.T) {
+	var expected, actual Fuzz1396
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1396{}, expected)
+	require.Equal(t, Fuzz1396{}, actual)
+
+	actual = Fuzz1396{
+		One: rando.Uints(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1397(t *testing.T) {
+	var expected, actual Fuzz1397
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1397{}, expected)
+	require.Equal(t, Fuzz1397{}, actual)
+
+	actual = Fuzz1397{
+		One: rando.Uints(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1398(t *testing.T) {
+	var expected, actual Fuzz1398
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1398{}, expected)
+	require.Equal(t, Fuzz1398{}, actual)
+
+	actual = Fuzz1398{
+		One: rando.Uints(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1399(t *testing.T) {
+	var expected, actual Fuzz1399
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1399{}, expected)
+	require.Equal(t, Fuzz1399{}, actual)
+
+	actual = Fuzz1399{
+		One: rando.Uints(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1400(t *testing.T) {
+	var expected, actual Fuzz1400
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1400{}, expected)
+	require.Equal(t, Fuzz1400{}, actual)
+
+	actual = Fuzz1400{
+		One: rando.Uints(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1401(t *testing.T) {
+	var expected, actual Fuzz1401
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1401{}, expected)
+	require.Equal(t, Fuzz1401{}, actual)
+
+	actual = Fuzz1401{
+		One: rando.Uints(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1402(t *testing.T) {
+	var expected, actual Fuzz1402
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1402{}, expected)
+	require.Equal(t, Fuzz1402{}, actual)
+
+	actual = Fuzz1402{
+		One: rando.Uints(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1403(t *testing.T) {
+	var expected, actual Fuzz1403
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1403{}, expected)
+	require.Equal(t, Fuzz1403{}, actual)
+
+	actual = Fuzz1403{
+		One: rando.Uints(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1404(t *testing.T) {
+	var expected, actual Fuzz1404
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1404{}, expected)
+	require.Equal(t, Fuzz1404{}, actual)
+
+	actual = Fuzz1404{
+		One: rando.Uint8s(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1405(t *testing.T) {
+	var expected, actual Fuzz1405
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1405{}, expected)
+	require.Equal(t, Fuzz1405{}, actual)
+
+	actual = Fuzz1405{
+		One: rando.Uint8s(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1406(t *testing.T) {
+	var expected, actual Fuzz1406
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1406{}, expected)
+	require.Equal(t, Fuzz1406{}, actual)
+
+	actual = Fuzz1406{
+		One: rando.Uint8s(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1407(t *testing.T) {
+	var expected, actual Fuzz1407
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1407{}, expected)
+	require.Equal(t, Fuzz1407{}, actual)
+
+	actual = Fuzz1407{
+		One: rando.Uint8s(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1408(t *testing.T) {
+	var expected, actual Fuzz1408
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1408{}, expected)
+	require.Equal(t, Fuzz1408{}, actual)
+
+	actual = Fuzz1408{
+		One: rando.Uint8s(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1409(t *testing.T) {
+	var expected, actual Fuzz1409
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1409{}, expected)
+	require.Equal(t, Fuzz1409{}, actual)
+
+	actual = Fuzz1409{
+		One: rando.Uint8s(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1410(t *testing.T) {
+	var expected, actual Fuzz1410
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1410{}, expected)
+	require.Equal(t, Fuzz1410{}, actual)
+
+	actual = Fuzz1410{
+		One: rando.Uint8s(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1411(t *testing.T) {
+	var expected, actual Fuzz1411
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1411{}, expected)
+	require.Equal(t, Fuzz1411{}, actual)
+
+	actual = Fuzz1411{
+		One: rando.Uint8s(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1412(t *testing.T) {
+	var expected, actual Fuzz1412
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1412{}, expected)
+	require.Equal(t, Fuzz1412{}, actual)
+
+	actual = Fuzz1412{
+		One: rando.Uint8s(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1413(t *testing.T) {
+	var expected, actual Fuzz1413
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1413{}, expected)
+	require.Equal(t, Fuzz1413{}, actual)
+
+	actual = Fuzz1413{
+		One: rando.Uint8s(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1414(t *testing.T) {
+	var expected, actual Fuzz1414
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1414{}, expected)
+	require.Equal(t, Fuzz1414{}, actual)
+
+	actual = Fuzz1414{
+		One: rando.Uint8s(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1415(t *testing.T) {
+	var expected, actual Fuzz1415
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1415{}, expected)
+	require.Equal(t, Fuzz1415{}, actual)
+
+	actual = Fuzz1415{
+		One: rando.Uint8s(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1416(t *testing.T) {
+	var expected, actual Fuzz1416
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1416{}, expected)
+	require.Equal(t, Fuzz1416{}, actual)
+
+	actual = Fuzz1416{
+		One: rando.Uint8s(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1417(t *testing.T) {
+	var expected, actual Fuzz1417
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1417{}, expected)
+	require.Equal(t, Fuzz1417{}, actual)
+
+	actual = Fuzz1417{
+		One: rando.Uint8s(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1418(t *testing.T) {
+	var expected, actual Fuzz1418
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1418{}, expected)
+	require.Equal(t, Fuzz1418{}, actual)
+
+	actual = Fuzz1418{
+		One: rando.Uint8s(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1419(t *testing.T) {
+	var expected, actual Fuzz1419
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1419{}, expected)
+	require.Equal(t, Fuzz1419{}, actual)
+
+	actual = Fuzz1419{
+		One: rando.Uint8s(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1420(t *testing.T) {
+	var expected, actual Fuzz1420
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1420{}, expected)
+	require.Equal(t, Fuzz1420{}, actual)
+
+	actual = Fuzz1420{
+		One: rando.Uint8s(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1421(t *testing.T) {
+	var expected, actual Fuzz1421
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1421{}, expected)
+	require.Equal(t, Fuzz1421{}, actual)
+
+	actual = Fuzz1421{
+		One: rando.Uint8s(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1422(t *testing.T) {
+	var expected, actual Fuzz1422
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1422{}, expected)
+	require.Equal(t, Fuzz1422{}, actual)
+
+	actual = Fuzz1422{
+		One: rando.Uint8s(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1423(t *testing.T) {
+	var expected, actual Fuzz1423
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1423{}, expected)
+	require.Equal(t, Fuzz1423{}, actual)
+
+	actual = Fuzz1423{
+		One: rando.Uint8s(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1424(t *testing.T) {
+	var expected, actual Fuzz1424
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1424{}, expected)
+	require.Equal(t, Fuzz1424{}, actual)
+
+	actual = Fuzz1424{
+		One: rando.Uint8s(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1425(t *testing.T) {
+	var expected, actual Fuzz1425
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1425{}, expected)
+	require.Equal(t, Fuzz1425{}, actual)
+
+	actual = Fuzz1425{
+		One: rando.Uint8s(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1426(t *testing.T) {
+	var expected, actual Fuzz1426
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1426{}, expected)
+	require.Equal(t, Fuzz1426{}, actual)
+
+	actual = Fuzz1426{
+		One: rando.Uint8s(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1427(t *testing.T) {
+	var expected, actual Fuzz1427
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1427{}, expected)
+	require.Equal(t, Fuzz1427{}, actual)
+
+	actual = Fuzz1427{
+		One: rando.Uint8s(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1428(t *testing.T) {
+	var expected, actual Fuzz1428
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1428{}, expected)
+	require.Equal(t, Fuzz1428{}, actual)
+
+	actual = Fuzz1428{
+		One: rando.Uint8s(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1429(t *testing.T) {
+	var expected, actual Fuzz1429
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1429{}, expected)
+	require.Equal(t, Fuzz1429{}, actual)
+
+	actual = Fuzz1429{
+		One: rando.Uint8s(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1430(t *testing.T) {
+	var expected, actual Fuzz1430
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1430{}, expected)
+	require.Equal(t, Fuzz1430{}, actual)
+
+	actual = Fuzz1430{
+		One: rando.Uint8s(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1431(t *testing.T) {
+	var expected, actual Fuzz1431
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1431{}, expected)
+	require.Equal(t, Fuzz1431{}, actual)
+
+	actual = Fuzz1431{
+		One: rando.Uint8s(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1432(t *testing.T) {
+	var expected, actual Fuzz1432
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1432{}, expected)
+	require.Equal(t, Fuzz1432{}, actual)
+
+	actual = Fuzz1432{
+		One: rando.Uint8s(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1433(t *testing.T) {
+	var expected, actual Fuzz1433
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1433{}, expected)
+	require.Equal(t, Fuzz1433{}, actual)
+
+	actual = Fuzz1433{
+		One: rando.Uint8s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1434(t *testing.T) {
+	var expected, actual Fuzz1434
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1434{}, expected)
+	require.Equal(t, Fuzz1434{}, actual)
+
+	actual = Fuzz1434{
+		One: rando.Uint8s(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1435(t *testing.T) {
+	var expected, actual Fuzz1435
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1435{}, expected)
+	require.Equal(t, Fuzz1435{}, actual)
+
+	actual = Fuzz1435{
+		One: rando.Uint8s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1436(t *testing.T) {
+	var expected, actual Fuzz1436
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1436{}, expected)
+	require.Equal(t, Fuzz1436{}, actual)
+
+	actual = Fuzz1436{
+		One: rando.Uint8s(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1437(t *testing.T) {
+	var expected, actual Fuzz1437
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1437{}, expected)
+	require.Equal(t, Fuzz1437{}, actual)
+
+	actual = Fuzz1437{
+		One: rando.Uint8s(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1438(t *testing.T) {
+	var expected, actual Fuzz1438
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1438{}, expected)
+	require.Equal(t, Fuzz1438{}, actual)
+
+	actual = Fuzz1438{
+		One: rando.Uint8s(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1439(t *testing.T) {
+	var expected, actual Fuzz1439
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1439{}, expected)
+	require.Equal(t, Fuzz1439{}, actual)
+
+	actual = Fuzz1439{
+		One: rando.Uint8s(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1440(t *testing.T) {
+	var expected, actual Fuzz1440
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1440{}, expected)
+	require.Equal(t, Fuzz1440{}, actual)
+
+	actual = Fuzz1440{
+		One: rando.Uint8s(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1441(t *testing.T) {
+	var expected, actual Fuzz1441
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1441{}, expected)
+	require.Equal(t, Fuzz1441{}, actual)
+
+	actual = Fuzz1441{
+		One: rando.Uint8s(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1442(t *testing.T) {
+	var expected, actual Fuzz1442
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1442{}, expected)
+	require.Equal(t, Fuzz1442{}, actual)
+
+	actual = Fuzz1442{
+		One: rando.Uint8s(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1443(t *testing.T) {
+	var expected, actual Fuzz1443
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1443{}, expected)
+	require.Equal(t, Fuzz1443{}, actual)
+
+	actual = Fuzz1443{
+		One: rando.Uint16s(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1444(t *testing.T) {
+	var expected, actual Fuzz1444
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1444{}, expected)
+	require.Equal(t, Fuzz1444{}, actual)
+
+	actual = Fuzz1444{
+		One: rando.Uint16s(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1445(t *testing.T) {
+	var expected, actual Fuzz1445
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1445{}, expected)
+	require.Equal(t, Fuzz1445{}, actual)
+
+	actual = Fuzz1445{
+		One: rando.Uint16s(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1446(t *testing.T) {
+	var expected, actual Fuzz1446
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1446{}, expected)
+	require.Equal(t, Fuzz1446{}, actual)
+
+	actual = Fuzz1446{
+		One: rando.Uint16s(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1447(t *testing.T) {
+	var expected, actual Fuzz1447
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1447{}, expected)
+	require.Equal(t, Fuzz1447{}, actual)
+
+	actual = Fuzz1447{
+		One: rando.Uint16s(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1448(t *testing.T) {
+	var expected, actual Fuzz1448
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1448{}, expected)
+	require.Equal(t, Fuzz1448{}, actual)
+
+	actual = Fuzz1448{
+		One: rando.Uint16s(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1449(t *testing.T) {
+	var expected, actual Fuzz1449
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1449{}, expected)
+	require.Equal(t, Fuzz1449{}, actual)
+
+	actual = Fuzz1449{
+		One: rando.Uint16s(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1450(t *testing.T) {
+	var expected, actual Fuzz1450
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1450{}, expected)
+	require.Equal(t, Fuzz1450{}, actual)
+
+	actual = Fuzz1450{
+		One: rando.Uint16s(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1451(t *testing.T) {
+	var expected, actual Fuzz1451
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1451{}, expected)
+	require.Equal(t, Fuzz1451{}, actual)
+
+	actual = Fuzz1451{
+		One: rando.Uint16s(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1452(t *testing.T) {
+	var expected, actual Fuzz1452
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1452{}, expected)
+	require.Equal(t, Fuzz1452{}, actual)
+
+	actual = Fuzz1452{
+		One: rando.Uint16s(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1453(t *testing.T) {
+	var expected, actual Fuzz1453
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1453{}, expected)
+	require.Equal(t, Fuzz1453{}, actual)
+
+	actual = Fuzz1453{
+		One: rando.Uint16s(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1454(t *testing.T) {
+	var expected, actual Fuzz1454
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1454{}, expected)
+	require.Equal(t, Fuzz1454{}, actual)
+
+	actual = Fuzz1454{
+		One: rando.Uint16s(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1455(t *testing.T) {
+	var expected, actual Fuzz1455
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1455{}, expected)
+	require.Equal(t, Fuzz1455{}, actual)
+
+	actual = Fuzz1455{
+		One: rando.Uint16s(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1456(t *testing.T) {
+	var expected, actual Fuzz1456
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1456{}, expected)
+	require.Equal(t, Fuzz1456{}, actual)
+
+	actual = Fuzz1456{
+		One: rando.Uint16s(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1457(t *testing.T) {
+	var expected, actual Fuzz1457
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1457{}, expected)
+	require.Equal(t, Fuzz1457{}, actual)
+
+	actual = Fuzz1457{
+		One: rando.Uint16s(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1458(t *testing.T) {
+	var expected, actual Fuzz1458
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1458{}, expected)
+	require.Equal(t, Fuzz1458{}, actual)
+
+	actual = Fuzz1458{
+		One: rando.Uint16s(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1459(t *testing.T) {
+	var expected, actual Fuzz1459
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1459{}, expected)
+	require.Equal(t, Fuzz1459{}, actual)
+
+	actual = Fuzz1459{
+		One: rando.Uint16s(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1460(t *testing.T) {
+	var expected, actual Fuzz1460
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1460{}, expected)
+	require.Equal(t, Fuzz1460{}, actual)
+
+	actual = Fuzz1460{
+		One: rando.Uint16s(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1461(t *testing.T) {
+	var expected, actual Fuzz1461
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1461{}, expected)
+	require.Equal(t, Fuzz1461{}, actual)
+
+	actual = Fuzz1461{
+		One: rando.Uint16s(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1462(t *testing.T) {
+	var expected, actual Fuzz1462
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1462{}, expected)
+	require.Equal(t, Fuzz1462{}, actual)
+
+	actual = Fuzz1462{
+		One: rando.Uint16s(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1463(t *testing.T) {
+	var expected, actual Fuzz1463
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1463{}, expected)
+	require.Equal(t, Fuzz1463{}, actual)
+
+	actual = Fuzz1463{
+		One: rando.Uint16s(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1464(t *testing.T) {
+	var expected, actual Fuzz1464
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1464{}, expected)
+	require.Equal(t, Fuzz1464{}, actual)
+
+	actual = Fuzz1464{
+		One: rando.Uint16s(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1465(t *testing.T) {
+	var expected, actual Fuzz1465
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1465{}, expected)
+	require.Equal(t, Fuzz1465{}, actual)
+
+	actual = Fuzz1465{
+		One: rando.Uint16s(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1466(t *testing.T) {
+	var expected, actual Fuzz1466
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1466{}, expected)
+	require.Equal(t, Fuzz1466{}, actual)
+
+	actual = Fuzz1466{
+		One: rando.Uint16s(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1467(t *testing.T) {
+	var expected, actual Fuzz1467
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1467{}, expected)
+	require.Equal(t, Fuzz1467{}, actual)
+
+	actual = Fuzz1467{
+		One: rando.Uint16s(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1468(t *testing.T) {
+	var expected, actual Fuzz1468
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1468{}, expected)
+	require.Equal(t, Fuzz1468{}, actual)
+
+	actual = Fuzz1468{
+		One: rando.Uint16s(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1469(t *testing.T) {
+	var expected, actual Fuzz1469
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1469{}, expected)
+	require.Equal(t, Fuzz1469{}, actual)
+
+	actual = Fuzz1469{
+		One: rando.Uint16s(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1470(t *testing.T) {
+	var expected, actual Fuzz1470
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1470{}, expected)
+	require.Equal(t, Fuzz1470{}, actual)
+
+	actual = Fuzz1470{
+		One: rando.Uint16s(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1471(t *testing.T) {
+	var expected, actual Fuzz1471
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1471{}, expected)
+	require.Equal(t, Fuzz1471{}, actual)
+
+	actual = Fuzz1471{
+		One: rando.Uint16s(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1472(t *testing.T) {
+	var expected, actual Fuzz1472
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1472{}, expected)
+	require.Equal(t, Fuzz1472{}, actual)
+
+	actual = Fuzz1472{
+		One: rando.Uint16s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1473(t *testing.T) {
+	var expected, actual Fuzz1473
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1473{}, expected)
+	require.Equal(t, Fuzz1473{}, actual)
+
+	actual = Fuzz1473{
+		One: rando.Uint16s(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1474(t *testing.T) {
+	var expected, actual Fuzz1474
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1474{}, expected)
+	require.Equal(t, Fuzz1474{}, actual)
+
+	actual = Fuzz1474{
+		One: rando.Uint16s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1475(t *testing.T) {
+	var expected, actual Fuzz1475
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1475{}, expected)
+	require.Equal(t, Fuzz1475{}, actual)
+
+	actual = Fuzz1475{
+		One: rando.Uint16s(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1476(t *testing.T) {
+	var expected, actual Fuzz1476
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1476{}, expected)
+	require.Equal(t, Fuzz1476{}, actual)
+
+	actual = Fuzz1476{
+		One: rando.Uint16s(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1477(t *testing.T) {
+	var expected, actual Fuzz1477
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1477{}, expected)
+	require.Equal(t, Fuzz1477{}, actual)
+
+	actual = Fuzz1477{
+		One: rando.Uint16s(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1478(t *testing.T) {
+	var expected, actual Fuzz1478
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1478{}, expected)
+	require.Equal(t, Fuzz1478{}, actual)
+
+	actual = Fuzz1478{
+		One: rando.Uint16s(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1479(t *testing.T) {
+	var expected, actual Fuzz1479
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1479{}, expected)
+	require.Equal(t, Fuzz1479{}, actual)
+
+	actual = Fuzz1479{
+		One: rando.Uint16s(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1480(t *testing.T) {
+	var expected, actual Fuzz1480
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1480{}, expected)
+	require.Equal(t, Fuzz1480{}, actual)
+
+	actual = Fuzz1480{
+		One: rando.Uint16s(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1481(t *testing.T) {
+	var expected, actual Fuzz1481
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1481{}, expected)
+	require.Equal(t, Fuzz1481{}, actual)
+
+	actual = Fuzz1481{
+		One: rando.Uint16s(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1482(t *testing.T) {
+	var expected, actual Fuzz1482
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1482{}, expected)
+	require.Equal(t, Fuzz1482{}, actual)
+
+	actual = Fuzz1482{
+		One: rando.Uint32s(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1483(t *testing.T) {
+	var expected, actual Fuzz1483
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1483{}, expected)
+	require.Equal(t, Fuzz1483{}, actual)
+
+	actual = Fuzz1483{
+		One: rando.Uint32s(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1484(t *testing.T) {
+	var expected, actual Fuzz1484
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1484{}, expected)
+	require.Equal(t, Fuzz1484{}, actual)
+
+	actual = Fuzz1484{
+		One: rando.Uint32s(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1485(t *testing.T) {
+	var expected, actual Fuzz1485
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1485{}, expected)
+	require.Equal(t, Fuzz1485{}, actual)
+
+	actual = Fuzz1485{
+		One: rando.Uint32s(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1486(t *testing.T) {
+	var expected, actual Fuzz1486
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1486{}, expected)
+	require.Equal(t, Fuzz1486{}, actual)
+
+	actual = Fuzz1486{
+		One: rando.Uint32s(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1487(t *testing.T) {
+	var expected, actual Fuzz1487
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1487{}, expected)
+	require.Equal(t, Fuzz1487{}, actual)
+
+	actual = Fuzz1487{
+		One: rando.Uint32s(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1488(t *testing.T) {
+	var expected, actual Fuzz1488
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1488{}, expected)
+	require.Equal(t, Fuzz1488{}, actual)
+
+	actual = Fuzz1488{
+		One: rando.Uint32s(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1489(t *testing.T) {
+	var expected, actual Fuzz1489
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1489{}, expected)
+	require.Equal(t, Fuzz1489{}, actual)
+
+	actual = Fuzz1489{
+		One: rando.Uint32s(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1490(t *testing.T) {
+	var expected, actual Fuzz1490
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1490{}, expected)
+	require.Equal(t, Fuzz1490{}, actual)
+
+	actual = Fuzz1490{
+		One: rando.Uint32s(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1491(t *testing.T) {
+	var expected, actual Fuzz1491
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1491{}, expected)
+	require.Equal(t, Fuzz1491{}, actual)
+
+	actual = Fuzz1491{
+		One: rando.Uint32s(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1492(t *testing.T) {
+	var expected, actual Fuzz1492
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1492{}, expected)
+	require.Equal(t, Fuzz1492{}, actual)
+
+	actual = Fuzz1492{
+		One: rando.Uint32s(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1493(t *testing.T) {
+	var expected, actual Fuzz1493
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1493{}, expected)
+	require.Equal(t, Fuzz1493{}, actual)
+
+	actual = Fuzz1493{
+		One: rando.Uint32s(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1494(t *testing.T) {
+	var expected, actual Fuzz1494
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1494{}, expected)
+	require.Equal(t, Fuzz1494{}, actual)
+
+	actual = Fuzz1494{
+		One: rando.Uint32s(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1495(t *testing.T) {
+	var expected, actual Fuzz1495
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1495{}, expected)
+	require.Equal(t, Fuzz1495{}, actual)
+
+	actual = Fuzz1495{
+		One: rando.Uint32s(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1496(t *testing.T) {
+	var expected, actual Fuzz1496
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1496{}, expected)
+	require.Equal(t, Fuzz1496{}, actual)
+
+	actual = Fuzz1496{
+		One: rando.Uint32s(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1497(t *testing.T) {
+	var expected, actual Fuzz1497
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1497{}, expected)
+	require.Equal(t, Fuzz1497{}, actual)
+
+	actual = Fuzz1497{
+		One: rando.Uint32s(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1498(t *testing.T) {
+	var expected, actual Fuzz1498
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1498{}, expected)
+	require.Equal(t, Fuzz1498{}, actual)
+
+	actual = Fuzz1498{
+		One: rando.Uint32s(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1499(t *testing.T) {
+	var expected, actual Fuzz1499
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1499{}, expected)
+	require.Equal(t, Fuzz1499{}, actual)
+
+	actual = Fuzz1499{
+		One: rando.Uint32s(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1500(t *testing.T) {
+	var expected, actual Fuzz1500
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1500{}, expected)
+	require.Equal(t, Fuzz1500{}, actual)
+
+	actual = Fuzz1500{
+		One: rando.Uint32s(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1501(t *testing.T) {
+	var expected, actual Fuzz1501
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1501{}, expected)
+	require.Equal(t, Fuzz1501{}, actual)
+
+	actual = Fuzz1501{
+		One: rando.Uint32s(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1502(t *testing.T) {
+	var expected, actual Fuzz1502
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1502{}, expected)
+	require.Equal(t, Fuzz1502{}, actual)
+
+	actual = Fuzz1502{
+		One: rando.Uint32s(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1503(t *testing.T) {
+	var expected, actual Fuzz1503
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1503{}, expected)
+	require.Equal(t, Fuzz1503{}, actual)
+
+	actual = Fuzz1503{
+		One: rando.Uint32s(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1504(t *testing.T) {
+	var expected, actual Fuzz1504
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1504{}, expected)
+	require.Equal(t, Fuzz1504{}, actual)
+
+	actual = Fuzz1504{
+		One: rando.Uint32s(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1505(t *testing.T) {
+	var expected, actual Fuzz1505
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1505{}, expected)
+	require.Equal(t, Fuzz1505{}, actual)
+
+	actual = Fuzz1505{
+		One: rando.Uint32s(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1506(t *testing.T) {
+	var expected, actual Fuzz1506
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1506{}, expected)
+	require.Equal(t, Fuzz1506{}, actual)
+
+	actual = Fuzz1506{
+		One: rando.Uint32s(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1507(t *testing.T) {
+	var expected, actual Fuzz1507
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1507{}, expected)
+	require.Equal(t, Fuzz1507{}, actual)
+
+	actual = Fuzz1507{
+		One: rando.Uint32s(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1508(t *testing.T) {
+	var expected, actual Fuzz1508
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1508{}, expected)
+	require.Equal(t, Fuzz1508{}, actual)
+
+	actual = Fuzz1508{
+		One: rando.Uint32s(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1509(t *testing.T) {
+	var expected, actual Fuzz1509
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1509{}, expected)
+	require.Equal(t, Fuzz1509{}, actual)
+
+	actual = Fuzz1509{
+		One: rando.Uint32s(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1510(t *testing.T) {
+	var expected, actual Fuzz1510
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1510{}, expected)
+	require.Equal(t, Fuzz1510{}, actual)
+
+	actual = Fuzz1510{
+		One: rando.Uint32s(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1511(t *testing.T) {
+	var expected, actual Fuzz1511
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1511{}, expected)
+	require.Equal(t, Fuzz1511{}, actual)
+
+	actual = Fuzz1511{
+		One: rando.Uint32s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1512(t *testing.T) {
+	var expected, actual Fuzz1512
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1512{}, expected)
+	require.Equal(t, Fuzz1512{}, actual)
+
+	actual = Fuzz1512{
+		One: rando.Uint32s(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1513(t *testing.T) {
+	var expected, actual Fuzz1513
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1513{}, expected)
+	require.Equal(t, Fuzz1513{}, actual)
+
+	actual = Fuzz1513{
+		One: rando.Uint32s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1514(t *testing.T) {
+	var expected, actual Fuzz1514
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1514{}, expected)
+	require.Equal(t, Fuzz1514{}, actual)
+
+	actual = Fuzz1514{
+		One: rando.Uint32s(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1515(t *testing.T) {
+	var expected, actual Fuzz1515
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1515{}, expected)
+	require.Equal(t, Fuzz1515{}, actual)
+
+	actual = Fuzz1515{
+		One: rando.Uint32s(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1516(t *testing.T) {
+	var expected, actual Fuzz1516
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1516{}, expected)
+	require.Equal(t, Fuzz1516{}, actual)
+
+	actual = Fuzz1516{
+		One: rando.Uint32s(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1517(t *testing.T) {
+	var expected, actual Fuzz1517
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1517{}, expected)
+	require.Equal(t, Fuzz1517{}, actual)
+
+	actual = Fuzz1517{
+		One: rando.Uint32s(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1518(t *testing.T) {
+	var expected, actual Fuzz1518
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1518{}, expected)
+	require.Equal(t, Fuzz1518{}, actual)
+
+	actual = Fuzz1518{
+		One: rando.Uint32s(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1519(t *testing.T) {
+	var expected, actual Fuzz1519
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1519{}, expected)
+	require.Equal(t, Fuzz1519{}, actual)
+
+	actual = Fuzz1519{
+		One: rando.Uint32s(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1520(t *testing.T) {
+	var expected, actual Fuzz1520
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1520{}, expected)
+	require.Equal(t, Fuzz1520{}, actual)
+
+	actual = Fuzz1520{
+		One: rando.Uint32s(),
+		Two: rando.Uint64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1521(t *testing.T) {
+	var expected, actual Fuzz1521
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1521{}, expected)
+	require.Equal(t, Fuzz1521{}, actual)
+
+	actual = Fuzz1521{
+		One: rando.Uint64s(),
+		Two: rando.Bool(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1522(t *testing.T) {
+	var expected, actual Fuzz1522
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1522{}, expected)
+	require.Equal(t, Fuzz1522{}, actual)
+
+	actual = Fuzz1522{
+		One: rando.Uint64s(),
+		Two: rando.Byte(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1523(t *testing.T) {
+	var expected, actual Fuzz1523
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1523{}, expected)
+	require.Equal(t, Fuzz1523{}, actual)
+
+	actual = Fuzz1523{
+		One: rando.Uint64s(),
+		Two: rando.Complex64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1524(t *testing.T) {
+	var expected, actual Fuzz1524
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1524{}, expected)
+	require.Equal(t, Fuzz1524{}, actual)
+
+	actual = Fuzz1524{
+		One: rando.Uint64s(),
+		Two: rando.Complex128(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1525(t *testing.T) {
+	var expected, actual Fuzz1525
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1525{}, expected)
+	require.Equal(t, Fuzz1525{}, actual)
+
+	actual = Fuzz1525{
+		One: rando.Uint64s(),
+		Two: rando.Float32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1526(t *testing.T) {
+	var expected, actual Fuzz1526
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1526{}, expected)
+	require.Equal(t, Fuzz1526{}, actual)
+
+	actual = Fuzz1526{
+		One: rando.Uint64s(),
+		Two: rando.Float64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1527(t *testing.T) {
+	var expected, actual Fuzz1527
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1527{}, expected)
+	require.Equal(t, Fuzz1527{}, actual)
+
+	actual = Fuzz1527{
+		One: rando.Uint64s(),
+		Two: rando.Int(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1528(t *testing.T) {
+	var expected, actual Fuzz1528
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1528{}, expected)
+	require.Equal(t, Fuzz1528{}, actual)
+
+	actual = Fuzz1528{
+		One: rando.Uint64s(),
+		Two: rando.Int8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1529(t *testing.T) {
+	var expected, actual Fuzz1529
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1529{}, expected)
+	require.Equal(t, Fuzz1529{}, actual)
+
+	actual = Fuzz1529{
+		One: rando.Uint64s(),
+		Two: rando.Int16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1530(t *testing.T) {
+	var expected, actual Fuzz1530
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1530{}, expected)
+	require.Equal(t, Fuzz1530{}, actual)
+
+	actual = Fuzz1530{
+		One: rando.Uint64s(),
+		Two: rando.Int32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1531(t *testing.T) {
+	var expected, actual Fuzz1531
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1531{}, expected)
+	require.Equal(t, Fuzz1531{}, actual)
+
+	actual = Fuzz1531{
+		One: rando.Uint64s(),
+		Two: rando.Int64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1532(t *testing.T) {
+	var expected, actual Fuzz1532
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1532{}, expected)
+	require.Equal(t, Fuzz1532{}, actual)
+
+	actual = Fuzz1532{
+		One: rando.Uint64s(),
+		Two: rando.Rune(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1533(t *testing.T) {
+	var expected, actual Fuzz1533
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1533{}, expected)
+	require.Equal(t, Fuzz1533{}, actual)
+
+	actual = Fuzz1533{
+		One: rando.Uint64s(),
+		Two: rando.String(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1534(t *testing.T) {
+	var expected, actual Fuzz1534
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1534{}, expected)
+	require.Equal(t, Fuzz1534{}, actual)
+
+	actual = Fuzz1534{
+		One: rando.Uint64s(),
+		Two: rando.Duration(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1535(t *testing.T) {
+	var expected, actual Fuzz1535
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1535{}, expected)
+	require.Equal(t, Fuzz1535{}, actual)
+
+	actual = Fuzz1535{
+		One: rando.Uint64s(),
+		Two: rando.Time(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1536(t *testing.T) {
+	var expected, actual Fuzz1536
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1536{}, expected)
+	require.Equal(t, Fuzz1536{}, actual)
+
+	actual = Fuzz1536{
+		One: rando.Uint64s(),
+		Two: rando.Uint(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1537(t *testing.T) {
+	var expected, actual Fuzz1537
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1537{}, expected)
+	require.Equal(t, Fuzz1537{}, actual)
+
+	actual = Fuzz1537{
+		One: rando.Uint64s(),
+		Two: rando.Uint8(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1538(t *testing.T) {
+	var expected, actual Fuzz1538
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1538{}, expected)
+	require.Equal(t, Fuzz1538{}, actual)
+
+	actual = Fuzz1538{
+		One: rando.Uint64s(),
+		Two: rando.Uint16(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1539(t *testing.T) {
+	var expected, actual Fuzz1539
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1539{}, expected)
+	require.Equal(t, Fuzz1539{}, actual)
+
+	actual = Fuzz1539{
+		One: rando.Uint64s(),
+		Two: rando.Uint32(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1540(t *testing.T) {
+	var expected, actual Fuzz1540
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1540{}, expected)
+	require.Equal(t, Fuzz1540{}, actual)
+
+	actual = Fuzz1540{
+		One: rando.Uint64s(),
+		Two: rando.Uint64(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1541(t *testing.T) {
+	var expected, actual Fuzz1541
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1541{}, expected)
+	require.Equal(t, Fuzz1541{}, actual)
+
+	actual = Fuzz1541{
+		One: rando.Uint64s(),
+		Two: rando.Bools(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1542(t *testing.T) {
+	var expected, actual Fuzz1542
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1542{}, expected)
+	require.Equal(t, Fuzz1542{}, actual)
+
+	actual = Fuzz1542{
+		One: rando.Uint64s(),
+		Two: rando.BytesNil(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1543(t *testing.T) {
+	var expected, actual Fuzz1543
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1543{}, expected)
+	require.Equal(t, Fuzz1543{}, actual)
+
+	actual = Fuzz1543{
+		One: rando.Uint64s(),
+		Two: rando.Complex64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1544(t *testing.T) {
+	var expected, actual Fuzz1544
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1544{}, expected)
+	require.Equal(t, Fuzz1544{}, actual)
+
+	actual = Fuzz1544{
+		One: rando.Uint64s(),
+		Two: rando.Complex128s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1545(t *testing.T) {
+	var expected, actual Fuzz1545
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1545{}, expected)
+	require.Equal(t, Fuzz1545{}, actual)
+
+	actual = Fuzz1545{
+		One: rando.Uint64s(),
+		Two: rando.Float32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1546(t *testing.T) {
+	var expected, actual Fuzz1546
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1546{}, expected)
+	require.Equal(t, Fuzz1546{}, actual)
+
+	actual = Fuzz1546{
+		One: rando.Uint64s(),
+		Two: rando.Float64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1547(t *testing.T) {
+	var expected, actual Fuzz1547
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1547{}, expected)
+	require.Equal(t, Fuzz1547{}, actual)
+
+	actual = Fuzz1547{
+		One: rando.Uint64s(),
+		Two: rando.Ints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1548(t *testing.T) {
+	var expected, actual Fuzz1548
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1548{}, expected)
+	require.Equal(t, Fuzz1548{}, actual)
+
+	actual = Fuzz1548{
+		One: rando.Uint64s(),
+		Two: rando.Int8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1549(t *testing.T) {
+	var expected, actual Fuzz1549
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1549{}, expected)
+	require.Equal(t, Fuzz1549{}, actual)
+
+	actual = Fuzz1549{
+		One: rando.Uint64s(),
+		Two: rando.Int16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1550(t *testing.T) {
+	var expected, actual Fuzz1550
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1550{}, expected)
+	require.Equal(t, Fuzz1550{}, actual)
+
+	actual = Fuzz1550{
+		One: rando.Uint64s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1551(t *testing.T) {
+	var expected, actual Fuzz1551
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1551{}, expected)
+	require.Equal(t, Fuzz1551{}, actual)
+
+	actual = Fuzz1551{
+		One: rando.Uint64s(),
+		Two: rando.Int64s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1552(t *testing.T) {
+	var expected, actual Fuzz1552
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1552{}, expected)
+	require.Equal(t, Fuzz1552{}, actual)
+
+	actual = Fuzz1552{
+		One: rando.Uint64s(),
+		Two: rando.Int32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1553(t *testing.T) {
+	var expected, actual Fuzz1553
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1553{}, expected)
+	require.Equal(t, Fuzz1553{}, actual)
+
+	actual = Fuzz1553{
+		One: rando.Uint64s(),
+		Two: rando.Strings(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1554(t *testing.T) {
+	var expected, actual Fuzz1554
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1554{}, expected)
+	require.Equal(t, Fuzz1554{}, actual)
+
+	actual = Fuzz1554{
+		One: rando.Uint64s(),
+		Two: rando.Durations(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1555(t *testing.T) {
+	var expected, actual Fuzz1555
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1555{}, expected)
+	require.Equal(t, Fuzz1555{}, actual)
+
+	actual = Fuzz1555{
+		One: rando.Uint64s(),
+		Two: rando.Times(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1556(t *testing.T) {
+	var expected, actual Fuzz1556
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1556{}, expected)
+	require.Equal(t, Fuzz1556{}, actual)
+
+	actual = Fuzz1556{
+		One: rando.Uint64s(),
+		Two: rando.Uints(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1557(t *testing.T) {
+	var expected, actual Fuzz1557
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1557{}, expected)
+	require.Equal(t, Fuzz1557{}, actual)
+
+	actual = Fuzz1557{
+		One: rando.Uint64s(),
+		Two: rando.Uint8s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1558(t *testing.T) {
+	var expected, actual Fuzz1558
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1558{}, expected)
+	require.Equal(t, Fuzz1558{}, actual)
+
+	actual = Fuzz1558{
+		One: rando.Uint64s(),
+		Two: rando.Uint16s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
+
+func TestFuzz1559(t *testing.T) {
+	var expected, actual Fuzz1559
+	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.Equal(t, expected, actual)
+	require.Equal(t, Fuzz1559{}, expected)
+	require.Equal(t, Fuzz1559{}, actual)
+
+	actual = Fuzz1559{
+		One: rando.Uint64s(),
+		Two: rando.Uint32s(),
+	}
+	src := actual.MarshalJ()
+	require.NoError(t, expected.UnmarshalJ(src))
+	require.Equal(t, expected, actual)
+}
