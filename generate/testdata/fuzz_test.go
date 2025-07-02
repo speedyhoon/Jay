@@ -14,32 +14,7 @@ import (
 )
 
 func TestFuzz(t *testing.T) {
-	for _, typ := range []string{
-		"bool",
-		"byte",
-		"float32",
-		"float64",
-		"int",
-		"int8",
-		"int16",
-		"int32",
-		"int64",
-		"rune",
-		"string",
-		//"struct{}",
-		"time.Time",
-		"uint",
-		"uint8",
-		"uint16",
-		"uint32",
-		"uint64",
-		"[]byte",
-		"[]uint8",
-		"[]int8",
-		"[]bool",
-		"[]float32",
-		"[]float64",
-	} {
+	for _, typ := range types.SupportedList() {
 		tempPath := strings.ReplaceAll(strings.Trim(typ, "[].{}"), ".", "")
 		if strings.HasPrefix(typ, "[]") {
 			tempPath += "s"

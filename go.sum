@@ -6,10 +6,10 @@ github.com/speedyhoon/clr v0.0.0-20250405054240-6301f9f6b608 h1:cC4ZoTyNwVInv15r
 github.com/speedyhoon/clr v0.0.0-20250405054240-6301f9f6b608/go.mod h1:2s+mJmRgMOL/taSuexLi/+YGIiOc9ULa3NU7KSnmvzQ=
 github.com/speedyhoon/cnst/clrn v0.0.0-20250502153641-20575b9123ba h1:4x0uFlqjywG8IvCfR1dRah4fxLfVLdf2wAG0UcujOcQ=
 github.com/speedyhoon/cnst/clrn v0.0.0-20250502153641-20575b9123ba/go.mod h1:gsJNF+/77GZ+QOyuKoUtRTpGoA/cMB4tpCR/s/VR/Gk=
-github.com/speedyhoon/rando v0.0.0-20250627070140-ee3052d63df9 h1:pc0eRD2xvkoWb8PevqmfKXel5mPg5SKer6TQ3m9gVNY=
-github.com/speedyhoon/rando v0.0.0-20250627070140-ee3052d63df9/go.mod h1:08f0nzUshAoeAVIWBwJHn94morBmbNdZ6y5O9DutetM=
-github.com/speedyhoon/utl/tf v0.0.0-20241219005249-023dba03978b h1:P1GSwFC5zOxkAPLmBeIoORtDQtgl8t/ylne9f+uN0C8=
-github.com/speedyhoon/utl/tf v0.0.0-20241219005249-023dba03978b/go.mod h1:F7pya3IfvPjg9EMkJ/YNS8pr1bCGzkCqzLb6Jw+6aJ4=
+github.com/speedyhoon/rando v0.0.0-20250702161626-b53b3a796031 h1:B80yrgtoUieJKMsCBqjmdrFDZdeKGmqqlixkuGIOCaY=
+github.com/speedyhoon/rando v0.0.0-20250702161626-b53b3a796031/go.mod h1:08f0nzUshAoeAVIWBwJHn94morBmbNdZ6y5O9DutetM=
+github.com/speedyhoon/utl/tf v0.0.0-20250416234816-20f7a523763c h1:lsnAoa9LIzDP3LGEjrTo0bvY8LDhG1unZrYB5nKTZxs=
+github.com/speedyhoon/utl/tf v0.0.0-20250416234816-20f7a523763c/go.mod h1:F7pya3IfvPjg9EMkJ/YNS8pr1bCGzkCqzLb6Jw+6aJ4=
 github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOfJA=
 github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=

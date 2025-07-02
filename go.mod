@@ -5,8 +5,8 @@ go 1.23
 toolchain go1.24.1
 
 require (
-	github.com/speedyhoon/rando v0.0.0-20250627070140-ee3052d63df9
-	github.com/speedyhoon/utl/tf v0.0.0-20241219005249-023dba03978b
+	github.com/speedyhoon/rando v0.0.0-20250702161626-b53b3a796031
+	github.com/speedyhoon/utl/tf v0.0.0-20250416234816-20f7a523763c
 	github.com/stretchr/testify v1.10.0
 )
 
