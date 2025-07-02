@@ -260,8 +260,12 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 		return copyKeyword, tFuncOpt
 	case tComplex64:
 		fun, template = jay.WriteComplex64, tFunc
+	case tComplex64s:
+		fun, template = jay.WriteComplex64s, tFunc
 	case tComplex128:
 		fun, template = jay.WriteComplex128, tFunc
+	case tComplex128s:
+		fun, template = jay.WriteComplex128s, tFunc
 	case tFloat32:
 		fun, template = jay.WriteFloat32, tFunc
 	case tFloat32s:

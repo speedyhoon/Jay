@@ -103,6 +103,7 @@ Auto & HasFuel, ID,   Make,      Model         = 15 bytes
 * `bool`, `[]bool`
 * `byte`, `[]byte`
 * `complex64`, `complex128`
+* `[]complex64`, `[]complex128`
 * `float32`, `float64`
 * `[]float32`, `[]float64`
 * `int`, `int8`, `int16`, `int32`, `int64`
@@ -134,7 +135,6 @@ To include an external type via the commandline, either:
 
 In order of priority:
 
-* `[]complex64`, `[]complex128`
 * Expand fuzz testing.
 * Field tag options and documentation.
 * `string` _(Increase supported length from 255 bytes to 16 MB)_

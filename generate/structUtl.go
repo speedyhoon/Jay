@@ -392,7 +392,8 @@ func lenVariable(index uint) string {
 const (
 	tBool, tBools                            = "bool", "[]bool"
 	tByte, tBytes                            = "byte", "[]byte"
-	tComplex64, tComplex128                  = "complex64", "complex128"
+	tComplex64, tComplex64s                  = "complex64", "[]complex64"
+	tComplex128, tComplex128s                = "complex128", "[]complex128"
 	tFloat32, tFloat32s                      = "float32", "[]float32"
 	tFloat64, tFloat64s                      = "float64", "[]float64"
 	tInt, tInt8, tInt16, tInt32, tInt64      = "int", "int8", "int16", "int32", "int64"
