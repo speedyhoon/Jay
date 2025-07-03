@@ -238,7 +238,7 @@ func (c *varCtx) trackingVars(f *field) {
 		}
 
 		if !c.isEndDefined {
-			bufWriteLineF(c.buf, "%s := %s+%s", vEnd, vAt, f.unmarshal.sizeVar)
+			bufWriteLineF(c.buf, "%s := %s+%s", vEnd, vAt, f.unmarshal.sizeVar.String(f.elmSize))
 			c.isEndDefined = true
 			c.endValue = vEnd
 		}
