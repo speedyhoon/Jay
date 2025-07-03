@@ -218,6 +218,9 @@ func (c *varCtx) trackingVars(f *field) {
 				c.isAtDefined = true
 				bufWriteLineF(c.buf, "%s := %d", vAt, *f.indexStart)
 				c.atValue = vAt
+				if !c.isEndDefined {
+					c.endValue = ""
+				}
 			}
 		}
 		return
