@@ -85,20 +85,20 @@ func (s *structTyp) makeLengthChecks() string {
 	}
 
 	assignments, values := make([]string, 0, qty), make([]string, 0, qty)
-	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
+	sizeGroups := varSize{}
 	for i, f := range s.variableLen {
 		if f.isLast && f.typ == tBools {
-			sizeChecks.add(f, printFunc(f.pickSizeFunc(jay.SizeBools8, jay.SizeBools), string(f.unmarshal.qtyVar)))
+			sizeGroups.add(f, printFunc(f.pickSizeFunc(jay.SizeBools8, jay.SizeBools), string(f.unmarshal.qtyVar)))
 			continue
 		}
 
-		assignments = append(assignments, string(f.unmarshal.sizeVar))
+		assignments = append(assignments, string(f.unmarshal.sizeVar)) // Append the size variable name without any multiplier.
 		if f.typ == tBools {
 			values = append(values, printFunc(f.pickSizeFunc(jay.SizeBools8, jay.SizeBools), string(f.unmarshal.qtyVar)))
 		} else {
 			values = append(values, fmt.Sprintf("%s(%s)", intKeyword, f.qtyBytes()))
 		}
-		sizeChecks.add(f, assignments[i])
+		sizeGroups.add(f, assignments[i])
 	}
 
 	var assignLine string
@@ -120,7 +120,7 @@ func (s *structTyp) makeLengthChecks() string {
 			s.bufferName,
 			s.qtyBytesRequired,
 			s.sizeCompSymbol(),
-			sizeChecks.group(),
+			sizeGroups.group(),
 			exportedErr,
 		)
 	}
@@ -140,7 +140,7 @@ func (s *structTyp) makeLengthChecks() string {
 		exportedErr,
 		assignLine,
 		s.sizeCompSymbol(),
-		sizeChecks.group(),
+		sizeGroups.group(),
 	)
 }
 
