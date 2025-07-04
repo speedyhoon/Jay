@@ -1,5 +1,8 @@
 # Jay
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/speedyhoon/jay.svg)](https://pkg.go.dev/github.com/speedyhoon/jay)
+[![Go Report Card](https://goreportcard.com/badge/github.com/speedyhoon/Jay)](https://goreportcard.com/report/github.com/speedyhoon/Jay)
+
 Jay aims to be the fastest production safe, serialization package written in [Go](https://go.dev) as
 an alternative to
 [JSON](https://pkg.go.dev/encoding/json),
@@ -24,7 +27,7 @@ generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tre
 	* Processing more requests per second _(higher CPU throughput)_ **OR**,
 	* Least network bandwidth used _(10/100 networks)_.
 * Doesn't introduce extra dependencies.
-* Output could be compressed with `gzip`, `brotli`, [`zstd`](https://facebook.github.io/zstd/) or others.
+* Output could be compressed with [`gzip`](https://pkg.go.dev/compress/gzip), `brotli`, [`zstd`](https://facebook.github.io/zstd/) or others.
 
 ##### Cons:
 

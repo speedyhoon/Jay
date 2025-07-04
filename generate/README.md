@@ -1,4 +1,8 @@
 # generate
+
+[![Go Reference](https://pkg.go.dev/badge/github.com/speedyhoon/jay/generate.svg)](https://pkg.go.dev/github.com/speedyhoon/jay/generate)
+[![Go Report Card](https://goreportcard.com/badge/github.com/speedyhoon/Jay/generate)](https://goreportcard.com/report/github.com/speedyhoon/Jay/generate)
+
 Traverses `.go` files to find exported Go `structs` to generate marshalling `.MarshalJ()` and unmarshalling `.UnmarshalJ()` methods for the [Jay serialization format](https://github.com/speedyhoon/jay).
 
 ## Field tag options
