@@ -14,6 +14,13 @@ func SizeStrings8(s []string) (total int) {
 	return l + total
 }
 
+func SizeStringsArray(s []string, l int) (total int) {
+	for i := 0; i < l; i++ {
+		total += len(s[i]) & maxUint8
+	}
+	return l + total
+}
+
 func ReadStrings8nbX(y []byte, s *[]string, qty uint8, at *int) (ok bool) {
 	if qty == 0 {
 		return true
@@ -174,4 +181,39 @@ func WriteStrings8(y, qty []byte, s []string) {
 			at = end
 		}
 	}
+}
+
+func WriteStringsArray(y []byte, l uint8, s []string) {
+	for i, at, end := uint8(0), uint(l), uint(l); i < l; i++ {
+		length := len(s[i])
+		if length == 0 {
+			continue
+		}
+
+		if length >= 256 || length != int(byte(length)) || len([]byte(s[i])) != length {
+			panic("dif rune lengths")
+		}
+		y[i] = byte(len(s[i]))
+
+		end += uint(y[i])
+		copy(y[at:end], s[i])
+		at = end
+	}
+}
+
+func ReadStringsArrayErr(y []byte, s []string, qty uint8) (err error) {
+	for i, at, end, l := uint8(0), uint(qty), uint(qty), uint(len(y)); i < qty; i, at = i+1, end {
+		end += uint(y[i])
+		if at == end {
+			continue
+		}
+
+		if l < end {
+			return ErrUnexpectedEOB
+		}
+
+		s[i] = string(y[at:end])
+	}
+
+	return
 }
