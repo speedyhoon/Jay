@@ -217,3 +217,21 @@ func ReadStringsArrayErr(y []byte, s []string, qty uint8) (err error) {
 
 	return
 }
+
+func ReadStringsArrayAtOk(y []byte, s []string, qty uint8) (end uint, ok bool) {
+	end = uint(qty)
+	for i, at, l := uint8(0), uint(qty), uint(len(y)); i < qty; i, at = i+1, end {
+		end += uint(y[i])
+		if at == end {
+			continue
+		}
+
+		if l < end {
+			return 0, false
+		}
+
+		s[i] = string(y[at:end])
+	}
+
+	return end, true
+}
