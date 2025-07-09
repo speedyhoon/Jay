@@ -218,8 +218,9 @@ func ReadStringsArrayErr(y []byte, s []string, qty uint8) (err error) {
 	return
 }
 
-func ReadStringsArrayAtOk(y []byte, s []string, qty uint8) (end uint, ok bool) {
-	end = uint(qty)
+// ReadStringsArrayAtOk decodes a []byte into []string and increments atPos with the overall length.
+func ReadStringsArrayAtOk(y []byte, s []string, qty uint8, atPos *uint) (ok bool) {
+	end := uint(qty)
 	for i, at, l := uint8(0), uint(qty), uint(len(y)); i < qty; i, at = i+1, end {
 		end += uint(y[i])
 		if at == end {
@@ -227,11 +228,12 @@ func ReadStringsArrayAtOk(y []byte, s []string, qty uint8) (end uint, ok bool) {
 		}
 
 		if l < end {
-			return 0, false
+			return false
 		}
 
 		s[i] = string(y[at:end])
 	}
 
-	return end, true
+	*atPos += end
+	return true
 }
