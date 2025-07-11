@@ -103,6 +103,8 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 		}
 
 		f.arraySize, ok = calcArraySize(d.Len)
+		f.unmarshal.qtyVar = multiplier(strconv.Itoa(f.arraySize))
+		f.marshal.qtyVar = multiplier(strconv.Itoa(f.arraySize))
 		f.isFixedLen = f.isFixedLen && f.isArray()
 
 	case *ast.TypeSpec:

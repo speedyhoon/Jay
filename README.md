@@ -118,7 +118,7 @@ Auto & HasFuel, ID,   Make,      Model         = 15 bytes
 * `[]time.Time`, `[]time.Duration`
 * `uint`, `uint8`, `uint16`, `uint32`, `uint64`
 * `[]uint`, `[]uint8`, `[]uint16`, `[]uint32`, `[]uint64`
-* arrays for simple types _(`[5]string` limited testing so far)_
+* Arrays for all built-in types with lengths from 1 to 255, for example: `[5]string`, `[9]time.Duration` and `[33]time.Time` _(no fuzz testing yet)_
 
 Jay also supports imported types. If the exported type is in the same package or a subpackage then `jay` will automatically find it with:
 
@@ -141,17 +141,16 @@ In order of priority:
 * Expand fuzz testing.
 * Field tag options and documentation.
 * `string` _(Increase supported length from 255 bytes to 16 MB)_
-* slices _(including `[]string`, `[]time.Time`, `[]time.Duration`)_ <br>
-  **WIP** -- type aliases are working (`type strs = []string`), undecided upon type definitions (`type strs []string`),
+* Add tests for array types with more than 255 items.
 * Performance benchmarks.
 * Low-bandwidth mode.
-* Aliased definition types like `[]float` where `float` is defined as `type float float32`.<br>
+* Aliased definition slice types like `[]float` where `float` is defined as `type float float32`.<br>
   _(Already supported: `type float = float32`, `type floats = []float32` & `type floats []float32`)_.
 ###### Undecided
-* pointers _(`*uint64`)_ <br>
+* Pointers _(`*uint64`)_ <br>
   _**R&D** -- have a working prototype for `*bool` and all integer types, undecided on `*string`, slices, arrays and struct slices_.
-* multi-dimensional arrays & slices? _(`[][]string`)_
-* maps? _(`map[string]uint`)_
+* Multi-dimensional arrays & slices? _(`[][]string`)_
+* Maps? _(`map[string]uint`)_
 
 ## Done
 

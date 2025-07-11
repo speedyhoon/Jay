@@ -8,7 +8,13 @@ func (s *structTyp) calcSize() (qty uint) {
 	qty = uint(jay.SizeBools(len(s.bool)))
 
 	qty += uint(len(s.single))
-	qty += uint(len(s.stringSlice))
+
+	for _, x := range s.stringSlice {
+		if !x.isArray() {
+			// Don't include array lengths because its size is generated as a hardcoded value.
+			qty++
+		}
+	}
 
 	for _, x := range s.fixedLen {
 		qty += x.typeFuncSize()

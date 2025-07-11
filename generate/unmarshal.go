@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/utl"
+	"strconv"
 	"strings"
 )
 
@@ -22,6 +23,22 @@ type varCtx struct {
 	buf                       *bytes.Buffer
 	atValue, endValue         string
 	isAtDefined, isEndDefined bool
+	isOkDefined               bool
+}
+
+func (c *varCtx) defineAtOk() string {
+	if c.isAtDefined && c.isOkDefined {
+		return fmt.Sprintf("%s, %s =", vAt, vOk)
+	}
+	c.isAtDefined, c.isOkDefined = true, true
+	return fmt.Sprintf("%s, %s :=", vAt, vOk)
+}
+
+func (c *varCtx) defineAtLine() string {
+	if !c.isAtDefined {
+		return fmt.Sprintf("var %s uint\n\t", vAt)
+	}
+	return ""
 }
 
 // Names of variables used in the generated code.
@@ -154,10 +171,14 @@ func (s *structTyp) sizeCompSymbol() string {
 }
 
 func (s *structTyp) generateMakeSizes(totalSize uint) string {
-	sizeChecks := make(varSize, 5) // 1,2,4,8 and 0 (bool)
+	sizeChecks := varSize{}
 	for _, f := range append(s.stringSlice, s.variableLen...) {
 		if f.isLast && f.typ == tStrings {
-			sizeChecks.add(f, printFunc(nameOf(jay.SizeStrings8, s.isImportJ), f.Name()))
+			if f.isArray() {
+				sizeChecks.add(f, printFunc(nameOf(jay.SizeStringsArray, s.isImportJ), f.Field(""), strconv.Itoa(f.arraySize)))
+			} else {
+				sizeChecks.add(f, printFunc(nameOf(jay.SizeStrings8, s.isImportJ), f.Name()))
+			}
 		} else {
 			if f.typ == tBools {
 				sizeChecks.add(f, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(f.marshal.qtyVar)))
@@ -208,7 +229,7 @@ func (c *varCtx) trackingVars(f *field) {
 	}
 
 	if f.isStrings() {
-		if f.isFirst {
+		if f.isFirst && !f.isArray() {
 			c.isAtDefined, c.atValue = true, vAt
 			return
 		}
@@ -216,7 +237,11 @@ func (c *varCtx) trackingVars(f *field) {
 		if !c.isAtDefined {
 			if len(f.structTyp.stringSlice) >= 2 || len(f.structTyp.variableLen) >= 1 {
 				c.isAtDefined = true
-				bufWriteLineF(c.buf, "%s := %d", vAt, *f.indexStart)
+				if f.indexStart != nil && *f.indexStart != 0 {
+					bufWriteLineF(c.buf, "%s := %d", vAt, *f.indexStart)
+				} else {
+					bufWriteLineF(c.buf, "var %s uint", vAt)
+				}
 				c.atValue = vAt
 				if !c.isEndDefined {
 					c.endValue = ""
@@ -288,8 +313,11 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 	case tFuncOpt:
 		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", f.unmarshal.qtyVar, f.Name(), f.sliceExpr3(ctx))
 
+	case tFuncArrayTypes:
+		return fmt.Sprintf("%s%s(%s, %s, %d)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr3(ctx), f.Field(fun), f.arraySize)
+
 	case tFuncLength:
-		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr3(ctx), string(f.unmarshal.qtyVar)))
+		return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.convertTo(), printFunc(fun, f.sliceExpr3(ctx), string(f.unmarshal.qtyVar))))
 
 	case tFuncPtr:
 		return fmt.Sprintf("%s%s(%s, &%s, %s)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes())
@@ -298,6 +326,18 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 		return fmt.Sprintf(
 			"%s, %s := %s(%s, &%s, %s, %d)\n\tif !%[2]s {\n\t\treturn %[8]s\n\t}",
 			vAt, vOk, fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), *f.indexStart, exportedErr,
+		)
+
+	case tFuncCheck:
+		return fmt.Sprintf(
+			"if !%s(%s, %s, %d, &%s) {\n\t\treturn %s\n\t}",
+			fun, f.sliceExpr3(ctx), f.Field(fun), f.arraySize, vAt, exportedErr,
+		)
+
+	case tFuncCheck2:
+		return fmt.Sprintf(
+			"if !%s(%s, %s, %d, &%s) {\n\t\treturn %s\n\t}",
+			fun, f.sliceExpr3(ctx), f.Field(fun), f.arraySize, vAt, exportedErr,
 		)
 
 	case tFuncPtrCheckAt:
@@ -333,7 +373,8 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 func (f *field) qtyBytes() string {
 	switch l := len(f.qtyIndex); l {
 	case 0:
-		panic("f.qtyIndex not populated")
+		// Used for array types.
+		return f.structTyp.bufferName
 	case 1:
 		return fmt.Sprintf("%s[%d]", f.structTyp.bufferName, f.qtyIndex[0])
 	default:
@@ -361,7 +402,12 @@ func (c canReturnInlined) String() string {
 
 func (f *field) convertTo() string {
 	if f.isArray() {
-		return fmt.Sprintf("[%d]%s", f.arraySize, f.arrayType)
+		if f.aliasType != "" {
+			f.structTyp.imports.add(f.pkgReq)
+			return fmt.Sprintf("[%d]%s", f.arraySize, f.aliasType)
+		} else {
+			return fmt.Sprintf("[%d]%s", f.arraySize, f.arrayType)
+		}
 	}
 	return ""
 }
@@ -448,7 +494,15 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 			c, template = jay.ReadIntsX64, tFuncLength
 		}
 	case tStrings:
-		if f.isLast {
+		if f.isArray() {
+			if f.isLast {
+				c, template, canReturnInline = jay.ReadStringsArrayErr, tFuncArrayTypes, canReturnInlined(f.isLast)
+			} else if f.isFirst {
+				c, template, canReturnInline = jay.ReadStringsArrayAtOk, tFuncCheck, canReturnInlined(f.isLast)
+			} else {
+				c, template, canReturnInline = jay.ReadStringsArrayAtOk, tFuncCheck2, canReturnInlined(f.isLast)
+			}
+		} else if f.isLast {
 			canReturnInline = canReturnInlined(f.structTyp.putFixedLenBefore())
 			if canReturnInline {
 				c, template, canReturnInline = f.sizeOfPick(jay.ReadStrings8Err, jay.ReadStrings8Err), tFuncPtr, canReturnInlined(f.structTyp.putFixedLenBefore())

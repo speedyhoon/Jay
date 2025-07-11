@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/utl"
+	"strconv"
 	"strings"
 )
 
@@ -55,13 +56,25 @@ func (f *field) generateLenVar(list, values *[]string) {
 			return
 		}
 
-		lv := printFunc(
-			nameOf(
-				f.sizeOfPick(jay.SizeStrings8, jay.SizeStrings8),
-				f.structTyp.isImportJ,
-			),
-			f.Name(),
-		)
+		var lv string
+		if f.isArray() {
+			lv = printFunc(
+				nameOf(
+					jay.SizeStringsArray,
+					f.structTyp.isImportJ,
+				),
+				f.Field(""),
+				strconv.Itoa(f.arraySize),
+			)
+		} else {
+			lv = printFunc(
+				nameOf(
+					f.sizeOfPick(jay.SizeStrings8, jay.SizeStrings8),
+					f.structTyp.isImportJ,
+				),
+				f.Name(),
+			)
+		}
 		*values = append(*values, lv)
 
 	} else {

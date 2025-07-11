@@ -102,28 +102,24 @@ func (f *field) marshalLine(ctx *varCtx, lenVar string) string {
 	}
 
 	ctx.trackingVarsM(f)
-	thisField := f.Name()
-
-	if f.isDef && fun != copyKeyword && f.isNotArrayOrSlice() {
-		f.structTyp.imports.add(f.pkgReq)
-		thisField = printFunc(f.typ, thisField)
-	}
 
 	switch template {
 	case tFunc:
-		if f.isArray() {
-			thisField += "[:]"
-		}
-
-		return fmt.Sprintf("%s(%s, %s)", fun, f.sliceExprM(ctx), thisField)
+		return fmt.Sprintf("%s(%s, %s)", fun, f.sliceExprM(ctx), f.Field(fun))
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, f.sliceExprM(ctx), thisField)
+		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, f.sliceExprM(ctx), f.Field(fun))
 	case tFuncLength:
-		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExprM(ctx), thisField, lenVar)
+		if f.isArray() {
+			return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExprM(ctx), f.Field(fun), string(f.marshal.qtyVar))
+		}
+		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExprM(ctx), f.Field(fun), lenVar)
 	case tFuncLengthSlice:
-		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExprM(ctx), f.qtySlice(), thisField)
+		if f.isArray() {
+			return fmt.Sprintf("%s(%s, %d, %s)", fun, f.sliceExprM(ctx), f.arraySize, f.Field(fun))
+		}
+		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExprM(ctx), f.qtySlice(), f.Field(fun))
 	case tByteAssign:
-		return fmt.Sprintf("%s[:]", thisField)
+		return f.Field(fun)
 	default:
 		lg.Printf("template %d unhandled", template)
 		return ""
@@ -166,7 +162,6 @@ func (c *varCtx) trackingVarsM(f *field) {
 				c.atValue = utl.UtoA(*f.indexStart)
 				return
 			}
-			panic("why not defined?")
 		}
 		c.atValue, c.endValue = c.endValue, ""
 		return
@@ -190,12 +185,14 @@ func (c *varCtx) trackingVarsM(f *field) {
 
 	switch {
 	case f.isStrings():
-		if len(*f.fieldList)+len(f.structTyp.variableLen) >= 2 {
+		if f.isFirst {
+			c.endValue = string(f.marshal.qtyVar)
+		} else if len(*f.fieldList)+len(f.structTyp.variableLen) >= 2 && !f.isFirst {
 			c.isAtDefined = true
 			c.isEndDefined = true
+			bufWriteLineF(c.buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, c.endValue, f.marshal.qtyVar)
 			c.atValue = vAt
 			c.endValue = vEnd
-			bufWriteLineF(c.buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, c.atValue, f.marshal.qtyVar)
 		}
 	case f.isVarLen():
 		if len(*f.fieldList) >= 2 {
@@ -206,6 +203,20 @@ func (c *varCtx) trackingVarsM(f *field) {
 			bufWriteLineF(c.buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, c.atValue, f.marshal.qtyVar)
 		}
 	}
+}
+
+func (f *field) Field(typeConv string) (fieldName string) {
+	fieldName = f.Name()
+
+	switch {
+	case f.isArray():
+		return fieldName + "[:]"
+	case f.isDef && typeConv != copyKeyword && f.isNotArrayOrSlice():
+		f.structTyp.imports.add(f.pkgReq)
+		return printFunc(f.typ, fieldName)
+	}
+
+	return
 }
 
 func (f *field) ctxVarIncrementBy() string {
@@ -309,7 +320,9 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 	case tString:
 		return copyKeyword, tFunc
 	case tStrings:
-		if f.tagOptions.Required {
+		if f.isArray() {
+			fun, template = f.sizeOfPick(jay.WriteStringsArray, jay.WriteStringsArray), tFuncLengthSlice
+		} else if f.tagOptions.Required {
 			fun, template = f.sizeOfPick(jay.WriteStrings8Req, jay.WriteStrings8Req), tFuncLength
 		} else {
 			fun, template = f.sizeOfPick(jay.WriteStrings8, jay.WriteStrings8), tFuncLengthSlice
@@ -435,6 +448,7 @@ const (
 
 	// tFuncLength calls a function with a length parameter, `func(b[at:end], type, int)`.
 	tFuncLength
+	tFuncArrayTypes
 	tFuncLengthSlice
 
 	// tFuncPtr calls a function with the field used as a pointer in the last parameter.
@@ -448,6 +462,8 @@ const (
 	// tFuncPtrCheckAt expands tFuncPtrCheck by adding a function parameter to update a pointer for the byte index.
 	tFuncPtrCheckAt
 	tFuncPtrCheckAtOk
+	tFuncCheck
+	tFuncCheck2
 
 	// tByteAssign byte assignment always populated. No function calls required, `b[0] = byte`.
 	tByteAssign
