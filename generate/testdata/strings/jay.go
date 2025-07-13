@@ -6,7 +6,7 @@ import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() (b []byte) {
 	b = make([]byte, 1+jay.SizeStrings8(o.One))
-	jay.WriteStrings8(b[1:], b[0:1], o.One)
+	jay.WriteStrings8(b[1:], b[:1], o.One)
 	return
 }
 
@@ -21,7 +21,7 @@ func (t *Two) MarshalJ() (b []byte) {
 	l0 := jay.SizeStrings8(t.One)
 	b = make([]byte, 2+l0+jay.SizeStrings8(t.Two))
 	at, end := 2, 2+l0
-	jay.WriteStrings8(b[at:end], b[0:1], t.One)
+	jay.WriteStrings8(b[at:end], b[:1], t.One)
 	jay.WriteStrings8(b[end:], b[1:2], t.Two)
 	return
 }
@@ -44,7 +44,7 @@ func (t *Three) MarshalJ() (b []byte) {
 	l0, l1 := jay.SizeStrings8(t.One), jay.SizeStrings8(t.Two)
 	b = make([]byte, 3+l0+l1+jay.SizeStrings8(t.Three))
 	at, end := 3, 3+l0
-	jay.WriteStrings8(b[at:end], b[0:1], t.One)
+	jay.WriteStrings8(b[at:end], b[:1], t.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], t.Two)
 	jay.WriteStrings8(b[end:], b[2:3], t.Three)
@@ -72,7 +72,7 @@ func (f *Four) MarshalJ() (b []byte) {
 	l0, l1, l2 := jay.SizeStrings8(f.One), jay.SizeStrings8(f.Two), jay.SizeStrings8(f.Three)
 	b = make([]byte, 4+l0+l1+l2+jay.SizeStrings8(f.Four))
 	at, end := 4, 4+l0
-	jay.WriteStrings8(b[at:end], b[0:1], f.One)
+	jay.WriteStrings8(b[at:end], b[:1], f.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], f.Two)
 	at, end = end, end+l2
@@ -105,7 +105,7 @@ func (f *Five) MarshalJ() (b []byte) {
 	l0, l1, l2, l3 := jay.SizeStrings8(f.One), jay.SizeStrings8(f.Two), jay.SizeStrings8(f.Three), jay.SizeStrings8(f.Four)
 	b = make([]byte, 5+l0+l1+l2+l3+jay.SizeStrings8(f.Five))
 	at, end := 5, 5+l0
-	jay.WriteStrings8(b[at:end], b[0:1], f.One)
+	jay.WriteStrings8(b[at:end], b[:1], f.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], f.Two)
 	at, end = end, end+l2
@@ -143,7 +143,7 @@ func (s *Six) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4 := jay.SizeStrings8(s.One), jay.SizeStrings8(s.Two), jay.SizeStrings8(s.Three), jay.SizeStrings8(s.Four), jay.SizeStrings8(s.Five)
 	b = make([]byte, 6+l0+l1+l2+l3+l4+jay.SizeStrings8(s.Six))
 	at, end := 6, 6+l0
-	jay.WriteStrings8(b[at:end], b[0:1], s.One)
+	jay.WriteStrings8(b[at:end], b[:1], s.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], s.Two)
 	at, end = end, end+l2
@@ -186,7 +186,7 @@ func (s *Seven) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5 := jay.SizeStrings8(s.One), jay.SizeStrings8(s.Two), jay.SizeStrings8(s.Three), jay.SizeStrings8(s.Four), jay.SizeStrings8(s.Five), jay.SizeStrings8(s.Six)
 	b = make([]byte, 7+l0+l1+l2+l3+l4+l5+jay.SizeStrings8(s.Seven))
 	at, end := 7, 7+l0
-	jay.WriteStrings8(b[at:end], b[0:1], s.One)
+	jay.WriteStrings8(b[at:end], b[:1], s.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], s.Two)
 	at, end = end, end+l2
@@ -234,7 +234,7 @@ func (e *Eight) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6 := jay.SizeStrings8(e.One), jay.SizeStrings8(e.Two), jay.SizeStrings8(e.Three), jay.SizeStrings8(e.Four), jay.SizeStrings8(e.Five), jay.SizeStrings8(e.Six), jay.SizeStrings8(e.Seven)
 	b = make([]byte, 8+l0+l1+l2+l3+l4+l5+l6+jay.SizeStrings8(e.Eight))
 	at, end := 8, 8+l0
-	jay.WriteStrings8(b[at:end], b[0:1], e.One)
+	jay.WriteStrings8(b[at:end], b[:1], e.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], e.Two)
 	at, end = end, end+l2
@@ -287,7 +287,7 @@ func (n *Nine) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7 := jay.SizeStrings8(n.One), jay.SizeStrings8(n.Two), jay.SizeStrings8(n.Three), jay.SizeStrings8(n.Four), jay.SizeStrings8(n.Five), jay.SizeStrings8(n.Six), jay.SizeStrings8(n.Seven), jay.SizeStrings8(n.Eight)
 	b = make([]byte, 9+l0+l1+l2+l3+l4+l5+l6+l7+jay.SizeStrings8(n.Nine))
 	at, end := 9, 9+l0
-	jay.WriteStrings8(b[at:end], b[0:1], n.One)
+	jay.WriteStrings8(b[at:end], b[:1], n.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], n.Two)
 	at, end = end, end+l2
@@ -345,7 +345,7 @@ func (t *Ten) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8 := jay.SizeStrings8(t.One), jay.SizeStrings8(t.Two), jay.SizeStrings8(t.Three), jay.SizeStrings8(t.Four), jay.SizeStrings8(t.Five), jay.SizeStrings8(t.Six), jay.SizeStrings8(t.Seven), jay.SizeStrings8(t.Eight), jay.SizeStrings8(t.Nine)
 	b = make([]byte, 10+l0+l1+l2+l3+l4+l5+l6+l7+l8+jay.SizeStrings8(t.Ten))
 	at, end := 10, 10+l0
-	jay.WriteStrings8(b[at:end], b[0:1], t.One)
+	jay.WriteStrings8(b[at:end], b[:1], t.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], t.Two)
 	at, end = end, end+l2
@@ -408,7 +408,7 @@ func (e *Eleven) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := jay.SizeStrings8(e.One), jay.SizeStrings8(e.Two), jay.SizeStrings8(e.Three), jay.SizeStrings8(e.Four), jay.SizeStrings8(e.Five), jay.SizeStrings8(e.Six), jay.SizeStrings8(e.Seven), jay.SizeStrings8(e.Eight), jay.SizeStrings8(e.Nine), jay.SizeStrings8(e.Ten)
 	b = make([]byte, 11+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+jay.SizeStrings8(e.Eleven))
 	at, end := 11, 11+l0
-	jay.WriteStrings8(b[at:end], b[0:1], e.One)
+	jay.WriteStrings8(b[at:end], b[:1], e.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], e.Two)
 	at, end = end, end+l2
@@ -476,7 +476,7 @@ func (t *Twelve) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := jay.SizeStrings8(t.One), jay.SizeStrings8(t.Two), jay.SizeStrings8(t.Three), jay.SizeStrings8(t.Four), jay.SizeStrings8(t.Five), jay.SizeStrings8(t.Six), jay.SizeStrings8(t.Seven), jay.SizeStrings8(t.Eight), jay.SizeStrings8(t.Nine), jay.SizeStrings8(t.Ten), jay.SizeStrings8(t.Eleven)
 	b = make([]byte, 12+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+jay.SizeStrings8(t.Twelve))
 	at, end := 12, 12+l0
-	jay.WriteStrings8(b[at:end], b[0:1], t.One)
+	jay.WriteStrings8(b[at:end], b[:1], t.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], t.Two)
 	at, end = end, end+l2
@@ -549,7 +549,7 @@ func (t *Thirteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := jay.SizeStrings8(t.One), jay.SizeStrings8(t.Two), jay.SizeStrings8(t.Three), jay.SizeStrings8(t.Four), jay.SizeStrings8(t.Five), jay.SizeStrings8(t.Six), jay.SizeStrings8(t.Seven), jay.SizeStrings8(t.Eight), jay.SizeStrings8(t.Nine), jay.SizeStrings8(t.Ten), jay.SizeStrings8(t.Eleven), jay.SizeStrings8(t.Twelve)
 	b = make([]byte, 13+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+jay.SizeStrings8(t.Thirteen))
 	at, end := 13, 13+l0
-	jay.WriteStrings8(b[at:end], b[0:1], t.One)
+	jay.WriteStrings8(b[at:end], b[:1], t.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], t.Two)
 	at, end = end, end+l2
@@ -627,7 +627,7 @@ func (f *Fourteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := jay.SizeStrings8(f.One), jay.SizeStrings8(f.Two), jay.SizeStrings8(f.Three), jay.SizeStrings8(f.Four), jay.SizeStrings8(f.Five), jay.SizeStrings8(f.Six), jay.SizeStrings8(f.Seven), jay.SizeStrings8(f.Eight), jay.SizeStrings8(f.Nine), jay.SizeStrings8(f.Ten), jay.SizeStrings8(f.Eleven), jay.SizeStrings8(f.Twelve), jay.SizeStrings8(f.Thirteen)
 	b = make([]byte, 14+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+jay.SizeStrings8(f.Fourteen))
 	at, end := 14, 14+l0
-	jay.WriteStrings8(b[at:end], b[0:1], f.One)
+	jay.WriteStrings8(b[at:end], b[:1], f.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], f.Two)
 	at, end = end, end+l2
@@ -710,7 +710,7 @@ func (f *Fifteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := jay.SizeStrings8(f.One), jay.SizeStrings8(f.Two), jay.SizeStrings8(f.Three), jay.SizeStrings8(f.Four), jay.SizeStrings8(f.Five), jay.SizeStrings8(f.Six), jay.SizeStrings8(f.Seven), jay.SizeStrings8(f.Eight), jay.SizeStrings8(f.Nine), jay.SizeStrings8(f.Ten), jay.SizeStrings8(f.Eleven), jay.SizeStrings8(f.Twelve), jay.SizeStrings8(f.Thirteen), jay.SizeStrings8(f.Fourteen)
 	b = make([]byte, 15+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+jay.SizeStrings8(f.Fifteen))
 	at, end := 15, 15+l0
-	jay.WriteStrings8(b[at:end], b[0:1], f.One)
+	jay.WriteStrings8(b[at:end], b[:1], f.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], f.Two)
 	at, end = end, end+l2
@@ -798,7 +798,7 @@ func (s *Sixteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := jay.SizeStrings8(s.One), jay.SizeStrings8(s.Two), jay.SizeStrings8(s.Three), jay.SizeStrings8(s.Four), jay.SizeStrings8(s.Five), jay.SizeStrings8(s.Six), jay.SizeStrings8(s.Seven), jay.SizeStrings8(s.Eight), jay.SizeStrings8(s.Nine), jay.SizeStrings8(s.Ten), jay.SizeStrings8(s.Eleven), jay.SizeStrings8(s.Twelve), jay.SizeStrings8(s.Thirteen), jay.SizeStrings8(s.Fourteen), jay.SizeStrings8(s.Fifteen)
 	b = make([]byte, 16+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+jay.SizeStrings8(s.Sixteen))
 	at, end := 16, 16+l0
-	jay.WriteStrings8(b[at:end], b[0:1], s.One)
+	jay.WriteStrings8(b[at:end], b[:1], s.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], s.Two)
 	at, end = end, end+l2
@@ -891,7 +891,7 @@ func (s *Seventeen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := jay.SizeStrings8(s.One), jay.SizeStrings8(s.Two), jay.SizeStrings8(s.Three), jay.SizeStrings8(s.Four), jay.SizeStrings8(s.Five), jay.SizeStrings8(s.Six), jay.SizeStrings8(s.Seven), jay.SizeStrings8(s.Eight), jay.SizeStrings8(s.Nine), jay.SizeStrings8(s.Ten), jay.SizeStrings8(s.Eleven), jay.SizeStrings8(s.Twelve), jay.SizeStrings8(s.Thirteen), jay.SizeStrings8(s.Fourteen), jay.SizeStrings8(s.Fifteen), jay.SizeStrings8(s.Sixteen)
 	b = make([]byte, 17+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+jay.SizeStrings8(s.Seventeen))
 	at, end := 17, 17+l0
-	jay.WriteStrings8(b[at:end], b[0:1], s.One)
+	jay.WriteStrings8(b[at:end], b[:1], s.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], s.Two)
 	at, end = end, end+l2
@@ -989,7 +989,7 @@ func (e *Eighteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := jay.SizeStrings8(e.One), jay.SizeStrings8(e.Two), jay.SizeStrings8(e.Three), jay.SizeStrings8(e.Four), jay.SizeStrings8(e.Five), jay.SizeStrings8(e.Six), jay.SizeStrings8(e.Seven), jay.SizeStrings8(e.Eight), jay.SizeStrings8(e.Nine), jay.SizeStrings8(e.Ten), jay.SizeStrings8(e.Eleven), jay.SizeStrings8(e.Twelve), jay.SizeStrings8(e.Thirteen), jay.SizeStrings8(e.Fourteen), jay.SizeStrings8(e.Fifteen), jay.SizeStrings8(e.Sixteen), jay.SizeStrings8(e.Seventeen)
 	b = make([]byte, 18+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+jay.SizeStrings8(e.Eighteen))
 	at, end := 18, 18+l0
-	jay.WriteStrings8(b[at:end], b[0:1], e.One)
+	jay.WriteStrings8(b[at:end], b[:1], e.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], e.Two)
 	at, end = end, end+l2
@@ -1092,7 +1092,7 @@ func (n *Nineteen) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := jay.SizeStrings8(n.One), jay.SizeStrings8(n.Two), jay.SizeStrings8(n.Three), jay.SizeStrings8(n.Four), jay.SizeStrings8(n.Five), jay.SizeStrings8(n.Six), jay.SizeStrings8(n.Seven), jay.SizeStrings8(n.Eight), jay.SizeStrings8(n.Nine), jay.SizeStrings8(n.Ten), jay.SizeStrings8(n.Eleven), jay.SizeStrings8(n.Twelve), jay.SizeStrings8(n.Thirteen), jay.SizeStrings8(n.Fourteen), jay.SizeStrings8(n.Fifteen), jay.SizeStrings8(n.Sixteen), jay.SizeStrings8(n.Seventeen), jay.SizeStrings8(n.Eighteen)
 	b = make([]byte, 19+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+jay.SizeStrings8(n.Nineteen))
 	at, end := 19, 19+l0
-	jay.WriteStrings8(b[at:end], b[0:1], n.One)
+	jay.WriteStrings8(b[at:end], b[:1], n.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], n.Two)
 	at, end = end, end+l2
@@ -1200,7 +1200,7 @@ func (t *Twenty) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := jay.SizeStrings8(t.One), jay.SizeStrings8(t.Two), jay.SizeStrings8(t.Three), jay.SizeStrings8(t.Four), jay.SizeStrings8(t.Five), jay.SizeStrings8(t.Six), jay.SizeStrings8(t.Seven), jay.SizeStrings8(t.Eight), jay.SizeStrings8(t.Nine), jay.SizeStrings8(t.Ten), jay.SizeStrings8(t.Eleven), jay.SizeStrings8(t.Twelve), jay.SizeStrings8(t.Thirteen), jay.SizeStrings8(t.Fourteen), jay.SizeStrings8(t.Fifteen), jay.SizeStrings8(t.Sixteen), jay.SizeStrings8(t.Seventeen), jay.SizeStrings8(t.Eighteen), jay.SizeStrings8(t.Nineteen)
 	b = make([]byte, 20+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+jay.SizeStrings8(t.Twenty))
 	at, end := 20, 20+l0
-	jay.WriteStrings8(b[at:end], b[0:1], t.One)
+	jay.WriteStrings8(b[at:end], b[:1], t.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], t.Two)
 	at, end = end, end+l2
@@ -1313,7 +1313,7 @@ func (t *TwentyOne) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := jay.SizeStrings8(t.One), jay.SizeStrings8(t.Two), jay.SizeStrings8(t.Three), jay.SizeStrings8(t.Four), jay.SizeStrings8(t.Five), jay.SizeStrings8(t.Six), jay.SizeStrings8(t.Seven), jay.SizeStrings8(t.Eight), jay.SizeStrings8(t.Nine), jay.SizeStrings8(t.Ten), jay.SizeStrings8(t.Eleven), jay.SizeStrings8(t.Twelve), jay.SizeStrings8(t.Thirteen), jay.SizeStrings8(t.Fourteen), jay.SizeStrings8(t.Fifteen), jay.SizeStrings8(t.Sixteen), jay.SizeStrings8(t.Seventeen), jay.SizeStrings8(t.Eighteen), jay.SizeStrings8(t.Nineteen), jay.SizeStrings8(t.Twenty)
 	b = make([]byte, 21+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+jay.SizeStrings8(t.TwentyOne))
 	at, end := 21, 21+l0
-	jay.WriteStrings8(b[at:end], b[0:1], t.One)
+	jay.WriteStrings8(b[at:end], b[:1], t.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], t.Two)
 	at, end = end, end+l2
@@ -1431,7 +1431,7 @@ func (t *TwentyTwo) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := jay.SizeStrings8(t.One), jay.SizeStrings8(t.Two), jay.SizeStrings8(t.Three), jay.SizeStrings8(t.Four), jay.SizeStrings8(t.Five), jay.SizeStrings8(t.Six), jay.SizeStrings8(t.Seven), jay.SizeStrings8(t.Eight), jay.SizeStrings8(t.Nine), jay.SizeStrings8(t.Ten), jay.SizeStrings8(t.Eleven), jay.SizeStrings8(t.Twelve), jay.SizeStrings8(t.Thirteen), jay.SizeStrings8(t.Fourteen), jay.SizeStrings8(t.Fifteen), jay.SizeStrings8(t.Sixteen), jay.SizeStrings8(t.Seventeen), jay.SizeStrings8(t.Eighteen), jay.SizeStrings8(t.Nineteen), jay.SizeStrings8(t.Twenty), jay.SizeStrings8(t.TwentyOne)
 	b = make([]byte, 22+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+jay.SizeStrings8(t.TwentyTwo))
 	at, end := 22, 22+l0
-	jay.WriteStrings8(b[at:end], b[0:1], t.One)
+	jay.WriteStrings8(b[at:end], b[:1], t.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], t.Two)
 	at, end = end, end+l2
@@ -1554,7 +1554,7 @@ func (t *TwentyThree) MarshalJ() (b []byte) {
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := jay.SizeStrings8(t.One), jay.SizeStrings8(t.Two), jay.SizeStrings8(t.Three), jay.SizeStrings8(t.Four), jay.SizeStrings8(t.Five), jay.SizeStrings8(t.Six), jay.SizeStrings8(t.Seven), jay.SizeStrings8(t.Eight), jay.SizeStrings8(t.Nine), jay.SizeStrings8(t.Ten), jay.SizeStrings8(t.Eleven), jay.SizeStrings8(t.Twelve), jay.SizeStrings8(t.Thirteen), jay.SizeStrings8(t.Fourteen), jay.SizeStrings8(t.Fifteen), jay.SizeStrings8(t.Sixteen), jay.SizeStrings8(t.Seventeen), jay.SizeStrings8(t.Eighteen), jay.SizeStrings8(t.Nineteen), jay.SizeStrings8(t.Twenty), jay.SizeStrings8(t.TwentyOne), jay.SizeStrings8(t.TwentyTwo)
 	b = make([]byte, 23+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+jay.SizeStrings8(t.TwentyThree))
 	at, end := 23, 23+l0
-	jay.WriteStrings8(b[at:end], b[0:1], t.One)
+	jay.WriteStrings8(b[at:end], b[:1], t.One)
 	at, end = end, end+l1
 	jay.WriteStrings8(b[at:end], b[1:2], t.Two)
 	at, end = end, end+l2

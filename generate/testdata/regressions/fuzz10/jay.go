@@ -10,7 +10,7 @@ func (f *Fuzz710) MarshalJ() (b []byte) {
 	b[1] = byte(l1)
 	jay.WriteComplex64(b[2:10], f.One)
 	at, end := 10, 10+l0
-	jay.WriteStrings8(b[at:end], b[0:1], f.Three)
+	jay.WriteStrings8(b[at:end], b[:1], f.Three)
 	copy(b[end:], f.Two)
 	return
 }

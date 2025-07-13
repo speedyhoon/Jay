@@ -30,7 +30,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	return jay.ReadStringsArrayErr(b[at:], t.Two[:], 6)
@@ -51,7 +51,7 @@ func (t *Three) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], t.Two[:], 6, &at) {
@@ -77,7 +77,7 @@ func (f *Four) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], f.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, f.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], f.Two[:], 6, &at) {
@@ -108,7 +108,7 @@ func (f *Five) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], f.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, f.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], f.Two[:], 6, &at) {
@@ -144,7 +144,7 @@ func (s *Six) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], s.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, s.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], s.Two[:], 6, &at) {
@@ -185,7 +185,7 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], s.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, s.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], s.Two[:], 6, &at) {
@@ -231,7 +231,7 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], e.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, e.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], e.Two[:], 6, &at) {
@@ -282,7 +282,7 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], n.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, n.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], n.Two[:], 6, &at) {
@@ -338,7 +338,7 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], t.Two[:], 6, &at) {
@@ -399,7 +399,7 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], e.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, e.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], e.Two[:], 6, &at) {
@@ -465,7 +465,7 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], t.Two[:], 6, &at) {
@@ -536,7 +536,7 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], t.Two[:], 6, &at) {
@@ -612,7 +612,7 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], f.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, f.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], f.Two[:], 6, &at) {
@@ -693,7 +693,7 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], f.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, f.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], f.Two[:], 6, &at) {
@@ -779,7 +779,7 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], s.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, s.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], s.Two[:], 6, &at) {
@@ -870,7 +870,7 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], s.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, s.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], s.Two[:], 6, &at) {
@@ -966,7 +966,7 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], e.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, e.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], e.Two[:], 6, &at) {
@@ -1067,7 +1067,7 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], n.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, n.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], n.Two[:], 6, &at) {
@@ -1173,7 +1173,7 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], t.Two[:], 6, &at) {
@@ -1284,7 +1284,7 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], t.Two[:], 6, &at) {
@@ -1400,7 +1400,7 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], t.Two[:], 6, &at) {
@@ -1521,7 +1521,7 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], t.Two[:], 6, &at) {

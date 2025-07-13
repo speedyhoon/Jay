@@ -424,13 +424,13 @@ func (f *field) sliceExpr3(c *varCtx) string {
 
 	if f.isLast || !f.isFixedLen && f.isStrings() {
 		if f.indexStart != nil && f.indexEnd == nil {
-			return fmt.Sprintf("%s[%d:]", f.structTyp.bufferName, *f.indexStart)
+			return f.sliceExp(f.indexStart, nil)
 		}
 		return fmt.Sprintf("%s[%s:]", f.structTyp.bufferName, c.atValue)
 	}
 
 	if f.isFixedLen {
-		return fmt.Sprintf("%s[%s:%d]", f.structTyp.bufferName, omitZero(*f.indexStart), *f.indexEnd)
+		return f.sliceExp(f.indexStart, f.indexEnd)
 	}
 
 	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, c.atValue, c.endValue)

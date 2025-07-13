@@ -17,7 +17,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	return jay.ReadStringsArrayErr(b[at:], t.Two[:], 6)
@@ -38,7 +38,7 @@ func (t *Three) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	var at uint
-	if !jay.ReadStringsArrayAtOk(b[0:], t.One[:], 6, &at) {
+	if !jay.ReadStringsArrayAtOk(b, t.One[:], 6, &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	if !jay.ReadStringsArrayAtOk(b[at:], t.Two[:], 6, &at) {

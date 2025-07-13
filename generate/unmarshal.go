@@ -376,10 +376,31 @@ func (f *field) qtyBytes() string {
 		// Used for array types.
 		return f.structTyp.bufferName
 	case 1:
-		return fmt.Sprintf("%s[%d]", f.structTyp.bufferName, f.qtyIndex[0])
+		return f.indexExp(&f.qtyIndex[0])
 	default:
-		return fmt.Sprintf("%s[%d:%d]", f.structTyp.bufferName, f.qtyIndex[0], f.qtyIndex[l-1])
+		return f.sliceExp(&f.qtyIndex[0], &f.qtyIndex[l-1])
 	}
+}
+
+func (f *field) indexExp(start *uint) string {
+	if start != nil {
+		return fmt.Sprintf("%s[%d]", f.structTyp.bufferName, *start)
+	}
+	return fmt.Sprintf("%s", f.structTyp.bufferName)
+}
+
+func (f *field) sliceExp(start, end *uint) string {
+	var s, e string
+	if start != nil && *start != 0 {
+		s = utl.UtoA(*start)
+	}
+	if end != nil && *end != 0 {
+		e = utl.UtoA(*end)
+	}
+	if s == "" && e == "" {
+		return fmt.Sprintf("%s", f.structTyp.bufferName)
+	}
+	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, s, e)
 }
 
 func (f *field) qtySlice() string {
@@ -388,7 +409,8 @@ func (f *field) qtySlice() string {
 		panic("f.qtyIndex not populated")
 	}
 
-	return fmt.Sprintf("%s[%d:%d]", f.structTyp.bufferName, f.qtyIndex[0], f.qtyIndex[l-1]+1)
+	end := f.qtyIndex[l-1] + 1
+	return f.sliceExp(&f.qtyIndex[0], &end)
 }
 
 type canReturnInlined bool

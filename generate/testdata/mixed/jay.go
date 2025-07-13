@@ -7,7 +7,7 @@ import "github.com/speedyhoon/jay"
 func (l *Lion) MarshalJ() (b []byte) {
 	b = make([]byte, 2+jay.SizeStrings8(l.Strings))
 	b[1] = jay.Bool2(l.B1, l.B2)
-	jay.WriteStrings8(b[2:], b[0:1], l.Strings)
+	jay.WriteStrings8(b[2:], b[:1], l.Strings)
 	return
 }
 
@@ -26,7 +26,7 @@ func (z *Zebra) MarshalJ() (b []byte) {
 	b[3] = jay.Bool2(z.B1, z.B2)
 	jay.WriteUint64(b[4:12], z.U64)
 	at, end := 12, 12+l0
-	jay.WriteStrings8(b[at:end], b[0:1], z.Strings)
+	jay.WriteStrings8(b[at:end], b[:1], z.Strings)
 	at, end = end, end+l1
 	copy(b[at:end], z.Str)
 	jay.WriteIntsX64(b[end:], z.Ints)
