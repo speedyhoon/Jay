@@ -29,6 +29,8 @@ jay my_file.go
 
 `-d` Debug mode, always write to disk. _Default: `false`_
 
+`-e` Error to return from UnmarshalJ functions. _Default: `jay.ErrUnexpectedEOB`_
+
 `-vi` Variable int size. _Default: `false`_
 
 `-vu` Variable uint size. _Default: `false`_

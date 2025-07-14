@@ -98,7 +98,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 func (s *structTyp) makeLengthChecks() string {
 	qty := len(s.variableLen)
 	if qty == 0 {
-		return fmt.Sprintf("if len(%s) %s %d {\n\t\treturn %s\n\t}", s.bufferName, s.sizeCompSymbol(), s.qtyBytesRequired, exportedErr)
+		return fmt.Sprintf("if len(%s) %s %d {\n\t\treturn %s\n\t}", s.bufferName, s.sizeCompSymbol(), s.qtyBytesRequired, s.ImportErr())
 	}
 
 	assignments, values := make([]string, 0, qty), make([]string, 0, qty)
@@ -138,7 +138,7 @@ func (s *structTyp) makeLengthChecks() string {
 			s.qtyBytesRequired,
 			s.sizeCompSymbol(),
 			sizeGroups.group(),
-			exportedErr,
+			s.ImportErr(),
 		)
 	}
 
@@ -154,7 +154,7 @@ func (s *structTyp) makeLengthChecks() string {
 		s.lengthName,
 		s.bufferName,
 		s.qtyBytesRequired,
-		exportedErr,
+		s.ImportErr(),
 		assignLine,
 		s.sizeCompSymbol(),
 		sizeGroups.group(),
@@ -325,37 +325,37 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 	case tFuncPtrCheck:
 		return fmt.Sprintf(
 			"%s, %s := %s(%s, &%s, %s, %d)\n\tif !%[2]s {\n\t\treturn %[8]s\n\t}",
-			vAt, vOk, fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), *f.indexStart, exportedErr,
+			vAt, vOk, fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), *f.indexStart, f.structTyp.ImportErr(),
 		)
 
 	case tFuncCheck:
 		return fmt.Sprintf(
 			"if !%s(%s, %s, %d, &%s) {\n\t\treturn %s\n\t}",
-			fun, f.sliceExpr3(ctx), f.Field(fun), f.arraySize, vAt, exportedErr,
+			fun, f.sliceExpr3(ctx), f.Field(fun), f.arraySize, vAt, f.structTyp.ImportErr(),
 		)
 
 	case tFuncCheck2:
 		return fmt.Sprintf(
 			"if !%s(%s, %s, %d, &%s) {\n\t\treturn %s\n\t}",
-			fun, f.sliceExpr3(ctx), f.Field(fun), f.arraySize, vAt, exportedErr,
+			fun, f.sliceExpr3(ctx), f.Field(fun), f.arraySize, vAt, f.structTyp.ImportErr(),
 		)
 
 	case tFuncPtrCheckAt:
 		return fmt.Sprintf(
 			"if !%s(%s, &%s, %s, &%s) {\n\t\treturn %s\n\t}",
-			fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), vAt, exportedErr,
+			fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), vAt, f.structTyp.ImportErr(),
 		)
 
 	case tFuncPtrCheckAtOk:
 		return fmt.Sprintf(
 			"if !%s(%s, &%s, %s) {\n\t\treturn %s\n\t}",
-			fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), exportedErr,
+			fun, f.sliceExpr3(ctx), f.Name(), f.qtyBytes(), f.structTyp.ImportErr(),
 		)
 
 	case tIfPtrCheck:
 		return fmt.Sprintf(
 			"if !%s(%s, &%s) {\n\t\treturn %s\n\t}",
-			fun, f.sliceExpr3(ctx), f.Name(), exportedErr,
+			fun, f.sliceExpr3(ctx), f.Name(), f.structTyp.ImportErr(),
 		)
 
 	case tByteConv:

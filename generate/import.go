@@ -41,3 +41,10 @@ func (m importList) print() string {
 		return fmt.Sprintf("\nimport (\n\t\"%s\"\n)\n", strings.Join(m, "\"\n\t\""))
 	}
 }
+
+func (s *structTyp) ImportErr() (errVarName string) {
+	if strings.Count(s.option.ErrVarName, ".") == 1 {
+		s.imports.add(strings.Split(s.option.ErrVarName, ".")[0])
+	}
+	return s.option.ErrVarName
+}

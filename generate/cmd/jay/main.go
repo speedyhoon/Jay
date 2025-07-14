@@ -3,18 +3,19 @@
 //
 // Optional flags:
 //
-//	-32	Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.
-//	-d	Debug mode - always writes to disk.
-//	-m	Don't generate MarshalJ() function.
-//	-o	Output file. (default "jay.go")
-//	-p	Pointer MarshalJ() method.
-//	-s	Search Go test files for exported structs too.
-//	-u	Don't generate UnmarshalJ() function.
-//	-v	Verbose output.
-//	-vi	Variable int size.
-//	-vu	Variable uint size.
-//	-y	Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for. (default: Process all exported types)
-//		For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`.
+//		-32	Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.
+//		-d	Debug mode - always writes to disk.
+//	 -e  Error to return from UnmarshalJ functions. (default "jay.ErrUnexpectedEOB")
+//		-m	Don't generate MarshalJ() function.
+//		-o	Output file. (default "jay.go")
+//		-p	Pointer MarshalJ() method.
+//		-s	Search Go test files for exported structs too.
+//		-u	Don't generate UnmarshalJ() function.
+//		-v	Verbose output.
+//		-vi	Variable int size.
+//		-vu	Variable uint size.
+//		-y	Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for. (default: Process all exported types)
+//			For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`.
 package main
 
 import (
@@ -51,6 +52,7 @@ func main() {
 	flag.BoolVar(&opt.VariableIntSize, "vi", false, "Variable int size.")
 	flag.BoolVar(&opt.VariableUintSize, "vu", false, "Variable uint size.")
 	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
+	flag.StringVar(&opt.ErrVarName, "e", generate.ExportedErr, "Name of the error variable to return from UnmarshalJ functions.")
 	flag.BoolVar(&verbose, "v", false, "Verbose output.")
 	flag.BoolVar(&opt.IsMarshalMethodPtr, "p", false, "Pointer MarshalJ() method.")
 	flag.BoolVar(&opt.SearchTests, "s", false, "Search Go test files for exported structs too.")

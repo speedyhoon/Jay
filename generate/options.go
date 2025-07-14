@@ -19,6 +19,9 @@ var typeNameRegex = regexp.MustCompile(`^[[:alpha:]][[:alnum:]]*(\.[[:alpha:]][[
 type MaxSize uint8
 
 type Option struct {
+	// ErrVarName is the name of the error variable to return from UnmarshalJ functions.
+	ErrVarName string
+
 	MaxIntSize  MaxSize
 	MaxUintSize MaxSize
 
@@ -92,6 +95,10 @@ func LoadOptions(opts ...Option) (o Option) {
 
 	if o.Verbose != nil {
 		lg = o.Verbose
+	}
+
+	if o.ErrVarName == "" {
+		o.ErrVarName = ExportedErr
 	}
 
 	o.cleanOnlyTypes()
