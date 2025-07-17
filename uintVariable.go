@@ -1,29 +1,29 @@
 package jay
 
 func ReadUintVariable(y []byte) (uint, int) {
-	switch y[0] {
-	case 0:
-		return 0, 1
-	case 1:
-		return uint(y[1]), 2
-	case 2:
-		return uint(y[1]) | uint(y[2])<<_8, 3
-	case 3:
-		return uint(y[1]) | uint(y[2])<<_8 | uint(y[3])<<_16, 4
-	case 4:
-		return uint(y[1]) | uint(y[2])<<_8 | uint(y[3])<<_16 | uint(y[4])<<_24, 5
-	case 5:
-		return uint(y[1]) | uint(y[2])<<_8 | uint(y[3])<<_16 | uint(y[4])<<_24 |
-			uint(y[5])<<_32, 6
-	case 6:
-		return uint(y[1]) | uint(y[2])<<_8 | uint(y[3])<<_16 | uint(y[4])<<_24 |
-			uint(y[5])<<_32 | uint(y[6])<<_40, 7
-	case 7:
-		return uint(y[1]) | uint(y[2])<<_8 | uint(y[3])<<_16 | uint(y[4])<<_24 |
-			uint(y[5])<<_32 | uint(y[6])<<_40 | uint(y[7])<<_48, 8
+	switch y[_0] {
+	case _0:
+		return _0, _1
+	case _1:
+		return uint(y[_1]), _2
+	case _2:
+		return uint(y[_1]) | uint(y[_2])<<_8, _3
+	case _3:
+		return uint(y[_1]) | uint(y[_2])<<_8 | uint(y[_3])<<_16, _4
+	case _4:
+		return uint(y[_1]) | uint(y[_2])<<_8 | uint(y[_3])<<_16 | uint(y[_4])<<_24, _5
+	case _5:
+		return uint(y[_1]) | uint(y[_2])<<_8 | uint(y[_3])<<_16 | uint(y[_4])<<_24 |
+			uint(y[_5])<<_32, _6
+	case _6:
+		return uint(y[_1]) | uint(y[_2])<<_8 | uint(y[_3])<<_16 | uint(y[_4])<<_24 |
+			uint(y[_5])<<_32 | uint(y[_6])<<_40, _7
+	case _7:
+		return uint(y[_1]) | uint(y[_2])<<_8 | uint(y[_3])<<_16 | uint(y[_4])<<_24 |
+			uint(y[_5])<<_32 | uint(y[_6])<<_40 | uint(y[_7])<<_48, _8
 	default:
-		return uint(y[1]) | uint(y[2])<<_8 | uint(y[3])<<_16 | uint(y[4])<<_24 |
-			uint(y[5])<<_32 | uint(y[6])<<_40 | uint(y[7])<<_48 | uint(y[8])<<_56, 9
+		return uint(y[_1]) | uint(y[_2])<<_8 | uint(y[_3])<<_16 | uint(y[_4])<<_24 |
+			uint(y[_5])<<_32 | uint(y[_6])<<_40 | uint(y[_7])<<_48 | uint(y[_8])<<_56, 9
 	}
 }
 
@@ -35,120 +35,29 @@ func WriteUintVariableAt(y []byte, u uint, length uint8, at int) int {
 
 // WriteUintVariable ...
 func WriteUintVariable(y []byte, u uint, length uint8) {
-	y[0] = length
+	y[_0] = length
 	switch length {
 	// case 1: No further processing required.
-	case 2:
-		y[1] = byte(u)
-	case 3:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-	case 4:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-	case 5:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-	case 6:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-		y[5] = byte(u >> _32)
-	case 7:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-		y[5] = byte(u >> _32)
-		y[6] = byte(u >> _40)
-	case 8:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-		y[5] = byte(u >> _32)
-		y[6] = byte(u >> _40)
-		y[7] = byte(u >> _48)
+	case _2:
+		y[_1] = byte(u)
+	case _3:
+		y[_1], y[_2] = byte(u), byte(u>>_8)
+	case _4:
+		y[_1], y[_2], y[_3] = byte(u), byte(u>>_8), byte(u>>_16)
+	case _5:
+		y[_1], y[_2], y[_3], y[_4] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24)
+	case _6:
+		y[_1], y[_2], y[_3], y[_4], y[_5] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32)
+	case _7:
+		y[_1], y[_2], y[_3], y[_4], y[_5], y[_6] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40)
+	case _8:
+		y[_1], y[_2], y[_3], y[_4], y[_5], y[_6], y[_7] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40), byte(u>>_48)
 	case 9:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-		y[5] = byte(u >> _32)
-		y[6] = byte(u >> _40)
-		y[7] = byte(u >> _48)
-		y[8] = byte(u >> _56)
+		y[_1], y[_2], y[_3], y[_4], y[_5], y[_6], y[_7], y[_8] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40), byte(u>>_48), byte(u>>_56)
 	}
 }
 
 /*// Deprecated
-// WriteUintDeprecated ...
-func WriteUintDeprecated(y []byte, u uint) int {
-	y[0] = lenUintDeprecated(u) - 1
-	switch y[0] {
-	default:
-		// Not required, value is zero.
-		return 1
-	case 1:
-		y[1] = byte(u)
-		return 2
-	case 2:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		return 3
-	case 3:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		return 4
-	case 4:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-		return 5
-	case 5:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-		y[5] = byte(u >> _32)
-		return 6
-	case 6:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-		y[5] = byte(u >> _32)
-		y[6] = byte(u >> _40)
-		return 7
-	case 7:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-		y[5] = byte(u >> _32)
-		y[6] = byte(u >> _40)
-		y[7] = byte(u >> _48)
-		return 8
-	case 8:
-		y[1] = byte(u)
-		y[2] = byte(u >> _8)
-		y[3] = byte(u >> _16)
-		y[4] = byte(u >> _24)
-		y[5] = byte(u >> _32)
-		y[6] = byte(u >> _40)
-		y[7] = byte(u >> _48)
-		y[8] = byte(u >> _56)
-		return 9
-	}
-}
-
-// Deprecated
 // lenUintDeprecated ...
 func lenUintDeprecated(u uint) uint8 {
 	switch {
@@ -175,20 +84,20 @@ func lenUintDeprecated(u uint) uint8 {
 
 // WriteUint24 ...
 func WriteUint24(y []byte, u uint64) {
-	y[0], y[1], y[2] = byte(u), byte(u>>_8), byte(u>>_16)
+	y[_0], y[_1], y[_2] = byte(u), byte(u>>_8), byte(u>>_16)
 }
 
 // WriteUint40 ...
 func WriteUint40(y []byte, u uint64) {
-	y[0], y[1], y[2], y[3], y[4] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32)
+	y[_0], y[_1], y[_2], y[_3], y[_4] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32)
 }
 
 // WriteUint48 ...
 func WriteUint48(y []byte, u uint64) {
-	y[0], y[1], y[2], y[3], y[4], y[5] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40)
+	y[_0], y[_1], y[_2], y[_3], y[_4], y[_5] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40)
 }
 
 // WriteUint56 ...
 func WriteUint56(y []byte, u uint64) {
-	y[0], y[1], y[2], y[3], y[4], y[5], y[6] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40), byte(u>>_48)
+	y[_0], y[_1], y[_2], y[_3], y[_4], y[_5], y[_6] = byte(u), byte(u>>_8), byte(u>>_16), byte(u>>_24), byte(u>>_32), byte(u>>_40), byte(u>>_48)
 }

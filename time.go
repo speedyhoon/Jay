@@ -49,7 +49,7 @@ func ReadTimeNano(y []byte) (t time.Time) {
 // All millisecond, microsecond and nanosecond are lost.
 func WriteTimeNano(y []byte, t time.Time) {
 	if t == (time.Time{}) {
-		y[0], y[1], y[2], y[3], y[4], y[5], y[6], y[7] = 248, 255, 255, 255, 255, 255, 255, 127 // WriteInt64(y, timeZero)
+		y[_0], y[_1], y[_2], y[_3], y[_4], y[_5], y[_6], y[_7] = 248, 255, 255, 255, 255, 255, 255, 127 // WriteInt64(y, timeZero)
 		return
 	}
 
