@@ -108,7 +108,7 @@ func unmarshalBoolsInline(bufferName string, byteIndex uint, qty int) string {
 	}[:qty], ", "), bufferName, byteIndex)
 }
 
-func fieldNamesArrays(fields []*field) (s []string) {
+func fieldNamesArrays(fields fieldList) (s []string) {
 	for i := range fields {
 		if fields[i].isDef {
 			if fields[i].isArray() {
