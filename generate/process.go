@@ -181,7 +181,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 	return err
 }
 
-func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedFields bool) {
+func (s *structTyp) process(fields []*ast.Field, dirList *dirList, parents ...[]*ast.Ident) (hasExportedFields bool) {
 	for i := uint(0); i < utl.Len(fields); {
 		t := fields[i]
 
@@ -191,15 +191,15 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 			continue
 		}
 
-		if fs, ok := isStruct(t); ok {
-			s.process(fs, dirList)
-			i++
-			continue
-		}
-
 		names := getNames(t)
 		if len(names) == 0 {
 			utl.Del(&fields, i)
+			continue
+		}
+
+		if fs, ok := isStruct(t); ok {
+			s.process(fs, dirList, append(parents, names)...)
+			i++
 			continue
 		}
 
@@ -210,7 +210,7 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 			continue
 		}
 
-		s.addExportedFields(names, &fe)
+		s.addExportedFields(names, &fe, parents)
 		// Only increment `i` if the field was added. If the field was removed, then `i` will still point to the next field.
 		i++
 	}
@@ -235,14 +235,17 @@ func structFields(t any, names []string) (fields []*ast.Field, ok bool) {
 		}
 	case *ast.StructType:
 		if d.Fields != nil && len(d.Fields.List) >= 1 {
-			prefixFieldList(d.Fields, names)
+			decatenateFieldList(d.Fields, names)
 			return d.Fields.List, true
 		}
 	}
 	return
 }
 
-func prefixFieldList(f *ast.FieldList, names []string) {
+// decatenateFieldList duplicates each struct field type that has multiple names defined.
+// For example, if a struct definition has the line `Name, Model string`, then
+// `Model string` is separated with its own name.
+func decatenateFieldList(f *ast.FieldList, names []string) {
 	qty := len(names)
 	for i := range f.List {
 		for j := range f.List[i].Names {
@@ -256,9 +259,6 @@ func prefixFieldList(f *ast.FieldList, names []string) {
 					}
 					f.List[i].Names = append(f.List[i].Names, &n)
 				}
-
-				// Prefix the name of the first ident.
-				f.List[i].Names[j].Name = pkgSelName(names[0], f.List[i].Names[j].Name)
 			}
 		}
 	}

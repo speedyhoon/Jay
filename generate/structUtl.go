@@ -289,10 +289,15 @@ func (s *structTyp) hasExportedFields() bool {
 	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1 || len(s.single) >= 1 || len(s.stringSlice) >= 1
 }
 
-func (s *structTyp) addExportedFields(names []*ast.Ident, f *field) {
+func (s *structTyp) addExportedFields(names []*ast.Ident, f *field, parents [][]*ast.Ident) {
 	f.structTyp = s
+	pQty := len(parents)
 	for m := range names {
-		f.name = names[m].Name
+		if pQty >= 1 {
+			f.name = pkgSelName(parents[0][0].Name, names[m].Name)
+		} else {
+			f.name = names[m].Name
+		}
 		if f.typ == tBool || f.arrayType == tBool && f.isArray() {
 			f.fieldList = &s.bool
 			s.bool = append(s.bool, f)
