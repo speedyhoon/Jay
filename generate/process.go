@@ -215,7 +215,6 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList) (hasExportedF
 		i++
 	}
 
-	s.setFirstNLast()
 	s.setFieldByteIndexes()
 	return s.hasExportedFields()
 }

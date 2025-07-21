@@ -69,6 +69,8 @@ func mergeEmbeddedStructs(structs []*structTyp) {
 		structs[i].variableLen.mergeFields(structs, structNames, i)
 		structs[i].single.mergeFields(structs, structNames, i)
 		structs[i].bool.mergeFields(structs, structNames, i)
+
+		structs[i].setFirstNLast()
 	}
 }
 
