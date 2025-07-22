@@ -21,7 +21,7 @@ func (m *Message) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0 := int(b[0])
-	if l < 2+l0 {
+	if l != 2+l0 {
 		return jay.ErrUnexpectedEOB
 	}
 	m.Type = b[1]
@@ -48,7 +48,7 @@ func (c *Car) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1 := int(b[0]), int(b[1])
-	if l < 4+l0+l1 {
+	if l != 4+l0+l1 {
 		return jay.ErrUnexpectedEOB
 	}
 	c.Year = jay.ReadUint16(b[2:4])
@@ -76,7 +76,7 @@ func (p *Pet) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2 := int(b[0]), int(b[1]), int(b[2])
-	if l < 3+l0+l1+l2 {
+	if l != 3+l0+l1+l2 {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 3, 3+l0

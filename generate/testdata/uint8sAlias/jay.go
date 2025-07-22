@@ -70,8 +70,8 @@ func (t *Three) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], t.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], t.Two)
 	}
 	if l2 != 0 {
@@ -111,12 +111,12 @@ func (f *Four) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], f.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], f.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], f.Three)
 	}
 	if l3 != 0 {
@@ -160,16 +160,16 @@ func (f *Five) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], f.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], f.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], f.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], f.Four)
 	}
 	if l4 != 0 {
@@ -217,20 +217,20 @@ func (s *Six) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], s.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], s.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], s.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], s.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], s.Five)
 	}
 	if l5 != 0 {
@@ -282,24 +282,24 @@ func (s *Seven) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], s.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], s.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], s.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], s.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], s.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], s.Six)
 	}
 	if l6 != 0 {
@@ -355,28 +355,28 @@ func (e *Eight) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], e.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], e.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], e.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], e.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], e.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], e.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], e.Seven)
 	}
 	if l7 != 0 {
@@ -436,32 +436,32 @@ func (n *Nine) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], n.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], n.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], n.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], n.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], n.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], n.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], n.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], n.Eight)
 	}
 	if l8 != 0 {
@@ -525,36 +525,36 @@ func (t *Ten) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], t.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], t.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], t.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], t.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], t.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], t.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], t.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], t.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], t.Nine)
 	}
 	if l9 != 0 {
@@ -622,40 +622,40 @@ func (e *Eleven) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], e.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], e.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], e.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], e.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], e.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], e.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], e.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], e.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], e.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], e.Ten)
 	}
 	if l10 != 0 {
@@ -727,44 +727,44 @@ func (t *Twelve) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], t.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], t.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], t.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], t.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], t.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], t.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], t.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], t.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], t.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], t.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], t.Eleven)
 	}
 	if l11 != 0 {
@@ -840,48 +840,48 @@ func (t *Thirteen) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], t.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], t.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], t.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], t.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], t.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], t.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], t.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], t.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], t.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], t.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], t.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], t.Twelve)
 	}
 	if l12 != 0 {
@@ -961,52 +961,52 @@ func (f *Fourteen) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], f.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], f.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], f.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], f.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], f.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], f.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], f.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], f.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], f.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], f.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], f.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], f.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], f.Thirteen)
 	}
 	if l13 != 0 {
@@ -1090,56 +1090,56 @@ func (f *Fifteen) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], f.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], f.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], f.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], f.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], f.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], f.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], f.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], f.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], f.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], f.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], f.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], f.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], f.Thirteen)
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		copy(b[at:end], f.Fourteen)
 	}
 	if l14 != 0 {
@@ -1227,60 +1227,60 @@ func (s *Sixteen) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], s.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], s.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], s.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], s.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], s.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], s.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], s.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], s.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], s.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], s.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], s.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], s.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], s.Thirteen)
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		copy(b[at:end], s.Fourteen)
 	}
-	at, end = end, end+l14
 	if l14 != 0 {
+		at, end = end, end+l14
 		copy(b[at:end], s.Fifteen)
 	}
 	if l15 != 0 {
@@ -1372,64 +1372,64 @@ func (s *Seventeen) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], s.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], s.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], s.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], s.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], s.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], s.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], s.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], s.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], s.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], s.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], s.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], s.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], s.Thirteen)
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		copy(b[at:end], s.Fourteen)
 	}
-	at, end = end, end+l14
 	if l14 != 0 {
+		at, end = end, end+l14
 		copy(b[at:end], s.Fifteen)
 	}
-	at, end = end, end+l15
 	if l15 != 0 {
+		at, end = end, end+l15
 		copy(b[at:end], s.Sixteen)
 	}
 	if l16 != 0 {
@@ -1525,68 +1525,68 @@ func (e *Eighteen) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], e.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], e.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], e.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], e.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], e.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], e.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], e.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], e.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], e.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], e.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], e.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], e.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], e.Thirteen)
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		copy(b[at:end], e.Fourteen)
 	}
-	at, end = end, end+l14
 	if l14 != 0 {
+		at, end = end, end+l14
 		copy(b[at:end], e.Fifteen)
 	}
-	at, end = end, end+l15
 	if l15 != 0 {
+		at, end = end, end+l15
 		copy(b[at:end], e.Sixteen)
 	}
-	at, end = end, end+l16
 	if l16 != 0 {
+		at, end = end, end+l16
 		copy(b[at:end], e.Seventeen)
 	}
 	if l17 != 0 {
@@ -1686,72 +1686,72 @@ func (n *Nineteen) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], n.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], n.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], n.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], n.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], n.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], n.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], n.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], n.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], n.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], n.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], n.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], n.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], n.Thirteen)
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		copy(b[at:end], n.Fourteen)
 	}
-	at, end = end, end+l14
 	if l14 != 0 {
+		at, end = end, end+l14
 		copy(b[at:end], n.Fifteen)
 	}
-	at, end = end, end+l15
 	if l15 != 0 {
+		at, end = end, end+l15
 		copy(b[at:end], n.Sixteen)
 	}
-	at, end = end, end+l16
 	if l16 != 0 {
+		at, end = end, end+l16
 		copy(b[at:end], n.Seventeen)
 	}
-	at, end = end, end+l17
 	if l17 != 0 {
+		at, end = end, end+l17
 		copy(b[at:end], n.Eighteen)
 	}
 	if l18 != 0 {
@@ -1855,76 +1855,76 @@ func (t *Twenty) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], t.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], t.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], t.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], t.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], t.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], t.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], t.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], t.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], t.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], t.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], t.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], t.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], t.Thirteen)
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		copy(b[at:end], t.Fourteen)
 	}
-	at, end = end, end+l14
 	if l14 != 0 {
+		at, end = end, end+l14
 		copy(b[at:end], t.Fifteen)
 	}
-	at, end = end, end+l15
 	if l15 != 0 {
+		at, end = end, end+l15
 		copy(b[at:end], t.Sixteen)
 	}
-	at, end = end, end+l16
 	if l16 != 0 {
+		at, end = end, end+l16
 		copy(b[at:end], t.Seventeen)
 	}
-	at, end = end, end+l17
 	if l17 != 0 {
+		at, end = end, end+l17
 		copy(b[at:end], t.Eighteen)
 	}
-	at, end = end, end+l18
 	if l18 != 0 {
+		at, end = end, end+l18
 		copy(b[at:end], t.Nineteen)
 	}
 	if l19 != 0 {
@@ -2032,80 +2032,80 @@ func (t *TwentyOne) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], t.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], t.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], t.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], t.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], t.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], t.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], t.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], t.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], t.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], t.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], t.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], t.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], t.Thirteen)
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		copy(b[at:end], t.Fourteen)
 	}
-	at, end = end, end+l14
 	if l14 != 0 {
+		at, end = end, end+l14
 		copy(b[at:end], t.Fifteen)
 	}
-	at, end = end, end+l15
 	if l15 != 0 {
+		at, end = end, end+l15
 		copy(b[at:end], t.Sixteen)
 	}
-	at, end = end, end+l16
 	if l16 != 0 {
+		at, end = end, end+l16
 		copy(b[at:end], t.Seventeen)
 	}
-	at, end = end, end+l17
 	if l17 != 0 {
+		at, end = end, end+l17
 		copy(b[at:end], t.Eighteen)
 	}
-	at, end = end, end+l18
 	if l18 != 0 {
+		at, end = end, end+l18
 		copy(b[at:end], t.Nineteen)
 	}
-	at, end = end, end+l19
 	if l19 != 0 {
+		at, end = end, end+l19
 		copy(b[at:end], t.Twenty)
 	}
 	if l20 != 0 {
@@ -2217,84 +2217,84 @@ func (t *TwentyTwo) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], t.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], t.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], t.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], t.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], t.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], t.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], t.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], t.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], t.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], t.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], t.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], t.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], t.Thirteen)
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		copy(b[at:end], t.Fourteen)
 	}
-	at, end = end, end+l14
 	if l14 != 0 {
+		at, end = end, end+l14
 		copy(b[at:end], t.Fifteen)
 	}
-	at, end = end, end+l15
 	if l15 != 0 {
+		at, end = end, end+l15
 		copy(b[at:end], t.Sixteen)
 	}
-	at, end = end, end+l16
 	if l16 != 0 {
+		at, end = end, end+l16
 		copy(b[at:end], t.Seventeen)
 	}
-	at, end = end, end+l17
 	if l17 != 0 {
+		at, end = end, end+l17
 		copy(b[at:end], t.Eighteen)
 	}
-	at, end = end, end+l18
 	if l18 != 0 {
+		at, end = end, end+l18
 		copy(b[at:end], t.Nineteen)
 	}
-	at, end = end, end+l19
 	if l19 != 0 {
+		at, end = end, end+l19
 		copy(b[at:end], t.Twenty)
 	}
-	at, end = end, end+l20
 	if l20 != 0 {
+		at, end = end, end+l20
 		copy(b[at:end], t.TwentyOne)
 	}
 	if l21 != 0 {
@@ -2410,88 +2410,88 @@ func (t *TwentyThree) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], t.One)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], t.Two)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], t.Three)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], t.Four)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], t.Five)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], t.Six)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], t.Seven)
 	}
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], t.Eight)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], t.Nine)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], t.Ten)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], t.Eleven)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], t.Twelve)
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], t.Thirteen)
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		copy(b[at:end], t.Fourteen)
 	}
-	at, end = end, end+l14
 	if l14 != 0 {
+		at, end = end, end+l14
 		copy(b[at:end], t.Fifteen)
 	}
-	at, end = end, end+l15
 	if l15 != 0 {
+		at, end = end, end+l15
 		copy(b[at:end], t.Sixteen)
 	}
-	at, end = end, end+l16
 	if l16 != 0 {
+		at, end = end, end+l16
 		copy(b[at:end], t.Seventeen)
 	}
-	at, end = end, end+l17
 	if l17 != 0 {
+		at, end = end, end+l17
 		copy(b[at:end], t.Eighteen)
 	}
-	at, end = end, end+l18
 	if l18 != 0 {
+		at, end = end, end+l18
 		copy(b[at:end], t.Nineteen)
 	}
-	at, end = end, end+l19
 	if l19 != 0 {
+		at, end = end, end+l19
 		copy(b[at:end], t.Twenty)
 	}
-	at, end = end, end+l20
 	if l20 != 0 {
+		at, end = end, end+l20
 		copy(b[at:end], t.TwentyOne)
 	}
-	at, end = end, end+l21
 	if l21 != 0 {
+		at, end = end, end+l21
 		copy(b[at:end], t.TwentyTwo)
 	}
 	if l22 != 0 {

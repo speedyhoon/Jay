@@ -129,8 +129,8 @@ func (i *IEm60mY4B4GoD52333Ot6a1Dk1s2S2ie) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], i.OgjUQm03PaKenDN5vD32wHA1UtObOk6s3i0u884Qx1NBr1jFMjLCLJ6bSKmF4Y)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], i.FyYW8DQ5nkkTm6Lwn818U37k0nwDq30a3wu3Q36n38XR1wLw21f581858aA)
 	}
 	at, end = end, end+l2
@@ -143,20 +143,20 @@ func (i *IEm60mY4B4GoD52333Ot6a1Dk1s2S2ie) MarshalJ() (b []byte) {
 	copy(b[at:end], i.Nkp7025aXM8NUQkVP)
 	at, end = end, end+l6
 	copy(b[at:end], i.P316f1l105Vt1Msorsau4s056J4qfcYsGe8GPGukGMSsEbCdR0Ou23a3XOktRbu68juSvv128VdJV1hvrMw2N)
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], i.VPomO8URx1r1au07rDGO6uRlaaFPbKy2)
 	}
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], i.AH4Lnyg5K2dWwqJnY4nK8UiSc2LyH7TvXNu5pQLddsA5)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], i.BuORF4L4WV7lV1jaXBi4vPrVXATVx1Gd7e6ywiw4Xjx1v8411FeGy4x5WwG3hKob4mGKK24J1au4CQ3SnRBJH4JW)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], i.UH4xPp1ul5e7q12)
 	}
 	if l11 != 0 {

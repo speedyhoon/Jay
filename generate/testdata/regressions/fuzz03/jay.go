@@ -118,40 +118,40 @@ func (u *U6Ba28tAovfMN2Gps74G0I5ErVW18M0rpFA7o7v78k1155Oa50taNaINQ14Mfv0S8CQHHo4
 	jay.WriteInt16(b[504:506], u.Kfxx2L3Rh6a5Tf50p4c5)
 	at, end := 506, 506+l0
 	copy(b[at:end], u.YmswLkr8Dgw2)
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], u.Ob3e7p2C8pH8ejwBUy61nFbHFjRueurwmi72j2tfr35cVjS5O3y)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], u.FbH70qR073dEIWDCXxpJ4a0qJhC4W72g2pS7D6gEQoYU2y7AW)
 	}
 	at, end = end, end+l3
 	copy(b[at:end], u.KjOXx4VqJuY01327itq0cMJ)
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], u.K43U6foxWwro6M4J1P)
 	}
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], u.BUw556Nqj3ytxnel3bm05caCa5uTgDK0sDv730qrt62srrfS1LoOM821)
 	}
 	at, end = end, end+l6
 	copy(b[at:end], u.B5iXRo45537P8Np1PLu1pqeRD6S5dCR8skLecU65k5h7UgC1iO82vSc0iWlnC352I7sK20FH4YJ)
-	at, end = end, end+l7
 	if l7 != 0 {
+		at, end = end, end+l7
 		copy(b[at:end], u.UajCPLMc1j135Y74dk3yS6Gj6DC618UDf6262A4pUB0GH8JY7aJjp7kAQVjO3Q40xAQCe7t)
 	}
 	at, end = end, end+l8
 	copy(b[at:end], u.I1x65d4VlQOPjiW5an0NXbls4cos3d3g2Nk3T7715wM236UGDaSsr77OYOtDm4YC)
 	at, end = end, end+l9
 	copy(b[at:end], u.H0xmq10YD74U08b5uGh2l0eOpvbw2qL55c23hF13vi15Tp62p8OPBfjwaHMEqKx05ilHlN3Cd47eAKIKHLP1x06V8MA7v4)
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], u.S2ftw6CjCpV0l0ie1d2X50wT6Kmqphq1EaC4FBATe60T0j3AAFbCo3yJsYQ5754vANBej4mGog832baX78oTf7ek)
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		copy(b[at:end], u.WGfpP5D83jy240J0o033ExaQR1G6i1tOD5R8koKQBifcY17P)
 	}
 	at, end = end, end+l12
@@ -467,42 +467,42 @@ func (h *HUEnJpdeWBcCf7465T267y4A4Inn0l2CMNAkbC) MarshalJ() (b []byte) {
 	jay.WriteTime(b[348:356], h.BR3)
 	at, end := 356, 356+l0
 	copy(b[at:end], h.J6F7V6)
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], h.Oy0MPln83S3lVB53TLKqXr4l4PsYN7Ej15qGQqd537ipGrJT3p34545mWS)
 	}
 	at, end = end, end+l2
 	copy(b[at:end], h.K1qm1iY7mqd30O721bmawsKWI7FPA0J17cYa0f1X627Ly585han2P)
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], h.FeJ42rl3jI2DU8NXOTv4qe7e7aT2Y8o22oPoi3cbfyO8qK8TD73)
 	}
 	at, end = end, end+l4
 	copy(b[at:end], h.U07ppaq2x0c74vB66b1)
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], h.Wa5K2552bSnB6123K46C8jpp22wIl73EOT03wMO2m0eP7513XFoVuNDjxLrcf471A2Id50Y07I1H43Di6eo8oC03)
 	}
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		copy(b[at:end], h.C4EvAraDW88Ae541f5KqR5l762C4dA7OVHWCy7h6w2KXWfqllip)
 	}
 	at, end = end, end+l7
 	copy(b[at:end], h.Ju7Ag14p01uTrByUMK6Dj2tp6if13r0qLJEsIKKXR11Ih1Le61TSlMNW8JAT1FEKM0A1wTpojsWDY4vO24T)
 	at, end = end, end+l8
 	copy(b[at:end], h.P2OC82hiO70N3I7BEW0ek5VyB142Pq7Psu4eI70xF434tf)
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], h.BMT7QYrph2yT2ipQ0vl73y3rq4c7C2dUkr)
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		copy(b[at:end], h.Fq2t0)
 	}
 	at, end = end, end+l11
 	copy(b[at:end], h.UB6BQ08jJ2aECLM4cqdB35Sw27aQ3H7u6n0G741L03qb3HFT55Nm1Q6JyN70CJ4W)
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		copy(b[at:end], h.FmE0GYdUFc45YI3pOVQ4o2F4C1Oh6S8jYWfxJ7b1qG4vs0KOuiU5)
 	}
 	at, end = end, end+l13
@@ -770,12 +770,12 @@ func (a *AMly01oki2JC2n77UJT22AVlo2VAiUh06W43tGk43P7th6t6MSj3ejR5PrL103BBIN1ji) 
 	copy(b[at:end], a.IW0B1ASu1777OmeqCcPQ45lC5YX2iqq)
 	at, end = end, end+l2
 	copy(b[at:end], a.U82Uao8X38P7YLkt4d8qmyl8dNBtG5HxD0DWt161SeQWT6mE)
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], a.B46TTl2OIN0mgMdUcD8p21rsFa04Cm4sv)
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		copy(b[at:end], a.C81nWkpqm630B8F0hS107UXT5T8)
 	}
 	at, end = end, end+l5
@@ -784,8 +784,8 @@ func (a *AMly01oki2JC2n77UJT22AVlo2VAiUh06W43tGk43P7th6t6MSj3ejR5PrL103BBIN1ji) 
 	copy(b[at:end], a.UvSK)
 	at, end = end, end+l7
 	copy(b[at:end], a.F6w1voK3gWJ7wphds0Li8dJQ52W503DLR2lfRup0XxJ0Jf5VBkLN4F56Q)
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], a.C56q26r)
 	}
 	if l9 != 0 {

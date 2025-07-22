@@ -5,7 +5,7 @@ package main
 import "github.com/speedyhoon/jay"
 
 func (s Supported) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5 := len(s.String), len(s.ByteSlice), len(s.Embed.String), len(s.Embed.ByteSlice), len(s.SubStruct.String), len(s.SubStruct.ByteSlice)
+	l0, l1, l2, l3, l4, l5 := len(s.String), len(s.Embed.String), len(s.Embed.ByteSlice), len(s.SubStruct.String), len(s.SubStruct.ByteSlice), len(s.ByteSlice)
 	b = make([]byte, 244+l0+l1+l2+l3+l4+l5)
 	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	b[6] = jay.Bool3(s.Bool, s.Embed.Bool, s.SubStruct.Bool)
@@ -60,19 +60,19 @@ func (s Supported) MarshalJ() (b []byte) {
 	at, end := 244, 244+l0
 	copy(b[at:end], s.String)
 	at, end = end, end+l1
-	if l1 != 0 {
-		copy(b[at:], s.ByteSlice)
-	}
-	at, end = end, end+l2
 	copy(b[at:end], s.Embed.String)
-	at, end = end, end+l3
-	if l3 != 0 {
-		copy(b[at:], s.Embed.ByteSlice)
+	if l2 != 0 {
+		at, end = end, end+l2
+		copy(b[at:end], s.Embed.ByteSlice)
 	}
-	at, end = end, end+l4
+	at, end = end, end+l3
 	copy(b[at:end], s.SubStruct.String)
+	if l4 != 0 {
+		at, end = end, end+l4
+		copy(b[at:end], s.SubStruct.ByteSlice)
+	}
 	if l5 != 0 {
-		copy(b[end:], s.SubStruct.ByteSlice)
+		copy(b[end:], s.ByteSlice)
 	}
 	return
 }
@@ -83,7 +83,7 @@ func (s *Supported) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5])
-	if l < 244+l0+l1+l2+l3+l4+l5 {
+	if l != 244+l0+l1+l2+l3+l4+l5 {
 		return jay.ErrUnexpectedEOB
 	}
 	s.Bool, s.Embed.Bool, s.SubStruct.Bool = jay.ReadBool3(b[6])
@@ -138,19 +138,19 @@ func (s *Supported) UnmarshalJ(b []byte) error {
 	at, end := 244, 244+l0
 	s.String = string(b[at:end])
 	at, end = end, end+l1
-	if l1 != 0 {
-		s.ByteSlice = b[at:end]
-	}
-	at, end = end, end+l2
 	s.Embed.String = string(b[at:end])
-	at, end = end, end+l3
-	if l3 != 0 {
+	at, end = end, end+l2
+	if l2 != 0 {
 		s.Embed.ByteSlice = b[at:end]
 	}
-	at, end = end, end+l4
+	at, end = end, end+l3
 	s.SubStruct.String = string(b[at:end])
+	at, end = end, end+l4
+	if l4 != 0 {
+		s.SubStruct.ByteSlice = b[at:end]
+	}
 	if l5 != 0 {
-		s.SubStruct.ByteSlice = b[end:]
+		s.ByteSlice = b[end:]
 	}
 	return nil
 }
@@ -190,7 +190,7 @@ func (e *Embed) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1 := int(b[0]), int(b[1])
-	if l < 82+l0+l1 {
+	if l != 82+l0+l1 {
 		return jay.ErrUnexpectedEOB
 	}
 	e.Bool = jay.ReadBool1(b[2])

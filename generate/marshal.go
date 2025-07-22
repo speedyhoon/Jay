@@ -101,13 +101,16 @@ func (f *field) marshalLine(ctx *varCtx, lenVar string) string {
 		return ""
 	}
 
-	ctx.trackingVarsM(f)
+	codeLine := ctx.trackingVarsM(f)
+	if codeLine != "" && template != tFuncOpt {
+		bufWriteLine(ctx.buf, codeLine)
+	}
 
 	switch template {
 	case tFunc:
 		return fmt.Sprintf("%s(%s, %s)", fun, f.sliceExprM(ctx), f.Field(fun))
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s(%s, %s)\n}", lenVar, fun, f.sliceExprM(ctx), f.Field(fun))
+		return fmt.Sprintf("if %s != 0 {\n%s\n%s(%s, %s)\n}", lenVar, codeLine, fun, f.sliceExprM(ctx), f.Field(fun))
 	case tFuncLength:
 		if f.isArray() {
 			return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExprM(ctx), f.Field(fun), string(f.marshal.qtyVar))
@@ -145,7 +148,7 @@ func (f *field) sliceExprM(c *varCtx) string {
 	return fmt.Sprintf("%s[%s:%s]", f.structTyp.bufferName, c.atValue, c.endValue)
 }
 
-func (c *varCtx) trackingVarsM(f *field) {
+func (c *varCtx) trackingVarsM(f *field) (codeLine string) {
 	if f.isFixedLen {
 		c.atValue = omitZero(*f.indexStart)
 		if f.isLast {
@@ -168,8 +171,7 @@ func (c *varCtx) trackingVarsM(f *field) {
 	}
 
 	if c.isAtDefined && c.isEndDefined {
-		bufWriteLineF(c.buf, "%s, %s = %[2]s, %[2]s+%s", vAt, vEnd, f.ctxVarIncrementBy())
-		return
+		return fmt.Sprintf("%s, %s = %[2]s, %[2]s+%s", vAt, vEnd, f.ctxVarIncrementBy())
 	}
 
 	if !c.isAtDefined && !c.isEndDefined {
@@ -203,6 +205,8 @@ func (c *varCtx) trackingVarsM(f *field) {
 			bufWriteLineF(c.buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, c.atValue, f.marshal.qtyVar)
 		}
 	}
+
+	return
 }
 
 func (f *field) Field(typeConv string) (fieldName string) {

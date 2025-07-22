@@ -56,16 +56,16 @@ func (b *B41sS07udGL5tMTa4N86u6AD5d21324W5nWkWID5m1Sk810sN4e37) MarshalJ() (y []
 	if l0 != 0 {
 		copy(y[at:end], b.K6yL415FMC7k4aR7YA)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(y[at:end], b.Tqy48H5m41bwg3Ft57)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(y[at:end], b.CQnBsPjD3JLyy3iR5R11JqjbThXJH43l6GDS3mYU8dHlLIPw723)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(y[at:end], b.GJ136cqkFeq8d4Q1l6251fijHC488na1SF78OnKE8NKSTgFFaSX1u0UhPvIPa4Ju7EjJcM1RfqeJVUvxxqIEYTF6WD22wPHVRv7)
 	}
 	if l4 != 0 {
@@ -240,8 +240,8 @@ func (h *H5NObK28prAo7234yN0Rl7KA) MarshalJ() (b []byte) {
 	jay.WriteUintX64(b[422:430], h.TqCYVSEpcGO7C3Oil4H3tqM63HatbC67aY2viL8p6egJ)
 	at, end := 430, 430+l0
 	copy(b[at:end], h.J6fea772aA74jhuyiX8dXoIqc184SbW21R6nNeeDoExKB3156j88HXal)
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], h.FidwHV74TpnlQ4EuEBD3WF13l7B8RW4w0PY8n8y3Mpp6d0I111B5SbOvLQsjEay56EWMvS87227)
 	}
 	at, end = end, end+l2
@@ -250,8 +250,8 @@ func (h *H5NObK28prAo7234yN0Rl7KA) MarshalJ() (b []byte) {
 	copy(b[at:end], h.IjNrD2uH2E1e8v2yUV667SyY3iUlS1dJ)
 	at, end = end, end+l4
 	copy(b[at:end], h.IMEWe1OUw)
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], h.FStUI1evJ8IMpF1FNkFUAxKcNp5mnPBKk5wve3813xr6Ur)
 	}
 	if l6 != 0 {
@@ -519,34 +519,34 @@ func (o *ORjBp8Pg4Hi73lc04) MarshalJ() (b []byte) {
 	if l0 != 0 {
 		copy(b[at:end], o.Cr8KPrjn6rNyydH7yyYVoF7bWnkV2o46fyUTnvgBER)
 	}
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		copy(b[at:end], o.G0UglxCHl4756dv54V628C15XfNs4E007c5oj10R36Y40NqTjD8MlwBXB6Oy)
 	}
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		copy(b[at:end], o.ArC1)
 	}
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		copy(b[at:end], o.Bk8IoUosEYvigkRFut1i22S54x67ve4rmx1tjJ3EUGnUU4Vbo04DlI4IOtdR875xB48BI3tL13o)
 	}
 	at, end = end, end+l4
 	copy(b[at:end], o.Dk61B3x6Lrc2XI6X0Ro7bY0LY0FL30JMp7rV82QN3E3VLiWERV6h2U7L8CUmFjJX0r5x4l0b2KF4P77xKkS)
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		copy(b[at:end], o.UR6aRyE8Vg6akN3XpbOPggvSC)
 	}
 	at, end = end, end+l6
 	copy(b[at:end], o.T1sk6JgtQU0w02oUS16sAv3C6SnjkO05P7XjfNPYB8t4DNJbDCiBu18HwSlQN42Ut7dpODYDW61nYsA54g2sqU5u)
 	at, end = end, end+l7
 	copy(b[at:end], o.Wk2PGYri6dhsgT6SAXw76PK3sYCeks8mYa20WYKWO)
-	at, end = end, end+l8
 	if l8 != 0 {
+		at, end = end, end+l8
 		copy(b[at:end], o.M5RmbR161X54Lk0sj5325dpStJET7Yx1hGnlC8at8v61V5G7cfVf0rts04vaMbgSD7E6236a7piTU22Jdjm7xhBqMKE5Tm)
 	}
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		copy(b[at:end], o.AOiq1n20yIX7Xa4IKF6a8G8jf3auHyOFA7f5fYL46axxlhK8sBnA43HcPG3jOE0fsNG7JNAL6aV0v10TwotFUX4myM)
 	}
 	copy(b[end:], o.LX7rAsf44c4dt25Bdn0otfLWKbID)
