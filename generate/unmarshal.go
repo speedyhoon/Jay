@@ -207,7 +207,7 @@ func (f *field) isVarLen() bool {
 }
 
 // trackingVars defines `at` and `end` if needed before a value is unmarshalled or updates their values.
-func (c *varCtx) trackingVars(f *field) {
+func (c *varCtx) trackingVars(f *field) (codeLine string) {
 	if f.isFirst && f.isLast && *f.indexStart == 0 {
 		return
 	}
@@ -253,8 +253,7 @@ func (c *varCtx) trackingVars(f *field) {
 
 	if f.isVarLen() {
 		if c.isAtDefined && c.isEndDefined {
-			c.atEndLineInc(f.unmarshal.sizeVar.String(f.elmSize))
-			return
+			return fmt.Sprintf("%s, %s = %[2]s, %[2]s+%v", vAt, vEnd, f.unmarshal.sizeVar.String(f.elmSize))
 		}
 
 		if !c.isAtDefined {
@@ -268,6 +267,8 @@ func (c *varCtx) trackingVars(f *field) {
 			c.endValue = vEnd
 		}
 	}
+
+	return
 }
 
 func omitZero(u uint) string {
@@ -301,7 +302,10 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 	var template uint8
 	fun, template, f.structTyp.returnInlineUnmarshal = f.unmarshalFunc()
 
-	ctx.trackingVars(f)
+	codeLine := ctx.trackingVars(f)
+	if codeLine != "" && template != tFuncOpt {
+		bufWriteLine(ctx.buf, codeLine)
+	}
 
 	switch template {
 	case tFunc:
@@ -311,7 +315,7 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 		return fmt.Sprintf("%s = %s", f.Name(), printFunc(fun, f.sliceExpr3(ctx)))
 
 	case tFuncOpt:
-		return fmt.Sprintf("if %s != 0 {\n%s = %s\n}", f.unmarshal.qtyVar, f.Name(), f.sliceExpr3(ctx))
+		return fmt.Sprintf("if %s != 0 {\n%s\n%s = %s\n}", f.unmarshal.qtyVar, codeLine, f.Name(), f.sliceExpr3(ctx))
 
 	case tFuncArrayTypes:
 		return fmt.Sprintf("%s%s(%s, %s, %d)", f.structTyp.returnInlineUnmarshal, fun, f.sliceExpr3(ctx), f.Field(fun), f.arraySize)

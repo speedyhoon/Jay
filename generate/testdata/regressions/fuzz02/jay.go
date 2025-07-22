@@ -319,40 +319,40 @@ func (f *Fu6r) UnmarshalJ(b []byte) error {
 	}
 	at, end = end, end+l1
 	f.SE7HbL7NWgR837vBFD7iffVJC5J8xQ = string(b[at:end])
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		f.OKm5aK0O5BX57Swj5OpXKamuMwDBVLb48WR2ogjgB1jOVSa1lTmDkG00BHII2t14Jc0NQ2euk87PowO3mKwE1u8 = b[at:end]
 	}
 	at, end = end, end+l3
 	f.IxgfiX5d6AvngcOhPl74YLsO1w65vPH8HiWHLPBx2CU6ioQf6ckn18SW6uPpooY2Ca61l4d1I = string(b[at:end])
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		f.Mg8NJ3h731j7A171myxF4BVAL4CeI50X8jINQ47R431Npy6OAaFSds322G3jGx7564M5s01 = b[at:end]
 	}
 	at, end = end, end+l5
 	f.EVnAB8265 = string(b[at:end])
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		f.Iy0iPJl0X5nSUpnc4jTCK3bBk0Ter2wraBGae87n60T0NbAB8M3QOwY4H = b[at:end]
 	}
 	at, end = end, end+l7
 	f.OuOtmU55i6H2mhOq5a16ssav0l5ODKTArDHvy1g47U1N604kUaytKS3EFLemLAOE6SInRHCoYp8ER4oAeJ1IkC = string(b[at:end])
 	at, end = end, end+l8
 	f.LIqS4DP7I53w = string(b[at:end])
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		f.M2x4QUbRe5f33B7xJBhBlF2t7bV0gtU2543yjjqH8ajkk50Gr3h6w5LhU45NUL24Xe2CYOl36xwAEvKl4c05m = b[at:end]
 	}
-	at, end = end, end+l10
 	if l10 != 0 {
+		at, end = end, end+l10
 		f.TyMo5V0rubk7x3Vg4Xm1eCT03b7jWY12ytco2w0W0OPKtu1vbG20s4XdIDXTqB614j1rI6XjfXorr50p = b[at:end]
 	}
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		f.ITRAJSLp2WIt4 = b[at:end]
 	}
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		f.XAAK8PpyoOqlaq2HhlcCu = b[at:end]
 	}
 	at, end = end, end+l13

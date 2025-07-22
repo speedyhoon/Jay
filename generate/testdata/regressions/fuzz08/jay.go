@@ -297,12 +297,12 @@ func (x *Xr0HMChgjf45G06bi7IA7x17BviIKKd7P1WP174880f83BUWrYn3c7aipNjA82iOoEgmhqj
 	x.VGIM308i8m755sdc5SOfR5OWq351Nkb386VjcbXeR0jtjxwH83a1RKvWX74MxTpuDMpkkq821GtpC4575UG6g4e86PhIS234 = jay.ReadBools8(b[at:end], b[1])
 	at, end = end, end+l2*8
 	x.RPatp288RHw172uqHHQHFR2A8qF2WGy53niAst3M0C3qq3yQgHHAcur4845e25 = jay.ReadFloat64s(b[at:end], l2)
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		x.Q0NPhy60u = b[at:end]
 	}
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		x.U3vmE12x7F16iqsX36Yhys1WkIVm5WUdI52bq86mvXvD33VkXGm8l = b[at:end]
 	}
 	at, end = end, end+l5
@@ -319,8 +319,8 @@ func (x *Xr0HMChgjf45G06bi7IA7x17BviIKKd7P1WP174880f83BUWrYn3c7aipNjA82iOoEgmhqj
 	x.Bx8aItBr1658w374djSa5EEgcEsCN5dw8D14ow6f57 = jay.ReadInt8s(b[at:end], l10)
 	at, end = end, end+l11*4
 	x.Ybi76jsIhI = jay.ReadFloat32s(b[at:end], l11)
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		x.J7K2JV4kC34X0l = b[at:end]
 	}
 	at, end = end, end+l13
@@ -331,14 +331,14 @@ func (x *Xr0HMChgjf45G06bi7IA7x17BviIKKd7P1WP174880f83BUWrYn3c7aipNjA82iOoEgmhqj
 	x.Qw452S6WMdXG0tY2FqlItBaP30xfEiCPBM44fQK00K5u0lbMSBjJEY114mcr6LdjP63684 = string(b[at:end])
 	at, end = end, end+l16
 	x.AK7SJJo4C3n0n4eaV = string(b[at:end])
-	at, end = end, end+l17
 	if l17 != 0 {
+		at, end = end, end+l17
 		x.E7wDy58x715ACICyAnV3I5v6E8mYUKYRuS = b[at:end]
 	}
 	at, end = end, end+l18*4
 	x.HjwfRPy17V4coDq0gV6L71g3SN6k1JknfloW8PSeSy3 = jay.ReadFloat32s(b[at:end], l18)
-	at, end = end, end+l19
 	if l19 != 0 {
+		at, end = end, end+l19
 		x.T1qUGafd485xTP8fYSuvI4M6B5Lc45jQss4o8F5614WwAyhc7bd6f87R6bva4J0A2tV2kujBxbEY6f2 = b[at:end]
 	}
 	at, end = end, end+l20
@@ -347,8 +347,8 @@ func (x *Xr0HMChgjf45G06bi7IA7x17BviIKKd7P1WP174880f83BUWrYn3c7aipNjA82iOoEgmhqj
 	x.MWuWClXOe018lOLvTLUTE66o7wTUg76NHp5PqPOMGEI1EI3 = jay.ReadInt8s(b[at:end], l21)
 	at, end = end, end+l22*4
 	x.PDMWHgFxqFXxPHO8S2TUwuiyKYQ0X6breLwfSbyql4A0wSMB8 = jay.ReadFloat32s(b[at:end], l22)
-	at, end = end, end+l23
 	if l23 != 0 {
+		at, end = end, end+l23
 		x.XyFvYYXI2406t32Fc = b[at:end]
 	}
 	at, end = end, end+l24*4
@@ -588,20 +588,20 @@ func (d *D6YCuu3hbE3g5OXP4eIvdaE0Rn30477Vk3rh3aqef4Fq67F6DnY37JT4766BgAEG82P565y
 	d.PCBfIYjVYhq2hB152ne3K7d32HBJE5t = jay.ReadInt32(b[327:331])
 	at, end := 331, 331+l0
 	d.G5CxgoMa0R2x5WH4H3SpG37eqL52Rp05TFyll543DdUxfEnnaCd8JijEVqkjDBK782L5Mn2htn = jay.ReadInt8s(b[at:end], l0)
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		d.S4c0YkQmKf8qXU8f5814m3575DOG2uf7OX7Ge48J42y5rHL88KD4qhX3xu0Qj80U0P82 = b[at:end]
 	}
 	at, end = end, end+l2
 	d.Nnhv2R67lsE1DB2E0Tg11VIw25uW7D73Q315AgdNViJ43TdHY5X8sOE11N425d3dNH2i = jay.ReadBools8(b[at:end], b[2])
-	at, end = end, end+l3
 	if l3 != 0 {
+		at, end = end, end+l3
 		d.S8 = b[at:end]
 	}
 	at, end = end, end+l4
 	d.Cd8IDiM8M4mo42robhVnOV16pS4JX1yE6epmmt6fiV5H5n4Tf2tE45EWBq47p15Er4MHkmdyT40UUKjs6 = jay.ReadBools8(b[at:end], b[4])
-	at, end = end, end+l5
 	if l5 != 0 {
+		at, end = end, end+l5
 		d.Ce0254kIDMW24hKAbqY5ff8FEPt50bxn3Y8 = b[at:end]
 	}
 	at, end = end, end+l6*4
@@ -624,28 +624,28 @@ func (d *D6YCuu3hbE3g5OXP4eIvdaE0Rn30477Vk3rh3aqef4Fq67F6DnY37JT4766BgAEG82P565y
 	d.Uc6h5bV5tmO3YKsN7vx220MI6S7nQNvkl37IUyWPp5ybR3AKT4q0voj = jay.ReadFloat32s(b[at:end], l14)
 	at, end = end, end+l15
 	d.WMQiv6Ak0pR13HjoINDc4IYbDbQcJ0YCTC6uagnwtoI4R7Db3fNs0eR8oqSVmGQ4qPnWVy0B = jay.ReadBools8(b[at:end], b[15])
-	at, end = end, end+l16
 	if l16 != 0 {
+		at, end = end, end+l16
 		d.FuehJBKkjXPuP33Sm1s133bK6qrC250NbRfkRfGr6a = b[at:end]
 	}
-	at, end = end, end+l17
 	if l17 != 0 {
+		at, end = end, end+l17
 		d.Fl382ufbm46Hs5U4aD4284R460OIc4TLBRdFJk8nskP7WGAQ346w = b[at:end]
 	}
-	at, end = end, end+l18
 	if l18 != 0 {
+		at, end = end, end+l18
 		d.ME8 = b[at:end]
 	}
-	at, end = end, end+l19
 	if l19 != 0 {
+		at, end = end, end+l19
 		d.GrLh6dC1480Q534bRsqMgl66bgEHXamKofy8o8Ki2Avas5STH8pK7Wj3poN85bdO4cDv68gF5OTpJrE1InJrwMC2J8c85Kkggkw = b[at:end]
 	}
-	at, end = end, end+l20
 	if l20 != 0 {
+		at, end = end, end+l20
 		d.L5XqE7H6Kpk0X08537j06HN5kj7MJRx1674Cj07Qmm1D5WYLJd6mueeTt6KfHMi6Y8fMsglMV1S5ian0Nv4808D = b[at:end]
 	}
-	at, end = end, end+l21
 	if l21 != 0 {
+		at, end = end, end+l21
 		d.Ae4lox02 = b[at:end]
 	}
 	at, end = end, end+l22*4
@@ -664,8 +664,8 @@ func (d *D6YCuu3hbE3g5OXP4eIvdaE0Rn30477Vk3rh3aqef4Fq67F6DnY37JT4766BgAEG82P565y
 	d.Yi02Yq0S68Lh2j7EQfExLtlWIlnw6S3kN3B6D7yx = jay.ReadBools8(b[at:end], b[28])
 	at, end = end, end+l29*4
 	d.G5V3RXoun438yuryG4j4Ts8RAOEG6oonm23Vu5vk768V7idU5216Tr5EEC6dC6bFKUtP71AjBEOji3nN = jay.ReadFloat32s(b[at:end], l29)
-	at, end = end, end+l30
 	if l30 != 0 {
+		at, end = end, end+l30
 		d.C33Qk1bdKyn65W216Hnh5G2Le3pr7Udnw3850YQW0JCEMmGs2j2656IMK4wSR8 = b[at:end]
 	}
 	d.Du3Iix0dHr7lERYixqo8S13qRkaCQP747ivuH = string(b[end:])
@@ -942,8 +942,8 @@ func (k *K8oM1ehguBAUKEaNDDHyrpMh3) UnmarshalJ(b []byte) error {
 	k.HMxFVkcBS1E0m6t627G6m4M8oqhlj877cTSB2t4b3E11 = jay.ReadBools8(b[at:end], b[0])
 	at, end = end, end+l1
 	k.V22n644ME353aInmjdeIh0ruHLFhT8H4XeP362F0yr8pj8w53nS8IpP3MHKbjb0Sh3AS3x873 = jay.ReadBools8(b[at:end], b[1])
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		k.MIR3qDXpusP34hWuXqd637Np6f3xy7 = b[at:end]
 	}
 	at, end = end, end+l3
@@ -952,22 +952,22 @@ func (k *K8oM1ehguBAUKEaNDDHyrpMh3) UnmarshalJ(b []byte) error {
 	k.Tc2VsOE1wFvFy7u6gE2kL2bHbE5c15JPcR6g7GGiLA = string(b[at:end])
 	at, end = end, end+l5*8
 	k.YCAt1O4KKyYt55y8Qd8UYhV20UmDgFA = jay.ReadFloat64s(b[at:end], l5)
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		k.SoEDPvLJ27ryxMMa45OrpY4EhN5qFtbvI465PhjG2u814l0qLwEKv4s0hf0 = b[at:end]
 	}
 	at, end = end, end+l7*4
 	k.RIj5c14yEslkGLXw6GLTg55LYg62FLhQ3s4bN8nk8N3084oi3T34Scbh4tXVNH67XTjiYc7mhIK8hDtQagq6Yt2mN = jay.ReadFloat32s(b[at:end], l7)
 	at, end = end, end+l8
 	k.U6D43qh6 = string(b[at:end])
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		k.Iv60aCx70AVjldT45C0363 = b[at:end]
 	}
 	at, end = end, end+l10
 	k.W2e4eKHb085853466gNHSobpu8JfrJdvUNWTLSC7DBD8H3ddo4SU11KAoDwoS3vG = jay.ReadInt8s(b[at:end], l10)
-	at, end = end, end+l11
 	if l11 != 0 {
+		at, end = end, end+l11
 		k.S6sj52062ua3hsx2k2S71y1EIdK3GWUP17R0SJ4TUyShlH3tp842Pv360amrdH0PUujM6vmFEewq1084iOD75 = b[at:end]
 	}
 	at, end = end, end+l12*4
@@ -980,14 +980,14 @@ func (k *K8oM1ehguBAUKEaNDDHyrpMh3) UnmarshalJ(b []byte) error {
 	k.HGY34kW1iI1rAf1FpYKKX18l28n1bl4d7MdKiB03Qsji1hyBekd1mNx2N2KG3D7k7EPPictWf10Gr1w3c4a253u0s32a = jay.ReadBools8(b[at:end], b[15])
 	at, end = end, end+l16
 	k.XD5q = jay.ReadInt8s(b[at:end], l16)
-	at, end = end, end+l17
 	if l17 != 0 {
+		at, end = end, end+l17
 		k.ETu03fTXEYI817FS7mKAj6req77xN37y8H04HK53Y8Um1F804j452E1OH33MT0njHsb22sHFdY0sWA0e0V = b[at:end]
 	}
 	at, end = end, end+l18*8
 	k.T7c6qo26RI6qiFfrssoU70wP0S3no1C5JDE301kanFPqq6aVX7dbo03ENh013H5WRmP = jay.ReadFloat64s(b[at:end], l18)
-	at, end = end, end+l19
 	if l19 != 0 {
+		at, end = end, end+l19
 		k.H4D2Dj65B5DDkMg667s835ShvtmNvRHub2w1Xwu8x70Tv5F46D8n4Y = b[at:end]
 	}
 	at, end = end, end+l20*8
@@ -1010,8 +1010,8 @@ func (k *K8oM1ehguBAUKEaNDDHyrpMh3) UnmarshalJ(b []byte) error {
 	k.V2RUpY61817VKSgcLSJ4y74d60CjUu541BfDI5U4PTc4eWB3 = jay.ReadFloat64s(b[at:end], l28)
 	at, end = end, end+l29*4
 	k.RAVxx2GasPm68633s74RM2m3WG786QGm3Ho3MHW00dXmd1v6MWKMP2nk036d8axPSbT8svWhK8BsNs = jay.ReadFloat32s(b[at:end], l29)
-	at, end = end, end+l30
 	if l30 != 0 {
+		at, end = end, end+l30
 		k.NWY82MCl2qT4A2h1Rg60JuByV18P40uYI50F8JdOx0N4m082Wo4QP7tvY0tbGJuvRgIVYVD3nwO6Kuex3PQS5s6PNGP = b[at:end]
 	}
 	at, end = end, end+l31
@@ -1229,8 +1229,8 @@ func (e *EkT786k52K5SH681WWX8F4o1284AX2EcfKrWriAWxixexoVDl55WSYL3IPP48F4R80t38Uo
 	e.H57Y5ThyIvUc7JtKj63k3w5yl = jay.ReadInt16(b[316:318])
 	at, end := 318, 318+l0
 	e.AletKX6rNsloM1l78y7203LcfNsq = jay.ReadBools8(b[at:end], b[0])
-	at, end = end, end+l1
 	if l1 != 0 {
+		at, end = end, end+l1
 		e.J4H10kN3kY = b[at:end]
 	}
 	at, end = end, end+l2
@@ -1241,28 +1241,28 @@ func (e *EkT786k52K5SH681WWX8F4o1284AX2EcfKrWriAWxixexoVDl55WSYL3IPP48F4R80t38Uo
 	e.VT12URxITJ4xaCNW11v3A8b5f6hrKr37n7YHKXwudfyySneMns41RkUGo535qtekv = string(b[at:end])
 	at, end = end, end+l5
 	e.IcT5eM64i13Dme8anu11CElnU8oa1nr01XXQUiDl4aRu7vc0hlwKWULy54D = string(b[at:end])
-	at, end = end, end+l6
 	if l6 != 0 {
+		at, end = end, end+l6
 		e.L4sU3W876557rl47Di7 = b[at:end]
 	}
 	at, end = end, end+l7
 	e.O3qDOpsa762JgNQorW8gvRUD26H05wUCsCK01jS8q5LoS6yYadqBUwcK5jD1oRy2Ctu7qE6ybS0 = jay.ReadInt8s(b[at:end], l7)
 	at, end = end, end+l8*4
 	e.Nc3ClJcL101yH1H = jay.ReadFloat32s(b[at:end], l8)
-	at, end = end, end+l9
 	if l9 != 0 {
+		at, end = end, end+l9
 		e.XSGx27p1rMsOQR2P38jG3 = b[at:end]
 	}
 	at, end = end, end+l10
 	e.SoCsprrXMdHIm28eJ0NOu0h5GRd5xw0t665G8FNEahbQ4v = string(b[at:end])
 	at, end = end, end+l11
 	e.WPwm2336hNuif47j4q8Bvw6kQQ4N21TIo3WLM64730 = jay.ReadInt8s(b[at:end], l11)
-	at, end = end, end+l12
 	if l12 != 0 {
+		at, end = end, end+l12
 		e.O47NjH8TI7Xr0SwIjRqw073g0RR1e2fEfDOnSi8BHqdDyQo5Y7ptjVG3Y4E = b[at:end]
 	}
-	at, end = end, end+l13
 	if l13 != 0 {
+		at, end = end, end+l13
 		e.M038KrsQK12144v68xgpJntdj384H78B7i8AXXiSbqmah616RwVokwRm868B3pvjxXLwH1tN8oApJVY3aot4865F5i33LK40L = b[at:end]
 	}
 	at, end = end, end+l14
@@ -1271,12 +1271,12 @@ func (e *EkT786k52K5SH681WWX8F4o1284AX2EcfKrWriAWxixexoVDl55WSYL3IPP48F4R80t38Uo
 	e.EUOcniPq6AM1bC675Bg1gw25L0EQNKAe2yE4L4f5gLkS8GV8MN7Q1lyhPAJ0GRBj1kWjhEI242yA15 = jay.ReadBools8(b[at:end], b[15])
 	at, end = end, end+l16
 	e.VLikv = string(b[at:end])
-	at, end = end, end+l17
 	if l17 != 0 {
+		at, end = end, end+l17
 		e.W2R = b[at:end]
 	}
-	at, end = end, end+l18
 	if l18 != 0 {
+		at, end = end, end+l18
 		e.XLXYNME0FhQ1Oktqm2MM2t58wopDX3q14ybM33ry8m8ShRKW7hi635VygyB75q7TTwde0R7HG3bV4y5h5p = b[at:end]
 	}
 	at, end = end, end+l19
@@ -1287,8 +1287,8 @@ func (e *EkT786k52K5SH681WWX8F4o1284AX2EcfKrWriAWxixexoVDl55WSYL3IPP48F4R80t38Uo
 	e.VgRli86x05F7JGN6gMn42f8Ck06wyK6r57604SEqMjk8c = jay.ReadInt8s(b[at:end], l21)
 	at, end = end, end+l22*8
 	e.EepgL0L6jMHmRN4nNHOqpq17KQyWI478p7C5ovlD4RbKGmH1vDE7MEBki7AJ73ad23tD31un2k5YjXr4Jg5 = jay.ReadFloat64s(b[at:end], l22)
-	at, end = end, end+l23
 	if l23 != 0 {
+		at, end = end, end+l23
 		e.SvK1Jm552y8WVDyOmXvO3Rky05LCXFy50LIRF = b[at:end]
 	}
 	e.UAhTWY6GMB8a6Ctg2hstNBv5E7don8qGfW88 = jay.ReadBools8(b[end:], b[24])

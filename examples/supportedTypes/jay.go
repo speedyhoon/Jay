@@ -139,14 +139,14 @@ func (s *Supported) UnmarshalJ(b []byte) error {
 	s.String = string(b[at:end])
 	at, end = end, end+l1
 	s.Embed.String = string(b[at:end])
-	at, end = end, end+l2
 	if l2 != 0 {
+		at, end = end, end+l2
 		s.Embed.ByteSlice = b[at:end]
 	}
 	at, end = end, end+l3
 	s.SubStruct.String = string(b[at:end])
-	at, end = end, end+l4
 	if l4 != 0 {
+		at, end = end, end+l4
 		s.SubStruct.ByteSlice = b[at:end]
 	}
 	if l5 != 0 {
