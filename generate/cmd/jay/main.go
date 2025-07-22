@@ -3,19 +3,19 @@
 //
 // Optional flags:
 //
-//		-32	Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.
-//		-d	Debug mode - always writes to disk.
-//	 -e  Error to return from UnmarshalJ functions. (default "jay.ErrUnexpectedEOB")
-//		-m	Don't generate MarshalJ() function.
-//		-o	Output file. (default "jay.go")
-//		-p	Pointer MarshalJ() method.
-//		-s	Search Go test files for exported structs too.
-//		-u	Don't generate UnmarshalJ() function.
-//		-v	Verbose output.
-//		-vi	Variable int size.
-//		-vu	Variable uint size.
-//		-y	Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for. (default: Process all exported types)
-//			For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`.
+//	-32	Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.
+//	-d	Debug mode - always writes to disk.
+//	-e	Error to return from UnmarshalJ functions. (default "jay.ErrUnexpectedEOB")
+//	-m	Don't generate MarshalJ() function.
+//	-o	Output file. (default "jay.go")
+//	-p	Pointer MarshalJ() method.
+//	-s	Search Go test files for exported structs too.
+//	-u	Don't generate UnmarshalJ() function.
+//	-v	Verbose output.
+//	-vi	Variable int size.
+//	-vu	Variable uint size.
+//	-y	Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for. (default: Process all exported types)
+//		For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`.
 package main
 
 import (
@@ -28,18 +28,6 @@ import (
 	"os"
 	"path/filepath"
 )
-
-// TODO fix error:
-// go run ./cmd/main.go -o generate/tests/boolJay.go generate/tests/
-//	main.go:73: open generate/tests/generate/tests/boolJay.go: no such file or directory
-// but this works:
-// go run ./cmd/main.go -o boolJay.go generate/tests/
-
-// TODO fix error
-// output file is not created in same directory as file paths
-// cd jay
-// go run cmd/main.go -o jay.go bench/byte/make.go
-// jay.go should be created in bench/byte/jay.go instead.
 
 func main() {
 	var opt generate.Option
