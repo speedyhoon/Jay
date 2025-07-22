@@ -3,7 +3,7 @@ package jay
 import "time"
 
 func ReadTime(y []byte) (t time.Time) {
-	return time.Unix(ReadInt64(y), 0).UTC()
+	return time.Unix(ReadInt64(y), _0).UTC()
 }
 
 // WriteTime writes 8 bytes to b with year, month, date, hour, minute and seconds precision in UTC location.
@@ -13,12 +13,12 @@ func WriteTime(y []byte, t time.Time) {
 }
 
 func ReadTimes(y []byte, length int) (t []time.Time) {
-	if length == 0 {
+	if length == _0 {
 		return
 	}
 
 	t = make([]time.Time, length)
-	for i := 0; i < length; i++ {
+	for i := _0; i < length; i++ {
 		t[i] = ReadTime(y[i*_8 : i*_8+_8])
 	}
 	return
@@ -39,7 +39,7 @@ const timeZero = 1<<63 - 8 // (math.MaxInt64-7) 9223372036854775800
 
 func ReadTimeNano(y []byte) (t time.Time) {
 	if i := ReadInt64(y); i != timeZero {
-		return time.Unix(0, i).UTC()
+		return time.Unix(_0, i).UTC()
 	}
 
 	return
@@ -49,7 +49,8 @@ func ReadTimeNano(y []byte) (t time.Time) {
 // All millisecond, microsecond and nanosecond are lost.
 func WriteTimeNano(y []byte, t time.Time) {
 	if t == (time.Time{}) {
-		y[_0], y[_1], y[_2], y[_3], y[_4], y[_5], y[_6], y[_7] = 248, 255, 255, 255, 255, 255, 255, 127 // WriteInt64(y, timeZero)
+		// Equivalent to WriteInt64(y, timeZero)
+		y[_0], y[_1], y[_2], y[_3], y[_4], y[_5], y[_6], y[_7] = 248, 255, 255, 255, 255, 255, 255, 127
 		return
 	}
 
@@ -58,12 +59,12 @@ func WriteTimeNano(y []byte, t time.Time) {
 
 // ReadDurations ...
 func ReadDurations(y []byte, length int) (t []time.Duration) {
-	if length == 0 {
+	if length == _0 {
 		return
 	}
 
 	t = make([]time.Duration, length)
-	for i := 0; i < length; i++ {
+	for i := _0; i < length; i++ {
 		t[i] = time.Duration(ReadInt64(y[i*_8 : i*_8+_8]))
 	}
 	return

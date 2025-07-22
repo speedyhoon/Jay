@@ -4,25 +4,25 @@ const maxUint8 = 255
 
 func SizeStrings8(s []string) (total int) {
 	l := len(s) & maxUint8 // Truncate lengths > 255.
-	if l == 0 {
+	if l == _0 {
 		return
 	}
 
-	for i := 0; i < l; i++ {
+	for i := _0; i < l; i++ {
 		total += len(s[i]) & maxUint8
 	}
 	return l + total
 }
 
 func SizeStringsArray(s []string, l int) (total int) {
-	for i := 0; i < l; i++ {
+	for i := _0; i < l; i++ {
 		total += len(s[i]) & maxUint8
 	}
 	return l + total
 }
 
 func ReadStrings8nbX(y []byte, s *[]string, qty uint8, at *int) (ok bool) {
-	if qty == 0 {
+	if qty == _0 {
 		return true
 	}
 
@@ -33,7 +33,7 @@ func ReadStrings8nbX(y []byte, s *[]string, qty uint8, at *int) (ok bool) {
 
 	end := index
 	*s = make([]string, qty)
-	for i := uint8(0); i < qty; i, index = i+1, end {
+	for i := uint8(_0); i < qty; i, index = i+1, end {
 		end += int(y[i])
 		if index == end {
 			continue
