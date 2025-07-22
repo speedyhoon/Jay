@@ -8,12 +8,12 @@ import (
 
 func TestSupported(t *testing.T) {
 	var expected, actual Supported
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Supported{}, expected)
 	require.Equal(t, Supported{}, actual)
 
-	actual = Supported{
+	expected = Supported{
 		Bool:    rando.Bool(),
 		Byte:    rando.Uint8(),
 		Float32: rando.Float32(),
@@ -77,21 +77,21 @@ func TestSupported(t *testing.T) {
 		},
 		ByteSlice: rando.Bytes(),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Supported{}, expected)
 	// require.NotEqual(t, Supported{}, actual)
-	require.Equal(t, actual, expected)
+	require.Equal(t, expected, actual)
 }
 
 func TestEmbed(t *testing.T) {
 	var expected, actual Embed
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Embed{}, expected)
 	require.Equal(t, Embed{}, actual)
 
-	actual = Embed{
+	expected = Embed{
 		Bool:      rando.Bool(),
 		Byte:      rando.Uint8(),
 		Float32:   rando.Float32(),
@@ -112,9 +112,9 @@ func TestEmbed(t *testing.T) {
 		Nano:      rando.TimeNano(),
 		ByteSlice: rando.Bytes(),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Embed{}, expected)
 	// require.NotEqual(t, Embed{}, actual)
-	require.Equal(t, actual, expected)
+	require.Equal(t, expected, actual)
 }
