@@ -10,6 +10,7 @@ type Supported struct {
 	Byte    byte
 	Float32 float32
 	Float64 float64
+	Guid    [16]byte
 	Int     int
 	Int8    int8
 	Int16   int16
@@ -22,11 +23,9 @@ type Supported struct {
 	Uint64  uint64
 	Rune    rune
 	String  string
-	//Guid [16]byte
-	Time time.Time
-	Nano time.Time `j:"nano"`
-	//Embed embed
-	embed Embed
+	Time    time.Time
+	Nano    time.Time `j:"nano"`
+	embed   Embed
 	Embed
 	subStruct
 	SubStruct subStruct
