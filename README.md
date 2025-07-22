@@ -6,14 +6,14 @@
 Jay aims to be the fastest production safe, serialization package written in [Go](https://go.dev) as
 an alternative to
 [JSON](https://pkg.go.dev/encoding/json),
-[Protocol Buffers](https://pkg.go.dev/google.golang.org/protobuf), FlatBuffers,
+[Protocol Buffers](https://pkg.go.dev/google.golang.org/protobuf), [FlatBuffers](https://github.com/google/flatbuffers),
 [gob](https://pkg.go.dev/encoding/gob),
 [MessagePack](https://msgpack.org),
 [Bebop](https://github.com/betwixt-labs/bebop),
 and [mus-go](https://github.com/mus-format/mus-go) with less setup required and no extra languages to learn.
 
 Jay doesn't determine any types during runtime. Instead, the marshalling and unmarshalling functions are easily
-generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/master/cmd/jay).
+generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/main/generate/cmd/jay).
 
 ## TLDR;
 
@@ -28,10 +28,11 @@ generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tre
 	* Least network bandwidth used _(10/100 networks)_.
 * Doesn't introduce extra dependencies.
 * Output could be compressed with [`gzip`](https://pkg.go.dev/compress/gzip), `brotli`, [`zstd`](https://facebook.github.io/zstd/) or others.
+* Greater support for Go's built-in types.
 
 ##### Cons:
 
-* Need to regenerate methods when Go structs are modified using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/master/cmd/jay).
+* Need to regenerate methods when Go structs are modified using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/main/generate/cmd/jay).
 * Marshalled output is **not** human-readable.
 * Only written for the Go language.
 
@@ -112,7 +113,7 @@ Auto & HasFuel, ID,   Make,      Model         = 15 bytes
 * `int`, `int8`, `int16`, `int32`, `int64`
 * `[]int`, `[]int8`, `[]int16`, `[]int32`, `[]int64`
 * `rune`, `[]rune`
-* `string` _(Currently limited to 255 byte lengths)_
+* `string` _(Currently limited to 255 byte lengths.)_
 * `struct` _(Embedded structs aren't fully fuzz tested yet.)_
 * `time.Time`, `time.Duration`
 * `[]time.Time`, `[]time.Duration`
