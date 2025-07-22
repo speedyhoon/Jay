@@ -59,7 +59,3 @@ func TestCar_MarshalUnmarshal_large(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, c, d)
 }
-
-//func ptrStr(s string) *string {
-//	return &s
-//}
