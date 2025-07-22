@@ -71,7 +71,7 @@ func writeFiles(buf, jayTest *bytes.Buffer, index uint) {
 	resetBuffers(buf, jayTest)
 }
 
-func resetBuffers(buf, jayTest *bytes.Buffer){
+func resetBuffers(buf, jayTest *bytes.Buffer) {
 	buf.Reset()
 	jayTest.Reset()
 
