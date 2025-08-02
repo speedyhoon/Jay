@@ -132,19 +132,9 @@ func ReadStrings8Ok(y []byte, s *[]string, qty uint8) (ok bool) {
 }
 
 // WriteStrings8Req is tagged as required - so should never be 0 or null
-func WriteStrings8Req(y /*, qty*/ []byte, s []string, qty uint8) {
-	length := len(s)
-	if length > maxUint8 {
-		panic("dif size lengths")
-	}
-
+func WriteStrings8Req(y []byte, s []string, qty uint8) {
 	for i, at, end := _0, int(qty), int(qty); i < int(qty); i++ {
 		y[i] = byte(len(s[i]))
-
-		length = len(s[i])
-		if length > maxUint8 {
-			panic("dif rune lengths")
-		}
 
 		if y[i] != _0 {
 			end += int(y[i])
@@ -156,11 +146,6 @@ func WriteStrings8Req(y /*, qty*/ []byte, s []string, qty uint8) {
 
 // WriteStrings8 no tag (default) - may have nil or zero length slices.
 func WriteStrings8(y, qty []byte, s []string) {
-	length := len(s)
-	if length > maxUint8 {
-		panic("dif size lengths")
-	}
-
 	l := len(s) & maxUint8
 	if l == _0 {
 		return
@@ -169,11 +154,6 @@ func WriteStrings8(y, qty []byte, s []string) {
 
 	for i, at, end := _0, l, l; i < l; i++ {
 		y[i] = byte(len(s[i]))
-
-		length = len(s[i])
-		if length > maxUint8 {
-			panic("dif rune lengths")
-		}
 
 		if y[i] != _0 {
 			end += int(y[i])
@@ -188,10 +168,6 @@ func WriteStringsArray(y []byte, l uint8, s []string) {
 		length := len(s[i])
 		if length == _0 {
 			continue
-		}
-
-		if length > maxUint8 {
-			panic("dif rune lengths")
 		}
 		y[i] = byte(len(s[i]))
 
