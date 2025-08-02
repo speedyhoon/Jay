@@ -33,7 +33,7 @@ func ReadStrings8nbX(y []byte, s *[]string, qty uint8, at *int) (ok bool) {
 
 	end := index
 	*s = make([]string, qty)
-	for i := uint8(_0); i < qty; i, index = i+1, end {
+	for i := uint8(_0); i < qty; i, index = i+_1, end {
 		end += int(y[i])
 		if index == end {
 			continue
@@ -51,7 +51,7 @@ func ReadStrings8nbX(y []byte, s *[]string, qty uint8, at *int) (ok bool) {
 }
 
 func ReadStrings8Err(y []byte, s *[]string, qty uint8) (err error) {
-	if qty == 0 {
+	if qty == _0 {
 		return
 	}
 
@@ -61,7 +61,7 @@ func ReadStrings8Err(y []byte, s *[]string, qty uint8) (err error) {
 	}
 
 	*s = make([]string, qty)
-	for i, end := uint8(0), at; i < qty; i, at = i+1, end {
+	for i, end := uint8(_0), at; i < qty; i, at = i+_1, end {
 		end += int(y[i])
 		if at == end {
 			continue
@@ -78,7 +78,7 @@ func ReadStrings8Err(y []byte, s *[]string, qty uint8) (err error) {
 }
 
 func ReadStrings8nbXt(y []byte, s *[]string, qty uint8, at int) (end int, ok bool) {
-	if qty == 0 {
+	if qty == _0 {
 		return at, true
 	}
 
@@ -89,7 +89,7 @@ func ReadStrings8nbXt(y []byte, s *[]string, qty uint8, at int) (end int, ok boo
 
 	end = index
 	*s = make([]string, qty)
-	for i := uint8(0); i < qty; i, index = i+1, end {
+	for i := uint8(_0); i < qty; i, index = i+_1, end {
 		end += int(y[i])
 		if index == end {
 			continue
@@ -105,7 +105,7 @@ func ReadStrings8nbXt(y []byte, s *[]string, qty uint8, at int) (end int, ok boo
 }
 
 func ReadStrings8Ok(y []byte, s *[]string, qty uint8) (ok bool) {
-	if qty == 0 {
+	if qty == _0 {
 		return true
 	}
 
@@ -115,7 +115,7 @@ func ReadStrings8Ok(y []byte, s *[]string, qty uint8) (ok bool) {
 	}
 
 	*s = make([]string, qty)
-	for i, end := uint8(0), at; i < qty; i, at = i+1, end {
+	for i, end := uint8(_0), at; i < qty; i, at = i+_1, end {
 		end += int(y[i])
 		if at == end {
 			continue
@@ -138,7 +138,7 @@ func WriteStrings8Req(y /*, qty*/ []byte, s []string, qty uint8) {
 		panic("dif size lengths")
 	}
 
-	for i, at, end := 0, int(qty), int(qty); i < int(qty); i++ {
+	for i, at, end := _0, int(qty), int(qty); i < int(qty); i++ {
 		y[i] = byte(len(s[i]))
 
 		length = len(s[i])
@@ -146,7 +146,7 @@ func WriteStrings8Req(y /*, qty*/ []byte, s []string, qty uint8) {
 			panic("dif rune lengths")
 		}
 
-		if y[i] != 0 {
+		if y[i] != _0 {
 			end += int(y[i])
 			copy(y[at:end], s[i])
 			at = end
@@ -162,12 +162,12 @@ func WriteStrings8(y, qty []byte, s []string) {
 	}
 
 	l := len(s) & maxUint8
-	if l == 0 {
+	if l == _0 {
 		return
 	}
-	qty[0] = byte(l)
+	qty[_0] = byte(l)
 
-	for i, at, end := 0, l, l; i < l; i++ {
+	for i, at, end := _0, l, l; i < l; i++ {
 		y[i] = byte(len(s[i]))
 
 		length = len(s[i])
@@ -175,7 +175,7 @@ func WriteStrings8(y, qty []byte, s []string) {
 			panic("dif rune lengths")
 		}
 
-		if y[i] != 0 {
+		if y[i] != _0 {
 			end += int(y[i])
 			copy(y[at:end], s[i])
 			at = end
@@ -184,9 +184,9 @@ func WriteStrings8(y, qty []byte, s []string) {
 }
 
 func WriteStringsArray(y []byte, l uint8, s []string) {
-	for i, at, end := uint8(0), uint(l), uint(l); i < l; i++ {
+	for i, at, end := uint8(_0), uint(l), uint(l); i < l; i++ {
 		length := len(s[i])
-		if length == 0 {
+		if length == _0 {
 			continue
 		}
 
@@ -202,7 +202,7 @@ func WriteStringsArray(y []byte, l uint8, s []string) {
 }
 
 func ReadStringsArrayErr(y []byte, s []string, qty uint8) (err error) {
-	for i, at, end, l := uint8(0), uint(qty), uint(qty), uint(len(y)); i < qty; i, at = i+1, end {
+	for i, at, end, l := uint8(_0), uint(qty), uint(qty), uint(len(y)); i < qty; i, at = i+_1, end {
 		end += uint(y[i])
 		if at == end {
 			continue
@@ -221,7 +221,7 @@ func ReadStringsArrayErr(y []byte, s []string, qty uint8) (err error) {
 // ReadStringsArrayAtOk decodes a []byte into []string and increments atPos with the overall length.
 func ReadStringsArrayAtOk(y []byte, s []string, qty uint8, atPos *uint) (ok bool) {
 	end := uint(qty)
-	for i, at, l := uint8(0), uint(qty), uint(len(y)); i < qty; i, at = i+1, end {
+	for i, at, l := uint8(_0), uint(qty), uint(len(y)); i < qty; i, at = i+_1, end {
 		end += uint(y[i])
 		if at == end {
 			continue
