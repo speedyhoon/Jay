@@ -289,15 +289,20 @@ func (s *structTyp) hasExportedFields() bool {
 	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1 || len(s.single) >= 1 || len(s.stringSlice) >= 1
 }
 
+func nestedName(name *ast.Ident, index int, parents ...[]*ast.Ident) (n string) {
+	n = name.Name
+	for i := len(parents) - 1; i >= 0; i-- {
+		n = fmt.Sprintf("%s.%s", parents[i][index].Name, n)
+	}
+	return
+}
+
 func (s *structTyp) addExportedFields(names []*ast.Ident, f *field, parents [][]*ast.Ident) {
 	f.structTyp = s
-	pQty := len(parents)
+
 	for m := range names {
-		if pQty >= 1 {
-			f.name = pkgSelName(parents[0][0].Name, names[m].Name)
-		} else {
-			f.name = names[m].Name
-		}
+		f.name = nestedName(names[m], m, parents...)
+
 		if f.typ == tBool || f.arrayType == tBool && f.isArray() {
 			f.fieldList = &s.bool
 			s.bool = append(s.bool, f)
