@@ -3,8 +3,8 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"os"
 	"github.com/speedyhoon/rando/types"
+	"os"
 )
 
 func main() {
@@ -43,17 +43,17 @@ type Fuzz%d struct {
 			_, _ = fmt.Fprintf(jayTest, `
 func TestFuzz%[1]d(t *testing.T) {
 	var expected, actual Fuzz%[1]d
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Fuzz%[1]d{}, expected)
 	require.Equal(t, Fuzz%[1]d{}, actual)
 
-	actual = Fuzz%[1]d{
+	expected = Fuzz%[1]d{
 		One: %[2]s,
 		Two: %[3]s,
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	require.Equal(t, expected, actual)
 }
 `, i, types.TypeRandomFunc(a), types.TypeRandomFunc(b))

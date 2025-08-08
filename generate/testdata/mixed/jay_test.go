@@ -8,18 +8,18 @@ import (
 
 func TestLion(t *testing.T) {
 	var expected, actual Lion
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Lion{}, expected)
 	require.Equal(t, Lion{}, actual)
 
-	actual = Lion{
+	expected = Lion{
 		B1:      rando.Bool(),
 		Strings: rando.Strings(),
 		B2:      rando.Bool(),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	//require.NotEqual(t, Lion{}, expected)
 	//require.NotEqual(t, Lion{}, actual)
 	require.Equal(t, expected, actual)
@@ -27,12 +27,12 @@ func TestLion(t *testing.T) {
 
 func TestZebra(t *testing.T) {
 	var expected, actual Zebra
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Zebra{}, expected)
 	require.Equal(t, Zebra{}, actual)
 
-	actual = Zebra{
+	expected = Zebra{
 		B1:      rando.Bool(),
 		Strings: rando.Strings(),
 		B2:      rando.Bool(),
@@ -40,8 +40,8 @@ func TestZebra(t *testing.T) {
 		Ints:    rando.Ints(),
 		U64:     rando.Uint64(),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	//require.NotEqual(t, Zebra{}, expected)
 	//require.NotEqual(t, Zebra{}, actual)
 	require.Equal(t, expected, actual)

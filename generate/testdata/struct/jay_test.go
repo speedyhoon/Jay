@@ -9,16 +9,16 @@ import (
 
 func TestFuzz_1(t *testing.T) {
 	var expected, actual One
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, One{}, expected)
 	require.Equal(t, One{}, actual)
 
-	actual = One{
+	expected = One{
 		One: rando.Bool(),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, One{}, expected)
 	// require.NotEqual(t, One{}, actual)
 	require.Equal(t, expected, actual)
@@ -26,17 +26,17 @@ func TestFuzz_1(t *testing.T) {
 
 func TestFuzz_2(t *testing.T) {
 	var expected, actual Two
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Two{}, expected)
 	require.Equal(t, Two{}, actual)
 
-	actual = Two{
+	expected = Two{
 		One: One{One: rando.Bool()},
 		Two: rando.BoolsN(7),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Two{}, expected)
 	// require.NotEqual(t, Two{}, actual)
 	require.Equal(t, expected, actual)
@@ -44,20 +44,20 @@ func TestFuzz_2(t *testing.T) {
 
 func TestFuzz_3(t *testing.T) {
 	var expected, actual Three
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Three{}, expected)
 	require.Equal(t, Three{}, actual)
 
-	actual = Three{
+	expected = Three{
 		Two: Two{
 			One: One{One: rando.Bool()},
 			Two: rando.BoolsN(7),
 		},
 		Three: rando.Byte(),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Three{}, expected)
 	// require.NotEqual(t, Three{}, actual)
 	require.Equal(t, expected, actual)

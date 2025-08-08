@@ -9,16 +9,16 @@ import (
 
 func TestFuzz_1(t *testing.T) {
 	var expected, actual One
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, One{}, expected)
 	require.Equal(t, One{}, actual)
 
-	actual = One{
+	expected = One{
 		One: [4]bool(rando.BoolsN(4)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, One{}, expected)
 	// require.NotEqual(t, One{}, actual)
 	require.Equal(t, expected, actual)
@@ -26,17 +26,17 @@ func TestFuzz_1(t *testing.T) {
 
 func TestFuzz_2(t *testing.T) {
 	var expected, actual Two
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Two{}, expected)
 	require.Equal(t, Two{}, actual)
 
-	actual = Two{
+	expected = Two{
 		One: [2]bool(rando.BoolsN(2)),
 		Two: [7]bool(rando.BoolsN(7)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Two{}, expected)
 	// require.NotEqual(t, Two{}, actual)
 	require.Equal(t, expected, actual)
@@ -44,18 +44,18 @@ func TestFuzz_2(t *testing.T) {
 
 func TestFuzz_3(t *testing.T) {
 	var expected, actual Three
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Three{}, expected)
 	require.Equal(t, Three{}, actual)
 
-	actual = Three{
+	expected = Three{
 		One:   [8]bool(rando.BoolsN(8)),
 		Two:   [1]bool(rando.BoolsN(1)),
 		Three: [9]bool(rando.BoolsN(9)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Three{}, expected)
 	// require.NotEqual(t, Three{}, actual)
 	require.Equal(t, expected, actual)
@@ -63,19 +63,19 @@ func TestFuzz_3(t *testing.T) {
 
 func TestFuzz_4(t *testing.T) {
 	var expected, actual Four
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Four{}, expected)
 	require.Equal(t, Four{}, actual)
 
-	actual = Four{
+	expected = Four{
 		One:   [7]bool(rando.BoolsN(7)),
 		Two:   [2]bool(rando.BoolsN(2)),
 		Three: [6]bool(rando.BoolsN(6)),
 		Four:  [8]bool(rando.BoolsN(8)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Four{}, expected)
 	// require.NotEqual(t, Four{}, actual)
 	require.Equal(t, expected, actual)
@@ -83,20 +83,20 @@ func TestFuzz_4(t *testing.T) {
 
 func TestFuzz_5(t *testing.T) {
 	var expected, actual Five
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Five{}, expected)
 	require.Equal(t, Five{}, actual)
 
-	actual = Five{
+	expected = Five{
 		One:   [2]bool(rando.BoolsN(2)),
 		Two:   [3]bool(rando.BoolsN(3)),
 		Three: [4]bool(rando.BoolsN(4)),
 		Four:  [8]bool(rando.BoolsN(8)),
 		Five:  [1]bool(rando.BoolsN(1)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Five{}, expected)
 	// require.NotEqual(t, Five{}, actual)
 	require.Equal(t, expected, actual)
@@ -104,12 +104,12 @@ func TestFuzz_5(t *testing.T) {
 
 func TestFuzz_6(t *testing.T) {
 	var expected, actual Six
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Six{}, expected)
 	require.Equal(t, Six{}, actual)
 
-	actual = Six{
+	expected = Six{
 		One:   [9]bool(rando.BoolsN(9)),
 		Two:   [5]bool(rando.BoolsN(5)),
 		Three: [7]bool(rando.BoolsN(7)),
@@ -117,8 +117,8 @@ func TestFuzz_6(t *testing.T) {
 		Five:  [6]bool(rando.BoolsN(6)),
 		Six:   [10]bool(rando.BoolsN(10)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Six{}, expected)
 	// require.NotEqual(t, Six{}, actual)
 	require.Equal(t, expected, actual)
@@ -126,12 +126,12 @@ func TestFuzz_6(t *testing.T) {
 
 func TestFuzz_7(t *testing.T) {
 	var expected, actual Seven
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Seven{}, expected)
 	require.Equal(t, Seven{}, actual)
 
-	actual = Seven{
+	expected = Seven{
 		One:   [35]bool(rando.BoolsN(35)),
 		Two:   [1]bool(rando.BoolsN(1)),
 		Three: [2]bool(rando.BoolsN(2)),
@@ -140,8 +140,8 @@ func TestFuzz_7(t *testing.T) {
 		Six:   [10]bool(rando.BoolsN(10)),
 		Seven: [9]bool(rando.BoolsN(9)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Seven{}, expected)
 	// require.NotEqual(t, Seven{}, actual)
 	require.Equal(t, expected, actual)
@@ -149,12 +149,12 @@ func TestFuzz_7(t *testing.T) {
 
 func TestFuzz_8(t *testing.T) {
 	var expected, actual Eight
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Eight{}, expected)
 	require.Equal(t, Eight{}, actual)
 
-	actual = Eight{
+	expected = Eight{
 		One:   [11]bool(rando.BoolsN(11)),
 		Two:   [12]bool(rando.BoolsN(12)),
 		Three: [13]bool(rando.BoolsN(13)),
@@ -164,8 +164,8 @@ func TestFuzz_8(t *testing.T) {
 		Seven: [17]bool(rando.BoolsN(17)),
 		Eight: [18]bool(rando.BoolsN(18)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Eight{}, expected)
 	// require.NotEqual(t, Eight{}, actual)
 	require.Equal(t, expected, actual)
@@ -173,12 +173,12 @@ func TestFuzz_8(t *testing.T) {
 
 func TestFuzz_9(t *testing.T) {
 	var expected, actual Nine
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Nine{}, expected)
 	require.Equal(t, Nine{}, actual)
 
-	actual = Nine{
+	expected = Nine{
 		One:   [19]bool(rando.BoolsN(19)),
 		Two:   [20]bool(rando.BoolsN(20)),
 		Three: [21]bool(rando.BoolsN(21)),
@@ -189,8 +189,8 @@ func TestFuzz_9(t *testing.T) {
 		Eight: [26]bool(rando.BoolsN(26)),
 		Nine:  [27]bool(rando.BoolsN(27)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Nine{}, expected)
 	// require.NotEqual(t, Nine{}, actual)
 	require.Equal(t, expected, actual)
@@ -198,12 +198,12 @@ func TestFuzz_9(t *testing.T) {
 
 func TestFuzz_10(t *testing.T) {
 	var expected, actual Ten
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Ten{}, expected)
 	require.Equal(t, Ten{}, actual)
 
-	actual = Ten{
+	expected = Ten{
 		One:   [28]bool(rando.BoolsN(28)),
 		Two:   [29]bool(rando.BoolsN(29)),
 		Three: [30]bool(rando.BoolsN(30)),
@@ -215,8 +215,8 @@ func TestFuzz_10(t *testing.T) {
 		Nine:  [36]bool(rando.BoolsN(36)),
 		Ten:   [37]bool(rando.BoolsN(37)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Ten{}, expected)
 	// require.NotEqual(t, Ten{}, actual)
 	require.Equal(t, expected, actual)
@@ -224,12 +224,12 @@ func TestFuzz_10(t *testing.T) {
 
 func TestFuzz_11(t *testing.T) {
 	var expected, actual Eleven
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Eleven{}, expected)
 	require.Equal(t, Eleven{}, actual)
 
-	actual = Eleven{
+	expected = Eleven{
 		One:    [38]bool(rando.BoolsN(38)),
 		Two:    [39]bool(rando.BoolsN(39)),
 		Three:  [40]bool(rando.BoolsN(40)),
@@ -242,8 +242,8 @@ func TestFuzz_11(t *testing.T) {
 		Ten:    [47]bool(rando.BoolsN(47)),
 		Eleven: [48]bool(rando.BoolsN(48)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Eleven{}, expected)
 	// require.NotEqual(t, Eleven{}, actual)
 	require.Equal(t, expected, actual)
@@ -251,12 +251,12 @@ func TestFuzz_11(t *testing.T) {
 
 func TestFuzz_12(t *testing.T) {
 	var expected, actual Twelve
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Twelve{}, expected)
 	require.Equal(t, Twelve{}, actual)
 
-	actual = Twelve{
+	expected = Twelve{
 		One:    [49]bool(rando.BoolsN(49)),
 		Two:    [50]bool(rando.BoolsN(50)),
 		Three:  [51]bool(rando.BoolsN(51)),
@@ -270,8 +270,8 @@ func TestFuzz_12(t *testing.T) {
 		Eleven: [59]bool(rando.BoolsN(59)),
 		Twelve: [60]bool(rando.BoolsN(60)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Twelve{}, expected)
 	// require.NotEqual(t, Twelve{}, actual)
 	require.Equal(t, expected, actual)
@@ -279,12 +279,12 @@ func TestFuzz_12(t *testing.T) {
 
 func TestFuzz_13(t *testing.T) {
 	var expected, actual Thirteen
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Thirteen{}, expected)
 	require.Equal(t, Thirteen{}, actual)
 
-	actual = Thirteen{
+	expected = Thirteen{
 		One:      [61]bool(rando.BoolsN(61)),
 		Two:      [62]bool(rando.BoolsN(62)),
 		Three:    [63]bool(rando.BoolsN(63)),
@@ -299,8 +299,8 @@ func TestFuzz_13(t *testing.T) {
 		Twelve:   [72]bool(rando.BoolsN(72)),
 		Thirteen: [73]bool(rando.BoolsN(73)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Thirteen{}, expected)
 	// require.NotEqual(t, Thirteen{}, actual)
 	require.Equal(t, expected, actual)
@@ -308,12 +308,12 @@ func TestFuzz_13(t *testing.T) {
 
 func TestFuzz_14(t *testing.T) {
 	var expected, actual Fourteen
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Fourteen{}, expected)
 	require.Equal(t, Fourteen{}, actual)
 
-	actual = Fourteen{
+	expected = Fourteen{
 		One:      [74]bool(rando.BoolsN(74)),
 		Two:      [75]bool(rando.BoolsN(75)),
 		Three:    [76]bool(rando.BoolsN(76)),
@@ -329,8 +329,8 @@ func TestFuzz_14(t *testing.T) {
 		Thirteen: [86]bool(rando.BoolsN(86)),
 		Fourteen: [87]bool(rando.BoolsN(87)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Fourteen{}, expected)
 	// require.NotEqual(t, Fourteen{}, actual)
 	require.Equal(t, expected, actual)
@@ -338,12 +338,12 @@ func TestFuzz_14(t *testing.T) {
 
 func TestFuzz_15(t *testing.T) {
 	var expected, actual Fifteen
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Fifteen{}, expected)
 	require.Equal(t, Fifteen{}, actual)
 
-	actual = Fifteen{
+	expected = Fifteen{
 		One:      [88]bool(rando.BoolsN(88)),
 		Two:      [89]bool(rando.BoolsN(89)),
 		Three:    [90]bool(rando.BoolsN(90)),
@@ -360,8 +360,8 @@ func TestFuzz_15(t *testing.T) {
 		Fourteen: [101]bool(rando.BoolsN(101)),
 		Fifteen:  [102]bool(rando.BoolsN(102)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Fifteen{}, expected)
 	// require.NotEqual(t, Fifteen{}, actual)
 	require.Equal(t, expected, actual)
@@ -369,12 +369,12 @@ func TestFuzz_15(t *testing.T) {
 
 func TestFuzz_16(t *testing.T) {
 	var expected, actual Sixteen
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Sixteen{}, expected)
 	require.Equal(t, Sixteen{}, actual)
 
-	actual = Sixteen{
+	expected = Sixteen{
 		One:      [103]bool(rando.BoolsN(103)),
 		Two:      [104]bool(rando.BoolsN(104)),
 		Three:    [105]bool(rando.BoolsN(105)),
@@ -392,8 +392,8 @@ func TestFuzz_16(t *testing.T) {
 		Fifteen:  [117]bool(rando.BoolsN(117)),
 		Sixteen:  [118]bool(rando.BoolsN(118)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Sixteen{}, expected)
 	// require.NotEqual(t, Sixteen{}, actual)
 	require.Equal(t, expected, actual)
@@ -401,12 +401,12 @@ func TestFuzz_16(t *testing.T) {
 
 func TestFuzz_17(t *testing.T) {
 	var expected, actual Seventeen
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Seventeen{}, expected)
 	require.Equal(t, Seventeen{}, actual)
 
-	actual = Seventeen{
+	expected = Seventeen{
 		One:       [119]bool(rando.BoolsN(119)),
 		Two:       [120]bool(rando.BoolsN(120)),
 		Three:     [121]bool(rando.BoolsN(121)),
@@ -425,8 +425,8 @@ func TestFuzz_17(t *testing.T) {
 		Sixteen:   [134]bool(rando.BoolsN(134)),
 		Seventeen: [135]bool(rando.BoolsN(135)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Seventeen{}, expected)
 	// require.NotEqual(t, Seventeen{}, actual)
 	require.Equal(t, expected, actual)
@@ -434,12 +434,12 @@ func TestFuzz_17(t *testing.T) {
 
 func TestFuzz_18(t *testing.T) {
 	var expected, actual Eighteen
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Eighteen{}, expected)
 	require.Equal(t, Eighteen{}, actual)
 
-	actual = Eighteen{
+	expected = Eighteen{
 		One:       [136]bool(rando.BoolsN(136)),
 		Two:       [137]bool(rando.BoolsN(137)),
 		Three:     [138]bool(rando.BoolsN(138)),
@@ -459,8 +459,8 @@ func TestFuzz_18(t *testing.T) {
 		Seventeen: [152]bool(rando.BoolsN(152)),
 		Eighteen:  [153]bool(rando.BoolsN(153)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Eighteen{}, expected)
 	// require.NotEqual(t, Eighteen{}, actual)
 	require.Equal(t, expected, actual)
@@ -468,12 +468,12 @@ func TestFuzz_18(t *testing.T) {
 
 func TestFuzz_19(t *testing.T) {
 	var expected, actual Nineteen
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Nineteen{}, expected)
 	require.Equal(t, Nineteen{}, actual)
 
-	actual = Nineteen{
+	expected = Nineteen{
 		One:       [154]bool(rando.BoolsN(154)),
 		Two:       [155]bool(rando.BoolsN(155)),
 		Three:     [156]bool(rando.BoolsN(156)),
@@ -494,8 +494,8 @@ func TestFuzz_19(t *testing.T) {
 		Eighteen:  [171]bool(rando.BoolsN(171)),
 		Nineteen:  [172]bool(rando.BoolsN(172)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Nineteen{}, expected)
 	// require.NotEqual(t, Nineteen{}, actual)
 	require.Equal(t, expected, actual)
@@ -503,12 +503,12 @@ func TestFuzz_19(t *testing.T) {
 
 func TestFuzz_20(t *testing.T) {
 	var expected, actual Twenty
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, Twenty{}, expected)
 	require.Equal(t, Twenty{}, actual)
 
-	actual = Twenty{
+	expected = Twenty{
 		One:       [173]bool(rando.BoolsN(173)),
 		Two:       [174]bool(rando.BoolsN(174)),
 		Three:     [175]bool(rando.BoolsN(175)),
@@ -530,8 +530,8 @@ func TestFuzz_20(t *testing.T) {
 		Nineteen:  [191]bool(rando.BoolsN(191)),
 		Twenty:    [192]bool(rando.BoolsN(192)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, Twenty{}, expected)
 	// require.NotEqual(t, Twenty{}, actual)
 	require.Equal(t, expected, actual)
@@ -539,12 +539,12 @@ func TestFuzz_20(t *testing.T) {
 
 func TestFuzz_21(t *testing.T) {
 	var expected, actual TwentyOne
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, TwentyOne{}, expected)
 	require.Equal(t, TwentyOne{}, actual)
 
-	actual = TwentyOne{
+	expected = TwentyOne{
 		One:       [193]bool(rando.BoolsN(193)),
 		Two:       [194]bool(rando.BoolsN(194)),
 		Three:     [195]bool(rando.BoolsN(195)),
@@ -567,8 +567,8 @@ func TestFuzz_21(t *testing.T) {
 		Twenty:    [212]bool(rando.BoolsN(212)),
 		TwentyOne: [213]bool(rando.BoolsN(213)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, TwentyOne{}, expected)
 	// require.NotEqual(t, TwentyOne{}, actual)
 	require.Equal(t, expected, actual)
@@ -576,12 +576,12 @@ func TestFuzz_21(t *testing.T) {
 
 func TestFuzz_22(t *testing.T) {
 	var expected, actual TwentyTwo
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, TwentyTwo{}, expected)
 	require.Equal(t, TwentyTwo{}, actual)
 
-	actual = TwentyTwo{
+	expected = TwentyTwo{
 		One:       [214]bool(rando.BoolsN(214)),
 		Two:       [215]bool(rando.BoolsN(215)),
 		Three:     [216]bool(rando.BoolsN(216)),
@@ -605,8 +605,8 @@ func TestFuzz_22(t *testing.T) {
 		TwentyOne: [234]bool(rando.BoolsN(234)),
 		TwentyTwo: [235]bool(rando.BoolsN(235)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, TwentyTwo{}, expected)
 	// require.NotEqual(t, TwentyTwo{}, actual)
 	require.Equal(t, expected, actual)
@@ -614,12 +614,12 @@ func TestFuzz_22(t *testing.T) {
 
 func TestFuzz_23(t *testing.T) {
 	var expected, actual TwentyThree
-	require.NoError(t, expected.UnmarshalJ(actual.MarshalJ()))
+	require.NoError(t, actual.UnmarshalJ(expected.MarshalJ()))
 	require.Equal(t, expected, actual)
 	require.Equal(t, TwentyThree{}, expected)
 	require.Equal(t, TwentyThree{}, actual)
 
-	actual = TwentyThree{
+	expected = TwentyThree{
 		One:         [236]bool(rando.BoolsN(236)),
 		Two:         [237]bool(rando.BoolsN(237)),
 		Three:       [238]bool(rando.BoolsN(238)),
@@ -644,8 +644,8 @@ func TestFuzz_23(t *testing.T) {
 		TwentyTwo:   [257]bool(BoolsN(257)),
 		TwentyThree: [258]bool(BoolsN(258)),
 	}
-	src := actual.MarshalJ()
-	require.NoError(t, expected.UnmarshalJ(src))
+	src := expected.MarshalJ()
+	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, TwentyThree{}, expected)
 	// require.NotEqual(t, TwentyThree{}, actual)
 	require.Equal(t, expected, actual)
