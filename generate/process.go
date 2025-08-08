@@ -222,12 +222,8 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList, parents ...[]
 func structFields(t any, names []string) (fields []*ast.Field, ok bool) {
 	switch d := t.(type) {
 	case *ast.Ident:
-		if d.Obj != nil {
-			return structFields(d.Obj, names)
-		}
-	case *ast.Object:
-		if d.Decl != nil {
-			return structFields(d.Decl, names)
+		if d.Obj != nil && d.Obj.Decl != nil {
+			return structFields(d.Obj.Decl, names)
 		}
 	case *ast.TypeSpec:
 		if d.Type != nil {

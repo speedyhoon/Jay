@@ -6,11 +6,10 @@ import (
 )
 
 type visitor struct {
-	enclosing string
-	structs   *[]*structTyp
-	option    *Option
-	dirList   *dirList
-	dir       string
+	structs *[]*structTyp
+	option  *Option
+	dirList *dirList
+	dir     string
 }
 
 type field struct {
@@ -45,17 +44,19 @@ type fieldList []*field
 // For example, type Cow struct { ID id }
 func (v visitor) Visit(node ast.Node) ast.Visitor {
 	switch n := node.(type) {
+	// Only traverse structs that are a defined type (not anonymous structs).
 	case *ast.TypeSpec:
-		if n.Name != nil {
-			v.enclosing = n.Name.Name
-		}
-	case *ast.StructType:
-		if n.Fields == nil || len(n.Fields.List) == 0 || v.enclosing == "" {
+		if n.Name == nil || n.Name.Name == "" {
 			return v
 		}
 
-		s := newStructTyp(v.dir, v.enclosing, v.option)
-		if s.process(n.Fields.List, v.dirList) {
+		st, ok := n.Type.(*ast.StructType)
+		if !ok || len(st.Fields.List) <= 0 {
+			return v
+		}
+
+		s := newStructTyp(v.dir, n.Name.Name, v.option)
+		if s.process(st.Fields.List, v.dirList) {
 			*v.structs = append(*v.structs, s)
 		}
 	}

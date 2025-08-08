@@ -114,12 +114,12 @@ Auto & HasFuel, ID,   Make,      Model         = 15 bytes
 * `[]int`, `[]int8`, `[]int16`, `[]int32`, `[]int64`
 * `rune`, `[]rune`
 * `string` _(Currently limited to 255 byte lengths.)_
-* `struct` _(Embedded structs aren't fully fuzz tested yet.)_
+* `struct` and anonymous structs
 * `time.Time`, `time.Duration`
 * `[]time.Time`, `[]time.Duration`
 * `uint`, `uint8`, `uint16`, `uint32`, `uint64`
 * `[]uint`, `[]uint8`, `[]uint16`, `[]uint32`, `[]uint64`
-* Arrays for all built-in types with lengths from 1 to 255, for example: `[5]string`, `[9]time.Duration` and `[33]time.Time` _(no fuzz testing yet)_
+* Arrays for all the above types with lengths from 1 to 255, for example: `[5]string`, `[9]time.Duration` and `[33]time.Time` _(no fuzz testing yet)_
 
 Jay also supports imported types. If the exported type is in the same package or a subpackage then `jay` will automatically find it with:
 
