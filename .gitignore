@@ -1,7 +1,2 @@
-.directory
-
-# JetBrains IDE
-.idea/
-
 # Fuzz test temporary files
 fuzz/tmp_fuzz/
