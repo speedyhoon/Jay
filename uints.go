@@ -72,13 +72,13 @@ func ReadUint32s(y []byte, length int) (t []uint32) {
 	return
 }
 
-func WriteUint16s(y []byte, ints []uint16, length int) {
+func WriteUint16s(y []byte, slice []uint16, length int) {
 	if length == _0 {
 		return
 	}
 
 	for i := _0; i < length; i++ {
-		y[i*_2], y[i*_2+_1] = byte(ints[i]), byte(ints[i]>>_8)
+		y[i*_2], y[i*_2+_1] = byte(slice[i]), byte(slice[i]>>_8)
 	}
 }
 
