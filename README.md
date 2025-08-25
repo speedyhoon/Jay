@@ -139,9 +139,9 @@ To include an external type via the commandline, either:
 
 In order of priority:
 
-* Expand fuzz testing.
+* Expand fuzz testing and test coverage.
 * Field tag options and documentation.
-* `string` _(Increase supported length from 255 bytes to 16 MB)_
+* Increase supported slice length from 255 items to 2<sup>24</sup> _(16,777,215)_
 * Add tests for array types with more than 255 items.
 * Performance benchmarks.
 * Low-bandwidth mode.
