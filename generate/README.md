@@ -26,7 +26,7 @@ Any private struct can be embedded into an exported struct when an exported fiel
 ```go
 type Car struct {
 	gearbox         // Ignored - not an exported field name
-	Gearbox gearbox // Added - exported type
+	Gearbox gearbox // Added - exported field name
 	gbx gearbox     // Ignored - not an exported field name
 
 	Axel    // Ignored - no fields
