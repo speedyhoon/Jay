@@ -294,8 +294,22 @@ setLast:
 
 // processOrder returns is the order that fieldList's are processed in.
 func (s *structTyp) processOrder() []fieldList {
-	return []fieldList{s.bool, s.single, s.fixedLen, s.stringSlice, s.variableLen}
+	return []fieldList{
+		procOrdBool:        s.bool,
+		procOrdSingle:      s.single,
+		procOrdFixedLen:    s.fixedLen,
+		procOrdStringSlice: s.stringSlice,
+		procOrdVariableLen: s.variableLen,
+	}
 }
+
+const (
+	procOrdBool = iota
+	procOrdSingle
+	procOrdFixedLen
+	procOrdStringSlice
+	procOrdVariableLen
+)
 
 func (s *structTyp) setFieldByteIndexes() {
 	var isFirstVarLen bool
@@ -308,29 +322,29 @@ func (s *structTyp) setFieldByteIndexes() {
 	}
 
 	for i, list := range s.processOrder() {
-		var boolsQty uint
+		var qtyBool uint
 		for n, f := range list {
 			si := byteIndex
 			switch i {
-			case 0: //bool
-				si = byteIndex + boolsQty/8
+			case procOrdBool:
+				si = byteIndex + qtyBool/8
 				f.indexStart = &si
-				boolsQty += f.totalSize()
-				ei := byteIndex + (boolsQty-1)/8
+				qtyBool += f.totalSize()
+				ei := byteIndex + (qtyBool-1)/8
 				f.indexEnd = &ei
 				if n == len(s.bool)-1 {
-					byteIndex += (boolsQty + 7) >> 3
+					byteIndex += (qtyBool + 7) >> 3
 				}
 
-			case 1: //single
+			case procOrdSingle:
 				f.indexStart, f.indexEnd = &si, &si
 				byteIndex++
-			case 2: //fixedLen
+			case procOrdFixedLen:
 				f.indexStart = &si
 				byteIndex += f.totalSize()
 				ei := byteIndex
 				f.indexEnd = &ei
-			case 3, 4: // stringSlice, variableLen
+			case procOrdStringSlice, procOrdVariableLen:
 				if !isFirstVarLen {
 					f.indexStart = &si
 					isFirstVarLen = true
