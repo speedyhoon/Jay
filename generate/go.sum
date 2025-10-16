@@ -12,6 +12,8 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rogpeppe/go-internal v1.14.1 h1:UQB4HGPB6osV0SQTLymcB4TgvyWu6ZyliaW0tI/otEQ=
 github.com/rogpeppe/go-internal v1.14.1/go.mod h1:MaRKkUm5W0goXpeCfT7UZI6fk/L7L7so1lCWt35ZSgc=
+github.com/speedyhoon/ext v0.0.0-20251010054232-7fcc21155f4f h1:10EYSCR7/vTchSgsdgryYgv/2PKLXZxE+4kzQGzFkyQ=
+github.com/speedyhoon/ext v0.0.0-20251010054232-7fcc21155f4f/go.mod h1:COTmXUAZJr03cHOBjROpI0kP0jrQFgsWdycy4LgUy6M=
 github.com/speedyhoon/clr v0.0.0-20250627064222-cbe678c2ff2d h1:bcj0RFtermUnFkeT8lDQlUOBzvGFEtcZi3jlhHJazmA=
 github.com/speedyhoon/clr v0.0.0-20250627064222-cbe678c2ff2d/go.mod h1:1wlW+8TZSa0CWlU+ijxjoFsM6IrD56vf011mgeLR8D8=
 github.com/speedyhoon/cnst/clrn v0.0.0-20250502153641-20575b9123ba h1:4x0uFlqjywG8IvCfR1dRah4fxLfVLdf2wAG0UcujOcQ=

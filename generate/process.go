@@ -2,6 +2,7 @@ package generate
 
 import (
 	"errors"
+	"github.com/speedyhoon/ext"
 	"github.com/speedyhoon/utl"
 	"go/ast"
 	"go/parser"
@@ -42,7 +43,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 			continue
 		}
 
-		if !utl.IsGoFileName(filenames[i]) {
+		if !ext.IsGo(filenames[i]) {
 			lg.Printf("`%s` does not contain a Go file extension", filenames[i])
 			continue
 		}

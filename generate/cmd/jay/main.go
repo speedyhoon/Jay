@@ -20,6 +20,7 @@ package main
 
 import (
 	"flag"
+	"github.com/speedyhoon/ext"
 	"github.com/speedyhoon/jay/generate"
 	"github.com/speedyhoon/utl"
 	"github.com/speedyhoon/utl/flagvar"
@@ -101,8 +102,8 @@ func main() {
 
 func walkDir(path string, opt generate.Option) (filenames []string) {
 	err := filepath.Walk(path, func(path string, info os.FileInfo, err error) error {
-		if info != nil && !info.IsDir() && utl.IsGoFileName(info.Name()) {
-			if !opt.SearchTests && utl.IsGoTestFileName(path) {
+		if info != nil && !info.IsDir() && ext.IsGo(info.Name()) {
+			if !opt.SearchTests && ext.IsGoTest(path) {
 				opt.Verbose.Println("ignoring test file", path)
 				return nil
 			}

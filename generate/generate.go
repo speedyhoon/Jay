@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"github.com/speedyhoon/ext"
 	"github.com/speedyhoon/utl"
 	"go/ast"
 	"mvdan.cc/gofumpt/format"
@@ -16,7 +17,7 @@ const (
 	pkgName                 = "jay"
 	pkgImport               = "github.com/speedyhoon/" + pkgName
 	ExportedErr             = pkgName + ".ErrUnexpectedEOB"
-	DefaultOutputFileName   = pkgName + utl.GoExt
+	DefaultOutputFileName   = pkgName + ext.Go
 	IntSize                 = 32 << (^uint(0) >> 63) // 32-bit or 64-bit architecture.
 	copyKeyword, lenKeyword = "copy", "len"
 	intKeyword              = "int"
