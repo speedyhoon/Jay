@@ -43,7 +43,7 @@ type Option struct {
 	OnlyTypes   []string
 	typeMatches []*regexp.Regexp
 
-	outputFile string
+	OutputFileName string
 
 	// maxUint8 = 255 bytes (default),
 	// maxUint16 = 64 kilobytes,

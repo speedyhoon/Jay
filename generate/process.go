@@ -38,7 +38,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 
 	utl.DelDup(&filenames)
 	for i := range filenames {
-		if filenames[i] == o.outputFile {
+		if filenames[i] == o.OutputFileName {
 			// Don't bother parsing the output file, as it will be overwritten anyway.
 			continue
 		}
@@ -151,12 +151,12 @@ func ParseFile(filename string, src interface{}) (f *ast.File, err error) {
 	return
 }
 
-// ProcessWrite processes a file and writes to outputFile.
+// ProcessWrite processes a file and writes to OutputFileName.
 func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames ...string) (err error) {
 	if outputFile == "" {
 		outputFile = DefaultOutputFileName
 	}
-	o.outputFile = outputFile
+	o.OutputFileName = outputFile
 
 	output, err := o.ProcessFiles(source, filenames...)
 	if err != nil {

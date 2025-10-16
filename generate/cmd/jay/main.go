@@ -32,7 +32,6 @@ import (
 
 func main() {
 	var opt generate.Option
-	var outputFile string
 	var types flagvar.StrList
 	var verbose bool
 
@@ -40,7 +39,7 @@ func main() {
 	flag.BoolVar(&opt.IsDebug, "d", false, "Debug mode - always writes to disk.")
 	flag.BoolVar(&opt.VariableIntSize, "vi", false, "Variable int size.")
 	flag.BoolVar(&opt.VariableUintSize, "vu", false, "Variable uint size.")
-	flag.StringVar(&outputFile, "o", generate.DefaultOutputFileName, "Output file.")
+	flag.StringVar(&opt.OutputFileName, "o", generate.DefaultOutputFileName, "Output file.")
 	flag.StringVar(&opt.ErrVarName, "e", generate.ExportedErr, "Name of the error variable to return from UnmarshalJ functions.")
 	flag.BoolVar(&verbose, "v", false, "Verbose output.")
 	flag.BoolVar(&opt.IsMarshalMethodPtr, "p", false, "Pointer MarshalJ() method.")
@@ -94,7 +93,7 @@ func main() {
 		}
 	}
 
-	err := opt.ProcessWrite(nil, outputFile, filePaths...)
+	err := opt.ProcessWrite(nil, opt.OutputFileName, filePaths...)
 	if err != nil {
 		opt.Verbose.Println(err)
 	}
