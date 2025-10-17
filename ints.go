@@ -91,10 +91,6 @@ func ReadInt8s(y []byte, length int) (t []int8) {
 }
 
 func WriteInt16s(y []byte, slice []int16, length int) {
-	if length == _0 {
-		return
-	}
-
 	for i := _0; i < length; i++ {
 		y[i*_2], y[i*_2+_1] = byte(slice[i]), byte(slice[i]>>_8)
 	}
