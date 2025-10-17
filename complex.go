@@ -25,12 +25,12 @@ func WriteComplex64s(y []byte, slice []complex64) {
 }
 
 func ReadComplex64s(y []byte, length int) (t []complex64) {
-	if length == 0 {
+	if length == _0 {
 		return
 	}
 
 	t = make([]complex64, length)
-	for i := 0; i < length; i++ {
+	for i := _0; i < length; i++ {
 		t[i] = ReadComplex64(y[i*_8 : i*_8+_8])
 	}
 	return
@@ -43,12 +43,12 @@ func WriteComplex128s(y []byte, slice []complex128) {
 }
 
 func ReadComplex128s(y []byte, length int) (t []complex128) {
-	if length == 0 {
+	if length == _0 {
 		return
 	}
 
 	t = make([]complex128, length)
-	for i := 0; i < length; i++ {
+	for i := _0; i < length; i++ {
 		t[i] = ReadComplex128(y[i*_16 : i*_16+_16])
 	}
 	return
