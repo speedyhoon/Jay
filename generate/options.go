@@ -19,7 +19,8 @@ var typeNameRegex = regexp.MustCompile(`^[[:alpha:]][[:alnum:]]*(\.[[:alpha:]][[
 type MaxSize uint8
 
 type Option struct {
-	// ErrVarName is the name of the error variable to return from UnmarshalJ functions.
+	// ErrVarName is the name of an exported error variable to return from UnmarshalJ functions,
+	// overriding the default "jay.ErrUnexpectedEOB". Helpful if generated code imports the jay package only for the error variable.
 	ErrVarName string
 
 	MaxIntSize  MaxSize
