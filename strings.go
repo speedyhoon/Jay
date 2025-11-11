@@ -14,26 +14,26 @@ func SizeStrings8(s []string) (total int) {
 	return l + total
 }
 
-func SizeStringsArray(s []string, l int) (total int) {
-	for i := _0; i < l; i++ {
+func SizeStringsArray(s []string, length int) (total int) {
+	for i := _0; i < length; i++ {
 		total += len(s[i]) & maxUint8
 	}
-	return l + total
+	return length + total
 }
 
-func ReadStrings8nbX(y []byte, s *[]string, qty uint8, at *int) (ok bool) {
-	if qty == _0 {
+func ReadStrings8nbX(y []byte, s *[]string, length uint8, at *int) (ok bool) {
+	if length == _0 {
 		return true
 	}
 
-	l, index := len(y), int(qty)
+	l, index := len(y), int(length)
 	if l < index {
 		return false
 	}
 
 	end := index
-	*s = make([]string, qty)
-	for i := uint8(_0); i < qty; i, index = i+_1, end {
+	*s = make([]string, length)
+	for i := uint8(_0); i < length; i, index = i+_1, end {
 		end += int(y[i])
 		if index == end {
 			continue
@@ -50,18 +50,18 @@ func ReadStrings8nbX(y []byte, s *[]string, qty uint8, at *int) (ok bool) {
 	return true
 }
 
-func ReadStrings8Err(y []byte, s *[]string, qty uint8) (err error) {
-	if qty == _0 {
+func ReadStrings8Err(y []byte, s *[]string, length uint8) (err error) {
+	if length == _0 {
 		return
 	}
 
-	l, at := len(y), int(qty)
+	l, at := len(y), int(length)
 	if l < at {
 		return ErrUnexpectedEOB
 	}
 
-	*s = make([]string, qty)
-	for i, end := uint8(_0), at; i < qty; i, at = i+_1, end {
+	*s = make([]string, length)
+	for i, end := uint8(_0), at; i < length; i, at = i+_1, end {
 		end += int(y[i])
 		if at == end {
 			continue
@@ -77,19 +77,19 @@ func ReadStrings8Err(y []byte, s *[]string, qty uint8) (err error) {
 	return
 }
 
-func ReadStrings8nbXt(y []byte, s *[]string, qty uint8, at int) (end int, ok bool) {
-	if qty == _0 {
+func ReadStrings8nbXt(y []byte, s *[]string, length uint8, at int) (end int, ok bool) {
+	if length == _0 {
 		return at, true
 	}
 
-	l, index := len(y), int(qty)
+	l, index := len(y), int(length)
 	if l < index {
 		return at, false
 	}
 
 	end = index
-	*s = make([]string, qty)
-	for i := uint8(_0); i < qty; i, index = i+_1, end {
+	*s = make([]string, length)
+	for i := uint8(_0); i < length; i, index = i+_1, end {
 		end += int(y[i])
 		if index == end {
 			continue
@@ -104,18 +104,18 @@ func ReadStrings8nbXt(y []byte, s *[]string, qty uint8, at int) (end int, ok boo
 	return at + end, true
 }
 
-func ReadStrings8Ok(y []byte, s *[]string, qty uint8) (ok bool) {
-	if qty == _0 {
+func ReadStrings8Ok(y []byte, s *[]string, length uint8) (ok bool) {
+	if length == _0 {
 		return true
 	}
 
-	l, at := len(y), int(qty)
+	l, at := len(y), int(length)
 	if l < at {
 		return false
 	}
 
-	*s = make([]string, qty)
-	for i, end := uint8(_0), at; i < qty; i, at = i+_1, end {
+	*s = make([]string, length)
+	for i, end := uint8(_0), at; i < length; i, at = i+_1, end {
 		end += int(y[i])
 		if at == end {
 			continue
@@ -132,8 +132,8 @@ func ReadStrings8Ok(y []byte, s *[]string, qty uint8) (ok bool) {
 }
 
 // WriteStrings8Req is tagged as required - so should never be 0 or null
-func WriteStrings8Req(y []byte, s []string, qty uint8) {
-	for i, at, end := _0, int(qty), int(qty); i < int(qty); i++ {
+func WriteStrings8Req(y []byte, s []string, length uint8) {
+	for i, at, end := _0, int(length), int(length); i < int(length); i++ {
 		y[i] = byte(len(s[i]))
 
 		if y[i] != _0 {
@@ -145,12 +145,12 @@ func WriteStrings8Req(y []byte, s []string, qty uint8) {
 }
 
 // WriteStrings8 no tag (default) - may have nil or zero length slices.
-func WriteStrings8(y, qty []byte, s []string) {
+func WriteStrings8(y, length []byte, s []string) {
 	l := len(s) & maxUint8
 	if l == _0 {
 		return
 	}
-	qty[_0] = byte(l)
+	length[_0] = byte(l)
 
 	for i, at, end := _0, l, l; i < l; i++ {
 		y[i] = byte(len(s[i]))
@@ -163,10 +163,10 @@ func WriteStrings8(y, qty []byte, s []string) {
 	}
 }
 
-func WriteStringsArray(y []byte, l uint8, s []string) {
-	for i, at, end := uint8(_0), uint(l), uint(l); i < l; i++ {
-		length := len(s[i])
-		if length == _0 {
+func WriteStringsArray(y []byte, length uint8, s []string) {
+	for i, at, end := uint8(_0), uint(length), uint(length); i < length; i++ {
+		l := len(s[i])
+		if l == _0 {
 			continue
 		}
 		y[i] = byte(len(s[i]))
@@ -177,8 +177,8 @@ func WriteStringsArray(y []byte, l uint8, s []string) {
 	}
 }
 
-func ReadStringsArrayErr(y []byte, s []string, qty uint8) (err error) {
-	for i, at, end, l := uint8(_0), uint(qty), uint(qty), uint(len(y)); i < qty; i, at = i+_1, end {
+func ReadStringsArrayErr(y []byte, s []string, length uint8) (err error) {
+	for i, at, end, l := uint8(_0), uint(length), uint(length), uint(len(y)); i < length; i, at = i+_1, end {
 		end += uint(y[i])
 		if at == end {
 			continue
@@ -195,9 +195,9 @@ func ReadStringsArrayErr(y []byte, s []string, qty uint8) (err error) {
 }
 
 // ReadStringsArrayAtOk decodes a []byte into []string and increments atPos with the overall length.
-func ReadStringsArrayAtOk(y []byte, s []string, qty uint8, atPos *uint) (ok bool) {
-	end := uint(qty)
-	for i, at, l := uint8(_0), uint(qty), uint(len(y)); i < qty; i, at = i+_1, end {
+func ReadStringsArrayAtOk(y []byte, s []string, length uint8, atPos *uint) (ok bool) {
+	end := uint(length)
+	for i, at, l := uint8(_0), uint(length), uint(len(y)); i < length; i, at = i+_1, end {
 		end += uint(y[i])
 		if at == end {
 			continue
