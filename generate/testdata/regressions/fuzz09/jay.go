@@ -89,9 +89,9 @@ func (q *QQXGKCa4tQi1lgGl81IDkGRMc3627IiA3Fh4aC6y3815PWv684S) MarshalJ() (b []by
 	at, end = end, end+l1
 	copy(b[at:end], q.DT1cHS5U8uMF)
 	at, end = end, end+l2
-	jay.WriteInt8s(b[at:end], q.E6tA6O74SrjSJCUU7oA6l7lu5wVeRQ60Vs0OHLhL0Ou4O76Vt8pMTvUW4A2gQ7sptUU0tegMpd5xxIGbr)
+	jay.WriteInt8s(b[at:end], q.E6tA6O74SrjSJCUU7oA6l7lu5wVeRQ60Vs0OHLhL0Ou4O76Vt8pMTvUW4A2gQ7sptUU0tegMpd5xxIGbr, l2)
 	at, end = end, end+l3
-	jay.WriteInt8s(b[at:end], q.V1Wdc2grgqnNH5u3TpV56YA32J7gBda4)
+	jay.WriteInt8s(b[at:end], q.V1Wdc2grgqnNH5u3TpV56YA32J7gBda4, l3)
 	at, end = end, end+l4*8
 	jay.WriteFloat64s(b[at:end], q.UtEX65ni33Bt3rw8RuW8FmYblO6, l4)
 	at, end = end, end+l5
@@ -105,7 +105,7 @@ func (q *QQXGKCa4tQi1lgGl81IDkGRMc3627IiA3Fh4aC6y3815PWv684S) MarshalJ() (b []by
 	at, end = end, end+l9
 	copy(b[at:end], q.PPL4MNNL5O4XIUcAmcN6QH5USM11Ww1ExnOX264F26)
 	at, end = end, end+l10
-	jay.WriteInt8s(b[at:end], q.AY3f6ey75rMm081JexU2f1y00205t3Ex6fIRyO582B2V843b51q0S)
+	jay.WriteInt8s(b[at:end], q.AY3f6ey75rMm081JexU2f1y00205t3Ex6fIRyO582B2V843b51q0S, l10)
 	at, end = end, end+l11
 	copy(b[at:end], q.NhcKkk8qm300W80Kn3G35mPi5awFuuW81UFPg5NE04hLJ3ceqPv)
 	at, end = end, end+jay.SizeBools(l12)
@@ -118,7 +118,7 @@ func (q *QQXGKCa4tQi1lgGl81IDkGRMc3627IiA3Fh4aC6y3815PWv684S) MarshalJ() (b []by
 	jay.WriteBools(b[at:end], q.GWyS13GXAp4Oh52eOn3wGoL5c7I27BF3VPs1kR76b3fil, l15)
 	at, end = end, end+l16
 	copy(b[at:end], q.Ev7r6CQjD110elh3GRUNaUNj40l36Y81d4m45FV3MaoVl0u2sF48e7nJ8S4rkAHJMvlU20sFP5oLmM655BOc3NJ)
-	jay.WriteInt8s(b[end:], q.WIdcImvm6OV7OVR30omY2gbNQfmJduQ81I451it4238j6q8hlU0B14Kx66DR5opEJ52)
+	jay.WriteInt8s(b[end:], q.WIdcImvm6OV7OVR30omY2gbNQfmJduQ81I451it4238j6q8hlU0B14Kx66DR5opEJ52, l17)
 	return
 }
 

@@ -1,7 +1,7 @@
 package jay
 
-func WriteIntsX32(y []byte, slice []int) {
-	for i := range slice {
+func WriteIntsX32(y []byte, slice []int, length int) {
+	for i := _0; i < length; i++ {
 		WriteIntX32(y[i*_4:i*_4+_4], slice[i])
 	}
 }
@@ -18,8 +18,8 @@ func ReadIntsX32(y []byte, length int) (t []int) {
 	return
 }
 
-func WriteIntsX64(y []byte, slice []int) {
-	for i := range slice {
+func WriteIntsX64(y []byte, slice []int, length int) {
+	for i := _0; i < length; i++ {
 		WriteIntX64(y[i*_8:i*_8+_8], slice[i])
 	}
 }
@@ -36,8 +36,8 @@ func ReadIntsX64(y []byte, length int) (t []int) {
 	return
 }
 
-func WriteInt64s(y []byte, slice []int64) {
-	for i := range slice {
+func WriteInt64s(y []byte, slice []int64, length int) {
+	for i := _0; i < length; i++ {
 		WriteInt64(y[i*_8:i*_8+_8], slice[i])
 	}
 }
@@ -54,8 +54,8 @@ func ReadInt64s(y []byte, length int) (t []int64) {
 	return
 }
 
-func WriteInt32s(y []byte, slice []int32) {
-	for i := range slice {
+func WriteInt32s(y []byte, slice []int32, length int) {
+	for i := _0; i < length; i++ {
 		WriteInt32(y[i*_4:i*_4+_4], slice[i])
 	}
 }
@@ -72,9 +72,9 @@ func ReadInt32s(y []byte, length int) (t []int32) {
 	return
 }
 
-func WriteInt8s(y []byte, slice []int8) {
-	for i, v := range slice {
-		y[i] = byte(v)
+func WriteInt8s(y []byte, slice []int8, length int) {
+	for i := _0; i < length; i++ {
+		y[i] = byte(slice[i])
 	}
 }
 

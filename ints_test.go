@@ -32,7 +32,7 @@ func TestRoundTripIntsX32(t *testing.T) {
 	var b []byte
 	var list []int
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteIntsX32(b, list)
+		jay.WriteIntsX32(b, list, len(list))
 		assert.Equal(t, list, jay.ReadIntsX32(b, 0))
 	})
 
@@ -44,7 +44,7 @@ func TestRoundTripIntsX32(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*4)
-			jay.WriteIntsX32(b, list[:i])
+			jay.WriteIntsX32(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadIntsX32(b, i))
 		})
 	}
@@ -54,7 +54,7 @@ func TestRoundTripIntsX64(t *testing.T) {
 	var b []byte
 	var list []int
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteIntsX64(b, list)
+		jay.WriteIntsX64(b, list, len(list))
 		assert.Equal(t, list, jay.ReadIntsX64(b, 0))
 	})
 
@@ -63,7 +63,7 @@ func TestRoundTripIntsX64(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
-			jay.WriteIntsX64(b, list[:i])
+			jay.WriteIntsX64(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadIntsX64(b, i))
 		})
 	}
@@ -73,7 +73,7 @@ func TestRoundTripInt64s(t *testing.T) {
 	var b []byte
 	var list []int64
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteInt64s(b, list)
+		jay.WriteInt64s(b, list, len(list))
 		assert.Equal(t, list, jay.ReadInt64s(b, 0))
 	})
 
@@ -82,7 +82,7 @@ func TestRoundTripInt64s(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
-			jay.WriteInt64s(b, list[:i])
+			jay.WriteInt64s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadInt64s(b, i))
 		})
 	}
@@ -92,7 +92,7 @@ func TestRoundTripInt32s(t *testing.T) {
 	var b []byte
 	var list []int32
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteInt32s(b, list)
+		jay.WriteInt32s(b, list, len(list))
 		assert.Equal(t, list, jay.ReadInt32s(b, 0))
 	})
 
@@ -101,7 +101,7 @@ func TestRoundTripInt32s(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*4)
-			jay.WriteInt32s(b, list[:i])
+			jay.WriteInt32s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadInt32s(b, i))
 		})
 	}
@@ -111,7 +111,7 @@ func TestRoundTripInt8s(t *testing.T) {
 	var b []byte
 	var list []int8
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteInt8s(b, list)
+		jay.WriteInt8s(b, list, len(list))
 		assert.Equal(t, list, jay.ReadInt8s(b, 0))
 	})
 
@@ -120,7 +120,7 @@ func TestRoundTripInt8s(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*4)
-			jay.WriteInt8s(b, list[:i])
+			jay.WriteInt8s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadInt8s(b, i))
 		})
 	}

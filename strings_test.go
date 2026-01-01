@@ -8,7 +8,7 @@ import (
 )
 
 func TestRoundTripStringsArray(t *testing.T) {
-	const size = 5
+	const size = 255
 
 	var b []byte
 	var list, actual [size]string
@@ -18,7 +18,8 @@ func TestRoundTripStringsArray(t *testing.T) {
 		assert.Equal(t, list, actual)
 	})
 
-	expected := [size]string(rando.StringsN(size))
+	// TODO SizeStringsArray doesn't handle larger datasets :(
+	expected := [size]string(rando.StringsQtyN(size, size))
 	b = make([]byte, jay.SizeStringsArray(expected[:], size))
 	jay.WriteStringsArray(b, uint8(size), expected[:size])
 	assert.NoError(t, jay.ReadStringsArrayErr(b, actual[:], uint8(size)))

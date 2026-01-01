@@ -11,7 +11,7 @@ func (f *Fuzz35690) MarshalJ() (b []byte) {
 	at, end := 3, 3+l0
 	jay.WriteStrings8(b[at:end], b[:1], f.Three)
 	at, end = end, end+l1*8
-	jay.WriteComplex64s(b[at:end], f.One)
+	jay.WriteComplex64s(b[at:end], f.One, l1)
 	copy(b[end:], f.Two)
 	return
 }

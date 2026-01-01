@@ -18,8 +18,8 @@ func ReadComplex128(y []byte) complex128 {
 	return complex(ReadFloat64(y[:_8]), ReadFloat64(y[_8:_16]))
 }
 
-func WriteComplex64s(y []byte, slice []complex64) {
-	for i := range slice {
+func WriteComplex64s(y []byte, slice []complex64, length int) {
+	for i := _0; i < length; i++ {
 		WriteComplex64(y[i*_8:i*_8+_8], slice[i])
 	}
 }
@@ -36,8 +36,8 @@ func ReadComplex64s(y []byte, length int) (t []complex64) {
 	return
 }
 
-func WriteComplex128s(y []byte, slice []complex128) {
-	for i := range slice {
+func WriteComplex128s(y []byte, slice []complex128, length int) {
+	for i := _0; i < length; i++ {
 		WriteComplex128(y[i*_16:i*_16+_16], slice[i])
 	}
 }

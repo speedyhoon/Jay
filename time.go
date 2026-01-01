@@ -24,8 +24,8 @@ func ReadTimes(y []byte, length int) (t []time.Time) {
 	return
 }
 
-func WriteTimes(y []byte, t []time.Time) {
-	for i := range t {
+func WriteTimes(y []byte, t []time.Time, length int) {
+	for i := _0; i < length; i++ {
 		WriteInt64(y[i*_8:i*_8+_8], t[i].Unix())
 	}
 }
@@ -71,8 +71,8 @@ func ReadDurations(y []byte, length int) (t []time.Duration) {
 }
 
 // WriteDurations ...
-func WriteDurations(y []byte, t []time.Duration) {
-	for i, dur := range t {
-		WriteInt64(y[i*_8:i*_8+_8], int64(dur))
+func WriteDurations(y []byte, t []time.Duration, length int) {
+	for i := _0; i < length; i++ {
+		WriteInt64(y[i*_8:i*_8+_8], int64(t[i]))
 	}
 }

@@ -276,11 +276,11 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 	case tComplex64:
 		fun, template = jay.WriteComplex64, tFunc
 	case tComplex64s:
-		fun, template = jay.WriteComplex64s, tFunc
+		fun, template = jay.WriteComplex64s, tFuncLength
 	case tComplex128:
 		fun, template = jay.WriteComplex128, tFunc
 	case tComplex128s:
-		fun, template = jay.WriteComplex128s, tFunc
+		fun, template = jay.WriteComplex128s, tFuncLength
 	case tFloat32:
 		fun, template = jay.WriteFloat32, tFunc
 	case tFloat32s:
@@ -296,15 +296,15 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 	case tInt32:
 		fun, template = jay.WriteInt32, tFunc
 	case tInt32s:
-		fun, template = jay.WriteInt32s, tFunc
+		fun, template = jay.WriteInt32s, tFuncLength
 	case tInt64:
 		fun, template = jay.WriteInt64, tFunc
 	case tInt64s:
-		fun, template = jay.WriteInt64s, tFunc
+		fun, template = jay.WriteInt64s, tFuncLength
 	case tInt8:
 		return tByte, tByteConv
 	case tInt8s:
-		fun, template = jay.WriteInt8s, tFunc
+		fun, template = jay.WriteInt8s, tFuncLength
 	case tInt:
 		if f.structTyp.option.VariableIntSize {
 			fun, template = jay.WriteIntVariable, tFuncLength
@@ -317,9 +317,9 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 		}
 	case tInts:
 		if f.structTyp.option.Is32bit {
-			fun, template = jay.WriteIntsX32, tFunc
+			fun, template = jay.WriteIntsX32, tFuncLength
 		} else {
-			fun, template = jay.WriteIntsX64, tFunc
+			fun, template = jay.WriteIntsX64, tFuncLength
 		}
 	case tString:
 		return copyKeyword, tFunc
@@ -338,9 +338,9 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 			fun, template = jay.WriteTime, tFunc
 		}
 	case tTimes:
-		fun, template = jay.WriteTimes, tFunc
+		fun, template = jay.WriteTimes, tFuncLength
 	case tTimeDurations:
-		fun, template = jay.WriteDurations, tFunc
+		fun, template = jay.WriteDurations, tFuncLength
 	case tUint16:
 		fun, template = jay.WriteUint16, tFunc
 	case tUint16s:
@@ -348,11 +348,11 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 	case tUint32:
 		fun, template = jay.WriteUint32, tFunc
 	case tUint32s:
-		fun, template = jay.WriteUint32s, tFunc
+		fun, template = jay.WriteUint32s, tFuncLength
 	case tUint64:
 		fun, template = jay.WriteUint64, tFunc
 	case tUint64s:
-		fun, template = jay.WriteUint64s, tFunc
+		fun, template = jay.WriteUint64s, tFuncLength
 	case tUint:
 		if f.structTyp.option.VariableUintSize {
 			fun, template = jay.WriteUintVariable, tFuncLength
@@ -365,9 +365,9 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 		}
 	case tUints:
 		if f.structTyp.option.Is32bit {
-			fun, template = jay.WriteUintsX32, tFunc
+			fun, template = jay.WriteUintsX32, tFuncLength
 		} else {
-			fun, template = jay.WriteUintsX64, tFunc
+			fun, template = jay.WriteUintsX64, tFuncLength
 		}
 
 	default:

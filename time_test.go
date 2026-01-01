@@ -69,7 +69,7 @@ func TestRoundTripDurations(t *testing.T) {
 	var b []byte
 	var list []time.Duration
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteDurations(b, list)
+		jay.WriteDurations(b, list, len(list))
 		assert.Equal(t, list, jay.ReadDurations(b, 0))
 	})
 
@@ -78,7 +78,7 @@ func TestRoundTripDurations(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
-			jay.WriteDurations(b, list[:i])
+			jay.WriteDurations(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadDurations(b, i))
 		})
 	}

@@ -32,7 +32,7 @@ func TestRoundTripUintsX32(t *testing.T) {
 	var b []byte
 	var list []uint
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteUintsX32(b, list)
+		jay.WriteUintsX32(b, list, len(list))
 		assert.Equal(t, list, jay.ReadUintsX32(b, 0))
 	})
 
@@ -44,7 +44,7 @@ func TestRoundTripUintsX32(t *testing.T) {
 	for i := 1; i <= math.MaxInt8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*4)
-			jay.WriteUintsX32(b, list[:i])
+			jay.WriteUintsX32(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadUintsX32(b, i))
 		})
 	}
@@ -54,7 +54,7 @@ func TestRoundTripUintsX64(t *testing.T) {
 	var b []byte
 	var list []uint
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteUintsX64(b, list)
+		jay.WriteUintsX64(b, list, len(list))
 		assert.Equal(t, list, jay.ReadUintsX64(b, 0))
 	})
 
@@ -66,7 +66,7 @@ func TestRoundTripUintsX64(t *testing.T) {
 	for i := 1; i <= math.MaxInt8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
-			jay.WriteUintsX64(b, list[:i])
+			jay.WriteUintsX64(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadUintsX64(b, i))
 		})
 	}
@@ -76,7 +76,7 @@ func TestRoundTripUint64s(t *testing.T) {
 	var b []byte
 	var list []uint64
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteUint64s(b, list)
+		jay.WriteUint64s(b, list, len(list))
 		assert.Equal(t, list, jay.ReadUint64s(b, 0))
 	})
 
@@ -88,7 +88,7 @@ func TestRoundTripUint64s(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
-			jay.WriteUint64s(b, list[:i])
+			jay.WriteUint64s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadUint64s(b, i))
 		})
 	}
@@ -98,7 +98,7 @@ func TestRoundTripUint32s(t *testing.T) {
 	var b []byte
 	var list []uint32
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteUint32s(b, list)
+		jay.WriteUint32s(b, list, len(list))
 		assert.Equal(t, list, jay.ReadUint32s(b, 0))
 	})
 
@@ -110,7 +110,7 @@ func TestRoundTripUint32s(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*4)
-			jay.WriteUint32s(b, list[:i])
+			jay.WriteUint32s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadUint32s(b, i))
 		})
 	}

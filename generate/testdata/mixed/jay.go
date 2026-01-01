@@ -29,7 +29,7 @@ func (z *Zebra) MarshalJ() (b []byte) {
 	jay.WriteStrings8(b[at:end], b[:1], z.Strings)
 	at, end = end, end+l1
 	copy(b[at:end], z.Str)
-	jay.WriteIntsX64(b[end:], z.Ints)
+	jay.WriteIntsX64(b[end:], z.Ints, l2)
 	return
 }
 

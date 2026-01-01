@@ -38,7 +38,7 @@ func TestRoundTripComplex64s(t *testing.T) {
 	var b []byte
 	var list []complex64
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteComplex64s(b, list)
+		jay.WriteComplex64s(b, list, len(list))
 		assert.Equal(t, list, jay.ReadComplex64s(b, 0))
 	})
 
@@ -50,7 +50,7 @@ func TestRoundTripComplex64s(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
-			jay.WriteComplex64s(b, list[:i])
+			jay.WriteComplex64s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadComplex64s(b, i))
 		})
 	}
@@ -60,7 +60,7 @@ func TestRoundTripComplex128s(t *testing.T) {
 	var b []byte
 	var list []complex128
 	t.Run("zero", func(t *testing.T) {
-		jay.WriteComplex128s(b, list)
+		jay.WriteComplex128s(b, list, len(list))
 		assert.Equal(t, list, jay.ReadComplex128s(b, 0))
 	})
 
@@ -72,7 +72,7 @@ func TestRoundTripComplex128s(t *testing.T) {
 	for i := 1; i <= math.MaxUint8; i++ {
 		tf.Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*16)
-			jay.WriteComplex128s(b, list[:i])
+			jay.WriteComplex128s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadComplex128s(b, i))
 		})
 	}

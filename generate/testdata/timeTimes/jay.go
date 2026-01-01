@@ -8,7 +8,7 @@ func (o *One) MarshalJ() (b []byte) {
 	l0 := len(o.One)
 	b = make([]byte, 1+8*l0)
 	b[0] = byte(l0)
-	jay.WriteTimes(b[1:], o.One)
+	jay.WriteTimes(b[1:], o.One, l0)
 	return
 }
 
@@ -30,8 +30,8 @@ func (t *Two) MarshalJ() (b []byte) {
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
-	jay.WriteTimes(b[at:end], t.One)
-	jay.WriteTimes(b[end:], t.Two)
+	jay.WriteTimes(b[at:end], t.One, l0)
+	jay.WriteTimes(b[end:], t.Two, l1)
 	return
 }
 
@@ -55,10 +55,10 @@ func (t *Three) MarshalJ() (b []byte) {
 	b = make([]byte, 3+8*(l0+l1+l2))
 	b[0], b[1], b[2] = byte(l0), byte(l1), byte(l2)
 	at, end := 3, 3+l0*8
-	jay.WriteTimes(b[at:end], t.One)
+	jay.WriteTimes(b[at:end], t.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], t.Two)
-	jay.WriteTimes(b[end:], t.Three)
+	jay.WriteTimes(b[at:end], t.Two, l1)
+	jay.WriteTimes(b[end:], t.Three, l2)
 	return
 }
 
@@ -84,12 +84,12 @@ func (f *Four) MarshalJ() (b []byte) {
 	b = make([]byte, 4+8*(l0+l1+l2+l3))
 	b[0], b[1], b[2], b[3] = byte(l0), byte(l1), byte(l2), byte(l3)
 	at, end := 4, 4+l0*8
-	jay.WriteTimes(b[at:end], f.One)
+	jay.WriteTimes(b[at:end], f.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], f.Two)
+	jay.WriteTimes(b[at:end], f.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], f.Three)
-	jay.WriteTimes(b[end:], f.Four)
+	jay.WriteTimes(b[at:end], f.Three, l2)
+	jay.WriteTimes(b[end:], f.Four, l3)
 	return
 }
 
@@ -117,14 +117,14 @@ func (f *Five) MarshalJ() (b []byte) {
 	b = make([]byte, 5+8*(l0+l1+l2+l3+l4))
 	b[0], b[1], b[2], b[3], b[4] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4)
 	at, end := 5, 5+l0*8
-	jay.WriteTimes(b[at:end], f.One)
+	jay.WriteTimes(b[at:end], f.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], f.Two)
+	jay.WriteTimes(b[at:end], f.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], f.Three)
+	jay.WriteTimes(b[at:end], f.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], f.Four)
-	jay.WriteTimes(b[end:], f.Five)
+	jay.WriteTimes(b[at:end], f.Four, l3)
+	jay.WriteTimes(b[end:], f.Five, l4)
 	return
 }
 
@@ -154,16 +154,16 @@ func (s *Six) MarshalJ() (b []byte) {
 	b = make([]byte, 6+8*(l0+l1+l2+l3+l4+l5))
 	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	at, end := 6, 6+l0*8
-	jay.WriteTimes(b[at:end], s.One)
+	jay.WriteTimes(b[at:end], s.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], s.Two)
+	jay.WriteTimes(b[at:end], s.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], s.Three)
+	jay.WriteTimes(b[at:end], s.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], s.Four)
+	jay.WriteTimes(b[at:end], s.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], s.Five)
-	jay.WriteTimes(b[end:], s.Six)
+	jay.WriteTimes(b[at:end], s.Five, l4)
+	jay.WriteTimes(b[end:], s.Six, l5)
 	return
 }
 
@@ -195,18 +195,18 @@ func (s *Seven) MarshalJ() (b []byte) {
 	b = make([]byte, 7+8*(l0+l1+l2+l3+l4+l5+l6))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6)
 	at, end := 7, 7+l0*8
-	jay.WriteTimes(b[at:end], s.One)
+	jay.WriteTimes(b[at:end], s.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], s.Two)
+	jay.WriteTimes(b[at:end], s.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], s.Three)
+	jay.WriteTimes(b[at:end], s.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], s.Four)
+	jay.WriteTimes(b[at:end], s.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], s.Five)
+	jay.WriteTimes(b[at:end], s.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], s.Six)
-	jay.WriteTimes(b[end:], s.Seven)
+	jay.WriteTimes(b[at:end], s.Six, l5)
+	jay.WriteTimes(b[end:], s.Seven, l6)
 	return
 }
 
@@ -240,20 +240,20 @@ func (e *Eight) MarshalJ() (b []byte) {
 	b = make([]byte, 8+8*(l0+l1+l2+l3+l4+l5+l6+l7))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7)
 	at, end := 8, 8+l0*8
-	jay.WriteTimes(b[at:end], e.One)
+	jay.WriteTimes(b[at:end], e.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], e.Two)
+	jay.WriteTimes(b[at:end], e.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], e.Three)
+	jay.WriteTimes(b[at:end], e.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], e.Four)
+	jay.WriteTimes(b[at:end], e.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], e.Five)
+	jay.WriteTimes(b[at:end], e.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], e.Six)
+	jay.WriteTimes(b[at:end], e.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], e.Seven)
-	jay.WriteTimes(b[end:], e.Eight)
+	jay.WriteTimes(b[at:end], e.Seven, l6)
+	jay.WriteTimes(b[end:], e.Eight, l7)
 	return
 }
 
@@ -289,22 +289,22 @@ func (n *Nine) MarshalJ() (b []byte) {
 	b = make([]byte, 9+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8)
 	at, end := 9, 9+l0*8
-	jay.WriteTimes(b[at:end], n.One)
+	jay.WriteTimes(b[at:end], n.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], n.Two)
+	jay.WriteTimes(b[at:end], n.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], n.Three)
+	jay.WriteTimes(b[at:end], n.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], n.Four)
+	jay.WriteTimes(b[at:end], n.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], n.Five)
+	jay.WriteTimes(b[at:end], n.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], n.Six)
+	jay.WriteTimes(b[at:end], n.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], n.Seven)
+	jay.WriteTimes(b[at:end], n.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], n.Eight)
-	jay.WriteTimes(b[end:], n.Nine)
+	jay.WriteTimes(b[at:end], n.Eight, l7)
+	jay.WriteTimes(b[end:], n.Nine, l8)
 	return
 }
 
@@ -342,24 +342,24 @@ func (t *Ten) MarshalJ() (b []byte) {
 	b = make([]byte, 10+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9)
 	at, end := 10, 10+l0*8
-	jay.WriteTimes(b[at:end], t.One)
+	jay.WriteTimes(b[at:end], t.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], t.Two)
+	jay.WriteTimes(b[at:end], t.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], t.Three)
+	jay.WriteTimes(b[at:end], t.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], t.Four)
+	jay.WriteTimes(b[at:end], t.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], t.Five)
+	jay.WriteTimes(b[at:end], t.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], t.Six)
+	jay.WriteTimes(b[at:end], t.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], t.Seven)
+	jay.WriteTimes(b[at:end], t.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], t.Eight)
+	jay.WriteTimes(b[at:end], t.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], t.Nine)
-	jay.WriteTimes(b[end:], t.Ten)
+	jay.WriteTimes(b[at:end], t.Nine, l8)
+	jay.WriteTimes(b[end:], t.Ten, l9)
 	return
 }
 
@@ -399,26 +399,26 @@ func (e *Eleven) MarshalJ() (b []byte) {
 	b = make([]byte, 11+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
 	at, end := 11, 11+l0*8
-	jay.WriteTimes(b[at:end], e.One)
+	jay.WriteTimes(b[at:end], e.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], e.Two)
+	jay.WriteTimes(b[at:end], e.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], e.Three)
+	jay.WriteTimes(b[at:end], e.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], e.Four)
+	jay.WriteTimes(b[at:end], e.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], e.Five)
+	jay.WriteTimes(b[at:end], e.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], e.Six)
+	jay.WriteTimes(b[at:end], e.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], e.Seven)
+	jay.WriteTimes(b[at:end], e.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], e.Eight)
+	jay.WriteTimes(b[at:end], e.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], e.Nine)
+	jay.WriteTimes(b[at:end], e.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], e.Ten)
-	jay.WriteTimes(b[end:], e.Eleven)
+	jay.WriteTimes(b[at:end], e.Ten, l9)
+	jay.WriteTimes(b[end:], e.Eleven, l10)
 	return
 }
 
@@ -460,28 +460,28 @@ func (t *Twelve) MarshalJ() (b []byte) {
 	b = make([]byte, 12+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11)
 	at, end := 12, 12+l0*8
-	jay.WriteTimes(b[at:end], t.One)
+	jay.WriteTimes(b[at:end], t.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], t.Two)
+	jay.WriteTimes(b[at:end], t.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], t.Three)
+	jay.WriteTimes(b[at:end], t.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], t.Four)
+	jay.WriteTimes(b[at:end], t.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], t.Five)
+	jay.WriteTimes(b[at:end], t.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], t.Six)
+	jay.WriteTimes(b[at:end], t.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], t.Seven)
+	jay.WriteTimes(b[at:end], t.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], t.Eight)
+	jay.WriteTimes(b[at:end], t.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], t.Nine)
+	jay.WriteTimes(b[at:end], t.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], t.Ten)
+	jay.WriteTimes(b[at:end], t.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], t.Eleven)
-	jay.WriteTimes(b[end:], t.Twelve)
+	jay.WriteTimes(b[at:end], t.Eleven, l10)
+	jay.WriteTimes(b[end:], t.Twelve, l11)
 	return
 }
 
@@ -525,30 +525,30 @@ func (t *Thirteen) MarshalJ() (b []byte) {
 	b = make([]byte, 13+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12)
 	at, end := 13, 13+l0*8
-	jay.WriteTimes(b[at:end], t.One)
+	jay.WriteTimes(b[at:end], t.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], t.Two)
+	jay.WriteTimes(b[at:end], t.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], t.Three)
+	jay.WriteTimes(b[at:end], t.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], t.Four)
+	jay.WriteTimes(b[at:end], t.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], t.Five)
+	jay.WriteTimes(b[at:end], t.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], t.Six)
+	jay.WriteTimes(b[at:end], t.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], t.Seven)
+	jay.WriteTimes(b[at:end], t.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], t.Eight)
+	jay.WriteTimes(b[at:end], t.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], t.Nine)
+	jay.WriteTimes(b[at:end], t.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], t.Ten)
+	jay.WriteTimes(b[at:end], t.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], t.Eleven)
+	jay.WriteTimes(b[at:end], t.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], t.Twelve)
-	jay.WriteTimes(b[end:], t.Thirteen)
+	jay.WriteTimes(b[at:end], t.Twelve, l11)
+	jay.WriteTimes(b[end:], t.Thirteen, l12)
 	return
 }
 
@@ -594,32 +594,32 @@ func (f *Fourteen) MarshalJ() (b []byte) {
 	b = make([]byte, 14+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13)
 	at, end := 14, 14+l0*8
-	jay.WriteTimes(b[at:end], f.One)
+	jay.WriteTimes(b[at:end], f.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], f.Two)
+	jay.WriteTimes(b[at:end], f.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], f.Three)
+	jay.WriteTimes(b[at:end], f.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], f.Four)
+	jay.WriteTimes(b[at:end], f.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], f.Five)
+	jay.WriteTimes(b[at:end], f.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], f.Six)
+	jay.WriteTimes(b[at:end], f.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], f.Seven)
+	jay.WriteTimes(b[at:end], f.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], f.Eight)
+	jay.WriteTimes(b[at:end], f.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], f.Nine)
+	jay.WriteTimes(b[at:end], f.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], f.Ten)
+	jay.WriteTimes(b[at:end], f.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], f.Eleven)
+	jay.WriteTimes(b[at:end], f.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], f.Twelve)
+	jay.WriteTimes(b[at:end], f.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], f.Thirteen)
-	jay.WriteTimes(b[end:], f.Fourteen)
+	jay.WriteTimes(b[at:end], f.Thirteen, l12)
+	jay.WriteTimes(b[end:], f.Fourteen, l13)
 	return
 }
 
@@ -667,34 +667,34 @@ func (f *Fifteen) MarshalJ() (b []byte) {
 	b = make([]byte, 15+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14)
 	at, end := 15, 15+l0*8
-	jay.WriteTimes(b[at:end], f.One)
+	jay.WriteTimes(b[at:end], f.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], f.Two)
+	jay.WriteTimes(b[at:end], f.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], f.Three)
+	jay.WriteTimes(b[at:end], f.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], f.Four)
+	jay.WriteTimes(b[at:end], f.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], f.Five)
+	jay.WriteTimes(b[at:end], f.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], f.Six)
+	jay.WriteTimes(b[at:end], f.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], f.Seven)
+	jay.WriteTimes(b[at:end], f.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], f.Eight)
+	jay.WriteTimes(b[at:end], f.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], f.Nine)
+	jay.WriteTimes(b[at:end], f.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], f.Ten)
+	jay.WriteTimes(b[at:end], f.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], f.Eleven)
+	jay.WriteTimes(b[at:end], f.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], f.Twelve)
+	jay.WriteTimes(b[at:end], f.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], f.Thirteen)
+	jay.WriteTimes(b[at:end], f.Thirteen, l12)
 	at, end = end, end+l13*8
-	jay.WriteTimes(b[at:end], f.Fourteen)
-	jay.WriteTimes(b[end:], f.Fifteen)
+	jay.WriteTimes(b[at:end], f.Fourteen, l13)
+	jay.WriteTimes(b[end:], f.Fifteen, l14)
 	return
 }
 
@@ -744,36 +744,36 @@ func (s *Sixteen) MarshalJ() (b []byte) {
 	b = make([]byte, 16+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15)
 	at, end := 16, 16+l0*8
-	jay.WriteTimes(b[at:end], s.One)
+	jay.WriteTimes(b[at:end], s.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], s.Two)
+	jay.WriteTimes(b[at:end], s.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], s.Three)
+	jay.WriteTimes(b[at:end], s.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], s.Four)
+	jay.WriteTimes(b[at:end], s.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], s.Five)
+	jay.WriteTimes(b[at:end], s.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], s.Six)
+	jay.WriteTimes(b[at:end], s.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], s.Seven)
+	jay.WriteTimes(b[at:end], s.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], s.Eight)
+	jay.WriteTimes(b[at:end], s.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], s.Nine)
+	jay.WriteTimes(b[at:end], s.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], s.Ten)
+	jay.WriteTimes(b[at:end], s.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], s.Eleven)
+	jay.WriteTimes(b[at:end], s.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], s.Twelve)
+	jay.WriteTimes(b[at:end], s.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], s.Thirteen)
+	jay.WriteTimes(b[at:end], s.Thirteen, l12)
 	at, end = end, end+l13*8
-	jay.WriteTimes(b[at:end], s.Fourteen)
+	jay.WriteTimes(b[at:end], s.Fourteen, l13)
 	at, end = end, end+l14*8
-	jay.WriteTimes(b[at:end], s.Fifteen)
-	jay.WriteTimes(b[end:], s.Sixteen)
+	jay.WriteTimes(b[at:end], s.Fifteen, l14)
+	jay.WriteTimes(b[end:], s.Sixteen, l15)
 	return
 }
 
@@ -825,38 +825,38 @@ func (s *Seventeen) MarshalJ() (b []byte) {
 	b = make([]byte, 17+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
 	at, end := 17, 17+l0*8
-	jay.WriteTimes(b[at:end], s.One)
+	jay.WriteTimes(b[at:end], s.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], s.Two)
+	jay.WriteTimes(b[at:end], s.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], s.Three)
+	jay.WriteTimes(b[at:end], s.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], s.Four)
+	jay.WriteTimes(b[at:end], s.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], s.Five)
+	jay.WriteTimes(b[at:end], s.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], s.Six)
+	jay.WriteTimes(b[at:end], s.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], s.Seven)
+	jay.WriteTimes(b[at:end], s.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], s.Eight)
+	jay.WriteTimes(b[at:end], s.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], s.Nine)
+	jay.WriteTimes(b[at:end], s.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], s.Ten)
+	jay.WriteTimes(b[at:end], s.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], s.Eleven)
+	jay.WriteTimes(b[at:end], s.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], s.Twelve)
+	jay.WriteTimes(b[at:end], s.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], s.Thirteen)
+	jay.WriteTimes(b[at:end], s.Thirteen, l12)
 	at, end = end, end+l13*8
-	jay.WriteTimes(b[at:end], s.Fourteen)
+	jay.WriteTimes(b[at:end], s.Fourteen, l13)
 	at, end = end, end+l14*8
-	jay.WriteTimes(b[at:end], s.Fifteen)
+	jay.WriteTimes(b[at:end], s.Fifteen, l14)
 	at, end = end, end+l15*8
-	jay.WriteTimes(b[at:end], s.Sixteen)
-	jay.WriteTimes(b[end:], s.Seventeen)
+	jay.WriteTimes(b[at:end], s.Sixteen, l15)
+	jay.WriteTimes(b[end:], s.Seventeen, l16)
 	return
 }
 
@@ -910,40 +910,40 @@ func (e *Eighteen) MarshalJ() (b []byte) {
 	b = make([]byte, 18+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
 	at, end := 18, 18+l0*8
-	jay.WriteTimes(b[at:end], e.One)
+	jay.WriteTimes(b[at:end], e.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], e.Two)
+	jay.WriteTimes(b[at:end], e.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], e.Three)
+	jay.WriteTimes(b[at:end], e.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], e.Four)
+	jay.WriteTimes(b[at:end], e.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], e.Five)
+	jay.WriteTimes(b[at:end], e.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], e.Six)
+	jay.WriteTimes(b[at:end], e.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], e.Seven)
+	jay.WriteTimes(b[at:end], e.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], e.Eight)
+	jay.WriteTimes(b[at:end], e.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], e.Nine)
+	jay.WriteTimes(b[at:end], e.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], e.Ten)
+	jay.WriteTimes(b[at:end], e.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], e.Eleven)
+	jay.WriteTimes(b[at:end], e.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], e.Twelve)
+	jay.WriteTimes(b[at:end], e.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], e.Thirteen)
+	jay.WriteTimes(b[at:end], e.Thirteen, l12)
 	at, end = end, end+l13*8
-	jay.WriteTimes(b[at:end], e.Fourteen)
+	jay.WriteTimes(b[at:end], e.Fourteen, l13)
 	at, end = end, end+l14*8
-	jay.WriteTimes(b[at:end], e.Fifteen)
+	jay.WriteTimes(b[at:end], e.Fifteen, l14)
 	at, end = end, end+l15*8
-	jay.WriteTimes(b[at:end], e.Sixteen)
+	jay.WriteTimes(b[at:end], e.Sixteen, l15)
 	at, end = end, end+l16*8
-	jay.WriteTimes(b[at:end], e.Seventeen)
-	jay.WriteTimes(b[end:], e.Eighteen)
+	jay.WriteTimes(b[at:end], e.Seventeen, l16)
+	jay.WriteTimes(b[end:], e.Eighteen, l17)
 	return
 }
 
@@ -999,42 +999,42 @@ func (n *Nineteen) MarshalJ() (b []byte) {
 	b = make([]byte, 19+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18)
 	at, end := 19, 19+l0*8
-	jay.WriteTimes(b[at:end], n.One)
+	jay.WriteTimes(b[at:end], n.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], n.Two)
+	jay.WriteTimes(b[at:end], n.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], n.Three)
+	jay.WriteTimes(b[at:end], n.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], n.Four)
+	jay.WriteTimes(b[at:end], n.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], n.Five)
+	jay.WriteTimes(b[at:end], n.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], n.Six)
+	jay.WriteTimes(b[at:end], n.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], n.Seven)
+	jay.WriteTimes(b[at:end], n.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], n.Eight)
+	jay.WriteTimes(b[at:end], n.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], n.Nine)
+	jay.WriteTimes(b[at:end], n.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], n.Ten)
+	jay.WriteTimes(b[at:end], n.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], n.Eleven)
+	jay.WriteTimes(b[at:end], n.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], n.Twelve)
+	jay.WriteTimes(b[at:end], n.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], n.Thirteen)
+	jay.WriteTimes(b[at:end], n.Thirteen, l12)
 	at, end = end, end+l13*8
-	jay.WriteTimes(b[at:end], n.Fourteen)
+	jay.WriteTimes(b[at:end], n.Fourteen, l13)
 	at, end = end, end+l14*8
-	jay.WriteTimes(b[at:end], n.Fifteen)
+	jay.WriteTimes(b[at:end], n.Fifteen, l14)
 	at, end = end, end+l15*8
-	jay.WriteTimes(b[at:end], n.Sixteen)
+	jay.WriteTimes(b[at:end], n.Sixteen, l15)
 	at, end = end, end+l16*8
-	jay.WriteTimes(b[at:end], n.Seventeen)
+	jay.WriteTimes(b[at:end], n.Seventeen, l16)
 	at, end = end, end+l17*8
-	jay.WriteTimes(b[at:end], n.Eighteen)
-	jay.WriteTimes(b[end:], n.Nineteen)
+	jay.WriteTimes(b[at:end], n.Eighteen, l17)
+	jay.WriteTimes(b[end:], n.Nineteen, l18)
 	return
 }
 
@@ -1092,44 +1092,44 @@ func (t *Twenty) MarshalJ() (b []byte) {
 	b = make([]byte, 20+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19)
 	at, end := 20, 20+l0*8
-	jay.WriteTimes(b[at:end], t.One)
+	jay.WriteTimes(b[at:end], t.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], t.Two)
+	jay.WriteTimes(b[at:end], t.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], t.Three)
+	jay.WriteTimes(b[at:end], t.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], t.Four)
+	jay.WriteTimes(b[at:end], t.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], t.Five)
+	jay.WriteTimes(b[at:end], t.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], t.Six)
+	jay.WriteTimes(b[at:end], t.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], t.Seven)
+	jay.WriteTimes(b[at:end], t.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], t.Eight)
+	jay.WriteTimes(b[at:end], t.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], t.Nine)
+	jay.WriteTimes(b[at:end], t.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], t.Ten)
+	jay.WriteTimes(b[at:end], t.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], t.Eleven)
+	jay.WriteTimes(b[at:end], t.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], t.Twelve)
+	jay.WriteTimes(b[at:end], t.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], t.Thirteen)
+	jay.WriteTimes(b[at:end], t.Thirteen, l12)
 	at, end = end, end+l13*8
-	jay.WriteTimes(b[at:end], t.Fourteen)
+	jay.WriteTimes(b[at:end], t.Fourteen, l13)
 	at, end = end, end+l14*8
-	jay.WriteTimes(b[at:end], t.Fifteen)
+	jay.WriteTimes(b[at:end], t.Fifteen, l14)
 	at, end = end, end+l15*8
-	jay.WriteTimes(b[at:end], t.Sixteen)
+	jay.WriteTimes(b[at:end], t.Sixteen, l15)
 	at, end = end, end+l16*8
-	jay.WriteTimes(b[at:end], t.Seventeen)
+	jay.WriteTimes(b[at:end], t.Seventeen, l16)
 	at, end = end, end+l17*8
-	jay.WriteTimes(b[at:end], t.Eighteen)
+	jay.WriteTimes(b[at:end], t.Eighteen, l17)
 	at, end = end, end+l18*8
-	jay.WriteTimes(b[at:end], t.Nineteen)
-	jay.WriteTimes(b[end:], t.Twenty)
+	jay.WriteTimes(b[at:end], t.Nineteen, l18)
+	jay.WriteTimes(b[end:], t.Twenty, l19)
 	return
 }
 
@@ -1189,46 +1189,46 @@ func (t *TwentyOne) MarshalJ() (b []byte) {
 	b = make([]byte, 21+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20)
 	at, end := 21, 21+l0*8
-	jay.WriteTimes(b[at:end], t.One)
+	jay.WriteTimes(b[at:end], t.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], t.Two)
+	jay.WriteTimes(b[at:end], t.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], t.Three)
+	jay.WriteTimes(b[at:end], t.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], t.Four)
+	jay.WriteTimes(b[at:end], t.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], t.Five)
+	jay.WriteTimes(b[at:end], t.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], t.Six)
+	jay.WriteTimes(b[at:end], t.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], t.Seven)
+	jay.WriteTimes(b[at:end], t.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], t.Eight)
+	jay.WriteTimes(b[at:end], t.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], t.Nine)
+	jay.WriteTimes(b[at:end], t.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], t.Ten)
+	jay.WriteTimes(b[at:end], t.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], t.Eleven)
+	jay.WriteTimes(b[at:end], t.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], t.Twelve)
+	jay.WriteTimes(b[at:end], t.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], t.Thirteen)
+	jay.WriteTimes(b[at:end], t.Thirteen, l12)
 	at, end = end, end+l13*8
-	jay.WriteTimes(b[at:end], t.Fourteen)
+	jay.WriteTimes(b[at:end], t.Fourteen, l13)
 	at, end = end, end+l14*8
-	jay.WriteTimes(b[at:end], t.Fifteen)
+	jay.WriteTimes(b[at:end], t.Fifteen, l14)
 	at, end = end, end+l15*8
-	jay.WriteTimes(b[at:end], t.Sixteen)
+	jay.WriteTimes(b[at:end], t.Sixteen, l15)
 	at, end = end, end+l16*8
-	jay.WriteTimes(b[at:end], t.Seventeen)
+	jay.WriteTimes(b[at:end], t.Seventeen, l16)
 	at, end = end, end+l17*8
-	jay.WriteTimes(b[at:end], t.Eighteen)
+	jay.WriteTimes(b[at:end], t.Eighteen, l17)
 	at, end = end, end+l18*8
-	jay.WriteTimes(b[at:end], t.Nineteen)
+	jay.WriteTimes(b[at:end], t.Nineteen, l18)
 	at, end = end, end+l19*8
-	jay.WriteTimes(b[at:end], t.Twenty)
-	jay.WriteTimes(b[end:], t.TwentyOne)
+	jay.WriteTimes(b[at:end], t.Twenty, l19)
+	jay.WriteTimes(b[end:], t.TwentyOne, l20)
 	return
 }
 
@@ -1290,48 +1290,48 @@ func (t *TwentyTwo) MarshalJ() (b []byte) {
 	b = make([]byte, 22+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20), byte(l21)
 	at, end := 22, 22+l0*8
-	jay.WriteTimes(b[at:end], t.One)
+	jay.WriteTimes(b[at:end], t.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], t.Two)
+	jay.WriteTimes(b[at:end], t.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], t.Three)
+	jay.WriteTimes(b[at:end], t.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], t.Four)
+	jay.WriteTimes(b[at:end], t.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], t.Five)
+	jay.WriteTimes(b[at:end], t.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], t.Six)
+	jay.WriteTimes(b[at:end], t.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], t.Seven)
+	jay.WriteTimes(b[at:end], t.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], t.Eight)
+	jay.WriteTimes(b[at:end], t.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], t.Nine)
+	jay.WriteTimes(b[at:end], t.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], t.Ten)
+	jay.WriteTimes(b[at:end], t.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], t.Eleven)
+	jay.WriteTimes(b[at:end], t.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], t.Twelve)
+	jay.WriteTimes(b[at:end], t.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], t.Thirteen)
+	jay.WriteTimes(b[at:end], t.Thirteen, l12)
 	at, end = end, end+l13*8
-	jay.WriteTimes(b[at:end], t.Fourteen)
+	jay.WriteTimes(b[at:end], t.Fourteen, l13)
 	at, end = end, end+l14*8
-	jay.WriteTimes(b[at:end], t.Fifteen)
+	jay.WriteTimes(b[at:end], t.Fifteen, l14)
 	at, end = end, end+l15*8
-	jay.WriteTimes(b[at:end], t.Sixteen)
+	jay.WriteTimes(b[at:end], t.Sixteen, l15)
 	at, end = end, end+l16*8
-	jay.WriteTimes(b[at:end], t.Seventeen)
+	jay.WriteTimes(b[at:end], t.Seventeen, l16)
 	at, end = end, end+l17*8
-	jay.WriteTimes(b[at:end], t.Eighteen)
+	jay.WriteTimes(b[at:end], t.Eighteen, l17)
 	at, end = end, end+l18*8
-	jay.WriteTimes(b[at:end], t.Nineteen)
+	jay.WriteTimes(b[at:end], t.Nineteen, l18)
 	at, end = end, end+l19*8
-	jay.WriteTimes(b[at:end], t.Twenty)
+	jay.WriteTimes(b[at:end], t.Twenty, l19)
 	at, end = end, end+l20*8
-	jay.WriteTimes(b[at:end], t.TwentyOne)
-	jay.WriteTimes(b[end:], t.TwentyTwo)
+	jay.WriteTimes(b[at:end], t.TwentyOne, l20)
+	jay.WriteTimes(b[end:], t.TwentyTwo, l21)
 	return
 }
 
@@ -1395,50 +1395,50 @@ func (t *TwentyThree) MarshalJ() (b []byte) {
 	b = make([]byte, 23+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21], b[22] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20), byte(l21), byte(l22)
 	at, end := 23, 23+l0*8
-	jay.WriteTimes(b[at:end], t.One)
+	jay.WriteTimes(b[at:end], t.One, l0)
 	at, end = end, end+l1*8
-	jay.WriteTimes(b[at:end], t.Two)
+	jay.WriteTimes(b[at:end], t.Two, l1)
 	at, end = end, end+l2*8
-	jay.WriteTimes(b[at:end], t.Three)
+	jay.WriteTimes(b[at:end], t.Three, l2)
 	at, end = end, end+l3*8
-	jay.WriteTimes(b[at:end], t.Four)
+	jay.WriteTimes(b[at:end], t.Four, l3)
 	at, end = end, end+l4*8
-	jay.WriteTimes(b[at:end], t.Five)
+	jay.WriteTimes(b[at:end], t.Five, l4)
 	at, end = end, end+l5*8
-	jay.WriteTimes(b[at:end], t.Six)
+	jay.WriteTimes(b[at:end], t.Six, l5)
 	at, end = end, end+l6*8
-	jay.WriteTimes(b[at:end], t.Seven)
+	jay.WriteTimes(b[at:end], t.Seven, l6)
 	at, end = end, end+l7*8
-	jay.WriteTimes(b[at:end], t.Eight)
+	jay.WriteTimes(b[at:end], t.Eight, l7)
 	at, end = end, end+l8*8
-	jay.WriteTimes(b[at:end], t.Nine)
+	jay.WriteTimes(b[at:end], t.Nine, l8)
 	at, end = end, end+l9*8
-	jay.WriteTimes(b[at:end], t.Ten)
+	jay.WriteTimes(b[at:end], t.Ten, l9)
 	at, end = end, end+l10*8
-	jay.WriteTimes(b[at:end], t.Eleven)
+	jay.WriteTimes(b[at:end], t.Eleven, l10)
 	at, end = end, end+l11*8
-	jay.WriteTimes(b[at:end], t.Twelve)
+	jay.WriteTimes(b[at:end], t.Twelve, l11)
 	at, end = end, end+l12*8
-	jay.WriteTimes(b[at:end], t.Thirteen)
+	jay.WriteTimes(b[at:end], t.Thirteen, l12)
 	at, end = end, end+l13*8
-	jay.WriteTimes(b[at:end], t.Fourteen)
+	jay.WriteTimes(b[at:end], t.Fourteen, l13)
 	at, end = end, end+l14*8
-	jay.WriteTimes(b[at:end], t.Fifteen)
+	jay.WriteTimes(b[at:end], t.Fifteen, l14)
 	at, end = end, end+l15*8
-	jay.WriteTimes(b[at:end], t.Sixteen)
+	jay.WriteTimes(b[at:end], t.Sixteen, l15)
 	at, end = end, end+l16*8
-	jay.WriteTimes(b[at:end], t.Seventeen)
+	jay.WriteTimes(b[at:end], t.Seventeen, l16)
 	at, end = end, end+l17*8
-	jay.WriteTimes(b[at:end], t.Eighteen)
+	jay.WriteTimes(b[at:end], t.Eighteen, l17)
 	at, end = end, end+l18*8
-	jay.WriteTimes(b[at:end], t.Nineteen)
+	jay.WriteTimes(b[at:end], t.Nineteen, l18)
 	at, end = end, end+l19*8
-	jay.WriteTimes(b[at:end], t.Twenty)
+	jay.WriteTimes(b[at:end], t.Twenty, l19)
 	at, end = end, end+l20*8
-	jay.WriteTimes(b[at:end], t.TwentyOne)
+	jay.WriteTimes(b[at:end], t.TwentyOne, l20)
 	at, end = end, end+l21*8
-	jay.WriteTimes(b[at:end], t.TwentyTwo)
-	jay.WriteTimes(b[end:], t.TwentyThree)
+	jay.WriteTimes(b[at:end], t.TwentyTwo, l21)
+	jay.WriteTimes(b[end:], t.TwentyThree, l22)
 	return
 }
 

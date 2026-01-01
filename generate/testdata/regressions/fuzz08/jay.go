@@ -136,9 +136,9 @@ func (x *Xr0HMChgjf45G06bi7IA7x17BviIKKd7P1WP174880f83BUWrYn3c7aipNjA82iOoEgmhqj
 	at, end = end, end+l8
 	copy(b[at:end], x.Ody)
 	at, end = end, end+l9
-	jay.WriteInt8s(b[at:end], x.BlLsH1RpTV2cGSM6PF014BbRfmtEqhdkL241AT86r2fV2ugs5xAf058R7BFvrKu4q0pQe42hG8xk8tY4F7OUfrnF7)
+	jay.WriteInt8s(b[at:end], x.BlLsH1RpTV2cGSM6PF014BbRfmtEqhdkL241AT86r2fV2ugs5xAf058R7BFvrKu4q0pQe42hG8xk8tY4F7OUfrnF7, l9)
 	at, end = end, end+l10
-	jay.WriteInt8s(b[at:end], x.Bx8aItBr1658w374djSa5EEgcEsCN5dw8D14ow6f57)
+	jay.WriteInt8s(b[at:end], x.Bx8aItBr1658w374djSa5EEgcEsCN5dw8D14ow6f57, l10)
 	at, end = end, end+l11*4
 	jay.WriteFloat32s(b[at:end], x.Ybi76jsIhI, l11)
 	if l12 != 0 {
@@ -146,7 +146,7 @@ func (x *Xr0HMChgjf45G06bi7IA7x17BviIKKd7P1WP174880f83BUWrYn3c7aipNjA82iOoEgmhqj
 		copy(b[at:end], x.J7K2JV4kC34X0l)
 	}
 	at, end = end, end+l13
-	jay.WriteInt8s(b[at:end], x.VOlcWnxQDaFhLRQYttEeU0v6INmGcn80x1V)
+	jay.WriteInt8s(b[at:end], x.VOlcWnxQDaFhLRQYttEeU0v6INmGcn80x1V, l13)
 	at, end = end, end+l14*8
 	jay.WriteFloat64s(b[at:end], x.W747FA0kSxr1208S70f8rS32BVgCfbKT5jR3sC7KoB5JV18fM2YeiE52OCf3KGjYN6by7FNAq4h2R2T6qK54wcKkLIjN7, l14)
 	at, end = end, end+l15
@@ -166,7 +166,7 @@ func (x *Xr0HMChgjf45G06bi7IA7x17BviIKKd7P1WP174880f83BUWrYn3c7aipNjA82iOoEgmhqj
 	at, end = end, end+jay.SizeBools(l20)
 	jay.WriteBools(b[at:end], x.WO2Jqm1iJY6I70Nb3j807DP1de21pE2W1NLc40Q0P0QT8gxaLS4rk2Hw, l20)
 	at, end = end, end+l21
-	jay.WriteInt8s(b[at:end], x.MWuWClXOe018lOLvTLUTE66o7wTUg76NHp5PqPOMGEI1EI3)
+	jay.WriteInt8s(b[at:end], x.MWuWClXOe018lOLvTLUTE66o7wTUg76NHp5PqPOMGEI1EI3, l21)
 	at, end = end, end+l22*4
 	jay.WriteFloat32s(b[at:end], x.PDMWHgFxqFXxPHO8S2TUwuiyKYQ0X6breLwfSbyql4A0wSMB8, l22)
 	if l23 != 0 {
@@ -428,7 +428,7 @@ func (d *D6YCuu3hbE3g5OXP4eIvdaE0Rn30477Vk3rh3aqef4Fq67F6DnY37JT4766BgAEG82P565y
 	jay.WriteIntX64(b[319:327], d.U1n0cOT3R4l1eTDEaVUe8Auh86mc8Vw65B51y86L505DtfhNtT84I4UGavu)
 	jay.WriteInt32(b[327:331], d.PCBfIYjVYhq2hB152ne3K7d32HBJE5t)
 	at, end := 331, 331+l0
-	jay.WriteInt8s(b[at:end], d.G5CxgoMa0R2x5WH4H3SpG37eqL52Rp05TFyll543DdUxfEnnaCd8JijEVqkjDBK782L5Mn2htn)
+	jay.WriteInt8s(b[at:end], d.G5CxgoMa0R2x5WH4H3SpG37eqL52Rp05TFyll543DdUxfEnnaCd8JijEVqkjDBK782L5Mn2htn, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], d.S4c0YkQmKf8qXU8f5814m3575DOG2uf7OX7Ge48J42y5rHL88KD4qhX3xu0Qj80U0P82)
@@ -460,7 +460,7 @@ func (d *D6YCuu3hbE3g5OXP4eIvdaE0Rn30477Vk3rh3aqef4Fq67F6DnY37JT4766BgAEG82P565y
 	at, end = end, end+l12
 	copy(b[at:end], d.Y1i54fti761h6EPpT1fj6PCdeihCwgvwxY632U3Ge75wld0VI2WuOV84ip6wo)
 	at, end = end, end+l13
-	jay.WriteInt8s(b[at:end], d.ICo3y3TtI6w)
+	jay.WriteInt8s(b[at:end], d.ICo3y3TtI6w, l13)
 	at, end = end, end+l14*4
 	jay.WriteFloat32s(b[at:end], d.Uc6h5bV5tmO3YKsN7vx220MI6S7nQNvkl37IUyWPp5ybR3AKT4q0voj, l14)
 	at, end = end, end+jay.SizeBools(l15)
@@ -494,7 +494,7 @@ func (d *D6YCuu3hbE3g5OXP4eIvdaE0Rn30477Vk3rh3aqef4Fq67F6DnY37JT4766BgAEG82P565y
 	at, end = end, end+jay.SizeBools(l23)
 	jay.WriteBools(b[at:end], d.CE883VaqN3r508F8fgt0gI66qH8TnJ0npqE4nV54NCe, l23)
 	at, end = end, end+l24
-	jay.WriteInt8s(b[at:end], d.V3V1h7NXG5g16Ls0h0mp1fg3Bj5c61eUj54705MtWn85wsrMi185FrE22y)
+	jay.WriteInt8s(b[at:end], d.V3V1h7NXG5g16Ls0h0mp1fg3Bj5c61eUj54705MtWn85wsrMi185FrE22y, l24)
 	at, end = end, end+l25*4
 	jay.WriteFloat32s(b[at:end], d.GsITAmWS7, l25)
 	at, end = end, end+l26
@@ -796,7 +796,7 @@ func (k *K8oM1ehguBAUKEaNDDHyrpMh3) MarshalJ() (b []byte) {
 		copy(b[at:end], k.MIR3qDXpusP34hWuXqd637Np6f3xy7)
 	}
 	at, end = end, end+l3
-	jay.WriteInt8s(b[at:end], k.U544q8yikr23JRXQ4qC0Hio2n175Jkd7D62Cph805P7C1GAbOouP3JY3qXQq)
+	jay.WriteInt8s(b[at:end], k.U544q8yikr23JRXQ4qC0Hio2n175Jkd7D62Cph805P7C1GAbOouP3JY3qXQq, l3)
 	at, end = end, end+l4
 	copy(b[at:end], k.Tc2VsOE1wFvFy7u6gE2kL2bHbE5c15JPcR6g7GGiLA)
 	at, end = end, end+l5*8
@@ -814,7 +814,7 @@ func (k *K8oM1ehguBAUKEaNDDHyrpMh3) MarshalJ() (b []byte) {
 		copy(b[at:end], k.Iv60aCx70AVjldT45C0363)
 	}
 	at, end = end, end+l10
-	jay.WriteInt8s(b[at:end], k.W2e4eKHb085853466gNHSobpu8JfrJdvUNWTLSC7DBD8H3ddo4SU11KAoDwoS3vG)
+	jay.WriteInt8s(b[at:end], k.W2e4eKHb085853466gNHSobpu8JfrJdvUNWTLSC7DBD8H3ddo4SU11KAoDwoS3vG, l10)
 	if l11 != 0 {
 		at, end = end, end+l11
 		copy(b[at:end], k.S6sj52062ua3hsx2k2S71y1EIdK3GWUP17R0SJ4TUyShlH3tp842Pv360amrdH0PUujM6vmFEewq1084iOD75)
@@ -824,11 +824,11 @@ func (k *K8oM1ehguBAUKEaNDDHyrpMh3) MarshalJ() (b []byte) {
 	at, end = end, end+l13
 	copy(b[at:end], k.E)
 	at, end = end, end+l14
-	jay.WriteInt8s(b[at:end], k.J2xBsPJDM86wWS)
+	jay.WriteInt8s(b[at:end], k.J2xBsPJDM86wWS, l14)
 	at, end = end, end+jay.SizeBools(l15)
 	jay.WriteBools(b[at:end], k.HGY34kW1iI1rAf1FpYKKX18l28n1bl4d7MdKiB03Qsji1hyBekd1mNx2N2KG3D7k7EPPictWf10Gr1w3c4a253u0s32a, l15)
 	at, end = end, end+l16
-	jay.WriteInt8s(b[at:end], k.XD5q)
+	jay.WriteInt8s(b[at:end], k.XD5q, l16)
 	if l17 != 0 {
 		at, end = end, end+l17
 		copy(b[at:end], k.ETu03fTXEYI817FS7mKAj6req77xN37y8H04HK53Y8Um1F804j452E1OH33MT0njHsb22sHFdY0sWA0e0V)
@@ -1108,7 +1108,7 @@ func (e *EkT786k52K5SH681WWX8F4o1284AX2EcfKrWriAWxixexoVDl55WSYL3IPP48F4R80t38Uo
 		copy(b[at:end], e.L4sU3W876557rl47Di7)
 	}
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], e.O3qDOpsa762JgNQorW8gvRUD26H05wUCsCK01jS8q5LoS6yYadqBUwcK5jD1oRy2Ctu7qE6ybS0)
+	jay.WriteInt8s(b[at:end], e.O3qDOpsa762JgNQorW8gvRUD26H05wUCsCK01jS8q5LoS6yYadqBUwcK5jD1oRy2Ctu7qE6ybS0, l7)
 	at, end = end, end+l8*4
 	jay.WriteFloat32s(b[at:end], e.Nc3ClJcL101yH1H, l8)
 	if l9 != 0 {
@@ -1118,7 +1118,7 @@ func (e *EkT786k52K5SH681WWX8F4o1284AX2EcfKrWriAWxixexoVDl55WSYL3IPP48F4R80t38Uo
 	at, end = end, end+l10
 	copy(b[at:end], e.SoCsprrXMdHIm28eJ0NOu0h5GRd5xw0t665G8FNEahbQ4v)
 	at, end = end, end+l11
-	jay.WriteInt8s(b[at:end], e.WPwm2336hNuif47j4q8Bvw6kQQ4N21TIo3WLM64730)
+	jay.WriteInt8s(b[at:end], e.WPwm2336hNuif47j4q8Bvw6kQQ4N21TIo3WLM64730, l11)
 	if l12 != 0 {
 		at, end = end, end+l12
 		copy(b[at:end], e.O47NjH8TI7Xr0SwIjRqw073g0RR1e2fEfDOnSi8BHqdDyQo5Y7ptjVG3Y4E)
@@ -1142,11 +1142,11 @@ func (e *EkT786k52K5SH681WWX8F4o1284AX2EcfKrWriAWxixexoVDl55WSYL3IPP48F4R80t38Uo
 		copy(b[at:end], e.XLXYNME0FhQ1Oktqm2MM2t58wopDX3q14ybM33ry8m8ShRKW7hi635VygyB75q7TTwde0R7HG3bV4y5h5p)
 	}
 	at, end = end, end+l19
-	jay.WriteInt8s(b[at:end], e.C4I6gpeyl1ECts28P00RNiy3it7udwp32W4N6Kg4Lm6GQ0pug11x76070Os)
+	jay.WriteInt8s(b[at:end], e.C4I6gpeyl1ECts28P00RNiy3it7udwp32W4N6Kg4Lm6GQ0pug11x76070Os, l19)
 	at, end = end, end+l20
 	copy(b[at:end], e.JpT24RXOE7u4667S81HgfLhYh0PAr8Didh740o10r4A2Rconveie3k26sjneg)
 	at, end = end, end+l21
-	jay.WriteInt8s(b[at:end], e.VgRli86x05F7JGN6gMn42f8Ck06wyK6r57604SEqMjk8c)
+	jay.WriteInt8s(b[at:end], e.VgRli86x05F7JGN6gMn42f8Ck06wyK6r57604SEqMjk8c, l21)
 	at, end = end, end+l22*8
 	jay.WriteFloat64s(b[at:end], e.EepgL0L6jMHmRN4nNHOqpq17KQyWI478p7C5ovlD4RbKGmH1vDE7MEBki7AJ73ad23tD31un2k5YjXr4Jg5, l22)
 	if l23 != 0 {
