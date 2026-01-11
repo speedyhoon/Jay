@@ -58,6 +58,9 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 					return false
 				}
 				ok = o.isSupportedType(f, d.Obj, dirList, pkg)
+				if !ok {
+					return false
+				}
 				f.aliasType = typ
 			}
 			if f.typ == "" {
@@ -195,13 +198,13 @@ func (o Option) isSupportedSelector(f *field, d *ast.SelectorExpr, dirList *dirL
 	}
 
 	obj := findImportedType(dirList.allFiles(), x.Name, d.Sel.Name)
-	if obj != nil {
-		ok = o.isSupportedType(f, obj, nil, "")
-		f.aliasType = d.Sel.Name
-		return f.typ != ""
+	if obj == nil {
+		return false
 	}
 
-	return
+	ok = o.isSupportedType(f, obj, nil, "")
+	f.aliasType = d.Sel.Name
+	return f.typ != ""
 }
 
 func pkgSelName(pkg, selector string) string {
