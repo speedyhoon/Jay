@@ -6,6 +6,7 @@ import (
 	"github.com/speedyhoon/utl"
 	"go/ast"
 	"go/token"
+	"path/filepath"
 	"reflect"
 	"strconv"
 	"strings"
@@ -46,7 +47,7 @@ func isBuiltIn(typ string) bool {
 	return false
 }
 
-func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string) (ok bool) {
+func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string, fileImports []*ast.ImportSpec) (ok bool) {
 	switch d := t.(type) {
 	case *ast.Ident:
 		if d.Obj == nil {
@@ -57,7 +58,7 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 				if d.Obj == nil {
 					return false
 				}
-				ok = o.isSupportedType(f, d.Obj, dirList, pkg)
+				ok = o.isSupportedType(f, d.Obj, dirList, pkg, fileImports)
 				if !ok {
 					return false
 				}
@@ -73,22 +74,23 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 			return true
 		}
 
-		ok = o.isSupportedType(f, d.Obj, dirList, pkg)
+		ok = o.isSupportedType(f, d.Obj, dirList, pkg, fileImports)
 
-	case nil:
 	// Ignore.
+	case nil:
+
 	case *ast.SelectorExpr:
-		ok = o.isSupportedSelector(f, d, dirList)
+		ok = o.isSupportedSelector(f, d, fileImports)
 
 	case *ast.Object:
 		if d.Kind != ast.Typ || d.Name == "" {
 			lg.Println(d)
 			return false
 		}
-		ok = o.isSupportedType(f, d.Decl, dirList, pkg)
+		ok = o.isSupportedType(f, d.Decl, dirList, pkg, fileImports)
 
 	case *ast.ArrayType:
-		ok = o.isSupportedType(f, d.Elt, dirList, pkg)
+		ok = o.isSupportedType(f, d.Elt, dirList, pkg, fileImports)
 		if !ok {
 			return false
 		}
@@ -111,7 +113,7 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 		f.isFixedLen = f.isFixedLen && f.isArray()
 
 	case *ast.TypeSpec:
-		ok = o.isSupportedType(f, d.Type, dirList, pkg)
+		ok = o.isSupportedType(f, d.Type, dirList, pkg, fileImports)
 		// Field is a type definition if isDef has already been set via inspecting d.Type beforehand, like time.Duration (type Duration int64),
 		// OR if TypeSpec is not an assignment (there is no equal sign).
 		f.isDef = f.isDef || d.Assign == token.NoPos
@@ -168,7 +170,7 @@ func findImportedType(files []*ast.File, pkg, typName string) *ast.Object {
 }
 
 // isSupportedSelector resolves imported types and some types within Go's standard library.
-func (o Option) isSupportedSelector(f *field, d *ast.SelectorExpr, dirList *dirList) (ok bool) {
+func (o Option) isSupportedSelector(f *field, d *ast.SelectorExpr, fileImports []*ast.ImportSpec) (ok bool) {
 	x, ok := d.X.(*ast.Ident)
 	if !ok {
 		return
@@ -178,6 +180,7 @@ func (o Option) isSupportedSelector(f *field, d *ast.SelectorExpr, dirList *dirL
 	// especially difficult when the GOROOT environment variable isn't set and Go could be installed anywhere, even a NAS.
 	switch x.Name {
 	case "time":
+		// Built-ins are hardcoded here so resolveImportedTypes doesn't need to be executed.
 		switch d.Sel.Name {
 		case "Duration": // type Duration int64
 			f.typ = tInt64
@@ -197,14 +200,38 @@ func (o Option) isSupportedSelector(f *field, d *ast.SelectorExpr, dirList *dirL
 		}
 	}
 
-	obj := findImportedType(dirList.allFiles(), x.Name, d.Sel.Name)
-	if obj == nil {
+	var imp string
+	imp, ok = matchImport(fileImports, x.Name)
+	if !ok {
+		return
+	}
+
+	var err error
+	f.typ, err = resolveImportedTypes(imp, d.Sel.Name)
+	if err != nil {
 		return false
 	}
 
-	ok = o.isSupportedType(f, obj, nil, "")
-	f.aliasType = d.Sel.Name
-	return f.typ != ""
+	f.pkgReq = imp
+	f.aliasType = pkgSelName(x.Name, d.Sel.Name)
+	f.isDef = true
+	f.isFixedLen = o.isLenFixed(f.typ)
+	f.elmSize = o.isLen(f.typ)
+	return
+}
+
+func matchImport(fileImports []*ast.ImportSpec, pkg string) (importPath string, ok bool) {
+	for _, fileImport := range fileImports {
+		if fileImport.Path == nil || fileImport.Path.Value == "" {
+			continue
+		}
+
+		importPath = strings.Trim(fileImport.Path.Value, "\"")
+		if pkg == filepath.Base(importPath) {
+			return importPath, true
+		}
+	}
+	return "", false
 }
 
 func pkgSelName(pkg, selector string) string {

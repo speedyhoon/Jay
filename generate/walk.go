@@ -7,6 +7,7 @@ import (
 
 type visitor struct {
 	structs *[]*structTyp
+	file    *ast.File
 	option  *Option
 	dirList *dirList
 	dir     string
@@ -56,7 +57,7 @@ func (v visitor) Visit(node ast.Node) ast.Visitor {
 		}
 
 		s := newStructTyp(v.dir, n.Name.Name, v.option)
-		if s.process(st.Fields.List, v.dirList) {
+		if s.process(st.Fields.List, v.dirList, v.file.Imports) {
 			*v.structs = append(*v.structs, s)
 		}
 	}

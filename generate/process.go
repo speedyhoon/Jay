@@ -77,7 +77,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 func (d *dirList) walk(o *Option) {
 	for dir, fl := range *d {
 		for _, file := range fl.files {
-			ast.Walk(visitor{structs: &fl.structs, option: o, dir: dir, dirList: d}, file)
+			ast.Walk(visitor{structs: &fl.structs, option: o, dir: dir, dirList: d, file: file}, file)
 		}
 		(*d)[dir] = fl
 	}
@@ -182,7 +182,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 	return err
 }
 
-func (s *structTyp) process(fields []*ast.Field, dirList *dirList, parents ...[]*ast.Ident) (hasExportedFields bool) {
+func (s *structTyp) process(fields []*ast.Field, dirList *dirList, fileImports []*ast.ImportSpec, parents ...[]*ast.Ident) (hasExportedFields bool) {
 	for i := uint(0); i < utl.Len(fields); {
 		t := fields[i]
 
@@ -199,13 +199,13 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList, parents ...[]
 		}
 
 		if fs, ok := isStruct(t); ok {
-			s.process(fs, dirList, append(parents, names)...)
+			s.process(fs, dirList, fileImports, append(parents, names)...)
 			i++
 			continue
 		}
 
 		fe := newField(tag)
-		ok := s.option.isSupportedType(&fe, t.Type, dirList, s.dir)
+		ok := s.option.isSupportedType(&fe, t.Type, dirList, s.dir, fileImports)
 		if !ok {
 			utl.Del(&fields, i)
 			continue
