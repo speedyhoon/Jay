@@ -20,6 +20,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"github.com/speedyhoon/ext"
 	"github.com/speedyhoon/jay/generate"
 	"github.com/speedyhoon/utl"
@@ -48,6 +49,11 @@ func main() {
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
 	flag.Var(&types, "y", "`Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for.` For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`. (default: Process all exported types)")
+	flag.Usage = func() {
+		_, _ = fmt.Fprintln(os.Stderr, "Generate Jay serialization code for Go.\n<https://github.com/speedyhoon/Jay>\n\nUsage: jay [options] [path ...]\nOptions:")
+		flag.PrintDefaults()
+		_, _ = fmt.Fprintln(os.Stderr, "\nPlease report bugs to <https://github.com/speedyhoon/Jay/issues>.")
+	}
 	flag.Parse()
 
 	if opt.SkipMarshal && opt.SkipUnmarshal {
