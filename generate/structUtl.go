@@ -187,14 +187,14 @@ func (o Option) isSupportedSelector(f *field, d *ast.SelectorExpr, fileImports [
 			f.pkgReq = x.Name
 			f.aliasType = tTimeDuration
 			f.isDef = true
-			f.isFixedLen = true
+			f.isFixedLen = o.isLenFixed(f.typ)
 			f.elmSize = o.isLen(f.typ)
 			return true
 		case "Time": // type Time struct
 			f.typ = tTime
 			f.pkgReq = x.Name
 			f.aliasType = tTime
-			f.isFixedLen = true
+			f.isFixedLen = o.isLenFixed(f.typ)
 			f.elmSize = o.isLen(f.typ)
 			return true
 		}
