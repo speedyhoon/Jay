@@ -43,6 +43,7 @@ type Option struct {
 	// Expected struct type alias names like: "Vehicle", "animal.Species".
 	OnlyTypes   []string
 	typeMatches []*regexp.Regexp
+	JayFlag     bool
 
 	OutputFileName string
 
@@ -129,18 +130,21 @@ func LoadOptions(opts ...Option) (o Option) {
 
 // IsSpecifiedType checks if typeName is one of the types listed in Option.OnlyTypes.
 // If OnlyTypes is empty, then allow all types.
-func (o Option) IsSpecifiedType(pkg, typeName string) bool {
-	if len(o.typeMatches) == 0 {
+func (s structTyp) IsSpecifiedType(pkg string) bool {
+	if len(s.option.typeMatches) == 0 {
+		if s.option.JayFlag {
+			return s.hasJayFlag
+		}
 		return true
 	}
 
-	pkg = pkgSelName(pkg, typeName)
-	for _, onlyType := range o.typeMatches {
+	pkg = pkgSelName(pkg, s.name)
+	for _, onlyType := range s.option.typeMatches {
 		if onlyType.MatchString(pkg) {
 			return true
 		}
 	}
-	return false
+	return s.hasJayFlag
 }
 
 // bytesRequired returns how many bytes are required to represent an unsigned integer.

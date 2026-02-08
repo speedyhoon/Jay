@@ -1,6 +1,10 @@
 package generate
 
-import "unicode"
+import (
+	"github.com/dave/dst"
+	"strings"
+	"unicode"
+)
 
 const (
 	receiverNameDefault   = "b"
@@ -31,10 +35,11 @@ type structTyp struct {
 
 	qtyBytesRequired uint
 
-	isImportJ *bool
+	isImportJ  *bool
+	hasJayFlag bool
 }
 
-func newStructTyp(dir, typeName string, o *Option) *structTyp {
+func newStructTyp(dir, typeName string, o *Option, opening dst.Decorations) *structTyp {
 	r := receiverName(typeName)
 	return &structTyp{
 		name:       typeName,
@@ -43,6 +48,7 @@ func newStructTyp(dir, typeName string, o *Option) *structTyp {
 		bufferName: bufferName(r),
 		lengthName: lengthName(r),
 		option:     o,
+		hasJayFlag: o.JayFlag && hasJayFlag(opening),
 	}
 }
 
@@ -62,4 +68,14 @@ func lengthName(receiverName string) string {
 		return lengthNameAlternate
 	}
 	return lengthNameDefault
+}
+
+// hasJayFlag checks if any opening comments for a struct type contains `J+`.
+func hasJayFlag(comments dst.Decorations) bool {
+	for _, dec := range comments {
+		if strings.Contains(strings.ToUpper(dec), JayFlag) {
+			return true
+		}
+	}
+	return false
 }

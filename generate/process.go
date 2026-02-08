@@ -2,9 +2,10 @@ package generate
 
 import (
 	"errors"
+	"github.com/dave/dst"
+	"github.com/dave/dst/decorator"
 	"github.com/speedyhoon/ext"
 	"github.com/speedyhoon/utl"
-	"go/ast"
 	"go/parser"
 	"go/token"
 	"io"
@@ -22,7 +23,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 	}
 
 	*o = LoadOptions(*o)
-	var f *ast.File
+	var f *dst.File
 	var err error
 	directories := make(dirList)
 
@@ -77,7 +78,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 func (d *dirList) walk(o *Option) {
 	for dir, fl := range *d {
 		for _, file := range fl.files {
-			ast.Walk(visitor{structs: &fl.structs, option: o, dir: dir, dirList: d, file: file}, file)
+			dst.Walk(visitor{structs: &fl.structs, option: o, dir: dir, dirList: d, file: file}, file)
 		}
 		(*d)[dir] = fl
 	}
@@ -87,7 +88,7 @@ func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
 	var src []byte
 	var err error
 
-	// Traverse the directories again because some imports weren't populated in the correct order to run makeFile() immediately after ast.Walk().
+	// Traverse the directories again because some imports weren't populated in the correct order to run makeFile() immediately after dst.Walk().
 	for dir, fl := range directories {
 		if len(fl.structs) == 0 {
 			lg.Println("no exported structs in directory", dir)
@@ -112,7 +113,7 @@ type (
 	fileList struct {
 		pkg     string
 		structs []*structTyp
-		files   []*ast.File
+		files   []*dst.File
 	}
 	dirList map[string]fileList
 	Output  struct {
@@ -121,7 +122,7 @@ type (
 	}
 )
 
-func (d *dirList) add(dir string, file *ast.File) {
+func (d *dirList) add(dir string, file *dst.File) {
 	if dir == "" {
 		dir = "."
 	}
@@ -133,15 +134,15 @@ func (d *dirList) add(dir string, file *ast.File) {
 	(*d)[dir] = list
 }
 
-func (d dirList) allFiles() (files []*ast.File) {
+func (d dirList) allFiles() (files []*dst.File) {
 	for _, dirs := range d {
 		files = append(files, dirs.files...)
 	}
 	return
 }
 
-func ParseFile(filename string, src interface{}) (f *ast.File, err error) {
-	f, err = parser.ParseFile(token.NewFileSet(), filename, src, parser.ParseComments|parser.AllErrors)
+func ParseFile(filename string, src interface{}) (f *dst.File, err error) {
+	f, err = decorator.NewDecorator(token.NewFileSet()).ParseFile(filename, src, parser.ParseComments|parser.AllErrors)
 	if err != nil {
 		return
 	}
@@ -182,7 +183,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 	return err
 }
 
-func (s *structTyp) process(fields []*ast.Field, dirList *dirList, fileImports []*ast.ImportSpec, parents ...[]*ast.Ident) (hasExportedFields bool) {
+func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports []*dst.ImportSpec, parents ...[]*dst.Ident) (hasExportedFields bool) {
 	for i := uint(0); i < utl.Len(fields); {
 		t := fields[i]
 
@@ -220,17 +221,17 @@ func (s *structTyp) process(fields []*ast.Field, dirList *dirList, fileImports [
 	return s.hasExportedFields()
 }
 
-func structFields(t any, names []string) (fields []*ast.Field, ok bool) {
+func structFields(t any, names []string) (fields []*dst.Field, ok bool) {
 	switch d := t.(type) {
-	case *ast.Ident:
+	case *dst.Ident:
 		if d.Obj != nil && d.Obj.Decl != nil {
 			return structFields(d.Obj.Decl, names)
 		}
-	case *ast.TypeSpec:
+	case *dst.TypeSpec:
 		if d.Type != nil {
 			return structFields(d.Type, names)
 		}
-	case *ast.StructType:
+	case *dst.StructType:
 		if d.Fields != nil && len(d.Fields.List) >= 1 {
 			decatenateFieldList(d.Fields, names)
 			return d.Fields.List, true
@@ -242,7 +243,7 @@ func structFields(t any, names []string) (fields []*ast.Field, ok bool) {
 // decatenateFieldList duplicates each struct field type that has multiple names defined.
 // For example, if a struct definition has the line `Name, Model string`, then
 // `Model string` is separated with its own name.
-func decatenateFieldList(f *ast.FieldList, names []string) {
+func decatenateFieldList(f *dst.FieldList, names []string) {
 	qty := len(names)
 	for i := range f.List {
 		for j := range f.List[i].Names {
@@ -250,7 +251,7 @@ func decatenateFieldList(f *ast.FieldList, names []string) {
 
 				// Duplicate the FieldList name for 2nd onwards names.
 				for k := 1; k < qty; k++ {
-					n := ast.Ident{
+					n := dst.Ident{
 						Name: pkgSelName(names[k], f.List[i].Names[j].Name),
 						Obj:  f.List[i].Names[j].Obj,
 					}
@@ -261,7 +262,7 @@ func decatenateFieldList(f *ast.FieldList, names []string) {
 	}
 }
 
-func isStruct(f *ast.Field) (fields []*ast.Field, ok bool) {
+func isStruct(f *dst.Field) (fields []*dst.Field, ok bool) {
 	names := getNames(f)
 	if len(names) >= 1 {
 		list := make([]string, len(names))
@@ -370,9 +371,9 @@ func (f *field) totalSize() uint {
 	return f.elmSize
 }
 
-func getNames(f *ast.Field) (names []*ast.Ident) {
+func getNames(f *dst.Field) (names []*dst.Ident) {
 	if len(f.Names) == 0 {
-		idt, ok := f.Type.(*ast.Ident)
+		idt, ok := f.Type.(*dst.Ident)
 		if !ok || idt == nil {
 			if !ok {
 				lg.Printf("unexpected type %T\n", f.Type)
@@ -386,9 +387,9 @@ func getNames(f *ast.Field) (names []*ast.Ident) {
 	return onlyExportedNames(f.Names...)
 }
 
-func onlyExportedNames(names ...*ast.Ident) []*ast.Ident {
+func onlyExportedNames(names ...*dst.Ident) []*dst.Ident {
 	for i := 0; i < len(names); {
-		if !ast.IsExported(names[i].Name) {
+		if !dst.IsExported(names[i].Name) {
 			utl.Del(&names, uint(i))
 			continue
 		}

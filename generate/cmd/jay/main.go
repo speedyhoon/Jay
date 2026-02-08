@@ -48,6 +48,7 @@ func main() {
 	// Not yet implemented: flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
+	flag.BoolVar(&opt.JayFlag, "j", false, fmt.Sprintf("Only process structs and their descendants marked with a Jay export tag '%s' in its type declaration.\nGo code example:\ntype MyType struct { // %[1]s\nIdentical to -y option but hardcoded in Go comments, instead of build tool configurations.\nWorks additionally to option -y (if specified).", generate.JayFlag))
 	flag.Var(&types, "y", "`Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for.` For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`. (default: Process all exported types)")
 	flag.Usage = func() {
 		_, _ = fmt.Fprintln(os.Stderr, "Generate Jay serialization code for Go.\n<https://github.com/speedyhoon/Jay>\n\nUsage: jay [options] [path ...]\nOptions:")

@@ -3,8 +3,8 @@ package generate
 import (
 	"bytes"
 	"fmt"
+	"github.com/dave/dst"
 	"github.com/speedyhoon/utl"
-	"go/ast"
 	"go/token"
 	"path/filepath"
 	"reflect"
@@ -19,7 +19,7 @@ const (
 )
 
 // getTag returns the value associated with key "j" in the tag string.
-func getTag(b *ast.BasicLit) string {
+func getTag(b *dst.BasicLit) string {
 	if b == nil {
 		return ""
 	}
@@ -47,9 +47,9 @@ func isBuiltIn(typ string) bool {
 	return false
 }
 
-func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string, fileImports []*ast.ImportSpec) (ok bool) {
+func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string, fileImports []*dst.ImportSpec) (ok bool) {
 	switch d := t.(type) {
-	case *ast.Ident:
+	case *dst.Ident:
 		if d.Obj == nil {
 			typ := resolveBuiltinAlias(d.Name)
 			if !isBuiltIn(typ) && dirList != nil {
@@ -79,17 +79,17 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 	// Ignore.
 	case nil:
 
-	case *ast.SelectorExpr:
+	case *dst.SelectorExpr:
 		ok = o.isSupportedSelector(f, d, fileImports)
 
-	case *ast.Object:
-		if d.Kind != ast.Typ || d.Name == "" {
+	case *dst.Object:
+		if d.Kind != dst.Typ || d.Name == "" {
 			lg.Println(d)
 			return false
 		}
 		ok = o.isSupportedType(f, d.Decl, dirList, pkg, fileImports)
 
-	case *ast.ArrayType:
+	case *dst.ArrayType:
 		ok = o.isSupportedType(f, d.Elt, dirList, pkg, fileImports)
 		if !ok {
 			return false
@@ -112,11 +112,11 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 		f.marshal.qtyVar = multiplier(strconv.Itoa(f.arraySize))
 		f.isFixedLen = f.isFixedLen && f.isArray()
 
-	case *ast.TypeSpec:
+	case *dst.TypeSpec:
 		ok = o.isSupportedType(f, d.Type, dirList, pkg, fileImports)
 		// Field is a type definition if isDef has already been set via inspecting d.Type beforehand, like time.Duration (type Duration int64),
 		// OR if TypeSpec is not an assignment (there is no equal sign).
-		f.isDef = f.isDef || d.Assign == token.NoPos
+		f.isDef = f.isDef || !d.Assign
 
 		// Saves having to run goimports to fix unused imports.
 		if f.aliasType != d.Name.Name {
@@ -138,9 +138,9 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 	return
 }
 
-func findImportedType(files []*ast.File, pkg, typName string) *ast.Object {
+func findImportedType(files []*dst.File, pkg, typName string) *dst.Object {
 	// TODO doesn't handle aliased imports
-	var found []*ast.Object
+	var found []*dst.Object
 
 	for _, file := range files {
 		if file == nil || file.Name == nil || file.Name.Name != pkg || file.Scope == nil {
@@ -170,8 +170,8 @@ func findImportedType(files []*ast.File, pkg, typName string) *ast.Object {
 }
 
 // isSupportedSelector resolves imported types and some types within Go's standard library.
-func (o Option) isSupportedSelector(f *field, d *ast.SelectorExpr, fileImports []*ast.ImportSpec) (ok bool) {
-	x, ok := d.X.(*ast.Ident)
+func (o Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports []*dst.ImportSpec) (ok bool) {
+	x, ok := d.X.(*dst.Ident)
 	if !ok {
 		return
 	}
@@ -220,7 +220,7 @@ func (o Option) isSupportedSelector(f *field, d *ast.SelectorExpr, fileImports [
 	return
 }
 
-func matchImport(fileImports []*ast.ImportSpec, pkg string) (importPath string, ok bool) {
+func matchImport(fileImports []*dst.ImportSpec, pkg string) (importPath string, ok bool) {
 	for _, fileImport := range fileImports {
 		if fileImport.Path == nil || fileImport.Path.Value == "" {
 			continue
@@ -241,7 +241,7 @@ func pkgSelName(pkg, selector string) string {
 	return selector
 }
 
-func packageName(f *ast.File) string {
+func packageName(f *dst.File) string {
 	if f != nil && f.Name != nil {
 		return f.Name.Name
 	}
@@ -279,7 +279,7 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 	switch d := x.(type) {
 	case nil:
 		return typeSlice, true
-	case *ast.BasicLit:
+	case *dst.BasicLit:
 		if d.Kind != token.INT {
 			lg.Println("unhandled token type", d.Kind, d.Value)
 			return typeNotArrayOrSlice, false
@@ -301,11 +301,11 @@ func calcArraySize(x interface{}) (size int, ok bool) {
 
 		return int(u), true
 
-	case *ast.ValueSpec:
+	case *dst.ValueSpec:
 		if len(d.Values) == 1 {
 			return calcArraySize(d.Values[0])
 		}
-	case *ast.Ident:
+	case *dst.Ident:
 		if d.Obj != nil {
 			return calcArraySize(d.Obj.Decl)
 		}
@@ -319,7 +319,7 @@ func (s *structTyp) hasExportedFields() bool {
 	return len(s.fixedLen) >= 1 || len(s.variableLen) >= 1 || len(s.bool) >= 1 || len(s.single) >= 1 || len(s.stringSlice) >= 1
 }
 
-func nestedName(name *ast.Ident, parents ...[]*ast.Ident) (n string) {
+func nestedName(name *dst.Ident, parents ...[]*dst.Ident) (n string) {
 	n = name.Name
 	for _, parent := range parents {
 		if len(parent) != 1 {
@@ -331,7 +331,7 @@ func nestedName(name *ast.Ident, parents ...[]*ast.Ident) (n string) {
 	return
 }
 
-func (s *structTyp) addExportedFields(names []*ast.Ident, f *field, parents [][]*ast.Ident) {
+func (s *structTyp) addExportedFields(names []*dst.Ident, f *field, parents [][]*dst.Ident) {
 	f.structTyp = s
 
 	for m := range names {

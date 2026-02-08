@@ -6,9 +6,9 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"github.com/dave/dst"
 	"github.com/speedyhoon/ext"
 	"github.com/speedyhoon/utl"
-	"go/ast"
 	"mvdan.cc/gofumpt/format"
 	"runtime"
 )
@@ -18,6 +18,7 @@ const (
 	pkgImport               = "github.com/speedyhoon/" + pkgName
 	ExportedErr             = pkgName + ".ErrUnexpectedEOB"
 	DefaultOutputFileName   = pkgName + ext.Go
+	JayFlag                 = "J+"
 	IntSize                 = 32 << (^uint(0) >> 63) // 32-bit or 64-bit architecture.
 	copyKeyword, lenKeyword = "copy", "len"
 	intKeyword              = "int"
@@ -35,7 +36,7 @@ func (o Option) makeFile(pkg string, s []*structTyp) ([]byte, error) {
 
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
-		if o.IsSpecifiedType(pkg, s[i].name) {
+		if s[i].IsSpecifiedType(pkg) {
 			s[i].isImportJ = &importJ
 			s[i].makeFuncs(buf)
 			imported.join(s[i].imports)
@@ -131,7 +132,7 @@ func appendEmbed(fields *fieldList, embedName string, embedded fieldList) {
 }
 
 func (s *structTyp) makeFuncs(b *bytes.Buffer) {
-	if !ast.IsExported(s.name) || !s.hasExportedFields() {
+	if !dst.IsExported(s.name) || !s.hasExportedFields() {
 		return
 	}
 

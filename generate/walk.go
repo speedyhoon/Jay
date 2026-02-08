@@ -2,12 +2,12 @@ package generate
 
 import (
 	"fmt"
-	"go/ast"
+	"github.com/dave/dst"
 )
 
 type visitor struct {
 	structs *[]*structTyp
-	file    *ast.File
+	file    *dst.File
 	option  *Option
 	dirList *dirList
 	dir     string
@@ -43,20 +43,20 @@ type fieldList []*field
 // Visit traverses the AST File and finds all structs even if they are unexported.
 // Unexported structs can be exported if they are referenced in exported structs with exported field names.
 // For example, type Cow struct { ID id }
-func (v visitor) Visit(node ast.Node) ast.Visitor {
+func (v visitor) Visit(node dst.Node) dst.Visitor {
 	switch n := node.(type) {
 	// Only traverse structs that are a defined type (not anonymous structs).
-	case *ast.TypeSpec:
+	case *dst.TypeSpec:
 		if n.Name == nil || n.Name.Name == "" {
 			return v
 		}
 
-		st, ok := n.Type.(*ast.StructType)
+		st, ok := n.Type.(*dst.StructType)
 		if !ok || len(st.Fields.List) <= 0 {
 			return v
 		}
 
-		s := newStructTyp(v.dir, n.Name.Name, v.option)
+		s := newStructTyp(v.dir, n.Name.Name, v.option, st.Fields.Decs.Opening)
 		if s.process(st.Fields.List, v.dirList, v.file.Imports) {
 			*v.structs = append(*v.structs, s)
 		}
