@@ -320,15 +320,15 @@ func (s *structTyp) hasExportedFields() bool {
 }
 
 func nestedName(name *dst.Ident, parents ...[]*dst.Ident) (n string) {
-	n = name.Name
-	for _, parent := range parents {
+	var list []string
+	for _, parent := range append(parents, []*dst.Ident{name}) {
 		if len(parent) != 1 {
 			// TODO needs improving - expected only one parent.
 			continue
 		}
-		n = fmt.Sprintf("%s.%s", parent[0].Name, n)
+		list = append(list, parent[0].Name)
 	}
-	return
+	return strings.Join(list, ".")
 }
 
 func (s *structTyp) addExportedFields(names []*dst.Ident, f *field, parents [][]*dst.Ident) {
