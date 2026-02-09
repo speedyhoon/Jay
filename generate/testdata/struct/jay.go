@@ -21,11 +21,11 @@ func (o *One) UnmarshalJ(b []byte) error {
 }
 
 func (t *Two) MarshalJ() (b []byte) {
-	l0 := byte(len(t.Two))
-	b = make([]byte, 2+jay.SizeBools8(l0))
-	b[0] = l0
+	l0 := len(t.Two)
+	b = make([]byte, 2+jay.SizeBools(l0))
+	b[0] = byte(l0)
 	b[1] = jay.Bool1(t.One.One)
-	jay.WriteBools8(b[2:], t.Two, l0)
+	jay.WriteBools(b[2:], t.Two, l0)
 	return
 }
 
@@ -40,12 +40,12 @@ func (t *Two) UnmarshalJ(b []byte) error {
 }
 
 func (t *Three) MarshalJ() (b []byte) {
-	l0 := byte(len(t.Two.Two))
-	b = make([]byte, 3+jay.SizeBools8(l0))
-	b[0] = l0
+	l0 := len(t.Two.Two)
+	b = make([]byte, 3+jay.SizeBools(l0))
+	b[0] = byte(l0)
 	b[1] = jay.Bool1(t.Two.One.One)
 	b[2] = t.Three
-	jay.WriteBools8(b[3:], t.Two.Two, l0)
+	jay.WriteBools(b[3:], t.Two.Two, l0)
 	return
 }
 
@@ -61,13 +61,13 @@ func (t *Three) UnmarshalJ(b []byte) error {
 }
 
 func (f *Four) MarshalJ() (b []byte) {
-	l0, l1 := byte(len(f.Three.Two.Two)), len(f.Four)
-	b = make([]byte, 4+jay.SizeBools8(l0)+l1)
-	b[0], b[1] = l0, byte(l1)
+	l0, l1 := len(f.Three.Two.Two), len(f.Four)
+	b = make([]byte, 4+jay.SizeBools(l0)+l1)
+	b[0], b[1] = byte(l0), byte(l1)
 	b[2] = jay.Bool1(f.Three.Two.One.One)
 	b[3] = f.Three.Three
-	at, end := 4, 4+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], f.Three.Two.Two, l0)
+	at, end := 4, 4+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], f.Three.Two.Two, l0)
 	if l1 != 0 {
 		copy(b[end:], f.Four)
 	}
@@ -94,14 +94,14 @@ func (f *Four) UnmarshalJ(b []byte) error {
 }
 
 func (f *Five) MarshalJ() (b []byte) {
-	l0, l1 := byte(len(f.Four.Three.Two.Two)), len(f.Four.Four)
-	b = make([]byte, 12+jay.SizeBools8(l0)+l1)
-	b[0], b[1] = l0, byte(l1)
+	l0, l1 := len(f.Four.Three.Two.Two), len(f.Four.Four)
+	b = make([]byte, 12+jay.SizeBools(l0)+l1)
+	b[0], b[1] = byte(l0), byte(l1)
 	b[2] = jay.Bool1(f.Four.Three.Two.One.One)
 	b[3] = f.Four.Three.Three
 	jay.WriteComplex64(b[4:12], f.Five)
-	at, end := 12, 12+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], f.Four.Three.Two.Two, l0)
+	at, end := 12, 12+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], f.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		copy(b[end:], f.Four.Four)
 	}
@@ -129,19 +129,19 @@ func (f *Five) UnmarshalJ(b []byte) error {
 }
 
 func (s *Six) MarshalJ() (b []byte) {
-	l0, l1, l2 := byte(len(s.Five.Four.Three.Two.Two)), len(s.Five.Four.Four), len(s.Six)
-	b = make([]byte, 13+8*l2+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2] = l0, byte(l1), byte(l2)
+	l0, l1, l2 := len(s.Five.Four.Three.Two.Two), len(s.Five.Four.Four), len(s.Six)
+	b = make([]byte, 13+8*l2+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2] = byte(l0), byte(l1), byte(l2)
 	b[3] = jay.Bool1(s.Five.Four.Three.Two.One.One)
 	b[4] = s.Five.Four.Three.Three
 	jay.WriteComplex64(b[5:13], s.Five.Five)
-	at, end := 13, 13+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], s.Five.Four.Three.Two.Two, l0)
+	at, end := 13, 13+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], s.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], s.Five.Four.Four)
 	}
-	jay.WriteComplex64s(b[end:], s.Six)
+	jay.WriteComplex64s(b[end:], s.Six, l2)
 	return
 }
 
@@ -168,20 +168,20 @@ func (s *Six) UnmarshalJ(b []byte) error {
 }
 
 func (s *Seven) MarshalJ() (b []byte) {
-	l0, l1, l2 := byte(len(s.Six.Five.Four.Three.Two.Two)), len(s.Six.Five.Four.Four), len(s.Six.Six)
-	b = make([]byte, 29+8*l2+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2] = l0, byte(l1), byte(l2)
+	l0, l1, l2 := len(s.Six.Five.Four.Three.Two.Two), len(s.Six.Five.Four.Four), len(s.Six.Six)
+	b = make([]byte, 29+8*l2+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2] = byte(l0), byte(l1), byte(l2)
 	b[3] = jay.Bool1(s.Six.Five.Four.Three.Two.One.One)
 	b[4] = s.Six.Five.Four.Three.Three
 	jay.WriteComplex64(b[5:13], s.Six.Five.Five)
 	jay.WriteComplex128(b[13:29], s.Seven)
-	at, end := 29, 29+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], s.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 29, 29+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], s.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], s.Six.Five.Four.Four)
 	}
-	jay.WriteComplex64s(b[end:], s.Six.Six)
+	jay.WriteComplex64s(b[end:], s.Six.Six, l2)
 	return
 }
 
@@ -209,22 +209,22 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 }
 
 func (e *Eight) MarshalJ() (b []byte) {
-	l0, l1, l2, l3 := byte(len(e.Seven.Six.Five.Four.Three.Two.Two)), len(e.Seven.Six.Five.Four.Four), len(e.Seven.Six.Six), len(e.Eight)
-	b = make([]byte, 30+16*l3+8*l2+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3] = l0, byte(l1), byte(l2), byte(l3)
+	l0, l1, l2, l3 := len(e.Seven.Six.Five.Four.Three.Two.Two), len(e.Seven.Six.Five.Four.Four), len(e.Seven.Six.Six), len(e.Eight)
+	b = make([]byte, 30+16*l3+8*l2+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3] = byte(l0), byte(l1), byte(l2), byte(l3)
 	b[4] = jay.Bool1(e.Seven.Six.Five.Four.Three.Two.One.One)
 	b[5] = e.Seven.Six.Five.Four.Three.Three
 	jay.WriteComplex64(b[6:14], e.Seven.Six.Five.Five)
 	jay.WriteComplex128(b[14:30], e.Seven.Seven)
-	at, end := 30, 30+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], e.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 30, 30+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], e.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], e.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], e.Seven.Six.Six)
-	jay.WriteComplex128s(b[end:], e.Eight)
+	jay.WriteComplex64s(b[at:end], e.Seven.Six.Six, l2)
+	jay.WriteComplex128s(b[end:], e.Eight, l3)
 	return
 }
 
@@ -254,23 +254,23 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 }
 
 func (n *Nine) MarshalJ() (b []byte) {
-	l0, l1, l2, l3 := byte(len(n.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(n.Eight.Seven.Six.Five.Four.Four), len(n.Eight.Seven.Six.Six), len(n.Eight.Eight)
-	b = make([]byte, 34+16*l3+8*l2+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3] = l0, byte(l1), byte(l2), byte(l3)
+	l0, l1, l2, l3 := len(n.Eight.Seven.Six.Five.Four.Three.Two.Two), len(n.Eight.Seven.Six.Five.Four.Four), len(n.Eight.Seven.Six.Six), len(n.Eight.Eight)
+	b = make([]byte, 34+16*l3+8*l2+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3] = byte(l0), byte(l1), byte(l2), byte(l3)
 	b[4] = jay.Bool1(n.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[5] = n.Eight.Seven.Six.Five.Four.Three.Three
 	jay.WriteComplex64(b[6:14], n.Eight.Seven.Six.Five.Five)
 	jay.WriteComplex128(b[14:30], n.Eight.Seven.Seven)
 	jay.WriteFloat32(b[30:34], n.Nine)
-	at, end := 34, 34+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], n.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 34, 34+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], n.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], n.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], n.Eight.Seven.Six.Six)
-	jay.WriteComplex128s(b[end:], n.Eight.Eight)
+	jay.WriteComplex64s(b[at:end], n.Eight.Seven.Six.Six, l2)
+	jay.WriteComplex128s(b[end:], n.Eight.Eight, l3)
 	return
 }
 
@@ -301,24 +301,24 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 }
 
 func (t *Ten) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4 := byte(len(t.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Nine.Eight.Seven.Six.Six), len(t.Nine.Eight.Eight), len(t.Ten)
-	b = make([]byte, 35+16*l3+8*l2+4*l4+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3], b[4] = l0, byte(l1), byte(l2), byte(l3), byte(l4)
+	l0, l1, l2, l3, l4 := len(t.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Nine.Eight.Seven.Six.Six), len(t.Nine.Eight.Eight), len(t.Ten)
+	b = make([]byte, 35+16*l3+8*l2+4*l4+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3], b[4] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4)
 	b[5] = jay.Bool1(t.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[6] = t.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	jay.WriteComplex64(b[7:15], t.Nine.Eight.Seven.Six.Five.Five)
 	jay.WriteComplex128(b[15:31], t.Nine.Eight.Seven.Seven)
 	jay.WriteFloat32(b[31:35], t.Nine.Nine)
-	at, end := 35, 35+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 35, 35+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.Nine.Eight.Eight, l3)
 	jay.WriteFloat32s(b[end:], t.Ten, l4)
 	return
 }
@@ -352,25 +352,25 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 }
 
 func (e *Eleven) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4 := byte(len(e.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(e.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(e.Ten.Nine.Eight.Seven.Six.Six), len(e.Ten.Nine.Eight.Eight), len(e.Ten.Ten)
-	b = make([]byte, 43+16*l3+8*l2+4*l4+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3], b[4] = l0, byte(l1), byte(l2), byte(l3), byte(l4)
+	l0, l1, l2, l3, l4 := len(e.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(e.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(e.Ten.Nine.Eight.Seven.Six.Six), len(e.Ten.Nine.Eight.Eight), len(e.Ten.Ten)
+	b = make([]byte, 43+16*l3+8*l2+4*l4+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3], b[4] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4)
 	b[5] = jay.Bool1(e.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[6] = e.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	jay.WriteComplex64(b[7:15], e.Ten.Nine.Eight.Seven.Six.Five.Five)
 	jay.WriteComplex128(b[15:31], e.Ten.Nine.Eight.Seven.Seven)
 	jay.WriteFloat32(b[31:35], e.Ten.Nine.Nine)
 	jay.WriteFloat64(b[35:43], e.Eleven)
-	at, end := 43, 43+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], e.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 43, 43+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], e.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], e.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], e.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], e.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], e.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], e.Ten.Nine.Eight.Eight, l3)
 	jay.WriteFloat32s(b[end:], e.Ten.Ten, l4)
 	return
 }
@@ -405,25 +405,25 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 }
 
 func (t *Twelve) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5 := byte(len(t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Eleven.Ten.Nine.Eight.Eight), len(t.Eleven.Ten.Ten), len(t.Twelve)
-	b = make([]byte, 44+16*l3+8*(l2+l5)+4*l4+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3], b[4], b[5] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
+	l0, l1, l2, l3, l4, l5 := len(t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Eleven.Ten.Nine.Eight.Eight), len(t.Eleven.Ten.Ten), len(t.Twelve)
+	b = make([]byte, 44+16*l3+8*(l2+l5)+4*l4+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	b[6] = jay.Bool1(t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[7] = t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	jay.WriteComplex64(b[8:16], t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Five)
 	jay.WriteComplex128(b[16:32], t.Eleven.Ten.Nine.Eight.Seven.Seven)
 	jay.WriteFloat32(b[32:36], t.Eleven.Ten.Nine.Nine)
 	jay.WriteFloat64(b[36:44], t.Eleven.Eleven)
-	at, end := 44, 44+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 44, 44+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Eleven.Ten.Ten, l4)
 	jay.WriteFloat64s(b[end:], t.Twelve, l5)
@@ -462,9 +462,9 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 }
 
 func (t *Thirteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5 := byte(len(t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.Twelve.Eleven.Ten.Ten), len(t.Twelve.Twelve)
-	b = make([]byte, 52+16*l3+8*(l2+l5)+4*l4+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3], b[4], b[5] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
+	l0, l1, l2, l3, l4, l5 := len(t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.Twelve.Eleven.Ten.Ten), len(t.Twelve.Twelve)
+	b = make([]byte, 52+16*l3+8*(l2+l5)+4*l4+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	b[6] = jay.Bool1(t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[7] = t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	jay.WriteComplex64(b[8:16], t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Five)
@@ -472,16 +472,16 @@ func (t *Thirteen) MarshalJ() (b []byte) {
 	jay.WriteFloat32(b[32:36], t.Twelve.Eleven.Ten.Nine.Nine)
 	jay.WriteFloat64(b[36:44], t.Twelve.Eleven.Eleven)
 	jay.WriteIntX64(b[44:52], t.Thirteen)
-	at, end := 52, 52+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 52, 52+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Twelve.Eleven.Ten.Ten, l4)
 	jay.WriteFloat64s(b[end:], t.Twelve.Twelve, l5)
@@ -521,9 +521,9 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fourteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5 := byte(len(f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(f.Thirteen.Twelve.Eleven.Ten.Ten), len(f.Thirteen.Twelve.Twelve)
-	b = make([]byte, 53+16*l3+8*(l2+l5)+4*l4+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3], b[4], b[5] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
+	l0, l1, l2, l3, l4, l5 := len(f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(f.Thirteen.Twelve.Eleven.Ten.Ten), len(f.Thirteen.Twelve.Twelve)
+	b = make([]byte, 53+16*l3+8*(l2+l5)+4*l4+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	b[6] = jay.Bool1(f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[7] = f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[8] = byte(f.Fourteen)
@@ -532,16 +532,16 @@ func (f *Fourteen) MarshalJ() (b []byte) {
 	jay.WriteFloat32(b[33:37], f.Thirteen.Twelve.Eleven.Ten.Nine.Nine)
 	jay.WriteFloat64(b[37:45], f.Thirteen.Twelve.Eleven.Eleven)
 	jay.WriteIntX64(b[45:53], f.Thirteen.Thirteen)
-	at, end := 53, 53+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 53, 53+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], f.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], f.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	jay.WriteFloat64s(b[end:], f.Thirteen.Twelve.Twelve, l5)
@@ -582,9 +582,9 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fifteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5 := byte(len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(f.Fourteen.Thirteen.Twelve.Twelve)
-	b = make([]byte, 55+16*l3+8*(l2+l5)+4*l4+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3], b[4], b[5] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
+	l0, l1, l2, l3, l4, l5 := len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(f.Fourteen.Thirteen.Twelve.Twelve)
+	b = make([]byte, 55+16*l3+8*(l2+l5)+4*l4+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	b[6] = jay.Bool1(f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[7] = f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[8] = byte(f.Fourteen.Fourteen)
@@ -594,16 +594,16 @@ func (f *Fifteen) MarshalJ() (b []byte) {
 	jay.WriteFloat64(b[37:45], f.Fourteen.Thirteen.Twelve.Eleven.Eleven)
 	jay.WriteIntX64(b[45:53], f.Fourteen.Thirteen.Thirteen)
 	jay.WriteInt16(b[53:55], f.Fifteen)
-	at, end := 55, 55+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 55, 55+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], f.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], f.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	jay.WriteFloat64s(b[end:], f.Fourteen.Thirteen.Twelve.Twelve, l5)
@@ -645,9 +645,9 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 }
 
 func (s *Sixteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5 := byte(len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(s.Fifteen.Fourteen.Thirteen.Twelve.Twelve)
-	b = make([]byte, 59+16*l3+8*(l2+l5)+4*l4+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3], b[4], b[5] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
+	l0, l1, l2, l3, l4, l5 := len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(s.Fifteen.Fourteen.Thirteen.Twelve.Twelve)
+	b = make([]byte, 59+16*l3+8*(l2+l5)+4*l4+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	b[6] = jay.Bool1(s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[7] = s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[8] = byte(s.Fifteen.Fourteen.Fourteen)
@@ -658,16 +658,16 @@ func (s *Sixteen) MarshalJ() (b []byte) {
 	jay.WriteIntX64(b[45:53], s.Fifteen.Fourteen.Thirteen.Thirteen)
 	jay.WriteInt16(b[53:55], s.Fifteen.Fifteen)
 	jay.WriteInt32(b[55:59], s.Sixteen)
-	at, end := 59, 59+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 59, 59+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], s.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	jay.WriteFloat64s(b[end:], s.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
@@ -710,9 +710,9 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 }
 
 func (s *Seventeen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5 := byte(len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve)
-	b = make([]byte, 67+16*l3+8*(l2+l5)+4*l4+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3], b[4], b[5] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
+	l0, l1, l2, l3, l4, l5 := len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve)
+	b = make([]byte, 67+16*l3+8*(l2+l5)+4*l4+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	b[6] = jay.Bool1(s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[7] = s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[8] = byte(s.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -724,16 +724,16 @@ func (s *Seventeen) MarshalJ() (b []byte) {
 	jay.WriteInt16(b[53:55], s.Sixteen.Fifteen.Fifteen)
 	jay.WriteInt32(b[55:59], s.Sixteen.Sixteen)
 	jay.WriteInt64(b[59:67], s.Seventeen)
-	at, end := 67, 67+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 67, 67+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	jay.WriteFloat64s(b[end:], s.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
@@ -777,9 +777,9 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 }
 
 func (e *Eighteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6 := byte(len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(e.Eighteen)
-	b = make([]byte, 68+16*l3+8*(l2+l5+l6)+4*l4+jay.SizeBools8(l0)+l1)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6)
+	l0, l1, l2, l3, l4, l5, l6 := len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(e.Eighteen)
+	b = make([]byte, 68+16*l3+8*(l2+l5+l6)+4*l4+jay.SizeBools(l0)+l1)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6)
 	b[7] = jay.Bool1(e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[8] = e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[9] = byte(e.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -791,21 +791,21 @@ func (e *Eighteen) MarshalJ() (b []byte) {
 	jay.WriteInt16(b[54:56], e.Seventeen.Sixteen.Fifteen.Fifteen)
 	jay.WriteInt32(b[56:60], e.Seventeen.Sixteen.Sixteen)
 	jay.WriteInt64(b[60:68], e.Seventeen.Seventeen)
-	at, end := 68, 68+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 68, 68+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], e.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
-	jay.WriteIntsX64(b[end:], e.Eighteen)
+	jay.WriteIntsX64(b[end:], e.Eighteen, l6)
 	return
 }
 
@@ -848,9 +848,9 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 }
 
 func (n *Nineteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7 := byte(len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(n.Eighteen.Eighteen), len(n.Nineteen)
-	b = make([]byte, 69+16*l3+8*(l2+l5+l6)+4*l4+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7)
+	l0, l1, l2, l3, l4, l5, l6, l7 := len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(n.Eighteen.Eighteen), len(n.Nineteen)
+	b = make([]byte, 69+16*l3+8*(l2+l5+l6)+4*l4+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7)
 	b[8] = jay.Bool1(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[9] = n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[10] = byte(n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -862,23 +862,23 @@ func (n *Nineteen) MarshalJ() (b []byte) {
 	jay.WriteInt16(b[55:57], n.Eighteen.Seventeen.Sixteen.Fifteen.Fifteen)
 	jay.WriteInt32(b[57:61], n.Eighteen.Seventeen.Sixteen.Sixteen)
 	jay.WriteInt64(b[61:69], n.Eighteen.Seventeen.Seventeen)
-	at, end := 69, 69+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 69, 69+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], n.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], n.Eighteen.Eighteen)
-	jay.WriteInt8s(b[end:], n.Nineteen)
+	jay.WriteIntsX64(b[at:end], n.Eighteen.Eighteen, l6)
+	jay.WriteInt8s(b[end:], n.Nineteen, l7)
 	return
 }
 
@@ -923,9 +923,9 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 }
 
 func (t *Twenty) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8 := byte(len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.Nineteen.Eighteen.Eighteen), len(t.Nineteen.Nineteen), len(t.Twenty)
-	b = make([]byte, 70+16*l3+8*(l2+l5+l6)+4*l4+2*l8+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8 := len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.Nineteen.Eighteen.Eighteen), len(t.Nineteen.Nineteen), len(t.Twenty)
+	b = make([]byte, 70+16*l3+8*(l2+l5+l6)+4*l4+2*l8+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8)
 	b[9] = jay.Bool1(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[10] = t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[11] = byte(t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -937,24 +937,24 @@ func (t *Twenty) MarshalJ() (b []byte) {
 	jay.WriteInt16(b[56:58], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fifteen)
 	jay.WriteInt32(b[58:62], t.Nineteen.Eighteen.Seventeen.Sixteen.Sixteen)
 	jay.WriteInt64(b[62:70], t.Nineteen.Eighteen.Seventeen.Seventeen)
-	at, end := 70, 70+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 70, 70+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.Nineteen.Nineteen, l7)
 	jay.WriteInt16s(b[end:], t.Twenty, l8)
 	return
 }
@@ -1002,9 +1002,9 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyOne) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := byte(len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.Twenty.Nineteen.Eighteen.Eighteen), len(t.Twenty.Nineteen.Nineteen), len(t.Twenty.Twenty), len(t.TwentyOne)
-	b = make([]byte, 71+16*l3+8*(l2+l5+l6)+4*(l4+l9)+2*l8+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.Twenty.Nineteen.Eighteen.Eighteen), len(t.Twenty.Nineteen.Nineteen), len(t.Twenty.Twenty), len(t.TwentyOne)
+	b = make([]byte, 71+16*l3+8*(l2+l5+l6)+4*(l4+l9)+2*l8+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9)
 	b[10] = jay.Bool1(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[11] = t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[12] = byte(t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1016,27 +1016,27 @@ func (t *TwentyOne) MarshalJ() (b []byte) {
 	jay.WriteInt16(b[57:59], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fifteen)
 	jay.WriteInt32(b[59:63], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Sixteen)
 	jay.WriteInt64(b[63:71], t.Twenty.Nineteen.Eighteen.Seventeen.Seventeen)
-	at, end := 71, 71+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 71, 71+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.Twenty.Twenty, l8)
-	jay.WriteInt32s(b[end:], t.TwentyOne)
+	jay.WriteInt32s(b[end:], t.TwentyOne, l9)
 	return
 }
 
@@ -1085,9 +1085,9 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyTwo) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := byte(len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyOne.Twenty.Twenty), len(t.TwentyOne.TwentyOne), len(t.TwentyTwo)
-	b = make([]byte, 72+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyOne.Twenty.Twenty), len(t.TwentyOne.TwentyOne), len(t.TwentyTwo)
+	b = make([]byte, 72+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
 	b[11] = jay.Bool1(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[12] = t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[13] = byte(t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1099,29 +1099,29 @@ func (t *TwentyTwo) MarshalJ() (b []byte) {
 	jay.WriteInt16(b[58:60], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fifteen)
 	jay.WriteInt32(b[60:64], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Sixteen)
 	jay.WriteInt64(b[64:72], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Seventeen)
-	at, end := 72, 72+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 72, 72+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.TwentyOne.TwentyOne)
-	jay.WriteInt64s(b[end:], t.TwentyTwo)
+	jay.WriteInt32s(b[at:end], t.TwentyOne.TwentyOne, l9)
+	jay.WriteInt64s(b[end:], t.TwentyTwo, l10)
 	return
 }
 
@@ -1172,9 +1172,9 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyThree) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := byte(len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyTwo.TwentyTwo)
-	b = make([]byte, 80+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyTwo.TwentyTwo)
+	b = make([]byte, 80+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
 	b[11] = jay.Bool1(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[12] = t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[13] = byte(t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1187,29 +1187,29 @@ func (t *TwentyThree) MarshalJ() (b []byte) {
 	jay.WriteInt32(b[60:64], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Sixteen)
 	jay.WriteInt64(b[64:72], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Seventeen)
 	jay.WriteUintX64(b[72:80], t.TwentyThree)
-	at, end := 80, 80+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 80, 80+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.TwentyTwo.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.TwentyTwo.TwentyOne.TwentyOne)
-	jay.WriteInt64s(b[end:], t.TwentyTwo.TwentyTwo)
+	jay.WriteInt32s(b[at:end], t.TwentyTwo.TwentyOne.TwentyOne, l9)
+	jay.WriteInt64s(b[end:], t.TwentyTwo.TwentyTwo, l10)
 	return
 }
 
@@ -1261,9 +1261,9 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyFour) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := byte(len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyThree.TwentyTwo.TwentyTwo)
-	b = make([]byte, 82+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyThree.TwentyTwo.TwentyTwo)
+	b = make([]byte, 82+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
 	b[11] = jay.Bool1(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[12] = t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[13] = byte(t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1277,29 +1277,29 @@ func (t *TwentyFour) MarshalJ() (b []byte) {
 	jay.WriteInt64(b[64:72], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Seventeen)
 	jay.WriteUintX64(b[72:80], t.TwentyThree.TwentyThree)
 	jay.WriteUint16(b[80:82], t.TwentyFour)
-	at, end := 82, 82+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 82, 82+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
-	jay.WriteInt64s(b[end:], t.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt32s(b[at:end], t.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l9)
+	jay.WriteInt64s(b[end:], t.TwentyThree.TwentyTwo.TwentyTwo, l10)
 	return
 }
 
@@ -1352,9 +1352,9 @@ func (t *TwentyFour) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyFive) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := byte(len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
-	b = make([]byte, 86+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	b = make([]byte, 86+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
 	b[11] = jay.Bool1(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[12] = t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[13] = byte(t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1369,29 +1369,29 @@ func (t *TwentyFive) MarshalJ() (b []byte) {
 	jay.WriteUintX64(b[72:80], t.TwentyFour.TwentyThree.TwentyThree)
 	jay.WriteUint16(b[80:82], t.TwentyFour.TwentyFour)
 	jay.WriteUint32(b[82:86], t.TwentyFive)
-	at, end := 86, 86+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 86, 86+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
-	jay.WriteInt64s(b[end:], t.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt32s(b[at:end], t.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l9)
+	jay.WriteInt64s(b[end:], t.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l10)
 	return
 }
 
@@ -1445,9 +1445,9 @@ func (t *TwentyFive) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentySix) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := byte(len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
-	b = make([]byte, 94+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	b = make([]byte, 94+16*l3+8*(l2+l5+l6+l10)+4*(l4+l9)+2*l8+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
 	b[11] = jay.Bool1(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[12] = t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[13] = byte(t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1463,29 +1463,29 @@ func (t *TwentySix) MarshalJ() (b []byte) {
 	jay.WriteUint16(b[80:82], t.TwentyFive.TwentyFour.TwentyFour)
 	jay.WriteUint32(b[82:86], t.TwentyFive.TwentyFive)
 	jay.WriteUint64(b[86:94], t.TwentySix)
-	at, end := 94, 94+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 94, 94+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
-	jay.WriteInt64s(b[end:], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt32s(b[at:end], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l9)
+	jay.WriteInt64s(b[end:], t.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l10)
 	return
 }
 
@@ -1540,9 +1540,9 @@ func (t *TwentySix) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentySeven) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := byte(len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.TwentySeven)
-	b = make([]byte, 95+16*l3+8*(l2+l5+l6+l10+l11)+4*(l4+l9)+2*l8+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.TwentySeven)
+	b = make([]byte, 95+16*l3+8*(l2+l5+l6+l10+l11)+4*(l4+l9)+2*l8+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11)
 	b[12] = jay.Bool1(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[13] = t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[14] = byte(t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1558,31 +1558,31 @@ func (t *TwentySeven) MarshalJ() (b []byte) {
 	jay.WriteUint16(b[81:83], t.TwentySix.TwentyFive.TwentyFour.TwentyFour)
 	jay.WriteUint32(b[83:87], t.TwentySix.TwentyFive.TwentyFive)
 	jay.WriteUint64(b[87:95], t.TwentySix.TwentySix)
-	at, end := 95, 95+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 95, 95+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l9)
 	at, end = end, end+l10*8
-	jay.WriteInt64s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
-	jay.WriteUintsX64(b[end:], t.TwentySeven)
+	jay.WriteInt64s(b[at:end], t.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l10)
+	jay.WriteUintsX64(b[end:], t.TwentySeven, l11)
 	return
 }
 
@@ -1639,9 +1639,9 @@ func (t *TwentySeven) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyEight) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := byte(len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.TwentySeven.TwentySeven), len(t.TwentyEight)
-	b = make([]byte, 96+16*l3+8*(l2+l5+l6+l10+l11)+4*(l4+l9)+2*(l8+l12)+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.TwentySeven.TwentySeven), len(t.TwentyEight)
+	b = make([]byte, 96+16*l3+8*(l2+l5+l6+l10+l11)+4*(l4+l9)+2*(l8+l12)+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12)
 	b[13] = jay.Bool1(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[14] = t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[15] = byte(t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1657,32 +1657,32 @@ func (t *TwentyEight) MarshalJ() (b []byte) {
 	jay.WriteUint16(b[82:84], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyFour)
 	jay.WriteUint32(b[84:88], t.TwentySeven.TwentySix.TwentyFive.TwentyFive)
 	jay.WriteUint64(b[88:96], t.TwentySeven.TwentySix.TwentySix)
-	at, end := 96, 96+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 96, 96+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l9)
 	at, end = end, end+l10*8
-	jay.WriteInt64s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt64s(b[at:end], t.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l10)
 	at, end = end, end+l11*8
-	jay.WriteUintsX64(b[at:end], t.TwentySeven.TwentySeven)
+	jay.WriteUintsX64(b[at:end], t.TwentySeven.TwentySeven, l11)
 	jay.WriteUint16s(b[end:], t.TwentyEight, l12)
 	return
 }
@@ -1742,9 +1742,9 @@ func (t *TwentyEight) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyNine) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := byte(len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.TwentyEight.TwentySeven.TwentySeven), len(t.TwentyEight.TwentyEight), len(t.TwentyNine)
-	b = make([]byte, 97+16*l3+8*(l2+l5+l6+l10+l11)+4*(l4+l9+l13)+2*(l8+l12)+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.TwentyEight.TwentySeven.TwentySeven), len(t.TwentyEight.TwentyEight), len(t.TwentyNine)
+	b = make([]byte, 97+16*l3+8*(l2+l5+l6+l10+l11)+4*(l4+l9+l13)+2*(l8+l12)+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13)
 	b[14] = jay.Bool1(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[15] = t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[16] = byte(t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1760,35 +1760,35 @@ func (t *TwentyNine) MarshalJ() (b []byte) {
 	jay.WriteUint16(b[83:85], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyFour)
 	jay.WriteUint32(b[85:89], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFive)
 	jay.WriteUint64(b[89:97], t.TwentyEight.TwentySeven.TwentySix.TwentySix)
-	at, end := 97, 97+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 97, 97+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l9)
 	at, end = end, end+l10*8
-	jay.WriteInt64s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt64s(b[at:end], t.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l10)
 	at, end = end, end+l11*8
-	jay.WriteUintsX64(b[at:end], t.TwentyEight.TwentySeven.TwentySeven)
+	jay.WriteUintsX64(b[at:end], t.TwentyEight.TwentySeven.TwentySeven, l11)
 	at, end = end, end+l12*2
 	jay.WriteUint16s(b[at:end], t.TwentyEight.TwentyEight, l12)
-	jay.WriteUint32s(b[end:], t.TwentyNine)
+	jay.WriteUint32s(b[end:], t.TwentyNine, l13)
 	return
 }
 
@@ -1849,9 +1849,9 @@ func (t *TwentyNine) UnmarshalJ(b []byte) error {
 }
 
 func (t *Thirty) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := byte(len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.TwentyNine.TwentyEight.TwentyEight), len(t.TwentyNine.TwentyNine), len(t.Thirty)
-	b = make([]byte, 98+16*l3+8*(l2+l5+l6+l10+l11+l14)+4*(l4+l9+l13)+2*(l8+l12)+jay.SizeBools8(l0)+l1+l7)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.TwentyNine.TwentyEight.TwentyEight), len(t.TwentyNine.TwentyNine), len(t.Thirty)
+	b = make([]byte, 98+16*l3+8*(l2+l5+l6+l10+l11+l14)+4*(l4+l9+l13)+2*(l8+l12)+jay.SizeBools(l0)+l1+l7)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14)
 	b[15] = jay.Bool1(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[16] = t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[17] = byte(t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1867,37 +1867,37 @@ func (t *Thirty) MarshalJ() (b []byte) {
 	jay.WriteUint16(b[84:86], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyFour)
 	jay.WriteUint32(b[86:90], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFive)
 	jay.WriteUint64(b[90:98], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentySix)
-	at, end := 98, 98+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 98, 98+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l9)
 	at, end = end, end+l10*8
-	jay.WriteInt64s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt64s(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l10)
 	at, end = end, end+l11*8
-	jay.WriteUintsX64(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySeven)
+	jay.WriteUintsX64(b[at:end], t.TwentyNine.TwentyEight.TwentySeven.TwentySeven, l11)
 	at, end = end, end+l12*2
 	jay.WriteUint16s(b[at:end], t.TwentyNine.TwentyEight.TwentyEight, l12)
 	at, end = end, end+l13*4
-	jay.WriteUint32s(b[at:end], t.TwentyNine.TwentyNine)
-	jay.WriteUint64s(b[end:], t.Thirty)
+	jay.WriteUint32s(b[at:end], t.TwentyNine.TwentyNine, l13)
+	jay.WriteUint64s(b[end:], t.Thirty, l14)
 	return
 }
 
@@ -1960,9 +1960,9 @@ func (t *Thirty) UnmarshalJ(b []byte) error {
 }
 
 func (t *ThirtyOne) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := byte(len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.Thirty.TwentyNine.TwentyNine), len(t.Thirty.Thirty), len(t.ThirtyOne)
-	b = make([]byte, 99+16*l3+8*(l2+l5+l6+l10+l11+l14)+4*(l4+l9+l13)+2*(l8+l12)+jay.SizeBools8(l0)+l1+l7+l15)
-	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15] = l0, byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.Thirty.TwentyNine.TwentyNine), len(t.Thirty.Thirty), len(t.ThirtyOne)
+	b = make([]byte, 99+16*l3+8*(l2+l5+l6+l10+l11+l14)+4*(l4+l9+l13)+2*(l8+l12)+jay.SizeBools(l0)+l1+l7+l15)
+	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15)
 	b[16] = jay.Bool1(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[17] = t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[18] = byte(t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -1978,38 +1978,38 @@ func (t *ThirtyOne) MarshalJ() (b []byte) {
 	jay.WriteUint16(b[85:87], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyFour)
 	jay.WriteUint32(b[87:91], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFive)
 	jay.WriteUint64(b[91:99], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentySix)
-	at, end := 99, 99+jay.SizeBools8(l0)
-	jay.WriteBools8(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
+	at, end := 99, 99+jay.SizeBools(l0)
+	jay.WriteBools(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l0)
 	if l1 != 0 {
 		at, end = end, end+l1
 		copy(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l2*8
-	jay.WriteComplex64s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l2)
 	at, end = end, end+l3*16
-	jay.WriteComplex128s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l3)
 	at, end = end, end+l4*4
 	jay.WriteFloat32s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l4)
 	at, end = end, end+l5*8
 	jay.WriteFloat64s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l5)
 	at, end = end, end+l6*8
-	jay.WriteIntsX64(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l6)
 	at, end = end, end+l7
-	jay.WriteInt8s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l7)
 	at, end = end, end+l8*2
 	jay.WriteInt16s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l8)
 	at, end = end, end+l9*4
-	jay.WriteInt32s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l9)
 	at, end = end, end+l10*8
-	jay.WriteInt64s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt64s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l10)
 	at, end = end, end+l11*8
-	jay.WriteUintsX64(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven)
+	jay.WriteUintsX64(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven, l11)
 	at, end = end, end+l12*2
 	jay.WriteUint16s(b[at:end], t.Thirty.TwentyNine.TwentyEight.TwentyEight, l12)
 	at, end = end, end+l13*4
-	jay.WriteUint32s(b[at:end], t.Thirty.TwentyNine.TwentyNine)
+	jay.WriteUint32s(b[at:end], t.Thirty.TwentyNine.TwentyNine, l13)
 	at, end = end, end+l14*8
-	jay.WriteUint64s(b[at:end], t.Thirty.Thirty)
+	jay.WriteUint64s(b[at:end], t.Thirty.Thirty, l14)
 	copy(b[end:], t.ThirtyOne)
 	return
 }
@@ -2075,9 +2075,9 @@ func (t *ThirtyOne) UnmarshalJ(b []byte) error {
 }
 
 func (t *ThirtyTwo) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := jay.SizeStrings8(t.ThirtyTwo), byte(len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyOne.Thirty.Thirty), len(t.ThirtyOne.ThirtyOne)
-	b = make([]byte, 100+16*l4+8*(l3+l6+l7+l11+l12+l15)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools8(l1)+l2+l8+l16)
-	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = l1, byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := jay.SizeStrings8(t.ThirtyTwo), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyOne.Thirty.Thirty), len(t.ThirtyOne.ThirtyOne)
+	b = make([]byte, 100+16*l4+8*(l3+l6+l7+l11+l12+l15)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools(l1)+l2+l8+l16)
+	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
 	b[17] = jay.Bool1(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[18] = t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[19] = byte(t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -2095,38 +2095,38 @@ func (t *ThirtyTwo) MarshalJ() (b []byte) {
 	jay.WriteUint64(b[92:100], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentySix)
 	at, end := 100, 100+l0
 	jay.WriteStrings8(b[at:end], b[:1], t.ThirtyTwo)
-	at, end = end, end+jay.SizeBools8(l1)
-	jay.WriteBools8(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
+	at, end = end, end+jay.SizeBools(l1)
+	jay.WriteBools(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
 	if l2 != 0 {
 		at, end = end, end+l2
 		copy(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l3*8
-	jay.WriteComplex64s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l3)
 	at, end = end, end+l4*16
-	jay.WriteComplex128s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l4)
 	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l5)
 	at, end = end, end+l6*8
 	jay.WriteFloat64s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l6)
 	at, end = end, end+l7*8
-	jay.WriteIntsX64(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l7)
 	at, end = end, end+l8
-	jay.WriteInt8s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l8)
 	at, end = end, end+l9*2
 	jay.WriteInt16s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l9)
 	at, end = end, end+l10*4
-	jay.WriteInt32s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l10)
 	at, end = end, end+l11*8
-	jay.WriteInt64s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt64s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l11)
 	at, end = end, end+l12*8
-	jay.WriteUintsX64(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven)
+	jay.WriteUintsX64(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven, l12)
 	at, end = end, end+l13*2
 	jay.WriteUint16s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight, l13)
 	at, end = end, end+l14*4
-	jay.WriteUint32s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyNine)
+	jay.WriteUint32s(b[at:end], t.ThirtyOne.Thirty.TwentyNine.TwentyNine, l14)
 	at, end = end, end+l15*8
-	jay.WriteUint64s(b[at:end], t.ThirtyOne.Thirty.Thirty)
+	jay.WriteUint64s(b[at:end], t.ThirtyOne.Thirty.Thirty, l15)
 	copy(b[end:], t.ThirtyOne.ThirtyOne)
 	return
 }
@@ -2196,9 +2196,9 @@ func (t *ThirtyTwo) UnmarshalJ(b []byte) error {
 }
 
 func (t *ThirtyThree) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := jay.SizeStrings8(t.ThirtyTwo.ThirtyTwo), byte(len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyTwo.ThirtyOne.Thirty.Thirty), len(t.ThirtyTwo.ThirtyOne.ThirtyOne)
-	b = make([]byte, 108+16*l4+8*(l3+l6+l7+l11+l12+l15)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools8(l1)+l2+l8+l16)
-	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = l1, byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := jay.SizeStrings8(t.ThirtyTwo.ThirtyTwo), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyTwo.ThirtyOne.Thirty.Thirty), len(t.ThirtyTwo.ThirtyOne.ThirtyOne)
+	b = make([]byte, 108+16*l4+8*(l3+l6+l7+l11+l12+l15)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools(l1)+l2+l8+l16)
+	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
 	b[17] = jay.Bool1(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[18] = t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[19] = byte(t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -2217,38 +2217,38 @@ func (t *ThirtyThree) MarshalJ() (b []byte) {
 	jay.WriteTime(b[100:108], t.ThirtyThree)
 	at, end := 108, 108+l0
 	jay.WriteStrings8(b[at:end], b[:1], t.ThirtyTwo.ThirtyTwo)
-	at, end = end, end+jay.SizeBools8(l1)
-	jay.WriteBools8(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
+	at, end = end, end+jay.SizeBools(l1)
+	jay.WriteBools(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
 	if l2 != 0 {
 		at, end = end, end+l2
 		copy(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l3*8
-	jay.WriteComplex64s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l3)
 	at, end = end, end+l4*16
-	jay.WriteComplex128s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l4)
 	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l5)
 	at, end = end, end+l6*8
 	jay.WriteFloat64s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l6)
 	at, end = end, end+l7*8
-	jay.WriteIntsX64(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l7)
 	at, end = end, end+l8
-	jay.WriteInt8s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l8)
 	at, end = end, end+l9*2
 	jay.WriteInt16s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l9)
 	at, end = end, end+l10*4
-	jay.WriteInt32s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l10)
 	at, end = end, end+l11*8
-	jay.WriteInt64s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt64s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l11)
 	at, end = end, end+l12*8
-	jay.WriteUintsX64(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven)
+	jay.WriteUintsX64(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven, l12)
 	at, end = end, end+l13*2
 	jay.WriteUint16s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight, l13)
 	at, end = end, end+l14*4
-	jay.WriteUint32s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine)
+	jay.WriteUint32s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine, l14)
 	at, end = end, end+l15*8
-	jay.WriteUint64s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.Thirty)
+	jay.WriteUint64s(b[at:end], t.ThirtyTwo.ThirtyOne.Thirty.Thirty, l15)
 	copy(b[end:], t.ThirtyTwo.ThirtyOne.ThirtyOne)
 	return
 }
@@ -2319,9 +2319,9 @@ func (t *ThirtyThree) UnmarshalJ(b []byte) error {
 }
 
 func (t *ThirtyFour) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := jay.SizeStrings8(t.ThirtyThree.ThirtyTwo.ThirtyTwo), byte(len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.ThirtyOne), len(t.ThirtyFour)
-	b = make([]byte, 109+16*l4+8*(l3+l6+l7+l11+l12+l15+l17)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools8(l1)+l2+l8+l16)
-	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = l1, byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := jay.SizeStrings8(t.ThirtyThree.ThirtyTwo.ThirtyTwo), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty), len(t.ThirtyThree.ThirtyTwo.ThirtyOne.ThirtyOne), len(t.ThirtyFour)
+	b = make([]byte, 109+16*l4+8*(l3+l6+l7+l11+l12+l15+l17)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools(l1)+l2+l8+l16)
+	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
 	b[18] = jay.Bool1(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[19] = t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[20] = byte(t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -2340,41 +2340,41 @@ func (t *ThirtyFour) MarshalJ() (b []byte) {
 	jay.WriteTime(b[101:109], t.ThirtyThree.ThirtyThree)
 	at, end := 109, 109+l0
 	jay.WriteStrings8(b[at:end], b[:1], t.ThirtyThree.ThirtyTwo.ThirtyTwo)
-	at, end = end, end+jay.SizeBools8(l1)
-	jay.WriteBools8(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
+	at, end = end, end+jay.SizeBools(l1)
+	jay.WriteBools(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
 	if l2 != 0 {
 		at, end = end, end+l2
 		copy(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l3*8
-	jay.WriteComplex64s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l3)
 	at, end = end, end+l4*16
-	jay.WriteComplex128s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l4)
 	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l5)
 	at, end = end, end+l6*8
 	jay.WriteFloat64s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l6)
 	at, end = end, end+l7*8
-	jay.WriteIntsX64(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l7)
 	at, end = end, end+l8
-	jay.WriteInt8s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l8)
 	at, end = end, end+l9*2
 	jay.WriteInt16s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l9)
 	at, end = end, end+l10*4
-	jay.WriteInt32s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l10)
 	at, end = end, end+l11*8
-	jay.WriteInt64s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt64s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l11)
 	at, end = end, end+l12*8
-	jay.WriteUintsX64(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven)
+	jay.WriteUintsX64(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven, l12)
 	at, end = end, end+l13*2
 	jay.WriteUint16s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight, l13)
 	at, end = end, end+l14*4
-	jay.WriteUint32s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine)
+	jay.WriteUint32s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine, l14)
 	at, end = end, end+l15*8
-	jay.WriteUint64s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty)
+	jay.WriteUint64s(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty, l15)
 	at, end = end, end+l16
 	copy(b[at:end], t.ThirtyThree.ThirtyTwo.ThirtyOne.ThirtyOne)
-	jay.WriteTimes(b[end:], t.ThirtyFour)
+	jay.WriteTimes(b[end:], t.ThirtyFour, l17)
 	return
 }
 
@@ -2446,9 +2446,9 @@ func (t *ThirtyFour) UnmarshalJ(b []byte) error {
 }
 
 func (t *ThirtyFive) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := jay.SizeStrings8(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo), byte(len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.ThirtyOne), len(t.ThirtyFour.ThirtyFour)
-	b = make([]byte, 117+16*l4+8*(l3+l6+l7+l11+l12+l15+l17)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools8(l1)+l2+l8+l16)
-	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = l1, byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := jay.SizeStrings8(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty), len(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.ThirtyOne), len(t.ThirtyFour.ThirtyFour)
+	b = make([]byte, 117+16*l4+8*(l3+l6+l7+l11+l12+l15+l17)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools(l1)+l2+l8+l16)
+	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
 	b[18] = jay.Bool1(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[19] = t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[20] = byte(t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -2468,41 +2468,41 @@ func (t *ThirtyFive) MarshalJ() (b []byte) {
 	jay.WriteInt64(b[109:117], int64(t.ThirtyFive))
 	at, end := 117, 117+l0
 	jay.WriteStrings8(b[at:end], b[:1], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo)
-	at, end = end, end+jay.SizeBools8(l1)
-	jay.WriteBools8(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
+	at, end = end, end+jay.SizeBools(l1)
+	jay.WriteBools(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
 	if l2 != 0 {
 		at, end = end, end+l2
 		copy(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l3*8
-	jay.WriteComplex64s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l3)
 	at, end = end, end+l4*16
-	jay.WriteComplex128s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l4)
 	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l5)
 	at, end = end, end+l6*8
 	jay.WriteFloat64s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l6)
 	at, end = end, end+l7*8
-	jay.WriteIntsX64(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l7)
 	at, end = end, end+l8
-	jay.WriteInt8s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l8)
 	at, end = end, end+l9*2
 	jay.WriteInt16s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l9)
 	at, end = end, end+l10*4
-	jay.WriteInt32s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l10)
 	at, end = end, end+l11*8
-	jay.WriteInt64s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt64s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l11)
 	at, end = end, end+l12*8
-	jay.WriteUintsX64(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven)
+	jay.WriteUintsX64(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven, l12)
 	at, end = end, end+l13*2
 	jay.WriteUint16s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight, l13)
 	at, end = end, end+l14*4
-	jay.WriteUint32s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine)
+	jay.WriteUint32s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine, l14)
 	at, end = end, end+l15*8
-	jay.WriteUint64s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty)
+	jay.WriteUint64s(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty, l15)
 	at, end = end, end+l16
 	copy(b[at:end], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.ThirtyOne)
-	jay.WriteTimes(b[end:], t.ThirtyFour.ThirtyFour)
+	jay.WriteTimes(b[end:], t.ThirtyFour.ThirtyFour, l17)
 	return
 }
 
@@ -2575,9 +2575,9 @@ func (t *ThirtyFive) UnmarshalJ(b []byte) error {
 }
 
 func (t *ThirtySix) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := jay.SizeStrings8(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo), byte(len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two)), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.ThirtyOne), len(t.ThirtyFive.ThirtyFour.ThirtyFour), len(t.ThirtySix)
-	b = make([]byte, 118+16*l4+8*(l3+l6+l7+l11+l12+l15+l17+l18)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools8(l1)+l2+l8+l16)
-	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18] = l1, byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := jay.SizeStrings8(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty), len(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.ThirtyOne), len(t.ThirtyFive.ThirtyFour.ThirtyFour), len(t.ThirtySix)
+	b = make([]byte, 118+16*l4+8*(l3+l6+l7+l11+l12+l15+l17+l18)+4*(l5+l10+l14)+2*(l9+l13)+l0+jay.SizeBools(l1)+l2+l8+l16)
+	b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18] = byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18)
 	b[19] = jay.Bool1(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One)
 	b[20] = t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Three
 	b[21] = byte(t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Fourteen)
@@ -2597,43 +2597,43 @@ func (t *ThirtySix) MarshalJ() (b []byte) {
 	jay.WriteInt64(b[110:118], int64(t.ThirtyFive.ThirtyFive))
 	at, end := 118, 118+l0
 	jay.WriteStrings8(b[at:end], b[:1], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo)
-	at, end = end, end+jay.SizeBools8(l1)
-	jay.WriteBools8(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
+	at, end = end, end+jay.SizeBools(l1)
+	jay.WriteBools(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two, l1)
 	if l2 != 0 {
 		at, end = end, end+l2
 		copy(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Four)
 	}
 	at, end = end, end+l3*8
-	jay.WriteComplex64s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six)
+	jay.WriteComplex64s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Six, l3)
 	at, end = end, end+l4*16
-	jay.WriteComplex128s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight)
+	jay.WriteComplex128s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Eight, l4)
 	at, end = end, end+l5*4
 	jay.WriteFloat32s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Ten, l5)
 	at, end = end, end+l6*8
 	jay.WriteFloat64s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Twelve, l6)
 	at, end = end, end+l7*8
-	jay.WriteIntsX64(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen)
+	jay.WriteIntsX64(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Eighteen, l7)
 	at, end = end, end+l8
-	jay.WriteInt8s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen)
+	jay.WriteInt8s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Nineteen, l8)
 	at, end = end, end+l9*2
 	jay.WriteInt16s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Twenty, l9)
 	at, end = end, end+l10*4
-	jay.WriteInt32s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne)
+	jay.WriteInt32s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.TwentyOne, l10)
 	at, end = end, end+l11*8
-	jay.WriteInt64s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo)
+	jay.WriteInt64s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyTwo, l11)
 	at, end = end, end+l12*8
-	jay.WriteUintsX64(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven)
+	jay.WriteUintsX64(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySeven, l12)
 	at, end = end, end+l13*2
 	jay.WriteUint16s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentyEight, l13)
 	at, end = end, end+l14*4
-	jay.WriteUint32s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine)
+	jay.WriteUint32s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyNine, l14)
 	at, end = end, end+l15*8
-	jay.WriteUint64s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty)
+	jay.WriteUint64s(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.Thirty, l15)
 	at, end = end, end+l16
 	copy(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.ThirtyOne)
 	at, end = end, end+l17*8
-	jay.WriteTimes(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyFour)
-	jay.WriteDurations(b[end:], t.ThirtySix)
+	jay.WriteTimes(b[at:end], t.ThirtyFive.ThirtyFour.ThirtyFour, l17)
+	jay.WriteDurations(b[end:], t.ThirtySix, l18)
 	return
 }
 
