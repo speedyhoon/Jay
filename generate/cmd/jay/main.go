@@ -36,18 +36,18 @@ func main() {
 	var types flagvar.StrList
 	var verbose bool
 
-	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.")
+	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for 'int' and 'uint' types. Defaults to this system's architecture.")
 	flag.BoolVar(&opt.IsDebug, "d", false, "Debug mode - always writes to disk.")
 	flag.BoolVar(&opt.VariableIntSize, "vi", false, "Variable int size.")
 	flag.BoolVar(&opt.VariableUintSize, "vu", false, "Variable uint size.")
 	flag.StringVar(&opt.OutputFileName, "o", generate.DefaultOutputFileName, "Output file.")
-	flag.StringVar(&opt.ErrVarName, "e", generate.ExportedErr, "Name of the error variable to return from UnmarshalJ functions.")
+	flag.StringVar(&opt.ErrVarName, "e", generate.ExportedErr, "Name of the `error variable` to return from UnmarshalJ functions.")
 	flag.BoolVar(&verbose, "v", false, "Verbose output.")
 	flag.BoolVar(&opt.IsMarshalMethodPtr, "p", false, "Pointer MarshalJ() method.")
 	flag.BoolVar(&opt.SearchTests, "s", false, "Search Go test files for exported structs too.")
 	// Not yet implemented: flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
-	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() function.")
-	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() function.")
+	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() functions.")
+	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() functions.")
 	flag.BoolVar(&opt.JayFlag, "j", false, fmt.Sprintf("Only process structs and their descendants marked with a Jay export tag '%s' in its type declaration.\nGo code example:\ntype MyType struct { // %[1]s\nIdentical to -y option but hardcoded in Go comments, instead of build tool configurations.\nWorks additionally to option -y (if specified).", generate.JayFlag))
 	flag.Var(&types, "y", "`Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for.` For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`. (default: Process all exported types)")
 	flag.Usage = func() {
