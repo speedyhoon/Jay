@@ -8,13 +8,13 @@ import (
 var integer int
 
 func BenchmarkReadString(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		str1, integer, bool1 = jay.ReadString(z)
 	}
 }
 
 func BenchmarkReadStringPtr(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		integer, bool1 = jay.ReadStringPtr(z, &str1)
 	}
 }

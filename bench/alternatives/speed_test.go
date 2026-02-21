@@ -25,7 +25,7 @@ var foo = Foo{
 //}
 
 //func BenchmarkMarshalNew(b *testing.B) {
-//	for i := 0; i < b.N; i++ {
+//	for b.Loop() {
 //		_ = foo2.MarshalBebop()
 //	}
 //}
@@ -37,61 +37,61 @@ var err error
 var fooEmpty Foo
 
 func BenchmarkMarshalBebop(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		bop = foo.MarshalBebop()
 	}
 }
 
 func BenchmarkMarshalJay(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		jy = foo.MarshalJ()
 	}
 }
 
 func BenchmarkMarshalJay2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		jy = foo.MarshalJ2()
 	}
 }
 
 func BenchmarkMarshalJson(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		jsn, _ = json.Marshal(foo)
 	}
 }
 
 func BenchmarkUnmarshalBebop(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = fooEmpty.UnmarshalBebop(bop)
 	}
 }
 
 func BenchmarkUnmarshalJay(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = fooEmpty.UnmarshalJ(jy)
 	}
 }
 
 func BenchmarkUnmarshalJay2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = fooEmpty.UnmarshalJ2(jy)
 	}
 }
 
 func BenchmarkUnmarshalJay3(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = fooEmpty.UnmarshalJ3(jy)
 	}
 }
 
 func BenchmarkUnmarshalJay4(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = fooEmpty.UnmarshalJ4(jy)
 	}
 }
 
 func BenchmarkUnmarshalJson(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = json.Unmarshal(jsn, &fooEmpty)
 	}
 }

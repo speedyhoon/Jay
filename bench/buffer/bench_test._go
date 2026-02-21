@@ -60,7 +60,7 @@ func BenchmarkBuffer3(b *testing.B) {
 /*func BenchmarkBytes2(b *testing.B) {
 	g := make([]byte, 1000000000*8)
 	//var i, h uint = 0, uint(b.N)
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 
 		PutUint32(g, 5)
 	}

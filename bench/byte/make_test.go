@@ -10,34 +10,34 @@ import (
 var mk = MakeVsReturn{Bool: true, Uint8: rando.Uint8(), Int8: rando.Int8()}
 
 func BenchmarkMVR_Return1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		y = mk.Return1()
 	}
 }
 func BenchmarkMVR_Make1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		y = mk.Make1()
 	}
 }
 
 func BenchmarkMVR_Return2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		y = mk.Return2()
 	}
 }
 func BenchmarkMVR_Make2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		y = mk.Make2()
 	}
 }
 
 func BenchmarkMVR_Return3(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		y = mk.Return3()
 	}
 }
 func BenchmarkMVR_Make3(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		y = mk.Make3()
 	}
 }
@@ -78,12 +78,12 @@ var mk2 = MakeVsReturnLarge{
 }
 
 func BenchmarkMVRLarge_Make1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		y = mk2.Make1()
 	}
 }
 func BenchmarkMVRLarge_Return1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		y = mk2.Return1()
 	}
 }

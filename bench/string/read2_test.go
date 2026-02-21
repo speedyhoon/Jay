@@ -14,25 +14,25 @@ var y = make([]byte, 19)
 var z = []byte("\022octopus camouflage")
 
 func BenchmarkReadString(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		str1, integer, bool1 = jay.ReadString(z)
 	}
 }
 
 func BenchmarkReadStringV2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		str1, integer = ReadStringV2(z)
 	}
 }
 
 func BenchmarkReadStringPtr(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		integer, bool1 = jay.ReadStringPtr(z, &str1)
 	}
 }
 
 func BenchmarkReadStringPtrV2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		integer = ReadStringPtrV2(z, &str1)
 	}
 }
@@ -62,7 +62,7 @@ var err error
 func BenchmarkReadStringPtrErrV1(b *testing.B) {
 	//at := 0
 	//var ok bool
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = zebra.Unmarshal1(z)
 		//c.Gearbox.Manufacturer, at, ok = jay.ReadString(b[at:])
 		//if !ok {
@@ -72,7 +72,7 @@ func BenchmarkReadStringPtrErrV1(b *testing.B) {
 }
 func BenchmarkReadStringPtrErrV2(b *testing.B) {
 	//var err error
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		//err = jay.ReadStringPtrErr(b[at:], &c.Gearbox.Manufacturer)
 		err = zebra.Unmarshal2(z)
 	}

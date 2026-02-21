@@ -10,19 +10,19 @@ var err error
 var twenty3 TwentyThree
 
 func BenchmarkUnmarshalJ(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = eight.UnmarshalJ([]byte{215})
 	}
 }
 
 func BenchmarkUnmarshalJ2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = eight.UnmarshalJ2([]byte{215})
 	}
 }
 
 func BenchmarkUnmarshalJ3(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = eight.UnmarshalJ3([]byte{215})
 	}
 }
@@ -90,19 +90,19 @@ type TwentyThree struct {
 }
 
 func BenchmarkUnmarshalJ23(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = twenty3.UnmarshalJ([]byte{215, 49, 51})
 	}
 }
 
 func BenchmarkUnmarshalJ23_2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = twenty3.UnmarshalJ2([]byte{215, 49, 51})
 	}
 }
 
 func BenchmarkUnmarshalJ23_3(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		err = twenty3.UnmarshalJ3([]byte{215, 49, 51})
 	}
 }

@@ -11,31 +11,31 @@ var z = []byte("\022octopus camouflage")
 var bool1 bool
 
 func BenchmarkWriteString(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		jay.WriteString(y, "octopus camouflage", 18)
 	}
 }
 
 func BenchmarkWriteStringEmpty(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		jay.WriteString(y, "", 0)
 	}
 }
 
 func BenchmarkWriteStringV2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		WriteStringV2(y, "octopus camouflage", 18)
 	}
 }
 
 func BenchmarkWriteStringV3(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		WriteStringV3(y, "octopus camouflage", 18)
 	}
 }
 
 func BenchmarkWriteStringV2empty(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		WriteStringV2(y, "", 0)
 	}
 }

@@ -8,19 +8,19 @@ import (
 var integer int
 
 func BenchmarkReadInt24(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		integer = jay.ReadInt24([]byte{240, 48, 77})
 	}
 }
 
 func BenchmarkReadInt24v1(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		integer = v1ReadInt24([]byte{240, 48, 77})
 	}
 }
 
 func BenchmarkReadInt24v2(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		integer = v2ReadInt24([]byte{240, 48, 77})
 	}
 }

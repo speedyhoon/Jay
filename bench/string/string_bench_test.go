@@ -10,13 +10,13 @@ import (
 // var z = []byte("\022octopus camouflage")
 
 func BenchmarkReadString67(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		str1, integer, bool1 = jay.ReadString(z)
 	}
 }
 
 func BenchmarkReadStringPtr76(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		integer, bool1 = jay.ReadStringPtr(z, &str1)
 	}
 }
