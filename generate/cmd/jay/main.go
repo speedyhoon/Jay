@@ -19,12 +19,11 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"github.com/speedyhoon/ext"
+	"github.com/speedyhoon/flag"
 	"github.com/speedyhoon/jay/generate"
 	"github.com/speedyhoon/utl"
-	"github.com/speedyhoon/utl/flagvar"
 	"io"
 	"log"
 	"os"
@@ -33,7 +32,6 @@ import (
 
 func main() {
 	var opt generate.Option
-	var types flagvar.StrList
 	var verbose bool
 
 	flag.BoolVar(&opt.Is32bit, "32", generate.IntSize == 32, "Force 32-bit output for 'int' and 'uint' types. Defaults to this system's architecture.")
@@ -49,7 +47,7 @@ func main() {
 	flag.BoolVar(&opt.SkipMarshal, "m", false, "Don't generate MarshalJ() functions.")
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() functions.")
 	flag.BoolVar(&opt.JayFlag, "j", false, fmt.Sprintf("Only process structs and their descendants marked with a Jay export tag '%s' in its type declaration.\nGo code example:\ntype MyType struct { // %[1]s\nIdentical to -y option but hardcoded in Go comments, instead of build tool configurations.\nWorks additionally to option -y (if specified).", generate.JayFlag))
-	flag.Var(&types, "y", "`Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for.` For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`. (default: Process all exported types)")
+	flag.StringsVar(&opt.OnlyTypes, "y", nil, "`Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for.` For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`. (default: Process all exported types)")
 	flag.Usage = func() {
 		_, _ = fmt.Fprintln(os.Stderr, "Generate Jay serialization code for Go.\n<https://github.com/speedyhoon/Jay>\n\nUsage: jay [options] [path ...]\nOptions:")
 		flag.PrintDefaults()
@@ -67,9 +65,8 @@ func main() {
 		opt.Verbose = log.New(io.Discard, "", 0)
 	}
 
-	if len(types) >= 1 {
-		opt.Verbose.Println("-y", types)
-		opt.OnlyTypes = types
+	if len(opt.OnlyTypes) >= 1 {
+		opt.Verbose.Println("-y", opt.OnlyTypes)
 	}
 
 	paths := flag.Args()
