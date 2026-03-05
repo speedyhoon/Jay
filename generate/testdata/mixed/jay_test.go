@@ -1,9 +1,10 @@
 package mixed
 
 import (
+	"testing"
+
 	"github.com/speedyhoon/rando"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func TestLion(t *testing.T) {

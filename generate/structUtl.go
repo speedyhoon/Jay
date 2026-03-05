@@ -3,13 +3,14 @@ package generate
 import (
 	"bytes"
 	"fmt"
-	"github.com/dave/dst"
-	"github.com/speedyhoon/utl"
 	"go/token"
 	"path/filepath"
 	"reflect"
 	"strconv"
 	"strings"
+
+	"github.com/dave/dst"
+	"github.com/speedyhoon/utl"
 )
 
 const (

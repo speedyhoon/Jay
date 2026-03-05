@@ -2,9 +2,10 @@ package generate
 
 import (
 	"fmt"
-	"github.com/speedyhoon/jay"
 	"strconv"
 	"strings"
+
+	"github.com/speedyhoon/jay"
 )
 
 func (s *structTyp) generateLenVarLine() string {

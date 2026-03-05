@@ -2,14 +2,15 @@ package fuzz_test
 
 import (
 	"errors"
-	"github.com/speedyhoon/jay/generate"
-	"github.com/speedyhoon/rando/types"
-	"github.com/stretchr/testify/require"
 	"log"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"testing"
+
+	"github.com/speedyhoon/jay/generate"
+	"github.com/speedyhoon/rando/types"
+	"github.com/stretchr/testify/require"
 )
 
 const tempPath = "tmp_fuzz"

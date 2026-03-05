@@ -2,10 +2,11 @@ package generate
 
 import (
 	"fmt"
-	"github.com/speedyhoon/utl"
 	"log"
 	"regexp"
 	"strings"
+
+	"github.com/speedyhoon/utl"
 )
 
 const (

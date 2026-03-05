@@ -3,8 +3,9 @@
 package byte
 
 import (
-	"github.com/speedyhoon/rando"
 	"testing"
+
+	"github.com/speedyhoon/rando"
 )
 
 var mk = MakeVsReturn{Bool: true, Uint8: rando.Uint8(), Int8: rando.Int8()}

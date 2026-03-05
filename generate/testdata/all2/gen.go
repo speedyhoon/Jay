@@ -3,8 +3,9 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/speedyhoon/rando/types"
 	"os"
+
+	"github.com/speedyhoon/rando/types"
 )
 
 func main() {

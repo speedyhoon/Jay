@@ -2,6 +2,7 @@ package generate
 
 import (
 	"fmt"
+
 	"github.com/dave/dst"
 )
 

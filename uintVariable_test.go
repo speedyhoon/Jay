@@ -1,10 +1,11 @@
 package jay_test
 
 import (
-	"github.com/go-openapi/testify/v2/assert"
-	"github.com/speedyhoon/jay"
 	"math"
 	"testing"
+
+	"github.com/go-openapi/testify/v2/assert"
+	"github.com/speedyhoon/jay"
 )
 
 func TestWriteUint56(t *testing.T) {

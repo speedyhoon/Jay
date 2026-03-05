@@ -1,12 +1,13 @@
 package jay_test
 
 import (
-	"github.com/go-openapi/testify/v2/assert"
-	"github.com/go-openapi/testify/v2/require"
-	"github.com/speedyhoon/jay"
 	"math"
 	"math/rand"
 	"testing"
+
+	"github.com/go-openapi/testify/v2/assert"
+	"github.com/go-openapi/testify/v2/require"
+	"github.com/speedyhoon/jay"
 )
 
 const (

@@ -2,9 +2,10 @@
 package alternatives
 
 import (
+	"io"
+
 	"github.com/200sc/bebop"
 	"github.com/200sc/bebop/iohelp"
-	"io"
 )
 
 var _ bebop.Record = &Foo{}

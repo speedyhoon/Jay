@@ -3,8 +3,9 @@ package generate
 import (
 	"bytes"
 	"fmt"
-	"github.com/speedyhoon/jay"
 	"strings"
+
+	"github.com/speedyhoon/jay"
 )
 
 var (

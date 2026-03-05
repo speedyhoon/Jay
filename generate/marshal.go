@@ -3,11 +3,12 @@ package generate
 import (
 	"bytes"
 	"fmt"
-	"github.com/speedyhoon/jay"
-	"github.com/speedyhoon/utl"
 	"reflect"
 	"runtime"
 	"strings"
+
+	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/utl"
 )
 
 // TODO add support for pointers with all types.

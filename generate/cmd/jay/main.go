@@ -20,14 +20,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/speedyhoon/ext"
-	"github.com/speedyhoon/flag"
-	"github.com/speedyhoon/jay/generate"
-	"github.com/speedyhoon/utl"
 	"io"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/speedyhoon/ext"
+	"github.com/speedyhoon/flag"
+	"github.com/speedyhoon/jay/generate"
+	"github.com/speedyhoon/utl"
 )
 
 func main() {

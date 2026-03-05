@@ -3,10 +3,11 @@ package generate
 import (
 	"bytes"
 	"fmt"
-	"github.com/speedyhoon/jay"
-	"github.com/speedyhoon/utl"
 	"strconv"
 	"strings"
+
+	"github.com/speedyhoon/jay"
+	"github.com/speedyhoon/utl"
 )
 
 // moveReadStringsAbove is the threshold to move all `s.stringSlice` above `s.bool`, `s.single` and `s.fixedLen`.

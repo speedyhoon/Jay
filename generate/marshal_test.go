@@ -1,9 +1,10 @@
 package generate_test
 
 import (
+	"testing"
+
 	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/jay/generate"
-	"testing"
 )
 
 // Test receiver name (b *Boat) doesn't collide with return parameter (y []byte).

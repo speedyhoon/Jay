@@ -1,8 +1,9 @@
 package fuzz03
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 
 	"github.com/speedyhoon/rando"
 	"github.com/stretchr/testify/require"

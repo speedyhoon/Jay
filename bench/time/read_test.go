@@ -1,8 +1,9 @@
 package time_test
 
 import (
-	"github.com/speedyhoon/jay"
 	"testing"
+
+	"github.com/speedyhoon/jay"
 )
 
 /*func BenchmarkReadTimeDate(b *testing.B) {

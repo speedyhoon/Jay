@@ -2,16 +2,17 @@ package generate
 
 import (
 	"errors"
-	"github.com/dave/dst"
-	"github.com/dave/dst/decorator"
-	"github.com/speedyhoon/ext"
-	"github.com/speedyhoon/utl"
 	"go/parser"
 	"go/token"
 	"io"
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/dave/dst"
+	"github.com/dave/dst/decorator"
+	"github.com/speedyhoon/ext"
+	"github.com/speedyhoon/utl"
 )
 
 var lg = log.New(io.Discard, "", log.Lshortfile)

@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/assert"
 	"math"
 	"testing"
+
+	"github.com/speedyhoon/rando"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestCar_MarshalUnmarshal_empty(t *testing.T) {

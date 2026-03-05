@@ -1,9 +1,10 @@
 package embedded
 
 import (
+	"testing"
+
 	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/rando"
-	"testing"
 )
 
 func TestFuzz_Configuration(t *testing.T) {

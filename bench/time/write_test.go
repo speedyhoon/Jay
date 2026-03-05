@@ -1,9 +1,10 @@
 package time_test
 
 import (
-	"github.com/speedyhoon/jay"
 	"testing"
 	"time"
+
+	"github.com/speedyhoon/jay"
 )
 
 var timeTime time.Time

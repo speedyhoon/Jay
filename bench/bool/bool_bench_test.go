@@ -1,8 +1,9 @@
 package bool_test
 
 import (
-	"github.com/speedyhoon/jay"
 	"testing"
+
+	"github.com/speedyhoon/jay"
 )
 
 var bool1, bool2, bool3, bool4, bool5, bool6, bool7, bool8 bool

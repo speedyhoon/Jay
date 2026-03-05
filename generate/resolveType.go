@@ -3,8 +3,9 @@ package generate
 import (
 	"errors"
 	"fmt"
-	"golang.org/x/tools/go/packages"
 	"log"
+
+	"golang.org/x/tools/go/packages"
 )
 
 func resolveImportedTypes(importPath, identName string) (typ string, err error) {

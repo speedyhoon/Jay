@@ -1,10 +1,11 @@
 package jay_test
 
 import (
+	"testing"
+
 	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/rando"
-	"testing"
 )
 
 func TestRoundTripStringsArray(t *testing.T) {

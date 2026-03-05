@@ -1,9 +1,10 @@
 package generate
 
 import (
-	"github.com/dave/dst"
 	"strings"
 	"unicode"
+
+	"github.com/dave/dst"
 )
 
 const (

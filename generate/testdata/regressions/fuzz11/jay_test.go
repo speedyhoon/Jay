@@ -1,9 +1,10 @@
 package fuzz11
 
 import (
+	"testing"
+
 	"github.com/speedyhoon/rando"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func TestFuzz35690(t *testing.T) {

@@ -3,9 +3,10 @@
 package main
 
 import (
+	"testing"
+
 	"github.com/speedyhoon/rando"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func TestFuzz_1(t *testing.T) {

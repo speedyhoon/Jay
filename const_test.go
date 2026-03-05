@@ -1,8 +1,9 @@
 package jay
 
 import (
-	"github.com/go-openapi/testify/v2/assert"
 	"testing"
+
+	"github.com/go-openapi/testify/v2/assert"
 )
 
 func TestConstants(t *testing.T) {

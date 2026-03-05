@@ -2,8 +2,9 @@ package generate
 
 import (
 	"fmt"
-	"github.com/go-openapi/testify/v2/assert"
 	"testing"
+
+	"github.com/go-openapi/testify/v2/assert"
 )
 
 func Test_byteSize(t *testing.T) {

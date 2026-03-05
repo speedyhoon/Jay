@@ -1,8 +1,9 @@
 package bool
 
 import (
-	"github.com/speedyhoon/jay"
 	"testing"
+
+	"github.com/speedyhoon/jay"
 )
 
 var eight Eight

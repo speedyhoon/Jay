@@ -1,13 +1,14 @@
 package jay_test
 
 import (
+	"math"
+	"testing"
+	"time"
+
 	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/rando"
 	"github.com/speedyhoon/tf"
-	"math"
-	"testing"
-	"time"
 )
 
 func TestWriteTime(t *testing.T) {

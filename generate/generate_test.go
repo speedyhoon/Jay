@@ -1,8 +1,9 @@
 package generate
 
 import (
-	"github.com/go-openapi/testify/v2/assert"
 	"testing"
+
+	"github.com/go-openapi/testify/v2/assert"
 )
 
 func TestNoFiles(t *testing.T) {

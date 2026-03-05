@@ -5,9 +5,10 @@ import (
 	"encoding/gob"
 	"encoding/json"
 	"fmt"
-	"github.com/speedyhoon/rando"
 	"log"
 	"testing"
+
+	"github.com/speedyhoon/rando"
 )
 
 var to23 TwentyThree

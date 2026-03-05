@@ -1,9 +1,10 @@
 package main
 
 import (
+	"testing"
+
 	"github.com/speedyhoon/rando"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func TestSupported(t *testing.T) {

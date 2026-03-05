@@ -6,11 +6,12 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"runtime"
+
 	"github.com/dave/dst"
 	"github.com/speedyhoon/ext"
 	"github.com/speedyhoon/utl"
 	"mvdan.cc/gofumpt/format"
-	"runtime"
 )
 
 const (

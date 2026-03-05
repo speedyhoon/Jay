@@ -2,12 +2,13 @@ package jay_test
 
 import (
 	"fmt"
+	"math"
+	"testing"
+
 	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/rando"
 	"github.com/speedyhoon/tf"
-	"math"
-	"testing"
 )
 
 func TestComplex64(t *testing.T) {
