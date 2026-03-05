@@ -2,9 +2,9 @@ package testdata_test
 
 import (
 	"errors"
+	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/jay/generate"
 	"github.com/speedyhoon/rando/types"
-	"github.com/stretchr/testify/require"
 	"log"
 	"os"
 	"os/exec"

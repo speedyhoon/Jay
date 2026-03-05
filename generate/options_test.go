@@ -1,7 +1,7 @@
 package generate
 
 import (
-	"github.com/stretchr/testify/assert"
+	"github.com/go-openapi/testify/v2/assert"
 	"testing"
 )
 

@@ -1,9 +1,9 @@
 package jay_test
 
 import (
+	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/assert"
 	"testing"
 )
 

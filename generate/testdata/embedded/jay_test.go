@@ -1,8 +1,8 @@
 package embedded
 
 import (
+	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/require"
 	"testing"
 )
 

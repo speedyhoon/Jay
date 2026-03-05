@@ -1,30 +1,27 @@
 module github.com/speedyhoon/jay/generate
 
-go 1.23.0
-
-toolchain go1.24.1
+go 1.24.5
 
 require (
-	github.com/speedyhoon/ext v0.0.0-20251010054232-7fcc21155f4f
-	github.com/speedyhoon/jay v0.0.0-20250722124431-e0327bc1429d
-	github.com/speedyhoon/rando v0.0.0-20250722122828-f3cb46f85d58
-	github.com/speedyhoon/rando/types v0.0.0-20250722122828-f3cb46f85d58
-	github.com/speedyhoon/utl v0.0.0-20250416234816-20f7a523763c
-	github.com/speedyhoon/utl/flagvar v0.0.0-20250416234816-20f7a523763c
-	github.com/speedyhoon/utl/tf v0.0.0-20250416234816-20f7a523763c
-	github.com/stretchr/testify v1.10.0
+	github.com/dave/dst v0.27.3
+	github.com/go-openapi/testify/v2 v2.4.0
+	github.com/speedyhoon/ext v0.0.0-20260113124402-f0066d60c0b7
+	github.com/speedyhoon/flag v0.0.0-20260227112925-86bbdde51b02
+	github.com/speedyhoon/jay v0.0.0-20250825022501-1be690ba63da
+	github.com/speedyhoon/rando v0.0.0-20260220235903-c3a636a73e01
+	github.com/speedyhoon/rando/types v0.0.0-20260220235903-c3a636a73e01
+	github.com/speedyhoon/utl v0.0.0-20260303093145-3ffc362396ba
+	github.com/stretchr/testify v1.11.1
+	golang.org/x/tools v0.42.0
 	mvdan.cc/gofumpt v0.8.0
 )
 
 require (
-	github.com/dave/dst v0.27.3 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/speedyhoon/clr v0.0.0-20250627064222-cbe678c2ff2d // indirect
-	github.com/speedyhoon/cnst/clrn v0.0.0-20250502153641-20575b9123ba // indirect
-	github.com/speedyhoon/numnam v0.0.0-20250704155624-0c81b2ba1fbd // indirect
-	golang.org/x/mod v0.26.0 // indirect
-	golang.org/x/tools v0.35.0 // indirect
+	github.com/speedyhoon/numnam v0.0.0-20260203072053-447015b4d8d5 // indirect
+	golang.org/x/mod v0.33.0 // indirect
+	golang.org/x/sync v0.19.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

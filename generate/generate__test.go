@@ -1,8 +1,8 @@
 package generate_test
 
 import (
+	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/jay/generate"
-	"github.com/stretchr/testify/assert"
 	"testing"
 )
 

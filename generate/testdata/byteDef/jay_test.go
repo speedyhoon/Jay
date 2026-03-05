@@ -5,8 +5,8 @@ package main
 import (
 	"testing"
 
-	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/require"
+	"github.com/go-openapi/testify/v2/require"
+	
 )
 
 func TestFuzz_1(t *testing.T) {
