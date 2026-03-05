@@ -7,7 +7,7 @@ require (
 	github.com/go-openapi/testify/v2 v2.4.0
 	github.com/speedyhoon/ext v0.0.0-20260113124402-f0066d60c0b7
 	github.com/speedyhoon/flag v0.0.0-20260227112925-86bbdde51b02
-	github.com/speedyhoon/jay v0.0.0-20250825022501-1be690ba63da
+	github.com/speedyhoon/jay v0.0.0-20260305044538-59cc5bc301c2
 	github.com/speedyhoon/rando v0.0.0-20260220235903-c3a636a73e01
 	github.com/speedyhoon/rando/types v0.0.0-20260220235903-c3a636a73e01
 	github.com/speedyhoon/utl v0.0.0-20260303093145-3ffc362396ba

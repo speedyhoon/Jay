@@ -47,7 +47,7 @@ func isBuiltIn(typ string) bool {
 	return false
 }
 
-func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string, fileImports []*dst.ImportSpec) (ok bool) {
+func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string, fileImports []*dst.ImportSpec, parents ...[]*dst.Ident) (ok bool) {
 	switch d := t.(type) {
 	case *dst.Ident:
 		if d.Obj == nil {
@@ -58,7 +58,7 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 				if d.Obj == nil {
 					return false
 				}
-				ok = o.isSupportedType(f, d.Obj, dirList, pkg, fileImports)
+				ok = s.isSupportedType(f, d.Obj, dirList, pkg, fileImports, parents...)
 				if !ok {
 					return false
 				}
@@ -68,29 +68,29 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 				f.typ = typ
 			}
 			if f.elmSize == 0 {
-				f.elmSize = o.isLen(f.typ)
+				f.elmSize = s.option.isLen(f.typ)
 			}
-			f.isFixedLen = o.isLenFixed(f.typ)
+			f.isFixedLen = s.option.isLenFixed(f.typ)
 			return true
 		}
 
-		ok = o.isSupportedType(f, d.Obj, dirList, pkg, fileImports)
+		ok = s.isSupportedType(f, d.Obj, dirList, pkg, fileImports, parents...)
 
 	// Ignore.
 	case nil:
 
 	case *dst.SelectorExpr:
-		ok = o.isSupportedSelector(f, d, fileImports)
+		ok = s.option.isSupportedSelector(f, d, fileImports)
 
 	case *dst.Object:
 		if d.Kind != dst.Typ || d.Name == "" {
 			lg.Println(d)
 			return false
 		}
-		ok = o.isSupportedType(f, d.Decl, dirList, pkg, fileImports)
+		ok = s.isSupportedType(f, d.Decl, dirList, pkg, fileImports, parents...)
 
 	case *dst.ArrayType:
-		ok = o.isSupportedType(f, d.Elt, dirList, pkg, fileImports)
+		ok = s.isSupportedType(f, d.Elt, dirList, pkg, fileImports, parents...)
 		if !ok {
 			return false
 		}
@@ -113,7 +113,7 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 		f.isFixedLen = f.isFixedLen && f.isArray()
 
 	case *dst.TypeSpec:
-		ok = o.isSupportedType(f, d.Type, dirList, pkg, fileImports)
+		ok = s.isSupportedType(f, d.Type, dirList, pkg, fileImports, parents...)
 		// Field is a type definition if isDef has already been set via inspecting d.Type beforehand, like time.Duration (type Duration int64),
 		// OR if TypeSpec is not an assignment (there is no equal sign).
 		f.isDef = f.isDef || !d.Assign
@@ -131,6 +131,13 @@ func (o Option) isSupportedType(f *field, t interface{}, dirList *dirList, pkg s
 				f.pkgReq = ""
 			}
 		}
+
+	case *dst.StructType:
+		if d.Fields == nil || len(d.Fields.List) < 1 {
+			return false
+		}
+
+		s.process(d.Fields.List, dirList, fileImports, parents...)
 
 	default:
 		lg.Printf("type %T not expected in Option.isSupportedType()", d)
@@ -153,7 +160,6 @@ func findImportedType(files []*dst.File, pkg, typName string) *dst.Object {
 			}
 			if key == typName {
 				found = append(found, obj)
-				//return obj
 			}
 		}
 	}

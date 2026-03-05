@@ -15,7 +15,7 @@ type Alarm struct {
 	KeyAttemptsFunc func()
 }
 
-type Configuration struct {
+type Configuration struct { // J+
 	Alarm   Alarm
 	DataLog DataLog
 	Types
@@ -36,7 +36,7 @@ type (
 	Cluster []byte
 )
 
-type Types struct {
+type Types struct { // J+
 	UniMog
 	Cluster
 }

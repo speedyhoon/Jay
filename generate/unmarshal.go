@@ -581,6 +581,7 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 
 	default:
 		lg.Printf("no function set for type %s yet in unmarshalFunc()", f.typ)
+		return
 	}
 
 	return nameOf(c, f.structTyp.isImportJ), template, canReturnInline

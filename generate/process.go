@@ -206,7 +206,7 @@ func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports [
 		}
 
 		fe := newField(tag)
-		ok := s.option.isSupportedType(&fe, t.Type, dirList, s.dir, fileImports)
+		ok := s.isSupportedType(&fe, t.Type, dirList, s.dir, fileImports, append(parents, names)...)
 		if !ok {
 			utl.Del(&fields, i)
 			continue
