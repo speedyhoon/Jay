@@ -200,12 +200,6 @@ func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports [
 			continue
 		}
 
-		if fs, ok := isStruct(t); ok {
-			s.process(fs, dirList, fileImports, append(parents, names)...)
-			i++
-			continue
-		}
-
 		fe := newField(tag)
 		ok := s.isSupportedType(&fe, t.Type, dirList, s.dir, fileImports, append(parents, names)...)
 		if !ok {
@@ -220,60 +214,6 @@ func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports [
 
 	s.setFieldByteIndexes()
 	return s.hasExportedFields()
-}
-
-func structFields(t any, names []string) (fields []*dst.Field, ok bool) {
-	switch d := t.(type) {
-	case *dst.Ident:
-		if d.Obj != nil && d.Obj.Decl != nil {
-			return structFields(d.Obj.Decl, names)
-		}
-	case *dst.TypeSpec:
-		if d.Type != nil {
-			return structFields(d.Type, names)
-		}
-	case *dst.StructType:
-		if d.Fields != nil && len(d.Fields.List) >= 1 {
-			decatenateFieldList(d.Fields, names)
-			return d.Fields.List, true
-		}
-	}
-	return
-}
-
-// decatenateFieldList duplicates each struct field type that has multiple names defined.
-// For example, if a struct definition has the line `Name, Model string`, then
-// `Model string` is separated with its own name.
-func decatenateFieldList(f *dst.FieldList, names []string) {
-	qty := len(names)
-	for i := range f.List {
-		for j := range f.List[i].Names {
-			if f.List[i].Names[j].IsExported() {
-
-				// Duplicate the FieldList name for 2nd onwards names.
-				for k := 1; k < qty; k++ {
-					n := dst.Ident{
-						Name: pkgSelName(names[k], f.List[i].Names[j].Name),
-						Obj:  f.List[i].Names[j].Obj,
-					}
-					f.List[i].Names = append(f.List[i].Names, &n)
-				}
-			}
-		}
-	}
-}
-
-func isStruct(f *dst.Field) (fields []*dst.Field, ok bool) {
-	names := getNames(f)
-	if len(names) >= 1 {
-		list := make([]string, len(names))
-		for i, name := range names {
-			list[i] = name.Name
-		}
-		return structFields(f.Type, list)
-	}
-
-	return
 }
 
 func (s *structTyp) setFirstNLast() {
