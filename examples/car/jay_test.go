@@ -4,8 +4,8 @@ import (
 	"math"
 	"testing"
 
+	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestCar_MarshalUnmarshal_empty(t *testing.T) {
@@ -25,7 +25,7 @@ func TestCar_MarshalUnmarshal_small(t *testing.T) {
 		Name: rando.String(),
 		Auto: rando.Bool(),
 		CC:   rando.String(),
-		//Timing:  ptrStr(rando.String()),
+		// Timing:  ptrStr(rando.String()),
 		RedLine: rando.Uint16(),
 		Expiry:  rando.Time(),
 		Gearbox: gearbox{},
@@ -47,7 +47,7 @@ func TestCar_MarshalUnmarshal_large(t *testing.T) {
 		Name: string(make([]byte, math.MaxUint8)),
 		Auto: true,
 		CC:   string(make([]byte, math.MaxUint8)),
-		//Timing:  ptrStr(string(make([]byte,jay.MaxUint24))),
+		// Timing:  ptrStr(string(make([]byte,jay.MaxUint24))),
 		RedLine: math.MaxUint16,
 		Gearbox: gearbox{},
 	}
