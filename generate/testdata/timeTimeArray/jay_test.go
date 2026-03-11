@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/require"
 )
 
 func TimesN(qty int) (t []time.Time) {

@@ -5,8 +5,8 @@ package boolDef
 import (
 	"testing"
 
+	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/require"
 )
 
 func TestFuzz_1(t *testing.T) {

@@ -3,10 +3,9 @@ package fuzz03
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-
+	"github.com/go-openapi/testify/v2/assert"
+	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/require"
 )
 
 func TestFuzz_0(t *testing.T) {

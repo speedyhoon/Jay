@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/jay/generate"
 	"github.com/speedyhoon/rando/types"
-	"github.com/stretchr/testify/require"
 )
 
 const tempPath = "tmp_fuzz"

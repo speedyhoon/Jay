@@ -3,8 +3,8 @@ package fuzz12
 import (
 	"testing"
 
+	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/require"
 )
 
 func TestFuzz_2(t *testing.T) {

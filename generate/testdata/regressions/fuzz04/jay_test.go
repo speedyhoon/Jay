@@ -3,9 +3,9 @@ package fuzz04
 import (
 	"testing"
 
+	"github.com/go-openapi/testify/v2/assert"
+	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/rando"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 func TestFuzz_0(t *testing.T) {
@@ -146,20 +146,20 @@ func TestFuzz_0(t *testing.T) {
 	require.NotEqual(t, Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj{}, expected)
 	require.NotEqual(t, Q7N55R2FElnkX4yb5Ugy8MGX1YKd0RJpC8oVes6v6g0e7Vj{}, actual)
 
-	//NEmR6                                                                                                struct{}
-	//DE15ncVs0155nWmUBuN58X4SvLu6Jo5H65085Dk8M6mO5737qIDSR28AFjM1v                                        struct{}
-	//B0opNNra0p0gqcWj6Bs6CY8w373o6t1Ef4nh3gNoF0q1k7E4v7GtdqL74                                            struct{}
-	//W4ufyVr4pjUd4c040f76c0apOGe6pLDjV4jB4n7wUO4VN6RP0kR7mEQ6vDh1i0S6mY24RnR4X25i0n5                      struct{}
-	//E787HoHwbbnvyF6NYlO1iwMtX4oN6HNO1J1mpeYcm34CsUU65RxY5PO5Rf424by7Pp8prQ0F3RhX83PApuyhRt8Hbub          struct{}
-	//Fv74wK                                                                                               struct{}
-	//SNc27i3Me7jEW7nxE4C3vBejDh0iTUb2j0p3qJOJu7IPD42MD                                                    struct{}
+	// NEmR6                                                                                                struct{}
+	// DE15ncVs0155nWmUBuN58X4SvLu6Jo5H65085Dk8M6mO5737qIDSR28AFjM1v                                        struct{}
+	// B0opNNra0p0gqcWj6Bs6CY8w373o6t1Ef4nh3gNoF0q1k7E4v7GtdqL74                                            struct{}
+	// W4ufyVr4pjUd4c040f76c0apOGe6pLDjV4jB4n7wUO4VN6RP0kR7mEQ6vDh1i0S6mY24RnR4X25i0n5                      struct{}
+	// E787HoHwbbnvyF6NYlO1iwMtX4oN6HNO1J1mpeYcm34CsUU65RxY5PO5Rf424by7Pp8prQ0F3RhX83PApuyhRt8Hbub          struct{}
+	// Fv74wK                                                                                               struct{}
+	// SNc27i3Me7jEW7nxE4C3vBejDh0iTUb2j0p3qJOJu7IPD42MD                                                    struct{}
 
-	//Q6865Q22Jptyvi73C55661MsdYIe8p6H6y5Yi4dt0751OubM7621cUiD                                             time.Duration
-	//Mp37niu7QOrMa7h7vsyQ74S5L5B7Vc50bqkJ3bM1434Q46048iK0O8                                               time.Duration
-	//KX6KB242wuQom637CQpiF2o4fYuoGqhNS43dUR5q7fx                                                          time.Duration
-	//ITa44b0qEFO7mQa6HYDYGC0658Q3VnO0okjhd4Pr8S3e4VCagsJ                                                  time.Duration
-	//DTIK5Kc1dnTLJD0yXnVGQbcnRd80CRD7Y0nl6Pr84v2YDINY6r2wX3Juy5015d7QaH8kHoK0U                            time.Duration
-	//M005s72q66yONw1xWnkyiHyQc5r4OqswY5irSc5B6S44Nl1J6B2u3MFCOUGhfHkV111w78nUvfvId0hHyMRxBK               time.Duration
+	// Q6865Q22Jptyvi73C55661MsdYIe8p6H6y5Yi4dt0751OubM7621cUiD                                             time.Duration
+	// Mp37niu7QOrMa7h7vsyQ74S5L5B7Vc50bqkJ3bM1434Q46048iK0O8                                               time.Duration
+	// KX6KB242wuQom637CQpiF2o4fYuoGqhNS43dUR5q7fx                                                          time.Duration
+	// ITa44b0qEFO7mQa6HYDYGC0658Q3VnO0okjhd4Pr8S3e4VCagsJ                                                  time.Duration
+	// DTIK5Kc1dnTLJD0yXnVGQbcnRd80CRD7Y0nl6Pr84v2YDINY6r2wX3Juy5015d7QaH8kHoK0U                            time.Duration
+	// M005s72q66yONw1xWnkyiHyQc5r4OqswY5irSc5B6S44Nl1J6B2u3MFCOUGhfHkV111w78nUvfvId0hHyMRxBK               time.Duration
 	assert.Equal(t, expected.Mp37niu7QOrMa7h7vsyQ74S5L5B7Vc50bqkJ3bM1434Q46048iK0O8, actual.Mp37niu7QOrMa7h7vsyQ74S5L5B7Vc50bqkJ3bM1434Q46048iK0O8)
 	assert.Equal(t, expected.QW6OctfI13vjuQjl7sxy1cQ, actual.QW6OctfI13vjuQjl7sxy1cQ)
 	assert.Equal(t, expected.C51eWtoDkuMbBV63L7M5dsdPOJi6UNNM2g2, actual.C51eWtoDkuMbBV63L7M5dsdPOJi6UNNM2g2)
