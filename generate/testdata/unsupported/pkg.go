@@ -1,0 +1,117 @@
+package main
+
+import "time"
+
+type (
+	boolean bool
+	medium  complex64
+	large   complex128
+	small   float32
+	big     float64
+	i       int
+	i8      int8
+	i16     int16
+	i32     int32
+	i64     int64
+	u       uint
+	u8      uint8
+	u16     uint16
+	u32     uint32
+	u64     uint64
+	str     string
+	tim     time.Time
+	dur     time.Duration
+
+	Unsupported struct {
+		BoolPtr        *bool
+		BoolsPtr       *[]bool
+		BytePtr        *byte
+		BytesPtr       *[]byte
+		Complex64Ptr   *complex64
+		Complex64sPtr  *[]complex64
+		Complex128Ptr  *complex128
+		Complex128sPtr *[]complex128
+		Float32Ptr     *float32
+		Float32sPtr    *[]float32
+		Float64Ptr     *float64
+		Float64sPtr    *[]float64
+		Func           func() bool
+		FuncPtr        *func()
+		IntPtr         *int
+		Int8Ptr        *int8
+		Int16Ptr       *int16
+		Int32Ptr       *int32
+		Int64Ptr       *int64
+		IntsPtr        *[]int
+		Int8sPtr       *[]int8
+		Int16sPtr      *[]int16
+		Int32sPtr      *[]int32
+		Int64sPtr      *[]int64
+		UintPtr        *uint
+		Uint8Ptr       *uint8
+		Uint16Ptr      *uint16
+		Uint32Ptr      *uint32
+		Uint64Ptr      *uint64
+		UintsPtr       *[]uint
+		Uint8sPtr      *[]uint8
+		Uint16sPtr     *[]uint16
+		Uint32sPtr     *[]uint32
+		Uint64sPtr     *[]uint64
+		Map            map[string]string
+		MapPtr         *map[string]string
+		StringPtr      *string
+		StringsPtr     *[]string
+		Two            [][]string
+		Three          [][][]string
+		Four           [][][][]string
+		Five           [][][][][]string
+		Six            [][][][][][]string
+		Seven          [][][][][][][]string
+		TwoPtr         *[][]string
+		ThreePtr       *[][][]string
+		FourPtr        *[][][][]string
+		FivePtr        *[][][][][]string
+		SixPtr         *[][][][][][]string
+		SevenPtr       *[][][][][][][]string
+		TimePtr        *time.Time
+		TimesPtr       *[]time.Time
+		DurationPtr    *time.Duration
+		DurationsPtr   *[]time.Duration
+		Boolean        []boolean
+		Medium         []medium
+		Large          []large
+		Small          []small
+		Big            []big
+		I              []i
+		I8             []i8
+		I16            []i16
+		I32            []i32
+		I64            []i64
+		U              []u
+		U8             []u8
+		U16            []u16
+		U32            []u32
+		U64            []u64
+		Str            []str
+		Tim            []tim
+		Dur            []dur
+		BooleanArray   [3]boolean
+		MediumArray    [3]medium
+		LargeArray     [3]large
+		SmallArray     [3]small
+		BigArray       [3]big
+		IArray         [3]i
+		I8Array        [3]i8
+		I16Array       [3]i16
+		I32Array       [3]i32
+		I64Array       [3]i64
+		UArray         [3]u
+		U8Array        [3]u8
+		U16Array       [3]u16
+		U32Array       [3]u32
+		U64Array       [3]u64
+		StrArray       [3]str
+		TimArray       [3]tim
+		DurArray       [3]dur
+	}
+)

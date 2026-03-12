@@ -92,13 +92,15 @@ func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, p
 
 	case *dst.ArrayType:
 		ok = s.isSupportedType(f, d.Elt, dirList, pkg, fileImports, parents...)
-		if !ok {
+		// Multidimensional slices are not supported.
+		if !ok || f.arrayDepth != 0 {
 			return false
 		}
+		f.arrayDepth++
 		f.arrayType = f.typ
 		if f.isDef {
-			// f.isDef prevents types like []float where `type float float32` which can't be easily converted to []float32 in one line.
-			// However, `type float = float32`, `type floats = []float32` & `type floats []float32` can be easily converted in one line.
+			// f.isDef prevents types like []float where `type float float32` which can't be easily converted to []float32 in one line without the unsafe package.
+			// However, `type float = float32`, `type floats = []float32` and `type floats []float32` can be easily converted in one line.
 			if f.aliasType != tTimeDuration {
 				return false
 			}
