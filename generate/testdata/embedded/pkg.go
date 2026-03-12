@@ -3,7 +3,7 @@ package embedded
 import "time"
 
 // Alarm properties
-type Alarm struct {
+type Alarm struct { // J-
 	SirenOn         time.Duration
 	SirenOff        time.Duration
 	Repeats         uint8
@@ -15,14 +15,14 @@ type Alarm struct {
 	KeyAttemptsFunc func()
 }
 
-type Configuration struct { // J+
+type Configuration struct {
 	Alarm   Alarm
 	DataLog DataLog
 	Types
 }
 
 // DataLog properties for data logging files.
-type DataLog struct {
+type DataLog struct { // j-
 	Version     uint
 	VersionRace uint
 	FileSizeMax uint32
@@ -36,7 +36,8 @@ type (
 	Cluster []byte
 )
 
-type Types struct { // J+
+// Types has a malformed ignore tag and is expected to have Jay methods generated.
+type Types struct { // J --
 	UniMog
 	Cluster
 }

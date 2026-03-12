@@ -185,6 +185,10 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 }
 
 func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports []*dst.ImportSpec, parents ...[]*dst.Ident) (hasExportedFields bool) {
+	if s.tag.HasIgnore() {
+		return false
+	}
+
 	for i := uint(0); i < utl.Len(fields); {
 		t := fields[i]
 
