@@ -1,8 +1,9 @@
 package string_test
 
 import (
-	"github.com/speedyhoon/jay"
 	"testing"
+
+	"github.com/speedyhoon/jay"
 )
 
 var str1 string

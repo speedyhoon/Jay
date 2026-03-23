@@ -47,7 +47,7 @@ with GM45 GPU)_.
 ## Install
 Install the `jay` command line tool to generate marshal and unmarshal code.
 ```shell
-go install github.com/speedyhoon/jay/generate/cmd/jay
+go install github.com/speedyhoon/jay/genjay/cmd/jay
 ```
 
 ## Getting Started.

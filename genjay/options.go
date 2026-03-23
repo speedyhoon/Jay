@@ -1,0 +1,188 @@
+package genjay
+
+import (
+	"fmt"
+	"log"
+	"regexp"
+	"strings"
+
+	"github.com/speedyhoon/utl"
+)
+
+const (
+	BitAuto = MaxSize(iota * 32)
+	Bit32
+	Bit64
+)
+
+var typeNameRegex = regexp.MustCompile(`^[[:alpha:]][[:alnum:]]*(\.[[:alpha:]][[:alnum:]]*)?$`)
+
+type MaxSize uint8
+
+type Option struct {
+	// ErrVarName is the name of an exported error variable to return from UnmarshalJ functions,
+	// overriding the default "jay.ErrUnexpectedEOB". Helpful if generated code imports the jay package only for the error variable.
+	ErrVarName string
+
+	MaxIntSize  MaxSize
+	MaxUintSize MaxSize
+
+	Is32bit bool
+	IsDebug bool
+
+	// MaxDefaultStrSize limits all strings to be within this length if a field tag is NOT present.
+	// Minimum:	1 (1 byte),
+	// Default: maxUint8 (255 bytes),
+	// Maximum: maxUint24 (16 Megabytes).
+	// To override the default for a field use: `j:"max:4030"` for 4,030 bytes.
+	// The smallest value is the most optimal for performance.
+	MaxDefaultStrSize uint
+	strSizeOfDefault  uint8
+
+	// OnlyTypes will only generate marshalling & unmarshalling functions for the listed types.
+	// When empty, all types are permitted.
+	// Expected struct type alias names like: "Vehicle", "animal.Species".
+	OnlyTypes   []string
+	typeMatches []*regexp.Regexp
+
+	OutputFileName string
+
+	// maxUint8 = 255 bytes (default),
+	// maxUint16 = 64 kilobytes,
+	// maxUint24 = 16 Megabytes,
+
+	// Whether type `int` should be a fixed length (4 bytes for 32-bit, or 8 bytes for 64-bit) or vary in length depending on the value provided.
+	VariableIntSize bool
+
+	// Whether type `uint` should vary in length (8-bit to 64-bit) or be a fixed length (32-bit, or 64-bit) depending on the system's architecture.
+	// True = Least bandwidth used.
+	// False = Fastest CPU serialization/deserialization throughput.
+	VariableUintSize bool
+
+	Verbose     *log.Logger
+	SearchTests bool // When true, searches Go test files for exported structs too.
+
+	// IsMarshalMethodPtr changes generated MarshalJ method to a pointer receiver. Used for suppressing Go linter messages:
+	// `Struct ... has methods on both value and pointer receivers. Such usage is not recommended by the Go Documentation.`
+	// True: `func (f *Foo) MarshalJ()`,
+	// False: `func (f Foo) MarshalJ()`.
+	IsMarshalMethodPtr bool
+
+	SkipTests     bool
+	SkipMarshal   bool // When true doesn't generate any marshalling methods.
+	SkipUnmarshal bool // When true doesn't generate any unmarshalling methods.
+}
+
+func (o Option) pointerSymbol() string {
+	if o.IsMarshalMethodPtr {
+		return "*"
+	}
+	return ""
+}
+
+/*func (m *MaxSize) Set(value *uint) error {
+	if *value > 8 {
+		return fmt.Errorf("value %d is greater than 8. Expected 1 - 8", *value)
+	}
+
+	*m = MaxSize(*value)
+	return nil
+}*/
+
+func LoadOptions(opts ...Option) (o Option) {
+	if len(opts) >= 1 {
+		o = opts[0]
+	}
+
+	if o.Verbose != nil {
+		lg = o.Verbose
+	}
+
+	if o.ErrVarName == "" {
+		o.ErrVarName = ExportedErr
+	}
+
+	o.cleanOnlyTypes()
+
+	if o.MaxDefaultStrSize == 0 {
+		o.MaxDefaultStrSize = maxUint8
+	} else if o.MaxDefaultStrSize > maxUint24 {
+		o.MaxDefaultStrSize = maxUint24
+	}
+	o.strSizeOfDefault = bytesRequired(o.MaxDefaultStrSize)
+
+	if o.MaxIntSize == BitAuto || o.MaxIntSize > Bit32 && o.MaxIntSize < Bit64 {
+		o.MaxIntSize = 32 << (^uint(0) >> 63) // 32 or 64
+		return
+	}
+
+	if o.MaxIntSize > Bit64 {
+		o.MaxIntSize = Bit64
+		return
+	}
+
+	if o.MaxIntSize < Bit32 {
+		o.MaxIntSize = Bit32
+	}
+	return
+}
+
+// IsSpecifiedType checks if typeName is one of the types listed in Option.OnlyTypes.
+// If OnlyTypes is empty, then allow all types that don't have an ignore tag (// J--) or an embedded only tag (// J-).
+func (s structTyp) IsSpecifiedType(pkg string) bool {
+	if len(s.option.typeMatches) == 0 {
+		return s.tag.HasFuncs()
+	}
+
+	pkg = pkgSelName(pkg, s.name)
+	for _, onlyType := range s.option.typeMatches {
+		if onlyType.MatchString(pkg) {
+			return true
+		}
+	}
+	return false
+}
+
+// bytesRequired returns how many bytes are required to represent an unsigned integer.
+func bytesRequired(input uint) uint8 {
+	if input <= 1 {
+		return uint8(input)
+	}
+	return uint8(utl.LogBaseXUint(256, input+1))
+}
+
+// cleanOnlyTypes removes invalid and duplicate types listed in o.OnyTypes.
+func (o *Option) cleanOnlyTypes() {
+	for i := uint(0); i < utl.Len(o.OnlyTypes); i++ {
+		o.OnlyTypes[i] = strings.TrimSpace(o.OnlyTypes[i])
+		if !typeNameRegex.MatchString(o.OnlyTypes[i]) {
+			lg.Println("type:", o.OnlyTypes[i], "didn't satisfy validation regex")
+			utl.Del(&o.OnlyTypes, i)
+		}
+
+		o.OnlyTypes[i] = strings.Trim(o.OnlyTypes[i], ".")
+
+		// Remove duplicates.
+		for j := i + 1; j < utl.Len(o.OnlyTypes); {
+			if o.OnlyTypes[i] == o.OnlyTypes[j] {
+				utl.Del(&o.OnlyTypes, j)
+				continue
+			}
+			j++
+		}
+
+		if strings.Contains(o.OnlyTypes[i], ".") {
+			o.OnlyTypes[i] = strings.ReplaceAll(o.OnlyTypes[i], ".", "\\.")
+		} else {
+			o.OnlyTypes[i] = fmt.Sprintf(`^[[:alpha:]][[:alnum:]]+\.%s$`, o.OnlyTypes[i])
+		}
+
+		r, err := regexp.Compile(o.OnlyTypes[i])
+		if err != nil {
+			utl.Del(&o.OnlyTypes, i)
+			log.Println(err)
+			continue
+		}
+		o.typeMatches = append(o.typeMatches, r)
+	}
+}

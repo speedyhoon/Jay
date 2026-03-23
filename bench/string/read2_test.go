@@ -1,11 +1,12 @@
 package string
 
 import (
-	"github.com/speedyhoon/jay"
 	"testing"
+
+	"github.com/speedyhoon/jay"
 )
 
-//const strSizeOf = 1
+// const strSizeOf = 1
 
 var str1 string
 var integer int
@@ -60,20 +61,20 @@ var zebra Zebra
 var err error
 
 func BenchmarkReadStringPtrErrV1(b *testing.B) {
-	//at := 0
-	//var ok bool
+	// at := 0
+	// var ok bool
 	for b.Loop() {
 		err = zebra.Unmarshal1(z)
-		//c.Gearbox.Manufacturer, at, ok = jay.ReadString(b[at:])
-		//if !ok {
+		// c.Gearbox.Manufacturer, at, ok = jay.ReadString(b[at:])
+		// if !ok {
 		//	return jay.ErrUnexpectedEOB
-		//}
+		// }
 	}
 }
 func BenchmarkReadStringPtrErrV2(b *testing.B) {
-	//var err error
+	// var err error
 	for b.Loop() {
-		//err = jay.ReadStringPtrErr(b[at:], &c.Gearbox.Manufacturer)
+		// err = jay.ReadStringPtrErr(b[at:], &c.Gearbox.Manufacturer)
 		err = zebra.Unmarshal2(z)
 	}
 }
