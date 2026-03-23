@@ -54,24 +54,23 @@ type Option struct {
 	// Whether type `int` should be a fixed length (4 bytes for 32-bit, or 8 bytes for 64-bit) or vary in length depending on the value provided.
 	VariableIntSize bool
 
-	// Whether type `uint` should be a fixed length (4 bytes 32-bit, or 8 bytes 64-bit) or vary in length depending on the value provided.
-	// True = Highest CPU serialization/deserialization throughput,
-	// false = Least bandwidth used.
+	// Whether type `uint` should vary in length (8-bit to 64-bit) or be a fixed length (32-bit, or 64-bit) depending on the system's architecture.
+	// True = Least bandwidth used.
+	// False = Fastest CPU serialization/deserialization throughput.
 	VariableUintSize bool
 
-	// TODO add option to check if a struct or map is nil/empty by appending an extra null byte \0x0 ?
-	// If the null byte wasn't there - how would the Read functions know if there was an unexpected
-	// end of buffer vs the struct/map was empty?
-
 	Verbose     *log.Logger
-	SearchTests bool
+	SearchTests bool // When true, searches Go test files for exported structs too.
 
-	// IsMarshalMethodPtr changes generated MarshalJ method to a pointer receiver. true: `func (f *Foo) MarshalJ()`, false: `func (f Foo) MarshalJ()`.
+	// IsMarshalMethodPtr changes generated MarshalJ method to a pointer receiver. Used for suppressing Go linter messages:
+	// `Struct ... has methods on both value and pointer receivers. Such usage is not recommended by the Go Documentation.`
+	// True: `func (f *Foo) MarshalJ()`,
+	// False: `func (f Foo) MarshalJ()`.
 	IsMarshalMethodPtr bool
 
 	SkipTests     bool
-	SkipMarshal   bool
-	SkipUnmarshal bool
+	SkipMarshal   bool // When true doesn't generate any marshalling methods.
+	SkipUnmarshal bool // When true doesn't generate any unmarshalling methods.
 }
 
 func (o Option) pointerSymbol() string {
