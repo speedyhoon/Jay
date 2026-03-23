@@ -1,21 +1,21 @@
-// Command jay is the command line tool to generate Jay serialization code.
+// Command jay is the command line tool to generate Jay serialization code for Go.
 // See jay/generate for the internals.
 //
-// Optional flags:
+// Options:
 //
-//	-32	Force 32-bit output for ints & uints. Defaults to this system's 32-bit or 64-bit architecture.
-//	-d	Debug mode - always writes to disk.
-//	-e	Error to return from UnmarshalJ functions. (default "jay.ErrUnexpectedEOB")
-//	-m	Don't generate MarshalJ() function.
-//	-o	Output file. (default "jay.go")
-//	-p	Pointer MarshalJ() method.
-//	-s	Search Go test files for exported structs too.
-//	-u	Don't generate UnmarshalJ() function.
-//	-v	Verbose output.
+//	-32	Force 32-bit output for 'int' and 'uint' types. Defaults to this system's architecture.
+//	-d		Debug mode - always writes to disk.
+//	-e		Name of the error variable to return from UnmarshalJ functions. (default "jay.ErrUnexpectedEOB")
+//	-m		Don't generate MarshalJ() functions.
+//	-o		Output file. (default "jay.go")
+//	-p		Pointer MarshalJ() method.
+//	-s		Search Go test files for exported structs too.
+//	-u		Don't generate UnmarshalJ() functions.
+//	-v		Verbose output.
 //	-vi	Variable int size.
 //	-vu	Variable uint size.
-//	-y	Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for. (default: Process all exported types)
-//		For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`.
+//	-y		Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for. (default: Process all exported types)
+//			For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` & `Cow` in imported package `animal`.
 package main
 
 import (
