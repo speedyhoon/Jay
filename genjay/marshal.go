@@ -23,7 +23,6 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 
 	buf := bytes.NewBuffer(nil)
 	c := varCtx{buf: buf}
-	s.makeWriteBools(buf)
 	s.writeSingles(buf)
 
 	for _, f := range s.fixedLen {

@@ -13,40 +13,23 @@ var (
 	unmarshalBoolsFuncPrefix = strings.TrimSuffix(nameOf(jay.ReadBool1, nil), "1")
 )
 
-func (s *structTyp) makeWriteBools(b *bytes.Buffer) {
+func (s *structTyp) makeWriteBools(lines *[]string) {
 	if len(s.bool) == 0 {
 		return
 	}
 
-	hasSingles := len(s.single) != 0
-	*s.isImportJ = true
-
-	if s.returnInline {
-		bufWriteF(b, "%s{", tBytes)
-	}
-
 	newList := fieldNamesArrays(s.bool)
 	byteIndex := *s.bool[0].indexStart
-	l := len(newList)
-	for i := 0; i < l; i += 8 {
+	for i, mx := 0, len(newList); i < mx; i += 8 {
 		next8Qty := min(8, len(newList[i:]))
 
 		if s.returnInline {
-			b.WriteString(boolsFunc(newList, i, next8Qty))
+			*lines = append(*lines, boolsFunc(newList, i, next8Qty))
 		} else {
-			bufWriteLineF(b, "%s[%d] = %s", s.bufferName, byteIndex, boolsFunc(newList, i, next8Qty))
+			*lines = append(*lines, fmt.Sprintf("%s[%d] = %s", s.bufferName, byteIndex, boolsFunc(newList, i, next8Qty)))
 		}
 
-		if s.returnInline {
-			if i+1 < l || i+1 == l && hasSingles {
-				b.WriteString(",")
-			}
-		}
 		byteIndex++
-	}
-
-	if s.returnInline && !hasSingles {
-		b.WriteString("}")
 	}
 }
 

@@ -3,38 +3,36 @@ package genjay
 import (
 	"bytes"
 	"fmt"
+	"strings"
 )
 
 func (s *structTyp) writeSingles(b *bytes.Buffer) {
-	if len(s.single) == 0 {
+	if len(s.bool) == 0 && len(s.single) == 0 {
 		return
 	}
 
-	if s.returnInline && len(s.bool) == 0 {
-		bufWriteF(b, "%s{", tBytes)
-	}
+	var lines []string
+	s.makeWriteBools(&lines)
 
-	for i, l := 0, len(s.single); i < l; i++ {
-		isLast := i+1 == l
+	for i, mx := 0, len(s.single); i < mx; i++ {
+		isLast := i+1 == mx
 		fun, _ := s.single[i].marshalFuncTemplate()
-		writeSingle(s.single[i], b, fun, !s.returnInline, isLast)
+		lines = append(lines, writeSingle(s.single[i], b, fun, !s.returnInline, isLast))
 	}
 
 	if s.returnInline {
-		b.WriteByte('}')
+		bufWriteF(b, "%s{%s}", tBytes, strings.Join(lines, ", "))
+	} else {
+		bufWriteLine(b, strings.Join(lines, "\n\t"))
 	}
 }
 
-func writeSingle(single *field, b *bytes.Buffer, fun string, isMake, isLast bool) {
+func writeSingle(single *field, b *bytes.Buffer, fun string, isMake, isLast bool) string {
 	if isMake {
-		bufWriteLineF(b, "%s[%d] = %s", single.structTyp.bufferName, *single.indexStart, printFunc(fun, single.Name()))
-		return
+		return fmt.Sprintf("%s[%d] = %s", single.structTyp.bufferName, *single.indexStart, printFunc(fun, single.Name()))
 	}
 
-	b.WriteString(printFunc(fun, single.Name()))
-	if !isLast {
-		b.WriteString(", ")
-	}
+	return printFunc(fun, single.Name())
 }
 
 func (s *structTyp) readSingles(b *bytes.Buffer) {
