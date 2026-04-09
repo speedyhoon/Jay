@@ -15,9 +15,8 @@ func (s *structTyp) writeSingles(b *bytes.Buffer) {
 	s.writeBools(&lines)
 
 	for i, mx := 0, len(s.single); i < mx; i++ {
-		isLast := i+1 == mx
 		fun, _ := s.single[i].marshalFuncTemplate()
-		lines = append(lines, writeSingle(s.single[i], b, fun, !s.returnInline, isLast))
+		lines = append(lines, writeSingle(s.single[i], fun, !s.returnInline))
 	}
 
 	if s.returnInline {
@@ -27,7 +26,7 @@ func (s *structTyp) writeSingles(b *bytes.Buffer) {
 	}
 }
 
-func writeSingle(single *field, b *bytes.Buffer, fun string, isMake, isLast bool) string {
+func writeSingle(single *field, fun string, isMake bool) string {
 	if isMake {
 		return fmt.Sprintf("%s[%d] = %s", single.structTyp.bufferName, *single.indexStart, printFunc(fun, single.Name()))
 	}
