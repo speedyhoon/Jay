@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func (s *structTyp) writeSingles(b *bytes.Buffer) {
+func (s *structTyp) writeSingles(c *varCtx) {
 	if len(s.bool) == 0 && len(s.single) == 0 {
 		return
 	}
@@ -20,9 +20,9 @@ func (s *structTyp) writeSingles(b *bytes.Buffer) {
 	}
 
 	if s.returnInline {
-		bufWriteF(b, "%s{%s}", tBytes, strings.Join(lines, ", "))
+		c.addLineF("%s{%s}", tBytes, strings.Join(lines, ", "))
 	} else {
-		bufWriteLine(b, strings.Join(lines, "\n\t"))
+		c.addLines(lines...)
 	}
 }
 

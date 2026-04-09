@@ -21,23 +21,22 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 	makeSize := s.generateMakeSizes(s.calcSize())
 	s.isReturnedInline()
 
-	buf := bytes.NewBuffer(nil)
-	c := varCtx{buf: buf}
-	s.writeSingles(buf)
+	var c varCtx
+	s.writeSingles(&c)
 
 	for _, f := range s.fixedLen {
-		bufWriteLine(buf, f.marshalLine(&c, ""))
+		c.addLines(f.marshalLine(&c, ""))
 	}
 
 	for _, f := range s.stringSlice {
-		bufWriteLine(buf, f.marshalLine(&c, f.qtyBytes()))
+		c.addLines(f.marshalLine(&c, f.qtyBytes()))
 	}
 
 	for _, f := range s.variableLen {
-		bufWriteLine(buf, f.marshalLine(&c, string(f.marshal.qtyVar)))
+		c.addLines(f.marshalLine(&c, string(f.marshal.qtyVar)))
 	}
 
-	if len(buf.Bytes()) == 0 {
+	if len(c.lines) == 0 {
 		return
 	}
 
@@ -48,13 +47,13 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 			s.option.pointerSymbol(),
 			s.name,
 			MethodMarshalJ,
-			buf.String(),
+			strings.Join(c.lines, "\n\t"),
 		)
 		return
 	}
 
 	bufWriteF(b,
-		"\nfunc (%[1]s %[2]s%[3]s) %[9]s() (%[4]s []byte) {\n\t%[5]s\n\t%[4]s = make([]byte, %[6]s)\n\t%[7]s%[8]s\treturn\n}\n",
+		"\nfunc (%[1]s %[2]s%[3]s) %[9]s() (%[4]s []byte) {\n\t%[5]s\n\t%[4]s = make([]byte, %[6]s)\n\t%[7]s%[8]s\n\treturn\n}\n",
 		s.receiver,
 		s.option.pointerSymbol(),
 		s.name,
@@ -62,7 +61,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 		varLengths,
 		makeSize,
 		s.generateSizeLine(),
-		buf.String(),
+		strings.Join(c.lines, "\n\t"),
 		MethodMarshalJ,
 	)
 
@@ -105,7 +104,7 @@ func (f *field) marshalLine(ctx *varCtx, lenVar string) string {
 
 	codeLine := ctx.trackingVarsM(f)
 	if codeLine != "" && template != tFuncOpt {
-		bufWriteLine(ctx.buf, codeLine)
+		ctx.addLines(codeLine)
 	}
 
 	switch template {
@@ -178,7 +177,7 @@ func (c *varCtx) trackingVarsM(f *field) (codeLine string) {
 
 	if !c.isAtDefined && !c.isEndDefined {
 		if f.indexStart != nil && *f.indexStart != 0 {
-			bufWriteLineF(c.buf, "%s, %s := %d, %[3]d+%s", vAt, vEnd, *f.indexStart, f.ctxVarIncrementBy())
+			c.addLineF("%s, %s := %d, %[3]d+%s", vAt, vEnd, *f.indexStart, f.ctxVarIncrementBy())
 			c.isAtDefined = true
 			c.isEndDefined = true
 			c.atValue = vAt
@@ -194,7 +193,7 @@ func (c *varCtx) trackingVarsM(f *field) (codeLine string) {
 		} else if len(*f.fieldList)+len(f.structTyp.variableLen) >= 2 && !f.isFirst {
 			c.isAtDefined = true
 			c.isEndDefined = true
-			bufWriteLineF(c.buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, c.endValue, f.marshal.qtyVar)
+			c.addLineF("%s, %s := %s, %[3]s+%s", vAt, vEnd, c.endValue, f.marshal.qtyVar)
 			c.atValue = vAt
 			c.endValue = vEnd
 		}
@@ -204,7 +203,7 @@ func (c *varCtx) trackingVarsM(f *field) (codeLine string) {
 			c.isEndDefined = true
 			c.atValue = vAt
 			c.endValue = vEnd
-			bufWriteLineF(c.buf, "%s, %s := %s, %[3]s+%s", vAt, vEnd, c.atValue, f.marshal.qtyVar)
+			c.addLineF("%s, %s := %s, %[3]s+%s", vAt, vEnd, c.atValue, f.marshal.qtyVar)
 		}
 	}
 

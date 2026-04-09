@@ -22,6 +22,7 @@ func (s *structTyp) putFixedLenBefore() bool {
 
 type varCtx struct {
 	buf                       *bytes.Buffer
+	lines                     []string
 	atValue, endValue         string
 	isAtDefined, isEndDefined bool
 	isOkDefined               bool
@@ -40,6 +41,14 @@ func (c *varCtx) defineAtLine() string {
 		return fmt.Sprintf("var %s uint\n\t", vAt)
 	}
 	return ""
+}
+
+func (c *varCtx) addLines(lines ...string) {
+	c.lines = append(c.lines, lines...)
+}
+
+func (c *varCtx) addLineF(format string, a ...any) {
+	c.addLines(fmt.Sprintf(format, a...))
 }
 
 // Names of variables used in the generated code.
