@@ -33,7 +33,7 @@ func writeSingle(single *field, b *bytes.Buffer, fun string, isMake, isLast bool
 
 	b.WriteString(printFunc(fun, single.Name()))
 	if !isLast {
-		b.WriteString(",")
+		b.WriteString(", ")
 	}
 }
 
@@ -45,5 +45,5 @@ func (s *structTyp) readSingles(b *bytes.Buffer) {
 }
 
 func readSingle(single *field, b *bytes.Buffer, fun string) {
-	bufWriteLineF(b, "%s=%s", single.Name(), printFunc(fun, fmt.Sprintf("%s[%d]", single.structTyp.bufferName, *single.indexStart)))
+	bufWriteLineF(b, "%s = %s", single.Name(), printFunc(fun, fmt.Sprintf("%s[%d]", single.structTyp.bufferName, *single.indexStart)))
 }
