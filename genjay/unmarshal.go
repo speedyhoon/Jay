@@ -51,7 +51,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	c := varCtx{buf: buf}
 	s.varsUnmarshal()
 	lengthChecks := s.makeLengthChecks()
-	s.makeReadBools(fixedBuf)
+	s.readBools(fixedBuf)
 	s.readSingles(fixedBuf)
 
 	for _, f := range s.fixedLen {

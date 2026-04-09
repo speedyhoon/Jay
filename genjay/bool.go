@@ -13,7 +13,7 @@ var (
 	unmarshalBoolsFuncPrefix = strings.TrimSuffix(nameOf(jay.ReadBool1, nil), "1")
 )
 
-func (s *structTyp) makeWriteBools(lines *[]string) {
+func (s *structTyp) writeBools(lines *[]string) {
 	if len(s.bool) == 0 {
 		return
 	}
@@ -24,21 +24,21 @@ func (s *structTyp) makeWriteBools(lines *[]string) {
 		next8Qty := min(8, len(newList[i:]))
 
 		if s.returnInline {
-			*lines = append(*lines, boolsFunc(newList, i, next8Qty))
+			*lines = append(*lines, write8Bools(newList, i, next8Qty))
 		} else {
-			*lines = append(*lines, fmt.Sprintf("%s[%d] = %s", s.bufferName, byteIndex, boolsFunc(newList, i, next8Qty)))
+			*lines = append(*lines, fmt.Sprintf("%s[%d] = %s", s.bufferName, byteIndex, write8Bools(newList, i, next8Qty)))
 		}
 
 		byteIndex++
 	}
 }
 
-// boolsFunc generates a function call string to one of jay.BoolX functions depending on the quantity of bools between `i` and `next8Qty`.
-func boolsFunc(newList []string, i, next8Qty int) string {
+// write8Bools generates a function call string to one of jay.BoolX functions depending on the quantity of bools between `i` and `next8Qty`.
+func write8Bools(newList []string, i, next8Qty int) string {
 	return fmt.Sprintf("%s%d(%s)", marshalBoolsFuncPrefix, next8Qty, strings.Join(newList[i:i+next8Qty], ", "))
 }
 
-func (s *structTyp) makeReadBools(b *bytes.Buffer) {
+func (s *structTyp) readBools(b *bytes.Buffer) {
 	if len(s.bool) == 0 {
 		return
 	}

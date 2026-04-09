@@ -12,7 +12,7 @@ func (s *structTyp) writeSingles(b *bytes.Buffer) {
 	}
 
 	var lines []string
-	s.makeWriteBools(&lines)
+	s.writeBools(&lines)
 
 	for i, mx := 0, len(s.single); i < mx; i++ {
 		isLast := i+1 == mx
