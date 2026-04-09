@@ -47,13 +47,13 @@ func (s *structTyp) makeReadBools(b *bytes.Buffer) {
 	byteIndex := *s.bool[0].indexStart
 	l := len(newList)
 	for i := 0; i < l; i += 8 {
-		readBools2(newList[i:], b, byteIndex, s.bufferName, uList[i:])
+		readBools(newList[i:], b, byteIndex, s.bufferName, uList[i:])
 		byteIndex++
 	}
 }
 
-// readBools2 expects only one to eight bools.
-func readBools2(bools []string, b *bytes.Buffer, byteIndex uint, bufferName string, uList []bool) {
+// readBools expects only one to eight bools.
+func readBools(bools []string, b *bytes.Buffer, byteIndex uint, bufferName string, uList []bool) {
 	if len(bools) > 8 {
 		bools = bools[:8]
 	}
