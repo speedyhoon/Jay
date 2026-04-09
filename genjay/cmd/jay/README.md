@@ -1,7 +1,7 @@
 # `jay`
 
 The `jay` command line tool scans `.go` files for exported structs and generates methods `.MarshalJ()` and `.UnmarshalJ()` to serialize structs into the [Jay serialization format](https://github.com/speedyhoon/jay).
-`jay` is a wrapper around the [jay/genjay](../../README.md) package, 
+`jay` is a wrapper around the [genjay](../../README.md) package, 
 providing optional command line flags and traverses directories in search for `.go` files.
 
 ## Install
@@ -47,7 +47,7 @@ jay my_file.go
 
 `-u` Don't generate `UnmarshalJ()` function. _Default: `false`_
 
-`-y` Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. _Default is to process all exported types._ <br>
+`-y` Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. _Default is to process all exported types._\
          For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined `Vet struct` along with `Cat` and `Cow` in imported package `animal`.
 
 ## When to regenerate code
