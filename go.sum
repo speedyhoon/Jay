@@ -1,6 +1,6 @@
 github.com/go-openapi/testify/v2 v2.4.1 h1:zB34HDKj4tHwyUQHrUkpV0Q0iXQ6dUCOQtIqn8hE6Iw=
 github.com/go-openapi/testify/v2 v2.4.1/go.mod h1:HCPmvFFnheKK2BuwSA0TbbdxJ3I16pjwMkYkP4Ywn54=
-github.com/speedyhoon/rando v0.0.0-20260220235903-c3a636a73e01 h1:kBo6xoo6RbJuEVmuu6Z7DyQSwfDu5gRmgRgyuD5yF6A=
-github.com/speedyhoon/rando v0.0.0-20260220235903-c3a636a73e01/go.mod h1:sHdRSSPCTOC5RmHN5zCsTrQdWtj5ISVaJf4Xwjw8mWs=
+github.com/speedyhoon/rando v0.0.0-20260324092358-d3a30fdead04 h1:z+SifBObeU7ledawyKJrjKt/j0wRg9FGRdbh35wtwCY=
+github.com/speedyhoon/rando v0.0.0-20260324092358-d3a30fdead04/go.mod h1:udzBP9EiIcoE0vahtT0jBz7I70ugtyAHb8Rx2j8L8Dw=
 github.com/speedyhoon/tf v0.0.0-20260127062719-bb065761d36c h1:C1ANfzvIiyOwuEvgBDQiIzrSNPeDI3tnfOybHDq0OIU=
 github.com/speedyhoon/tf v0.0.0-20260127062719-bb065761d36c/go.mod h1:wrGpO97sV6KDUddMkc1R5YiHyPs6Y/EvletjpkO2/XU=

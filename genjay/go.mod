@@ -8,8 +8,8 @@ require (
 	github.com/speedyhoon/ext v0.0.0-20260113124402-f0066d60c0b7
 	github.com/speedyhoon/flag v0.0.0-20260227112925-86bbdde51b02
 	github.com/speedyhoon/jay v0.0.0-20260312031609-7c1c0668ba12
-	github.com/speedyhoon/rando v0.0.0-20260315030348-41fbd8132b31
-	github.com/speedyhoon/rando/types v0.0.0-20260220235903-c3a636a73e01
+	github.com/speedyhoon/rando v0.0.0-20260324092358-d3a30fdead04
+	github.com/speedyhoon/rando/types v0.0.0-20260324092358-d3a30fdead04
 	github.com/speedyhoon/utl v0.0.0-20260315024855-0c863838fe45
 	golang.org/x/tools v0.42.0
 	mvdan.cc/gofumpt v0.8.0
