@@ -7,7 +7,7 @@ require (
 	github.com/go-openapi/testify/v2 v2.4.1
 	github.com/speedyhoon/ext v0.0.0-20260113124402-f0066d60c0b7
 	github.com/speedyhoon/flag v0.0.0-20260227112925-86bbdde51b02
-	github.com/speedyhoon/jay v0.0.0-20260312031609-7c1c0668ba12
+	github.com/speedyhoon/jay v0.0.0-00010101000000-000000000000
 	github.com/speedyhoon/rando v0.0.0-20260324092358-d3a30fdead04
 	github.com/speedyhoon/rando/types v0.0.0-20260324092358-d3a30fdead04
 	github.com/speedyhoon/utl v0.0.0-20260315024855-0c863838fe45
@@ -21,3 +21,5 @@ require (
 	golang.org/x/mod v0.33.0 // indirect
 	golang.org/x/sync v0.19.0 // indirect
 )
+
+replace github.com/speedyhoon/jay => ../
