@@ -547,9 +547,9 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 				c, template = f.sizeOfPick(jay.ReadStrings8Ok, jay.ReadStrings8Ok), tFuncPtrCheckAtOk
 			}
 		} else if f.isFirst {
-			c, template = f.sizeOfPick(jay.ReadStrings8nbXt, jay.ReadStrings8nbXt), tFuncPtrCheck
+			c, template = f.sizeOfPick(jay.ReadStrings8AtEndOk, jay.ReadStrings8AtEndOk), tFuncPtrCheck
 		} else {
-			c, template = f.sizeOfPick(jay.ReadStrings8nbX, jay.ReadStrings8nbX), tFuncPtrCheckAt
+			c, template = f.sizeOfPick(jay.ReadStrings8AtOk, jay.ReadStrings8AtOk), tFuncPtrCheckAt
 		}
 	case tTime:
 		if f.tagOptions.TimeNano {

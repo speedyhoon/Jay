@@ -21,7 +21,7 @@ func SizeStringsArray(s []string, length int) (total int) {
 	return length + total
 }
 
-func ReadStrings8nbX(y []byte, s *[]string, length uint8, at *int) (ok bool) {
+func ReadStrings8AtOk(y []byte, s *[]string, length uint8, at *int) (ok bool) {
 	if length == _0 {
 		return true
 	}
@@ -77,7 +77,7 @@ func ReadStrings8Err(y []byte, s *[]string, length uint8) (err error) {
 	return
 }
 
-func ReadStrings8nbXt(y []byte, s *[]string, length uint8, at int) (end int, ok bool) {
+func ReadStrings8AtEndOk(y []byte, s *[]string, length uint8, at int) (end int, ok bool) {
 	if length == _0 {
 		return at, true
 	}

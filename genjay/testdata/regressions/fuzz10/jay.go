@@ -25,7 +25,7 @@ func (f *Fuzz710) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	at := 10
-	if !jay.ReadStrings8nbX(b[10:], &f.Three, b[0], &at) {
+	if !jay.ReadStrings8AtOk(b[10:], &f.Three, b[0], &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadComplex64(b[2:10])

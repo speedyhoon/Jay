@@ -25,7 +25,7 @@ func (f *Fuzz35690) UnmarshalJ(b []byte) error {
 	if l < 3+8*l1+l2 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[3:], &f.Three, b[0], 3)
+	at, ok := jay.ReadStrings8AtEndOk(b[3:], &f.Three, b[0], 3)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}

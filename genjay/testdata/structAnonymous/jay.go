@@ -2141,7 +2141,7 @@ func (t *ThirtyTwo) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	at := 100
-	if !jay.ReadStrings8nbX(b[100:], &t.ThirtyTwo, b[0], &at) {
+	if !jay.ReadStrings8AtOk(b[100:], &t.ThirtyTwo, b[0], &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	t.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One = jay.ReadBool1(b[17])
@@ -2263,7 +2263,7 @@ func (t *ThirtyThree) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	at := 108
-	if !jay.ReadStrings8nbX(b[108:], &t.ThirtyTwo.ThirtyTwo, b[0], &at) {
+	if !jay.ReadStrings8AtOk(b[108:], &t.ThirtyTwo.ThirtyTwo, b[0], &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	t.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One = jay.ReadBool1(b[17])
@@ -2388,7 +2388,7 @@ func (t *ThirtyFour) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	at := 109
-	if !jay.ReadStrings8nbX(b[109:], &t.ThirtyThree.ThirtyTwo.ThirtyTwo, b[0], &at) {
+	if !jay.ReadStrings8AtOk(b[109:], &t.ThirtyThree.ThirtyTwo.ThirtyTwo, b[0], &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	t.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One = jay.ReadBool1(b[18])
@@ -2516,7 +2516,7 @@ func (t *ThirtyFive) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	at := 117
-	if !jay.ReadStrings8nbX(b[117:], &t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo, b[0], &at) {
+	if !jay.ReadStrings8AtOk(b[117:], &t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo, b[0], &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One = jay.ReadBool1(b[18])
@@ -2647,7 +2647,7 @@ func (t *ThirtySix) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	at := 118
-	if !jay.ReadStrings8nbX(b[118:], &t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo, b[0], &at) {
+	if !jay.ReadStrings8AtOk(b[118:], &t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo, b[0], &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.One.One = jay.ReadBool1(b[19])

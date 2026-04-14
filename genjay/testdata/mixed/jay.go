@@ -43,7 +43,7 @@ func (z *Zebra) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	at := 12
-	if !jay.ReadStrings8nbX(b[12:], &z.Strings, b[0], &at) {
+	if !jay.ReadStrings8AtOk(b[12:], &z.Strings, b[0], &at) {
 		return jay.ErrUnexpectedEOB
 	}
 	z.B1, z.B2 = jay.ReadBool2(b[3])

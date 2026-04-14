@@ -9960,7 +9960,7 @@ func (f *Fuzz499) UnmarshalJ(b []byte) error {
 	if l < 2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -16199,7 +16199,7 @@ func (f *Fuzz811) UnmarshalJ(b []byte) error {
 	if l < 2 || l < 2+jay.SizeBools8(b[1]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -17268,7 +17268,7 @@ func (f *Fuzz850) UnmarshalJ(b []byte) error {
 	if l < 2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -18245,7 +18245,7 @@ func (f *Fuzz889) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -19192,7 +19192,7 @@ func (f *Fuzz928) UnmarshalJ(b []byte) error {
 	if l < 2+16*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -20139,7 +20139,7 @@ func (f *Fuzz967) UnmarshalJ(b []byte) error {
 	if l < 2+4*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -21086,7 +21086,7 @@ func (f *Fuzz1006) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -22033,7 +22033,7 @@ func (f *Fuzz1045) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -22980,7 +22980,7 @@ func (f *Fuzz1084) UnmarshalJ(b []byte) error {
 	if l < 2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -23927,7 +23927,7 @@ func (f *Fuzz1123) UnmarshalJ(b []byte) error {
 	if l < 2+2*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -24874,7 +24874,7 @@ func (f *Fuzz1162) UnmarshalJ(b []byte) error {
 	if l < 2+4*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -25821,7 +25821,7 @@ func (f *Fuzz1201) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -26768,7 +26768,7 @@ func (f *Fuzz1240) UnmarshalJ(b []byte) error {
 	if l < 2+4*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27169,7 +27169,7 @@ func (f *Fuzz1260) UnmarshalJ(b []byte) error {
 	if l < 2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27309,7 +27309,7 @@ func (f *Fuzz1268) UnmarshalJ(b []byte) error {
 	if l < 2 || l < 2+jay.SizeBools8(b[1]) {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27338,7 +27338,7 @@ func (f *Fuzz1269) UnmarshalJ(b []byte) error {
 	if l < 2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27367,7 +27367,7 @@ func (f *Fuzz1270) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27394,7 +27394,7 @@ func (f *Fuzz1271) UnmarshalJ(b []byte) error {
 	if l < 2+16*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27421,7 +27421,7 @@ func (f *Fuzz1272) UnmarshalJ(b []byte) error {
 	if l < 2+4*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27448,7 +27448,7 @@ func (f *Fuzz1273) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27475,7 +27475,7 @@ func (f *Fuzz1274) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27502,7 +27502,7 @@ func (f *Fuzz1275) UnmarshalJ(b []byte) error {
 	if l < 2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27529,7 +27529,7 @@ func (f *Fuzz1276) UnmarshalJ(b []byte) error {
 	if l < 2+2*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27556,7 +27556,7 @@ func (f *Fuzz1277) UnmarshalJ(b []byte) error {
 	if l < 2+4*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27583,7 +27583,7 @@ func (f *Fuzz1278) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27610,7 +27610,7 @@ func (f *Fuzz1279) UnmarshalJ(b []byte) error {
 	if l < 2+4*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27637,7 +27637,7 @@ func (f *Fuzz1280) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27664,7 +27664,7 @@ func (f *Fuzz1281) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27691,7 +27691,7 @@ func (f *Fuzz1282) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27720,7 +27720,7 @@ func (f *Fuzz1283) UnmarshalJ(b []byte) error {
 	if l < 2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27749,7 +27749,7 @@ func (f *Fuzz1284) UnmarshalJ(b []byte) error {
 	if l < 2+2*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27776,7 +27776,7 @@ func (f *Fuzz1285) UnmarshalJ(b []byte) error {
 	if l < 2+4*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -27803,7 +27803,7 @@ func (f *Fuzz1286) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.One, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.One, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -28596,7 +28596,7 @@ func (f *Fuzz1319) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -29543,7 +29543,7 @@ func (f *Fuzz1358) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -30490,7 +30490,7 @@ func (f *Fuzz1397) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -31567,7 +31567,7 @@ func (f *Fuzz1436) UnmarshalJ(b []byte) error {
 	if l < 2+l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -32536,7 +32536,7 @@ func (f *Fuzz1475) UnmarshalJ(b []byte) error {
 	if l < 2+2*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -33483,7 +33483,7 @@ func (f *Fuzz1514) UnmarshalJ(b []byte) error {
 	if l < 2+4*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
@@ -34430,7 +34430,7 @@ func (f *Fuzz1553) UnmarshalJ(b []byte) error {
 	if l < 2+8*l1 {
 		return jay.ErrUnexpectedEOB
 	}
-	at, ok := jay.ReadStrings8nbXt(b[2:], &f.Two, b[0], 2)
+	at, ok := jay.ReadStrings8AtEndOk(b[2:], &f.Two, b[0], 2)
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
