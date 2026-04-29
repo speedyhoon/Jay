@@ -64,7 +64,7 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 
 		f, err = ParseFile(filenames[i], nil)
 		if err != nil {
-			err = errors.Join(errs, err)
+			errs = errors.Join(errs, err)
 			// If a file is unable to be parsed, continue parsing the other files.
 			continue
 		}

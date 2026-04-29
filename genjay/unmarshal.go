@@ -475,11 +475,7 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		}
 		return f.typ, tByteConv, false
 	case tBytes:
-		if f.isArray() {
-			c, template = "", tByteAssign
-			return
-		}
-		if f.Required {
+		if f.isArray() || f.Required {
 			c, template = "", tByteAssign
 		} else {
 			c, template = copyKeyword, tFuncOpt
