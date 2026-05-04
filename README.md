@@ -3,17 +3,17 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/speedyhoon/jay.svg)](https://pkg.go.dev/github.com/speedyhoon/jay)
 [![Go Report Card](https://goreportcard.com/badge/github.com/speedyhoon/Jay)](https://goreportcard.com/report/github.com/speedyhoon/Jay)
 
-Jay aims to be the fastest production safe, serialization package written in [Go](https://go.dev) as
+Jay aims to be the [fastest](https://github.com/speedyhoon/jay/tree/main/bench) production safe, serialization package written in [Go](https://go.dev) as
 an alternative to
 [JSON](https://pkg.go.dev/encoding/json),
 [Protocol Buffers](https://pkg.go.dev/google.golang.org/protobuf), [FlatBuffers](https://github.com/google/flatbuffers),
 [gob](https://pkg.go.dev/encoding/gob),
 [MessagePack](https://msgpack.org),
 [Bebop](https://github.com/200sc/bebop),
-and [mus-go](https://github.com/mus-format/mus-go) with less setup required and no extra languages to learn.
+and [mus-go](https://github.com/mus-format/mus-go), with less setup required and no extra languages to learn.
 
 Jay doesn't determine any types during runtime. Instead, that work is done only once when the marshalling and unmarshalling functions are easily
-generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/main/generate/cmd/jay).
+generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/main/genjay/cmd/jay).
 
 ## TLDR;
 
@@ -32,7 +32,7 @@ generated using the [jay commandline tool](https://github.com/speedyhoon/jay/tre
 
 ##### Cons:
 
-* Need to regenerate methods when Go structs are modified using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/main/generate/cmd/jay).
+* Need to regenerate methods when Go structs are modified using the [jay commandline tool](https://github.com/speedyhoon/jay/tree/main/genjay/cmd/jay).
 * Marshalled output is **not** human-readable.
 * Only written for the Go language.
 
