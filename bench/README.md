@@ -1,3 +1,6 @@
 # Jay benchmarks
 
-[Performance graphs](https://raw.githubusercontent.com/speedyhoon/Jay/refs/heads/main/bench/graph.html).
+[Interactive HTML graphs](https://github.com/speedyhoon/Jay/blob/main/bench/graph.html).
+
+Serialisation performance for 24 struct fields of various types using different technologies:
+![graph.gif](graph.gif)
