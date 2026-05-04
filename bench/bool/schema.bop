@@ -1,0 +1,26 @@
+struct TwentyFour {
+   bool one;
+   bool two;
+   bool three;
+   bool four;
+   bool five;
+   bool six;
+   bool seven;
+   bool eight;
+   bool nine;
+   bool ten;
+   bool eleven;
+   bool twelve;
+   bool thirteen;
+   bool fourteen;
+   bool fifteen;
+   bool sixteen;
+   bool seventeen;
+   bool eighteen;
+   bool nineteen;
+   bool twenty;
+   bool twentyOne;
+   bool twentyTwo;
+   bool twentyThree;
+   bool twentyFour;
+}

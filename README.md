@@ -9,7 +9,7 @@ an alternative to
 [Protocol Buffers](https://pkg.go.dev/google.golang.org/protobuf), [FlatBuffers](https://github.com/google/flatbuffers),
 [gob](https://pkg.go.dev/encoding/gob),
 [MessagePack](https://msgpack.org),
-[Bebop](https://github.com/betwixt-labs/bebop),
+[Bebop](https://github.com/200sc/bebop),
 and [mus-go](https://github.com/mus-format/mus-go) with less setup required and no extra languages to learn.
 
 Jay doesn't determine any types during runtime. Instead, that work is done only once when the marshalling and unmarshalling functions are easily
