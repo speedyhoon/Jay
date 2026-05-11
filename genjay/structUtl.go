@@ -48,7 +48,7 @@ func isBuiltIn(typ string) bool {
 	return false
 }
 
-func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string, fileImports []*dst.ImportSpec, parents ...[]*dst.Ident) (ok bool) {
+func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string, fileImports []*dst.ImportSpec, parentTypes prevTypes, parents ...[]*dst.Ident) (ok bool) {
 	switch d := t.(type) {
 	case *dst.Ident:
 		if d.Obj == nil {
@@ -59,7 +59,7 @@ func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, p
 				if d.Obj == nil {
 					return false
 				}
-				ok = s.isSupportedType(f, d.Obj, dirList, pkg, fileImports, parents...)
+				ok = s.isSupportedType(f, d.Obj, dirList, pkg, fileImports, parentTypes, parents...)
 				if !ok {
 					return false
 				}
@@ -75,7 +75,7 @@ func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, p
 			return true
 		}
 
-		ok = s.isSupportedType(f, d.Obj, dirList, pkg, fileImports, parents...)
+		ok = s.isSupportedType(f, d.Obj, dirList, pkg, fileImports, parentTypes, parents...)
 
 	// Ignore.
 	case nil:
@@ -88,12 +88,22 @@ func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, p
 			lg.Println(d)
 			return false
 		}
-		ok = s.isSupportedType(f, d.Decl, dirList, pkg, fileImports, parents...)
+		ok = s.isSupportedType(f, d.Decl, dirList, pkg, fileImports, parentTypes, parents...)
 
 	case *dst.ArrayType:
-		ok = s.isSupportedType(f, d.Elt, dirList, pkg, fileImports, parents...)
-		// Multidimensional slices are not supported.
+		f.arraySize, ok = calcArraySize(d.Len)
+		if !ok {
+			return false
+		}
+		if f.isArray() {
+			parentTypes = append(parentTypes, ARRAY)
+		} else if f.isSlice() {
+			parentTypes = append(parentTypes, SLICE)
+		}
+
+		ok = s.isSupportedType(f, d.Elt, dirList, pkg, fileImports, parentTypes, parents...)
 		if !ok || f.arrayDepth != 0 {
+			// Multidimensional slices are not supported.
 			return false
 		}
 		f.arrayDepth++
@@ -110,13 +120,12 @@ func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, p
 			f.typ = "[]" + f.typ
 		}
 
-		f.arraySize, ok = calcArraySize(d.Len)
 		f.unmarshal.qtyVar = multiplier(strconv.Itoa(f.arraySize))
 		f.marshal.qtyVar = multiplier(strconv.Itoa(f.arraySize))
 		f.isFixedLen = f.isFixedLen && f.isArray()
 
 	case *dst.TypeSpec:
-		ok = s.isSupportedType(f, d.Type, dirList, pkg, fileImports, parents...)
+		ok = s.isSupportedType(f, d.Type, dirList, pkg, fileImports, parentTypes, parents...)
 		// Field is a type definition if isDef has already been set via inspecting d.Type beforehand, like time.Duration (type Duration int64),
 		// OR if TypeSpec is not an assignment (there is no equal sign).
 		f.isDef = f.isDef || !d.Assign
@@ -140,7 +149,11 @@ func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, p
 			return false
 		}
 
-		s.process(d.Fields.List, dirList, fileImports, parents...)
+		if parentTypes.IsArrayOrSlice() {
+			return false
+		}
+
+		s.process(d.Fields.List, dirList, fileImports, append(parentTypes, STRUCT), parents...)
 
 	default:
 		lg.Printf("type %T not expected in Option.isSupportedType()", d)
@@ -458,6 +471,10 @@ const (
 	tString, tStrings                        = "string", "[]string"
 	tTime, tTimes                            = "time.Time", "[]time.Time"
 	tTimeDuration, tTimeDurations            = "time.Duration", "[]time.Duration"
+
+	ARRAY int8 = iota + 1
+	SLICE
+	STRUCT
 )
 
 // resolveBuiltinAlias replaces the built-in alias with the underlining name to reduce the quantity of types to support.
@@ -471,4 +488,11 @@ func resolveBuiltinAlias(typ string) string {
 		return tInt64
 	}
 	return typ
+}
+
+type prevTypes []int8
+
+func (p prevTypes) IsArrayOrSlice() bool {
+	l := len(p) - 1
+	return l >= 0 && (p[l] == SLICE || p[l] == ARRAY)
 }

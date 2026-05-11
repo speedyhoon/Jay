@@ -184,7 +184,7 @@ func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames .
 	return err
 }
 
-func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports []*dst.ImportSpec, parents ...[]*dst.Ident) (hasExportedFields bool) {
+func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports []*dst.ImportSpec, parentTypes prevTypes, parents ...[]*dst.Ident) (hasExportedFields bool) {
 	if s.tag.HasIgnore() {
 		return false
 	}
@@ -205,7 +205,7 @@ func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports [
 		}
 
 		fe := newField(tag)
-		ok := s.isSupportedType(&fe, t.Type, dirList, s.dir, fileImports, append(parents, names)...)
+		ok := s.isSupportedType(&fe, t.Type, dirList, s.dir, fileImports, parentTypes, append(parents, names)...)
 		if !ok {
 			utl.Del(&fields, i)
 			continue

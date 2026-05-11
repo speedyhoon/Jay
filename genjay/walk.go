@@ -59,7 +59,7 @@ func (v visitor) Visit(node dst.Node) dst.Visitor {
 		}
 
 		s := newStructTyp(v.dir, n.Name.Name, v.option, st.Fields.Decs.Opening)
-		if s.process(st.Fields.List, v.dirList, v.file.Imports) {
+		if s.process(st.Fields.List, v.dirList, v.file.Imports, prevTypes{STRUCT}) {
 			*v.structs = append(*v.structs, s)
 		}
 	}
