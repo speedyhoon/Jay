@@ -44,8 +44,9 @@ func isBuiltIn(typ string) bool {
 	switch typ {
 	case tBool, tByte, tFloat32, tFloat64, tInt, tInt8, tInt16, tInt32, tInt64, tString, tUint, tUint16, tUint32, tUint64, tComplex64, tComplex128:
 		return true
+	default:
+		return false
 	}
-	return false
 }
 
 func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string, fileImports []*dst.ImportSpec, parentTypes prevTypes, parents ...[]*dst.Ident) (ok bool) {
@@ -219,6 +220,13 @@ func (o Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports [
 			f.isFixedLen = o.isLenFixed(f.typ)
 			f.elmSize = o.isLen(f.typ)
 			return true
+			// case "Weekday":
+			// 	f.typ = tInt
+			// 	f.pkgReq = x.Name
+			// 	f.aliasType = "time.Weekday"
+			// 	f.isFixedLen = o.isLenFixed(f.typ)
+			// 	f.elmSize = o.isLen(f.typ)
+			// 	return true
 		}
 	}
 
@@ -229,7 +237,7 @@ func (o Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports [
 	}
 
 	var err error
-	f.typ, err = resolveImportedTypes(imp, d.Sel.Name)
+	err = resolveImportedTypes(imp, d.Sel.Name, f, o)
 	if err != nil {
 		return false
 	}
@@ -237,8 +245,14 @@ func (o Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports [
 	f.pkgReq = imp
 	f.aliasType = pkgSelName(x.Name, d.Sel.Name)
 	f.isDef = true
-	f.isFixedLen = o.isLenFixed(f.typ)
-	f.elmSize = o.isLen(f.typ)
+	if f.isArray() {
+		y := strings.TrimPrefix(f.typ, "[]")
+		f.elmSize = uint(f.arraySize) * o.isLen(y)
+		f.isFixedLen = o.isLenFixed(y)
+	} else {
+		f.elmSize = o.isLen(f.typ)
+		f.isFixedLen = o.isLenFixed(f.typ)
+	}
 	return
 }
 
@@ -404,8 +418,9 @@ func (o Option) isLen(typ string) uint {
 			return 4
 		}
 		return 8
+	default:
+		return 0
 	}
-	return 0
 }
 
 func (o Option) isLenFixed(typ string) bool {
@@ -416,8 +431,12 @@ func (o Option) isLenFixed(typ string) bool {
 		return false
 	case tUint:
 		return !o.VariableUintSize
+	case tBool, tByte, tComplex64, tComplex128, tFloat32, tFloat64, tInt8, tInt16, tInt32, tInt64,
+		tUint16, tUint32, tUint64, tTime, tTimeDuration:
+		return true
+	default:
+		return false
 	}
-	return true
 }
 
 func bufWriteF(b *bytes.Buffer, format string, a ...any) {

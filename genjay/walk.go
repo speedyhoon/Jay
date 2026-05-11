@@ -26,7 +26,7 @@ type field struct {
 	elmSize    uint   // Quantity of bytes required to represent the type. For example, bool = 0, int8 = 1, uint16 = 2, int64 = 8, etc.
 	pkgReq     string // The third party package required to be imported if referenced in the generated code.
 	arrayType  string // The type without the size in brackets. An empty string is not an array.
-	arrayDepth uint8
+	arrayDepth uint8  // How many dimensions if array or slice is multidimensional.
 	lenVar     string // For variable length types, this is the name of the variable that stores the length from len(b[X]) in marshal methods.
 	marshal    vars
 	unmarshal  vars
