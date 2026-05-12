@@ -73,17 +73,18 @@ func main() {
 	if len(paths) == 0 {
 		paths = []string{"."}
 	} else {
+		for i := range paths {
+			paths[i] = filepath.Clean(paths[i])
+			if paths[i] == "" {
+				paths[i] = "."
+			}
+		}
 		utl.DelDup(&paths)
 	}
 
 	var filePaths []string
 
 	for _, path := range paths {
-		path = filepath.Clean(path)
-		if path == "" {
-			path = "."
-		}
-
 		isDir, err := utl.IsDir(path)
 		if err != nil {
 			log.Printf("ignoring path: `%s`, err: %s", path, err)
