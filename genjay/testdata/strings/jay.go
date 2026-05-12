@@ -34,10 +34,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 	if !ok {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &t.Two, b[1]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &t.Two, b[1])
 }
 
 func (t *Three) MarshalJ() (b []byte) {
@@ -62,10 +59,7 @@ func (t *Three) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &t.Two, b[1], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &t.Three, b[2]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &t.Three, b[2])
 }
 
 func (f *Four) MarshalJ() (b []byte) {
@@ -95,10 +89,7 @@ func (f *Four) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &f.Three, b[2], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &f.Four, b[3]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &f.Four, b[3])
 }
 
 func (f *Five) MarshalJ() (b []byte) {
@@ -133,10 +124,7 @@ func (f *Five) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &f.Four, b[3], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &f.Five, b[4]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &f.Five, b[4])
 }
 
 func (s *Six) MarshalJ() (b []byte) {
@@ -176,10 +164,7 @@ func (s *Six) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &s.Five, b[4], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &s.Six, b[5]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &s.Six, b[5])
 }
 
 func (s *Seven) MarshalJ() (b []byte) {
@@ -224,10 +209,7 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &s.Six, b[5], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &s.Seven, b[6]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &s.Seven, b[6])
 }
 
 func (e *Eight) MarshalJ() (b []byte) {
@@ -277,10 +259,7 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &e.Seven, b[6], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &e.Eight, b[7]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &e.Eight, b[7])
 }
 
 func (n *Nine) MarshalJ() (b []byte) {
@@ -335,10 +314,7 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &n.Eight, b[7], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &n.Nine, b[8]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &n.Nine, b[8])
 }
 
 func (t *Ten) MarshalJ() (b []byte) {
@@ -398,10 +374,7 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &t.Nine, b[8], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &t.Ten, b[9]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &t.Ten, b[9])
 }
 
 func (e *Eleven) MarshalJ() (b []byte) {
@@ -466,10 +439,7 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &e.Ten, b[9], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &e.Eleven, b[10]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &e.Eleven, b[10])
 }
 
 func (t *Twelve) MarshalJ() (b []byte) {
@@ -539,10 +509,7 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &t.Eleven, b[10], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &t.Twelve, b[11]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &t.Twelve, b[11])
 }
 
 func (t *Thirteen) MarshalJ() (b []byte) {
@@ -617,10 +584,7 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &t.Twelve, b[11], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &t.Thirteen, b[12]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &t.Thirteen, b[12])
 }
 
 func (f *Fourteen) MarshalJ() (b []byte) {
@@ -700,10 +664,7 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &f.Thirteen, b[12], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &f.Fourteen, b[13]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &f.Fourteen, b[13])
 }
 
 func (f *Fifteen) MarshalJ() (b []byte) {
@@ -788,10 +749,7 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &f.Fourteen, b[13], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &f.Fifteen, b[14]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &f.Fifteen, b[14])
 }
 
 func (s *Sixteen) MarshalJ() (b []byte) {
@@ -881,10 +839,7 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &s.Fifteen, b[14], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &s.Sixteen, b[15]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &s.Sixteen, b[15])
 }
 
 func (s *Seventeen) MarshalJ() (b []byte) {
@@ -979,10 +934,7 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &s.Sixteen, b[15], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &s.Seventeen, b[16]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &s.Seventeen, b[16])
 }
 
 func (e *Eighteen) MarshalJ() (b []byte) {
@@ -1082,10 +1034,7 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &e.Seventeen, b[16], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &e.Eighteen, b[17]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &e.Eighteen, b[17])
 }
 
 func (n *Nineteen) MarshalJ() (b []byte) {
@@ -1190,10 +1139,7 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &n.Eighteen, b[17], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &n.Nineteen, b[18]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &n.Nineteen, b[18])
 }
 
 func (t *Twenty) MarshalJ() (b []byte) {
@@ -1303,10 +1249,7 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &t.Nineteen, b[18], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &t.Twenty, b[19]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &t.Twenty, b[19])
 }
 
 func (t *TwentyOne) MarshalJ() (b []byte) {
@@ -1421,10 +1364,7 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &t.Twenty, b[19], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &t.TwentyOne, b[20]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &t.TwentyOne, b[20])
 }
 
 func (t *TwentyTwo) MarshalJ() (b []byte) {
@@ -1544,10 +1484,7 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &t.TwentyOne, b[20], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &t.TwentyTwo, b[21]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &t.TwentyTwo, b[21])
 }
 
 func (t *TwentyThree) MarshalJ() (b []byte) {
@@ -1672,8 +1609,5 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8AtOk(b[at:], &t.TwentyTwo, b[21], &at) {
 		return jay.ErrUnexpectedEOB
 	}
-	if !jay.ReadStrings8Ok(b[at:], &t.TwentyThree, b[22]) {
-		return jay.ErrUnexpectedEOB
-	}
-	return nil
+	return jay.ReadStrings8Err(b[at:], &t.TwentyThree, b[22])
 }

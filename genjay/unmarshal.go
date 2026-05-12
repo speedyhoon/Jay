@@ -16,6 +16,10 @@ import (
 const moveReadStringsAbove = 2
 
 func (s *structTyp) putFixedLenBefore() bool {
+	if len(s.stringSlice) >= 1 && len(s.bool) == 0 && len(s.single) == 0 && len(s.fixedLen) == 0 {
+		return true
+	}
+
 	first := s.firstVarLenField()
 	return len(s.stringSlice) < moveReadStringsAbove && first != nil && *first.indexStart <= 8
 }
@@ -538,7 +542,7 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		} else if f.isLast {
 			canReturnInline = canReturnInlined(f.structTyp.putFixedLenBefore())
 			if canReturnInline {
-				c, template, canReturnInline = f.sizeOfPick(jay.ReadStrings8Err, jay.ReadStrings8Err), tFuncPtr, canReturnInlined(f.structTyp.putFixedLenBefore())
+				c, template = f.sizeOfPick(jay.ReadStrings8Err, jay.ReadStrings8Err), tFuncPtr
 			} else {
 				c, template = f.sizeOfPick(jay.ReadStrings8Ok, jay.ReadStrings8Ok), tFuncPtrCheckAtOk
 			}
