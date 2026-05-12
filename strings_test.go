@@ -19,10 +19,10 @@ func TestRoundTripStringsArray(t *testing.T) {
 		assert.Equal(t, list, actual)
 	})
 
-	// TODO SizeStringsArray doesn't handle larger datasets :(
-	expected := [size]string(rando.StringsQtyN(size, size))
+	result, seed := rando.StringsQtyLenSeed(size, size)
+	expected := [size]string(result)
 	b = make([]byte, jay.SizeStringsArray(expected[:], size))
 	jay.WriteStringsArray(b, uint8(size), expected[:size])
-	assert.NoError(t, jay.ReadStringsArrayErr(b, actual[:], uint8(size)))
-	assert.Equal(t, expected, actual)
+	assert.NoErrorf(t, jay.ReadStringsArrayErr(b, actual[:], uint8(size)), "seed=%d", seed)
+	assert.Equalf(t, expected, actual, "seed=%d", seed)
 }
