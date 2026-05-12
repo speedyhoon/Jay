@@ -62,7 +62,7 @@ func (b *Boat) UnmarshalJ(y []byte) error {
 }
 `
 
-	opt := Option{ErrVarName: "errBufLen"}
+	opt := Option{ErrVarName: "errBufLen", UseValueReceiver: true, ReturnErrType: true}
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)
@@ -97,7 +97,7 @@ func (b *Boat) UnmarshalJ(y []byte) error {
 }
 `
 
-	opt := Option{ErrVarName: "animal.errBufLen"}
+	opt := Option{ErrVarName: "animal.errBufLen", UseValueReceiver: true, ReturnErrType: true}
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)

@@ -2,7 +2,7 @@
 Provides tests for marshalling and unmarshalling each built-in Go type with 1 to 23 struct fields.
 
 ## Default flags
-Tests are executed in this directory with `jay -d -p -r`
+Tests are executed in this directory with `jay -d -r`
 
 ## Directory Suffixes
 ### Built-ins

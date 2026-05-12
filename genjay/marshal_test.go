@@ -38,7 +38,7 @@ func (b *Boat) UnmarshalJ(y []byte) error {
 }
 `
 
-	var opt genjay.Option
+	opt := genjay.Option{UseValueReceiver: true, ReturnErrType: true}
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)
@@ -78,7 +78,7 @@ func (c *Car) UnmarshalJ(b []byte) error {
 }
 `
 
-	var opt genjay.Option
+	opt := genjay.Option{UseValueReceiver: true, ReturnErrType: true}
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)
@@ -118,7 +118,7 @@ func (y *Yacht) UnmarshalJ(b []byte) error {
 }
 `
 
-	var opt genjay.Option
+	opt := genjay.Option{UseValueReceiver: true, ReturnErrType: true}
 	src, err := opt.ProcessFiles(input)
 	assert.NoError(t, err)
 	assert.Len(t, src, 1)

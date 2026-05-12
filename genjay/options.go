@@ -63,11 +63,10 @@ type Option struct {
 	SearchTests bool // When true, searches Go test files for exported structs too.
 	DisableSort bool // When true, uses the same order structs are defined in files. When false, sorts the generated functions by their struct name.
 
-	// IsMarshalMethodPtr changes generated MarshalJ method to a pointer receiver. Used for suppressing Go linter messages:
-	// `Struct ... has methods on both value and pointer receivers. Such usage is not recommended by the Go Documentation.`
-	// True: `func (f *Foo) MarshalJ()`,
-	// False: `func (f Foo) MarshalJ()`.
-	IsMarshalMethodPtr bool
+	// UseValueReceiver changes generated MarshalJ methods to use value receivers instead of pointer receivers.
+	// True:  `func (c Car) MarshalJ()`.
+	// False: `func (c *Car) MarshalJ()`,
+	UseValueReceiver bool
 
 	SkipTests     bool
 	SkipMarshal   bool // When true doesn't generate any marshalling methods.
@@ -75,10 +74,10 @@ type Option struct {
 }
 
 func (o Option) pointerSymbol() string {
-	if o.IsMarshalMethodPtr {
-		return "*"
+	if o.UseValueReceiver {
+		return ""
 	}
-	return ""
+	return "*"
 }
 
 /*func (m *MaxSize) Set(value *uint) error {

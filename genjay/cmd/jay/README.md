@@ -39,7 +39,7 @@ jay my_file.go
 
 `-v` Verbose output. _Default: `false`_
 
-`-p` Generates pointer `.MarshalJ()` methods instead of functions. _Default: `false`_
+`-p` Use value receivers for methods `func (c Car) MarshalJ()`. _Default: pointer receivers `func (c *Car) MarshalJ()`_
 
 `-r` Disable sorting the generated methods by their struct name. _Default: `false`_
 

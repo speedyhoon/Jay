@@ -8,7 +8,7 @@
 //	-e		Name of the error variable to return from UnmarshalJ functions. (default "jay.ErrUnexpectedEOB")
 //	-m		Don't generate MarshalJ() functions.
 //	-o		Output file. (default "jay.go")
-//	-p		Pointer MarshalJ() method.
+//	-p		Use value receivers for methods 'func (c Car) MarshalJ()'. (default pointer receivers 'func (c *Car) MarshalJ()')
 //	-r		Disable sorting the generated methods by their struct name.
 //	-s		Search Go test files for exported structs too.
 //	-u		Don't generate UnmarshalJ() functions.
@@ -43,7 +43,7 @@ func main() {
 	flag.StringVar(&opt.OutputFileName, "o", genjay.DefaultOutputFileName, "Output file.")
 	flag.StringVar(&opt.ErrVarName, "e", genjay.ExportedErr, "Name of the `error variable` to return from UnmarshalJ functions.")
 	flag.BoolVar(&verbose, "v", false, "Verbose output.")
-	flag.BoolVar(&opt.IsMarshalMethodPtr, "p", false, "Pointer MarshalJ() method.")
+	flag.BoolVar(&opt.UseValueReceiver, "p", false, "Use value receivers for methods 'func (c Car) MarshalJ()'. (default pointer receivers 'func (c *Car) MarshalJ()')")
 	flag.BoolVar(&opt.DisableSort, "r", false, "Disable sorting the generated methods by their struct name.")
 	flag.BoolVar(&opt.SearchTests, "s", false, "Search Go test files for exported structs too.")
 	// Not yet implemented: flag.BoolVar(&opt.SkipTests, "t", false, "Don't generate Go test files.")
