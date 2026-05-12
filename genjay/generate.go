@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"runtime"
+	"sort"
 
 	"github.com/dave/dst"
 	"github.com/speedyhoon/ext"
@@ -35,6 +36,13 @@ func (o Option) makeFile(pkg string, s []*structTyp) ([]byte, error) {
 	mergeEmbeddedStructs(s)
 	var importJ bool
 	imported := importList{}
+
+	// Sort structs so the generated output is the same when file paths are changed.
+	if !o.DisableSort {
+		sort.Slice(s, func(i, j int) bool {
+			return s[i].name < s[j].name
+		})
+	}
 
 	buf := bytes.NewBuffer(nil)
 	for i := range s {

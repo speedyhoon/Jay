@@ -61,6 +61,7 @@ type Option struct {
 
 	Verbose     *log.Logger
 	SearchTests bool // When true, searches Go test files for exported structs too.
+	DisableSort bool // When true, uses the same order structs are defined in files. When false, sorts the generated functions by their struct name.
 
 	// IsMarshalMethodPtr changes generated MarshalJ method to a pointer receiver. Used for suppressing Go linter messages:
 	// `Struct ... has methods on both value and pointer receivers. Such usage is not recommended by the Go Documentation.`

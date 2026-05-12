@@ -41,6 +41,8 @@ jay my_file.go
 
 `-p` Generates pointer `.MarshalJ()` methods instead of functions. _Default: `false`_
 
+`-r` Disable sorting the generated methods by their struct name. _Default: `false`_
+
 `-s` Search Go test files for exported structs too. _Default: `false`_
 
 `-m` Don't generate `MarshalJ()` functions or methods. _Default: `false`_
