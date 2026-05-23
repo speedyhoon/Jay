@@ -24,6 +24,10 @@ func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output [
 	}
 
 	*o = LoadOptions(*o)
+	if o.SkipMarshal && o.SkipUnmarshal {
+		return nil, errors.New("both SkipMarshal and SkipUnmarshal are set")
+	}
+
 	var f *dst.File
 	var err error
 	directories := make(dirList)
