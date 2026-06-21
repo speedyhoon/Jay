@@ -6,6 +6,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/dave/dst"
 	"github.com/speedyhoon/utl"
 )
 
@@ -132,7 +133,7 @@ func LoadOptions(opts ...Option) (o Option) {
 // If OnlyTypes is empty, then allow all types that don't have an ignore tag (// J--) or an embedded only tag (// J-).
 func (s structTyp) IsSpecifiedType(pkg string) bool {
 	if len(s.option.typeMatches) == 0 {
-		return s.tag.HasFuncs()
+		return s.tag.HasFuncs() && dst.IsExported(s.name) && s.hasExportedFields()
 	}
 
 	pkg = pkgSelName(pkg, s.name)

@@ -9,7 +9,6 @@ import (
 	"runtime"
 	"sort"
 
-	"github.com/dave/dst"
 	"github.com/speedyhoon/ext"
 	"github.com/speedyhoon/utl"
 	"mvdan.cc/gofumpt/format"
@@ -142,10 +141,6 @@ func appendEmbed(fields *fieldList, embedName string, embedded fieldList) {
 }
 
 func (s *structTyp) makeFuncs(b *bytes.Buffer) {
-	if !dst.IsExported(s.name) || !s.hasExportedFields() {
-		return
-	}
-
 	if !s.option.SkipMarshal {
 		s.makeMarshal(b)
 	}
