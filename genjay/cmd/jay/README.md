@@ -29,7 +29,13 @@ jay my_file.go
 
 `-d` Debug mode, always write to disk. _Default: `false`_
 
-`-e` Error to return from UnmarshalJ functions. _Default: `jay.ErrUnexpectedEOB`_
+`-e` Name of the error variable to return from `UnmarshalJ` functions.
+
+| Flag         | Generated method signature                                 |
+|--------------|------------------------------------------------------------|
+| omitted      | `UnmarshalJ() (ok bool) {... return false ...}`            |
+| `-e`         | `UnmarshalJ() error {... return jay.ErrUnexpectedEOB ...}` |
+| `-e=foo.Err` | `UnmarshalJ() error {... return foo.Err ...}`              |
 
 `-vi` Variable int size. _Default: `false`_
 
@@ -50,7 +56,7 @@ jay my_file.go
 `-u` Don't generate `UnmarshalJ()` function. _Default: `false`_
 
 `-y` Exclusive list of comma separated types to generate marshalling and/or unmarshalling for. _Default is to process all exported types._\
-         For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined `Vet struct` along with `Cat` and `Cow` in imported package `animal`.
+&ensp;&ensp;&ensp;&ensp; For example, `-y Vet,animal.Cat,animal.Cow` will process locally defined `Vet struct` along with `Cat` and `Cow` in imported package `animal`.
 
 ## When to regenerate code
 How often does `jay` need to be executed?

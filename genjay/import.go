@@ -43,6 +43,10 @@ func (m importList) print() string {
 }
 
 func (s *structTyp) ImportErr() (errVarName string) {
+	if !s.option.ReturnErrType {
+		return "false"
+	}
+
 	if s.option.ErrVarName == ExportedErr {
 		s.imports.add(pkgImport)
 	} else if strings.Count(s.option.ErrVarName, ".") == 1 {

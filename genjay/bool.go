@@ -42,6 +42,7 @@ func (s *structTyp) readBools(b *bytes.Buffer) {
 	if len(s.bool) == 0 {
 		return
 	}
+	s.imports.add(pkgImport)
 
 	newList, uList := fieldNamesArraysUnmarshalInline(s.bool)
 	byteIndex := *s.bool[0].indexStart

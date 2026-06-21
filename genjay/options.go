@@ -68,6 +68,7 @@ type Option struct {
 	// False: `func (c *Car) MarshalJ()`,
 	UseValueReceiver bool
 
+	ReturnErrType bool // Determines if the error type returned is error (true) or bool (false).
 	SkipTests     bool
 	SkipMarshal   bool // When true doesn't generate any marshalling methods.
 	SkipUnmarshal bool // When true doesn't generate any unmarshalling methods.

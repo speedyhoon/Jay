@@ -96,15 +96,20 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 	}
 
 	if !s.returnInlineUnmarshal {
-		bufWriteLine(buf, "return nil")
+		if s.option.ReturnErrType {
+			bufWriteLine(buf, "return nil")
+		} else {
+			bufWriteLine(buf, "return true")
+		}
 	}
 
 	bufWriteF(b,
-		"\nfunc (%s *%s) %s(%s []byte) error {\n\t%s\n%s}\n",
+		"\nfunc (%s *%s) %s(%s []byte) %s {\n\t%s\n%s}\n",
 		s.receiver,
 		s.name,
 		MethodUnmarshalJ,
 		s.bufferName,
+		utl.Tern(s.option.ReturnErrType, "error", "(ok bool)"),
 		lengthChecks,
 		buf.String(),
 	)
@@ -464,7 +469,7 @@ func (f *field) typeConvert() string {
 // unmarshalFunc returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
 func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInline canReturnInlined) {
-	var c interface{}
+	var c any
 	switch f.typ {
 	case tBools:
 		c, template = jay.ReadBools8, tFuncLength
