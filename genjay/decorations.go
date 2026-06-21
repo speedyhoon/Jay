@@ -47,5 +47,8 @@ func commentTag(comments dst.Decorations) structTag {
 }
 
 func IsCommentOrWhitespace(r rune) bool {
-	return r <= ' ' || r == '/' || r == '*' || r == 0x7F || r == 0x85 || r == 0xA0
+	return r <= ' ' || r == '/' || r == '*' ||
+		r == 0x7F || // DELETE
+		r == 0x85 || // NEXT LINE
+		r == 0xA0 // NO-BREAK SPACE
 }
