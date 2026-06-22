@@ -7,7 +7,6 @@ import (
 	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/rando"
-	"github.com/speedyhoon/tf"
 )
 
 func TestRoundTripUint16s(t *testing.T) {
@@ -21,7 +20,7 @@ func TestRoundTripUint16s(t *testing.T) {
 	list = rando.Uint16sN(math.MaxInt8)
 
 	for i := 1; i <= math.MaxInt8; i++ {
-		tf.Run(t, i, func(t *testing.T) {
+		Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*2)
 			jay.WriteUint16s(b, list[:i], i)
 			assert.Equal(t, list[:i], jay.ReadUint16s(b, i))
@@ -43,7 +42,7 @@ func TestRoundTripUintsX32(t *testing.T) {
 	}
 
 	for i := 1; i <= math.MaxInt8; i++ {
-		tf.Run(t, i, func(t *testing.T) {
+		Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*4)
 			jay.WriteUintsX32(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadUintsX32(b, i))
@@ -65,7 +64,7 @@ func TestRoundTripUintsX64(t *testing.T) {
 	}
 
 	for i := 1; i <= math.MaxInt8; i++ {
-		tf.Run(t, i, func(t *testing.T) {
+		Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
 			jay.WriteUintsX64(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadUintsX64(b, i))
@@ -87,7 +86,7 @@ func TestRoundTripUint64s(t *testing.T) {
 	}
 
 	for i := 1; i <= math.MaxUint8; i++ {
-		tf.Run(t, i, func(t *testing.T) {
+		Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
 			jay.WriteUint64s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadUint64s(b, i))
@@ -109,7 +108,7 @@ func TestRoundTripUint32s(t *testing.T) {
 	}
 
 	for i := 1; i <= math.MaxUint8; i++ {
-		tf.Run(t, i, func(t *testing.T) {
+		Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*4)
 			jay.WriteUint32s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadUint32s(b, i))

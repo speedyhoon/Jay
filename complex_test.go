@@ -8,7 +8,6 @@ import (
 	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/rando"
-	"github.com/speedyhoon/tf"
 )
 
 func TestComplex64(t *testing.T) {
@@ -49,7 +48,7 @@ func TestRoundTripComplex64s(t *testing.T) {
 	}
 
 	for i := 1; i <= math.MaxUint8; i++ {
-		tf.Run(t, i, func(t *testing.T) {
+		Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
 			jay.WriteComplex64s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadComplex64s(b, i))
@@ -71,10 +70,14 @@ func TestRoundTripComplex128s(t *testing.T) {
 	}
 
 	for i := 1; i <= math.MaxUint8; i++ {
-		tf.Run(t, i, func(t *testing.T) {
+		Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*16)
 			jay.WriteComplex128s(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadComplex128s(b, i))
 		})
 	}
+}
+
+func Run(t *testing.T, index int, f func(t *testing.T)) bool {
+	return t.Run(fmt.Sprintf("test[%d]", index), f)
 }

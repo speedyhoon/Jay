@@ -26,8 +26,6 @@ github.com/speedyhoon/rando v0.0.0-20260601021336-7604f2227697 h1:CDsTx/mqtkX1Ju
 github.com/speedyhoon/rando v0.0.0-20260601021336-7604f2227697/go.mod h1:udzBP9EiIcoE0vahtT0jBz7I70ugtyAHb8Rx2j8L8Dw=
 github.com/speedyhoon/rando/types v0.0.0-20260601021336-7604f2227697 h1:n4Pk6dF91E0D0/2ienBd84FNNvIzMn3PkOzWARSW898=
 github.com/speedyhoon/rando/types v0.0.0-20260601021336-7604f2227697/go.mod h1:j3PBhoBPqx9VM9XdHuWrcjUubJhMIKr9C3wNYNg4p4I=
-github.com/speedyhoon/tf v0.0.0-20260127062719-bb065761d36c h1:C1ANfzvIiyOwuEvgBDQiIzrSNPeDI3tnfOybHDq0OIU=
-github.com/speedyhoon/tf v0.0.0-20260127062719-bb065761d36c/go.mod h1:wrGpO97sV6KDUddMkc1R5YiHyPs6Y/EvletjpkO2/XU=
 github.com/speedyhoon/utl v0.0.0-20260621051203-6efa97cf74d3 h1:z85NK1BciLmC2jLz1UKbDWpgH3dvO/YZeAJyOBpSYdw=
 github.com/speedyhoon/utl v0.0.0-20260621051203-6efa97cf74d3/go.mod h1:THtIIZlDsTeD2U5JCkGHF/Iay+KSzTEghoLq3X0p8b4=
 golang.org/x/mod v0.33.0 h1:tHFzIWbBifEmbwtGz65eaWyGiGZatSrT9prnU8DbVL8=

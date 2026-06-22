@@ -8,7 +8,6 @@ import (
 	"github.com/go-openapi/testify/v2/assert"
 	"github.com/speedyhoon/jay"
 	"github.com/speedyhoon/rando"
-	"github.com/speedyhoon/tf"
 )
 
 func TestWriteTime(t *testing.T) {
@@ -77,7 +76,7 @@ func TestRoundTripDurations(t *testing.T) {
 	list = rando.DurationsN(math.MaxUint8)
 
 	for i := 1; i <= math.MaxUint8; i++ {
-		tf.Run(t, i, func(t *testing.T) {
+		Run(t, i, func(t *testing.T) {
 			b = make([]byte, i*8)
 			jay.WriteDurations(b, list[:i], len(list[:i]))
 			assert.Equal(t, list[:i], jay.ReadDurations(b, i))

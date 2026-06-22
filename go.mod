@@ -5,5 +5,4 @@ go 1.24.5
 require (
 	github.com/go-openapi/testify/v2 v2.4.1
 	github.com/speedyhoon/rando v0.0.0-20260512105050-fc5d50399ae9
-	github.com/speedyhoon/tf v0.0.0-20260127062719-bb065761d36c
 )
