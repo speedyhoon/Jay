@@ -62,6 +62,7 @@ func main() {
 
 	if opt.SkipMarshal && opt.SkipUnmarshal {
 		log.Println("Nothing to do. Both -m and -u flags are set.")
+		return
 	}
 
 	if verbose {
