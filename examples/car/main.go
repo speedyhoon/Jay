@@ -16,8 +16,8 @@ func main() {
 		Manufacturer: "Zebra",
 		LinkageDelta: -6,
 	}}
-	//byt, _ := json.Marshal(car)
-	//log.Printf("%s\n", byt)
+	// byt, _ := json.Marshal(car)
+	// log.Printf("%s\n", byt)
 
 	src := car.MarshalJ()
 	log.Println(src)

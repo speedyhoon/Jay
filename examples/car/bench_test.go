@@ -17,8 +17,11 @@ var car = Car{
 		Manufacturer: "Zebra",
 	},
 }
-var src []byte
-var ll int
+
+var (
+	src []byte
+	ll  int
+)
 
 func BenchmarkMarshalJ(b *testing.B) {
 	for i := 0; i < b.N; i++ {
@@ -64,6 +67,7 @@ func BenchmarkFastest(b *testing.B) {
 		Fastest(i)
 	}
 }
+
 func Fastest(i int) {
 	// nothing to do here
 	_ = i + 1

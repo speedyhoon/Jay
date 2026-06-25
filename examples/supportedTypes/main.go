@@ -49,10 +49,10 @@ type Embed struct {
 	Uint64  uint64
 	Rune    rune
 	String  string
-	//Guid [16]byte
+	// Guid [16]byte
 	Time time.Time
 	Nano time.Time `j:"nano"`
-	//Embedded Supported
+	// Embedded Supported
 	ByteSlice []byte
 }
 
@@ -73,10 +73,10 @@ type subStruct struct {
 	Uint64  uint64
 	Rune    rune
 	String  string
-	//Guid [16]byte
+	// Guid [16]byte
 	Time time.Time
 	Nano time.Time `j:"nano"`
-	//Embedded Supported
+	// Embedded Supported
 	ByteSlice []byte
 }
 
