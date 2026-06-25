@@ -113,3 +113,19 @@ func ReadBools8(y []byte, length uint8) (t []bool) {
 	}
 	return
 }
+
+func ReadBoolIndexAt(y byte, index uint8, at *uint32) bool {
+	if index&_7 == _0 && index > _7 {
+		*at++
+	}
+	return y&(_1<<(index&_7)) != _0
+}
+
+func WriteBoolIndexAt(y []byte, v bool, index uint8, at *uint32) {
+	if v {
+		y[_0] |= _1 << (index & _7)
+	}
+	if index&_7 == _0 && index > _7 {
+		*at++
+	}
+}
