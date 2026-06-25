@@ -137,6 +137,7 @@ To include an external type via the commandline, either:
 
 In order of priority:
 
+* Struct slices like `[]Car` and `type Cars []Car`.
 * Expand fuzz testing and test coverage.
 * Field tag options and documentation.
 * Increase supported slice length from 255 items to 2<sup>24</sup> _(16,777,215)_
