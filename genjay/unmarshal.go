@@ -389,7 +389,7 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 		return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.convertTo(), f.sliceExpr3(ctx)))
 
 	default:
-		lg.Panicln("unhandled template")
+		lg.Printf("unexpected unmarshal template %d\n", template)
 		return ""
 	}
 }

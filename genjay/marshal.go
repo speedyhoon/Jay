@@ -125,7 +125,7 @@ func (f *field) marshalLine(ctx *varCtx, lenVar string) string {
 	case tByteAssign:
 		return f.Field(fun)
 	default:
-		lg.Printf("template %d unhandled", template)
+		lg.Printf("unexpected marshal template %d\n", template)
 		return ""
 	}
 }
