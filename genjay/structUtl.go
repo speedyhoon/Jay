@@ -193,7 +193,7 @@ func findImportedType(files []*dst.File, pkg, typName string) *dst.Object {
 }
 
 // isSupportedSelector resolves imported types and some types within Go's standard library.
-func (o Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports []*dst.ImportSpec) (ok bool) {
+func (o *Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports []*dst.ImportSpec) (ok bool) {
 	x, ok := d.X.(*dst.Ident)
 	if !ok {
 		return
@@ -237,7 +237,7 @@ func (o Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports [
 	}
 
 	var err error
-	err = resolveImportedTypes(imp, d.Sel.Name, f, o)
+	err = resolveImportedTypes(imp, d.Sel.Name, f, *o)
 	if err != nil {
 		return false
 	}
@@ -401,7 +401,7 @@ func (s *structTyp) addExportedFields(names []*dst.Ident, f *field, parents [][]
 }
 
 // isLen returns how many bytes each type requires.
-func (o Option) isLen(typ string) uint {
+func (o *Option) isLen(typ string) uint {
 	switch typ {
 	case tBool, tByte, tInt8, tString:
 		return 1
@@ -423,7 +423,7 @@ func (o Option) isLen(typ string) uint {
 	}
 }
 
-func (o Option) isLenFixed(typ string) bool {
+func (o *Option) isLenFixed(typ string) bool {
 	switch typ {
 	case tInt:
 		return !o.VariableIntSize

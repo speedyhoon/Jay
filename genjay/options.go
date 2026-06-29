@@ -75,7 +75,7 @@ type Option struct {
 	SkipUnmarshal bool // When true doesn't generate any unmarshalling methods.
 }
 
-func (o Option) pointerSymbol() string {
+func (o *Option) pointerSymbol() string {
 	if o.UseValueReceiver {
 		return ""
 	}
@@ -131,7 +131,7 @@ func LoadOptions(opts ...Option) (o Option) {
 
 // IsSpecifiedType checks if typeName is one of the types listed in Option.OnlyTypes.
 // If OnlyTypes is empty, then allow all types that don't have an ignore tag (// J--) or an embedded only tag (// J-).
-func (s structTyp) IsSpecifiedType(pkg string) bool {
+func (s *structTyp) IsSpecifiedType(pkg string) bool {
 	if len(s.option.typeMatches) == 0 {
 		return s.tag.HasFuncs() && dst.IsExported(s.name) && s.hasExportedFields()
 	}

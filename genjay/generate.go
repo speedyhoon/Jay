@@ -31,7 +31,7 @@ var (
 	ErrNoneExported = errors.New("no exported struct fields found")
 )
 
-func (o Option) makeFile(pkg string, s []*structTyp) ([]byte, error) {
+func (o *Option) makeFile(pkg string, s []*structTyp) ([]byte, error) {
 	mergeEmbeddedStructs(s)
 	var importJ bool
 	imported := importList{}

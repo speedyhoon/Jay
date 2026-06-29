@@ -89,7 +89,7 @@ func (d *dirList) walk(o *Option) {
 	}
 }
 
-func (o Option) makeFiles(directories dirList) (output []Output, errs error) {
+func (o *Option) makeFiles(directories dirList) (output []Output, errs error) {
 	var src []byte
 	var err error
 
@@ -139,8 +139,8 @@ func (d *dirList) add(dir string, file *dst.File) {
 	(*d)[dir] = list
 }
 
-func (d dirList) allFiles() (files []*dst.File) {
-	for _, dirs := range d {
+func (d *dirList) allFiles() (files []*dst.File) {
+	for _, dirs := range *d {
 		files = append(files, dirs.files...)
 	}
 	return
