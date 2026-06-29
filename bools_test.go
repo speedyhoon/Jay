@@ -65,46 +65,13 @@ func TestWriteBools(t *testing.T) {
 			true, true, true, true, true, true, true, true,
 		}, want: []byte{255, 255, 255, 255, 255, 255, 255, 255}},
 
-		{y: []byte{0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false,
-		}, want: []byte{0, 0}},
-		{y: []byte{0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}, want: []byte{0, 0}},
-		{y: []byte{0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false,
-		}, want: []byte{0, 0, 0}},
-		{y: []byte{0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}, want: []byte{0, 0, 0}},
-		{y: []byte{0, 0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false,
-		}, want: []byte{0, 0, 0, 0}},
-		{y: []byte{0, 0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}, want: []byte{0, 0, 0, 0}},
-		{y: []byte{0, 0, 0, 0, 0, 0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}, want: []byte{0, 0, 0, 0, 0, 0, 0, 0}},
+		{y: []byte{0, 0}, a: make([]bool, 9), want: []byte{0, 0}},
+		{y: []byte{0, 0}, a: make([]bool, 16), want: []byte{0, 0}},
+		{y: []byte{0, 0, 0}, a: make([]bool, 17), want: []byte{0, 0, 0}},
+		{y: []byte{0, 0, 0}, a: make([]bool, 24), want: []byte{0, 0, 0}},
+		{y: []byte{0, 0, 0, 0}, a: make([]bool, 25), want: []byte{0, 0, 0, 0}},
+		{y: []byte{0, 0, 0, 0}, a: make([]bool, 32), want: []byte{0, 0, 0, 0}},
+		{y: []byte{0, 0, 0, 0, 0, 0, 0, 0}, a: make([]bool, 64), want: []byte{0, 0, 0, 0, 0, 0, 0, 0}},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test: %d", i+1), func(t *testing.T) {
@@ -171,46 +138,13 @@ func TestWriteBools8(t *testing.T) {
 			true, true, true, true, true, true, true, true,
 		}, want: []byte{255, 255, 255, 255, 255, 255, 255, 255}},
 
-		{y: []byte{0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false,
-		}, want: []byte{0, 0}},
-		{y: []byte{0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}, want: []byte{0, 0}},
-		{y: []byte{0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false,
-		}, want: []byte{0, 0, 0}},
-		{y: []byte{0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}, want: []byte{0, 0, 0}},
-		{y: []byte{0, 0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false,
-		}, want: []byte{0, 0, 0, 0}},
-		{y: []byte{0, 0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}, want: []byte{0, 0, 0, 0}},
-		{y: []byte{0, 0, 0, 0, 0, 0, 0, 0}, a: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}, want: []byte{0, 0, 0, 0, 0, 0, 0, 0}},
+		{y: []byte{0, 0}, a: make([]bool, 9), want: []byte{0, 0}},
+		{y: []byte{0, 0}, a: make([]bool, 16), want: []byte{0, 0}},
+		{y: []byte{0, 0, 0}, a: make([]bool, 17), want: []byte{0, 0, 0}},
+		{y: []byte{0, 0, 0}, a: make([]bool, 24), want: []byte{0, 0, 0}},
+		{y: []byte{0, 0, 0, 0}, a: make([]bool, 25), want: []byte{0, 0, 0, 0}},
+		{y: []byte{0, 0, 0, 0}, a: make([]bool, 32), want: []byte{0, 0, 0, 0}},
+		{y: []byte{0, 0, 0, 0, 0, 0, 0, 0}, a: make([]bool, 64), want: []byte{0, 0, 0, 0, 0, 0, 0, 0}},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test: %d", i+1), func(t *testing.T) {
@@ -266,36 +200,13 @@ func TestReadBools(t *testing.T) {
 			true, true, true, true, true, true, true, true,
 		}},
 
-		{y: []byte{0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false,
-		}},
-		{y: []byte{0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}},
-		{y: []byte{0, 0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false,
-		}},
-		{y: []byte{0, 0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}},
-		{y: []byte{0, 0, 0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false,
-		}},
-		{y: []byte{0, 0, 0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}},
+		{y: []byte{0, 0}, want: make([]bool, 9)},
+		{y: []byte{0, 0}, want: make([]bool, 16)},
+		{y: []byte{0, 0, 0}, want: make([]bool, 17)},
+		{y: []byte{0, 0, 0}, want: make([]bool, 24)},
+		{y: []byte{0, 0, 0, 0}, want: make([]bool, 25)},
+		{y: []byte{0, 0, 0, 0}, want: make([]bool, 32)},
+		{y: []byte{0, 0, 0, 0, 0, 0, 0, 0}, want: make([]bool, 64)},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test: %d", i+1), func(t *testing.T) {
@@ -360,46 +271,13 @@ func TestReadBools8(t *testing.T) {
 			true, true, true, true, true, true, true, true,
 		}},
 
-		{y: []byte{0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false,
-		}},
-		{y: []byte{0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}},
-		{y: []byte{0, 0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false,
-		}},
-		{y: []byte{0, 0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}},
-		{y: []byte{0, 0, 0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false,
-		}},
-		{y: []byte{0, 0, 0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}},
-		{y: []byte{0, 0, 0, 0, 0, 0, 0, 0}, want: []bool{
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-			false, false, false, false, false, false, false, false,
-		}},
+		{y: []byte{0, 0}, want: make([]bool, 9)},
+		{y: []byte{0, 0}, want: make([]bool, 16)},
+		{y: []byte{0, 0, 0}, want: make([]bool, 17)},
+		{y: []byte{0, 0, 0}, want: make([]bool, 24)},
+		{y: []byte{0, 0, 0, 0}, want: make([]bool, 25)},
+		{y: []byte{0, 0, 0, 0}, want: make([]bool, 32)},
+		{y: []byte{0, 0, 0, 0, 0, 0, 0, 0}, want: make([]bool, 64)},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprintf("test: %d", i+1), func(t *testing.T) {
