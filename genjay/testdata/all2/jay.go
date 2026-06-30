@@ -179,7 +179,7 @@ func (f *Fuzz10) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz11) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -311,7 +311,7 @@ func (f *Fuzz18) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz19) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -330,7 +330,7 @@ func (f *Fuzz19) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz20) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -357,7 +357,7 @@ func (f *Fuzz20) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz21) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -380,7 +380,7 @@ func (f *Fuzz21) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz22) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -403,7 +403,7 @@ func (f *Fuzz22) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz23) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -426,7 +426,7 @@ func (f *Fuzz23) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz24) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -449,7 +449,7 @@ func (f *Fuzz24) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz25) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -472,7 +472,7 @@ func (f *Fuzz25) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz26) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -495,7 +495,7 @@ func (f *Fuzz26) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz27) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -518,7 +518,7 @@ func (f *Fuzz27) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz28) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -541,7 +541,7 @@ func (f *Fuzz28) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz29) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -564,7 +564,7 @@ func (f *Fuzz29) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz30) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -602,7 +602,7 @@ func (f *Fuzz31) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz32) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -625,7 +625,7 @@ func (f *Fuzz32) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz33) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -648,7 +648,7 @@ func (f *Fuzz33) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz34) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -671,7 +671,7 @@ func (f *Fuzz34) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz35) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -698,7 +698,7 @@ func (f *Fuzz35) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz36) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -721,7 +721,7 @@ func (f *Fuzz36) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz37) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -744,7 +744,7 @@ func (f *Fuzz37) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz38) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.One)
@@ -937,7 +937,7 @@ func (f *Fuzz49) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz50) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1069,7 +1069,7 @@ func (f *Fuzz57) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz58) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1088,7 +1088,7 @@ func (f *Fuzz58) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz59) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1115,7 +1115,7 @@ func (f *Fuzz59) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz60) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1138,7 +1138,7 @@ func (f *Fuzz60) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz61) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1161,7 +1161,7 @@ func (f *Fuzz61) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz62) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1184,7 +1184,7 @@ func (f *Fuzz62) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz63) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1207,7 +1207,7 @@ func (f *Fuzz63) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz64) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1230,7 +1230,7 @@ func (f *Fuzz64) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz65) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1253,7 +1253,7 @@ func (f *Fuzz65) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz66) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1276,7 +1276,7 @@ func (f *Fuzz66) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz67) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1299,7 +1299,7 @@ func (f *Fuzz67) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz68) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1322,7 +1322,7 @@ func (f *Fuzz68) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz69) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1360,7 +1360,7 @@ func (f *Fuzz70) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz71) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1383,7 +1383,7 @@ func (f *Fuzz71) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz72) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1406,7 +1406,7 @@ func (f *Fuzz72) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz73) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1429,7 +1429,7 @@ func (f *Fuzz73) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz74) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1456,7 +1456,7 @@ func (f *Fuzz74) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz75) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1479,7 +1479,7 @@ func (f *Fuzz75) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz76) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1502,7 +1502,7 @@ func (f *Fuzz76) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz77) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -1701,7 +1701,7 @@ func (f *Fuzz88) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz89) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -1836,7 +1836,7 @@ func (f *Fuzz96) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz97) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -1855,7 +1855,7 @@ func (f *Fuzz97) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz98) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -1882,7 +1882,7 @@ func (f *Fuzz98) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz99) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -1905,7 +1905,7 @@ func (f *Fuzz99) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz100) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -1928,7 +1928,7 @@ func (f *Fuzz100) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz101) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -1951,7 +1951,7 @@ func (f *Fuzz101) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz102) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -1974,7 +1974,7 @@ func (f *Fuzz102) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz103) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -1997,7 +1997,7 @@ func (f *Fuzz103) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz104) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2020,7 +2020,7 @@ func (f *Fuzz104) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz105) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2043,7 +2043,7 @@ func (f *Fuzz105) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz106) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2066,7 +2066,7 @@ func (f *Fuzz106) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz107) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2089,7 +2089,7 @@ func (f *Fuzz107) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz108) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2130,7 +2130,7 @@ func (f *Fuzz109) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz110) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2153,7 +2153,7 @@ func (f *Fuzz110) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz111) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2176,7 +2176,7 @@ func (f *Fuzz111) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz112) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2199,7 +2199,7 @@ func (f *Fuzz112) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz113) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2226,7 +2226,7 @@ func (f *Fuzz113) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz114) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2249,7 +2249,7 @@ func (f *Fuzz114) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz115) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2272,7 +2272,7 @@ func (f *Fuzz115) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz116) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.One)
@@ -2471,7 +2471,7 @@ func (f *Fuzz127) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz128) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2606,7 +2606,7 @@ func (f *Fuzz135) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz136) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2625,7 +2625,7 @@ func (f *Fuzz136) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz137) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2652,7 +2652,7 @@ func (f *Fuzz137) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz138) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2675,7 +2675,7 @@ func (f *Fuzz138) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz139) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+16*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2698,7 +2698,7 @@ func (f *Fuzz139) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz140) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2721,7 +2721,7 @@ func (f *Fuzz140) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz141) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2744,7 +2744,7 @@ func (f *Fuzz141) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz142) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2767,7 +2767,7 @@ func (f *Fuzz142) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz143) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2790,7 +2790,7 @@ func (f *Fuzz143) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz144) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+2*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2813,7 +2813,7 @@ func (f *Fuzz144) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz145) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2836,7 +2836,7 @@ func (f *Fuzz145) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz146) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2859,7 +2859,7 @@ func (f *Fuzz146) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz147) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2900,7 +2900,7 @@ func (f *Fuzz148) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz149) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2923,7 +2923,7 @@ func (f *Fuzz149) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz150) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2946,7 +2946,7 @@ func (f *Fuzz150) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz151) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2969,7 +2969,7 @@ func (f *Fuzz151) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz152) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -2996,7 +2996,7 @@ func (f *Fuzz152) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz153) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+2*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -3019,7 +3019,7 @@ func (f *Fuzz153) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz154) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -3042,7 +3042,7 @@ func (f *Fuzz154) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz155) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.One)
@@ -3241,7 +3241,7 @@ func (f *Fuzz166) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz167) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3376,7 +3376,7 @@ func (f *Fuzz174) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz175) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3395,7 +3395,7 @@ func (f *Fuzz175) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz176) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3422,7 +3422,7 @@ func (f *Fuzz176) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz177) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3445,7 +3445,7 @@ func (f *Fuzz177) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz178) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+16*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3468,7 +3468,7 @@ func (f *Fuzz178) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz179) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3491,7 +3491,7 @@ func (f *Fuzz179) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz180) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3514,7 +3514,7 @@ func (f *Fuzz180) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz181) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3537,7 +3537,7 @@ func (f *Fuzz181) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz182) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3560,7 +3560,7 @@ func (f *Fuzz182) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz183) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3583,7 +3583,7 @@ func (f *Fuzz183) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz184) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3606,7 +3606,7 @@ func (f *Fuzz184) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz185) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3629,7 +3629,7 @@ func (f *Fuzz185) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz186) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3667,7 +3667,7 @@ func (f *Fuzz187) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz188) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3690,7 +3690,7 @@ func (f *Fuzz188) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz189) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3713,7 +3713,7 @@ func (f *Fuzz189) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz190) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3736,7 +3736,7 @@ func (f *Fuzz190) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz191) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3763,7 +3763,7 @@ func (f *Fuzz191) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz192) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3786,7 +3786,7 @@ func (f *Fuzz192) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz193) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -3809,7 +3809,7 @@ func (f *Fuzz193) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz194) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.One)
@@ -4008,7 +4008,7 @@ func (f *Fuzz205) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz206) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4143,7 +4143,7 @@ func (f *Fuzz213) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz214) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4162,7 +4162,7 @@ func (f *Fuzz214) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz215) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4189,7 +4189,7 @@ func (f *Fuzz215) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz216) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4212,7 +4212,7 @@ func (f *Fuzz216) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz217) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4235,7 +4235,7 @@ func (f *Fuzz217) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz218) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4258,7 +4258,7 @@ func (f *Fuzz218) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz219) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4281,7 +4281,7 @@ func (f *Fuzz219) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz220) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4304,7 +4304,7 @@ func (f *Fuzz220) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz221) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4327,7 +4327,7 @@ func (f *Fuzz221) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz222) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4350,7 +4350,7 @@ func (f *Fuzz222) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz223) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4373,7 +4373,7 @@ func (f *Fuzz223) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz224) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4396,7 +4396,7 @@ func (f *Fuzz224) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz225) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4437,7 +4437,7 @@ func (f *Fuzz226) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz227) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4460,7 +4460,7 @@ func (f *Fuzz227) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz228) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4483,7 +4483,7 @@ func (f *Fuzz228) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz229) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4506,7 +4506,7 @@ func (f *Fuzz229) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz230) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4533,7 +4533,7 @@ func (f *Fuzz230) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz231) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4556,7 +4556,7 @@ func (f *Fuzz231) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz232) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4579,7 +4579,7 @@ func (f *Fuzz232) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz233) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.One)
@@ -4778,7 +4778,7 @@ func (f *Fuzz244) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz245) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -4913,7 +4913,7 @@ func (f *Fuzz252) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz253) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -4932,7 +4932,7 @@ func (f *Fuzz253) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz254) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -4959,7 +4959,7 @@ func (f *Fuzz254) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz255) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -4982,7 +4982,7 @@ func (f *Fuzz255) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz256) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5005,7 +5005,7 @@ func (f *Fuzz256) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz257) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5028,7 +5028,7 @@ func (f *Fuzz257) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz258) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5051,7 +5051,7 @@ func (f *Fuzz258) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz259) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5074,7 +5074,7 @@ func (f *Fuzz259) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz260) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5097,7 +5097,7 @@ func (f *Fuzz260) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz261) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5120,7 +5120,7 @@ func (f *Fuzz261) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz262) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5143,7 +5143,7 @@ func (f *Fuzz262) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz263) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5166,7 +5166,7 @@ func (f *Fuzz263) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz264) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5207,7 +5207,7 @@ func (f *Fuzz265) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz266) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5230,7 +5230,7 @@ func (f *Fuzz266) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz267) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5253,7 +5253,7 @@ func (f *Fuzz267) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz268) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5276,7 +5276,7 @@ func (f *Fuzz268) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz269) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5303,7 +5303,7 @@ func (f *Fuzz269) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz270) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5326,7 +5326,7 @@ func (f *Fuzz270) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz271) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5349,7 +5349,7 @@ func (f *Fuzz271) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz272) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.One)
@@ -5542,7 +5542,7 @@ func (f *Fuzz283) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz284) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5674,7 +5674,7 @@ func (f *Fuzz291) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz292) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5693,7 +5693,7 @@ func (f *Fuzz292) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz293) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5720,7 +5720,7 @@ func (f *Fuzz293) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz294) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5743,7 +5743,7 @@ func (f *Fuzz294) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz295) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5766,7 +5766,7 @@ func (f *Fuzz295) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz296) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5789,7 +5789,7 @@ func (f *Fuzz296) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz297) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5812,7 +5812,7 @@ func (f *Fuzz297) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz298) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5835,7 +5835,7 @@ func (f *Fuzz298) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz299) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5858,7 +5858,7 @@ func (f *Fuzz299) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz300) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5881,7 +5881,7 @@ func (f *Fuzz300) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz301) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5904,7 +5904,7 @@ func (f *Fuzz301) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz302) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5927,7 +5927,7 @@ func (f *Fuzz302) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz303) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5965,7 +5965,7 @@ func (f *Fuzz304) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz305) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -5988,7 +5988,7 @@ func (f *Fuzz305) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz306) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -6011,7 +6011,7 @@ func (f *Fuzz306) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz307) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -6034,7 +6034,7 @@ func (f *Fuzz307) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz308) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -6061,7 +6061,7 @@ func (f *Fuzz308) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz309) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -6084,7 +6084,7 @@ func (f *Fuzz309) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz310) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -6107,7 +6107,7 @@ func (f *Fuzz310) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz311) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.One)
@@ -6306,7 +6306,7 @@ func (f *Fuzz322) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz323) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6441,7 +6441,7 @@ func (f *Fuzz330) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz331) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6460,7 +6460,7 @@ func (f *Fuzz331) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz332) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6487,7 +6487,7 @@ func (f *Fuzz332) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz333) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6510,7 +6510,7 @@ func (f *Fuzz333) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz334) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6533,7 +6533,7 @@ func (f *Fuzz334) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz335) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6556,7 +6556,7 @@ func (f *Fuzz335) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz336) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6579,7 +6579,7 @@ func (f *Fuzz336) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz337) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6602,7 +6602,7 @@ func (f *Fuzz337) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz338) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6625,7 +6625,7 @@ func (f *Fuzz338) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz339) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6648,7 +6648,7 @@ func (f *Fuzz339) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz340) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6671,7 +6671,7 @@ func (f *Fuzz340) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz341) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6694,7 +6694,7 @@ func (f *Fuzz341) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz342) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6732,7 +6732,7 @@ func (f *Fuzz343) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz344) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6755,7 +6755,7 @@ func (f *Fuzz344) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz345) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6778,7 +6778,7 @@ func (f *Fuzz345) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz346) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6801,7 +6801,7 @@ func (f *Fuzz346) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz347) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6828,7 +6828,7 @@ func (f *Fuzz347) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz348) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6851,7 +6851,7 @@ func (f *Fuzz348) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz349) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -6874,7 +6874,7 @@ func (f *Fuzz349) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz350) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.One)
@@ -7073,7 +7073,7 @@ func (f *Fuzz361) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz362) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7208,7 +7208,7 @@ func (f *Fuzz369) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz370) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7227,7 +7227,7 @@ func (f *Fuzz370) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz371) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7254,7 +7254,7 @@ func (f *Fuzz371) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz372) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7277,7 +7277,7 @@ func (f *Fuzz372) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz373) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7300,7 +7300,7 @@ func (f *Fuzz373) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz374) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7323,7 +7323,7 @@ func (f *Fuzz374) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz375) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7346,7 +7346,7 @@ func (f *Fuzz375) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz376) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7369,7 +7369,7 @@ func (f *Fuzz376) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz377) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7392,7 +7392,7 @@ func (f *Fuzz377) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz378) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7415,7 +7415,7 @@ func (f *Fuzz378) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz379) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7438,7 +7438,7 @@ func (f *Fuzz379) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz380) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7461,7 +7461,7 @@ func (f *Fuzz380) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz381) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7499,7 +7499,7 @@ func (f *Fuzz382) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz383) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7522,7 +7522,7 @@ func (f *Fuzz383) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz384) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7545,7 +7545,7 @@ func (f *Fuzz384) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz385) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7568,7 +7568,7 @@ func (f *Fuzz385) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz386) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7595,7 +7595,7 @@ func (f *Fuzz386) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz387) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7618,7 +7618,7 @@ func (f *Fuzz387) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz388) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7641,7 +7641,7 @@ func (f *Fuzz388) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz389) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -7840,7 +7840,7 @@ func (f *Fuzz400) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz401) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -7975,7 +7975,7 @@ func (f *Fuzz408) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz409) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -7994,7 +7994,7 @@ func (f *Fuzz409) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz410) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8021,7 +8021,7 @@ func (f *Fuzz410) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz411) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8044,7 +8044,7 @@ func (f *Fuzz411) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz412) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8067,7 +8067,7 @@ func (f *Fuzz412) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz413) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8090,7 +8090,7 @@ func (f *Fuzz413) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz414) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8113,7 +8113,7 @@ func (f *Fuzz414) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz415) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8136,7 +8136,7 @@ func (f *Fuzz415) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz416) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8159,7 +8159,7 @@ func (f *Fuzz416) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz417) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8182,7 +8182,7 @@ func (f *Fuzz417) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz418) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8205,7 +8205,7 @@ func (f *Fuzz418) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz419) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8228,7 +8228,7 @@ func (f *Fuzz419) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz420) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8269,7 +8269,7 @@ func (f *Fuzz421) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz422) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8292,7 +8292,7 @@ func (f *Fuzz422) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz423) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8315,7 +8315,7 @@ func (f *Fuzz423) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz424) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8338,7 +8338,7 @@ func (f *Fuzz424) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz425) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8365,7 +8365,7 @@ func (f *Fuzz425) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz426) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8388,7 +8388,7 @@ func (f *Fuzz426) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz427) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8411,7 +8411,7 @@ func (f *Fuzz427) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz428) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.One)
@@ -8610,7 +8610,7 @@ func (f *Fuzz439) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz440) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8745,7 +8745,7 @@ func (f *Fuzz447) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz448) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8764,7 +8764,7 @@ func (f *Fuzz448) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz449) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8791,7 +8791,7 @@ func (f *Fuzz449) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz450) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8814,7 +8814,7 @@ func (f *Fuzz450) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz451) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8837,7 +8837,7 @@ func (f *Fuzz451) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz452) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8860,7 +8860,7 @@ func (f *Fuzz452) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz453) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8883,7 +8883,7 @@ func (f *Fuzz453) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz454) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8906,7 +8906,7 @@ func (f *Fuzz454) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz455) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8929,7 +8929,7 @@ func (f *Fuzz455) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz456) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8952,7 +8952,7 @@ func (f *Fuzz456) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz457) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8975,7 +8975,7 @@ func (f *Fuzz457) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz458) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -8998,7 +8998,7 @@ func (f *Fuzz458) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz459) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -9036,7 +9036,7 @@ func (f *Fuzz460) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz461) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -9059,7 +9059,7 @@ func (f *Fuzz461) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz462) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -9082,7 +9082,7 @@ func (f *Fuzz462) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz463) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -9105,7 +9105,7 @@ func (f *Fuzz463) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz464) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -9132,7 +9132,7 @@ func (f *Fuzz464) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz465) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -9155,7 +9155,7 @@ func (f *Fuzz465) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz466) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -9178,7 +9178,7 @@ func (f *Fuzz466) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz467) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.One)
@@ -9201,7 +9201,7 @@ func (f *Fuzz467) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz468) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -9224,7 +9224,7 @@ func (f *Fuzz468) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz469) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -9247,7 +9247,7 @@ func (f *Fuzz469) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz470) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -9270,7 +9270,7 @@ func (f *Fuzz470) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz471) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -9293,7 +9293,7 @@ func (f *Fuzz471) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz472) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -9316,7 +9316,7 @@ func (f *Fuzz472) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz473) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -9339,7 +9339,7 @@ func (f *Fuzz473) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz474) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -9362,7 +9362,7 @@ func (f *Fuzz474) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz475) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -9385,7 +9385,7 @@ func (f *Fuzz475) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz476) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -9408,7 +9408,7 @@ func (f *Fuzz476) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz477) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -9431,7 +9431,7 @@ func (f *Fuzz477) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz478) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -9454,7 +9454,7 @@ func (f *Fuzz478) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz479) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -9477,7 +9477,7 @@ func (f *Fuzz479) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz480) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -9500,7 +9500,7 @@ func (f *Fuzz480) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz481) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -9523,7 +9523,7 @@ func (f *Fuzz481) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz482) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -9546,7 +9546,7 @@ func (f *Fuzz482) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz483) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -9569,7 +9569,7 @@ func (f *Fuzz483) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz484) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -9592,7 +9592,7 @@ func (f *Fuzz484) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz485) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -9615,7 +9615,7 @@ func (f *Fuzz485) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz486) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -9638,7 +9638,7 @@ func (f *Fuzz486) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz487) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9663,7 +9663,7 @@ func (f *Fuzz487) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz488) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9692,7 +9692,7 @@ func (f *Fuzz488) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz489) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9717,7 +9717,7 @@ func (f *Fuzz489) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz490) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9742,7 +9742,7 @@ func (f *Fuzz490) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz491) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9767,7 +9767,7 @@ func (f *Fuzz491) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz492) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9792,7 +9792,7 @@ func (f *Fuzz492) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz493) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9817,7 +9817,7 @@ func (f *Fuzz493) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz494) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9842,7 +9842,7 @@ func (f *Fuzz494) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz495) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9867,7 +9867,7 @@ func (f *Fuzz495) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz496) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9892,7 +9892,7 @@ func (f *Fuzz496) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz497) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9917,7 +9917,7 @@ func (f *Fuzz497) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz498) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9942,7 +9942,7 @@ func (f *Fuzz498) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz499) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+l0+l1)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -9969,7 +9969,7 @@ func (f *Fuzz499) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz500) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -9994,7 +9994,7 @@ func (f *Fuzz500) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz501) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -10019,7 +10019,7 @@ func (f *Fuzz501) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz502) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -10044,7 +10044,7 @@ func (f *Fuzz502) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz503) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -10073,7 +10073,7 @@ func (f *Fuzz503) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz504) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -10098,7 +10098,7 @@ func (f *Fuzz504) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz505) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -10123,7 +10123,7 @@ func (f *Fuzz505) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz506) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -10340,7 +10340,7 @@ func (f *Fuzz518) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz519) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10459,7 +10459,7 @@ func (f *Fuzz525) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz526) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10478,7 +10478,7 @@ func (f *Fuzz526) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz527) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10505,7 +10505,7 @@ func (f *Fuzz527) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz528) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10528,7 +10528,7 @@ func (f *Fuzz528) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz529) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10551,7 +10551,7 @@ func (f *Fuzz529) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz530) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10574,7 +10574,7 @@ func (f *Fuzz530) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz531) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10597,7 +10597,7 @@ func (f *Fuzz531) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz532) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10620,7 +10620,7 @@ func (f *Fuzz532) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz533) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10643,7 +10643,7 @@ func (f *Fuzz533) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz534) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10666,7 +10666,7 @@ func (f *Fuzz534) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz535) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10689,7 +10689,7 @@ func (f *Fuzz535) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz536) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10712,7 +10712,7 @@ func (f *Fuzz536) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz537) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10753,7 +10753,7 @@ func (f *Fuzz538) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz539) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10776,7 +10776,7 @@ func (f *Fuzz539) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz540) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10799,7 +10799,7 @@ func (f *Fuzz540) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz541) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10822,7 +10822,7 @@ func (f *Fuzz541) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz542) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10849,7 +10849,7 @@ func (f *Fuzz542) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz543) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10872,7 +10872,7 @@ func (f *Fuzz543) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz544) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -10895,7 +10895,7 @@ func (f *Fuzz544) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz545) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.One))
@@ -11110,7 +11110,7 @@ func (f *Fuzz557) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz558) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11229,7 +11229,7 @@ func (f *Fuzz564) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz565) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11248,7 +11248,7 @@ func (f *Fuzz565) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz566) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11275,7 +11275,7 @@ func (f *Fuzz566) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz567) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11298,7 +11298,7 @@ func (f *Fuzz567) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz568) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11321,7 +11321,7 @@ func (f *Fuzz568) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz569) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11344,7 +11344,7 @@ func (f *Fuzz569) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz570) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11367,7 +11367,7 @@ func (f *Fuzz570) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz571) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11390,7 +11390,7 @@ func (f *Fuzz571) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz572) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11413,7 +11413,7 @@ func (f *Fuzz572) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz573) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11436,7 +11436,7 @@ func (f *Fuzz573) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz574) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11459,7 +11459,7 @@ func (f *Fuzz574) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz575) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11482,7 +11482,7 @@ func (f *Fuzz575) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz576) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11523,7 +11523,7 @@ func (f *Fuzz577) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz578) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11546,7 +11546,7 @@ func (f *Fuzz578) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz579) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11569,7 +11569,7 @@ func (f *Fuzz579) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz580) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11592,7 +11592,7 @@ func (f *Fuzz580) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz581) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11619,7 +11619,7 @@ func (f *Fuzz581) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz582) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11642,7 +11642,7 @@ func (f *Fuzz582) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz583) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11665,7 +11665,7 @@ func (f *Fuzz583) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz584) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.One)
@@ -11880,7 +11880,7 @@ func (f *Fuzz596) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz597) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -11999,7 +11999,7 @@ func (f *Fuzz603) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz604) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12018,7 +12018,7 @@ func (f *Fuzz604) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz605) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12045,7 +12045,7 @@ func (f *Fuzz605) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz606) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12068,7 +12068,7 @@ func (f *Fuzz606) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz607) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12091,7 +12091,7 @@ func (f *Fuzz607) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz608) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12114,7 +12114,7 @@ func (f *Fuzz608) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz609) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12137,7 +12137,7 @@ func (f *Fuzz609) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz610) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12160,7 +12160,7 @@ func (f *Fuzz610) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz611) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12183,7 +12183,7 @@ func (f *Fuzz611) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz612) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12206,7 +12206,7 @@ func (f *Fuzz612) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz613) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12229,7 +12229,7 @@ func (f *Fuzz613) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz614) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12252,7 +12252,7 @@ func (f *Fuzz614) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz615) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12293,7 +12293,7 @@ func (f *Fuzz616) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz617) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12316,7 +12316,7 @@ func (f *Fuzz617) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz618) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12339,7 +12339,7 @@ func (f *Fuzz618) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz619) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12362,7 +12362,7 @@ func (f *Fuzz619) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz620) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12389,7 +12389,7 @@ func (f *Fuzz620) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz621) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12412,7 +12412,7 @@ func (f *Fuzz621) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz622) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12435,7 +12435,7 @@ func (f *Fuzz622) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz623) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.One)
@@ -12641,7 +12641,7 @@ func (f *Fuzz635) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz636) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12760,7 +12760,7 @@ func (f *Fuzz642) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz643) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12779,7 +12779,7 @@ func (f *Fuzz643) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz644) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12806,7 +12806,7 @@ func (f *Fuzz644) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz645) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12829,7 +12829,7 @@ func (f *Fuzz645) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz646) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12852,7 +12852,7 @@ func (f *Fuzz646) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz647) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12875,7 +12875,7 @@ func (f *Fuzz647) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz648) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12898,7 +12898,7 @@ func (f *Fuzz648) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz649) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12921,7 +12921,7 @@ func (f *Fuzz649) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz650) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12944,7 +12944,7 @@ func (f *Fuzz650) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz651) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12967,7 +12967,7 @@ func (f *Fuzz651) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz652) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -12990,7 +12990,7 @@ func (f *Fuzz652) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz653) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -13013,7 +13013,7 @@ func (f *Fuzz653) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz654) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -13051,7 +13051,7 @@ func (f *Fuzz655) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz656) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -13074,7 +13074,7 @@ func (f *Fuzz656) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz657) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -13097,7 +13097,7 @@ func (f *Fuzz657) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz658) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -13120,7 +13120,7 @@ func (f *Fuzz658) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz659) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -13147,7 +13147,7 @@ func (f *Fuzz659) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz660) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -13170,7 +13170,7 @@ func (f *Fuzz660) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz661) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -13193,7 +13193,7 @@ func (f *Fuzz661) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz662) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.One
@@ -13408,7 +13408,7 @@ func (f *Fuzz674) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz675) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13527,7 +13527,7 @@ func (f *Fuzz681) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz682) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13546,7 +13546,7 @@ func (f *Fuzz682) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz683) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13573,7 +13573,7 @@ func (f *Fuzz683) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz684) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13596,7 +13596,7 @@ func (f *Fuzz684) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz685) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+16*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13619,7 +13619,7 @@ func (f *Fuzz685) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz686) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13642,7 +13642,7 @@ func (f *Fuzz686) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz687) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13665,7 +13665,7 @@ func (f *Fuzz687) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz688) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13688,7 +13688,7 @@ func (f *Fuzz688) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz689) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13711,7 +13711,7 @@ func (f *Fuzz689) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz690) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13734,7 +13734,7 @@ func (f *Fuzz690) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz691) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13757,7 +13757,7 @@ func (f *Fuzz691) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz692) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13780,7 +13780,7 @@ func (f *Fuzz692) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz693) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13818,7 +13818,7 @@ func (f *Fuzz694) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz695) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13841,7 +13841,7 @@ func (f *Fuzz695) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz696) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13864,7 +13864,7 @@ func (f *Fuzz696) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz697) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13887,7 +13887,7 @@ func (f *Fuzz697) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz698) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13914,7 +13914,7 @@ func (f *Fuzz698) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz699) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13937,7 +13937,7 @@ func (f *Fuzz699) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz700) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -13960,7 +13960,7 @@ func (f *Fuzz700) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz701) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.One)
@@ -14175,7 +14175,7 @@ func (f *Fuzz713) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz714) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14294,7 +14294,7 @@ func (f *Fuzz720) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz721) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14313,7 +14313,7 @@ func (f *Fuzz721) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz722) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14340,7 +14340,7 @@ func (f *Fuzz722) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz723) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14363,7 +14363,7 @@ func (f *Fuzz723) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz724) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+16*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14386,7 +14386,7 @@ func (f *Fuzz724) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz725) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14409,7 +14409,7 @@ func (f *Fuzz725) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz726) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14432,7 +14432,7 @@ func (f *Fuzz726) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz727) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14455,7 +14455,7 @@ func (f *Fuzz727) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz728) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14478,7 +14478,7 @@ func (f *Fuzz728) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz729) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14501,7 +14501,7 @@ func (f *Fuzz729) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz730) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14524,7 +14524,7 @@ func (f *Fuzz730) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz731) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14547,7 +14547,7 @@ func (f *Fuzz731) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz732) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14585,7 +14585,7 @@ func (f *Fuzz733) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz734) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14608,7 +14608,7 @@ func (f *Fuzz734) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz735) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14631,7 +14631,7 @@ func (f *Fuzz735) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz736) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14654,7 +14654,7 @@ func (f *Fuzz736) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz737) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14681,7 +14681,7 @@ func (f *Fuzz737) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz738) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14704,7 +14704,7 @@ func (f *Fuzz738) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz739) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14727,7 +14727,7 @@ func (f *Fuzz739) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz740) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.One)
@@ -14942,7 +14942,7 @@ func (f *Fuzz752) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz753) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15061,7 +15061,7 @@ func (f *Fuzz759) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz760) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15080,7 +15080,7 @@ func (f *Fuzz760) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz761) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15107,7 +15107,7 @@ func (f *Fuzz761) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz762) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15130,7 +15130,7 @@ func (f *Fuzz762) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz763) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15153,7 +15153,7 @@ func (f *Fuzz763) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz764) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15176,7 +15176,7 @@ func (f *Fuzz764) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz765) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15199,7 +15199,7 @@ func (f *Fuzz765) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz766) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15222,7 +15222,7 @@ func (f *Fuzz766) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz767) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15245,7 +15245,7 @@ func (f *Fuzz767) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz768) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15268,7 +15268,7 @@ func (f *Fuzz768) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz769) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15291,7 +15291,7 @@ func (f *Fuzz769) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz770) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15314,7 +15314,7 @@ func (f *Fuzz770) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz771) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15355,7 +15355,7 @@ func (f *Fuzz772) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz773) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15378,7 +15378,7 @@ func (f *Fuzz773) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz774) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15401,7 +15401,7 @@ func (f *Fuzz774) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz775) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15424,7 +15424,7 @@ func (f *Fuzz775) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz776) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15451,7 +15451,7 @@ func (f *Fuzz776) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz777) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15474,7 +15474,7 @@ func (f *Fuzz777) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz778) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15497,7 +15497,7 @@ func (f *Fuzz778) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz779) MarshalJ() (b []byte) {
-	l0 := len(f.Two)
+	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.One)
@@ -15520,7 +15520,7 @@ func (f *Fuzz779) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz780) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -15539,7 +15539,7 @@ func (f *Fuzz780) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz781) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -15558,7 +15558,7 @@ func (f *Fuzz781) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz782) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -15577,7 +15577,7 @@ func (f *Fuzz782) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz783) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -15596,7 +15596,7 @@ func (f *Fuzz783) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz784) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -15615,7 +15615,7 @@ func (f *Fuzz784) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz785) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -15634,7 +15634,7 @@ func (f *Fuzz785) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz786) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -15653,7 +15653,7 @@ func (f *Fuzz786) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz787) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -15672,7 +15672,7 @@ func (f *Fuzz787) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz788) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -15691,7 +15691,7 @@ func (f *Fuzz788) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz789) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -15710,7 +15710,7 @@ func (f *Fuzz789) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz790) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -15729,7 +15729,7 @@ func (f *Fuzz790) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz791) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -15748,7 +15748,7 @@ func (f *Fuzz791) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz792) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+jay.SizeBools(l0)+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -15773,7 +15773,7 @@ func (f *Fuzz792) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz793) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -15792,7 +15792,7 @@ func (f *Fuzz793) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz794) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -15811,7 +15811,7 @@ func (f *Fuzz794) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz795) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -15830,7 +15830,7 @@ func (f *Fuzz795) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz796) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -15849,7 +15849,7 @@ func (f *Fuzz796) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz797) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -15868,7 +15868,7 @@ func (f *Fuzz797) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz798) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -15887,7 +15887,7 @@ func (f *Fuzz798) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz799) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -15906,7 +15906,7 @@ func (f *Fuzz799) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz800) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+jay.SizeBools(l0)+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -15935,7 +15935,7 @@ func (f *Fuzz800) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz801) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -15960,7 +15960,7 @@ func (f *Fuzz801) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz802) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -15985,7 +15985,7 @@ func (f *Fuzz802) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz803) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16010,7 +16010,7 @@ func (f *Fuzz803) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz804) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16035,7 +16035,7 @@ func (f *Fuzz804) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz805) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16060,7 +16060,7 @@ func (f *Fuzz805) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz806) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+jay.SizeBools(l0)+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16085,7 +16085,7 @@ func (f *Fuzz806) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz807) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16110,7 +16110,7 @@ func (f *Fuzz807) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz808) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16135,7 +16135,7 @@ func (f *Fuzz808) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz809) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16160,7 +16160,7 @@ func (f *Fuzz809) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz810) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16185,7 +16185,7 @@ func (f *Fuzz810) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz811) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+l0+jay.SizeBools(l1))
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -16208,7 +16208,7 @@ func (f *Fuzz811) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz812) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16233,7 +16233,7 @@ func (f *Fuzz812) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz813) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16258,7 +16258,7 @@ func (f *Fuzz813) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz814) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16283,7 +16283,7 @@ func (f *Fuzz814) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz815) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+jay.SizeBools(l0)+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16312,7 +16312,7 @@ func (f *Fuzz815) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz816) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16337,7 +16337,7 @@ func (f *Fuzz816) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz817) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16362,7 +16362,7 @@ func (f *Fuzz817) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz818) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+jay.SizeBools(l0))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+jay.SizeBools(l0)
@@ -16387,7 +16387,7 @@ func (f *Fuzz818) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz819) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -16414,7 +16414,7 @@ func (f *Fuzz819) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz820) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -16441,7 +16441,7 @@ func (f *Fuzz820) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz821) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -16468,7 +16468,7 @@ func (f *Fuzz821) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz822) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -16495,7 +16495,7 @@ func (f *Fuzz822) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz823) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -16522,7 +16522,7 @@ func (f *Fuzz823) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz824) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -16549,7 +16549,7 @@ func (f *Fuzz824) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz825) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -16576,7 +16576,7 @@ func (f *Fuzz825) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz826) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -16603,7 +16603,7 @@ func (f *Fuzz826) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz827) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -16630,7 +16630,7 @@ func (f *Fuzz827) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz828) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -16657,7 +16657,7 @@ func (f *Fuzz828) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz829) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -16684,7 +16684,7 @@ func (f *Fuzz829) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz830) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -16711,7 +16711,7 @@ func (f *Fuzz830) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz831) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -16740,7 +16740,7 @@ func (f *Fuzz831) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz832) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -16767,7 +16767,7 @@ func (f *Fuzz832) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz833) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -16794,7 +16794,7 @@ func (f *Fuzz833) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz834) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -16821,7 +16821,7 @@ func (f *Fuzz834) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz835) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -16848,7 +16848,7 @@ func (f *Fuzz835) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz836) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -16875,7 +16875,7 @@ func (f *Fuzz836) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz837) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -16902,7 +16902,7 @@ func (f *Fuzz837) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz838) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -16929,7 +16929,7 @@ func (f *Fuzz838) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz839) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -16958,7 +16958,7 @@ func (f *Fuzz839) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz840) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -16987,7 +16987,7 @@ func (f *Fuzz840) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz841) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17016,7 +17016,7 @@ func (f *Fuzz841) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz842) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17045,7 +17045,7 @@ func (f *Fuzz842) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz843) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17074,7 +17074,7 @@ func (f *Fuzz843) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz844) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17103,7 +17103,7 @@ func (f *Fuzz844) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz845) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17132,7 +17132,7 @@ func (f *Fuzz845) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz846) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17161,7 +17161,7 @@ func (f *Fuzz846) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz847) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17190,7 +17190,7 @@ func (f *Fuzz847) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz848) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17219,7 +17219,7 @@ func (f *Fuzz848) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz849) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17248,7 +17248,7 @@ func (f *Fuzz849) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz850) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+l0+l1)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -17279,7 +17279,7 @@ func (f *Fuzz850) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz851) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17308,7 +17308,7 @@ func (f *Fuzz851) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz852) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17337,7 +17337,7 @@ func (f *Fuzz852) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz853) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17366,7 +17366,7 @@ func (f *Fuzz853) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz854) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17399,7 +17399,7 @@ func (f *Fuzz854) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz855) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17428,7 +17428,7 @@ func (f *Fuzz855) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz856) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17457,7 +17457,7 @@ func (f *Fuzz856) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz857) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -17486,7 +17486,7 @@ func (f *Fuzz857) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz858) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -17509,7 +17509,7 @@ func (f *Fuzz858) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz859) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -17532,7 +17532,7 @@ func (f *Fuzz859) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz860) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -17555,7 +17555,7 @@ func (f *Fuzz860) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz861) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -17578,7 +17578,7 @@ func (f *Fuzz861) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz862) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -17601,7 +17601,7 @@ func (f *Fuzz862) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz863) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -17624,7 +17624,7 @@ func (f *Fuzz863) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz864) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -17647,7 +17647,7 @@ func (f *Fuzz864) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz865) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -17670,7 +17670,7 @@ func (f *Fuzz865) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz866) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -17693,7 +17693,7 @@ func (f *Fuzz866) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz867) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -17716,7 +17716,7 @@ func (f *Fuzz867) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz868) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -17739,7 +17739,7 @@ func (f *Fuzz868) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz869) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -17762,7 +17762,7 @@ func (f *Fuzz869) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz870) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -17787,7 +17787,7 @@ func (f *Fuzz870) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz871) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -17810,7 +17810,7 @@ func (f *Fuzz871) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz872) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -17833,7 +17833,7 @@ func (f *Fuzz872) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz873) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -17856,7 +17856,7 @@ func (f *Fuzz873) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz874) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -17879,7 +17879,7 @@ func (f *Fuzz874) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz875) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -17902,7 +17902,7 @@ func (f *Fuzz875) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz876) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -17925,7 +17925,7 @@ func (f *Fuzz876) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz877) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -17948,7 +17948,7 @@ func (f *Fuzz877) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz878) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -17973,7 +17973,7 @@ func (f *Fuzz878) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz879) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18002,7 +18002,7 @@ func (f *Fuzz879) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz880) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+8*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18027,7 +18027,7 @@ func (f *Fuzz880) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz881) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18052,7 +18052,7 @@ func (f *Fuzz881) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz882) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18077,7 +18077,7 @@ func (f *Fuzz882) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz883) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18102,7 +18102,7 @@ func (f *Fuzz883) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz884) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18127,7 +18127,7 @@ func (f *Fuzz884) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz885) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18152,7 +18152,7 @@ func (f *Fuzz885) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz886) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18177,7 +18177,7 @@ func (f *Fuzz886) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz887) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18202,7 +18202,7 @@ func (f *Fuzz887) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz888) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18227,7 +18227,7 @@ func (f *Fuzz888) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz889) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -18254,7 +18254,7 @@ func (f *Fuzz889) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz890) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18279,7 +18279,7 @@ func (f *Fuzz890) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz891) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18304,7 +18304,7 @@ func (f *Fuzz891) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz892) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18329,7 +18329,7 @@ func (f *Fuzz892) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz893) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18358,7 +18358,7 @@ func (f *Fuzz893) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz894) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18383,7 +18383,7 @@ func (f *Fuzz894) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz895) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18408,7 +18408,7 @@ func (f *Fuzz895) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz896) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -18433,7 +18433,7 @@ func (f *Fuzz896) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz897) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+16*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -18456,7 +18456,7 @@ func (f *Fuzz897) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz898) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+16*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -18479,7 +18479,7 @@ func (f *Fuzz898) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz899) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -18502,7 +18502,7 @@ func (f *Fuzz899) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz900) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+16*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -18525,7 +18525,7 @@ func (f *Fuzz900) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz901) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+16*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -18548,7 +18548,7 @@ func (f *Fuzz901) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz902) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -18571,7 +18571,7 @@ func (f *Fuzz902) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz903) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -18594,7 +18594,7 @@ func (f *Fuzz903) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz904) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+16*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -18617,7 +18617,7 @@ func (f *Fuzz904) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz905) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -18640,7 +18640,7 @@ func (f *Fuzz905) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz906) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -18663,7 +18663,7 @@ func (f *Fuzz906) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz907) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -18686,7 +18686,7 @@ func (f *Fuzz907) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz908) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -18709,7 +18709,7 @@ func (f *Fuzz908) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz909) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -18734,7 +18734,7 @@ func (f *Fuzz909) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz910) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -18757,7 +18757,7 @@ func (f *Fuzz910) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz911) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -18780,7 +18780,7 @@ func (f *Fuzz911) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz912) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -18803,7 +18803,7 @@ func (f *Fuzz912) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz913) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+16*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -18826,7 +18826,7 @@ func (f *Fuzz913) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz914) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+16*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -18849,7 +18849,7 @@ func (f *Fuzz914) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz915) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+16*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -18872,7 +18872,7 @@ func (f *Fuzz915) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz916) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -18895,7 +18895,7 @@ func (f *Fuzz916) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz917) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -18920,7 +18920,7 @@ func (f *Fuzz917) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz918) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -18949,7 +18949,7 @@ func (f *Fuzz918) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz919) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+8*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -18974,7 +18974,7 @@ func (f *Fuzz919) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz920) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -18999,7 +18999,7 @@ func (f *Fuzz920) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz921) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+8*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19024,7 +19024,7 @@ func (f *Fuzz921) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz922) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+8*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19049,7 +19049,7 @@ func (f *Fuzz922) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz923) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19074,7 +19074,7 @@ func (f *Fuzz923) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz924) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19099,7 +19099,7 @@ func (f *Fuzz924) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz925) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19124,7 +19124,7 @@ func (f *Fuzz925) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz926) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+8*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19149,7 +19149,7 @@ func (f *Fuzz926) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz927) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19174,7 +19174,7 @@ func (f *Fuzz927) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz928) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+16*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -19201,7 +19201,7 @@ func (f *Fuzz928) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz929) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+8*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19226,7 +19226,7 @@ func (f *Fuzz929) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz930) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+8*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19251,7 +19251,7 @@ func (f *Fuzz930) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz931) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+8*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19276,7 +19276,7 @@ func (f *Fuzz931) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz932) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19305,7 +19305,7 @@ func (f *Fuzz932) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz933) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19330,7 +19330,7 @@ func (f *Fuzz933) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz934) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19355,7 +19355,7 @@ func (f *Fuzz934) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz935) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l0+8*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*16
@@ -19380,7 +19380,7 @@ func (f *Fuzz935) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz936) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -19403,7 +19403,7 @@ func (f *Fuzz936) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz937) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -19426,7 +19426,7 @@ func (f *Fuzz937) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz938) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -19449,7 +19449,7 @@ func (f *Fuzz938) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz939) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -19472,7 +19472,7 @@ func (f *Fuzz939) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz940) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -19495,7 +19495,7 @@ func (f *Fuzz940) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz941) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -19518,7 +19518,7 @@ func (f *Fuzz941) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz942) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -19541,7 +19541,7 @@ func (f *Fuzz942) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz943) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -19564,7 +19564,7 @@ func (f *Fuzz943) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz944) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -19587,7 +19587,7 @@ func (f *Fuzz944) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz945) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -19610,7 +19610,7 @@ func (f *Fuzz945) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz946) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -19633,7 +19633,7 @@ func (f *Fuzz946) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz947) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -19656,7 +19656,7 @@ func (f *Fuzz947) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz948) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -19681,7 +19681,7 @@ func (f *Fuzz948) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz949) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -19704,7 +19704,7 @@ func (f *Fuzz949) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz950) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -19727,7 +19727,7 @@ func (f *Fuzz950) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz951) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -19750,7 +19750,7 @@ func (f *Fuzz951) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz952) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -19773,7 +19773,7 @@ func (f *Fuzz952) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz953) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -19796,7 +19796,7 @@ func (f *Fuzz953) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz954) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -19819,7 +19819,7 @@ func (f *Fuzz954) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz955) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -19842,7 +19842,7 @@ func (f *Fuzz955) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz956) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -19867,7 +19867,7 @@ func (f *Fuzz956) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz957) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -19896,7 +19896,7 @@ func (f *Fuzz957) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz958) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -19921,7 +19921,7 @@ func (f *Fuzz958) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz959) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -19946,7 +19946,7 @@ func (f *Fuzz959) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz960) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -19971,7 +19971,7 @@ func (f *Fuzz960) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz961) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -19996,7 +19996,7 @@ func (f *Fuzz961) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz962) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20021,7 +20021,7 @@ func (f *Fuzz962) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz963) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20046,7 +20046,7 @@ func (f *Fuzz963) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz964) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20071,7 +20071,7 @@ func (f *Fuzz964) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz965) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20096,7 +20096,7 @@ func (f *Fuzz965) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz966) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20121,7 +20121,7 @@ func (f *Fuzz966) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz967) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+4*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -20148,7 +20148,7 @@ func (f *Fuzz967) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz968) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20173,7 +20173,7 @@ func (f *Fuzz968) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz969) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20198,7 +20198,7 @@ func (f *Fuzz969) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz970) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20223,7 +20223,7 @@ func (f *Fuzz970) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz971) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20252,7 +20252,7 @@ func (f *Fuzz971) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz972) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20277,7 +20277,7 @@ func (f *Fuzz972) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz973) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20302,7 +20302,7 @@ func (f *Fuzz973) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz974) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -20327,7 +20327,7 @@ func (f *Fuzz974) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz975) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -20350,7 +20350,7 @@ func (f *Fuzz975) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz976) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -20373,7 +20373,7 @@ func (f *Fuzz976) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz977) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -20396,7 +20396,7 @@ func (f *Fuzz977) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz978) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -20419,7 +20419,7 @@ func (f *Fuzz978) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz979) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -20442,7 +20442,7 @@ func (f *Fuzz979) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz980) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -20465,7 +20465,7 @@ func (f *Fuzz980) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz981) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -20488,7 +20488,7 @@ func (f *Fuzz981) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz982) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -20511,7 +20511,7 @@ func (f *Fuzz982) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz983) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -20534,7 +20534,7 @@ func (f *Fuzz983) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz984) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -20557,7 +20557,7 @@ func (f *Fuzz984) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz985) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -20580,7 +20580,7 @@ func (f *Fuzz985) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz986) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -20603,7 +20603,7 @@ func (f *Fuzz986) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz987) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -20628,7 +20628,7 @@ func (f *Fuzz987) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz988) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -20651,7 +20651,7 @@ func (f *Fuzz988) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz989) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -20674,7 +20674,7 @@ func (f *Fuzz989) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz990) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -20697,7 +20697,7 @@ func (f *Fuzz990) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz991) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -20720,7 +20720,7 @@ func (f *Fuzz991) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz992) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -20743,7 +20743,7 @@ func (f *Fuzz992) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz993) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -20766,7 +20766,7 @@ func (f *Fuzz993) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz994) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -20789,7 +20789,7 @@ func (f *Fuzz994) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz995) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -20814,7 +20814,7 @@ func (f *Fuzz995) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz996) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -20843,7 +20843,7 @@ func (f *Fuzz996) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz997) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -20868,7 +20868,7 @@ func (f *Fuzz997) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz998) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+8*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -20893,7 +20893,7 @@ func (f *Fuzz998) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz999) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -20918,7 +20918,7 @@ func (f *Fuzz999) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1000) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -20943,7 +20943,7 @@ func (f *Fuzz1000) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1001) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -20968,7 +20968,7 @@ func (f *Fuzz1001) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1002) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -20993,7 +20993,7 @@ func (f *Fuzz1002) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1003) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21018,7 +21018,7 @@ func (f *Fuzz1003) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1004) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21043,7 +21043,7 @@ func (f *Fuzz1004) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1005) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21068,7 +21068,7 @@ func (f *Fuzz1005) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1006) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -21095,7 +21095,7 @@ func (f *Fuzz1006) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1007) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21120,7 +21120,7 @@ func (f *Fuzz1007) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1008) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21145,7 +21145,7 @@ func (f *Fuzz1008) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1009) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21170,7 +21170,7 @@ func (f *Fuzz1009) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1010) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21199,7 +21199,7 @@ func (f *Fuzz1010) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1011) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21224,7 +21224,7 @@ func (f *Fuzz1011) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1012) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21249,7 +21249,7 @@ func (f *Fuzz1012) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1013) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21274,7 +21274,7 @@ func (f *Fuzz1013) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1014) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -21297,7 +21297,7 @@ func (f *Fuzz1014) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1015) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -21320,7 +21320,7 @@ func (f *Fuzz1015) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1016) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -21343,7 +21343,7 @@ func (f *Fuzz1016) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1017) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -21366,7 +21366,7 @@ func (f *Fuzz1017) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1018) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -21389,7 +21389,7 @@ func (f *Fuzz1018) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1019) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -21412,7 +21412,7 @@ func (f *Fuzz1019) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1020) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -21435,7 +21435,7 @@ func (f *Fuzz1020) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1021) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -21458,7 +21458,7 @@ func (f *Fuzz1021) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1022) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -21481,7 +21481,7 @@ func (f *Fuzz1022) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1023) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -21504,7 +21504,7 @@ func (f *Fuzz1023) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1024) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -21527,7 +21527,7 @@ func (f *Fuzz1024) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1025) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -21550,7 +21550,7 @@ func (f *Fuzz1025) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1026) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21575,7 +21575,7 @@ func (f *Fuzz1026) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1027) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -21598,7 +21598,7 @@ func (f *Fuzz1027) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1028) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -21621,7 +21621,7 @@ func (f *Fuzz1028) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1029) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -21644,7 +21644,7 @@ func (f *Fuzz1029) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1030) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -21667,7 +21667,7 @@ func (f *Fuzz1030) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1031) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -21690,7 +21690,7 @@ func (f *Fuzz1031) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1032) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -21713,7 +21713,7 @@ func (f *Fuzz1032) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1033) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -21736,7 +21736,7 @@ func (f *Fuzz1033) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1034) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21761,7 +21761,7 @@ func (f *Fuzz1034) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1035) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21790,7 +21790,7 @@ func (f *Fuzz1035) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1036) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21815,7 +21815,7 @@ func (f *Fuzz1036) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1037) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+8*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21840,7 +21840,7 @@ func (f *Fuzz1037) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1038) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21865,7 +21865,7 @@ func (f *Fuzz1038) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1039) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21890,7 +21890,7 @@ func (f *Fuzz1039) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1040) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21915,7 +21915,7 @@ func (f *Fuzz1040) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1041) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21940,7 +21940,7 @@ func (f *Fuzz1041) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1042) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21965,7 +21965,7 @@ func (f *Fuzz1042) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1043) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -21990,7 +21990,7 @@ func (f *Fuzz1043) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1044) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -22015,7 +22015,7 @@ func (f *Fuzz1044) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1045) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -22042,7 +22042,7 @@ func (f *Fuzz1045) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1046) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -22067,7 +22067,7 @@ func (f *Fuzz1046) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1047) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -22092,7 +22092,7 @@ func (f *Fuzz1047) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1048) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -22117,7 +22117,7 @@ func (f *Fuzz1048) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1049) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -22146,7 +22146,7 @@ func (f *Fuzz1049) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1050) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -22171,7 +22171,7 @@ func (f *Fuzz1050) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1051) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -22196,7 +22196,7 @@ func (f *Fuzz1051) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1052) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -22221,7 +22221,7 @@ func (f *Fuzz1052) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1053) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -22244,7 +22244,7 @@ func (f *Fuzz1053) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1054) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -22267,7 +22267,7 @@ func (f *Fuzz1054) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1055) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -22290,7 +22290,7 @@ func (f *Fuzz1055) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1056) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -22313,7 +22313,7 @@ func (f *Fuzz1056) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1057) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -22336,7 +22336,7 @@ func (f *Fuzz1057) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1058) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -22359,7 +22359,7 @@ func (f *Fuzz1058) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1059) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -22382,7 +22382,7 @@ func (f *Fuzz1059) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1060) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -22405,7 +22405,7 @@ func (f *Fuzz1060) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1061) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -22428,7 +22428,7 @@ func (f *Fuzz1061) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1062) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -22451,7 +22451,7 @@ func (f *Fuzz1062) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1063) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -22474,7 +22474,7 @@ func (f *Fuzz1063) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1064) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -22497,7 +22497,7 @@ func (f *Fuzz1064) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1065) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22522,7 +22522,7 @@ func (f *Fuzz1065) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1066) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -22545,7 +22545,7 @@ func (f *Fuzz1066) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1067) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -22568,7 +22568,7 @@ func (f *Fuzz1067) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1068) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -22591,7 +22591,7 @@ func (f *Fuzz1068) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1069) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -22614,7 +22614,7 @@ func (f *Fuzz1069) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1070) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -22637,7 +22637,7 @@ func (f *Fuzz1070) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1071) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -22660,7 +22660,7 @@ func (f *Fuzz1071) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1072) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -22683,7 +22683,7 @@ func (f *Fuzz1072) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1073) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22708,7 +22708,7 @@ func (f *Fuzz1073) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1074) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22737,7 +22737,7 @@ func (f *Fuzz1074) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1075) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22762,7 +22762,7 @@ func (f *Fuzz1075) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1076) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22787,7 +22787,7 @@ func (f *Fuzz1076) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1077) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22812,7 +22812,7 @@ func (f *Fuzz1077) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1078) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22837,7 +22837,7 @@ func (f *Fuzz1078) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1079) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22862,7 +22862,7 @@ func (f *Fuzz1079) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1080) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22887,7 +22887,7 @@ func (f *Fuzz1080) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1081) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22912,7 +22912,7 @@ func (f *Fuzz1081) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1082) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22937,7 +22937,7 @@ func (f *Fuzz1082) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1083) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -22962,7 +22962,7 @@ func (f *Fuzz1083) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1084) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+l0+l1)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -22989,7 +22989,7 @@ func (f *Fuzz1084) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1085) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -23014,7 +23014,7 @@ func (f *Fuzz1085) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1086) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -23039,7 +23039,7 @@ func (f *Fuzz1086) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1087) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -23064,7 +23064,7 @@ func (f *Fuzz1087) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1088) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -23093,7 +23093,7 @@ func (f *Fuzz1088) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1089) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -23118,7 +23118,7 @@ func (f *Fuzz1089) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1090) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -23143,7 +23143,7 @@ func (f *Fuzz1090) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1091) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -23168,7 +23168,7 @@ func (f *Fuzz1091) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1092) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -23191,7 +23191,7 @@ func (f *Fuzz1092) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1093) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -23214,7 +23214,7 @@ func (f *Fuzz1093) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1094) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -23237,7 +23237,7 @@ func (f *Fuzz1094) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1095) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+2*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -23260,7 +23260,7 @@ func (f *Fuzz1095) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1096) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -23283,7 +23283,7 @@ func (f *Fuzz1096) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1097) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -23306,7 +23306,7 @@ func (f *Fuzz1097) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1098) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -23329,7 +23329,7 @@ func (f *Fuzz1098) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1099) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -23352,7 +23352,7 @@ func (f *Fuzz1099) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1100) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -23375,7 +23375,7 @@ func (f *Fuzz1100) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1101) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -23398,7 +23398,7 @@ func (f *Fuzz1101) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1102) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -23421,7 +23421,7 @@ func (f *Fuzz1102) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1103) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -23444,7 +23444,7 @@ func (f *Fuzz1103) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1104) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23469,7 +23469,7 @@ func (f *Fuzz1104) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1105) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -23492,7 +23492,7 @@ func (f *Fuzz1105) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1106) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -23515,7 +23515,7 @@ func (f *Fuzz1106) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1107) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -23538,7 +23538,7 @@ func (f *Fuzz1107) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1108) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -23561,7 +23561,7 @@ func (f *Fuzz1108) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1109) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -23584,7 +23584,7 @@ func (f *Fuzz1109) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1110) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -23607,7 +23607,7 @@ func (f *Fuzz1110) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1111) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -23630,7 +23630,7 @@ func (f *Fuzz1111) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1112) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23655,7 +23655,7 @@ func (f *Fuzz1112) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1113) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23684,7 +23684,7 @@ func (f *Fuzz1113) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1114) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23709,7 +23709,7 @@ func (f *Fuzz1114) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1115) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23734,7 +23734,7 @@ func (f *Fuzz1115) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1116) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23759,7 +23759,7 @@ func (f *Fuzz1116) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1117) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23784,7 +23784,7 @@ func (f *Fuzz1117) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1118) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23809,7 +23809,7 @@ func (f *Fuzz1118) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1119) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23834,7 +23834,7 @@ func (f *Fuzz1119) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1120) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23859,7 +23859,7 @@ func (f *Fuzz1120) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1121) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23884,7 +23884,7 @@ func (f *Fuzz1121) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1122) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23909,7 +23909,7 @@ func (f *Fuzz1122) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1123) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+2*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -23936,7 +23936,7 @@ func (f *Fuzz1123) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1124) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23961,7 +23961,7 @@ func (f *Fuzz1124) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1125) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -23986,7 +23986,7 @@ func (f *Fuzz1125) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1126) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -24011,7 +24011,7 @@ func (f *Fuzz1126) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1127) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -24040,7 +24040,7 @@ func (f *Fuzz1127) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1128) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -24065,7 +24065,7 @@ func (f *Fuzz1128) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1129) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -24090,7 +24090,7 @@ func (f *Fuzz1129) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1130) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -24115,7 +24115,7 @@ func (f *Fuzz1130) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1131) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -24138,7 +24138,7 @@ func (f *Fuzz1131) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1132) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -24161,7 +24161,7 @@ func (f *Fuzz1132) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1133) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -24184,7 +24184,7 @@ func (f *Fuzz1133) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1134) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -24207,7 +24207,7 @@ func (f *Fuzz1134) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1135) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -24230,7 +24230,7 @@ func (f *Fuzz1135) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1136) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -24253,7 +24253,7 @@ func (f *Fuzz1136) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1137) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -24276,7 +24276,7 @@ func (f *Fuzz1137) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1138) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -24299,7 +24299,7 @@ func (f *Fuzz1138) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1139) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -24322,7 +24322,7 @@ func (f *Fuzz1139) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1140) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -24345,7 +24345,7 @@ func (f *Fuzz1140) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1141) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -24368,7 +24368,7 @@ func (f *Fuzz1141) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1142) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -24391,7 +24391,7 @@ func (f *Fuzz1142) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1143) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24416,7 +24416,7 @@ func (f *Fuzz1143) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1144) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -24439,7 +24439,7 @@ func (f *Fuzz1144) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1145) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -24462,7 +24462,7 @@ func (f *Fuzz1145) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1146) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -24485,7 +24485,7 @@ func (f *Fuzz1146) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1147) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -24508,7 +24508,7 @@ func (f *Fuzz1147) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1148) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -24531,7 +24531,7 @@ func (f *Fuzz1148) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1149) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -24554,7 +24554,7 @@ func (f *Fuzz1149) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1150) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -24577,7 +24577,7 @@ func (f *Fuzz1150) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1151) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24602,7 +24602,7 @@ func (f *Fuzz1151) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1152) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24631,7 +24631,7 @@ func (f *Fuzz1152) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1153) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24656,7 +24656,7 @@ func (f *Fuzz1153) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1154) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24681,7 +24681,7 @@ func (f *Fuzz1154) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1155) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24706,7 +24706,7 @@ func (f *Fuzz1155) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1156) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24731,7 +24731,7 @@ func (f *Fuzz1156) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1157) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24756,7 +24756,7 @@ func (f *Fuzz1157) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1158) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24781,7 +24781,7 @@ func (f *Fuzz1158) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1159) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24806,7 +24806,7 @@ func (f *Fuzz1159) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1160) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24831,7 +24831,7 @@ func (f *Fuzz1160) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1161) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24856,7 +24856,7 @@ func (f *Fuzz1161) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1162) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+4*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -24883,7 +24883,7 @@ func (f *Fuzz1162) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1163) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24908,7 +24908,7 @@ func (f *Fuzz1163) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1164) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24933,7 +24933,7 @@ func (f *Fuzz1164) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1165) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24958,7 +24958,7 @@ func (f *Fuzz1165) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1166) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -24987,7 +24987,7 @@ func (f *Fuzz1166) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1167) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -25012,7 +25012,7 @@ func (f *Fuzz1167) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1168) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -25037,7 +25037,7 @@ func (f *Fuzz1168) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1169) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -25062,7 +25062,7 @@ func (f *Fuzz1169) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1170) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -25085,7 +25085,7 @@ func (f *Fuzz1170) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1171) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -25108,7 +25108,7 @@ func (f *Fuzz1171) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1172) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -25131,7 +25131,7 @@ func (f *Fuzz1172) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1173) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -25154,7 +25154,7 @@ func (f *Fuzz1173) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1174) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -25177,7 +25177,7 @@ func (f *Fuzz1174) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1175) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -25200,7 +25200,7 @@ func (f *Fuzz1175) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1176) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -25223,7 +25223,7 @@ func (f *Fuzz1176) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1177) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -25246,7 +25246,7 @@ func (f *Fuzz1177) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1178) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -25269,7 +25269,7 @@ func (f *Fuzz1178) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1179) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -25292,7 +25292,7 @@ func (f *Fuzz1179) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1180) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -25315,7 +25315,7 @@ func (f *Fuzz1180) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1181) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -25338,7 +25338,7 @@ func (f *Fuzz1181) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1182) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25363,7 +25363,7 @@ func (f *Fuzz1182) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1183) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -25386,7 +25386,7 @@ func (f *Fuzz1183) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1184) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -25409,7 +25409,7 @@ func (f *Fuzz1184) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1185) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -25432,7 +25432,7 @@ func (f *Fuzz1185) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1186) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -25455,7 +25455,7 @@ func (f *Fuzz1186) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1187) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -25478,7 +25478,7 @@ func (f *Fuzz1187) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1188) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -25501,7 +25501,7 @@ func (f *Fuzz1188) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1189) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -25524,7 +25524,7 @@ func (f *Fuzz1189) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1190) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25549,7 +25549,7 @@ func (f *Fuzz1190) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1191) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25578,7 +25578,7 @@ func (f *Fuzz1191) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1192) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25603,7 +25603,7 @@ func (f *Fuzz1192) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1193) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+8*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25628,7 +25628,7 @@ func (f *Fuzz1193) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1194) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25653,7 +25653,7 @@ func (f *Fuzz1194) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1195) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25678,7 +25678,7 @@ func (f *Fuzz1195) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1196) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25703,7 +25703,7 @@ func (f *Fuzz1196) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1197) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25728,7 +25728,7 @@ func (f *Fuzz1197) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1198) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25753,7 +25753,7 @@ func (f *Fuzz1198) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1199) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25778,7 +25778,7 @@ func (f *Fuzz1199) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1200) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25803,7 +25803,7 @@ func (f *Fuzz1200) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1201) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -25830,7 +25830,7 @@ func (f *Fuzz1201) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1202) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25855,7 +25855,7 @@ func (f *Fuzz1202) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1203) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25880,7 +25880,7 @@ func (f *Fuzz1203) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1204) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25905,7 +25905,7 @@ func (f *Fuzz1204) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1205) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25934,7 +25934,7 @@ func (f *Fuzz1205) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1206) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25959,7 +25959,7 @@ func (f *Fuzz1206) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1207) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -25984,7 +25984,7 @@ func (f *Fuzz1207) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1208) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -26009,7 +26009,7 @@ func (f *Fuzz1208) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1209) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -26032,7 +26032,7 @@ func (f *Fuzz1209) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1210) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -26055,7 +26055,7 @@ func (f *Fuzz1210) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1211) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -26078,7 +26078,7 @@ func (f *Fuzz1211) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1212) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -26101,7 +26101,7 @@ func (f *Fuzz1212) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1213) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -26124,7 +26124,7 @@ func (f *Fuzz1213) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1214) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -26147,7 +26147,7 @@ func (f *Fuzz1214) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1215) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -26170,7 +26170,7 @@ func (f *Fuzz1215) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1216) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -26193,7 +26193,7 @@ func (f *Fuzz1216) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1217) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -26216,7 +26216,7 @@ func (f *Fuzz1217) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1218) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -26239,7 +26239,7 @@ func (f *Fuzz1218) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1219) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -26262,7 +26262,7 @@ func (f *Fuzz1219) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1220) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -26285,7 +26285,7 @@ func (f *Fuzz1220) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1221) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26310,7 +26310,7 @@ func (f *Fuzz1221) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1222) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -26333,7 +26333,7 @@ func (f *Fuzz1222) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1223) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -26356,7 +26356,7 @@ func (f *Fuzz1223) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1224) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -26379,7 +26379,7 @@ func (f *Fuzz1224) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1225) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -26402,7 +26402,7 @@ func (f *Fuzz1225) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1226) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -26425,7 +26425,7 @@ func (f *Fuzz1226) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1227) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -26448,7 +26448,7 @@ func (f *Fuzz1227) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1228) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -26471,7 +26471,7 @@ func (f *Fuzz1228) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1229) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26496,7 +26496,7 @@ func (f *Fuzz1229) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1230) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26525,7 +26525,7 @@ func (f *Fuzz1230) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1231) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26550,7 +26550,7 @@ func (f *Fuzz1231) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1232) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26575,7 +26575,7 @@ func (f *Fuzz1232) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1233) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26600,7 +26600,7 @@ func (f *Fuzz1233) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1234) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26625,7 +26625,7 @@ func (f *Fuzz1234) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1235) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26650,7 +26650,7 @@ func (f *Fuzz1235) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1236) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26675,7 +26675,7 @@ func (f *Fuzz1236) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1237) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26700,7 +26700,7 @@ func (f *Fuzz1237) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1238) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26725,7 +26725,7 @@ func (f *Fuzz1238) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1239) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26750,7 +26750,7 @@ func (f *Fuzz1239) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1240) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+4*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -26777,7 +26777,7 @@ func (f *Fuzz1240) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1241) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26802,7 +26802,7 @@ func (f *Fuzz1241) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1242) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26827,7 +26827,7 @@ func (f *Fuzz1242) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1243) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26852,7 +26852,7 @@ func (f *Fuzz1243) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1244) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26881,7 +26881,7 @@ func (f *Fuzz1244) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1245) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26906,7 +26906,7 @@ func (f *Fuzz1245) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1246) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -26931,7 +26931,7 @@ func (f *Fuzz1246) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1247) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -27151,7 +27151,7 @@ func (f *Fuzz1259) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1260) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27295,7 +27295,7 @@ func (f *Fuzz1267) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1268) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+jay.SizeBools(l1))
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27318,7 +27318,7 @@ func (f *Fuzz1268) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1269) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27349,7 +27349,7 @@ func (f *Fuzz1269) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1270) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27376,7 +27376,7 @@ func (f *Fuzz1270) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1271) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27403,7 +27403,7 @@ func (f *Fuzz1271) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1272) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27430,7 +27430,7 @@ func (f *Fuzz1272) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1273) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27457,7 +27457,7 @@ func (f *Fuzz1273) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1274) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27484,7 +27484,7 @@ func (f *Fuzz1274) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1275) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27511,7 +27511,7 @@ func (f *Fuzz1275) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1276) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27538,7 +27538,7 @@ func (f *Fuzz1276) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1277) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27565,7 +27565,7 @@ func (f *Fuzz1277) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1278) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27592,7 +27592,7 @@ func (f *Fuzz1278) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1279) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27619,7 +27619,7 @@ func (f *Fuzz1279) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1280) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27646,7 +27646,7 @@ func (f *Fuzz1280) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1281) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27673,7 +27673,7 @@ func (f *Fuzz1281) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1282) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27700,7 +27700,7 @@ func (f *Fuzz1282) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1283) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27731,7 +27731,7 @@ func (f *Fuzz1283) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1284) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27758,7 +27758,7 @@ func (f *Fuzz1284) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1285) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27785,7 +27785,7 @@ func (f *Fuzz1285) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1286) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.One), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -27812,7 +27812,7 @@ func (f *Fuzz1286) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1287) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -27835,7 +27835,7 @@ func (f *Fuzz1287) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1288) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -27858,7 +27858,7 @@ func (f *Fuzz1288) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1289) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -27881,7 +27881,7 @@ func (f *Fuzz1289) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1290) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -27904,7 +27904,7 @@ func (f *Fuzz1290) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1291) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -27927,7 +27927,7 @@ func (f *Fuzz1291) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1292) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -27950,7 +27950,7 @@ func (f *Fuzz1292) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1293) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -27973,7 +27973,7 @@ func (f *Fuzz1293) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1294) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -27996,7 +27996,7 @@ func (f *Fuzz1294) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1295) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -28019,7 +28019,7 @@ func (f *Fuzz1295) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1296) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -28042,7 +28042,7 @@ func (f *Fuzz1296) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1297) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -28065,7 +28065,7 @@ func (f *Fuzz1297) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1298) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -28088,7 +28088,7 @@ func (f *Fuzz1298) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1299) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28113,7 +28113,7 @@ func (f *Fuzz1299) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1300) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -28136,7 +28136,7 @@ func (f *Fuzz1300) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1301) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -28159,7 +28159,7 @@ func (f *Fuzz1301) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1302) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -28182,7 +28182,7 @@ func (f *Fuzz1302) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1303) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -28205,7 +28205,7 @@ func (f *Fuzz1303) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1304) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -28228,7 +28228,7 @@ func (f *Fuzz1304) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1305) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -28251,7 +28251,7 @@ func (f *Fuzz1305) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1306) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -28274,7 +28274,7 @@ func (f *Fuzz1306) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1307) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28299,7 +28299,7 @@ func (f *Fuzz1307) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1308) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28328,7 +28328,7 @@ func (f *Fuzz1308) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1309) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28353,7 +28353,7 @@ func (f *Fuzz1309) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1310) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+8*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28378,7 +28378,7 @@ func (f *Fuzz1310) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1311) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28403,7 +28403,7 @@ func (f *Fuzz1311) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1312) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28428,7 +28428,7 @@ func (f *Fuzz1312) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1313) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28453,7 +28453,7 @@ func (f *Fuzz1313) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1314) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28478,7 +28478,7 @@ func (f *Fuzz1314) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1315) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28503,7 +28503,7 @@ func (f *Fuzz1315) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1316) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28528,7 +28528,7 @@ func (f *Fuzz1316) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1317) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28553,7 +28553,7 @@ func (f *Fuzz1317) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1318) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28578,7 +28578,7 @@ func (f *Fuzz1318) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1319) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -28605,7 +28605,7 @@ func (f *Fuzz1319) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1320) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28630,7 +28630,7 @@ func (f *Fuzz1320) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1321) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28655,7 +28655,7 @@ func (f *Fuzz1321) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1322) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28684,7 +28684,7 @@ func (f *Fuzz1322) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1323) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28709,7 +28709,7 @@ func (f *Fuzz1323) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1324) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28734,7 +28734,7 @@ func (f *Fuzz1324) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1325) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -28759,7 +28759,7 @@ func (f *Fuzz1325) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1326) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -28782,7 +28782,7 @@ func (f *Fuzz1326) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1327) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -28805,7 +28805,7 @@ func (f *Fuzz1327) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1328) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -28828,7 +28828,7 @@ func (f *Fuzz1328) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1329) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -28851,7 +28851,7 @@ func (f *Fuzz1329) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1330) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -28874,7 +28874,7 @@ func (f *Fuzz1330) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1331) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -28897,7 +28897,7 @@ func (f *Fuzz1331) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1332) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -28920,7 +28920,7 @@ func (f *Fuzz1332) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1333) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -28943,7 +28943,7 @@ func (f *Fuzz1333) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1334) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -28966,7 +28966,7 @@ func (f *Fuzz1334) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1335) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -28989,7 +28989,7 @@ func (f *Fuzz1335) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1336) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -29012,7 +29012,7 @@ func (f *Fuzz1336) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1337) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -29035,7 +29035,7 @@ func (f *Fuzz1337) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1338) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29060,7 +29060,7 @@ func (f *Fuzz1338) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1339) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -29083,7 +29083,7 @@ func (f *Fuzz1339) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1340) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -29106,7 +29106,7 @@ func (f *Fuzz1340) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1341) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -29129,7 +29129,7 @@ func (f *Fuzz1341) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1342) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -29152,7 +29152,7 @@ func (f *Fuzz1342) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1343) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -29175,7 +29175,7 @@ func (f *Fuzz1343) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1344) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -29198,7 +29198,7 @@ func (f *Fuzz1344) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1345) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -29221,7 +29221,7 @@ func (f *Fuzz1345) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1346) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29246,7 +29246,7 @@ func (f *Fuzz1346) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1347) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29275,7 +29275,7 @@ func (f *Fuzz1347) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1348) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29300,7 +29300,7 @@ func (f *Fuzz1348) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1349) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+8*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29325,7 +29325,7 @@ func (f *Fuzz1349) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1350) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29350,7 +29350,7 @@ func (f *Fuzz1350) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1351) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29375,7 +29375,7 @@ func (f *Fuzz1351) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1352) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29400,7 +29400,7 @@ func (f *Fuzz1352) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1353) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29425,7 +29425,7 @@ func (f *Fuzz1353) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1354) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29450,7 +29450,7 @@ func (f *Fuzz1354) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1355) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29475,7 +29475,7 @@ func (f *Fuzz1355) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1356) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29500,7 +29500,7 @@ func (f *Fuzz1356) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1357) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29525,7 +29525,7 @@ func (f *Fuzz1357) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1358) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -29552,7 +29552,7 @@ func (f *Fuzz1358) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1359) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29577,7 +29577,7 @@ func (f *Fuzz1359) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1360) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29602,7 +29602,7 @@ func (f *Fuzz1360) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1361) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29631,7 +29631,7 @@ func (f *Fuzz1361) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1362) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29656,7 +29656,7 @@ func (f *Fuzz1362) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1363) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29681,7 +29681,7 @@ func (f *Fuzz1363) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1364) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -29706,7 +29706,7 @@ func (f *Fuzz1364) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1365) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -29729,7 +29729,7 @@ func (f *Fuzz1365) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1366) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -29752,7 +29752,7 @@ func (f *Fuzz1366) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1367) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -29775,7 +29775,7 @@ func (f *Fuzz1367) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1368) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -29798,7 +29798,7 @@ func (f *Fuzz1368) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1369) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -29821,7 +29821,7 @@ func (f *Fuzz1369) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1370) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -29844,7 +29844,7 @@ func (f *Fuzz1370) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1371) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -29867,7 +29867,7 @@ func (f *Fuzz1371) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1372) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -29890,7 +29890,7 @@ func (f *Fuzz1372) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1373) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -29913,7 +29913,7 @@ func (f *Fuzz1373) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1374) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -29936,7 +29936,7 @@ func (f *Fuzz1374) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1375) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -29959,7 +29959,7 @@ func (f *Fuzz1375) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1376) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -29982,7 +29982,7 @@ func (f *Fuzz1376) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1377) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30007,7 +30007,7 @@ func (f *Fuzz1377) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1378) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -30030,7 +30030,7 @@ func (f *Fuzz1378) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1379) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -30053,7 +30053,7 @@ func (f *Fuzz1379) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1380) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -30076,7 +30076,7 @@ func (f *Fuzz1380) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1381) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -30099,7 +30099,7 @@ func (f *Fuzz1381) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1382) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -30122,7 +30122,7 @@ func (f *Fuzz1382) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1383) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -30145,7 +30145,7 @@ func (f *Fuzz1383) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1384) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -30168,7 +30168,7 @@ func (f *Fuzz1384) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1385) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30193,7 +30193,7 @@ func (f *Fuzz1385) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1386) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30222,7 +30222,7 @@ func (f *Fuzz1386) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1387) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30247,7 +30247,7 @@ func (f *Fuzz1387) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1388) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+8*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30272,7 +30272,7 @@ func (f *Fuzz1388) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1389) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30297,7 +30297,7 @@ func (f *Fuzz1389) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1390) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30322,7 +30322,7 @@ func (f *Fuzz1390) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1391) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30347,7 +30347,7 @@ func (f *Fuzz1391) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1392) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30372,7 +30372,7 @@ func (f *Fuzz1392) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1393) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30397,7 +30397,7 @@ func (f *Fuzz1393) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1394) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30422,7 +30422,7 @@ func (f *Fuzz1394) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1395) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30447,7 +30447,7 @@ func (f *Fuzz1395) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1396) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30472,7 +30472,7 @@ func (f *Fuzz1396) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1397) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -30499,7 +30499,7 @@ func (f *Fuzz1397) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1398) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30524,7 +30524,7 @@ func (f *Fuzz1398) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1399) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30549,7 +30549,7 @@ func (f *Fuzz1399) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1400) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30578,7 +30578,7 @@ func (f *Fuzz1400) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1401) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30603,7 +30603,7 @@ func (f *Fuzz1401) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1402) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30628,7 +30628,7 @@ func (f *Fuzz1402) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1403) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -30653,7 +30653,7 @@ func (f *Fuzz1403) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1404) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -30680,7 +30680,7 @@ func (f *Fuzz1404) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1405) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -30707,7 +30707,7 @@ func (f *Fuzz1405) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1406) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -30734,7 +30734,7 @@ func (f *Fuzz1406) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1407) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -30761,7 +30761,7 @@ func (f *Fuzz1407) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1408) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -30788,7 +30788,7 @@ func (f *Fuzz1408) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1409) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -30815,7 +30815,7 @@ func (f *Fuzz1409) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1410) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -30842,7 +30842,7 @@ func (f *Fuzz1410) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1411) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -30869,7 +30869,7 @@ func (f *Fuzz1411) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1412) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -30896,7 +30896,7 @@ func (f *Fuzz1412) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1413) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -30923,7 +30923,7 @@ func (f *Fuzz1413) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1414) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -30950,7 +30950,7 @@ func (f *Fuzz1414) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1415) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -30977,7 +30977,7 @@ func (f *Fuzz1415) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1416) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31006,7 +31006,7 @@ func (f *Fuzz1416) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1417) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -31033,7 +31033,7 @@ func (f *Fuzz1417) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1418) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -31060,7 +31060,7 @@ func (f *Fuzz1418) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1419) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -31087,7 +31087,7 @@ func (f *Fuzz1419) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1420) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -31114,7 +31114,7 @@ func (f *Fuzz1420) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1421) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -31141,7 +31141,7 @@ func (f *Fuzz1421) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1422) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -31168,7 +31168,7 @@ func (f *Fuzz1422) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1423) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -31195,7 +31195,7 @@ func (f *Fuzz1423) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1424) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31224,7 +31224,7 @@ func (f *Fuzz1424) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1425) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31257,7 +31257,7 @@ func (f *Fuzz1425) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1426) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31286,7 +31286,7 @@ func (f *Fuzz1426) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1427) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31315,7 +31315,7 @@ func (f *Fuzz1427) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1428) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31344,7 +31344,7 @@ func (f *Fuzz1428) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1429) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31373,7 +31373,7 @@ func (f *Fuzz1429) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1430) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31402,7 +31402,7 @@ func (f *Fuzz1430) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1431) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31431,7 +31431,7 @@ func (f *Fuzz1431) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1432) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31460,7 +31460,7 @@ func (f *Fuzz1432) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1433) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31489,7 +31489,7 @@ func (f *Fuzz1433) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1434) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31518,7 +31518,7 @@ func (f *Fuzz1434) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1435) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31547,7 +31547,7 @@ func (f *Fuzz1435) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1436) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+l0+l1)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -31578,7 +31578,7 @@ func (f *Fuzz1436) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1437) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31607,7 +31607,7 @@ func (f *Fuzz1437) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1438) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31636,7 +31636,7 @@ func (f *Fuzz1438) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1439) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31665,7 +31665,7 @@ func (f *Fuzz1439) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1440) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31694,7 +31694,7 @@ func (f *Fuzz1440) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1441) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31723,7 +31723,7 @@ func (f *Fuzz1441) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1442) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0
@@ -31752,7 +31752,7 @@ func (f *Fuzz1442) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1443) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -31775,7 +31775,7 @@ func (f *Fuzz1443) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1444) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -31798,7 +31798,7 @@ func (f *Fuzz1444) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1445) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -31821,7 +31821,7 @@ func (f *Fuzz1445) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1446) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+2*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -31844,7 +31844,7 @@ func (f *Fuzz1446) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1447) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -31867,7 +31867,7 @@ func (f *Fuzz1447) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1448) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -31890,7 +31890,7 @@ func (f *Fuzz1448) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1449) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -31913,7 +31913,7 @@ func (f *Fuzz1449) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1450) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -31936,7 +31936,7 @@ func (f *Fuzz1450) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1451) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -31959,7 +31959,7 @@ func (f *Fuzz1451) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1452) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -31982,7 +31982,7 @@ func (f *Fuzz1452) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1453) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -32005,7 +32005,7 @@ func (f *Fuzz1453) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1454) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -32028,7 +32028,7 @@ func (f *Fuzz1454) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1455) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32053,7 +32053,7 @@ func (f *Fuzz1455) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1456) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -32076,7 +32076,7 @@ func (f *Fuzz1456) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1457) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -32099,7 +32099,7 @@ func (f *Fuzz1457) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1458) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -32122,7 +32122,7 @@ func (f *Fuzz1458) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1459) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+2*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -32145,7 +32145,7 @@ func (f *Fuzz1459) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1460) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -32168,7 +32168,7 @@ func (f *Fuzz1460) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1461) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -32191,7 +32191,7 @@ func (f *Fuzz1461) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1462) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -32214,7 +32214,7 @@ func (f *Fuzz1462) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1463) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32239,7 +32239,7 @@ func (f *Fuzz1463) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1464) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32268,7 +32268,7 @@ func (f *Fuzz1464) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1465) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32293,7 +32293,7 @@ func (f *Fuzz1465) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1466) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32318,7 +32318,7 @@ func (f *Fuzz1466) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1467) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32343,7 +32343,7 @@ func (f *Fuzz1467) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1468) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32368,7 +32368,7 @@ func (f *Fuzz1468) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1469) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32393,7 +32393,7 @@ func (f *Fuzz1469) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1470) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32418,7 +32418,7 @@ func (f *Fuzz1470) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1471) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32443,7 +32443,7 @@ func (f *Fuzz1471) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1472) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32468,7 +32468,7 @@ func (f *Fuzz1472) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1473) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32493,7 +32493,7 @@ func (f *Fuzz1473) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1474) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32518,7 +32518,7 @@ func (f *Fuzz1474) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1475) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+2*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -32545,7 +32545,7 @@ func (f *Fuzz1475) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1476) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32570,7 +32570,7 @@ func (f *Fuzz1476) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1477) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32595,7 +32595,7 @@ func (f *Fuzz1477) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1478) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32620,7 +32620,7 @@ func (f *Fuzz1478) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1479) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+2*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32649,7 +32649,7 @@ func (f *Fuzz1479) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1480) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32674,7 +32674,7 @@ func (f *Fuzz1480) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1481) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+2*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*2
@@ -32699,7 +32699,7 @@ func (f *Fuzz1481) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1482) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -32722,7 +32722,7 @@ func (f *Fuzz1482) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1483) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -32745,7 +32745,7 @@ func (f *Fuzz1483) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1484) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -32768,7 +32768,7 @@ func (f *Fuzz1484) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1485) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+4*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -32791,7 +32791,7 @@ func (f *Fuzz1485) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1486) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -32814,7 +32814,7 @@ func (f *Fuzz1486) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1487) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -32837,7 +32837,7 @@ func (f *Fuzz1487) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1488) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -32860,7 +32860,7 @@ func (f *Fuzz1488) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1489) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -32883,7 +32883,7 @@ func (f *Fuzz1489) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1490) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -32906,7 +32906,7 @@ func (f *Fuzz1490) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1491) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -32929,7 +32929,7 @@ func (f *Fuzz1491) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1492) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -32952,7 +32952,7 @@ func (f *Fuzz1492) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1493) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -32975,7 +32975,7 @@ func (f *Fuzz1493) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1494) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33000,7 +33000,7 @@ func (f *Fuzz1494) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1495) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -33023,7 +33023,7 @@ func (f *Fuzz1495) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1496) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -33046,7 +33046,7 @@ func (f *Fuzz1496) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1497) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -33069,7 +33069,7 @@ func (f *Fuzz1497) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1498) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+4*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -33092,7 +33092,7 @@ func (f *Fuzz1498) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1499) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -33115,7 +33115,7 @@ func (f *Fuzz1499) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1500) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -33138,7 +33138,7 @@ func (f *Fuzz1500) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1501) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -33161,7 +33161,7 @@ func (f *Fuzz1501) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1502) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33186,7 +33186,7 @@ func (f *Fuzz1502) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1503) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33215,7 +33215,7 @@ func (f *Fuzz1503) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1504) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33240,7 +33240,7 @@ func (f *Fuzz1504) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1505) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33265,7 +33265,7 @@ func (f *Fuzz1505) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1506) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33290,7 +33290,7 @@ func (f *Fuzz1506) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1507) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33315,7 +33315,7 @@ func (f *Fuzz1507) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1508) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33340,7 +33340,7 @@ func (f *Fuzz1508) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1509) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33365,7 +33365,7 @@ func (f *Fuzz1509) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1510) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33390,7 +33390,7 @@ func (f *Fuzz1510) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1511) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33415,7 +33415,7 @@ func (f *Fuzz1511) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1512) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33440,7 +33440,7 @@ func (f *Fuzz1512) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1513) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33465,7 +33465,7 @@ func (f *Fuzz1513) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1514) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+4*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -33492,7 +33492,7 @@ func (f *Fuzz1514) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1515) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33517,7 +33517,7 @@ func (f *Fuzz1515) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1516) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33542,7 +33542,7 @@ func (f *Fuzz1516) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1517) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33567,7 +33567,7 @@ func (f *Fuzz1517) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1518) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33596,7 +33596,7 @@ func (f *Fuzz1518) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1519) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+4*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33621,7 +33621,7 @@ func (f *Fuzz1519) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1520) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l1+4*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*4
@@ -33646,7 +33646,7 @@ func (f *Fuzz1520) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1521) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(f.Two)
@@ -33669,7 +33669,7 @@ func (f *Fuzz1521) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1522) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -33692,7 +33692,7 @@ func (f *Fuzz1522) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1523) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex64(b[1:9], f.Two)
@@ -33715,7 +33715,7 @@ func (f *Fuzz1523) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1524) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 17+8*l0)
 	b[0] = byte(l0)
 	jay.WriteComplex128(b[1:17], f.Two)
@@ -33738,7 +33738,7 @@ func (f *Fuzz1524) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1525) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat32(b[1:5], f.Two)
@@ -33761,7 +33761,7 @@ func (f *Fuzz1525) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1526) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteFloat64(b[1:9], f.Two)
@@ -33784,7 +33784,7 @@ func (f *Fuzz1526) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1527) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteIntX64(b[1:9], f.Two)
@@ -33807,7 +33807,7 @@ func (f *Fuzz1527) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1528) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = byte(f.Two)
@@ -33830,7 +33830,7 @@ func (f *Fuzz1528) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1529) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt16(b[1:3], f.Two)
@@ -33853,7 +33853,7 @@ func (f *Fuzz1529) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1530) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -33876,7 +33876,7 @@ func (f *Fuzz1530) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1531) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], f.Two)
@@ -33899,7 +33899,7 @@ func (f *Fuzz1531) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1532) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt32(b[1:5], f.Two)
@@ -33922,7 +33922,7 @@ func (f *Fuzz1532) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1533) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -33947,7 +33947,7 @@ func (f *Fuzz1533) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1534) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteInt64(b[1:9], int64(f.Two))
@@ -33970,7 +33970,7 @@ func (f *Fuzz1534) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1535) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteTime(b[1:9], f.Two)
@@ -33993,7 +33993,7 @@ func (f *Fuzz1535) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1536) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUintX64(b[1:9], f.Two)
@@ -34016,7 +34016,7 @@ func (f *Fuzz1536) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1537) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 2+8*l0)
 	b[0] = byte(l0)
 	b[1] = f.Two
@@ -34039,7 +34039,7 @@ func (f *Fuzz1537) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1538) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 3+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint16(b[1:3], f.Two)
@@ -34062,7 +34062,7 @@ func (f *Fuzz1538) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1539) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 5+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint32(b[1:5], f.Two)
@@ -34085,7 +34085,7 @@ func (f *Fuzz1539) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1540) MarshalJ() (b []byte) {
-	l0 := len(f.One)
+	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
 	jay.WriteUint64(b[1:9], f.Two)
@@ -34108,7 +34108,7 @@ func (f *Fuzz1540) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1541) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+jay.SizeBools(l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34133,7 +34133,7 @@ func (f *Fuzz1541) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1542) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34162,7 +34162,7 @@ func (f *Fuzz1542) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1543) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34187,7 +34187,7 @@ func (f *Fuzz1543) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1544) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+16*l1+8*l0)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34212,7 +34212,7 @@ func (f *Fuzz1544) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1545) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34237,7 +34237,7 @@ func (f *Fuzz1545) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1546) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34262,7 +34262,7 @@ func (f *Fuzz1546) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1547) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34287,7 +34287,7 @@ func (f *Fuzz1547) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1548) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34312,7 +34312,7 @@ func (f *Fuzz1548) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1549) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34337,7 +34337,7 @@ func (f *Fuzz1549) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1550) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34362,7 +34362,7 @@ func (f *Fuzz1550) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1551) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34387,7 +34387,7 @@ func (f *Fuzz1551) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1552) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34412,7 +34412,7 @@ func (f *Fuzz1552) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1553) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Two), len(f.One)
+	l0, l1 := jay.SizeStrings8(f.Two), jay.Len8(f.One)
 	b = make([]byte, 2+8*l1+l0)
 	b[1] = byte(l1)
 	at, end := 2, 2+l0
@@ -34439,7 +34439,7 @@ func (f *Fuzz1553) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1554) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34464,7 +34464,7 @@ func (f *Fuzz1554) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1555) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34489,7 +34489,7 @@ func (f *Fuzz1555) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1556) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34514,7 +34514,7 @@ func (f *Fuzz1556) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1557) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34543,7 +34543,7 @@ func (f *Fuzz1557) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1558) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+2*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
@@ -34568,7 +34568,7 @@ func (f *Fuzz1558) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fuzz1559) MarshalJ() (b []byte) {
-	l0, l1 := len(f.One), len(f.Two)
+	l0, l1 := jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 2+8*l0+4*l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8

@@ -9,7 +9,7 @@ import (
 )
 
 func (c *Configuration) MarshalJ() (b []byte) {
-	l0, l1, l2 := len(c.Alarm.Types), len(c.DataLog.Cluster), len(c.Types.Cluster)
+	l0, l1, l2 := jay.Len8(c.Alarm.Types), jay.Len8(c.DataLog.Cluster), jay.Len8(c.Types.Cluster)
 	b = make([]byte, 52+l0+l1+l2)
 	b[0], b[1], b[2] = byte(l0), byte(l1), byte(l2)
 	b[3] = jay.Bool1(c.DataLog.Off)
@@ -72,7 +72,7 @@ func (c *Configuration) UnmarshalJ(b []byte) error {
 }
 
 func (t *Types) MarshalJ() (b []byte) {
-	l0 := len(t.Cluster)
+	l0 := jay.Len8(t.Cluster)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = byte(t.UniMog)

@@ -29,7 +29,7 @@ func (s *S13Y8PdPX74Y7b) UnmarshalJ(b []byte) error {
 }
 
 func (x *XVSlCJMQLIo803Uwv4PYS033cc3la2yP84qq0P8aE6xhh7) MarshalJ() (b []byte) {
-	l0 := len(x.V5N46HInloeD0gsxmYCyP1fi32NfRMrKJp)
+	l0 := jay.Len8(x.V5N46HInloeD0gsxmYCyP1fi32NfRMrKJp)
 	b = make([]byte, 1+l0)
 	b[0] = byte(l0)
 	copy(b[1:], x.V5N46HInloeD0gsxmYCyP1fi32NfRMrKJp)
@@ -92,7 +92,7 @@ func (b *Bt70X1y6cxJ6p4P8mmN4cTwiQM67VI65Vx5WCgla46Haf5m88maEiQ68c0s6GReiyW8oO08
 }
 
 func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) MarshalJ() (b []byte) {
-	l0 := len(y.WkMdF1S4rr0dYq0SN4TTo3h2)
+	l0 := jay.Len8(y.WkMdF1S4rr0dYq0SN4TTo3h2)
 	b = make([]byte, 35+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	b[1] = jay.Bool2(y.IC5qlktHjoAxQ85BBL11a52LLqLNa03GvsFtx6660G0Bj78LXptHo40S737W4ro0Y27s10168Xc75kpo7, y.C11nVJCwQXED6cgc65lS0NNld6ormyMtGY42JNPP34hOA3GegJ10ObN56e)

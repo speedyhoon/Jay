@@ -5,7 +5,7 @@ package main
 import "github.com/speedyhoon/jay"
 
 func (c Car) MarshalJ() (b []byte) {
-	l0, l1, l2, l3 := len(c.Name), len(c.CC), len(c.Gearbox.Model), len(c.Gearbox.Manufacturer)
+	l0, l1, l2, l3 := jay.Len8(c.Name), jay.Len8(c.CC), jay.Len8(c.Gearbox.Model), jay.Len8(c.Gearbox.Manufacturer)
 	b = make([]byte, 41+l0+l1+l2+l3)
 	b[0], b[1], b[2], b[3] = byte(l0), byte(l1), byte(l2), byte(l3)
 	b[4] = jay.Bool3(c.Auto, c.Gearbox.Sequential, c.Gearbox.Automatic)

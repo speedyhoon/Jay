@@ -5,7 +5,7 @@ package fuzz01
 import "github.com/speedyhoon/jay"
 
 func (f *FQm5W4eKYL2M5R481768BODkJ4iDf1cgC4HViQ1add3hl5lLC) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7 := len(f.J2WltPFPNF67UkY68D38270H2g40Q3w5nHMW), len(f.N1), len(f.Fq37), len(f.Sn0PfvffWX7fR), len(f.UbLf4S50r3YvmrFsgXyR1M0eIn87570y3), len(f.NalH6srV1cOLhaMbX1g4X6yJC10K7D3h8JRaqvbyJ5F034v3Fej2Mi2t4A0Gn0580Gu76r3tKn80OQEhhvj6gh8KMTq), len(f.JgviY1V04StVbwdSQrVMRegX21dssd64CH21GE6k8n4Cj531fk6JETh5mbgFTMjQ555xHTc4m81), len(f.Vy3G15p6FurX6MFHBQ1Obk8fyuN3Ar0CGoNt1Oi872Ksb11K2O6XU2LvB2A40J0y2dAFP8bUlnjchQQkmw)
+	l0, l1, l2, l3, l4, l5, l6, l7 := jay.Len8(f.J2WltPFPNF67UkY68D38270H2g40Q3w5nHMW), jay.Len8(f.N1), jay.Len8(f.Fq37), jay.Len8(f.Sn0PfvffWX7fR), jay.Len8(f.UbLf4S50r3YvmrFsgXyR1M0eIn87570y3), jay.Len8(f.NalH6srV1cOLhaMbX1g4X6yJC10K7D3h8JRaqvbyJ5F034v3Fej2Mi2t4A0Gn0580Gu76r3tKn80OQEhhvj6gh8KMTq), jay.Len8(f.JgviY1V04StVbwdSQrVMRegX21dssd64CH21GE6k8n4Cj531fk6JETh5mbgFTMjQ555xHTc4m81), jay.Len8(f.Vy3G15p6FurX6MFHBQ1Obk8fyuN3Ar0CGoNt1Oi872Ksb11K2O6XU2LvB2A40J0y2dAFP8bUlnjchQQkmw)
 	b = make([]byte, 248+l0+l1+l2+l3+l4+l5+l6+l7)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7)
 	b[8] = jay.Bool3(f.Kfd6K04FXlT4262THUp5CE83Bw1ipB1f18phT6dwm6IskfpyIb7T0Po7n4Ya1i7Eu, f.AKgFvIBDeLwTqC1rSV617SkBL, f.E7420Ljl2JHC7ScaAA700)
@@ -162,7 +162,7 @@ func (f *FQm5W4eKYL2M5R481768BODkJ4iDf1cgC4HViQ1add3hl5lLC) UnmarshalJ(b []byte)
 }
 
 func (w *WxbM2Ud7F0C2Op31MoMo4mxmkqCT45vd2Ukv06xX) MarshalJ() (b []byte) {
-	l0, l1 := len(w.F4qXj10C72RjkqXl73), len(w.NW1jdq5utBTqK0pk3cK)
+	l0, l1 := jay.Len8(w.F4qXj10C72RjkqXl73), jay.Len8(w.NW1jdq5utBTqK0pk3cK)
 	b = make([]byte, 73+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	b[2] = w.KrLIRytmucyNF1RxdKc80X5EmuSsfbilGTTN78SfFgi801
@@ -225,7 +225,7 @@ func (w *WxbM2Ud7F0C2Op31MoMo4mxmkqCT45vd2Ukv06xX) UnmarshalJ(b []byte) error {
 }
 
 func (f *FX8J4C81000qMDCv4xYEhmhsuH3kJ3g4AtR5) MarshalJ() (b []byte) {
-	l0 := len(f.U0WQ14SbBIM3S37A2p52ntOw)
+	l0 := jay.Len8(f.U0WQ14SbBIM3S37A2p52ntOw)
 	b = make([]byte, 121+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool3(f.MSOb654pwA6W7fMa4MyI1D27Li7JG8DjLtjLxo46L2Qc6lFaQO5HYt3RIEm58x0iC1a8vvUR22Oy0uxmRrN06t5, f.PhQ5vfT1v07T5UraP1VUh5aKuLS0mcGY3vdjp3YmO380c6w5uRNO8B63O14j88CqSUkI, f.AS7Wo16rQfYpgAq8088q3qTkgfsw83oi6LWXyTp50mhpUqpoWfF2)
@@ -318,7 +318,7 @@ func (f *FX8J4C81000qMDCv4xYEhmhsuH3kJ3g4AtR5) UnmarshalJ(b []byte) error {
 }
 
 func (i *IvLDB63V0Ej3) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := len(i.FO6flfDbNI3U8SGHc7), len(i.P1U1778ySXUPcRJ23WWY47AbewKY347dB4Pehq4b38U2NGEQDgWiW40L0Cd7Lc0Tmc4rL5BV81GOb7), len(i.X2Wve5G443g28n3GQfQuuLht4cAiqxvp1hE31jfNL0as75o6JDLqRRjW5nAFcRtFcPc), len(i.MbJ1xyAi4m2Pu1GHa7TEegyRR3S6JPgvjDk70O0bE1CqagOyiep), len(i.N1eCE41U144i00iQ7to3Swk02V7EF48LF3PKNk4Nr52L4yP3hAagrb665c2xB4qK8nx3038p4), len(i.DreOXX006llCO41nbAf8mjVmyD4CeLaWU4T21Q86OK0x06cQgY1THOOVms6F1nYOssl2k6pA), len(i.VPUj700q7NkQO0b8K2v810YNiyBE5005aaOg0f4MGHJsSp2TBY7pI22W7yDxw12E4yRnH2JGk787XKHn), len(i.COl3jceS5ckE142Oyy8m1Bl4vQNKefmNyPL2D4lP1W53tdRX8oBw0qp1khV3S2VjT2wKHuOmbJHRwA00yFd6kvC8A54), len(i.T5WdH511IAJ7m53I28ItBJHy3bhP4saqo53d4yySWx3DROljY71d3U2ALL8Ke0v4x4vraQbmQiH8), len(i.Rf7gYc3s0jvQ88BeoKko4UChX5JKFv7S28k42lM36fmd8IyJr6beLX2Cv8KH18VmHeweH6pR1737L8), len(i.Rh4ytINhbaxxMTPwjjOgd7FFVnb7Thg6Q1qfh3Hx7xOoUq6dBX5jIjpfqnd4hKmJIJ41t)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := jay.Len8(i.FO6flfDbNI3U8SGHc7), jay.Len8(i.P1U1778ySXUPcRJ23WWY47AbewKY347dB4Pehq4b38U2NGEQDgWiW40L0Cd7Lc0Tmc4rL5BV81GOb7), jay.Len8(i.X2Wve5G443g28n3GQfQuuLht4cAiqxvp1hE31jfNL0as75o6JDLqRRjW5nAFcRtFcPc), jay.Len8(i.MbJ1xyAi4m2Pu1GHa7TEegyRR3S6JPgvjDk70O0bE1CqagOyiep), jay.Len8(i.N1eCE41U144i00iQ7to3Swk02V7EF48LF3PKNk4Nr52L4yP3hAagrb665c2xB4qK8nx3038p4), jay.Len8(i.DreOXX006llCO41nbAf8mjVmyD4CeLaWU4T21Q86OK0x06cQgY1THOOVms6F1nYOssl2k6pA), jay.Len8(i.VPUj700q7NkQO0b8K2v810YNiyBE5005aaOg0f4MGHJsSp2TBY7pI22W7yDxw12E4yRnH2JGk787XKHn), jay.Len8(i.COl3jceS5ckE142Oyy8m1Bl4vQNKefmNyPL2D4lP1W53tdRX8oBw0qp1khV3S2VjT2wKHuOmbJHRwA00yFd6kvC8A54), jay.Len8(i.T5WdH511IAJ7m53I28ItBJHy3bhP4saqo53d4yySWx3DROljY71d3U2ALL8Ke0v4x4vraQbmQiH8), jay.Len8(i.Rf7gYc3s0jvQ88BeoKko4UChX5JKFv7S28k42lM36fmd8IyJr6beLX2Cv8KH18VmHeweH6pR1737L8), jay.Len8(i.Rh4ytINhbaxxMTPwjjOgd7FFVnb7Thg6Q1qfh3Hx7xOoUq6dBX5jIjpfqnd4hKmJIJ41t)
 	b = make([]byte, 253+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
 	b[11] = jay.Bool8(i.Y8arm2n25u0hNR6cnHIu0s35QcYVOce0AYT72GL446D8YwxAMaJ2RkdC3sf, i.HC6I12YCW6IwaYQOL56MdCF05o27JvA2V0VNXdiANemt53D0qI2Bv111vm654NBn122MQrq067C6mlpmBFc0bt0RD8p, i.Cn1fcdAN1Mol37h, i.RX0SV7emEfO65EF0, i.W20CTun3Y00wC86h11Ok56Cr85B28G74i4T85d3U, i.TREC5P32CRfj4DKCx8vdjt4Wl0Vr75LB4Ss0Cv4c, i.DuhETtx2OLJlUS1pKNcQE1B8EGaN55v4w63D6M, i.XHElCAOBVltKt1kitk5sa0MVbm28cdcXeVxXU873)
@@ -513,7 +513,7 @@ func (i *IvLDB63V0Ej3) UnmarshalJ(b []byte) error {
 }
 
 func (f *FCTC3l1PvVnD7I7uOOO61BYAx13Xn1O2e8513yf1duq5etFn6Mv4NVw8lBiFG8bNyUL22XWS376qGa633ra) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := len(f.UsWjjpB1Uncewp30Q0BF8u0C5R3hfDUhbIHV0O6XPUL0p1X15ju2EIgDAEkn38Q5), len(f.O56voSYn583V8gJb6T8XDj68HgL85Pj5v0sNhG0B6dtHfFK03WxvBafCB64gM0Bfh3r0j3NRecOrLM4TrD48bm6qr77aQAA), len(f.WpamC), len(f.Xn54EEGFTSphbxxOY8Kosub8gYj), len(f.Fq), len(f.Q4dXjdnBVC6i0vn1FT1bk0Oi135pwLpD8trUvJJ4IUul20AcfF8r40YAccLEHLAOI5m1u15PmQa7o), len(f.GNIr21b3D12CK1357c2ohj702eX35xhhm6xv4LB5iVh11EoJ5Kk8Dnyt78eo8m6HDCQ8YhL04), len(f.X2syj0mVt61l6nMu8I8JdyWs3b8X17O705tnDimt), len(f.Q5OU521qE5KXl2SNO2P1RI61aQO637Qi6kRPTe802cEja6M3tX53B7BRhd3pFm1I36FgETVC4C4XoY8ChNJ5cjV5m808dJ50j0H), len(f.T10YQEM6Y33S1k4NE7uaJJB3LEeEy4IynkmbXNESI57AxVO3A3xv4K3C6760pAlAjWt160Ux4k8w), len(f.J4MGC4cgopMgWl7c55T3efNoCiskw31YxG5), len(f.Ex55vK35GFt3WYXWCdEH40T13o17PLHRkrx2jvFoC3uoV)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := jay.Len8(f.UsWjjpB1Uncewp30Q0BF8u0C5R3hfDUhbIHV0O6XPUL0p1X15ju2EIgDAEkn38Q5), jay.Len8(f.O56voSYn583V8gJb6T8XDj68HgL85Pj5v0sNhG0B6dtHfFK03WxvBafCB64gM0Bfh3r0j3NRecOrLM4TrD48bm6qr77aQAA), jay.Len8(f.WpamC), jay.Len8(f.Xn54EEGFTSphbxxOY8Kosub8gYj), jay.Len8(f.Fq), jay.Len8(f.Q4dXjdnBVC6i0vn1FT1bk0Oi135pwLpD8trUvJJ4IUul20AcfF8r40YAccLEHLAOI5m1u15PmQa7o), jay.Len8(f.GNIr21b3D12CK1357c2ohj702eX35xhhm6xv4LB5iVh11EoJ5Kk8Dnyt78eo8m6HDCQ8YhL04), jay.Len8(f.X2syj0mVt61l6nMu8I8JdyWs3b8X17O705tnDimt), jay.Len8(f.Q5OU521qE5KXl2SNO2P1RI61aQO637Qi6kRPTe802cEja6M3tX53B7BRhd3pFm1I36FgETVC4C4XoY8ChNJ5cjV5m808dJ50j0H), jay.Len8(f.T10YQEM6Y33S1k4NE7uaJJB3LEeEy4IynkmbXNESI57AxVO3A3xv4K3C6760pAlAjWt160Ux4k8w), jay.Len8(f.J4MGC4cgopMgWl7c55T3efNoCiskw31YxG5), jay.Len8(f.Ex55vK35GFt3WYXWCdEH40T13o17PLHRkrx2jvFoC3uoV)
 	b = make([]byte, 430+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11)
 	b[12] = jay.Bool7(f.RD0kbDR3g3fn8EGUN588gw176FF7l18cC1S1C7w5iWs5LPr3hL2bfhBFqGHfY76, f.P7gMbgCkqDbg12ksL3, f.Ux217puwbNXVp0NSYE0N7UJ5H2R4RIEKl3aQX5T6qO3e45dTsBV6nMf8Q7nkF7as1x2, f.Cl8iL3EtrMl8OK0Mim01QwR7AvF11kLT, f.BJv27OOph8rHRVR380AgaJohv6uo7oE8P3HQ4X2Vud28NyL16w3LtOPxCJk35O1to3K7T85IhKY7P6qB57msXMQ4bf, f.Td7Llg1HQX644hFXyusX0Q, f.V6sT8k3uThe2lypI5Dx0roJHiD7e6YnpfFYQrh454ulnovrryqvYAD5t5d802gPl0M7Dp2X6tyIfx8HS0Wu)

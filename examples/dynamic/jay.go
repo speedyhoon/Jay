@@ -5,7 +5,7 @@ package main
 import "github.com/speedyhoon/jay"
 
 func (m Message) MarshalJ() (b []byte) {
-	l0 := len(m.Data)
+	l0 := jay.Len8(m.Data)
 	b = make([]byte, 2+l0)
 	b[0] = byte(l0)
 	b[1] = m.Type
@@ -32,7 +32,7 @@ func (m *Message) UnmarshalJ(b []byte) error {
 }
 
 func (c Car) MarshalJ() (b []byte) {
-	l0, l1 := len(c.Make), len(c.Model)
+	l0, l1 := jay.Len8(c.Make), jay.Len8(c.Model)
 	b = make([]byte, 4+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	jay.WriteUint16(b[2:4], c.Year)
@@ -59,7 +59,7 @@ func (c *Car) UnmarshalJ(b []byte) error {
 }
 
 func (p Pet) MarshalJ() (b []byte) {
-	l0, l1, l2 := len(p.Name), len(p.Species), len(p.Breed)
+	l0, l1, l2 := jay.Len8(p.Name), jay.Len8(p.Species), jay.Len8(p.Breed)
 	b = make([]byte, 3+l0+l1+l2)
 	b[0], b[1], b[2] = byte(l0), byte(l1), byte(l2)
 	at, end := 3, 3+l0

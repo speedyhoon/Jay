@@ -56,6 +56,10 @@ func newStructTyp(dir, typeName string, o *Option, opening dst.Decorations) *str
 	}
 }
 
+func (s *structTyp) ImportJ(v bool) {
+	s.isImportJ = &v
+}
+
 func receiverName(typeName string) string {
 	return string(unicode.ToLower([]rune(typeName)[0]))
 }

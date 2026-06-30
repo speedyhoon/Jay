@@ -22,7 +22,7 @@ const (
 	MethodMarshalJ          = "MarshalJ"
 	MethodUnmarshalJ        = "UnmarshalJ"
 	IntSize                 = 32 << (^uint(0) >> 63) // 32-bit or 64-bit architecture.
-	copyKeyword, lenKeyword = "copy", "len"
+	copyKeyword, lenKeyword = "copy", pkgName + ".Len8"
 	intKeyword              = "int"
 )
 
@@ -46,7 +46,7 @@ func (o *Option) makeFile(pkg string, s []*structTyp) ([]byte, error) {
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
 		if s[i].IsSpecifiedType(pkg) {
-			s[i].isImportJ = &importJ
+			s[i].ImportJ(importJ)
 			s[i].makeFuncs(buf)
 			imported.join(s[i].imports)
 		}

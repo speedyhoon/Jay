@@ -5,7 +5,7 @@ package fuzz07
 import "github.com/speedyhoon/jay"
 
 func (q *Q7b1o0) MarshalJ() (b []byte) {
-	l0, l1, l2 := len(q.WlHUDXlaKk0OQct001wR37867FnaBAUwX1JJ), len(q.W0Qo4qs0pl0nIEa3t1qYB380Yuq3EbJA628kIoyykh2457c83k0I56qeny), len(q.G3N0283bBPV1ISvjTRpe41ch1b8v1N414enc875KuC)
+	l0, l1, l2 := jay.Len8(q.WlHUDXlaKk0OQct001wR37867FnaBAUwX1JJ), jay.Len8(q.W0Qo4qs0pl0nIEa3t1qYB380Yuq3EbJA628kIoyykh2457c83k0I56qeny), jay.Len8(q.G3N0283bBPV1ISvjTRpe41ch1b8v1N414enc875KuC)
 	b = make([]byte, 193+l0+l1+l2)
 	b[0], b[1], b[2] = byte(l0), byte(l1), byte(l2)
 	b[3] = jay.Bool1(q.FQoHu6H85U87keY6raMoO7up375IqV41H0d00UyBPC6Knta7Whb8FxIaq81cxWQl)
@@ -112,7 +112,7 @@ func (q *Q7b1o0) UnmarshalJ(b []byte) error {
 }
 
 func (h *HtMw8EU) MarshalJ() (b []byte) {
-	l0 := len(h.Iah8PQ3KH33L60XTw5YgHQDi8q3g0p7B7d7rh0AqH465O1garOrVmUUB2TpB3fg661Eixs8k3)
+	l0 := jay.Len8(h.Iah8PQ3KH33L60XTw5YgHQDi8q3g0p7B7d7rh0AqH465O1garOrVmUUB2TpB3fg661Eixs8k3)
 	b = make([]byte, 31+l0)
 	b[0] = byte(l0)
 	b[1] = jay.Bool1(h.UJNW0B6df4EeD58mx)
@@ -149,7 +149,7 @@ func (h *HtMw8EU) UnmarshalJ(b []byte) error {
 }
 
 func (r *Rm1wILWkrY5u7usw1WdA8H3UPGUkY4p2wFrYuyIOLTO) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := len(r.H088o), len(r.U6J58xqXU13TEUKIw0B13ReNcHGIWg05cy0kibI3x37FdS4rreC3h3yjc5Y6Gg), len(r.P1PuAGuKYXFG6k78S4578qgcFdSf5766s6i0LrA4wT), len(r.Iu4j6K3810xRRmrGU7u6diX1h3AqrcEDH1RBAAHXt62ljgQ250), len(r.E78IQAe317yyxteSJMW4KyHA361k8a2W2P3mXHGCSrxX3810nvAdepRpmw4542u5mNJgl0atdG50R74Hy1Gj), len(r.XfCUPGOn5x4g43vh3vc7NQ02S6b6a3nw7QGiI8Ngn106C84KCLT32NK477j8q8SelP26b3Ec8vy0yL6LgW1JpiU5tP5a6), len(r.E61Q7pvXFSe52531VhK20Fx3WiPF4MrHU136tiN4y0R0yB5l4cmPFju1tWF33d25ve08D8f77Tp62E0M53), len(r.K4ABPP5YfUc066VR08F1pIyCH7CKbhLmp36woyELFEqg2RQi7MlI4t708237T2p7OEQoci56axlGpe1838boSF06c5S3dbnEg), len(r.EbQJGdEWN7LfKy0jJsEPdeoPh5oxq3m4NL413yWHxI36SjgKn2V5cjwX8gHY06Y05INBu7YpPsm8unX1Jt87w8s8q2mLecoy), len(r.T03ih5eW5B2YvhjL4PgWPFh7ihLtUiYD4YpHQQywAuVkU3e72nrmebqruU), len(r.N3561d00J4BH7V6Q12v73cd7y0pS5XT4ycmQkLV2q6jU0KwPIY760wV83aN38UC62Jj0b35HsfKM7bl7Iix37YbMDtj5AW4xo), len(r.F6S4SAlab4td0i0kFm2ubep0g4TKardByPBf), len(r.BFgMubJHTvQS2QKiY585rFisL1QsF7WePOnEeP0NU5xh5KFeycWwEcgH), len(r.DMhDE73H347X407scUKlLRN031l4), len(r.S6sErE1e3B1tp3Y0LPl0Bo5uBb8u6XjapqUldMkoybhH66M8K4aw), len(r.R5baTyjWrOk31P8018ja1), len(r.HFv8o1Vwrx4RM6c7gU2O782TfX6426Fr1n33VB4G030IJq6KkCn873FJOiuI8Hh4wE5KLLjxn35F2sa1Ya3ICx8J43J8yKG7HR), len(r.Px14hfhkn3pL62sw76605g6bv55w2n45OLSD04C1H6O7n87TL158rnJpqg0yVAq42Ml4VuqWFfC31Q5yn), len(r.W), len(r.WDTrpJsP64dJ7LnRDfkYc0mGiGA6u6rEQW3I3k08l8nI1WBjr4Sj21GJfukB4K71an8F5cd75), len(r.E384S1GW15u384p0CqTxfP8NUUMaQmxN116hBfGJk7w3cG17H24KOTBf8131TeH4BkG4mTIx7U5Hcrr78B4QrWh4FE2l)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := jay.Len8(r.H088o), jay.Len8(r.U6J58xqXU13TEUKIw0B13ReNcHGIWg05cy0kibI3x37FdS4rreC3h3yjc5Y6Gg), jay.Len8(r.P1PuAGuKYXFG6k78S4578qgcFdSf5766s6i0LrA4wT), jay.Len8(r.Iu4j6K3810xRRmrGU7u6diX1h3AqrcEDH1RBAAHXt62ljgQ250), jay.Len8(r.E78IQAe317yyxteSJMW4KyHA361k8a2W2P3mXHGCSrxX3810nvAdepRpmw4542u5mNJgl0atdG50R74Hy1Gj), jay.Len8(r.XfCUPGOn5x4g43vh3vc7NQ02S6b6a3nw7QGiI8Ngn106C84KCLT32NK477j8q8SelP26b3Ec8vy0yL6LgW1JpiU5tP5a6), jay.Len8(r.E61Q7pvXFSe52531VhK20Fx3WiPF4MrHU136tiN4y0R0yB5l4cmPFju1tWF33d25ve08D8f77Tp62E0M53), jay.Len8(r.K4ABPP5YfUc066VR08F1pIyCH7CKbhLmp36woyELFEqg2RQi7MlI4t708237T2p7OEQoci56axlGpe1838boSF06c5S3dbnEg), jay.Len8(r.EbQJGdEWN7LfKy0jJsEPdeoPh5oxq3m4NL413yWHxI36SjgKn2V5cjwX8gHY06Y05INBu7YpPsm8unX1Jt87w8s8q2mLecoy), jay.Len8(r.T03ih5eW5B2YvhjL4PgWPFh7ihLtUiYD4YpHQQywAuVkU3e72nrmebqruU), jay.Len8(r.N3561d00J4BH7V6Q12v73cd7y0pS5XT4ycmQkLV2q6jU0KwPIY760wV83aN38UC62Jj0b35HsfKM7bl7Iix37YbMDtj5AW4xo), jay.Len8(r.F6S4SAlab4td0i0kFm2ubep0g4TKardByPBf), jay.Len8(r.BFgMubJHTvQS2QKiY585rFisL1QsF7WePOnEeP0NU5xh5KFeycWwEcgH), jay.Len8(r.DMhDE73H347X407scUKlLRN031l4), jay.Len8(r.S6sErE1e3B1tp3Y0LPl0Bo5uBb8u6XjapqUldMkoybhH66M8K4aw), jay.Len8(r.R5baTyjWrOk31P8018ja1), jay.Len8(r.HFv8o1Vwrx4RM6c7gU2O782TfX6426Fr1n33VB4G030IJq6KkCn873FJOiuI8Hh4wE5KLLjxn35F2sa1Ya3ICx8J43J8yKG7HR), jay.Len8(r.Px14hfhkn3pL62sw76605g6bv55w2n45OLSD04C1H6O7n87TL158rnJpqg0yVAq42Ml4VuqWFfC31Q5yn), jay.Len8(r.W), jay.Len8(r.WDTrpJsP64dJ7LnRDfkYc0mGiGA6u6rEQW3I3k08l8nI1WBjr4Sj21GJfukB4K71an8F5cd75), jay.Len8(r.E384S1GW15u384p0CqTxfP8NUUMaQmxN116hBfGJk7w3cG17H24KOTBf8131TeH4BkG4mTIx7U5Hcrr78B4QrWh4FE2l)
 	b = make([]byte, 526+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20)
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20)
 	b[21] = jay.Bool7(r.Py3388ar6BT81KO2Vb3Wt2NciH4bD3r6I0861ggPPwcb5yT2ti7mEC6i7jfxMaCkcdgbJW5hX7N, r.K8N36g1JUioJt6h1Y7XpQ7qQONNx10dh37YcFYk5tgV3wp3wYEw3xPfpU311V13y2Fe7j5XT0Qc, r.WN06VhK61I2E04Fj83xIfC8p6wwDGaRVJOir1rG2OMO0, r.Awd51c0y7E1OFh4p6qMPu54sE7rp7rm6WL15I, r.Tl1mRtUuVDmGrG4A3lFHC26EmUv6C3Ss651pTDf4pt6jlyqVp1F2NVIONIw47WjOtN43C76J2M2uQo37, r.CJ5mr08tRC4vkI0VL4bF45NVnHG0w01VKsctC, r.ABHW68nS37f11YTjhij37J17RsBO8081jU)

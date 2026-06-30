@@ -1,22 +1,20 @@
 package jay
 
-const maxUint8 = 255
-
 func SizeStrings8(s []string) (total int) {
-	l := len(s) & maxUint8 // Truncate lengths > 255.
+	l := Len8(s)
 	if l == _0 {
 		return
 	}
 
 	for i := _0; i < l; i++ {
-		total += len(s[i]) & maxUint8
+		total += Len8(s[i])
 	}
 	return l + total
 }
 
 func SizeStringsArray(s []string, length int) (total int) {
 	for i := _0; i < length; i++ {
-		total += len(s[i]) & maxUint8
+		total += Len8(s[i])
 	}
 	return length + total
 }
@@ -146,7 +144,7 @@ func WriteStrings8Req(y []byte, s []string, length uint8) {
 
 // WriteStrings8 no tag (default) - may have nil or zero length slices.
 func WriteStrings8(y, length []byte, s []string) {
-	l := len(s) & maxUint8
+	l := Len8(s)
 	if l == _0 {
 		return
 	}

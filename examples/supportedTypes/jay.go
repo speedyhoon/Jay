@@ -5,7 +5,7 @@ package main
 import "github.com/speedyhoon/jay"
 
 func (s Supported) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5 := len(s.String), len(s.Embed.String), len(s.Embed.ByteSlice), len(s.SubStruct.String), len(s.SubStruct.ByteSlice), len(s.ByteSlice)
+	l0, l1, l2, l3, l4, l5 := jay.Len8(s.String), jay.Len8(s.Embed.String), jay.Len8(s.Embed.ByteSlice), jay.Len8(s.SubStruct.String), jay.Len8(s.SubStruct.ByteSlice), jay.Len8(s.ByteSlice)
 	b = make([]byte, 260+l0+l1+l2+l3+l4+l5)
 	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	b[6] = jay.Bool3(s.Bool, s.Embed.Bool, s.SubStruct.Bool)
@@ -158,7 +158,7 @@ func (s *Supported) UnmarshalJ(b []byte) error {
 }
 
 func (e Embed) MarshalJ() (b []byte) {
-	l0, l1 := len(e.String), len(e.ByteSlice)
+	l0, l1 := jay.Len8(e.String), jay.Len8(e.ByteSlice)
 	b = make([]byte, 82+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	b[2] = jay.Bool1(e.Bool)

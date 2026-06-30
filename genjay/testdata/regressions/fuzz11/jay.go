@@ -5,7 +5,7 @@ package fuzz11
 import "github.com/speedyhoon/jay"
 
 func (f *Fuzz35690) MarshalJ() (b []byte) {
-	l0, l1, l2 := jay.SizeStrings8(f.Three), len(f.One), len(f.Two)
+	l0, l1, l2 := jay.SizeStrings8(f.Three), jay.Len8(f.One), jay.Len8(f.Two)
 	b = make([]byte, 3+8*l1+l0+l2)
 	b[1], b[2] = byte(l1), byte(l2)
 	at, end := 3, 3+l0

@@ -8,7 +8,7 @@ import (
 )
 
 func (s *Section) MarshalJ() (b []byte) {
-	l0, l1 := len(s.Name), len(s.Order)
+	l0, l1 := jay.Len8(s.Name), jay.Len8(s.Order)
 	b = make([]byte, 4+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	jay.WriteUint16(b[2:4], uint16(s.Color))
@@ -39,7 +39,7 @@ func (s *Section) UnmarshalJ(b []byte) error {
 }
 
 func (p *Project) MarshalJ() (b []byte) {
-	l0 := len(p.Name)
+	l0 := jay.Len8(p.Name)
 	b = make([]byte, 1+l0)
 	b[0] = byte(l0)
 	copy(b[1:], p.Name)

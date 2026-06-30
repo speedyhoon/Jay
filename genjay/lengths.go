@@ -54,6 +54,7 @@ func (f *field) generateLenVar(list, values *[]string) {
 
 	} else {
 		*values = append(*values, printFunc(lenKeyword, f.Name()))
+		f.structTyp.ImportJ(true)
 	}
 
 	*list = append(*list, string(f.marshal.qtyVar))

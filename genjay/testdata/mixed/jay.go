@@ -20,7 +20,7 @@ func (l *Lion) UnmarshalJ(b []byte) error {
 }
 
 func (z *Zebra) MarshalJ() (b []byte) {
-	l0, l1, l2 := jay.SizeStrings8(z.Strings), len(z.Str), len(z.Ints)
+	l0, l1, l2 := jay.SizeStrings8(z.Strings), jay.Len8(z.Str), jay.Len8(z.Ints)
 	b = make([]byte, 12+8*l2+l0+l1)
 	b[1], b[2] = byte(l1), byte(l2)
 	b[3] = jay.Bool2(z.B1, z.B2)

@@ -5,7 +5,7 @@ package fuzz10
 import "github.com/speedyhoon/jay"
 
 func (f *Fuzz710) MarshalJ() (b []byte) {
-	l0, l1 := jay.SizeStrings8(f.Three), len(f.Two)
+	l0, l1 := jay.SizeStrings8(f.Three), jay.Len8(f.Two)
 	b = make([]byte, 10+l0+l1)
 	b[1] = byte(l1)
 	jay.WriteComplex64(b[2:10], f.One)

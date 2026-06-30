@@ -2,7 +2,7 @@
 
 package main
 
-import "github.com/speedyhoon/jay"
+/*import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() []byte {
 	return []byte{jay.Bool1(o.One)}
@@ -31,4 +31,4 @@ func (t *Two) UnmarshalJ(b []byte) error {
 	}
 	t.Two = jay.ReadBools8(b[1:], b[0])
 	return nil
-}
+}*/
