@@ -27,5 +27,5 @@ type Usize interface {
 }
 
 func Len8[T Usize](v T) int {
-	return len(v) & maxUint8
+	return min(len(v), maxUint8)
 }
