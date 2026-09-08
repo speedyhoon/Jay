@@ -176,12 +176,12 @@ between microcontrollers that it posed a significant bottleneck.
 The aim was to process external messages within
 a dozen microseconds to restore performance without upgrading the processor.
 
-###### Name
+### Name
 **Clarification:** The serialization format is Jay, whereas `jay` is the command line tool.
 
 Jay _(pronounced as just `J`)_ is a wordplay on [JSON](https://pkg.go.dev/encoding/json) without the `SON`, since the schema information is chopped off 🪚 and it's not human-readable.
 
-The name Jay also gives tribute to a 17-year-old netbook with a stuck `j` key on the keyboard. 🔁 😆 Every boot looks like:
+The name Jay also gives tribute to a 17-year-old netbook that does the toasty benchmark and fuzz testing 🥵🫠. It has a stuck `j` key on the keyboard. 🔁 😆 So every boot looks like:
 
 ```
 jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
