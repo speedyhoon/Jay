@@ -1,7 +1,8 @@
 # Jay
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/speedyhoon/jay.svg)](https://pkg.go.dev/github.com/speedyhoon/jay)
-[![Go Report Card](https://goreportcard.com/badge/github.com/speedyhoon/Jay)](https://goreportcard.com/report/github.com/speedyhoon/Jay)
+[![Go Report Card](https://raw.githubusercontent.com/speedyhoon/speedyhoon/refs/heads/main/goReport.svg)](https://goreportcard.com/report/github.com/speedyhoon/Jay)
+![license AGPL3](https://raw.githubusercontent.com/speedyhoon/speedyhoon/refs/heads/main/AGPL3.svg)
 
 Jay aims to be the [fastest](bench) production safe, serialization package written in [Go](https://go.dev) as
 an alternative to
@@ -43,6 +44,11 @@ This significantly increases execution speed during runtime by removing type ref
 
 Most small structs with 10 fields can be serialized within 175 nanoseconds on old hardware _(Intel T6400 @ 2.0 GHz
 with GM45 GPU)_.
+
+### Benchmarks
+
+Serialisation performance for 24 struct fields of various types using different technologies:
+![Benchmarks graph](bench/graph.gif)
 
 ## Install
 Install the `jay` command line tool to generate marshal and unmarshal code.

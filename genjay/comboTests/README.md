@@ -1,4 +1,4 @@
-# comboTest
+# comboTests
 These tests generate roughly 4GB of Go code with most combinations of types that `jay` supports.
 
 > ### Highly recommended to use a RAMDisk.

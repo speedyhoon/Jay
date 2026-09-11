@@ -1,7 +1,8 @@
-# generate
+# genjay
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/speedyhoon/jay/genjay.svg)](https://pkg.go.dev/github.com/speedyhoon/jay/genjay)
-[![Go Report Card](https://goreportcard.com/badge/github.com/speedyhoon/Jay/genjay)](https://goreportcard.com/report/github.com/speedyhoon/Jay/genjay)
+[![Go Report Card](https://raw.githubusercontent.com/speedyhoon/speedyhoon/refs/heads/main/goReport.svg)](https://goreportcard.com/report/github.com/speedyhoon/Jay/genjay)
+![license AGPL3](https://raw.githubusercontent.com/speedyhoon/speedyhoon/refs/heads/main/AGPL3.svg)
 
 Traverses `.go` files to find exported Go `structs` to generate marshalling `.MarshalJ()` and unmarshalling `.UnmarshalJ()` methods for the [Jay serialization format](https://github.com/speedyhoon/jay).
 
