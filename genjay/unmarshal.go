@@ -449,8 +449,14 @@ func (c canReturnInlined) String() string {
 func (f *field) convertTo() string {
 	if f.isArray() {
 		if f.aliasType != "" {
-			f.structTyp.imports.add(f.pkgReq)
-			return fmt.Sprintf("[%d]%s", f.arraySize, f.aliasType)
+			switch f.aliasType {
+			case tTimeDuration, tTime:
+				f.structTyp.imports.add(f.pkgReq)
+				return fmt.Sprintf("[%d]%s", f.arraySize, f.aliasType)
+			default:
+				// Locally defined types don't need to import the underlying external package.
+				return f.aliasType
+			}
 		} else {
 			return fmt.Sprintf("[%d]%s", f.arraySize, f.arrayType)
 		}

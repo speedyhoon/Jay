@@ -640,25 +640,13 @@ func TestFuzz_23(t *testing.T) {
 		Eighteen:    [253]bool(rando.BoolsN(253)),
 		Nineteen:    [254]bool(rando.BoolsN(254)),
 		Twenty:      [255]bool(rando.BoolsN(255)),
-		TwentyOne:   [256]bool(BoolsN(256)),
-		TwentyTwo:   [257]bool(BoolsN(257)),
-		TwentyThree: [258]bool(BoolsN(258)),
+		TwentyOne:   [256]bool(rando.BoolsN(256)),
+		TwentyTwo:   [257]bool(rando.BoolsN(257)),
+		TwentyThree: [258]bool(rando.BoolsN(258)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
 	// require.NotEqual(t, TwentyThree{}, expected)
 	// require.NotEqual(t, TwentyThree{}, actual)
 	require.Equal(t, expected, actual)
-}
-
-// BoolsN returns a []bool with length `size`, populated with random values.
-func BoolsN(size uint) (b []bool) {
-	if size >= 1 {
-		b = make([]bool, size)
-		for i := range b {
-			b[i] = rando.Bool()
-		}
-	}
-
-	return
 }

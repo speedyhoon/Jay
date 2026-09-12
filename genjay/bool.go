@@ -98,7 +98,7 @@ func fieldNamesArrays(fields fieldList) (s []string) {
 		if fields[i].isDef {
 			if fields[i].isArray() {
 				for j := 0; j < fields[i].arraySize; j++ {
-					s = append(s, printFunc(fields[i].typ, fmt.Sprintf("%s[%d]", fields[i].Name(), j)))
+					s = append(s, fmt.Sprintf("%s[%d]", fields[i].Name(), j))
 				}
 			} else {
 				s = append(s, printFunc(fields[i].typ, fields[i].Name()))
