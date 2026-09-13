@@ -28,21 +28,19 @@ Any private struct can be embedded into an exported struct when an exported fiel
 package main
 
 type Car struct {
-	gearbox         // Ignored - not an exported field name
+	Wheels          // Added - exported type
+	W       Wheels  // Added - exported field name
 	Gearbox gearbox // Added - exported field name
-	gbx     gearbox // Ignored - not an exported field name
 
 	Axel  // Ignored - no fields
 	Turbo // Ignored - no exported fields
 
-	Wheels        // Added - exported type
-	W      Wheels // Added - exported field name
-	w      Wheels // Ignored - not an exported field name
-	_      Wheels // Ignored - not an exported field name
+	gearbox         // Ignored - not an exported type
+	gbx     gearbox // Ignored - not an exported field name
+	_       Wheels  // Ignored - not an exported field name
 
-	Wheel Wheels  `j:-` // Ignored - flag present
-	Wh    Wheels  `j:-` // Ignored - flag present
-	Gbx   gearbox `j:-` // Ignored - flag present
+	Engine `j:-`         // Ignored - flag present
+	Gbx    gearbox `j:-` // Ignored - flag present
 }
 
 type gearbox struct {
@@ -57,6 +55,10 @@ type Turbo struct {
 
 type Wheels struct {
 	Offset int
+}
+
+type Engine struct {
+	CC uint16
 }
 ```
 
