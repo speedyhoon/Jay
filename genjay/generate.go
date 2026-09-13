@@ -46,8 +46,8 @@ func (o *Option) makeFile(pkg string, s []*structTyp) ([]byte, error) {
 	buf := bytes.NewBuffer(nil)
 	for i := range s {
 		if s[i].IsSpecifiedType(pkg) {
-			s[i].ImportJ(importJ)
 			s[i].makeFuncs(buf)
+			importJ = importJ || s[i].isImportJ
 			imported.join(s[i].imports)
 		}
 	}

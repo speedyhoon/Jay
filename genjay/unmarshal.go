@@ -195,13 +195,13 @@ func (s *structTyp) generateMakeSizes(totalSize uint) string {
 	for _, f := range append(s.stringSlice, s.variableLen...) {
 		if f.isLast && f.typ == tStrings {
 			if f.isArray() {
-				sizeChecks.add(f, printFunc(nameOf(jay.SizeStringsArray, s.isImportJ), f.Field(""), strconv.Itoa(f.arraySize)))
+				sizeChecks.add(f, printFunc(nameOf(jay.SizeStringsArray, &s.isImportJ), f.Field(""), strconv.Itoa(f.arraySize)))
 			} else {
-				sizeChecks.add(f, printFunc(nameOf(jay.SizeStrings8, s.isImportJ), f.Name()))
+				sizeChecks.add(f, printFunc(nameOf(jay.SizeStrings8, &s.isImportJ), f.Name()))
 			}
 		} else {
 			if f.typ == tBools {
-				sizeChecks.add(f, printFunc(nameOf(jay.SizeBools, s.isImportJ), string(f.marshal.qtyVar)))
+				sizeChecks.add(f, printFunc(nameOf(jay.SizeBools, &s.isImportJ), string(f.marshal.qtyVar)))
 			} else {
 				sizeChecks.add(f, string(f.marshal.qtyVar))
 			}
@@ -606,5 +606,5 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		return
 	}
 
-	return nameOf(c, f.structTyp.isImportJ), template, canReturnInline
+	return nameOf(c, &f.structTyp.isImportJ), template, canReturnInline
 }

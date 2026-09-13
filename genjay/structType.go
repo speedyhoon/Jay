@@ -35,7 +35,7 @@ type structTyp struct {
 
 	qtyBytesRequired uint
 
-	isImportJ *bool
+	isImportJ bool
 	tag       structTag /* An option for a struct to be:
 	J--   Always ignored,                             e.g.: type XY struct { // J--
 	J-    Only included as an embedded struct field,  e.g.: type XY struct { // J-
@@ -54,10 +54,6 @@ func newStructTyp(dir, typeName string, o *Option, opening dst.Decorations) *str
 		option:     o,
 		tag:        commentTag(opening),
 	}
-}
-
-func (s *structTyp) ImportJ(v bool) {
-	s.isImportJ = &v
 }
 
 func receiverName(typeName string) string {

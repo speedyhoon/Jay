@@ -36,7 +36,7 @@ func (f *field) generateLenVar(list, values *[]string) {
 			lv = printFunc(
 				nameOf(
 					jay.SizeStringsArray,
-					f.structTyp.isImportJ,
+					&f.structTyp.isImportJ,
 				),
 				f.Field(""),
 				strconv.Itoa(f.arraySize),
@@ -45,7 +45,7 @@ func (f *field) generateLenVar(list, values *[]string) {
 			lv = printFunc(
 				nameOf(
 					f.sizeOfPick(jay.SizeStrings8, jay.SizeStrings8),
-					f.structTyp.isImportJ,
+					&f.structTyp.isImportJ,
 				),
 				f.Name(),
 			)
@@ -54,7 +54,7 @@ func (f *field) generateLenVar(list, values *[]string) {
 
 	} else {
 		*values = append(*values, printFunc(lenKeyword, f.Name()))
-		f.structTyp.ImportJ(true)
+		f.structTyp.isImportJ = true
 	}
 
 	*list = append(*list, string(f.marshal.qtyVar))

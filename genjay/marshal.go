@@ -226,7 +226,7 @@ func (f *field) Field(typeConv string) (fieldName string) {
 
 func (f *field) ctxVarIncrementBy() string {
 	if f.typ == tBools {
-		return printFunc(nameOf(jay.SizeBools, f.structTyp.isImportJ), string(f.marshal.qtyVar))
+		return printFunc(nameOf(jay.SizeBools, &f.structTyp.isImportJ), string(f.marshal.qtyVar))
 	} else if f.elmSize <= 1 {
 		return string(f.marshal.qtyVar)
 	} else {
@@ -375,7 +375,7 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 		lg.Printf("no function set for type %s yet in typeFuncs()", f.typ)
 		return
 	}
-	return nameOf(fun, f.structTyp.isImportJ), template
+	return nameOf(fun, &f.structTyp.isImportJ), template
 }
 
 func nameOf(f any, importJ *bool) string {
@@ -392,7 +392,7 @@ func nameOf(f any, importJ *bool) string {
 }
 
 func (f *field) pickSizeFunc(small, large any) string {
-	return nameOf(f.sizeOfPick(small, large), f.structTyp.isImportJ)
+	return nameOf(f.sizeOfPick(small, large), &f.structTyp.isImportJ)
 }
 
 func (f *field) sliceExpr3(c *varCtx) string {
