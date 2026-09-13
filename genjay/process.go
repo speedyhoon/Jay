@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"slices"
 
 	"github.com/dave/dst"
 	"github.com/dave/dst/decorator"
@@ -18,7 +19,7 @@ import (
 var lg = log.New(io.Discard, "", log.Lshortfile)
 
 // ProcessFiles ...
-func (o *Option) ProcessFiles(source interface{}, filenames ...string) (output []Output, errs error) {
+func (o *Option) ProcessFiles(source any, filenames ...string) (output []Output, errs error) {
 	if source == nil && len(filenames) == 0 {
 		return nil, ErrNoSource
 	}
@@ -146,7 +147,7 @@ func (d *dirList) allFiles() (files []*dst.File) {
 	return
 }
 
-func ParseFile(filename string, src interface{}) (f *dst.File, err error) {
+func ParseFile(filename string, src any) (f *dst.File, err error) {
 	f, err = decorator.NewDecorator(token.NewFileSet()).ParseFile(filename, src, parser.ParseComments|parser.AllErrors)
 	if err != nil {
 		return
@@ -158,7 +159,7 @@ func ParseFile(filename string, src interface{}) (f *dst.File, err error) {
 }
 
 // ProcessWrite processes a file and writes to OutputFileName.
-func (o *Option) ProcessWrite(source interface{}, outputFile string, filenames ...string) (err error) {
+func (o *Option) ProcessWrite(source any, outputFile string, filenames ...string) (err error) {
 	if outputFile == "" {
 		outputFile = DefaultOutputFileName
 	}
@@ -196,7 +197,7 @@ func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports [
 	for i := uint(0); i < utl.Len(fields); {
 		t := fields[i]
 
-		tag := getTag(t.Tag)
+		tag := s.option.getTag(t.Tag)
 		if tag == IgnoreFlag {
 			utl.Del(&fields, i)
 			continue
@@ -235,9 +236,9 @@ func (s *structTyp) setFirstNLast() {
 
 setLast:
 	// Reverse order loop.
-	for i := len(lists) - 1; i >= 0; i-- {
-		if n := len(lists[i]) - 1; n >= 0 {
-			lists[i][n].isLast = true
+	for _, list := range slices.Backward(lists) {
+		if n := len(list) - 1; n >= 0 {
+			list[n].isLast = true
 			return
 		}
 	}

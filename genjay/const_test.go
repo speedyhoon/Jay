@@ -15,5 +15,5 @@ func Test_Constants_BitSize(t *testing.T) {
 
 func Test_Constants_FieldTags(t *testing.T) {
 	assert.Equal(t, "-", genjay.IgnoreFlag)
-	assert.Equal(t, "j", genjay.StructTagName)
+	assert.Equal(t, "j", genjay.StructTagKey)
 }

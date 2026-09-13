@@ -107,7 +107,7 @@ func (s *structTyp) makeUnmarshal(b *bytes.Buffer) {
 		"\nfunc (%s *%s) %s(%s []byte) %s {\n\t%s\n%s}\n",
 		s.receiver,
 		s.name,
-		MethodUnmarshalJ,
+		s.option.UnmarshalFuncName,
 		s.bufferName,
 		utl.Tern(s.option.ReturnErrType, "error", "(ok bool)"),
 		lengthChecks,

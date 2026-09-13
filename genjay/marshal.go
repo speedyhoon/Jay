@@ -46,7 +46,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 			s.receiver,
 			s.option.pointerSymbol(),
 			s.name,
-			MethodMarshalJ,
+			s.option.MarshalFuncName,
 			strings.Join(c.lines, "\n\t"),
 		)
 		return
@@ -62,7 +62,7 @@ func (s *structTyp) makeMarshal(b *bytes.Buffer) {
 		makeSize,
 		s.generateSizeLine(),
 		strings.Join(c.lines, "\n\t"),
-		MethodMarshalJ,
+		s.option.MarshalFuncName,
 	)
 
 	return

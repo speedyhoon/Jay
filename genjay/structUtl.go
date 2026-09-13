@@ -14,13 +14,13 @@ import (
 )
 
 const (
-	StructTagName = "j" // StructTagName is the field tag to specify optional flags. For example, `j:max=0`
-	IgnoreFlag    = "-" // IgnoreFlag is the value to ignore any exported field from serializing: `j:-`
-	tagSymbol     = '`' // tagSymbol specifies which rune encloses field tags.
+	StructTagKey = "j" // StructTagKey is the field tag to specify optional flags. For example, `j:max=0`
+	IgnoreFlag   = "-" // IgnoreFlag is the value to ignore any exported field from serializing: `j:-`
+	tagSymbol    = '`' // tagSymbol specifies which rune encloses field tags.
 )
 
 // getTag returns the value associated with key "j" in the tag string.
-func getTag(b *dst.BasicLit) string {
+func (o *Option) getTag(b *dst.BasicLit) string {
 	if b == nil {
 		return ""
 	}
@@ -29,7 +29,7 @@ func getTag(b *dst.BasicLit) string {
 		return ""
 	}
 
-	return strings.TrimSpace(reflect.StructTag(unwrapTagValue(b.Value)).Get(StructTagName))
+	return strings.TrimSpace(reflect.StructTag(unwrapTagValue(b.Value)).Get(o.StructTagKey))
 }
 
 // unwrapTagValue removes the leading and trailing grave (`) if present.
@@ -49,7 +49,7 @@ func isBuiltIn(typ string) bool {
 	}
 }
 
-func (s *structTyp) isSupportedType(f *field, t interface{}, dirList *dirList, pkg string, fileImports []*dst.ImportSpec, parentTypes prevTypes, parents ...[]*dst.Ident) (ok bool) {
+func (s *structTyp) isSupportedType(f *field, t any, dirList *dirList, pkg string, fileImports []*dst.ImportSpec, parentTypes prevTypes, parents ...[]*dst.Ident) (ok bool) {
 	switch d := t.(type) {
 	case *dst.Ident:
 		if d.Obj == nil {
@@ -311,7 +311,7 @@ const (
 )
 
 // calcArraySize returns -1 for a slice, 0 as invalid & >= 1 for array size.
-func calcArraySize(x interface{}) (size int, ok bool) {
+func calcArraySize(x any) (size int, ok bool) {
 	switch d := x.(type) {
 	case nil:
 		return typeSlice, true

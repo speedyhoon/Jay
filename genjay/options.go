@@ -25,6 +25,10 @@ type Option struct {
 	// overriding the default "jay.ErrUnexpectedEOB". Helpful if generated code imports the jay package only for the error variable.
 	ErrVarName string
 
+	StructTagKey      string // Default is `j`. Change for multiple different usages...
+	MarshalFuncName   string // Default `MarshalJ`.
+	UnmarshalFuncName string // Default `UnmarshalJ`.
+
 	MaxIntSize  MaxSize
 	MaxUintSize MaxSize
 
@@ -125,6 +129,19 @@ func LoadOptions(opts ...Option) (o Option) {
 
 	if o.MaxIntSize < Bit32 {
 		o.MaxIntSize = Bit32
+	}
+
+	o.UnmarshalFuncName = strings.TrimSpace(o.UnmarshalFuncName)
+	o.MarshalFuncName = strings.TrimSpace(o.MarshalFuncName)
+	o.StructTagKey = strings.TrimSpace(o.StructTagKey)
+	if o.MarshalFuncName == "" {
+		o.MarshalFuncName = MethodMarshalJ
+	}
+	if o.UnmarshalFuncName == "" {
+		o.UnmarshalFuncName = MethodUnmarshalJ
+	}
+	if o.StructTagKey == "" {
+		o.StructTagKey = StructTagKey
 	}
 	return
 }
