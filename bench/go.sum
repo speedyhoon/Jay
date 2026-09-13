@@ -2,5 +2,5 @@ github.com/200sc/bebop v0.6.2 h1:qkgjgc/h0N+YctTaK6z11FvP4QOHxvH9k9UmJky/5Fg=
 github.com/200sc/bebop v0.6.2/go.mod h1:KG6I1uoHbJ5swZ/pU9v6QjiYmr1IOXrb2ijQMDgtVYE=
 github.com/go-openapi/testify/v2 v2.4.1 h1:zB34HDKj4tHwyUQHrUkpV0Q0iXQ6dUCOQtIqn8hE6Iw=
 github.com/go-openapi/testify/v2 v2.4.1/go.mod h1:HCPmvFFnheKK2BuwSA0TbbdxJ3I16pjwMkYkP4Ywn54=
-github.com/speedyhoon/rando v0.0.0-20260324092358-d3a30fdead04 h1:z+SifBObeU7ledawyKJrjKt/j0wRg9FGRdbh35wtwCY=
-github.com/speedyhoon/rando v0.0.0-20260324092358-d3a30fdead04/go.mod h1:udzBP9EiIcoE0vahtT0jBz7I70ugtyAHb8Rx2j8L8Dw=
+github.com/speedyhoon/rando v0.0.0-20260912084958-88a65459b8ad h1:yADYTz5Q+FFCtLxut+CX8PQomFaFqLFdHDen49LjV1w=
+github.com/speedyhoon/rando v0.0.0-20260912084958-88a65459b8ad/go.mod h1:udzBP9EiIcoE0vahtT0jBz7I70ugtyAHb8Rx2j8L8Dw=
