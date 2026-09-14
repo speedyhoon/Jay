@@ -131,18 +131,26 @@ func LoadOptions(opts ...Option) (o Option) {
 		o.MaxIntSize = Bit32
 	}
 
-	o.UnmarshalFuncName = strings.TrimSpace(o.UnmarshalFuncName)
 	o.MarshalFuncName = strings.TrimSpace(o.MarshalFuncName)
-	o.StructTagKey = strings.TrimSpace(o.StructTagKey)
 	if o.MarshalFuncName == "" {
 		o.MarshalFuncName = MethodMarshalJ
 	}
+
+	o.UnmarshalFuncName = strings.TrimSpace(o.UnmarshalFuncName)
 	if o.UnmarshalFuncName == "" {
 		o.UnmarshalFuncName = MethodUnmarshalJ
 	}
+
+	o.StructTagKey = strings.TrimSpace(o.StructTagKey)
 	if o.StructTagKey == "" {
 		o.StructTagKey = StructTagKey
 	}
+
+	o.OutputFileName = strings.TrimSpace(o.OutputFileName)
+	if o.OutputFileName == "" {
+		o.OutputFileName = DefaultOutputFileName
+	}
+
 	return
 }
 
