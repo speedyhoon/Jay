@@ -31,11 +31,11 @@ jay my_file.go
 
 `-e` Name of the error variable to return from `UnmarshalJ` functions.
 
-| Flag         | Generated method signature                                 |
-|--------------|------------------------------------------------------------|
-| omitted      | `UnmarshalJ() (ok bool) {... return false ...}`            |
-| `-e`         | `UnmarshalJ() error {... return jay.ErrUnexpectedEOB ...}` |
-| `-e=foo.Err` | `UnmarshalJ() error {... return foo.Err ...}`              |
+| Flag         | Generated method signature                           |
+|--------------|------------------------------------------------------|
+| omitted      | `UnmarshalJ() (ok bool) {… return false}`            |
+| `-e`         | `UnmarshalJ() error {… return jay.ErrUnexpectedEOB}` |
+| `-e=foo.Err` | `UnmarshalJ() error {… return foo.Err}`              |
 
 `-vi` Variable int size. _Default: `false`_
 

@@ -6,9 +6,9 @@
 //	-32	Force 32-bit output for 'int' and 'uint' types. Defaults to this system's architecture.
 //	-d		Debug mode - always writes to disk.
 //	-e		Name of the error variable to return from UnmarshalJ functions.
-//			Flag omitted: `UnmarshalJ() bool {... return false ...}` (default)
-//			`-e=`:        `UnmarshalJ() error {... return jay.ErrUnexpectedEOB ...}`
-//			`-e=foo.Err`: `UnmarshalJ() error {... return foo.Err ...}`
+//			Flag omitted: `UnmarshalJ() bool {… return false}` (default)
+//			`-e=`:        `UnmarshalJ() error {… return jay.ErrUnexpectedEOB}`
+//			`-e=foo.Err`: `UnmarshalJ() error {… return foo.Err}`
 //	-m		Don't generate MarshalJ() functions.
 //	-o		Output file. (default "jay.go")
 //	-p		Use value receivers for methods 'func (c Car) MarshalJ()'. (default pointer receivers 'func (c *Car) MarshalJ()')
@@ -47,7 +47,7 @@ func main() {
 	flag.StringVar(&opt.StructTagKey, "tag", genjay.StructTagKey, "Struct tag key.")
 	flag.StringVar(&opt.MarshalFuncName, "mf", genjay.MethodMarshalJ, "Marshal method name.")
 	flag.StringVar(&opt.UnmarshalFuncName, "uf", genjay.MethodUnmarshalJ, "Unmarshal method name.")
-	flag.StringVarOptional(&opt.ErrVarName, &opt.ReturnErrType, "e", genjay.ExportedErr, fmt.Sprintf("Name of the `error variable` to return from UnmarshalJ functions.\nFlag omitted: `UnmarshalJ() bool {... return false ...}` (default)\n`-e=`:         `UnmarshalJ() error {... return %s ...}`\n`-e=foo.Err`: `UnmarshalJ() error {... return foo.Err ...}`", genjay.ExportedErr))
+	flag.StringVarOptional(&opt.ErrVarName, &opt.ReturnErrType, "e", genjay.ExportedErr, fmt.Sprintf("Name of the `error variable` to return from UnmarshalJ functions.\nFlag omitted: `UnmarshalJ() bool {… return false}` (default)\n`-e=`:        `UnmarshalJ() error {… return %s}`\n`-e=foo.Err`: `UnmarshalJ() error {… return foo.Err}`", genjay.ExportedErr))
 	flag.BoolVar(&verbose, "v", false, "Verbose output.")
 	flag.BoolVar(&opt.UseValueReceiver, "p", false, "Use value receivers for methods 'func (c Car) MarshalJ()'. (default pointer receivers 'func (c *Car) MarshalJ()')")
 	flag.BoolVar(&opt.DisableSort, "r", false, "Disable sorting the generated methods by their struct name.")
@@ -57,7 +57,7 @@ func main() {
 	flag.BoolVar(&opt.SkipUnmarshal, "u", false, "Don't generate UnmarshalJ() functions.")
 	flag.StringsVar(&opt.OnlyTypes, "y", nil, "`Exclusive list of comma-delimited types to generate marshalling and/or unmarshalling for.`\nFor example, `-y Vet,animal.Cat,animal.Cow` will process locally defined types `Vet` along with `Cat` and `Cow` in imported package `animal`. (default: Process all exported types)")
 	flag.Usage = func() {
-		_, _ = fmt.Fprintln(os.Stderr, "Generate Jay serialization code for Go.\n<https://github.com/speedyhoon/Jay>\n\nUsage: jay [options] [path ...]\nOptions:")
+		_, _ = fmt.Fprintln(os.Stderr, "Generate Jay serialization code for Go.\n<https://github.com/speedyhoon/Jay>\n\nUsage: jay [options] [path …]\nOptions:")
 		flag.PrintDefaults()
 		_, _ = fmt.Fprintln(os.Stderr, "\nPlease report bugs to <https://github.com/speedyhoon/Jay/issues>.")
 	}
