@@ -119,15 +119,9 @@ func LoadOptions(opts ...Option) (o Option) {
 
 	if o.MaxIntSize == BitAuto || o.MaxIntSize > Bit32 && o.MaxIntSize < Bit64 {
 		o.MaxIntSize = 32 << (^uint(0) >> 63) // 32 or 64
-		return
-	}
-
-	if o.MaxIntSize > Bit64 {
+	} else if o.MaxIntSize > Bit64 {
 		o.MaxIntSize = Bit64
-		return
-	}
-
-	if o.MaxIntSize < Bit32 {
+	} else if o.MaxIntSize < Bit32 {
 		o.MaxIntSize = Bit32
 	}
 
