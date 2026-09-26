@@ -6,14 +6,14 @@ func SizeStrings8(s []string) (total int) {
 		return
 	}
 
-	for i := _0; i < l; i++ {
+	for i := range l {
 		total += Len8(s[i])
 	}
 	return l + total
 }
 
 func SizeStringsArray(s []string, length int) (total int) {
-	for i := _0; i < length; i++ {
+	for i := range length {
 		total += Len8(s[i])
 	}
 	return length + total

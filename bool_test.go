@@ -44,7 +44,7 @@ func TestReadBool7(t *testing.T) {
 	}
 }
 func TestReadBool8(t *testing.T) {
-	for i := 0; i <= math.MaxUint8; i++ {
+	for i := range math.MaxUint8 {
 		assert.Equal(t, byte(i), jay.Bool8(jay.ReadBool8(byte(i))))
 	}
 }

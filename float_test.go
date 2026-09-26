@@ -12,7 +12,7 @@ import (
 
 func TestFloat32(t *testing.T) {
 	b := make([]byte, 4)
-	for i := 0; i < 1000; i++ {
+	for range 1000 {
 		f := rando.Float32()
 		t.Run(fmtFloat32(f), func(t *testing.T) {
 			jay.WriteFloat32(b, f)
@@ -35,7 +35,7 @@ func TestFloat32MaxSmallest(t *testing.T) {
 
 func TestFloat64(t *testing.T) {
 	b := make([]byte, 8)
-	for i := 0; i < 1000; i++ {
+	for range 1000 {
 		f := rando.Float64()
 		t.Run(fmtFloat64(f), func(t *testing.T) {
 			jay.WriteFloat64(b, f)

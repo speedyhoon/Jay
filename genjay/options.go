@@ -174,7 +174,7 @@ func bytesRequired(input uint) uint8 {
 
 // cleanOnlyTypes removes invalid and duplicate types listed in o.OnyTypes.
 func (o *Option) cleanOnlyTypes() {
-	for i := uint(0); i < utl.Len(o.OnlyTypes); i++ {
+	for i := range utl.Len(o.OnlyTypes) {
 		o.OnlyTypes[i] = strings.TrimSpace(o.OnlyTypes[i])
 		if !typeNameRegex.MatchString(o.OnlyTypes[i]) {
 			lg.Println("type:", o.OnlyTypes[i], "didn't satisfy validation regex")

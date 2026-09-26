@@ -97,7 +97,7 @@ func fieldNamesArrays(fields fieldList) (s []string) {
 	for i := range fields {
 		if fields[i].isDef {
 			if fields[i].isArray() {
-				for j := 0; j < fields[i].arraySize; j++ {
+				for j := range fields[i].arraySize {
 					s = append(s, fmt.Sprintf("%s[%d]", fields[i].Name(), j))
 				}
 			} else {
@@ -105,7 +105,7 @@ func fieldNamesArrays(fields fieldList) (s []string) {
 			}
 		} else {
 			if fields[i].isArray() {
-				for j := 0; j < fields[i].arraySize; j++ {
+				for j := range fields[i].arraySize {
 					s = append(s, fmt.Sprintf("%s[%d]", fields[i].Name(), j))
 				}
 			} else {
@@ -119,7 +119,7 @@ func fieldNamesArrays(fields fieldList) (s []string) {
 func fieldNamesArraysUnmarshalInline(fields fieldList) (s []string, u []bool) {
 	for i := range fields {
 		if fields[i].isArray() {
-			for j := 0; j < fields[i].arraySize; j++ {
+			for j := range fields[i].arraySize {
 				s = append(s, fmt.Sprintf("%s[%d]", fields[i].Name(), j))
 				u = append(u, fields[i].isDef)
 			}

@@ -18,14 +18,14 @@ func ReadTimes(y []byte, length int) (t []time.Time) {
 	}
 
 	t = make([]time.Time, length)
-	for i := _0; i < length; i++ {
+	for i := range length {
 		t[i] = ReadTime(y[i*_8 : i*_8+_8])
 	}
 	return
 }
 
 func WriteTimes(y []byte, t []time.Time, length int) {
-	for i := _0; i < length; i++ {
+	for i := range length {
 		WriteInt64(y[i*_8:i*_8+_8], t[i].Unix())
 	}
 }
@@ -64,7 +64,7 @@ func ReadDurations(y []byte, length int) (t []time.Duration) {
 	}
 
 	t = make([]time.Duration, length)
-	for i := _0; i < length; i++ {
+	for i := range length {
 		t[i] = time.Duration(ReadInt64(y[i*_8 : i*_8+_8]))
 	}
 	return
@@ -72,7 +72,7 @@ func ReadDurations(y []byte, length int) (t []time.Duration) {
 
 // WriteDurations ...
 func WriteDurations(y []byte, t []time.Duration, length int) {
-	for i := _0; i < length; i++ {
+	for i := range length {
 		WriteInt64(y[i*_8:i*_8+_8], int64(t[i]))
 	}
 }

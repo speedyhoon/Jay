@@ -97,7 +97,7 @@ func StringsQty(qty int) (s []string) {
 	}
 
 	s = make([]string, qty)
-	for i := 0; i < qty; i++ {
+	for i := range qty {
 		s[i] = StringN(62)
 	}
 	return
@@ -109,7 +109,7 @@ func StringN(length uint8) (s string) {
 
 	return "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[:length]
 
-	//for i := 0; i < length; i++ {
+	//for range length {
 	//	s += string(Uint8())
 	//}
 	//return

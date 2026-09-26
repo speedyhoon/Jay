@@ -33,7 +33,7 @@ func (vs *varSize) group() (output string) {
 	})
 
 	var grouped []string
-	for i := 0; i < l; i++ {
+	for i := range l {
 		sizeOf := sizes[i]
 		additionJoin((*vs)[sizeOf], sizeOf, &grouped)
 	}

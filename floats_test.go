@@ -41,7 +41,7 @@ func TestFloat32s(t *testing.T) {
 		assert.Equal(t, f, jay.ReadFloat32s(b, len(f)))
 	})
 
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		f = rando.Float32s()
 		b = make([]byte, len(f)*4)
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
@@ -82,7 +82,7 @@ func TestFloat64s(t *testing.T) {
 		assert.Equal(t, f, jay.ReadFloat64s(b, len(f)))
 	})
 
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		f = rando.Float64s()
 		b = make([]byte, len(f)*8)
 		t.Run(strconv.Itoa(i), func(t *testing.T) {

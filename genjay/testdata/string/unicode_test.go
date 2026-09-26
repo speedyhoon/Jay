@@ -9,7 +9,7 @@ import (
 )
 
 func TestEmoji1(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := One{One: strings.Repeat("😀", l)}
 			want := append([]byte{byte(len([]byte(o.One)))}, []byte(o.One)...)
@@ -19,7 +19,7 @@ func TestEmoji1(t *testing.T) {
 }
 
 func TestEmoji2(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Two{
 				One: strings.Repeat("😀", l),
@@ -37,7 +37,7 @@ func TestEmoji2(t *testing.T) {
 }
 
 func TestEmoji3(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Three{
 				One:   strings.Repeat("😀", l),
@@ -58,7 +58,7 @@ func TestEmoji3(t *testing.T) {
 }
 
 func TestEmoji4(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Four{
 				One:   strings.Repeat("😀", l),
@@ -82,7 +82,7 @@ func TestEmoji4(t *testing.T) {
 }
 
 func TestEmoji5(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Five{
 				One:   strings.Repeat("😀", l),
@@ -109,7 +109,7 @@ func TestEmoji5(t *testing.T) {
 }
 
 func TestEmoji6(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Six{
 				One:   strings.Repeat("😀", l),
@@ -139,7 +139,7 @@ func TestEmoji6(t *testing.T) {
 }
 
 func TestEmoji7(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Seven{
 				One:   strings.Repeat("😀", l),
@@ -172,7 +172,7 @@ func TestEmoji7(t *testing.T) {
 }
 
 func TestEmoji8(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Eight{
 				One:   strings.Repeat("😀", l),
@@ -208,7 +208,7 @@ func TestEmoji8(t *testing.T) {
 }
 
 func TestEmoji9(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Nine{
 				One:   strings.Repeat("😀", l),
@@ -247,7 +247,7 @@ func TestEmoji9(t *testing.T) {
 }
 
 func TestEmoji10(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Ten{
 				One:   strings.Repeat("😀", l),
@@ -289,7 +289,7 @@ func TestEmoji10(t *testing.T) {
 }
 
 func TestEmoji11(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Eleven{
 				One:    strings.Repeat("😀", l),
@@ -334,7 +334,7 @@ func TestEmoji11(t *testing.T) {
 }
 
 func TestEmoji12(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Twelve{
 				One:    strings.Repeat("😀", l),
@@ -382,7 +382,7 @@ func TestEmoji12(t *testing.T) {
 }
 
 func TestEmoji13(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Thirteen{
 				One:      strings.Repeat("😀", l),
@@ -433,7 +433,7 @@ func TestEmoji13(t *testing.T) {
 }
 
 func TestEmoji14(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Fourteen{
 				One:      strings.Repeat("😀", l),
@@ -487,7 +487,7 @@ func TestEmoji14(t *testing.T) {
 }
 
 func TestEmoji15(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Fifteen{
 				One:      strings.Repeat("😀", l),
@@ -544,7 +544,7 @@ func TestEmoji15(t *testing.T) {
 }
 
 func TestEmoji16(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Sixteen{
 				One:      strings.Repeat("😀", l),
@@ -604,7 +604,7 @@ func TestEmoji16(t *testing.T) {
 }
 
 func TestEmoji17(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Seventeen{
 				One:       strings.Repeat("😀", l),
@@ -667,7 +667,7 @@ func TestEmoji17(t *testing.T) {
 }
 
 func TestEmoji18(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Eighteen{
 				One:       strings.Repeat("😀", l),
@@ -733,7 +733,7 @@ func TestEmoji18(t *testing.T) {
 }
 
 func TestEmoji19(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Nineteen{
 				One:       strings.Repeat("😀", l),
@@ -802,7 +802,7 @@ func TestEmoji19(t *testing.T) {
 }
 
 func TestEmoji20(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := Twenty{
 				One:       strings.Repeat("😀", l),
@@ -874,7 +874,7 @@ func TestEmoji20(t *testing.T) {
 }
 
 func TestEmoji21(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := TwentyOne{
 				One:       strings.Repeat("😀", l),
@@ -949,7 +949,7 @@ func TestEmoji21(t *testing.T) {
 }
 
 func TestEmoji22(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := TwentyTwo{
 				One:       strings.Repeat("😀", l),
@@ -1027,7 +1027,7 @@ func TestEmoji22(t *testing.T) {
 }
 
 func TestEmoji23(t *testing.T) {
-	for l := 0; l <= 63; l++ {
+	for l := range 63 {
 		t.Run(fmt.Sprintf("test[%d]", l), func(t *testing.T) {
 			o := TwentyThree{
 				One:         strings.Repeat("😀", l),

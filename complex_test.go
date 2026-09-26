@@ -13,7 +13,7 @@ import (
 func TestComplex64(t *testing.T) {
 	b := make([]byte, 8)
 	var c complex64
-	for i := 0; i < 1000; i++ {
+	for range 1000 {
 		t.Run(fmt.Sprint(c), func(t *testing.T) {
 			jay.WriteComplex64(b, c)
 			assert.Equal(t, c, jay.ReadComplex64(b))
@@ -25,7 +25,7 @@ func TestComplex64(t *testing.T) {
 func TestComplex128(t *testing.T) {
 	b := make([]byte, 16)
 	var c complex128
-	for i := 0; i < 1000; i++ {
+	for range 1000 {
 		t.Run(fmt.Sprint(c), func(t *testing.T) {
 			jay.WriteComplex128(b, c)
 			assert.Equal(t, c, jay.ReadComplex128(b))

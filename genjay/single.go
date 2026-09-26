@@ -14,7 +14,7 @@ func (s *structTyp) writeSingles(c *varCtx) {
 	var lines []string
 	s.writeBools(&lines)
 
-	for i, mx := 0, len(s.single); i < mx; i++ {
+	for i := range s.single {
 		fun, _ := s.single[i].marshalFuncTemplate()
 		lines = append(lines, writeSingle(s.single[i], fun, !s.returnInline))
 	}
@@ -35,7 +35,7 @@ func writeSingle(single *field, fun string, isMake bool) string {
 }
 
 func (s *structTyp) readSingles(b *bytes.Buffer) {
-	for i, l := 0, len(s.single); i < l; i++ {
+	for i := range s.single {
 		fun, _, _ := s.single[i].unmarshalFunc()
 		readSingle(s.single[i], b, fun)
 	}

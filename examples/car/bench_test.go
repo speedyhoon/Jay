@@ -24,46 +24,46 @@ var (
 )
 
 func BenchmarkMarshalJ(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		src = car.MarshalJ()
 	}
 }
 
 //	func BenchmarkMarshalJBuf(b *testing.B) {
-//		for i := 0; i < b.N; i++ {
+//		for b.Loop() {
 //			src = car.MarshalJ2()
 //		}
 //	}
 /*func BenchmarkMarshalJX(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		src = car.MarshalJX()
 	}
 }
 func BenchmarkMarshalJY(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		src = car.MarshalJY()
 	}
 }
 
 func BenchmarkMarshalK(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		src = car.MarshalK()
 	}
 }
 func BenchmarkMarshalL(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		src = car.MarshalL()
 	}
 }*/
 
 func BenchmarkLen(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		ll = len(src)
 	}
 }
 
 func BenchmarkFastest(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for i := range b.N {
 		Fastest(i)
 	}
 }
