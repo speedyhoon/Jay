@@ -15,7 +15,7 @@ func TestFuzz_1(t *testing.T) {
 	require.Equal(t, One{}, actual)
 
 	expected = One{
-		One: Array(rando.TimesN(9)),
+		One: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -32,8 +32,8 @@ func TestFuzz_2(t *testing.T) {
 	require.Equal(t, Two{}, actual)
 
 	expected = Two{
-		One: Array(rando.TimesN(9)),
-		Two: Array(rando.TimesN(9)),
+		One: Array(rando.TimeMillisN(9)),
+		Two: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -50,9 +50,9 @@ func TestFuzz_3(t *testing.T) {
 	require.Equal(t, Three{}, actual)
 
 	expected = Three{
-		One:   Array(rando.TimesN(9)),
-		Two:   Array(rando.TimesN(9)),
-		Three: Array(rando.TimesN(9)),
+		One:   Array(rando.TimeMillisN(9)),
+		Two:   Array(rando.TimeMillisN(9)),
+		Three: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -69,10 +69,10 @@ func TestFuzz_4(t *testing.T) {
 	require.Equal(t, Four{}, actual)
 
 	expected = Four{
-		One:   Array(rando.TimesN(9)),
-		Two:   Array(rando.TimesN(9)),
-		Three: Array(rando.TimesN(9)),
-		Four:  Array(rando.TimesN(9)),
+		One:   Array(rando.TimeMillisN(9)),
+		Two:   Array(rando.TimeMillisN(9)),
+		Three: Array(rando.TimeMillisN(9)),
+		Four:  Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -89,11 +89,11 @@ func TestFuzz_5(t *testing.T) {
 	require.Equal(t, Five{}, actual)
 
 	expected = Five{
-		One:   Array(rando.TimesN(9)),
-		Two:   Array(rando.TimesN(9)),
-		Three: Array(rando.TimesN(9)),
-		Four:  Array(rando.TimesN(9)),
-		Five:  Array(rando.TimesN(9)),
+		One:   Array(rando.TimeMillisN(9)),
+		Two:   Array(rando.TimeMillisN(9)),
+		Three: Array(rando.TimeMillisN(9)),
+		Four:  Array(rando.TimeMillisN(9)),
+		Five:  Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -110,12 +110,12 @@ func TestFuzz_6(t *testing.T) {
 	require.Equal(t, Six{}, actual)
 
 	expected = Six{
-		One:   Array(rando.TimesN(9)),
-		Two:   Array(rando.TimesN(9)),
-		Three: Array(rando.TimesN(9)),
-		Four:  Array(rando.TimesN(9)),
-		Five:  Array(rando.TimesN(9)),
-		Six:   Array(rando.TimesN(9)),
+		One:   Array(rando.TimeMillisN(9)),
+		Two:   Array(rando.TimeMillisN(9)),
+		Three: Array(rando.TimeMillisN(9)),
+		Four:  Array(rando.TimeMillisN(9)),
+		Five:  Array(rando.TimeMillisN(9)),
+		Six:   Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -132,13 +132,13 @@ func TestFuzz_7(t *testing.T) {
 	require.Equal(t, Seven{}, actual)
 
 	expected = Seven{
-		One:   Array(rando.TimesN(9)),
-		Two:   Array(rando.TimesN(9)),
-		Three: Array(rando.TimesN(9)),
-		Four:  Array(rando.TimesN(9)),
-		Five:  Array(rando.TimesN(9)),
-		Six:   Array(rando.TimesN(9)),
-		Seven: Array(rando.TimesN(9)),
+		One:   Array(rando.TimeMillisN(9)),
+		Two:   Array(rando.TimeMillisN(9)),
+		Three: Array(rando.TimeMillisN(9)),
+		Four:  Array(rando.TimeMillisN(9)),
+		Five:  Array(rando.TimeMillisN(9)),
+		Six:   Array(rando.TimeMillisN(9)),
+		Seven: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -155,14 +155,14 @@ func TestFuzz_8(t *testing.T) {
 	require.Equal(t, Eight{}, actual)
 
 	expected = Eight{
-		One:   Array(rando.TimesN(9)),
-		Two:   Array(rando.TimesN(9)),
-		Three: Array(rando.TimesN(9)),
-		Four:  Array(rando.TimesN(9)),
-		Five:  Array(rando.TimesN(9)),
-		Six:   Array(rando.TimesN(9)),
-		Seven: Array(rando.TimesN(9)),
-		Eight: Array(rando.TimesN(9)),
+		One:   Array(rando.TimeMillisN(9)),
+		Two:   Array(rando.TimeMillisN(9)),
+		Three: Array(rando.TimeMillisN(9)),
+		Four:  Array(rando.TimeMillisN(9)),
+		Five:  Array(rando.TimeMillisN(9)),
+		Six:   Array(rando.TimeMillisN(9)),
+		Seven: Array(rando.TimeMillisN(9)),
+		Eight: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -179,15 +179,15 @@ func TestFuzz_9(t *testing.T) {
 	require.Equal(t, Nine{}, actual)
 
 	expected = Nine{
-		One:   Array(rando.TimesN(9)),
-		Two:   Array(rando.TimesN(9)),
-		Three: Array(rando.TimesN(9)),
-		Four:  Array(rando.TimesN(9)),
-		Five:  Array(rando.TimesN(9)),
-		Six:   Array(rando.TimesN(9)),
-		Seven: Array(rando.TimesN(9)),
-		Eight: Array(rando.TimesN(9)),
-		Nine:  Array(rando.TimesN(9)),
+		One:   Array(rando.TimeMillisN(9)),
+		Two:   Array(rando.TimeMillisN(9)),
+		Three: Array(rando.TimeMillisN(9)),
+		Four:  Array(rando.TimeMillisN(9)),
+		Five:  Array(rando.TimeMillisN(9)),
+		Six:   Array(rando.TimeMillisN(9)),
+		Seven: Array(rando.TimeMillisN(9)),
+		Eight: Array(rando.TimeMillisN(9)),
+		Nine:  Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -204,16 +204,16 @@ func TestFuzz_10(t *testing.T) {
 	require.Equal(t, Ten{}, actual)
 
 	expected = Ten{
-		One:   Array(rando.TimesN(9)),
-		Two:   Array(rando.TimesN(9)),
-		Three: Array(rando.TimesN(9)),
-		Four:  Array(rando.TimesN(9)),
-		Five:  Array(rando.TimesN(9)),
-		Six:   Array(rando.TimesN(9)),
-		Seven: Array(rando.TimesN(9)),
-		Eight: Array(rando.TimesN(9)),
-		Nine:  Array(rando.TimesN(9)),
-		Ten:   Array(rando.TimesN(9)),
+		One:   Array(rando.TimeMillisN(9)),
+		Two:   Array(rando.TimeMillisN(9)),
+		Three: Array(rando.TimeMillisN(9)),
+		Four:  Array(rando.TimeMillisN(9)),
+		Five:  Array(rando.TimeMillisN(9)),
+		Six:   Array(rando.TimeMillisN(9)),
+		Seven: Array(rando.TimeMillisN(9)),
+		Eight: Array(rando.TimeMillisN(9)),
+		Nine:  Array(rando.TimeMillisN(9)),
+		Ten:   Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -230,17 +230,17 @@ func TestFuzz_11(t *testing.T) {
 	require.Equal(t, Eleven{}, actual)
 
 	expected = Eleven{
-		One:    Array(rando.TimesN(9)),
-		Two:    Array(rando.TimesN(9)),
-		Three:  Array(rando.TimesN(9)),
-		Four:   Array(rando.TimesN(9)),
-		Five:   Array(rando.TimesN(9)),
-		Six:    Array(rando.TimesN(9)),
-		Seven:  Array(rando.TimesN(9)),
-		Eight:  Array(rando.TimesN(9)),
-		Nine:   Array(rando.TimesN(9)),
-		Ten:    Array(rando.TimesN(9)),
-		Eleven: Array(rando.TimesN(9)),
+		One:    Array(rando.TimeMillisN(9)),
+		Two:    Array(rando.TimeMillisN(9)),
+		Three:  Array(rando.TimeMillisN(9)),
+		Four:   Array(rando.TimeMillisN(9)),
+		Five:   Array(rando.TimeMillisN(9)),
+		Six:    Array(rando.TimeMillisN(9)),
+		Seven:  Array(rando.TimeMillisN(9)),
+		Eight:  Array(rando.TimeMillisN(9)),
+		Nine:   Array(rando.TimeMillisN(9)),
+		Ten:    Array(rando.TimeMillisN(9)),
+		Eleven: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -257,18 +257,18 @@ func TestFuzz_12(t *testing.T) {
 	require.Equal(t, Twelve{}, actual)
 
 	expected = Twelve{
-		One:    Array(rando.TimesN(9)),
-		Two:    Array(rando.TimesN(9)),
-		Three:  Array(rando.TimesN(9)),
-		Four:   Array(rando.TimesN(9)),
-		Five:   Array(rando.TimesN(9)),
-		Six:    Array(rando.TimesN(9)),
-		Seven:  Array(rando.TimesN(9)),
-		Eight:  Array(rando.TimesN(9)),
-		Nine:   Array(rando.TimesN(9)),
-		Ten:    Array(rando.TimesN(9)),
-		Eleven: Array(rando.TimesN(9)),
-		Twelve: Array(rando.TimesN(9)),
+		One:    Array(rando.TimeMillisN(9)),
+		Two:    Array(rando.TimeMillisN(9)),
+		Three:  Array(rando.TimeMillisN(9)),
+		Four:   Array(rando.TimeMillisN(9)),
+		Five:   Array(rando.TimeMillisN(9)),
+		Six:    Array(rando.TimeMillisN(9)),
+		Seven:  Array(rando.TimeMillisN(9)),
+		Eight:  Array(rando.TimeMillisN(9)),
+		Nine:   Array(rando.TimeMillisN(9)),
+		Ten:    Array(rando.TimeMillisN(9)),
+		Eleven: Array(rando.TimeMillisN(9)),
+		Twelve: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -285,19 +285,19 @@ func TestFuzz_13(t *testing.T) {
 	require.Equal(t, Thirteen{}, actual)
 
 	expected = Thirteen{
-		One:      Array(rando.TimesN(9)),
-		Two:      Array(rando.TimesN(9)),
-		Three:    Array(rando.TimesN(9)),
-		Four:     Array(rando.TimesN(9)),
-		Five:     Array(rando.TimesN(9)),
-		Six:      Array(rando.TimesN(9)),
-		Seven:    Array(rando.TimesN(9)),
-		Eight:    Array(rando.TimesN(9)),
-		Nine:     Array(rando.TimesN(9)),
-		Ten:      Array(rando.TimesN(9)),
-		Eleven:   Array(rando.TimesN(9)),
-		Twelve:   Array(rando.TimesN(9)),
-		Thirteen: Array(rando.TimesN(9)),
+		One:      Array(rando.TimeMillisN(9)),
+		Two:      Array(rando.TimeMillisN(9)),
+		Three:    Array(rando.TimeMillisN(9)),
+		Four:     Array(rando.TimeMillisN(9)),
+		Five:     Array(rando.TimeMillisN(9)),
+		Six:      Array(rando.TimeMillisN(9)),
+		Seven:    Array(rando.TimeMillisN(9)),
+		Eight:    Array(rando.TimeMillisN(9)),
+		Nine:     Array(rando.TimeMillisN(9)),
+		Ten:      Array(rando.TimeMillisN(9)),
+		Eleven:   Array(rando.TimeMillisN(9)),
+		Twelve:   Array(rando.TimeMillisN(9)),
+		Thirteen: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -314,20 +314,20 @@ func TestFuzz_14(t *testing.T) {
 	require.Equal(t, Fourteen{}, actual)
 
 	expected = Fourteen{
-		One:      Array(rando.TimesN(9)),
-		Two:      Array(rando.TimesN(9)),
-		Three:    Array(rando.TimesN(9)),
-		Four:     Array(rando.TimesN(9)),
-		Five:     Array(rando.TimesN(9)),
-		Six:      Array(rando.TimesN(9)),
-		Seven:    Array(rando.TimesN(9)),
-		Eight:    Array(rando.TimesN(9)),
-		Nine:     Array(rando.TimesN(9)),
-		Ten:      Array(rando.TimesN(9)),
-		Eleven:   Array(rando.TimesN(9)),
-		Twelve:   Array(rando.TimesN(9)),
-		Thirteen: Array(rando.TimesN(9)),
-		Fourteen: Array(rando.TimesN(9)),
+		One:      Array(rando.TimeMillisN(9)),
+		Two:      Array(rando.TimeMillisN(9)),
+		Three:    Array(rando.TimeMillisN(9)),
+		Four:     Array(rando.TimeMillisN(9)),
+		Five:     Array(rando.TimeMillisN(9)),
+		Six:      Array(rando.TimeMillisN(9)),
+		Seven:    Array(rando.TimeMillisN(9)),
+		Eight:    Array(rando.TimeMillisN(9)),
+		Nine:     Array(rando.TimeMillisN(9)),
+		Ten:      Array(rando.TimeMillisN(9)),
+		Eleven:   Array(rando.TimeMillisN(9)),
+		Twelve:   Array(rando.TimeMillisN(9)),
+		Thirteen: Array(rando.TimeMillisN(9)),
+		Fourteen: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -344,21 +344,21 @@ func TestFuzz_15(t *testing.T) {
 	require.Equal(t, Fifteen{}, actual)
 
 	expected = Fifteen{
-		One:      Array(rando.TimesN(9)),
-		Two:      Array(rando.TimesN(9)),
-		Three:    Array(rando.TimesN(9)),
-		Four:     Array(rando.TimesN(9)),
-		Five:     Array(rando.TimesN(9)),
-		Six:      Array(rando.TimesN(9)),
-		Seven:    Array(rando.TimesN(9)),
-		Eight:    Array(rando.TimesN(9)),
-		Nine:     Array(rando.TimesN(9)),
-		Ten:      Array(rando.TimesN(9)),
-		Eleven:   Array(rando.TimesN(9)),
-		Twelve:   Array(rando.TimesN(9)),
-		Thirteen: Array(rando.TimesN(9)),
-		Fourteen: Array(rando.TimesN(9)),
-		Fifteen:  Array(rando.TimesN(9)),
+		One:      Array(rando.TimeMillisN(9)),
+		Two:      Array(rando.TimeMillisN(9)),
+		Three:    Array(rando.TimeMillisN(9)),
+		Four:     Array(rando.TimeMillisN(9)),
+		Five:     Array(rando.TimeMillisN(9)),
+		Six:      Array(rando.TimeMillisN(9)),
+		Seven:    Array(rando.TimeMillisN(9)),
+		Eight:    Array(rando.TimeMillisN(9)),
+		Nine:     Array(rando.TimeMillisN(9)),
+		Ten:      Array(rando.TimeMillisN(9)),
+		Eleven:   Array(rando.TimeMillisN(9)),
+		Twelve:   Array(rando.TimeMillisN(9)),
+		Thirteen: Array(rando.TimeMillisN(9)),
+		Fourteen: Array(rando.TimeMillisN(9)),
+		Fifteen:  Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -375,22 +375,22 @@ func TestFuzz_16(t *testing.T) {
 	require.Equal(t, Sixteen{}, actual)
 
 	expected = Sixteen{
-		One:      Array(rando.TimesN(9)),
-		Two:      Array(rando.TimesN(9)),
-		Three:    Array(rando.TimesN(9)),
-		Four:     Array(rando.TimesN(9)),
-		Five:     Array(rando.TimesN(9)),
-		Six:      Array(rando.TimesN(9)),
-		Seven:    Array(rando.TimesN(9)),
-		Eight:    Array(rando.TimesN(9)),
-		Nine:     Array(rando.TimesN(9)),
-		Ten:      Array(rando.TimesN(9)),
-		Eleven:   Array(rando.TimesN(9)),
-		Twelve:   Array(rando.TimesN(9)),
-		Thirteen: Array(rando.TimesN(9)),
-		Fourteen: Array(rando.TimesN(9)),
-		Fifteen:  Array(rando.TimesN(9)),
-		Sixteen:  Array(rando.TimesN(9)),
+		One:      Array(rando.TimeMillisN(9)),
+		Two:      Array(rando.TimeMillisN(9)),
+		Three:    Array(rando.TimeMillisN(9)),
+		Four:     Array(rando.TimeMillisN(9)),
+		Five:     Array(rando.TimeMillisN(9)),
+		Six:      Array(rando.TimeMillisN(9)),
+		Seven:    Array(rando.TimeMillisN(9)),
+		Eight:    Array(rando.TimeMillisN(9)),
+		Nine:     Array(rando.TimeMillisN(9)),
+		Ten:      Array(rando.TimeMillisN(9)),
+		Eleven:   Array(rando.TimeMillisN(9)),
+		Twelve:   Array(rando.TimeMillisN(9)),
+		Thirteen: Array(rando.TimeMillisN(9)),
+		Fourteen: Array(rando.TimeMillisN(9)),
+		Fifteen:  Array(rando.TimeMillisN(9)),
+		Sixteen:  Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -407,23 +407,23 @@ func TestFuzz_17(t *testing.T) {
 	require.Equal(t, Seventeen{}, actual)
 
 	expected = Seventeen{
-		One:       Array(rando.TimesN(9)),
-		Two:       Array(rando.TimesN(9)),
-		Three:     Array(rando.TimesN(9)),
-		Four:      Array(rando.TimesN(9)),
-		Five:      Array(rando.TimesN(9)),
-		Six:       Array(rando.TimesN(9)),
-		Seven:     Array(rando.TimesN(9)),
-		Eight:     Array(rando.TimesN(9)),
-		Nine:      Array(rando.TimesN(9)),
-		Ten:       Array(rando.TimesN(9)),
-		Eleven:    Array(rando.TimesN(9)),
-		Twelve:    Array(rando.TimesN(9)),
-		Thirteen:  Array(rando.TimesN(9)),
-		Fourteen:  Array(rando.TimesN(9)),
-		Fifteen:   Array(rando.TimesN(9)),
-		Sixteen:   Array(rando.TimesN(9)),
-		Seventeen: Array(rando.TimesN(9)),
+		One:       Array(rando.TimeMillisN(9)),
+		Two:       Array(rando.TimeMillisN(9)),
+		Three:     Array(rando.TimeMillisN(9)),
+		Four:      Array(rando.TimeMillisN(9)),
+		Five:      Array(rando.TimeMillisN(9)),
+		Six:       Array(rando.TimeMillisN(9)),
+		Seven:     Array(rando.TimeMillisN(9)),
+		Eight:     Array(rando.TimeMillisN(9)),
+		Nine:      Array(rando.TimeMillisN(9)),
+		Ten:       Array(rando.TimeMillisN(9)),
+		Eleven:    Array(rando.TimeMillisN(9)),
+		Twelve:    Array(rando.TimeMillisN(9)),
+		Thirteen:  Array(rando.TimeMillisN(9)),
+		Fourteen:  Array(rando.TimeMillisN(9)),
+		Fifteen:   Array(rando.TimeMillisN(9)),
+		Sixteen:   Array(rando.TimeMillisN(9)),
+		Seventeen: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -440,24 +440,24 @@ func TestFuzz_18(t *testing.T) {
 	require.Equal(t, Eighteen{}, actual)
 
 	expected = Eighteen{
-		One:       Array(rando.TimesN(9)),
-		Two:       Array(rando.TimesN(9)),
-		Three:     Array(rando.TimesN(9)),
-		Four:      Array(rando.TimesN(9)),
-		Five:      Array(rando.TimesN(9)),
-		Six:       Array(rando.TimesN(9)),
-		Seven:     Array(rando.TimesN(9)),
-		Eight:     Array(rando.TimesN(9)),
-		Nine:      Array(rando.TimesN(9)),
-		Ten:       Array(rando.TimesN(9)),
-		Eleven:    Array(rando.TimesN(9)),
-		Twelve:    Array(rando.TimesN(9)),
-		Thirteen:  Array(rando.TimesN(9)),
-		Fourteen:  Array(rando.TimesN(9)),
-		Fifteen:   Array(rando.TimesN(9)),
-		Sixteen:   Array(rando.TimesN(9)),
-		Seventeen: Array(rando.TimesN(9)),
-		Eighteen:  Array(rando.TimesN(9)),
+		One:       Array(rando.TimeMillisN(9)),
+		Two:       Array(rando.TimeMillisN(9)),
+		Three:     Array(rando.TimeMillisN(9)),
+		Four:      Array(rando.TimeMillisN(9)),
+		Five:      Array(rando.TimeMillisN(9)),
+		Six:       Array(rando.TimeMillisN(9)),
+		Seven:     Array(rando.TimeMillisN(9)),
+		Eight:     Array(rando.TimeMillisN(9)),
+		Nine:      Array(rando.TimeMillisN(9)),
+		Ten:       Array(rando.TimeMillisN(9)),
+		Eleven:    Array(rando.TimeMillisN(9)),
+		Twelve:    Array(rando.TimeMillisN(9)),
+		Thirteen:  Array(rando.TimeMillisN(9)),
+		Fourteen:  Array(rando.TimeMillisN(9)),
+		Fifteen:   Array(rando.TimeMillisN(9)),
+		Sixteen:   Array(rando.TimeMillisN(9)),
+		Seventeen: Array(rando.TimeMillisN(9)),
+		Eighteen:  Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -474,25 +474,25 @@ func TestFuzz_19(t *testing.T) {
 	require.Equal(t, Nineteen{}, actual)
 
 	expected = Nineteen{
-		One:       Array(rando.TimesN(9)),
-		Two:       Array(rando.TimesN(9)),
-		Three:     Array(rando.TimesN(9)),
-		Four:      Array(rando.TimesN(9)),
-		Five:      Array(rando.TimesN(9)),
-		Six:       Array(rando.TimesN(9)),
-		Seven:     Array(rando.TimesN(9)),
-		Eight:     Array(rando.TimesN(9)),
-		Nine:      Array(rando.TimesN(9)),
-		Ten:       Array(rando.TimesN(9)),
-		Eleven:    Array(rando.TimesN(9)),
-		Twelve:    Array(rando.TimesN(9)),
-		Thirteen:  Array(rando.TimesN(9)),
-		Fourteen:  Array(rando.TimesN(9)),
-		Fifteen:   Array(rando.TimesN(9)),
-		Sixteen:   Array(rando.TimesN(9)),
-		Seventeen: Array(rando.TimesN(9)),
-		Eighteen:  Array(rando.TimesN(9)),
-		Nineteen:  Array(rando.TimesN(9)),
+		One:       Array(rando.TimeMillisN(9)),
+		Two:       Array(rando.TimeMillisN(9)),
+		Three:     Array(rando.TimeMillisN(9)),
+		Four:      Array(rando.TimeMillisN(9)),
+		Five:      Array(rando.TimeMillisN(9)),
+		Six:       Array(rando.TimeMillisN(9)),
+		Seven:     Array(rando.TimeMillisN(9)),
+		Eight:     Array(rando.TimeMillisN(9)),
+		Nine:      Array(rando.TimeMillisN(9)),
+		Ten:       Array(rando.TimeMillisN(9)),
+		Eleven:    Array(rando.TimeMillisN(9)),
+		Twelve:    Array(rando.TimeMillisN(9)),
+		Thirteen:  Array(rando.TimeMillisN(9)),
+		Fourteen:  Array(rando.TimeMillisN(9)),
+		Fifteen:   Array(rando.TimeMillisN(9)),
+		Sixteen:   Array(rando.TimeMillisN(9)),
+		Seventeen: Array(rando.TimeMillisN(9)),
+		Eighteen:  Array(rando.TimeMillisN(9)),
+		Nineteen:  Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -509,26 +509,26 @@ func TestFuzz_20(t *testing.T) {
 	require.Equal(t, Twenty{}, actual)
 
 	expected = Twenty{
-		One:       Array(rando.TimesN(9)),
-		Two:       Array(rando.TimesN(9)),
-		Three:     Array(rando.TimesN(9)),
-		Four:      Array(rando.TimesN(9)),
-		Five:      Array(rando.TimesN(9)),
-		Six:       Array(rando.TimesN(9)),
-		Seven:     Array(rando.TimesN(9)),
-		Eight:     Array(rando.TimesN(9)),
-		Nine:      Array(rando.TimesN(9)),
-		Ten:       Array(rando.TimesN(9)),
-		Eleven:    Array(rando.TimesN(9)),
-		Twelve:    Array(rando.TimesN(9)),
-		Thirteen:  Array(rando.TimesN(9)),
-		Fourteen:  Array(rando.TimesN(9)),
-		Fifteen:   Array(rando.TimesN(9)),
-		Sixteen:   Array(rando.TimesN(9)),
-		Seventeen: Array(rando.TimesN(9)),
-		Eighteen:  Array(rando.TimesN(9)),
-		Nineteen:  Array(rando.TimesN(9)),
-		Twenty:    Array(rando.TimesN(9)),
+		One:       Array(rando.TimeMillisN(9)),
+		Two:       Array(rando.TimeMillisN(9)),
+		Three:     Array(rando.TimeMillisN(9)),
+		Four:      Array(rando.TimeMillisN(9)),
+		Five:      Array(rando.TimeMillisN(9)),
+		Six:       Array(rando.TimeMillisN(9)),
+		Seven:     Array(rando.TimeMillisN(9)),
+		Eight:     Array(rando.TimeMillisN(9)),
+		Nine:      Array(rando.TimeMillisN(9)),
+		Ten:       Array(rando.TimeMillisN(9)),
+		Eleven:    Array(rando.TimeMillisN(9)),
+		Twelve:    Array(rando.TimeMillisN(9)),
+		Thirteen:  Array(rando.TimeMillisN(9)),
+		Fourteen:  Array(rando.TimeMillisN(9)),
+		Fifteen:   Array(rando.TimeMillisN(9)),
+		Sixteen:   Array(rando.TimeMillisN(9)),
+		Seventeen: Array(rando.TimeMillisN(9)),
+		Eighteen:  Array(rando.TimeMillisN(9)),
+		Nineteen:  Array(rando.TimeMillisN(9)),
+		Twenty:    Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -545,27 +545,27 @@ func TestFuzz_21(t *testing.T) {
 	require.Equal(t, TwentyOne{}, actual)
 
 	expected = TwentyOne{
-		One:       Array(rando.TimesN(9)),
-		Two:       Array(rando.TimesN(9)),
-		Three:     Array(rando.TimesN(9)),
-		Four:      Array(rando.TimesN(9)),
-		Five:      Array(rando.TimesN(9)),
-		Six:       Array(rando.TimesN(9)),
-		Seven:     Array(rando.TimesN(9)),
-		Eight:     Array(rando.TimesN(9)),
-		Nine:      Array(rando.TimesN(9)),
-		Ten:       Array(rando.TimesN(9)),
-		Eleven:    Array(rando.TimesN(9)),
-		Twelve:    Array(rando.TimesN(9)),
-		Thirteen:  Array(rando.TimesN(9)),
-		Fourteen:  Array(rando.TimesN(9)),
-		Fifteen:   Array(rando.TimesN(9)),
-		Sixteen:   Array(rando.TimesN(9)),
-		Seventeen: Array(rando.TimesN(9)),
-		Eighteen:  Array(rando.TimesN(9)),
-		Nineteen:  Array(rando.TimesN(9)),
-		Twenty:    Array(rando.TimesN(9)),
-		TwentyOne: Array(rando.TimesN(9)),
+		One:       Array(rando.TimeMillisN(9)),
+		Two:       Array(rando.TimeMillisN(9)),
+		Three:     Array(rando.TimeMillisN(9)),
+		Four:      Array(rando.TimeMillisN(9)),
+		Five:      Array(rando.TimeMillisN(9)),
+		Six:       Array(rando.TimeMillisN(9)),
+		Seven:     Array(rando.TimeMillisN(9)),
+		Eight:     Array(rando.TimeMillisN(9)),
+		Nine:      Array(rando.TimeMillisN(9)),
+		Ten:       Array(rando.TimeMillisN(9)),
+		Eleven:    Array(rando.TimeMillisN(9)),
+		Twelve:    Array(rando.TimeMillisN(9)),
+		Thirteen:  Array(rando.TimeMillisN(9)),
+		Fourteen:  Array(rando.TimeMillisN(9)),
+		Fifteen:   Array(rando.TimeMillisN(9)),
+		Sixteen:   Array(rando.TimeMillisN(9)),
+		Seventeen: Array(rando.TimeMillisN(9)),
+		Eighteen:  Array(rando.TimeMillisN(9)),
+		Nineteen:  Array(rando.TimeMillisN(9)),
+		Twenty:    Array(rando.TimeMillisN(9)),
+		TwentyOne: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -582,28 +582,28 @@ func TestFuzz_22(t *testing.T) {
 	require.Equal(t, TwentyTwo{}, actual)
 
 	expected = TwentyTwo{
-		One:       Array(rando.TimesN(9)),
-		Two:       Array(rando.TimesN(9)),
-		Three:     Array(rando.TimesN(9)),
-		Four:      Array(rando.TimesN(9)),
-		Five:      Array(rando.TimesN(9)),
-		Six:       Array(rando.TimesN(9)),
-		Seven:     Array(rando.TimesN(9)),
-		Eight:     Array(rando.TimesN(9)),
-		Nine:      Array(rando.TimesN(9)),
-		Ten:       Array(rando.TimesN(9)),
-		Eleven:    Array(rando.TimesN(9)),
-		Twelve:    Array(rando.TimesN(9)),
-		Thirteen:  Array(rando.TimesN(9)),
-		Fourteen:  Array(rando.TimesN(9)),
-		Fifteen:   Array(rando.TimesN(9)),
-		Sixteen:   Array(rando.TimesN(9)),
-		Seventeen: Array(rando.TimesN(9)),
-		Eighteen:  Array(rando.TimesN(9)),
-		Nineteen:  Array(rando.TimesN(9)),
-		Twenty:    Array(rando.TimesN(9)),
-		TwentyOne: Array(rando.TimesN(9)),
-		TwentyTwo: Array(rando.TimesN(9)),
+		One:       Array(rando.TimeMillisN(9)),
+		Two:       Array(rando.TimeMillisN(9)),
+		Three:     Array(rando.TimeMillisN(9)),
+		Four:      Array(rando.TimeMillisN(9)),
+		Five:      Array(rando.TimeMillisN(9)),
+		Six:       Array(rando.TimeMillisN(9)),
+		Seven:     Array(rando.TimeMillisN(9)),
+		Eight:     Array(rando.TimeMillisN(9)),
+		Nine:      Array(rando.TimeMillisN(9)),
+		Ten:       Array(rando.TimeMillisN(9)),
+		Eleven:    Array(rando.TimeMillisN(9)),
+		Twelve:    Array(rando.TimeMillisN(9)),
+		Thirteen:  Array(rando.TimeMillisN(9)),
+		Fourteen:  Array(rando.TimeMillisN(9)),
+		Fifteen:   Array(rando.TimeMillisN(9)),
+		Sixteen:   Array(rando.TimeMillisN(9)),
+		Seventeen: Array(rando.TimeMillisN(9)),
+		Eighteen:  Array(rando.TimeMillisN(9)),
+		Nineteen:  Array(rando.TimeMillisN(9)),
+		Twenty:    Array(rando.TimeMillisN(9)),
+		TwentyOne: Array(rando.TimeMillisN(9)),
+		TwentyTwo: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -620,29 +620,29 @@ func TestFuzz_23(t *testing.T) {
 	require.Equal(t, TwentyThree{}, actual)
 
 	expected = TwentyThree{
-		One:         Array(rando.TimesN(9)),
-		Two:         Array(rando.TimesN(9)),
-		Three:       Array(rando.TimesN(9)),
-		Four:        Array(rando.TimesN(9)),
-		Five:        Array(rando.TimesN(9)),
-		Six:         Array(rando.TimesN(9)),
-		Seven:       Array(rando.TimesN(9)),
-		Eight:       Array(rando.TimesN(9)),
-		Nine:        Array(rando.TimesN(9)),
-		Ten:         Array(rando.TimesN(9)),
-		Eleven:      Array(rando.TimesN(9)),
-		Twelve:      Array(rando.TimesN(9)),
-		Thirteen:    Array(rando.TimesN(9)),
-		Fourteen:    Array(rando.TimesN(9)),
-		Fifteen:     Array(rando.TimesN(9)),
-		Sixteen:     Array(rando.TimesN(9)),
-		Seventeen:   Array(rando.TimesN(9)),
-		Eighteen:    Array(rando.TimesN(9)),
-		Nineteen:    Array(rando.TimesN(9)),
-		Twenty:      Array(rando.TimesN(9)),
-		TwentyOne:   Array(rando.TimesN(9)),
-		TwentyTwo:   Array(rando.TimesN(9)),
-		TwentyThree: Array(rando.TimesN(9)),
+		One:         Array(rando.TimeMillisN(9)),
+		Two:         Array(rando.TimeMillisN(9)),
+		Three:       Array(rando.TimeMillisN(9)),
+		Four:        Array(rando.TimeMillisN(9)),
+		Five:        Array(rando.TimeMillisN(9)),
+		Six:         Array(rando.TimeMillisN(9)),
+		Seven:       Array(rando.TimeMillisN(9)),
+		Eight:       Array(rando.TimeMillisN(9)),
+		Nine:        Array(rando.TimeMillisN(9)),
+		Ten:         Array(rando.TimeMillisN(9)),
+		Eleven:      Array(rando.TimeMillisN(9)),
+		Twelve:      Array(rando.TimeMillisN(9)),
+		Thirteen:    Array(rando.TimeMillisN(9)),
+		Fourteen:    Array(rando.TimeMillisN(9)),
+		Fifteen:     Array(rando.TimeMillisN(9)),
+		Sixteen:     Array(rando.TimeMillisN(9)),
+		Seventeen:   Array(rando.TimeMillisN(9)),
+		Eighteen:    Array(rando.TimeMillisN(9)),
+		Nineteen:    Array(rando.TimeMillisN(9)),
+		Twenty:      Array(rando.TimeMillisN(9)),
+		TwentyOne:   Array(rando.TimeMillisN(9)),
+		TwentyTwo:   Array(rando.TimeMillisN(9)),
+		TwentyThree: Array(rando.TimeMillisN(9)),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))

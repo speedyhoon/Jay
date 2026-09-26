@@ -3,13 +3,13 @@ package jay
 import "time"
 
 func ReadTime(y []byte) (t time.Time) {
-	return time.Unix(ReadInt64(y), _0).UTC()
+	return time.UnixMilli(ReadInt64(y)).UTC()
 }
 
-// WriteTime writes 8 bytes to b with year, month, date, hour, minute and seconds precision in UTC location.
-// All millisecond, microsecond, nanosecond and location are lost.
+// WriteTime writes 8 bytes to b with year, month, date, hour, minute, second and millisecond precision in UTC location.
+// All microsecond, nanosecond and location are lost.
 func WriteTime(y []byte, t time.Time) {
-	WriteInt64(y, t.Unix())
+	WriteInt64(y, t.UnixMilli())
 }
 
 func ReadTimes(y []byte, length int) (t []time.Time) {
@@ -26,7 +26,7 @@ func ReadTimes(y []byte, length int) (t []time.Time) {
 
 func WriteTimes(y []byte, t []time.Time, length int) {
 	for i := range length {
-		WriteInt64(y[i*_8:i*_8+_8], t[i].Unix())
+		WriteTime(y[i*_8:i*_8+_8], t[i])
 	}
 }
 

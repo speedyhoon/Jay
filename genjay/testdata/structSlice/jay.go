@@ -17,7 +17,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 }
 
 func (t *Two) MarshalJ() (b []byte) {
-	l0 := len(t.Two)
+	l0 := jay.Len8(t.Two)
 	b = make([]byte, 1+jay.SizeBools(l0))
 	b[0] = byte(l0)
 	jay.WriteBools(b[1:], t.Two, l0)

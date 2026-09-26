@@ -17,7 +17,7 @@ func TestFuzz_1(t *testing.T) {
 	require.Equal(t, One{}, actual)
 
 	expected = One{
-		One: rando.Times(),
+		One: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -34,8 +34,8 @@ func TestFuzz_2(t *testing.T) {
 	require.Equal(t, Two{}, actual)
 
 	expected = Two{
-		One: rando.Times(),
-		Two: rando.Times(),
+		One: rando.TimeMillis(),
+		Two: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -52,9 +52,9 @@ func TestFuzz_3(t *testing.T) {
 	require.Equal(t, Three{}, actual)
 
 	expected = Three{
-		One:   rando.Times(),
-		Two:   rando.Times(),
-		Three: rando.Times(),
+		One:   rando.TimeMillis(),
+		Two:   rando.TimeMillis(),
+		Three: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -71,10 +71,10 @@ func TestFuzz_4(t *testing.T) {
 	require.Equal(t, Four{}, actual)
 
 	expected = Four{
-		One:   rando.Times(),
-		Two:   rando.Times(),
-		Three: rando.Times(),
-		Four:  rando.Times(),
+		One:   rando.TimeMillis(),
+		Two:   rando.TimeMillis(),
+		Three: rando.TimeMillis(),
+		Four:  rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -91,11 +91,11 @@ func TestFuzz_5(t *testing.T) {
 	require.Equal(t, Five{}, actual)
 
 	expected = Five{
-		One:   rando.Times(),
-		Two:   rando.Times(),
-		Three: rando.Times(),
-		Four:  rando.Times(),
-		Five:  rando.Times(),
+		One:   rando.TimeMillis(),
+		Two:   rando.TimeMillis(),
+		Three: rando.TimeMillis(),
+		Four:  rando.TimeMillis(),
+		Five:  rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -112,12 +112,12 @@ func TestFuzz_6(t *testing.T) {
 	require.Equal(t, Six{}, actual)
 
 	expected = Six{
-		One:   rando.Times(),
-		Two:   rando.Times(),
-		Three: rando.Times(),
-		Four:  rando.Times(),
-		Five:  rando.Times(),
-		Six:   rando.Times(),
+		One:   rando.TimeMillis(),
+		Two:   rando.TimeMillis(),
+		Three: rando.TimeMillis(),
+		Four:  rando.TimeMillis(),
+		Five:  rando.TimeMillis(),
+		Six:   rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -134,13 +134,13 @@ func TestFuzz_7(t *testing.T) {
 	require.Equal(t, Seven{}, actual)
 
 	expected = Seven{
-		One:   rando.Times(),
-		Two:   rando.Times(),
-		Three: rando.Times(),
-		Four:  rando.Times(),
-		Five:  rando.Times(),
-		Six:   rando.Times(),
-		Seven: rando.Times(),
+		One:   rando.TimeMillis(),
+		Two:   rando.TimeMillis(),
+		Three: rando.TimeMillis(),
+		Four:  rando.TimeMillis(),
+		Five:  rando.TimeMillis(),
+		Six:   rando.TimeMillis(),
+		Seven: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -157,14 +157,14 @@ func TestFuzz_8(t *testing.T) {
 	require.Equal(t, Eight{}, actual)
 
 	expected = Eight{
-		One:   rando.Times(),
-		Two:   rando.Times(),
-		Three: rando.Times(),
-		Four:  rando.Times(),
-		Five:  rando.Times(),
-		Six:   rando.Times(),
-		Seven: rando.Times(),
-		Eight: rando.Times(),
+		One:   rando.TimeMillis(),
+		Two:   rando.TimeMillis(),
+		Three: rando.TimeMillis(),
+		Four:  rando.TimeMillis(),
+		Five:  rando.TimeMillis(),
+		Six:   rando.TimeMillis(),
+		Seven: rando.TimeMillis(),
+		Eight: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -181,15 +181,15 @@ func TestFuzz_9(t *testing.T) {
 	require.Equal(t, Nine{}, actual)
 
 	expected = Nine{
-		One:   rando.Times(),
-		Two:   rando.Times(),
-		Three: rando.Times(),
-		Four:  rando.Times(),
-		Five:  rando.Times(),
-		Six:   rando.Times(),
-		Seven: rando.Times(),
-		Eight: rando.Times(),
-		Nine:  rando.Times(),
+		One:   rando.TimeMillis(),
+		Two:   rando.TimeMillis(),
+		Three: rando.TimeMillis(),
+		Four:  rando.TimeMillis(),
+		Five:  rando.TimeMillis(),
+		Six:   rando.TimeMillis(),
+		Seven: rando.TimeMillis(),
+		Eight: rando.TimeMillis(),
+		Nine:  rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -206,16 +206,16 @@ func TestFuzz_10(t *testing.T) {
 	require.Equal(t, Ten{}, actual)
 
 	expected = Ten{
-		One:   rando.Times(),
-		Two:   rando.Times(),
-		Three: rando.Times(),
-		Four:  rando.Times(),
-		Five:  rando.Times(),
-		Six:   rando.Times(),
-		Seven: rando.Times(),
-		Eight: rando.Times(),
-		Nine:  rando.Times(),
-		Ten:   rando.Times(),
+		One:   rando.TimeMillis(),
+		Two:   rando.TimeMillis(),
+		Three: rando.TimeMillis(),
+		Four:  rando.TimeMillis(),
+		Five:  rando.TimeMillis(),
+		Six:   rando.TimeMillis(),
+		Seven: rando.TimeMillis(),
+		Eight: rando.TimeMillis(),
+		Nine:  rando.TimeMillis(),
+		Ten:   rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -232,17 +232,17 @@ func TestFuzz_11(t *testing.T) {
 	require.Equal(t, Eleven{}, actual)
 
 	expected = Eleven{
-		One:    rando.Times(),
-		Two:    rando.Times(),
-		Three:  rando.Times(),
-		Four:   rando.Times(),
-		Five:   rando.Times(),
-		Six:    rando.Times(),
-		Seven:  rando.Times(),
-		Eight:  rando.Times(),
-		Nine:   rando.Times(),
-		Ten:    rando.Times(),
-		Eleven: rando.Times(),
+		One:    rando.TimeMillis(),
+		Two:    rando.TimeMillis(),
+		Three:  rando.TimeMillis(),
+		Four:   rando.TimeMillis(),
+		Five:   rando.TimeMillis(),
+		Six:    rando.TimeMillis(),
+		Seven:  rando.TimeMillis(),
+		Eight:  rando.TimeMillis(),
+		Nine:   rando.TimeMillis(),
+		Ten:    rando.TimeMillis(),
+		Eleven: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -259,18 +259,18 @@ func TestFuzz_12(t *testing.T) {
 	require.Equal(t, Twelve{}, actual)
 
 	expected = Twelve{
-		One:    rando.Times(),
-		Two:    rando.Times(),
-		Three:  rando.Times(),
-		Four:   rando.Times(),
-		Five:   rando.Times(),
-		Six:    rando.Times(),
-		Seven:  rando.Times(),
-		Eight:  rando.Times(),
-		Nine:   rando.Times(),
-		Ten:    rando.Times(),
-		Eleven: rando.Times(),
-		Twelve: rando.Times(),
+		One:    rando.TimeMillis(),
+		Two:    rando.TimeMillis(),
+		Three:  rando.TimeMillis(),
+		Four:   rando.TimeMillis(),
+		Five:   rando.TimeMillis(),
+		Six:    rando.TimeMillis(),
+		Seven:  rando.TimeMillis(),
+		Eight:  rando.TimeMillis(),
+		Nine:   rando.TimeMillis(),
+		Ten:    rando.TimeMillis(),
+		Eleven: rando.TimeMillis(),
+		Twelve: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -287,19 +287,19 @@ func TestFuzz_13(t *testing.T) {
 	require.Equal(t, Thirteen{}, actual)
 
 	expected = Thirteen{
-		One:      rando.Times(),
-		Two:      rando.Times(),
-		Three:    rando.Times(),
-		Four:     rando.Times(),
-		Five:     rando.Times(),
-		Six:      rando.Times(),
-		Seven:    rando.Times(),
-		Eight:    rando.Times(),
-		Nine:     rando.Times(),
-		Ten:      rando.Times(),
-		Eleven:   rando.Times(),
-		Twelve:   rando.Times(),
-		Thirteen: rando.Times(),
+		One:      rando.TimeMillis(),
+		Two:      rando.TimeMillis(),
+		Three:    rando.TimeMillis(),
+		Four:     rando.TimeMillis(),
+		Five:     rando.TimeMillis(),
+		Six:      rando.TimeMillis(),
+		Seven:    rando.TimeMillis(),
+		Eight:    rando.TimeMillis(),
+		Nine:     rando.TimeMillis(),
+		Ten:      rando.TimeMillis(),
+		Eleven:   rando.TimeMillis(),
+		Twelve:   rando.TimeMillis(),
+		Thirteen: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -316,20 +316,20 @@ func TestFuzz_14(t *testing.T) {
 	require.Equal(t, Fourteen{}, actual)
 
 	expected = Fourteen{
-		One:      rando.Times(),
-		Two:      rando.Times(),
-		Three:    rando.Times(),
-		Four:     rando.Times(),
-		Five:     rando.Times(),
-		Six:      rando.Times(),
-		Seven:    rando.Times(),
-		Eight:    rando.Times(),
-		Nine:     rando.Times(),
-		Ten:      rando.Times(),
-		Eleven:   rando.Times(),
-		Twelve:   rando.Times(),
-		Thirteen: rando.Times(),
-		Fourteen: rando.Times(),
+		One:      rando.TimeMillis(),
+		Two:      rando.TimeMillis(),
+		Three:    rando.TimeMillis(),
+		Four:     rando.TimeMillis(),
+		Five:     rando.TimeMillis(),
+		Six:      rando.TimeMillis(),
+		Seven:    rando.TimeMillis(),
+		Eight:    rando.TimeMillis(),
+		Nine:     rando.TimeMillis(),
+		Ten:      rando.TimeMillis(),
+		Eleven:   rando.TimeMillis(),
+		Twelve:   rando.TimeMillis(),
+		Thirteen: rando.TimeMillis(),
+		Fourteen: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -346,21 +346,21 @@ func TestFuzz_15(t *testing.T) {
 	require.Equal(t, Fifteen{}, actual)
 
 	expected = Fifteen{
-		One:      rando.Times(),
-		Two:      rando.Times(),
-		Three:    rando.Times(),
-		Four:     rando.Times(),
-		Five:     rando.Times(),
-		Six:      rando.Times(),
-		Seven:    rando.Times(),
-		Eight:    rando.Times(),
-		Nine:     rando.Times(),
-		Ten:      rando.Times(),
-		Eleven:   rando.Times(),
-		Twelve:   rando.Times(),
-		Thirteen: rando.Times(),
-		Fourteen: rando.Times(),
-		Fifteen:  rando.Times(),
+		One:      rando.TimeMillis(),
+		Two:      rando.TimeMillis(),
+		Three:    rando.TimeMillis(),
+		Four:     rando.TimeMillis(),
+		Five:     rando.TimeMillis(),
+		Six:      rando.TimeMillis(),
+		Seven:    rando.TimeMillis(),
+		Eight:    rando.TimeMillis(),
+		Nine:     rando.TimeMillis(),
+		Ten:      rando.TimeMillis(),
+		Eleven:   rando.TimeMillis(),
+		Twelve:   rando.TimeMillis(),
+		Thirteen: rando.TimeMillis(),
+		Fourteen: rando.TimeMillis(),
+		Fifteen:  rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -377,22 +377,22 @@ func TestFuzz_16(t *testing.T) {
 	require.Equal(t, Sixteen{}, actual)
 
 	expected = Sixteen{
-		One:      rando.Times(),
-		Two:      rando.Times(),
-		Three:    rando.Times(),
-		Four:     rando.Times(),
-		Five:     rando.Times(),
-		Six:      rando.Times(),
-		Seven:    rando.Times(),
-		Eight:    rando.Times(),
-		Nine:     rando.Times(),
-		Ten:      rando.Times(),
-		Eleven:   rando.Times(),
-		Twelve:   rando.Times(),
-		Thirteen: rando.Times(),
-		Fourteen: rando.Times(),
-		Fifteen:  rando.Times(),
-		Sixteen:  rando.Times(),
+		One:      rando.TimeMillis(),
+		Two:      rando.TimeMillis(),
+		Three:    rando.TimeMillis(),
+		Four:     rando.TimeMillis(),
+		Five:     rando.TimeMillis(),
+		Six:      rando.TimeMillis(),
+		Seven:    rando.TimeMillis(),
+		Eight:    rando.TimeMillis(),
+		Nine:     rando.TimeMillis(),
+		Ten:      rando.TimeMillis(),
+		Eleven:   rando.TimeMillis(),
+		Twelve:   rando.TimeMillis(),
+		Thirteen: rando.TimeMillis(),
+		Fourteen: rando.TimeMillis(),
+		Fifteen:  rando.TimeMillis(),
+		Sixteen:  rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -409,23 +409,23 @@ func TestFuzz_17(t *testing.T) {
 	require.Equal(t, Seventeen{}, actual)
 
 	expected = Seventeen{
-		One:       rando.Times(),
-		Two:       rando.Times(),
-		Three:     rando.Times(),
-		Four:      rando.Times(),
-		Five:      rando.Times(),
-		Six:       rando.Times(),
-		Seven:     rando.Times(),
-		Eight:     rando.Times(),
-		Nine:      rando.Times(),
-		Ten:       rando.Times(),
-		Eleven:    rando.Times(),
-		Twelve:    rando.Times(),
-		Thirteen:  rando.Times(),
-		Fourteen:  rando.Times(),
-		Fifteen:   rando.Times(),
-		Sixteen:   rando.Times(),
-		Seventeen: rando.Times(),
+		One:       rando.TimeMillis(),
+		Two:       rando.TimeMillis(),
+		Three:     rando.TimeMillis(),
+		Four:      rando.TimeMillis(),
+		Five:      rando.TimeMillis(),
+		Six:       rando.TimeMillis(),
+		Seven:     rando.TimeMillis(),
+		Eight:     rando.TimeMillis(),
+		Nine:      rando.TimeMillis(),
+		Ten:       rando.TimeMillis(),
+		Eleven:    rando.TimeMillis(),
+		Twelve:    rando.TimeMillis(),
+		Thirteen:  rando.TimeMillis(),
+		Fourteen:  rando.TimeMillis(),
+		Fifteen:   rando.TimeMillis(),
+		Sixteen:   rando.TimeMillis(),
+		Seventeen: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -442,24 +442,24 @@ func TestFuzz_18(t *testing.T) {
 	require.Equal(t, Eighteen{}, actual)
 
 	expected = Eighteen{
-		One:       rando.Times(),
-		Two:       rando.Times(),
-		Three:     rando.Times(),
-		Four:      rando.Times(),
-		Five:      rando.Times(),
-		Six:       rando.Times(),
-		Seven:     rando.Times(),
-		Eight:     rando.Times(),
-		Nine:      rando.Times(),
-		Ten:       rando.Times(),
-		Eleven:    rando.Times(),
-		Twelve:    rando.Times(),
-		Thirteen:  rando.Times(),
-		Fourteen:  rando.Times(),
-		Fifteen:   rando.Times(),
-		Sixteen:   rando.Times(),
-		Seventeen: rando.Times(),
-		Eighteen:  rando.Times(),
+		One:       rando.TimeMillis(),
+		Two:       rando.TimeMillis(),
+		Three:     rando.TimeMillis(),
+		Four:      rando.TimeMillis(),
+		Five:      rando.TimeMillis(),
+		Six:       rando.TimeMillis(),
+		Seven:     rando.TimeMillis(),
+		Eight:     rando.TimeMillis(),
+		Nine:      rando.TimeMillis(),
+		Ten:       rando.TimeMillis(),
+		Eleven:    rando.TimeMillis(),
+		Twelve:    rando.TimeMillis(),
+		Thirteen:  rando.TimeMillis(),
+		Fourteen:  rando.TimeMillis(),
+		Fifteen:   rando.TimeMillis(),
+		Sixteen:   rando.TimeMillis(),
+		Seventeen: rando.TimeMillis(),
+		Eighteen:  rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -476,25 +476,25 @@ func TestFuzz_19(t *testing.T) {
 	require.Equal(t, Nineteen{}, actual)
 
 	expected = Nineteen{
-		One:       rando.Times(),
-		Two:       rando.Times(),
-		Three:     rando.Times(),
-		Four:      rando.Times(),
-		Five:      rando.Times(),
-		Six:       rando.Times(),
-		Seven:     rando.Times(),
-		Eight:     rando.Times(),
-		Nine:      rando.Times(),
-		Ten:       rando.Times(),
-		Eleven:    rando.Times(),
-		Twelve:    rando.Times(),
-		Thirteen:  rando.Times(),
-		Fourteen:  rando.Times(),
-		Fifteen:   rando.Times(),
-		Sixteen:   rando.Times(),
-		Seventeen: rando.Times(),
-		Eighteen:  rando.Times(),
-		Nineteen:  rando.Times(),
+		One:       rando.TimeMillis(),
+		Two:       rando.TimeMillis(),
+		Three:     rando.TimeMillis(),
+		Four:      rando.TimeMillis(),
+		Five:      rando.TimeMillis(),
+		Six:       rando.TimeMillis(),
+		Seven:     rando.TimeMillis(),
+		Eight:     rando.TimeMillis(),
+		Nine:      rando.TimeMillis(),
+		Ten:       rando.TimeMillis(),
+		Eleven:    rando.TimeMillis(),
+		Twelve:    rando.TimeMillis(),
+		Thirteen:  rando.TimeMillis(),
+		Fourteen:  rando.TimeMillis(),
+		Fifteen:   rando.TimeMillis(),
+		Sixteen:   rando.TimeMillis(),
+		Seventeen: rando.TimeMillis(),
+		Eighteen:  rando.TimeMillis(),
+		Nineteen:  rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -511,26 +511,26 @@ func TestFuzz_20(t *testing.T) {
 	require.Equal(t, Twenty{}, actual)
 
 	expected = Twenty{
-		One:       rando.Times(),
-		Two:       rando.Times(),
-		Three:     rando.Times(),
-		Four:      rando.Times(),
-		Five:      rando.Times(),
-		Six:       rando.Times(),
-		Seven:     rando.Times(),
-		Eight:     rando.Times(),
-		Nine:      rando.Times(),
-		Ten:       rando.Times(),
-		Eleven:    rando.Times(),
-		Twelve:    rando.Times(),
-		Thirteen:  rando.Times(),
-		Fourteen:  rando.Times(),
-		Fifteen:   rando.Times(),
-		Sixteen:   rando.Times(),
-		Seventeen: rando.Times(),
-		Eighteen:  rando.Times(),
-		Nineteen:  rando.Times(),
-		Twenty:    rando.Times(),
+		One:       rando.TimeMillis(),
+		Two:       rando.TimeMillis(),
+		Three:     rando.TimeMillis(),
+		Four:      rando.TimeMillis(),
+		Five:      rando.TimeMillis(),
+		Six:       rando.TimeMillis(),
+		Seven:     rando.TimeMillis(),
+		Eight:     rando.TimeMillis(),
+		Nine:      rando.TimeMillis(),
+		Ten:       rando.TimeMillis(),
+		Eleven:    rando.TimeMillis(),
+		Twelve:    rando.TimeMillis(),
+		Thirteen:  rando.TimeMillis(),
+		Fourteen:  rando.TimeMillis(),
+		Fifteen:   rando.TimeMillis(),
+		Sixteen:   rando.TimeMillis(),
+		Seventeen: rando.TimeMillis(),
+		Eighteen:  rando.TimeMillis(),
+		Nineteen:  rando.TimeMillis(),
+		Twenty:    rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -547,27 +547,27 @@ func TestFuzz_21(t *testing.T) {
 	require.Equal(t, TwentyOne{}, actual)
 
 	expected = TwentyOne{
-		One:       rando.Times(),
-		Two:       rando.Times(),
-		Three:     rando.Times(),
-		Four:      rando.Times(),
-		Five:      rando.Times(),
-		Six:       rando.Times(),
-		Seven:     rando.Times(),
-		Eight:     rando.Times(),
-		Nine:      rando.Times(),
-		Ten:       rando.Times(),
-		Eleven:    rando.Times(),
-		Twelve:    rando.Times(),
-		Thirteen:  rando.Times(),
-		Fourteen:  rando.Times(),
-		Fifteen:   rando.Times(),
-		Sixteen:   rando.Times(),
-		Seventeen: rando.Times(),
-		Eighteen:  rando.Times(),
-		Nineteen:  rando.Times(),
-		Twenty:    rando.Times(),
-		TwentyOne: rando.Times(),
+		One:       rando.TimeMillis(),
+		Two:       rando.TimeMillis(),
+		Three:     rando.TimeMillis(),
+		Four:      rando.TimeMillis(),
+		Five:      rando.TimeMillis(),
+		Six:       rando.TimeMillis(),
+		Seven:     rando.TimeMillis(),
+		Eight:     rando.TimeMillis(),
+		Nine:      rando.TimeMillis(),
+		Ten:       rando.TimeMillis(),
+		Eleven:    rando.TimeMillis(),
+		Twelve:    rando.TimeMillis(),
+		Thirteen:  rando.TimeMillis(),
+		Fourteen:  rando.TimeMillis(),
+		Fifteen:   rando.TimeMillis(),
+		Sixteen:   rando.TimeMillis(),
+		Seventeen: rando.TimeMillis(),
+		Eighteen:  rando.TimeMillis(),
+		Nineteen:  rando.TimeMillis(),
+		Twenty:    rando.TimeMillis(),
+		TwentyOne: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -584,28 +584,28 @@ func TestFuzz_22(t *testing.T) {
 	require.Equal(t, TwentyTwo{}, actual)
 
 	expected = TwentyTwo{
-		One:       rando.Times(),
-		Two:       rando.Times(),
-		Three:     rando.Times(),
-		Four:      rando.Times(),
-		Five:      rando.Times(),
-		Six:       rando.Times(),
-		Seven:     rando.Times(),
-		Eight:     rando.Times(),
-		Nine:      rando.Times(),
-		Ten:       rando.Times(),
-		Eleven:    rando.Times(),
-		Twelve:    rando.Times(),
-		Thirteen:  rando.Times(),
-		Fourteen:  rando.Times(),
-		Fifteen:   rando.Times(),
-		Sixteen:   rando.Times(),
-		Seventeen: rando.Times(),
-		Eighteen:  rando.Times(),
-		Nineteen:  rando.Times(),
-		Twenty:    rando.Times(),
-		TwentyOne: rando.Times(),
-		TwentyTwo: rando.Times(),
+		One:       rando.TimeMillis(),
+		Two:       rando.TimeMillis(),
+		Three:     rando.TimeMillis(),
+		Four:      rando.TimeMillis(),
+		Five:      rando.TimeMillis(),
+		Six:       rando.TimeMillis(),
+		Seven:     rando.TimeMillis(),
+		Eight:     rando.TimeMillis(),
+		Nine:      rando.TimeMillis(),
+		Ten:       rando.TimeMillis(),
+		Eleven:    rando.TimeMillis(),
+		Twelve:    rando.TimeMillis(),
+		Thirteen:  rando.TimeMillis(),
+		Fourteen:  rando.TimeMillis(),
+		Fifteen:   rando.TimeMillis(),
+		Sixteen:   rando.TimeMillis(),
+		Seventeen: rando.TimeMillis(),
+		Eighteen:  rando.TimeMillis(),
+		Nineteen:  rando.TimeMillis(),
+		Twenty:    rando.TimeMillis(),
+		TwentyOne: rando.TimeMillis(),
+		TwentyTwo: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))
@@ -622,29 +622,29 @@ func TestFuzz_23(t *testing.T) {
 	require.Equal(t, TwentyThree{}, actual)
 
 	expected = TwentyThree{
-		One:         rando.Times(),
-		Two:         rando.Times(),
-		Three:       rando.Times(),
-		Four:        rando.Times(),
-		Five:        rando.Times(),
-		Six:         rando.Times(),
-		Seven:       rando.Times(),
-		Eight:       rando.Times(),
-		Nine:        rando.Times(),
-		Ten:         rando.Times(),
-		Eleven:      rando.Times(),
-		Twelve:      rando.Times(),
-		Thirteen:    rando.Times(),
-		Fourteen:    rando.Times(),
-		Fifteen:     rando.Times(),
-		Sixteen:     rando.Times(),
-		Seventeen:   rando.Times(),
-		Eighteen:    rando.Times(),
-		Nineteen:    rando.Times(),
-		Twenty:      rando.Times(),
-		TwentyOne:   rando.Times(),
-		TwentyTwo:   rando.Times(),
-		TwentyThree: rando.Times(),
+		One:         rando.TimeMillis(),
+		Two:         rando.TimeMillis(),
+		Three:       rando.TimeMillis(),
+		Four:        rando.TimeMillis(),
+		Five:        rando.TimeMillis(),
+		Six:         rando.TimeMillis(),
+		Seven:       rando.TimeMillis(),
+		Eight:       rando.TimeMillis(),
+		Nine:        rando.TimeMillis(),
+		Ten:         rando.TimeMillis(),
+		Eleven:      rando.TimeMillis(),
+		Twelve:      rando.TimeMillis(),
+		Thirteen:    rando.TimeMillis(),
+		Fourteen:    rando.TimeMillis(),
+		Fifteen:     rando.TimeMillis(),
+		Sixteen:     rando.TimeMillis(),
+		Seventeen:   rando.TimeMillis(),
+		Eighteen:    rando.TimeMillis(),
+		Nineteen:    rando.TimeMillis(),
+		Twenty:      rando.TimeMillis(),
+		TwentyOne:   rando.TimeMillis(),
+		TwentyTwo:   rando.TimeMillis(),
+		TwentyThree: rando.TimeMillis(),
 	}
 	src := expected.MarshalJ()
 	require.NoError(t, actual.UnmarshalJ(src))

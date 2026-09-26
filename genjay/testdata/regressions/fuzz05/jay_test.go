@@ -94,10 +94,10 @@ func TestFuzz_4(t *testing.T) {
 
 	actual = Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X{
 		CaSAAqJ5d05dd7lTSBW8P74ro8Bu: rando.Uint64(),
-		VY123:                        rando.Time(),
+		VY123:                        rando.TimeMilli(),
 		IC5qlktHjoAxQ85BBL11a52LLqLNa03GvsFtx6660G0Bj78LXptHo40S737W4ro0Y27s10168Xc75kpo7: rando.Bool(),
 		Dxe5ORTPGA6AHajb0OQV5r2wl2lE2p6LCn85a23ysejS30:                                    rando.Byte(),
-		N3L7V2OMyF3K5LqS0lRxe6IcMQPh5:                                                     rando.Time(),
+		N3L7V2OMyF3K5LqS0lRxe6IcMQPh5:                                                     rando.TimeMilli(),
 		I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j:                 rando.Duration(),
 		C11nVJCwQXED6cgc65lS0NNld6ormyMtGY42JNPP34hOA3GegJ10ObN56e:                        rando.Bool(),
 		WkMdF1S4rr0dYq0SN4TTo3h2:                                                          rando.Bools(),
