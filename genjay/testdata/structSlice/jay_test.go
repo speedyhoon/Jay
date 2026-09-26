@@ -1,9 +1,10 @@
 package main
 
 import (
+	"testing"
+
 	"github.com/go-openapi/testify/v2/require"
 	"github.com/speedyhoon/rando"
-	"testing"
 )
 
 func TestFuzz_1(t *testing.T) {
