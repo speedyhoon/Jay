@@ -229,9 +229,8 @@ func (f *field) ctxVarIncrementBy() string {
 		return printFunc(nameOf(jay.SizeBools, &f.structTyp.isImportJ), string(f.marshal.qtyVar))
 	} else if f.elmSize <= 1 {
 		return string(f.marshal.qtyVar)
-	} else {
-		return fmt.Sprintf("%s*%d", f.marshal.qtyVar, f.elmSize)
 	}
+	return fmt.Sprintf("%s*%d", f.marshal.qtyVar, f.elmSize)
 }
 
 func (f *field) isNotArrayOrSlice() bool {
