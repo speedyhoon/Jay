@@ -9,10 +9,16 @@ import (
 
 func (s *Section) MarshalJ() (b []byte) {
 	l0, l1 := jay.Len8(s.Name), jay.Len8(s.Order)
-	b = make([]byte, 4+l0+l1)
+	b = make([]byte, 84+l0+l1)
 	b[0], b[1] = byte(l0), byte(l1)
 	jay.WriteUint16(b[2:4], uint16(s.Color))
-	at, end := 4, 4+l0
+	jay.WriteUint64s(b[4:44], s.Sectors[:], 5)
+	jay.WriteUint64(b[44:52], uint64(s.Sections[0]))
+	jay.WriteUint64(b[52:60], uint64(s.Sections[1]))
+	jay.WriteUint64(b[60:68], uint64(s.Sections[2]))
+	jay.WriteUint64(b[68:76], uint64(s.Sections[3]))
+	jay.WriteUint64(b[76:84], uint64(s.Sections[4]))
+	at, end := 84, 84+l0
 	copy(b[at:end], s.Name)
 	if l1 != 0 {
 		copy(b[end:], s.Order)
@@ -22,15 +28,23 @@ func (s *Section) MarshalJ() (b []byte) {
 
 func (s *Section) UnmarshalJ(b []byte) error {
 	l := len(b)
-	if l < 4 {
+	if l < 84 {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1 := int(b[0]), int(b[1])
-	if l != 4+l0+l1 {
+	if l != 84+l0+l1 {
 		return jay.ErrUnexpectedEOB
 	}
 	s.Color = ext.C16(jay.ReadUint16(b[2:4]))
-	at, end := 4, 4+l0
+	s.Sectors = ext.Sectors(jay.ReadUint64s(b[4:44], 5))
+	s.Sections = [5]ext.Sections{
+		ext.Sections(jay.ReadUint64(b[44:52])),
+		ext.Sections(jay.ReadUint64(b[52:60])),
+		ext.Sections(jay.ReadUint64(b[60:68])),
+		ext.Sections(jay.ReadUint64(b[68:76])),
+		ext.Sections(jay.ReadUint64(b[76:84])),
+	}
+	at, end := 84, 84+l0
 	s.Name = string(b[at:end])
 	if l1 != 0 {
 		s.Order = b[end:]

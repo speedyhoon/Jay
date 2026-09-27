@@ -97,7 +97,7 @@ func (s *structTyp) isReturnedInline() {
 
 func (f *field) marshalLine(ctx *varCtx, lenVar string) string {
 	fun, template := f.marshalFuncTemplate()
-	if template == tNoTemplate || template > tByteConv {
+	if template == tNoTemplate || template > tArrayConv {
 		// Unknown type, not supported yet.
 		return ""
 	}
@@ -124,6 +124,14 @@ func (f *field) marshalLine(ctx *varCtx, lenVar string) string {
 		return fmt.Sprintf("%s(%s, %s, %s)", fun, f.sliceExprM(ctx), f.qtySlice(), f.Field(fun))
 	case tByteAssign:
 		return f.Field(fun)
+	case tArrayConv:
+		lines := make([]string, f.arraySize)
+		slice := newSliceExp(f)
+		for i := range f.arraySize {
+			lines[i] = printFunc(fun, slice.Print(f, i+1 == f.arraySize), printFunc(f.arrayType, fmt.Sprintf("%s[%d]", f.Name(), i)))
+			slice.Inc(f)
+		}
+		return strings.Join(lines, "\n\t")
 	default:
 		lg.Printf("unexpected marshal template %d\n", template)
 		return ""
@@ -236,6 +244,9 @@ func (f *field) ctxVarIncrementBy() string {
 func (f *field) isNotArrayOrSlice() bool {
 	return f.arraySize == typeNotArrayOrSlice
 }
+func (f *field) isArrayOrSlice() bool {
+	return f.arraySize != typeNotArrayOrSlice
+}
 func (f *field) isArray() bool {
 	return f.arraySize >= typeArray
 }
@@ -252,6 +263,12 @@ func printFunc(fun string, params ...string) (code string) {
 }
 
 func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
+	if f.isArray() && !f.isSliceable {
+		empty := field{structTyp: f.structTyp, typ: f.arrayType}
+		funcName, _ = empty.marshalFuncTemplate()
+		return funcName, tArrayConv
+	}
+
 	var fun any
 	switch f.typ {
 	case tBools:
@@ -339,6 +356,8 @@ func (f *field) marshalFuncTemplate() (funcName string, template uint8) {
 		}
 	case tTimes:
 		fun, template = jay.WriteTimes, tFuncLength
+	case tTimeDuration:
+		fun, template = jay.WriteDuration, tFunc
 	case tTimeDurations:
 		fun, template = jay.WriteDurations, tFuncLength
 	case tUint16:
@@ -447,4 +466,7 @@ const (
 
 	// tByteConv converts that type to a byte & assigns, `b[0] = byte(int8)`.
 	tByteConv
+
+	// tArrayConv manually converts each item in an array to its underlying type.
+	tArrayConv
 )

@@ -189,7 +189,7 @@ func (o *Option) ProcessWrite(source any, outputFile string, filenames ...string
 	return err
 }
 
-func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports []*dst.ImportSpec, parentTypes prevTypes, parents ...[]*dst.Ident) (hasExportedFields bool) {
+func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports []*dst.ImportSpec, parentTypes *prevTypes, parents ...[]*dst.Ident) (hasExportedFields bool) {
 	if s.tag.HasIgnore() {
 		return false
 	}
@@ -214,6 +214,10 @@ func (s *structTyp) process(fields []*dst.Field, dirList *dirList, fileImports [
 		if !ok {
 			utl.Del(&fields, i)
 			continue
+		}
+
+		if fe.isArrayOrSlice() {
+			fe.isSliceable = parentTypes.isSliceable()
 		}
 
 		s.addExportedFields(names, &fe, parents)

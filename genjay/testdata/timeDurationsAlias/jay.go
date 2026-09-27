@@ -5,8 +5,8 @@ package main
 import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() (b []byte) {
-	l0 := len(o.One)
-	b = make([]byte, 1+l0*8)
+	l0 := jay.Len8(o.One)
+	b = make([]byte, 1+8*l0)
 	b[0] = byte(l0)
 	jay.WriteDurations(b[1:], o.One, l0)
 	return
@@ -18,7 +18,7 @@ func (o *One) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0 := int(b[0])
-	if l < 1+l0 {
+	if l != 1+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
 	o.One = jay.ReadDurations(b[1:], l0)
@@ -26,8 +26,8 @@ func (o *One) UnmarshalJ(b []byte) error {
 }
 
 func (t *Two) MarshalJ() (b []byte) {
-	l0, l1 := len(t.One), len(t.Two)
-	b = make([]byte, 2+l0*8+l1*8)
+	l0, l1 := jay.Len8(t.One), jay.Len8(t.Two)
+	b = make([]byte, 2+8*(l0+l1))
 	b[0], b[1] = byte(l0), byte(l1)
 	at, end := 2, 2+l0*8
 	jay.WriteDurations(b[at:end], t.One, l0)
@@ -41,7 +41,7 @@ func (t *Two) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1 := int(b[0]), int(b[1])
-	if l < 2+l0+l1 {
+	if l != 2+8*(l0+l1) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 2, 2+l0*8
@@ -51,8 +51,8 @@ func (t *Two) UnmarshalJ(b []byte) error {
 }
 
 func (t *Three) MarshalJ() (b []byte) {
-	l0, l1, l2 := len(t.One), len(t.Two), len(t.Three)
-	b = make([]byte, 3+l0*8+l1*8+l2*8)
+	l0, l1, l2 := jay.Len8(t.One), jay.Len8(t.Two), jay.Len8(t.Three)
+	b = make([]byte, 3+8*(l0+l1+l2))
 	b[0], b[1], b[2] = byte(l0), byte(l1), byte(l2)
 	at, end := 3, 3+l0*8
 	jay.WriteDurations(b[at:end], t.One, l0)
@@ -68,7 +68,7 @@ func (t *Three) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2 := int(b[0]), int(b[1]), int(b[2])
-	if l < 3+l0+l1+l2 {
+	if l != 3+8*(l0+l1+l2) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 3, 3+l0*8
@@ -80,8 +80,8 @@ func (t *Three) UnmarshalJ(b []byte) error {
 }
 
 func (f *Four) MarshalJ() (b []byte) {
-	l0, l1, l2, l3 := len(f.One), len(f.Two), len(f.Three), len(f.Four)
-	b = make([]byte, 4+l0*8+l1*8+l2*8+l3*8)
+	l0, l1, l2, l3 := jay.Len8(f.One), jay.Len8(f.Two), jay.Len8(f.Three), jay.Len8(f.Four)
+	b = make([]byte, 4+8*(l0+l1+l2+l3))
 	b[0], b[1], b[2], b[3] = byte(l0), byte(l1), byte(l2), byte(l3)
 	at, end := 4, 4+l0*8
 	jay.WriteDurations(b[at:end], f.One, l0)
@@ -99,7 +99,7 @@ func (f *Four) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3 := int(b[0]), int(b[1]), int(b[2]), int(b[3])
-	if l < 4+l0+l1+l2+l3 {
+	if l != 4+8*(l0+l1+l2+l3) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 4, 4+l0*8
@@ -113,8 +113,8 @@ func (f *Four) UnmarshalJ(b []byte) error {
 }
 
 func (f *Five) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4 := len(f.One), len(f.Two), len(f.Three), len(f.Four), len(f.Five)
-	b = make([]byte, 5+l0*8+l1*8+l2*8+l3*8+l4*8)
+	l0, l1, l2, l3, l4 := jay.Len8(f.One), jay.Len8(f.Two), jay.Len8(f.Three), jay.Len8(f.Four), jay.Len8(f.Five)
+	b = make([]byte, 5+8*(l0+l1+l2+l3+l4))
 	b[0], b[1], b[2], b[3], b[4] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4)
 	at, end := 5, 5+l0*8
 	jay.WriteDurations(b[at:end], f.One, l0)
@@ -134,7 +134,7 @@ func (f *Five) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4])
-	if l < 5+l0+l1+l2+l3+l4 {
+	if l != 5+8*(l0+l1+l2+l3+l4) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 5, 5+l0*8
@@ -150,8 +150,8 @@ func (f *Five) UnmarshalJ(b []byte) error {
 }
 
 func (s *Six) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six)
-	b = make([]byte, 6+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8)
+	l0, l1, l2, l3, l4, l5 := jay.Len8(s.One), jay.Len8(s.Two), jay.Len8(s.Three), jay.Len8(s.Four), jay.Len8(s.Five), jay.Len8(s.Six)
+	b = make([]byte, 6+8*(l0+l1+l2+l3+l4+l5))
 	b[0], b[1], b[2], b[3], b[4], b[5] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5)
 	at, end := 6, 6+l0*8
 	jay.WriteDurations(b[at:end], s.One, l0)
@@ -173,7 +173,7 @@ func (s *Six) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5])
-	if l < 6+l0+l1+l2+l3+l4+l5 {
+	if l != 6+8*(l0+l1+l2+l3+l4+l5) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 6, 6+l0*8
@@ -191,8 +191,8 @@ func (s *Six) UnmarshalJ(b []byte) error {
 }
 
 func (s *Seven) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six), len(s.Seven)
-	b = make([]byte, 7+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8)
+	l0, l1, l2, l3, l4, l5, l6 := jay.Len8(s.One), jay.Len8(s.Two), jay.Len8(s.Three), jay.Len8(s.Four), jay.Len8(s.Five), jay.Len8(s.Six), jay.Len8(s.Seven)
+	b = make([]byte, 7+8*(l0+l1+l2+l3+l4+l5+l6))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6)
 	at, end := 7, 7+l0*8
 	jay.WriteDurations(b[at:end], s.One, l0)
@@ -216,7 +216,7 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6])
-	if l < 7+l0+l1+l2+l3+l4+l5+l6 {
+	if l != 7+8*(l0+l1+l2+l3+l4+l5+l6) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 7, 7+l0*8
@@ -236,8 +236,8 @@ func (s *Seven) UnmarshalJ(b []byte) error {
 }
 
 func (e *Eight) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7 := len(e.One), len(e.Two), len(e.Three), len(e.Four), len(e.Five), len(e.Six), len(e.Seven), len(e.Eight)
-	b = make([]byte, 8+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8)
+	l0, l1, l2, l3, l4, l5, l6, l7 := jay.Len8(e.One), jay.Len8(e.Two), jay.Len8(e.Three), jay.Len8(e.Four), jay.Len8(e.Five), jay.Len8(e.Six), jay.Len8(e.Seven), jay.Len8(e.Eight)
+	b = make([]byte, 8+8*(l0+l1+l2+l3+l4+l5+l6+l7))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7)
 	at, end := 8, 8+l0*8
 	jay.WriteDurations(b[at:end], e.One, l0)
@@ -263,7 +263,7 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7])
-	if l < 8+l0+l1+l2+l3+l4+l5+l6+l7 {
+	if l != 8+8*(l0+l1+l2+l3+l4+l5+l6+l7) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 8, 8+l0*8
@@ -285,8 +285,8 @@ func (e *Eight) UnmarshalJ(b []byte) error {
 }
 
 func (n *Nine) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8 := len(n.One), len(n.Two), len(n.Three), len(n.Four), len(n.Five), len(n.Six), len(n.Seven), len(n.Eight), len(n.Nine)
-	b = make([]byte, 9+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8 := jay.Len8(n.One), jay.Len8(n.Two), jay.Len8(n.Three), jay.Len8(n.Four), jay.Len8(n.Five), jay.Len8(n.Six), jay.Len8(n.Seven), jay.Len8(n.Eight), jay.Len8(n.Nine)
+	b = make([]byte, 9+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8)
 	at, end := 9, 9+l0*8
 	jay.WriteDurations(b[at:end], n.One, l0)
@@ -314,7 +314,7 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8])
-	if l < 9+l0+l1+l2+l3+l4+l5+l6+l7+l8 {
+	if l != 9+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 9, 9+l0*8
@@ -338,8 +338,8 @@ func (n *Nine) UnmarshalJ(b []byte) error {
 }
 
 func (t *Ten) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten)
-	b = make([]byte, 10+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := jay.Len8(t.One), jay.Len8(t.Two), jay.Len8(t.Three), jay.Len8(t.Four), jay.Len8(t.Five), jay.Len8(t.Six), jay.Len8(t.Seven), jay.Len8(t.Eight), jay.Len8(t.Nine), jay.Len8(t.Ten)
+	b = make([]byte, 10+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9)
 	at, end := 10, 10+l0*8
 	jay.WriteDurations(b[at:end], t.One, l0)
@@ -369,7 +369,7 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9])
-	if l < 10+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9 {
+	if l != 10+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 10, 10+l0*8
@@ -395,8 +395,8 @@ func (t *Ten) UnmarshalJ(b []byte) error {
 }
 
 func (e *Eleven) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := len(e.One), len(e.Two), len(e.Three), len(e.Four), len(e.Five), len(e.Six), len(e.Seven), len(e.Eight), len(e.Nine), len(e.Ten), len(e.Eleven)
-	b = make([]byte, 11+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := jay.Len8(e.One), jay.Len8(e.Two), jay.Len8(e.Three), jay.Len8(e.Four), jay.Len8(e.Five), jay.Len8(e.Six), jay.Len8(e.Seven), jay.Len8(e.Eight), jay.Len8(e.Nine), jay.Len8(e.Ten), jay.Len8(e.Eleven)
+	b = make([]byte, 11+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10)
 	at, end := 11, 11+l0*8
 	jay.WriteDurations(b[at:end], e.One, l0)
@@ -428,7 +428,7 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10])
-	if l < 11+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10 {
+	if l != 11+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 11, 11+l0*8
@@ -456,8 +456,8 @@ func (e *Eleven) UnmarshalJ(b []byte) error {
 }
 
 func (t *Twelve) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve)
-	b = make([]byte, 12+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := jay.Len8(t.One), jay.Len8(t.Two), jay.Len8(t.Three), jay.Len8(t.Four), jay.Len8(t.Five), jay.Len8(t.Six), jay.Len8(t.Seven), jay.Len8(t.Eight), jay.Len8(t.Nine), jay.Len8(t.Ten), jay.Len8(t.Eleven), jay.Len8(t.Twelve)
+	b = make([]byte, 12+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11)
 	at, end := 12, 12+l0*8
 	jay.WriteDurations(b[at:end], t.One, l0)
@@ -491,7 +491,7 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11])
-	if l < 12+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11 {
+	if l != 12+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 12, 12+l0*8
@@ -521,8 +521,8 @@ func (t *Twelve) UnmarshalJ(b []byte) error {
 }
 
 func (t *Thirteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen)
-	b = make([]byte, 13+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := jay.Len8(t.One), jay.Len8(t.Two), jay.Len8(t.Three), jay.Len8(t.Four), jay.Len8(t.Five), jay.Len8(t.Six), jay.Len8(t.Seven), jay.Len8(t.Eight), jay.Len8(t.Nine), jay.Len8(t.Ten), jay.Len8(t.Eleven), jay.Len8(t.Twelve), jay.Len8(t.Thirteen)
+	b = make([]byte, 13+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12)
 	at, end := 13, 13+l0*8
 	jay.WriteDurations(b[at:end], t.One, l0)
@@ -558,7 +558,7 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12])
-	if l < 13+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12 {
+	if l != 13+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 13, 13+l0*8
@@ -590,8 +590,8 @@ func (t *Thirteen) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fourteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := len(f.One), len(f.Two), len(f.Three), len(f.Four), len(f.Five), len(f.Six), len(f.Seven), len(f.Eight), len(f.Nine), len(f.Ten), len(f.Eleven), len(f.Twelve), len(f.Thirteen), len(f.Fourteen)
-	b = make([]byte, 14+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := jay.Len8(f.One), jay.Len8(f.Two), jay.Len8(f.Three), jay.Len8(f.Four), jay.Len8(f.Five), jay.Len8(f.Six), jay.Len8(f.Seven), jay.Len8(f.Eight), jay.Len8(f.Nine), jay.Len8(f.Ten), jay.Len8(f.Eleven), jay.Len8(f.Twelve), jay.Len8(f.Thirteen), jay.Len8(f.Fourteen)
+	b = make([]byte, 14+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13)
 	at, end := 14, 14+l0*8
 	jay.WriteDurations(b[at:end], f.One, l0)
@@ -629,7 +629,7 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13])
-	if l < 14+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13 {
+	if l != 14+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 14, 14+l0*8
@@ -663,8 +663,8 @@ func (f *Fourteen) UnmarshalJ(b []byte) error {
 }
 
 func (f *Fifteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := len(f.One), len(f.Two), len(f.Three), len(f.Four), len(f.Five), len(f.Six), len(f.Seven), len(f.Eight), len(f.Nine), len(f.Ten), len(f.Eleven), len(f.Twelve), len(f.Thirteen), len(f.Fourteen), len(f.Fifteen)
-	b = make([]byte, 15+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8+l14*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := jay.Len8(f.One), jay.Len8(f.Two), jay.Len8(f.Three), jay.Len8(f.Four), jay.Len8(f.Five), jay.Len8(f.Six), jay.Len8(f.Seven), jay.Len8(f.Eight), jay.Len8(f.Nine), jay.Len8(f.Ten), jay.Len8(f.Eleven), jay.Len8(f.Twelve), jay.Len8(f.Thirteen), jay.Len8(f.Fourteen), jay.Len8(f.Fifteen)
+	b = make([]byte, 15+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14)
 	at, end := 15, 15+l0*8
 	jay.WriteDurations(b[at:end], f.One, l0)
@@ -704,7 +704,7 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14])
-	if l < 15+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14 {
+	if l != 15+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 15, 15+l0*8
@@ -740,8 +740,8 @@ func (f *Fifteen) UnmarshalJ(b []byte) error {
 }
 
 func (s *Sixteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six), len(s.Seven), len(s.Eight), len(s.Nine), len(s.Ten), len(s.Eleven), len(s.Twelve), len(s.Thirteen), len(s.Fourteen), len(s.Fifteen), len(s.Sixteen)
-	b = make([]byte, 16+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8+l14*8+l15*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := jay.Len8(s.One), jay.Len8(s.Two), jay.Len8(s.Three), jay.Len8(s.Four), jay.Len8(s.Five), jay.Len8(s.Six), jay.Len8(s.Seven), jay.Len8(s.Eight), jay.Len8(s.Nine), jay.Len8(s.Ten), jay.Len8(s.Eleven), jay.Len8(s.Twelve), jay.Len8(s.Thirteen), jay.Len8(s.Fourteen), jay.Len8(s.Fifteen), jay.Len8(s.Sixteen)
+	b = make([]byte, 16+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15)
 	at, end := 16, 16+l0*8
 	jay.WriteDurations(b[at:end], s.One, l0)
@@ -783,7 +783,7 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15])
-	if l < 16+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15 {
+	if l != 16+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 16, 16+l0*8
@@ -821,8 +821,8 @@ func (s *Sixteen) UnmarshalJ(b []byte) error {
 }
 
 func (s *Seventeen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := len(s.One), len(s.Two), len(s.Three), len(s.Four), len(s.Five), len(s.Six), len(s.Seven), len(s.Eight), len(s.Nine), len(s.Ten), len(s.Eleven), len(s.Twelve), len(s.Thirteen), len(s.Fourteen), len(s.Fifteen), len(s.Sixteen), len(s.Seventeen)
-	b = make([]byte, 17+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8+l14*8+l15*8+l16*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := jay.Len8(s.One), jay.Len8(s.Two), jay.Len8(s.Three), jay.Len8(s.Four), jay.Len8(s.Five), jay.Len8(s.Six), jay.Len8(s.Seven), jay.Len8(s.Eight), jay.Len8(s.Nine), jay.Len8(s.Ten), jay.Len8(s.Eleven), jay.Len8(s.Twelve), jay.Len8(s.Thirteen), jay.Len8(s.Fourteen), jay.Len8(s.Fifteen), jay.Len8(s.Sixteen), jay.Len8(s.Seventeen)
+	b = make([]byte, 17+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16)
 	at, end := 17, 17+l0*8
 	jay.WriteDurations(b[at:end], s.One, l0)
@@ -866,7 +866,7 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16])
-	if l < 17+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16 {
+	if l != 17+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 17, 17+l0*8
@@ -906,8 +906,8 @@ func (s *Seventeen) UnmarshalJ(b []byte) error {
 }
 
 func (e *Eighteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := len(e.One), len(e.Two), len(e.Three), len(e.Four), len(e.Five), len(e.Six), len(e.Seven), len(e.Eight), len(e.Nine), len(e.Ten), len(e.Eleven), len(e.Twelve), len(e.Thirteen), len(e.Fourteen), len(e.Fifteen), len(e.Sixteen), len(e.Seventeen), len(e.Eighteen)
-	b = make([]byte, 18+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8+l14*8+l15*8+l16*8+l17*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := jay.Len8(e.One), jay.Len8(e.Two), jay.Len8(e.Three), jay.Len8(e.Four), jay.Len8(e.Five), jay.Len8(e.Six), jay.Len8(e.Seven), jay.Len8(e.Eight), jay.Len8(e.Nine), jay.Len8(e.Ten), jay.Len8(e.Eleven), jay.Len8(e.Twelve), jay.Len8(e.Thirteen), jay.Len8(e.Fourteen), jay.Len8(e.Fifteen), jay.Len8(e.Sixteen), jay.Len8(e.Seventeen), jay.Len8(e.Eighteen)
+	b = make([]byte, 18+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17)
 	at, end := 18, 18+l0*8
 	jay.WriteDurations(b[at:end], e.One, l0)
@@ -953,7 +953,7 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17])
-	if l < 18+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17 {
+	if l != 18+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 18, 18+l0*8
@@ -995,8 +995,8 @@ func (e *Eighteen) UnmarshalJ(b []byte) error {
 }
 
 func (n *Nineteen) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := len(n.One), len(n.Two), len(n.Three), len(n.Four), len(n.Five), len(n.Six), len(n.Seven), len(n.Eight), len(n.Nine), len(n.Ten), len(n.Eleven), len(n.Twelve), len(n.Thirteen), len(n.Fourteen), len(n.Fifteen), len(n.Sixteen), len(n.Seventeen), len(n.Eighteen), len(n.Nineteen)
-	b = make([]byte, 19+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8+l14*8+l15*8+l16*8+l17*8+l18*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := jay.Len8(n.One), jay.Len8(n.Two), jay.Len8(n.Three), jay.Len8(n.Four), jay.Len8(n.Five), jay.Len8(n.Six), jay.Len8(n.Seven), jay.Len8(n.Eight), jay.Len8(n.Nine), jay.Len8(n.Ten), jay.Len8(n.Eleven), jay.Len8(n.Twelve), jay.Len8(n.Thirteen), jay.Len8(n.Fourteen), jay.Len8(n.Fifteen), jay.Len8(n.Sixteen), jay.Len8(n.Seventeen), jay.Len8(n.Eighteen), jay.Len8(n.Nineteen)
+	b = make([]byte, 19+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18)
 	at, end := 19, 19+l0*8
 	jay.WriteDurations(b[at:end], n.One, l0)
@@ -1044,7 +1044,7 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18])
-	if l < 19+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18 {
+	if l != 19+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 19, 19+l0*8
@@ -1088,8 +1088,8 @@ func (n *Nineteen) UnmarshalJ(b []byte) error {
 }
 
 func (t *Twenty) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty)
-	b = make([]byte, 20+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8+l14*8+l15*8+l16*8+l17*8+l18*8+l19*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := jay.Len8(t.One), jay.Len8(t.Two), jay.Len8(t.Three), jay.Len8(t.Four), jay.Len8(t.Five), jay.Len8(t.Six), jay.Len8(t.Seven), jay.Len8(t.Eight), jay.Len8(t.Nine), jay.Len8(t.Ten), jay.Len8(t.Eleven), jay.Len8(t.Twelve), jay.Len8(t.Thirteen), jay.Len8(t.Fourteen), jay.Len8(t.Fifteen), jay.Len8(t.Sixteen), jay.Len8(t.Seventeen), jay.Len8(t.Eighteen), jay.Len8(t.Nineteen), jay.Len8(t.Twenty)
+	b = make([]byte, 20+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19)
 	at, end := 20, 20+l0*8
 	jay.WriteDurations(b[at:end], t.One, l0)
@@ -1139,7 +1139,7 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19])
-	if l < 20+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19 {
+	if l != 20+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 20, 20+l0*8
@@ -1185,8 +1185,8 @@ func (t *Twenty) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyOne) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty), len(t.TwentyOne)
-	b = make([]byte, 21+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8+l14*8+l15*8+l16*8+l17*8+l18*8+l19*8+l20*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := jay.Len8(t.One), jay.Len8(t.Two), jay.Len8(t.Three), jay.Len8(t.Four), jay.Len8(t.Five), jay.Len8(t.Six), jay.Len8(t.Seven), jay.Len8(t.Eight), jay.Len8(t.Nine), jay.Len8(t.Ten), jay.Len8(t.Eleven), jay.Len8(t.Twelve), jay.Len8(t.Thirteen), jay.Len8(t.Fourteen), jay.Len8(t.Fifteen), jay.Len8(t.Sixteen), jay.Len8(t.Seventeen), jay.Len8(t.Eighteen), jay.Len8(t.Nineteen), jay.Len8(t.Twenty), jay.Len8(t.TwentyOne)
+	b = make([]byte, 21+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20)
 	at, end := 21, 21+l0*8
 	jay.WriteDurations(b[at:end], t.One, l0)
@@ -1238,7 +1238,7 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20])
-	if l < 21+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20 {
+	if l != 21+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 21, 21+l0*8
@@ -1286,8 +1286,8 @@ func (t *TwentyOne) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyTwo) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty), len(t.TwentyOne), len(t.TwentyTwo)
-	b = make([]byte, 22+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8+l14*8+l15*8+l16*8+l17*8+l18*8+l19*8+l20*8+l21*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := jay.Len8(t.One), jay.Len8(t.Two), jay.Len8(t.Three), jay.Len8(t.Four), jay.Len8(t.Five), jay.Len8(t.Six), jay.Len8(t.Seven), jay.Len8(t.Eight), jay.Len8(t.Nine), jay.Len8(t.Ten), jay.Len8(t.Eleven), jay.Len8(t.Twelve), jay.Len8(t.Thirteen), jay.Len8(t.Fourteen), jay.Len8(t.Fifteen), jay.Len8(t.Sixteen), jay.Len8(t.Seventeen), jay.Len8(t.Eighteen), jay.Len8(t.Nineteen), jay.Len8(t.Twenty), jay.Len8(t.TwentyOne), jay.Len8(t.TwentyTwo)
+	b = make([]byte, 22+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20), byte(l21)
 	at, end := 22, 22+l0*8
 	jay.WriteDurations(b[at:end], t.One, l0)
@@ -1341,7 +1341,7 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20]), int(b[21])
-	if l < 22+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21 {
+	if l != 22+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 22, 22+l0*8
@@ -1391,8 +1391,8 @@ func (t *TwentyTwo) UnmarshalJ(b []byte) error {
 }
 
 func (t *TwentyThree) MarshalJ() (b []byte) {
-	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22 := len(t.One), len(t.Two), len(t.Three), len(t.Four), len(t.Five), len(t.Six), len(t.Seven), len(t.Eight), len(t.Nine), len(t.Ten), len(t.Eleven), len(t.Twelve), len(t.Thirteen), len(t.Fourteen), len(t.Fifteen), len(t.Sixteen), len(t.Seventeen), len(t.Eighteen), len(t.Nineteen), len(t.Twenty), len(t.TwentyOne), len(t.TwentyTwo), len(t.TwentyThree)
-	b = make([]byte, 23+l0*8+l1*8+l2*8+l3*8+l4*8+l5*8+l6*8+l7*8+l8*8+l9*8+l10*8+l11*8+l12*8+l13*8+l14*8+l15*8+l16*8+l17*8+l18*8+l19*8+l20*8+l21*8+l22*8)
+	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22 := jay.Len8(t.One), jay.Len8(t.Two), jay.Len8(t.Three), jay.Len8(t.Four), jay.Len8(t.Five), jay.Len8(t.Six), jay.Len8(t.Seven), jay.Len8(t.Eight), jay.Len8(t.Nine), jay.Len8(t.Ten), jay.Len8(t.Eleven), jay.Len8(t.Twelve), jay.Len8(t.Thirteen), jay.Len8(t.Fourteen), jay.Len8(t.Fifteen), jay.Len8(t.Sixteen), jay.Len8(t.Seventeen), jay.Len8(t.Eighteen), jay.Len8(t.Nineteen), jay.Len8(t.Twenty), jay.Len8(t.TwentyOne), jay.Len8(t.TwentyTwo), jay.Len8(t.TwentyThree)
+	b = make([]byte, 23+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22))
 	b[0], b[1], b[2], b[3], b[4], b[5], b[6], b[7], b[8], b[9], b[10], b[11], b[12], b[13], b[14], b[15], b[16], b[17], b[18], b[19], b[20], b[21], b[22] = byte(l0), byte(l1), byte(l2), byte(l3), byte(l4), byte(l5), byte(l6), byte(l7), byte(l8), byte(l9), byte(l10), byte(l11), byte(l12), byte(l13), byte(l14), byte(l15), byte(l16), byte(l17), byte(l18), byte(l19), byte(l20), byte(l21), byte(l22)
 	at, end := 23, 23+l0*8
 	jay.WriteDurations(b[at:end], t.One, l0)
@@ -1448,7 +1448,7 @@ func (t *TwentyThree) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	l0, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22 := int(b[0]), int(b[1]), int(b[2]), int(b[3]), int(b[4]), int(b[5]), int(b[6]), int(b[7]), int(b[8]), int(b[9]), int(b[10]), int(b[11]), int(b[12]), int(b[13]), int(b[14]), int(b[15]), int(b[16]), int(b[17]), int(b[18]), int(b[19]), int(b[20]), int(b[21]), int(b[22])
-	if l < 23+l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22 {
+	if l != 23+8*(l0+l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12+l13+l14+l15+l16+l17+l18+l19+l20+l21+l22) {
 		return jay.ErrUnexpectedEOB
 	}
 	at, end := 23, 23+l0*8

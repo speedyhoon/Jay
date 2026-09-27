@@ -19,6 +19,14 @@ func TestSection(t *testing.T) {
 		Id:      nil,
 		Name:    rando.String(),
 		Color:   ext.C16(rando.Uint16()),
+		Sectors: ext.Sectors(rando.Uint64sN(5)),
+		Sections: [5]ext.Sections{
+			ext.Sections(rando.Uint64()),
+			ext.Sections(rando.Uint64()),
+			ext.Sections(rando.Uint64()),
+			ext.Sections(rando.Uint64()),
+			ext.Sections(rando.Uint64()),
+		},
 		Project: nil,
 		Order:   rando.Bytes(),
 	}

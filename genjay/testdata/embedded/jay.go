@@ -2,11 +2,7 @@
 
 package embedded
 
-import (
-	"time"
-
-	"github.com/speedyhoon/jay"
-)
+import "github.com/speedyhoon/jay"
 
 func (c *Configuration) MarshalJ() (b []byte) {
 	l0, l1, l2 := jay.Len8(c.Alarm.Types), jay.Len8(c.DataLog.Cluster), jay.Len8(c.Types.Cluster)
@@ -17,9 +13,9 @@ func (c *Configuration) MarshalJ() (b []byte) {
 	b[5] = c.Alarm.Attempts
 	b[6] = c.Alarm.KeyAttempts
 	b[7] = byte(c.Types.UniMog)
-	jay.WriteInt64(b[8:16], int64(c.Alarm.SirenOn))
-	jay.WriteInt64(b[16:24], int64(c.Alarm.SirenOff))
-	jay.WriteInt64(b[24:32], int64(c.Alarm.CheckEvery))
+	jay.WriteDuration(b[8:16], c.Alarm.SirenOn)
+	jay.WriteDuration(b[16:24], c.Alarm.SirenOff)
+	jay.WriteDuration(b[24:32], c.Alarm.CheckEvery)
 	jay.WriteUintX64(b[32:40], c.DataLog.Version)
 	jay.WriteUintX64(b[40:48], c.DataLog.VersionRace)
 	jay.WriteUint32(b[48:52], c.DataLog.FileSizeMax)
@@ -51,9 +47,9 @@ func (c *Configuration) UnmarshalJ(b []byte) error {
 	c.Alarm.Attempts = b[5]
 	c.Alarm.KeyAttempts = b[6]
 	c.Types.UniMog = UniMog(b[7])
-	c.Alarm.SirenOn = time.Duration(jay.ReadInt64(b[8:16]))
-	c.Alarm.SirenOff = time.Duration(jay.ReadInt64(b[16:24]))
-	c.Alarm.CheckEvery = time.Duration(jay.ReadInt64(b[24:32]))
+	c.Alarm.SirenOn = jay.ReadDuration(b[8:16])
+	c.Alarm.SirenOff = jay.ReadDuration(b[16:24])
+	c.Alarm.CheckEvery = jay.ReadDuration(b[24:32])
 	c.DataLog.Version = jay.ReadUintX64(b[32:40])
 	c.DataLog.VersionRace = jay.ReadUintX64(b[40:48])
 	c.DataLog.FileSizeMax = jay.ReadUint32(b[48:52])

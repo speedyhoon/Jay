@@ -388,6 +388,19 @@ func (f *field) unmarshalLine(ctx *varCtx) string {
 	case tByteAssign:
 		return fmt.Sprintf("%s = %s", f.Name(), printFunc(f.convertTo(), f.sliceExpr3(ctx)))
 
+	case tArrayConv:
+		lines := make([]string, f.arraySize)
+		slice := newSliceExp(f)
+		if f.arraySize >= 2 {
+			lines[0] = "\n\t"
+		}
+		for i := range lines {
+			lines[i] += printFunc(f.convertTo(), printFunc(fun, slice.Print(f, i+1 == f.arraySize)))
+			slice.Inc(f)
+		}
+		f.structTyp.imports.add(f.pkgReq)
+		return fmt.Sprintf("%s = [%d]%s{%s}", f.Name(), f.arraySize, f.convertTo(), strings.Join(lines, ",\n\t"))
+
 	default:
 		lg.Printf("unexpected unmarshal template %d\n", template)
 		return ""
@@ -475,6 +488,12 @@ func (f *field) typeConvert() string {
 // unmarshalFunc returns the function name to handle unmarshalling.
 // `size` is the quantity of bytes required to represent the type.
 func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInline canReturnInlined) {
+	if f.isArray() && !f.isSliceable {
+		empty := field{structTyp: f.structTyp, typ: f.arrayType}
+		funcName, _, _ = empty.unmarshalFunc()
+		return funcName, tArrayConv, false
+	}
+
 	var c any
 	switch f.typ {
 	case tBools:
@@ -570,6 +589,8 @@ func (f *field) unmarshalFunc() (funcName string, template uint8, canReturnInlin
 		}
 	case tTimes:
 		c, template = jay.ReadTimes, tFuncLength
+	case tTimeDuration:
+		c, template = jay.ReadDuration, tFunc
 	case tTimeDurations:
 		c, template = jay.ReadDurations, tFuncLength
 	case tUint16:

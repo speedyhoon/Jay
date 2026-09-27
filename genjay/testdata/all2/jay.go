@@ -2,11 +2,7 @@
 
 package main
 
-import (
-	"time"
-
-	"github.com/speedyhoon/jay"
-)
+import "github.com/speedyhoon/jay"
 
 func (f *Fuzz0) MarshalJ() []byte {
 	return []byte{jay.Bool1(f.One), f.Two}
@@ -204,7 +200,7 @@ func (f *Fuzz11) UnmarshalJ(b []byte) error {
 func (f *Fuzz12) MarshalJ() (b []byte) {
 	b = make([]byte, 9)
 	b[0] = jay.Bool1(f.One)
-	jay.WriteInt64(b[1:], int64(f.Two))
+	jay.WriteDuration(b[1:], f.Two)
 	return
 }
 
@@ -213,7 +209,7 @@ func (f *Fuzz12) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadBool1(b[0])
-	f.Two = time.Duration(jay.ReadInt64(b[1:]))
+	f.Two = jay.ReadDuration(b[1:])
 	return nil
 }
 
@@ -962,7 +958,7 @@ func (f *Fuzz50) UnmarshalJ(b []byte) error {
 func (f *Fuzz51) MarshalJ() (b []byte) {
 	b = make([]byte, 9)
 	b[0] = f.One
-	jay.WriteInt64(b[1:], int64(f.Two))
+	jay.WriteDuration(b[1:], f.Two)
 	return
 }
 
@@ -971,7 +967,7 @@ func (f *Fuzz51) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = b[0]
-	f.Two = time.Duration(jay.ReadInt64(b[1:]))
+	f.Two = jay.ReadDuration(b[1:])
 	return nil
 }
 
@@ -1726,7 +1722,7 @@ func (f *Fuzz89) UnmarshalJ(b []byte) error {
 func (f *Fuzz90) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
 	jay.WriteComplex64(b[:8], f.One)
-	jay.WriteInt64(b[8:], int64(f.Two))
+	jay.WriteDuration(b[8:], f.Two)
 	return
 }
 
@@ -1735,7 +1731,7 @@ func (f *Fuzz90) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadComplex64(b[:8])
-	f.Two = time.Duration(jay.ReadInt64(b[8:]))
+	f.Two = jay.ReadDuration(b[8:])
 	return nil
 }
 
@@ -2496,7 +2492,7 @@ func (f *Fuzz128) UnmarshalJ(b []byte) error {
 func (f *Fuzz129) MarshalJ() (b []byte) {
 	b = make([]byte, 24)
 	jay.WriteComplex128(b[:16], f.One)
-	jay.WriteInt64(b[16:], int64(f.Two))
+	jay.WriteDuration(b[16:], f.Two)
 	return
 }
 
@@ -2505,7 +2501,7 @@ func (f *Fuzz129) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadComplex128(b[:16])
-	f.Two = time.Duration(jay.ReadInt64(b[16:]))
+	f.Two = jay.ReadDuration(b[16:])
 	return nil
 }
 
@@ -3266,7 +3262,7 @@ func (f *Fuzz167) UnmarshalJ(b []byte) error {
 func (f *Fuzz168) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
 	jay.WriteFloat32(b[:4], f.One)
-	jay.WriteInt64(b[4:], int64(f.Two))
+	jay.WriteDuration(b[4:], f.Two)
 	return
 }
 
@@ -3275,7 +3271,7 @@ func (f *Fuzz168) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadFloat32(b[:4])
-	f.Two = time.Duration(jay.ReadInt64(b[4:]))
+	f.Two = jay.ReadDuration(b[4:])
 	return nil
 }
 
@@ -4033,7 +4029,7 @@ func (f *Fuzz206) UnmarshalJ(b []byte) error {
 func (f *Fuzz207) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
 	jay.WriteFloat64(b[:8], f.One)
-	jay.WriteInt64(b[8:], int64(f.Two))
+	jay.WriteDuration(b[8:], f.Two)
 	return
 }
 
@@ -4042,7 +4038,7 @@ func (f *Fuzz207) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadFloat64(b[:8])
-	f.Two = time.Duration(jay.ReadInt64(b[8:]))
+	f.Two = jay.ReadDuration(b[8:])
 	return nil
 }
 
@@ -4803,7 +4799,7 @@ func (f *Fuzz245) UnmarshalJ(b []byte) error {
 func (f *Fuzz246) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
 	jay.WriteIntX64(b[:8], f.One)
-	jay.WriteInt64(b[8:], int64(f.Two))
+	jay.WriteDuration(b[8:], f.Two)
 	return
 }
 
@@ -4812,7 +4808,7 @@ func (f *Fuzz246) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadIntX64(b[:8])
-	f.Two = time.Duration(jay.ReadInt64(b[8:]))
+	f.Two = jay.ReadDuration(b[8:])
 	return nil
 }
 
@@ -5567,7 +5563,7 @@ func (f *Fuzz284) UnmarshalJ(b []byte) error {
 func (f *Fuzz285) MarshalJ() (b []byte) {
 	b = make([]byte, 9)
 	b[0] = byte(f.One)
-	jay.WriteInt64(b[1:], int64(f.Two))
+	jay.WriteDuration(b[1:], f.Two)
 	return
 }
 
@@ -5576,7 +5572,7 @@ func (f *Fuzz285) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = int8(b[0])
-	f.Two = time.Duration(jay.ReadInt64(b[1:]))
+	f.Two = jay.ReadDuration(b[1:])
 	return nil
 }
 
@@ -6331,7 +6327,7 @@ func (f *Fuzz323) UnmarshalJ(b []byte) error {
 func (f *Fuzz324) MarshalJ() (b []byte) {
 	b = make([]byte, 10)
 	jay.WriteInt16(b[:2], f.One)
-	jay.WriteInt64(b[2:], int64(f.Two))
+	jay.WriteDuration(b[2:], f.Two)
 	return
 }
 
@@ -6340,7 +6336,7 @@ func (f *Fuzz324) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt16(b[:2])
-	f.Two = time.Duration(jay.ReadInt64(b[2:]))
+	f.Two = jay.ReadDuration(b[2:])
 	return nil
 }
 
@@ -7098,7 +7094,7 @@ func (f *Fuzz362) UnmarshalJ(b []byte) error {
 func (f *Fuzz363) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
 	jay.WriteInt32(b[:4], f.One)
-	jay.WriteInt64(b[4:], int64(f.Two))
+	jay.WriteDuration(b[4:], f.Two)
 	return
 }
 
@@ -7107,7 +7103,7 @@ func (f *Fuzz363) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt32(b[:4])
-	f.Two = time.Duration(jay.ReadInt64(b[4:]))
+	f.Two = jay.ReadDuration(b[4:])
 	return nil
 }
 
@@ -7865,7 +7861,7 @@ func (f *Fuzz401) UnmarshalJ(b []byte) error {
 func (f *Fuzz402) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
 	jay.WriteInt64(b[:8], f.One)
-	jay.WriteInt64(b[8:], int64(f.Two))
+	jay.WriteDuration(b[8:], f.Two)
 	return
 }
 
@@ -7874,7 +7870,7 @@ func (f *Fuzz402) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt64(b[:8])
-	f.Two = time.Duration(jay.ReadInt64(b[8:]))
+	f.Two = jay.ReadDuration(b[8:])
 	return nil
 }
 
@@ -8635,7 +8631,7 @@ func (f *Fuzz440) UnmarshalJ(b []byte) error {
 func (f *Fuzz441) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
 	jay.WriteInt32(b[:4], f.One)
-	jay.WriteInt64(b[4:], int64(f.Two))
+	jay.WriteDuration(b[4:], f.Two)
 	return
 }
 
@@ -8644,7 +8640,7 @@ func (f *Fuzz441) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadInt32(b[:4])
-	f.Two = time.Duration(jay.ReadInt64(b[4:]))
+	f.Two = jay.ReadDuration(b[4:])
 	return nil
 }
 
@@ -9480,7 +9476,7 @@ func (f *Fuzz480) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	copy(b[9:], f.One)
 	return
 }
@@ -9494,7 +9490,7 @@ func (f *Fuzz480) UnmarshalJ(b []byte) error {
 	if l != 9+l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = string(b[9:])
 	return nil
 }
@@ -10150,7 +10146,7 @@ func (f *Fuzz506) UnmarshalJ(b []byte) error {
 func (f *Fuzz507) MarshalJ() (b []byte) {
 	b = make([]byte, 9)
 	b[0] = jay.Bool1(f.Two)
-	jay.WriteInt64(b[1:], int64(f.One))
+	jay.WriteDuration(b[1:], f.One)
 	return
 }
 
@@ -10159,14 +10155,14 @@ func (f *Fuzz507) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = jay.ReadBool1(b[0])
-	f.One = time.Duration(jay.ReadInt64(b[1:]))
+	f.One = jay.ReadDuration(b[1:])
 	return nil
 }
 
 func (f *Fuzz508) MarshalJ() (b []byte) {
 	b = make([]byte, 9)
 	b[0] = f.Two
-	jay.WriteInt64(b[1:], int64(f.One))
+	jay.WriteDuration(b[1:], f.One)
 	return
 }
 
@@ -10175,13 +10171,13 @@ func (f *Fuzz508) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = b[0]
-	f.One = time.Duration(jay.ReadInt64(b[1:]))
+	f.One = jay.ReadDuration(b[1:])
 	return nil
 }
 
 func (f *Fuzz509) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteComplex64(b[8:], f.Two)
 	return
 }
@@ -10190,14 +10186,14 @@ func (f *Fuzz509) UnmarshalJ(b []byte) error {
 	if len(b) != 16 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadComplex64(b[8:])
 	return nil
 }
 
 func (f *Fuzz510) MarshalJ() (b []byte) {
 	b = make([]byte, 24)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteComplex128(b[8:], f.Two)
 	return
 }
@@ -10206,14 +10202,14 @@ func (f *Fuzz510) UnmarshalJ(b []byte) error {
 	if len(b) != 24 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadComplex128(b[8:])
 	return nil
 }
 
 func (f *Fuzz511) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteFloat32(b[8:], f.Two)
 	return
 }
@@ -10222,14 +10218,14 @@ func (f *Fuzz511) UnmarshalJ(b []byte) error {
 	if len(b) != 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadFloat32(b[8:])
 	return nil
 }
 
 func (f *Fuzz512) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteFloat64(b[8:], f.Two)
 	return
 }
@@ -10238,14 +10234,14 @@ func (f *Fuzz512) UnmarshalJ(b []byte) error {
 	if len(b) != 16 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadFloat64(b[8:])
 	return nil
 }
 
 func (f *Fuzz513) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteIntX64(b[8:], f.Two)
 	return
 }
@@ -10254,7 +10250,7 @@ func (f *Fuzz513) UnmarshalJ(b []byte) error {
 	if len(b) != 16 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadIntX64(b[8:])
 	return nil
 }
@@ -10262,7 +10258,7 @@ func (f *Fuzz513) UnmarshalJ(b []byte) error {
 func (f *Fuzz514) MarshalJ() (b []byte) {
 	b = make([]byte, 9)
 	b[0] = byte(f.Two)
-	jay.WriteInt64(b[1:], int64(f.One))
+	jay.WriteDuration(b[1:], f.One)
 	return
 }
 
@@ -10271,13 +10267,13 @@ func (f *Fuzz514) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = int8(b[0])
-	f.One = time.Duration(jay.ReadInt64(b[1:]))
+	f.One = jay.ReadDuration(b[1:])
 	return nil
 }
 
 func (f *Fuzz515) MarshalJ() (b []byte) {
 	b = make([]byte, 10)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteInt16(b[8:], f.Two)
 	return
 }
@@ -10286,14 +10282,14 @@ func (f *Fuzz515) UnmarshalJ(b []byte) error {
 	if len(b) != 10 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadInt16(b[8:])
 	return nil
 }
 
 func (f *Fuzz516) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteInt32(b[8:], f.Two)
 	return
 }
@@ -10302,14 +10298,14 @@ func (f *Fuzz516) UnmarshalJ(b []byte) error {
 	if len(b) != 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadInt32(b[8:])
 	return nil
 }
 
 func (f *Fuzz517) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteInt64(b[8:], f.Two)
 	return
 }
@@ -10318,14 +10314,14 @@ func (f *Fuzz517) UnmarshalJ(b []byte) error {
 	if len(b) != 16 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadInt64(b[8:])
 	return nil
 }
 
 func (f *Fuzz518) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteInt32(b[8:], f.Two)
 	return
 }
@@ -10334,7 +10330,7 @@ func (f *Fuzz518) UnmarshalJ(b []byte) error {
 	if len(b) != 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadInt32(b[8:])
 	return nil
 }
@@ -10343,7 +10339,7 @@ func (f *Fuzz519) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	copy(b[9:], f.Two)
 	return
 }
@@ -10357,14 +10353,14 @@ func (f *Fuzz519) UnmarshalJ(b []byte) error {
 	if l != 9+l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = string(b[9:])
 	return nil
 }
 
 func (f *Fuzz520) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteTime(b[8:], f.Two)
 	return
 }
@@ -10373,14 +10369,14 @@ func (f *Fuzz520) UnmarshalJ(b []byte) error {
 	if len(b) != 16 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadTime(b[8:])
 	return nil
 }
 
 func (f *Fuzz521) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteUintX64(b[8:], f.Two)
 	return
 }
@@ -10389,7 +10385,7 @@ func (f *Fuzz521) UnmarshalJ(b []byte) error {
 	if len(b) != 16 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadUintX64(b[8:])
 	return nil
 }
@@ -10397,7 +10393,7 @@ func (f *Fuzz521) UnmarshalJ(b []byte) error {
 func (f *Fuzz522) MarshalJ() (b []byte) {
 	b = make([]byte, 9)
 	b[0] = f.Two
-	jay.WriteInt64(b[1:], int64(f.One))
+	jay.WriteDuration(b[1:], f.One)
 	return
 }
 
@@ -10406,13 +10402,13 @@ func (f *Fuzz522) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.Two = b[0]
-	f.One = time.Duration(jay.ReadInt64(b[1:]))
+	f.One = jay.ReadDuration(b[1:])
 	return nil
 }
 
 func (f *Fuzz523) MarshalJ() (b []byte) {
 	b = make([]byte, 10)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteUint16(b[8:], f.Two)
 	return
 }
@@ -10421,14 +10417,14 @@ func (f *Fuzz523) UnmarshalJ(b []byte) error {
 	if len(b) != 10 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadUint16(b[8:])
 	return nil
 }
 
 func (f *Fuzz524) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteUint32(b[8:], f.Two)
 	return
 }
@@ -10437,14 +10433,14 @@ func (f *Fuzz524) UnmarshalJ(b []byte) error {
 	if len(b) != 12 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadUint32(b[8:])
 	return nil
 }
 
 func (f *Fuzz525) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
-	jay.WriteInt64(b[:8], int64(f.One))
+	jay.WriteDuration(b[:8], f.One)
 	jay.WriteUint64(b[8:], f.Two)
 	return
 }
@@ -10453,7 +10449,7 @@ func (f *Fuzz525) UnmarshalJ(b []byte) error {
 	if len(b) != 16 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[:8]))
+	f.One = jay.ReadDuration(b[:8])
 	f.Two = jay.ReadUint64(b[8:])
 	return nil
 }
@@ -10462,7 +10458,7 @@ func (f *Fuzz526) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteBools(b[9:], f.Two, l0)
 	return
 }
@@ -10472,7 +10468,7 @@ func (f *Fuzz526) UnmarshalJ(b []byte) error {
 	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadBools8(b[9:], b[0])
 	return nil
 }
@@ -10481,7 +10477,7 @@ func (f *Fuzz527) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	if l0 != 0 {
 		copy(b[9:], f.Two)
 	}
@@ -10497,7 +10493,7 @@ func (f *Fuzz527) UnmarshalJ(b []byte) error {
 	if l != 9+l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	if l0 != 0 {
 		f.Two = b[9:]
 	}
@@ -10508,7 +10504,7 @@ func (f *Fuzz528) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteComplex64s(b[9:], f.Two, l0)
 	return
 }
@@ -10522,7 +10518,7 @@ func (f *Fuzz528) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadComplex64s(b[9:], l0)
 	return nil
 }
@@ -10531,7 +10527,7 @@ func (f *Fuzz529) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteComplex128s(b[9:], f.Two, l0)
 	return
 }
@@ -10545,7 +10541,7 @@ func (f *Fuzz529) UnmarshalJ(b []byte) error {
 	if l != 9+16*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadComplex128s(b[9:], l0)
 	return nil
 }
@@ -10554,7 +10550,7 @@ func (f *Fuzz530) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteFloat32s(b[9:], f.Two, l0)
 	return
 }
@@ -10568,7 +10564,7 @@ func (f *Fuzz530) UnmarshalJ(b []byte) error {
 	if l != 9+4*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadFloat32s(b[9:], l0)
 	return nil
 }
@@ -10577,7 +10573,7 @@ func (f *Fuzz531) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteFloat64s(b[9:], f.Two, l0)
 	return
 }
@@ -10591,7 +10587,7 @@ func (f *Fuzz531) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadFloat64s(b[9:], l0)
 	return nil
 }
@@ -10600,7 +10596,7 @@ func (f *Fuzz532) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteIntsX64(b[9:], f.Two, l0)
 	return
 }
@@ -10614,7 +10610,7 @@ func (f *Fuzz532) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadIntsX64(b[9:], l0)
 	return nil
 }
@@ -10623,7 +10619,7 @@ func (f *Fuzz533) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteInt8s(b[9:], f.Two, l0)
 	return
 }
@@ -10637,7 +10633,7 @@ func (f *Fuzz533) UnmarshalJ(b []byte) error {
 	if l != 9+l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadInt8s(b[9:], l0)
 	return nil
 }
@@ -10646,7 +10642,7 @@ func (f *Fuzz534) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteInt16s(b[9:], f.Two, l0)
 	return
 }
@@ -10660,7 +10656,7 @@ func (f *Fuzz534) UnmarshalJ(b []byte) error {
 	if l != 9+2*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadInt16s(b[9:], l0)
 	return nil
 }
@@ -10669,7 +10665,7 @@ func (f *Fuzz535) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteInt32s(b[9:], f.Two, l0)
 	return
 }
@@ -10683,7 +10679,7 @@ func (f *Fuzz535) UnmarshalJ(b []byte) error {
 	if l != 9+4*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadInt32s(b[9:], l0)
 	return nil
 }
@@ -10692,7 +10688,7 @@ func (f *Fuzz536) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteInt64s(b[9:], f.Two, l0)
 	return
 }
@@ -10706,7 +10702,7 @@ func (f *Fuzz536) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadInt64s(b[9:], l0)
 	return nil
 }
@@ -10715,7 +10711,7 @@ func (f *Fuzz537) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteInt32s(b[9:], f.Two, l0)
 	return
 }
@@ -10729,14 +10725,14 @@ func (f *Fuzz537) UnmarshalJ(b []byte) error {
 	if l != 9+4*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadInt32s(b[9:], l0)
 	return nil
 }
 
 func (f *Fuzz538) MarshalJ() (b []byte) {
 	b = make([]byte, 9+jay.SizeStrings8(f.Two))
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteStrings8(b[9:], b[:1], f.Two)
 	return
 }
@@ -10748,7 +10744,7 @@ func (f *Fuzz538) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8Ok(b[9:], &f.Two, b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	return nil
 }
 
@@ -10756,7 +10752,7 @@ func (f *Fuzz539) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteDurations(b[9:], f.Two, l0)
 	return
 }
@@ -10770,7 +10766,7 @@ func (f *Fuzz539) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadDurations(b[9:], l0)
 	return nil
 }
@@ -10779,7 +10775,7 @@ func (f *Fuzz540) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteTimes(b[9:], f.Two, l0)
 	return
 }
@@ -10793,7 +10789,7 @@ func (f *Fuzz540) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadTimes(b[9:], l0)
 	return nil
 }
@@ -10802,7 +10798,7 @@ func (f *Fuzz541) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteUintsX64(b[9:], f.Two, l0)
 	return
 }
@@ -10816,7 +10812,7 @@ func (f *Fuzz541) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadUintsX64(b[9:], l0)
 	return nil
 }
@@ -10825,7 +10821,7 @@ func (f *Fuzz542) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	if l0 != 0 {
 		copy(b[9:], f.Two)
 	}
@@ -10841,7 +10837,7 @@ func (f *Fuzz542) UnmarshalJ(b []byte) error {
 	if l != 9+l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	if l0 != 0 {
 		f.Two = b[9:]
 	}
@@ -10852,7 +10848,7 @@ func (f *Fuzz543) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteUint16s(b[9:], f.Two, l0)
 	return
 }
@@ -10866,7 +10862,7 @@ func (f *Fuzz543) UnmarshalJ(b []byte) error {
 	if l != 9+2*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadUint16s(b[9:], l0)
 	return nil
 }
@@ -10875,7 +10871,7 @@ func (f *Fuzz544) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteUint32s(b[9:], f.Two, l0)
 	return
 }
@@ -10889,7 +10885,7 @@ func (f *Fuzz544) UnmarshalJ(b []byte) error {
 	if l != 9+4*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadUint32s(b[9:], l0)
 	return nil
 }
@@ -10898,7 +10894,7 @@ func (f *Fuzz545) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.Two)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.One))
+	jay.WriteDuration(b[1:9], f.One)
 	jay.WriteUint64s(b[9:], f.Two, l0)
 	return
 }
@@ -10912,7 +10908,7 @@ func (f *Fuzz545) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.One = time.Duration(jay.ReadInt64(b[1:9]))
+	f.One = jay.ReadDuration(b[1:9])
 	f.Two = jay.ReadUint64s(b[9:], l0)
 	return nil
 }
@@ -11135,7 +11131,7 @@ func (f *Fuzz558) UnmarshalJ(b []byte) error {
 func (f *Fuzz559) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
 	jay.WriteTime(b[:8], f.One)
-	jay.WriteInt64(b[8:], int64(f.Two))
+	jay.WriteDuration(b[8:], f.Two)
 	return
 }
 
@@ -11144,7 +11140,7 @@ func (f *Fuzz559) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadTime(b[:8])
-	f.Two = time.Duration(jay.ReadInt64(b[8:]))
+	f.Two = jay.ReadDuration(b[8:])
 	return nil
 }
 
@@ -11905,7 +11901,7 @@ func (f *Fuzz597) UnmarshalJ(b []byte) error {
 func (f *Fuzz598) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
 	jay.WriteUintX64(b[:8], f.One)
-	jay.WriteInt64(b[8:], int64(f.Two))
+	jay.WriteDuration(b[8:], f.Two)
 	return
 }
 
@@ -11914,7 +11910,7 @@ func (f *Fuzz598) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadUintX64(b[:8])
-	f.Two = time.Duration(jay.ReadInt64(b[8:]))
+	f.Two = jay.ReadDuration(b[8:])
 	return nil
 }
 
@@ -12666,7 +12662,7 @@ func (f *Fuzz636) UnmarshalJ(b []byte) error {
 func (f *Fuzz637) MarshalJ() (b []byte) {
 	b = make([]byte, 9)
 	b[0] = f.One
-	jay.WriteInt64(b[1:], int64(f.Two))
+	jay.WriteDuration(b[1:], f.Two)
 	return
 }
 
@@ -12675,7 +12671,7 @@ func (f *Fuzz637) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = b[0]
-	f.Two = time.Duration(jay.ReadInt64(b[1:]))
+	f.Two = jay.ReadDuration(b[1:])
 	return nil
 }
 
@@ -13433,7 +13429,7 @@ func (f *Fuzz675) UnmarshalJ(b []byte) error {
 func (f *Fuzz676) MarshalJ() (b []byte) {
 	b = make([]byte, 10)
 	jay.WriteUint16(b[:2], f.One)
-	jay.WriteInt64(b[2:], int64(f.Two))
+	jay.WriteDuration(b[2:], f.Two)
 	return
 }
 
@@ -13442,7 +13438,7 @@ func (f *Fuzz676) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadUint16(b[:2])
-	f.Two = time.Duration(jay.ReadInt64(b[2:]))
+	f.Two = jay.ReadDuration(b[2:])
 	return nil
 }
 
@@ -14200,7 +14196,7 @@ func (f *Fuzz714) UnmarshalJ(b []byte) error {
 func (f *Fuzz715) MarshalJ() (b []byte) {
 	b = make([]byte, 12)
 	jay.WriteUint32(b[:4], f.One)
-	jay.WriteInt64(b[4:], int64(f.Two))
+	jay.WriteDuration(b[4:], f.Two)
 	return
 }
 
@@ -14209,7 +14205,7 @@ func (f *Fuzz715) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadUint32(b[:4])
-	f.Two = time.Duration(jay.ReadInt64(b[4:]))
+	f.Two = jay.ReadDuration(b[4:])
 	return nil
 }
 
@@ -14967,7 +14963,7 @@ func (f *Fuzz753) UnmarshalJ(b []byte) error {
 func (f *Fuzz754) MarshalJ() (b []byte) {
 	b = make([]byte, 16)
 	jay.WriteUint64(b[:8], f.One)
-	jay.WriteInt64(b[8:], int64(f.Two))
+	jay.WriteDuration(b[8:], f.Two)
 	return
 }
 
@@ -14976,7 +14972,7 @@ func (f *Fuzz754) UnmarshalJ(b []byte) error {
 		return jay.ErrUnexpectedEOB
 	}
 	f.One = jay.ReadUint64(b[:8])
-	f.Two = time.Duration(jay.ReadInt64(b[8:]))
+	f.Two = jay.ReadDuration(b[8:])
 	return nil
 }
 
@@ -15776,7 +15772,7 @@ func (f *Fuzz793) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+jay.SizeBools(l0))
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteBools(b[9:], f.One, l0)
 	return
 }
@@ -15786,7 +15782,7 @@ func (f *Fuzz793) UnmarshalJ(b []byte) error {
 	if l < 9 || l != 9+jay.SizeBools8(b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadBools8(b[9:], b[0])
 	return nil
 }
@@ -16743,7 +16739,7 @@ func (f *Fuzz832) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	if l0 != 0 {
 		copy(b[9:], f.One)
 	}
@@ -16759,7 +16755,7 @@ func (f *Fuzz832) UnmarshalJ(b []byte) error {
 	if l != 9+l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	if l0 != 0 {
 		f.One = b[9:]
 	}
@@ -17790,7 +17786,7 @@ func (f *Fuzz871) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteComplex64s(b[9:], f.One, l0)
 	return
 }
@@ -17804,7 +17800,7 @@ func (f *Fuzz871) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadComplex64s(b[9:], l0)
 	return nil
 }
@@ -18737,7 +18733,7 @@ func (f *Fuzz910) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+16*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteComplex128s(b[9:], f.One, l0)
 	return
 }
@@ -18751,7 +18747,7 @@ func (f *Fuzz910) UnmarshalJ(b []byte) error {
 	if l != 9+16*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadComplex128s(b[9:], l0)
 	return nil
 }
@@ -19684,7 +19680,7 @@ func (f *Fuzz949) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteFloat32s(b[9:], f.One, l0)
 	return
 }
@@ -19698,7 +19694,7 @@ func (f *Fuzz949) UnmarshalJ(b []byte) error {
 	if l != 9+4*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadFloat32s(b[9:], l0)
 	return nil
 }
@@ -20631,7 +20627,7 @@ func (f *Fuzz988) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteFloat64s(b[9:], f.One, l0)
 	return
 }
@@ -20645,7 +20641,7 @@ func (f *Fuzz988) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadFloat64s(b[9:], l0)
 	return nil
 }
@@ -21578,7 +21574,7 @@ func (f *Fuzz1027) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteIntsX64(b[9:], f.One, l0)
 	return
 }
@@ -21592,7 +21588,7 @@ func (f *Fuzz1027) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadIntsX64(b[9:], l0)
 	return nil
 }
@@ -22525,7 +22521,7 @@ func (f *Fuzz1066) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteInt8s(b[9:], f.One, l0)
 	return
 }
@@ -22539,7 +22535,7 @@ func (f *Fuzz1066) UnmarshalJ(b []byte) error {
 	if l != 9+l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadInt8s(b[9:], l0)
 	return nil
 }
@@ -23472,7 +23468,7 @@ func (f *Fuzz1105) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteInt16s(b[9:], f.One, l0)
 	return
 }
@@ -23486,7 +23482,7 @@ func (f *Fuzz1105) UnmarshalJ(b []byte) error {
 	if l != 9+2*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadInt16s(b[9:], l0)
 	return nil
 }
@@ -24419,7 +24415,7 @@ func (f *Fuzz1144) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteInt32s(b[9:], f.One, l0)
 	return
 }
@@ -24433,7 +24429,7 @@ func (f *Fuzz1144) UnmarshalJ(b []byte) error {
 	if l != 9+4*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadInt32s(b[9:], l0)
 	return nil
 }
@@ -25366,7 +25362,7 @@ func (f *Fuzz1183) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteInt64s(b[9:], f.One, l0)
 	return
 }
@@ -25380,7 +25376,7 @@ func (f *Fuzz1183) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadInt64s(b[9:], l0)
 	return nil
 }
@@ -26313,7 +26309,7 @@ func (f *Fuzz1222) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteInt32s(b[9:], f.One, l0)
 	return
 }
@@ -26327,7 +26323,7 @@ func (f *Fuzz1222) UnmarshalJ(b []byte) error {
 	if l != 9+4*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadInt32s(b[9:], l0)
 	return nil
 }
@@ -27179,7 +27175,7 @@ func (f *Fuzz1260) UnmarshalJ(b []byte) error {
 
 func (f *Fuzz1261) MarshalJ() (b []byte) {
 	b = make([]byte, 9+jay.SizeStrings8(f.One))
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteStrings8(b[9:], b[:1], f.One)
 	return
 }
@@ -27191,7 +27187,7 @@ func (f *Fuzz1261) UnmarshalJ(b []byte) error {
 	if !jay.ReadStrings8Ok(b[9:], &f.One, b[0]) {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	return nil
 }
 
@@ -28116,7 +28112,7 @@ func (f *Fuzz1300) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteDurations(b[9:], f.One, l0)
 	return
 }
@@ -28130,7 +28126,7 @@ func (f *Fuzz1300) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadDurations(b[9:], l0)
 	return nil
 }
@@ -29063,7 +29059,7 @@ func (f *Fuzz1339) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteTimes(b[9:], f.One, l0)
 	return
 }
@@ -29077,7 +29073,7 @@ func (f *Fuzz1339) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadTimes(b[9:], l0)
 	return nil
 }
@@ -30010,7 +30006,7 @@ func (f *Fuzz1378) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteUintsX64(b[9:], f.One, l0)
 	return
 }
@@ -30024,7 +30020,7 @@ func (f *Fuzz1378) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadUintsX64(b[9:], l0)
 	return nil
 }
@@ -31009,7 +31005,7 @@ func (f *Fuzz1417) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	if l0 != 0 {
 		copy(b[9:], f.One)
 	}
@@ -31025,7 +31021,7 @@ func (f *Fuzz1417) UnmarshalJ(b []byte) error {
 	if l != 9+l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	if l0 != 0 {
 		f.One = b[9:]
 	}
@@ -32056,7 +32052,7 @@ func (f *Fuzz1456) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+2*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteUint16s(b[9:], f.One, l0)
 	return
 }
@@ -32070,7 +32066,7 @@ func (f *Fuzz1456) UnmarshalJ(b []byte) error {
 	if l != 9+2*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadUint16s(b[9:], l0)
 	return nil
 }
@@ -33003,7 +32999,7 @@ func (f *Fuzz1495) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+4*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteUint32s(b[9:], f.One, l0)
 	return
 }
@@ -33017,7 +33013,7 @@ func (f *Fuzz1495) UnmarshalJ(b []byte) error {
 	if l != 9+4*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadUint32s(b[9:], l0)
 	return nil
 }
@@ -33950,7 +33946,7 @@ func (f *Fuzz1534) MarshalJ() (b []byte) {
 	l0 := jay.Len8(f.One)
 	b = make([]byte, 9+8*l0)
 	b[0] = byte(l0)
-	jay.WriteInt64(b[1:9], int64(f.Two))
+	jay.WriteDuration(b[1:9], f.Two)
 	jay.WriteUint64s(b[9:], f.One, l0)
 	return
 }
@@ -33964,7 +33960,7 @@ func (f *Fuzz1534) UnmarshalJ(b []byte) error {
 	if l != 9+8*l0 {
 		return jay.ErrUnexpectedEOB
 	}
-	f.Two = time.Duration(jay.ReadInt64(b[1:9]))
+	f.Two = jay.ReadDuration(b[1:9])
 	f.One = jay.ReadUint64s(b[9:], l0)
 	return nil
 }

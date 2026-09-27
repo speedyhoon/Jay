@@ -41,7 +41,7 @@ func (f *field) typeFuncSize() (size uint) {
 			return 2
 		case tInt32, tFloat32, tUint32:
 			return 4
-		case tFloat64, tInt64, tUint64, tTime, tComplex64:
+		case tFloat64, tInt64, tUint64, tTime, tTimeDuration, tComplex64:
 			return 8
 		case tComplex128:
 			return 16

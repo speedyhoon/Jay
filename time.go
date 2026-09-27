@@ -57,6 +57,14 @@ func WriteTimeNano(y []byte, t time.Time) {
 	WriteInt64(y, t.UnixNano())
 }
 
+func ReadDuration(y []byte) time.Duration {
+	return time.Duration(ReadInt64(y))
+}
+
+func WriteDuration(y []byte, t time.Duration) {
+	WriteInt64(y, int64(t))
+}
+
 // ReadDurations ...
 func ReadDurations(y []byte, length int) (t []time.Duration) {
 	if length == _0 {

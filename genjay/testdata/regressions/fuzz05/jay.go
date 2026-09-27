@@ -2,11 +2,7 @@
 
 package fuzz05
 
-import (
-	"time"
-
-	"github.com/speedyhoon/jay"
-)
+import "github.com/speedyhoon/jay"
 
 func (s *S13Y8PdPX74Y7b) MarshalJ() (b []byte) {
 	b = make([]byte, 20)
@@ -100,7 +96,7 @@ func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) MarshalJ() (b []byte) 
 	jay.WriteUint64(b[3:11], y.CaSAAqJ5d05dd7lTSBW8P74ro8Bu)
 	jay.WriteTime(b[11:19], y.VY123)
 	jay.WriteTime(b[19:27], y.N3L7V2OMyF3K5LqS0lRxe6IcMQPh5)
-	jay.WriteInt64(b[27:35], int64(y.I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j))
+	jay.WriteDuration(b[27:35], y.I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j)
 	jay.WriteBools(b[35:], y.WkMdF1S4rr0dYq0SN4TTo3h2, l0)
 	return
 }
@@ -115,7 +111,7 @@ func (y *Y0m4GH5J1b3Pku55C03L4p17aLoBhX4WnF7QaPO1bqgum5X) UnmarshalJ(b []byte) e
 	y.CaSAAqJ5d05dd7lTSBW8P74ro8Bu = jay.ReadUint64(b[3:11])
 	y.VY123 = jay.ReadTime(b[11:19])
 	y.N3L7V2OMyF3K5LqS0lRxe6IcMQPh5 = jay.ReadTime(b[19:27])
-	y.I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j = time.Duration(jay.ReadInt64(b[27:35]))
+	y.I158Luik4h616xv4cL1x1hEX082jEu42cSAbXfr0MU0phAre88mfxEkm4lr6p6r7j = jay.ReadDuration(b[27:35])
 	y.WkMdF1S4rr0dYq0SN4TTo3h2 = jay.ReadBools8(b[35:], b[0])
 	return nil
 }

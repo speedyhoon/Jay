@@ -2,11 +2,7 @@
 
 package main
 
-import (
-	"time"
-
-	"github.com/speedyhoon/jay"
-)
+import "github.com/speedyhoon/jay"
 
 func (o *One) MarshalJ() []byte {
 	return []byte{jay.Bool1(o.One)}
@@ -2465,7 +2461,7 @@ func (t *ThirtyFive) MarshalJ() (b []byte) {
 	jay.WriteUint32(b[89:93], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFive)
 	jay.WriteUint64(b[93:101], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentySix)
 	jay.WriteTime(b[101:109], t.ThirtyFour.ThirtyThree.ThirtyThree)
-	jay.WriteInt64(b[109:117], int64(t.ThirtyFive))
+	jay.WriteDuration(b[109:117], t.ThirtyFive)
 	at, end := 117, 117+l0
 	jay.WriteStrings8(b[at:end], b[:1], t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo)
 	at, end = end, end+jay.SizeBools(l1)
@@ -2535,7 +2531,7 @@ func (t *ThirtyFive) UnmarshalJ(b []byte) error {
 	t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFive = jay.ReadUint32(b[89:93])
 	t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentySix = jay.ReadUint64(b[93:101])
 	t.ThirtyFour.ThirtyThree.ThirtyThree = jay.ReadTime(b[101:109])
-	t.ThirtyFive = time.Duration(jay.ReadInt64(b[109:117]))
+	t.ThirtyFive = jay.ReadDuration(b[109:117])
 	end := at + l1
 	t.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two = jay.ReadBools8(b[at:end], b[1])
 	if l2 != 0 {
@@ -2594,7 +2590,7 @@ func (t *ThirtySix) MarshalJ() (b []byte) {
 	jay.WriteUint32(b[90:94], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFive)
 	jay.WriteUint64(b[94:102], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentySix)
 	jay.WriteTime(b[102:110], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyThree)
-	jay.WriteInt64(b[110:118], int64(t.ThirtyFive.ThirtyFive))
+	jay.WriteDuration(b[110:118], t.ThirtyFive.ThirtyFive)
 	at, end := 118, 118+l0
 	jay.WriteStrings8(b[at:end], b[:1], t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyTwo)
 	at, end = end, end+jay.SizeBools(l1)
@@ -2666,7 +2662,7 @@ func (t *ThirtySix) UnmarshalJ(b []byte) error {
 	t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFive = jay.ReadUint32(b[90:94])
 	t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentySix = jay.ReadUint64(b[94:102])
 	t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyThree = jay.ReadTime(b[102:110])
-	t.ThirtyFive.ThirtyFive = time.Duration(jay.ReadInt64(b[110:118]))
+	t.ThirtyFive.ThirtyFive = jay.ReadDuration(b[110:118])
 	end := at + l1
 	t.ThirtyFive.ThirtyFour.ThirtyThree.ThirtyTwo.ThirtyOne.Thirty.TwentyNine.TwentyEight.TwentySeven.TwentySix.TwentyFive.TwentyFour.TwentyThree.TwentyTwo.TwentyOne.Twenty.Nineteen.Eighteen.Seventeen.Sixteen.Fifteen.Fourteen.Thirteen.Twelve.Eleven.Ten.Nine.Eight.Seven.Six.Five.Four.Three.Two.Two = jay.ReadBools8(b[at:end], b[1])
 	if l2 != 0 {

@@ -6,6 +6,7 @@ import (
 	"go/token"
 	"path/filepath"
 	"reflect"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -49,7 +50,7 @@ func isBuiltIn(typ string) bool {
 	}
 }
 
-func (s *structTyp) isSupportedType(f *field, t any, dirList *dirList, pkg string, fileImports []*dst.ImportSpec, parentTypes prevTypes, parents ...[]*dst.Ident) (ok bool) {
+func (s *structTyp) isSupportedType(f *field, t any, dirList *dirList, pkg string, fileImports []*dst.ImportSpec, parentTypes *prevTypes, parents ...[]*dst.Ident) (ok bool) {
 	switch d := t.(type) {
 	case *dst.Ident:
 		if d.Obj == nil {
@@ -82,7 +83,7 @@ func (s *structTyp) isSupportedType(f *field, t any, dirList *dirList, pkg strin
 	case nil:
 
 	case *dst.SelectorExpr:
-		ok = s.option.isSupportedSelector(f, d, fileImports)
+		ok = s.option.isSupportedSelector(f, d, fileImports, parentTypes)
 
 	case *dst.Object:
 		if d.Kind != dst.Typ || d.Name == "" {
@@ -93,13 +94,13 @@ func (s *structTyp) isSupportedType(f *field, t any, dirList *dirList, pkg strin
 
 	case *dst.ArrayType:
 		f.arraySize, ok = calcArraySize(d.Len)
-		if !ok {
+		if !ok || f.isNotArrayOrSlice() {
 			return false
 		}
 		if f.isArray() {
-			parentTypes = append(parentTypes, ARRAY)
-		} else if f.isSlice() {
-			parentTypes = append(parentTypes, SLICE)
+			parentTypes.add(ARRAY)
+		} else {
+			parentTypes.add(SLICE)
 		}
 
 		ok = s.isSupportedType(f, d.Elt, dirList, pkg, fileImports, parentTypes, parents...)
@@ -110,12 +111,6 @@ func (s *structTyp) isSupportedType(f *field, t any, dirList *dirList, pkg strin
 		f.arrayDepth++
 		f.arrayType = f.typ
 		if f.isDef {
-			// f.isDef prevents types like []float where `type float float32` which can't be easily converted to []float32 in one line without the unsafe package.
-			// However, `type float = float32`, `type floats = []float32` and `type floats []float32` can be easily converted in one line.
-			if f.aliasType != tTimeDuration {
-				return false
-			}
-
 			f.typ = "[]" + f.aliasType
 		} else {
 			f.typ = "[]" + f.typ
@@ -150,16 +145,31 @@ func (s *structTyp) isSupportedType(f *field, t any, dirList *dirList, pkg strin
 			return false
 		}
 
-		if parentTypes.IsArrayOrSlice() {
-			return false
-		}
-
-		s.process(d.Fields.List, dirList, fileImports, append(parentTypes, STRUCT), parents...)
+		parentTypes.add(STRUCT)
+		s.process(d.Fields.List, dirList, fileImports, parentTypes, parents...)
 
 	default:
 		lg.Printf("type %T not expected in Option.isSupportedType()", d)
 	}
 	return
+}
+
+func (p *prevTypes) add(t int8) {
+	*p = append(*p, t)
+}
+
+func (p *prevTypes) isSliceable() bool {
+Loop:
+	for i := range slices.Backward(*p) {
+		switch (*p)[i] {
+		case DURATION, STRUCT, TIME:
+		case ARRAY, SLICE:
+			break Loop
+		default: // SelectorExpr
+			return false
+		}
+	}
+	return true
 }
 
 func findImportedType(files []*dst.File, pkg, typName string) *dst.Object {
@@ -193,7 +203,7 @@ func findImportedType(files []*dst.File, pkg, typName string) *dst.Object {
 }
 
 // isSupportedSelector resolves imported types and some types within Go's standard library.
-func (o *Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports []*dst.ImportSpec) (ok bool) {
+func (o *Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports []*dst.ImportSpec, parentTypes *prevTypes) (ok bool) {
 	x, ok := d.X.(*dst.Ident)
 	if !ok {
 		return
@@ -202,16 +212,20 @@ func (o *Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports 
 	// Go standard library types are hardcoded rather than trying to find the Go source files on every environment;
 	// especially difficult when the GOROOT environment variable isn't set and Go could be installed anywhere, even a NAS.
 	switch x.Name {
+	default:
+		parentTypes.add(SelectorExpr)
 	case "time":
 		// Built-ins are hardcoded here so resolveImportedTypes doesn't need to be executed.
 		switch d.Sel.Name {
+		default:
+			parentTypes.add(SelectorExpr)
 		case "Duration": // type Duration int64
-			f.typ = tInt64
+			f.typ = tTimeDuration
 			f.pkgReq = x.Name
 			f.aliasType = tTimeDuration
-			f.isDef = true
 			f.isFixedLen = o.isLenFixed(f.typ)
 			f.elmSize = o.isLen(f.typ)
+			parentTypes.add(DURATION)
 			return true
 		case "Time": // type Time struct
 			f.typ = tTime
@@ -219,6 +233,7 @@ func (o *Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports 
 			f.aliasType = tTime
 			f.isFixedLen = o.isLenFixed(f.typ)
 			f.elmSize = o.isLen(f.typ)
+			parentTypes.add(TIME)
 			return true
 			// case "Weekday":
 			// 	f.typ = tInt
@@ -236,8 +251,7 @@ func (o *Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports 
 		return
 	}
 
-	var err error
-	err = resolveImportedTypes(imp, d.Sel.Name, f, *o)
+	err := resolveImportedTypes(imp, d.Sel.Name, f, parentTypes)
 	if err != nil {
 		return false
 	}
@@ -247,7 +261,7 @@ func (o *Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports 
 	f.isDef = true
 	if f.isArray() {
 		y := strings.TrimPrefix(f.typ, "[]")
-		f.elmSize = uint(f.arraySize) * o.isLen(y)
+		f.elmSize = o.isLen(y)
 		f.isFixedLen = o.isLenFixed(y)
 	} else {
 		f.elmSize = o.isLen(f.typ)
@@ -409,7 +423,7 @@ func (o *Option) isLen(typ string) uint {
 		return 2
 	case tInt32, tUint32, tFloat32:
 		return 4
-	case tInt64, tUint64, tFloat64, tTime, tComplex64:
+	case tInt64, tUint64, tFloat64, tTime, tTimeDuration, tComplex64:
 		return 8
 	case tComplex128:
 		return 16
@@ -494,6 +508,9 @@ const (
 	ARRAY int8 = iota + 1
 	SLICE
 	STRUCT
+	SelectorExpr
+	TIME
+	DURATION
 )
 
 // resolveBuiltinAlias replaces the built-in alias with the underlining name to reduce the quantity of types to support.
@@ -510,8 +527,3 @@ func resolveBuiltinAlias(typ string) string {
 }
 
 type prevTypes []int8
-
-func (p prevTypes) IsArrayOrSlice() bool {
-	l := len(p) - 1
-	return l >= 0 && (p[l] == SLICE || p[l] == ARRAY)
-}
