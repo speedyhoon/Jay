@@ -10,10 +10,16 @@ import (
 	"golang.org/x/tools/go/packages"
 )
 
+var resolvedPackages = map[string][]*packages.Package{}
+
 func resolveImportedTypes(importPath, identName string, f *field, parentTypes *prevTypes) (err error) {
-	packs, err := packages.Load(&packages.Config{Mode: packages.LoadAllSyntax}, importPath)
-	if err != nil || len(packs) == 0 {
-		return fmt.Errorf("could not load import package %s: %w", identName, err)
+	packs, ok := resolvedPackages[importPath]
+	if !ok {
+		packs, err = packages.Load(&packages.Config{Mode: packages.LoadAllSyntax}, importPath)
+		if err != nil || len(packs) == 0 {
+			return fmt.Errorf("could not load import package %s: %w", identName, err)
+		}
+		resolvedPackages[importPath] = packs
 	}
 
 	for _, pkg := range packs {
