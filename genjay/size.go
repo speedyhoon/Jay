@@ -27,43 +27,42 @@ func (s *structTyp) calcSize() (qty uint) {
 
 // typeFuncSize returns the minimum quantity of bytes required to represent an empty or undefined value.
 func (f *field) typeFuncSize() (size uint) {
-	switch {
-	case f.isSlice():
+	if f.isSlice() {
 		return f.reserveSizeOf()
-	case f.isArray():
-		fe := field{typ: f.arrayType, structTyp: f.structTyp}
-		return uint(f.arraySize) * fe.typeFuncSize()
-	default:
-		switch f.typ {
-		case tString, tBool, tByte, tInt8:
-			return 1
-		case tInt16, tUint16:
-			return 2
-		case tInt32, tFloat32, tUint32:
-			return 4
-		case tFloat64, tInt64, tUint64, tTime, tTimeDuration, tComplex64:
-			return 8
-		case tComplex128:
-			return 16
-		case tInt:
-			if f.structTyp.option.VariableIntSize {
-				return 1
-			}
-			if f.structTyp.option.Is32bit {
-				return 4
-			}
-			return 8
-		case tUint:
-			if f.structTyp.option.VariableUintSize {
-				return 1
-			}
-			if f.structTyp.option.Is32bit {
-				return 4
-			}
-			return 8
-		}
 	}
-	lg.Printf("type %s unhandled in typeFuncSize()", f.typ)
+	switch f.BaseType() {
+	case tString, tBool, tByte, tInt8:
+		size = 1
+	case tInt16, tUint16:
+		size = 2
+	case tInt32, tFloat32, tUint32:
+		size = 4
+	case tFloat64, tInt64, tUint64, tTime, tTimeDuration, tComplex64:
+		size = 8
+	case tComplex128:
+		size = 16
+	case tInt:
+		if f.structTyp.option.VariableIntSize {
+			size = 1
+		}
+		if f.structTyp.option.Is32bit {
+			size = 4
+		}
+		size = 8
+	case tUint:
+		if f.structTyp.option.VariableUintSize {
+			size = 1
+		}
+		if f.structTyp.option.Is32bit {
+			size = 4
+		}
+		size = 8
+	default:
+		lg.Printf("type %s unhandled in typeFuncSize()", f.typ)
+	}
+	if f.isArray() {
+		size *= uint(f.arraySize)
+	}
 	return
 }
 

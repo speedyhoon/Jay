@@ -41,6 +41,14 @@ type field struct {
 	isLast      bool
 	isSliceable bool
 }
+
+func (f *field) BaseType() string {
+	if f.isArray() {
+		return f.arrayType
+	}
+	return f.typ
+}
+
 type fieldList []*field
 
 // Visit traverses the AST File and finds all structs even if they are unexported.
