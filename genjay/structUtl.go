@@ -298,26 +298,6 @@ func packageName(f *dst.File) string {
 	return "main"
 }
 
-func (o *Option) newFieldArray(arraySize int, arrayType string) (f field) {
-	f = field{
-		arraySize:  arraySize,
-		arrayType:  arrayType,
-		typ:        genType(arraySize, arrayType),
-		isFixedLen: arraySize >= 0 && o.isLenFixed(arrayType),
-	}
-	return
-}
-func genType(arraySize int, typ string) string {
-	switch arraySize {
-	case typeSlice:
-		return fmt.Sprintf("[]%s", typ)
-	case typeNotArrayOrSlice:
-		return typ
-	default:
-		return fmt.Sprintf("[%d]%s", arraySize, typ)
-	}
-}
-
 const (
 	typeSlice           = -1
 	typeNotArrayOrSlice = 0
