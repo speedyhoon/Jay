@@ -235,13 +235,6 @@ func (o *Option) isSupportedSelector(f *field, d *dst.SelectorExpr, fileImports 
 			f.elmSize = o.isLen(f.typ)
 			parentTypes.add(TIME)
 			return true
-			// case "Weekday":
-			// 	f.typ = tInt
-			// 	f.pkgReq = x.Name
-			// 	f.aliasType = "time.Weekday"
-			// 	f.isFixedLen = o.isLenFixed(f.typ)
-			// 	f.elmSize = o.isLen(f.typ)
-			// 	return true
 		}
 	}
 
